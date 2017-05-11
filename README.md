@@ -1,6 +1,6 @@
-# breakout
+# Celestial Outbreak
 
-_This repository holds a breakout-like game created in Java and Java Swing._
+_Welcome to Celestial Outbreak! A game inspired by Pong, Breakout and a few others. Currently in development._
 
 ### v0.01a
 
