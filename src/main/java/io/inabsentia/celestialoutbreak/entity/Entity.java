@@ -1,0 +1,41 @@
+package io.inabsentia.celestialoutbreak.entity;
+
+import java.awt.*;
+
+public abstract class Entity {
+
+    protected int width;
+    protected int height;
+
+    protected Color color;
+
+    protected Point pos;
+
+    public Entity(Point pos, int width, int height, Color color) {
+        this.pos = pos;
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+
+    public abstract void render(Graphics2D g);
+
+    public abstract Rectangle getBounds();
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+}

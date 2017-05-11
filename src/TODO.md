@@ -6,20 +6,22 @@
 
 ----------
 
-3. Create working menu system.
+x. Refactor packages. Classes. Everything. Use github issues for todo. Maybe.
+
+3. Create working io.inabsentia.celestialoutbreak.menu system.
 
 4. Create powerups.
 
 5. Create player and player life. (starting with 5.) 
 
-6. Create level structure.
+6. Create io.inabsentia.celestialoutbreak.level structure.
 
 7. Make a code review of the Menu classes. 
    - Make their code consistent.
    - Check that Game class uses them right.
    - Make a code review of the Game class.
    - Fix these.
-   - Make rectangles for the menu items. Maybe. Test it.
+   - Make rectangles for the io.inabsentia.celestialoutbreak.menu items. Maybe. Test it.
    - Make sure everything works.
 
 Powerup ideas:
