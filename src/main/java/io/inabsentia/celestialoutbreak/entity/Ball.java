@@ -12,6 +12,7 @@ public class Ball extends MobileEntity {
     private SoundHandler soundHandler;
     private int paddleCollisionTimer = 0;
 
+
     private final boolean DEV_ENABLED = Utils.getInstance().DEV_ENABLED;
 
     public Ball(Point pos, int width, int height, int speed, Color color, Game game) {
