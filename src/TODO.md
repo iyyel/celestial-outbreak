@@ -41,14 +41,21 @@ Powerup ideas:
     
 Should the good and bad powerups be equal,
 or should one be superior?
-    
-      
+
+Add an options pane. Control the options with local file with Java properties. Like binary.
+e.g. sound enable = 0, sound disabled = 1, dev mode enable = 0, dev mode off = 1, etc.
+
 Known bugs:
 
 1. The ball can get stuck on the paddle, as well as gliding
    through it. This is caused by the collision detection, 
    so it is most likely that which is in need of improvement.
+
+   UPDATE: THIS SEEMS TO BE FIXED. NEEDS FURTHER TESTING!
    
 2. The path in the sound paths are not working. 
    I suspect that it has something to do with the 
    audio class folder, that is not working.
+
+   UPDATE: THIS SEEMS TO BE FIXED, HOWEVER IT DOES STILL NOT WORK IN A JAR FILE.
+   LOOK INTO IT.

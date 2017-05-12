@@ -26,7 +26,7 @@ public class TextHandler {
     public final String quitBtn = "QUIT";
 
     public final String pauseMsg = "Paused";
-    public final String pauseStartMsg = "[player name here], press \"p\" to start the game!";
+    public final String pauseStartMsg = "Press \"p\" to start the game!";
 
     public String blocksLeft(int blocksLeft) {
         return "Blocks: " + blocksLeft;

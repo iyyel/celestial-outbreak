@@ -32,6 +32,8 @@ public class Game extends Canvas implements Runnable {
     private final int SCALE = 2;
     private final int UPDATE_RATE = 60;
 
+    private final boolean DEV_ENABLED = Utils.getInstance().DEV_ENABLED;
+
     /**
      * Timers to switch the mainMenu background color
      * in a slower interval than 60 times a second.
@@ -122,7 +124,7 @@ public class Game extends Canvas implements Runnable {
 
 		/* Create game objects */
         paddle = new Paddle(new Point((getWidth() / 2) - 25, getHeight() - 50), 60, 10, 7, Color.WHITE, this);
-        ball = new Ball(new Point((WIDTH * SCALE) / 2, (HEIGHT * SCALE) / 2), 15, 15, 5, Color.WHITE, this, soundHandler);
+        ball = new Ball(new Point((WIDTH * SCALE) / 2, (HEIGHT * SCALE) / 2), 15, 15, 5, Color.WHITE, this);
         blockList = new BlockList(133, new Point(30, 30), 50, 15, 15, this);
 
 		/* Add input handlers */
@@ -159,8 +161,9 @@ public class Game extends Canvas implements Runnable {
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | UPS: " + updates + " FPS: " + frames);
-                // DEBUGGING/LOGGING
-                System.out.println("UPS: " + updates + " FPS: " + frames);
+                if (DEV_ENABLED) {
+                    System.err.println("[DEV]: UPS: " + updates + " FPS: " + frames);
+                }
                 updates = 0;
                 frames = 0;
             }

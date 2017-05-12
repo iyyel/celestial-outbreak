@@ -8,12 +8,12 @@ public class Utils {
     private static final Utils instance = new Utils();
     private final Random random;
 
+    // Game flags
+    public final boolean DEV_ENABLED = true;
+    public final boolean SOUND_ENABLED = true;
+
     private Utils() {
         random = new Random();
-    }
-
-    public static synchronized Utils getInstance() {
-        return instance;
     }
 
     public Color generatePastelColor(final float luminance, final float sat) {
@@ -29,6 +29,10 @@ public class Utils {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static synchronized Utils getInstance() {
+        return instance;
     }
 
 }

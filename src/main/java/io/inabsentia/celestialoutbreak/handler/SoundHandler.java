@@ -1,6 +1,7 @@
 package io.inabsentia.celestialoutbreak.handler;
 
 import io.inabsentia.celestialoutbreak.entity.State;
+import io.inabsentia.celestialoutbreak.utils.Utils;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -10,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class SoundHandler {
+
+    private final boolean SOUND_ENABLED = Utils.getInstance().SOUND_ENABLED;
 
     private static final SoundHandler instance = new SoundHandler();
 
@@ -33,6 +36,7 @@ public class SoundHandler {
         }
 
         public void play(boolean loop) {
+            if (!SOUND_ENABLED) return;
             if (clip.isActive()) return;
 
             stop();
