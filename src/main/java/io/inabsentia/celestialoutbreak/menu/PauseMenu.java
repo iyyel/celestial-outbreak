@@ -36,7 +36,7 @@ public class PauseMenu extends Menu {
         g.drawString(textHandler.pauseMsg, game.getWidth() / 2 - 80, 300);
 
         g.setFont(pauseStartMsgFont);
-        g.drawString(textHandler.pauseStartMsg, game.getWidth() / 2 - 220, game.getHeight() / 2);
+        g.drawString(textHandler.pauseStartMsg, game.getWidth() / 2 - 225, game.getHeight() / 2);
     }
 
 }

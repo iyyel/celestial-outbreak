@@ -1,14 +1,11 @@
 package io.inabsentia.celestialoutbreak.controller;
 
-import io.inabsentia.celestialoutbreak.entity.Ball;
-import io.inabsentia.celestialoutbreak.entity.BlockList;
-import io.inabsentia.celestialoutbreak.entity.Paddle;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.graphics.Screen;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.SoundHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
-import io.inabsentia.celestialoutbreak.menu.BottomPanelMenu;
+import io.inabsentia.celestialoutbreak.level.GreenLevel;
 import io.inabsentia.celestialoutbreak.menu.MainMenu;
 import io.inabsentia.celestialoutbreak.menu.PauseMenu;
 import io.inabsentia.celestialoutbreak.utils.Utils;
@@ -22,7 +19,7 @@ import java.awt.image.DataBufferInt;
 public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
 
-    /**
+    /*
      * WIDTH and HEIGHT will be multiplied by SCALE
      * to make the width and height of the screen.
      * Update rate is the targeted update rate.
@@ -34,14 +31,14 @@ public class Game extends Canvas implements Runnable {
 
     private final boolean DEV_ENABLED = Utils.getInstance().DEV_ENABLED;
 
-    /**
+    /*
      * Timers to switch the mainMenu background color
      * in a slower interval than 60 times a second.
      */
     private final int initialMenuColorTimer = UPDATE_RATE * 4;
     private int menuColorTimer = initialMenuColorTimer;
 
-    /**
+    /*
      * gameThread is the main thread.
      * isRunning determines whether the game loop is
      * running or not.
@@ -49,20 +46,20 @@ public class Game extends Canvas implements Runnable {
     private Thread gameThread;
     private boolean isRunning = false;
 
-    /**
+    /*
      * BufferedImage for the actual rendering of the screen.
      * pixels[] is the extracted pixels from the image.
      */
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
-    /**
+    /*
      * JFrame and screen renderer objects.
      */
     private final JFrame gameFrame;
     private final Screen screen;
 
-    /**
+    /*
      * Singleton objects.
      */
     private final Utils utils;
@@ -70,28 +67,25 @@ public class Game extends Canvas implements Runnable {
     private final InputHandler inputHandler;
     private final SoundHandler soundHandler;
 
-    /**
+    /*
      * Objects used for io.inabsentia.celestialoutbreak.menu's.
      */
     private final MainMenu mainMenu;
     private final PauseMenu pauseMenu;
-    private final BottomPanelMenu bottomPanelMenu;
     private Color menuColor;
 
-    /**
-     * Game play entities.
+    /*
+     * Game levels. // TEST // Perhaps make a LevelManager.
      */
-    private final Paddle paddle;
-    private final Ball ball;
-    private final BlockList blockList;
+    private final GreenLevel greenLevel;
 
-    /**
+    /*
      * Current state of the game.
      * Start with showing the io.inabsentia.celestialoutbreak.menu.
      */
     private State state = State.MENU;
 
-    /**
+    /*
      * Constructor of Game class.
      * Initialize above objects here. Start game loop.
      */
@@ -114,18 +108,15 @@ public class Game extends Canvas implements Runnable {
         soundHandler = SoundHandler.getInstance();
 
 		/* Create screen renderer */
-        screen = new Screen(WIDTH, HEIGHT, pixels, utils.generatePastelColor(0.5F, 2000F));
+        screen = new Screen(WIDTH, HEIGHT, pixels);
 
 		/* Create io.inabsentia.celestialoutbreak.menu objects */
         mainMenu = new MainMenu(this, inputHandler, Color.WHITE, Color.WHITE, Color.BLACK);
         pauseMenu = new PauseMenu(this, inputHandler, Color.WHITE);
-        bottomPanelMenu = new BottomPanelMenu(this, inputHandler, Color.WHITE);
         menuColor = utils.generatePastelColor(0.9F, 9000F);
 
-		/* Create game objects */
-        paddle = new Paddle(new Point((getWidth() / 2) - 25, getHeight() - 50), 60, 10, 7, Color.WHITE, this);
-        ball = new Ball(new Point((WIDTH * SCALE) / 2, (HEIGHT * SCALE) / 2), 15, 15, 5, Color.WHITE, this);
-        blockList = new BlockList(133, new Point(30, 30), 50, 15, 15, this);
+        // TEST GREEN LEVEL
+        greenLevel = new GreenLevel(this, inputHandler, soundHandler);
 
 		/* Add input handlers */
         gameFrame.addKeyListener(inputHandler);
@@ -136,7 +127,7 @@ public class Game extends Canvas implements Runnable {
         start();
     }
 
-    /**
+    /*
      * Game loop with frames and updates counter.
      */
     @Override
@@ -168,37 +159,38 @@ public class Game extends Canvas implements Runnable {
                 frames = 0;
             }
         }
-        /**
+        /*
          * If we get out of the game loop for some reason,
          * stop execution immediately.
          */
         stop();
     }
 
-    /**
+    /*
      * Update the state of the game entities
      * as well as the different menus.
      */
     private void update() {
         if (inputHandler.pause) switchPlayPauseState();
 
-		/* Figure this out. It should not be here, and it is not quite a io.inabsentia.celestialoutbreak.menu. */
-        bottomPanelMenu.updateBlockAmount(blockList.getBlocksLeft());
-
         inputHandler.update();
-        if (state == State.PLAY) {
-            paddle.update(inputHandler.left, inputHandler.right);
-            ball.update(paddle, blockList);
+
+        if (state == State.MENU) {
+            mainMenu.update();
+        } else if (state == State.PLAY) {
+            greenLevel.update();
+        } else if (state == State.SCORES) {
+
+        } else if (state == State.SETTINGS) {
+
+        } else if (state == State.ABOUT) {
 
         } else if (state == State.PAUSE) {
-
-        } else if (state == State.MENU) {
-            mainMenu.update();
 
         }
     }
 
-    /**
+    /*
      * Render game entities as well as
      * the menus and everything else.
      */
@@ -213,12 +205,10 @@ public class Game extends Canvas implements Runnable {
         screen.clear();
 
         if (state == State.PLAY || state == State.PAUSE) {
-            screen.render();
-
+            screen.render(greenLevel.getLevelColor());
         } else if (state == State.MENU) {
             switchMenuColor();
             screen.render(menuColor);
-
         }
 
         Graphics2D g = (Graphics2D) bs.getDrawGraphics();
@@ -228,17 +218,20 @@ public class Game extends Canvas implements Runnable {
 
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
-        if (state == State.PLAY) {
-            paddle.render(g);
-            ball.render(g);
-            blockList.render(g);
-            bottomPanelMenu.render(g);
+        if (state == State.MENU) {
+            mainMenu.render(g);
             soundHandler.playStateMusic(state, true);
+        } else if (state == State.PLAY) {
+            greenLevel.render(g);
+            soundHandler.playStateMusic(state, true);
+        } else if (state == State.SCORES) {
+
+        } else if (state == State.SETTINGS) {
+
+        } else if (state == State.ABOUT) {
+
         } else if (state == State.PAUSE) {
             pauseMenu.render(g);
-            soundHandler.playStateMusic(state, true);
-        } else if (state == State.MENU) {
-            mainMenu.render(g);
             soundHandler.playStateMusic(state, true);
         }
 
@@ -271,7 +264,7 @@ public class Game extends Canvas implements Runnable {
         gameFrame.setResizable(false);
         gameFrame.add(this);
         gameFrame.pack();
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         gameFrame.setVisible(true);
         gameFrame.requestFocus();
     }
@@ -280,23 +273,22 @@ public class Game extends Canvas implements Runnable {
         this.state = state;
     }
 
-    public void switchMenuColor() {
+    private void switchMenuColor() {
         if (menuColorTimer == initialMenuColorTimer) {
             menuColor = utils.generatePastelColor(0.8F, 9000F);
             menuColorTimer--;
         } else {
             menuColorTimer--;
-            if (menuColorTimer == 0) {
+            if (menuColorTimer == 0)
                 menuColorTimer = initialMenuColorTimer;
-            }
         }
     }
 
-    public void switchPlayPauseState() {
+    private void switchPlayPauseState() {
         if (state == State.PLAY) {
-            state = State.PAUSE;
+            changeState(State.PAUSE);
         } else if (state == State.PAUSE) {
-            state = State.PLAY;
+            changeState(State.PLAY);
         }
         utils.sleep(100);
     }

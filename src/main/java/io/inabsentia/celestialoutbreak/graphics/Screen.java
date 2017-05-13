@@ -9,23 +9,10 @@ public class Screen {
 
     public int[] pixels;
 
-    private final Color color;
-
-    public Screen(int width, int height, int[] pixels, Color color) {
+    public Screen(int width, int height, int[] pixels) {
         this.WIDTH = width;
         this.HEIGHT = height;
         this.pixels = pixels;
-        this.color = color;
-    }
-
-    public void render() {
-        for (int y = 0; y < HEIGHT; y++) {
-            if (y < 0 || y >= HEIGHT) break;
-            for (int x = 0; x < WIDTH; x++) {
-                if (x < 0 || x >= WIDTH) break;
-                pixels[x + y * WIDTH] = color.darker().getRGB();
-            }
-        }
     }
 
     public void render(Color color) {
@@ -39,9 +26,7 @@ public class Screen {
     }
 
     public void clear() {
-        for (int i = 0; i < pixels.length; i++) {
-            pixels[i] = 0;
-        }
+        for (int i = 0; i < pixels.length; i++) pixels[i] = 0;
     }
 
 }

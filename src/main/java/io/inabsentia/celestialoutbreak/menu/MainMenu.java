@@ -8,10 +8,10 @@ import java.awt.*;
 
 public class MainMenu extends Menu {
 
-    private final Rectangle playRect, langRect, scoreRect, aboutRect, quitRect, versionRect, emailRect;
+    private final Rectangle playRect, settingsRect, scoreRect, aboutRect, quitRect, versionRect, emailRect;
     private final Font titleFont, btnFont, versionFont, emailFont;
 
-    private String[] options = {textHandler.playBtn, textHandler.scoreBtn, textHandler.langBtn, textHandler.aboutBtn, textHandler.quitBtn};
+    private String[] options = {textHandler.playBtn, textHandler.scoreBtn, textHandler.settingsBtn, textHandler.aboutBtn, textHandler.quitBtn};
     private Color[] rectColors;
 
     private Color fontColor, rectColor, selectedColor;
@@ -27,7 +27,7 @@ public class MainMenu extends Menu {
 
         playRect = new Rectangle(game.getWidth() / 2 - 50, 250, 100, 50);
         scoreRect = new Rectangle(game.getWidth() / 2 - 55, 330, 110, 50);
-        langRect = new Rectangle(game.getWidth() / 2 - 75, 410, 150, 50);
+        settingsRect = new Rectangle(game.getWidth() / 2 - 68, 410, 135, 50);
         aboutRect = new Rectangle(game.getWidth() / 2 - 50, 490, 100, 50);
         quitRect = new Rectangle(game.getWidth() / 2 - 50, 570, 100, 50);
         versionRect = new Rectangle(game.getWidth() / 2 + 15, game.getHeight() - 20, 40, 15);
@@ -71,7 +71,7 @@ public class MainMenu extends Menu {
                             System.out.println("SCORES!");
                             break;
                         case 2:
-                            System.out.println("LANG!");
+                            System.out.println("SETTINGS!");
                             break;
                         case 3:
                             System.out.println("ABOUT!");
@@ -109,9 +109,9 @@ public class MainMenu extends Menu {
         g.draw(scoreRect);
 
         g.setColor(fontColor);
-        g.drawString(options[2], langRect.x + 6, langRect.y + 35);
+        g.drawString(options[2], settingsRect.x + 6, settingsRect.y + 35);
         g.setColor(rectColors[2]);
-        g.draw(langRect);
+        g.draw(settingsRect);
 
         g.setColor(fontColor);
         g.drawString(options[3], aboutRect.x + 6, aboutRect.y + 35);

@@ -5,42 +5,78 @@ import io.inabsentia.celestialoutbreak.handler.SoundHandler;
 import io.inabsentia.celestialoutbreak.utils.Utils;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Ball extends MobileEntity {
 
     private Point velocity;
     private SoundHandler soundHandler;
-    private int paddleCollisionTimer = 0;
+    private final Random random;
 
+    private int paddleCollisionTimer = 0;
+    private int paddleCollisionTimerValue = 20;
+    private int ballStaleTimer = 0;
+    private int ballStaleTimerValue = 20;
 
     private final boolean DEV_ENABLED = Utils.getInstance().DEV_ENABLED;
 
     public Ball(Point pos, int width, int height, int speed, Color color, Game game) {
         super(pos, width, height, speed, color, game);
         soundHandler = SoundHandler.getInstance();
+        random = new Random();
         velocity = new Point(speed, speed);
     }
 
     public void update(Paddle paddle, BlockList blockList) {
-        pos.x += velocity.x;
-        pos.y += velocity.y;
+        if (ballStaleTimer == 0) {
+            pos.x += velocity.x;
+            pos.y += velocity.y;
+        } else {
+            ballStaleTimer--;
+        }
+
+        if (DEV_ENABLED) {
+            //System.err.println("[DEV]: Ball velocity.x: " + velocity.x + ", velocity.y: " + velocity.y);
+        }
 
         checkCollision(paddle);
         checkCollision(blockList);
 
         if (pos.x < 0) {
-            velocity.x *= -1 + (int) (Math.cos(Math.random() * 10));
+            if (DEV_ENABLED) {
+                System.err.println("[DEV]: Ball touched left y-axis.");
+            }
+            velocity.x = speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.x > (game.getWidth() - width)) {
-            velocity.x *= -1 + (int) (Math.cos(Math.random() * 10));
+            if (DEV_ENABLED) {
+                System.err.println("[DEV]: Ball touched right y-axis.");
+            }
+            velocity.x = -speed;
             soundHandler.beep01.play(false);
         }
 
-        if (pos.y < 0 || pos.y > (game.getHeight() - height)) {
-            velocity.y *= -1 + (int) (Math.sin(Math.random() * 10));
+        if (pos.y < 0) {
+            if (DEV_ENABLED) {
+                System.err.println("[DEV]: Ball touched top x-axis.");
+            }
+            velocity.y = speed;
             soundHandler.beep01.play(false);
+        }
+
+        if (pos.y > (game.getHeight() - height)) {
+            if (DEV_ENABLED) {
+                System.err.println("[DEV]: Ball touched bottom x-axis.");
+            }
+            pos = new Point(game.getWidth() / 2, game.getHeight() / 2);
+            boolean isPositiveValue = random.nextBoolean();
+            int ballSpeedDecrement = random.nextInt(speed);
+            velocity.x = (isPositiveValue ? 1 : -1) * speed + (isPositiveValue ? -ballSpeedDecrement : ballSpeedDecrement);
+            velocity.y = speed;
+            soundHandler.beep03.play(false);
+            ballStaleTimer = ballStaleTimerValue;
         }
     }
 
@@ -48,7 +84,14 @@ public class Ball extends MobileEntity {
         if (t.getClass().equals(Paddle.class) && ((Paddle) t).getBounds().intersects(getBounds())) {
             if (paddleCollisionTimer == 0) {
                 velocity.y *= -1;
-                paddleCollisionTimer = 20;
+
+                if (velocity.x < 0) {
+                    velocity.x = -speed;
+                } else {
+                    velocity.x = speed;
+                }
+
+                paddleCollisionTimer = paddleCollisionTimerValue;
 
                 soundHandler.beep01.play(false);
 
@@ -79,10 +122,6 @@ public class Ball extends MobileEntity {
 
         if (paddleCollisionTimer > 0) {
             paddleCollisionTimer--;
-
-            if (DEV_ENABLED) {
-                System.err.println("[DEV]: paddleCollisionTimer decremented to " + paddleCollisionTimer + ".");
-            }
         }
     }
 

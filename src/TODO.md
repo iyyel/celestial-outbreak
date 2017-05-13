@@ -6,6 +6,8 @@
 
 ----------
 
+x. Get ball movement working correctly.
+
 x. Refactor packages. Classes. Everything. Use github issues for todo. Maybe.
 
 3. Create working io.inabsentia.celestialoutbreak.menu system.

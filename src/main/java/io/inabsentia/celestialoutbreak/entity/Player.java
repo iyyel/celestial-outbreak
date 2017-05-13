@@ -6,42 +6,42 @@ package io.inabsentia.celestialoutbreak.entity;
  */
 public class Player {
 
-	private static final Player instance = new Player();
+    private static final Player instance = new Player();
 
-	private String name;
-	private int lives;
-	private int score;
+    private String name;
+    private int lives;
+    private int score;
 
-	private Player() {
+    private Player() {
 
-	}
+    }
 
-	public synchronized static Player getInstance() {
-		return instance;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public int getLives() {
+        return lives;
+    }
 
-	public int getLives() {
-		return lives;
-	}
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
 
-	public void setLives(int lives) {
-		this.lives = lives;
-	}
+    public int getScore() {
+        return score;
+    }
 
-	public int getScore() {
-		return score;
-	}
+    public void setScore(int score) {
+        this.score = score;
+    }
 
-	public void setScore(int score) {
-		this.score = score;
-	}
+    public synchronized static Player getInstance() {
+        return instance;
+    }
 
 }

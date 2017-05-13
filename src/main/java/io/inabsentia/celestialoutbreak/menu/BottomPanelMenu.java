@@ -15,7 +15,6 @@ public class BottomPanelMenu extends Menu {
     public BottomPanelMenu(Game game, InputHandler inputHandler, Color fontColor) {
         super(game, inputHandler);
         this.fontColor = fontColor;
-
         panelFont = new Font("Verdana", Font.PLAIN, 12);
     }
 
@@ -28,7 +27,8 @@ public class BottomPanelMenu extends Menu {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         g.setFont(panelFont);
-        g.drawString(textHandler.blocksLeft(blockAmount), 1200, 710);
+        // Figure these values out someday.
+        g.drawString(textHandler.bottomPanelString("test", 0, 0, blockAmount), 900, 710);
     }
 
     public void updateBlockAmount(int blockAmount) {
