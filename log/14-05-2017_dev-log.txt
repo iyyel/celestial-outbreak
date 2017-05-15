@@ -170,3 +170,1298 @@
 [DEV-LOG]: UPS: 60 FPS: 210
 [DEV-LOG]: UPS: 60 FPS: 233
 [DEV-LOG]: Ball touched bottom x-axis.
+[DEV-LOG 18:18:06]: ########### NEW APPLICATION INSTANCE AT 14-05-2017 18:18:06 ###########
+[DEV-LOG 18:18:08]: Loaded from  'redlevel.config' successfully.
+[DEV-LOG 18:18:09]: UPS: 59 FPS: 17
+[DEV-LOG 18:18:10]: UPS: 60 FPS: 67
+[DEV-LOG 18:18:11]: UPS: 60 FPS: 113
+[DEV-LOG 18:18:12]: UPS: 60 FPS: 117
+[DEV-LOG 18:18:13]: UPS: 60 FPS: 117
+[DEV-LOG 18:18:14]: UPS: 60 FPS: 127
+[DEV-LOG 18:18:15]: UPS: 60 FPS: 131
+[DEV-LOG 18:18:16]: UPS: 60 FPS: 127
+[DEV-LOG 18:18:17]: UPS: 60 FPS: 76
+[DEV-LOG 18:18:18]: UPS: 60 FPS: 82
+[DEV-LOG 18:18:19]: UPS: 60 FPS: 109
+[DEV-LOG 18:18:20]: UPS: 60 FPS: 109
+[DEV-LOG 18:18:21]: UPS: 61 FPS: 112
+[DEV-LOG 18:18:22]: UPS: 59 FPS: 111
+[DEV-LOG 18:18:23]: UPS: 61 FPS: 126
+[DEV-LOG 18:18:24]: UPS: 59 FPS: 129
+[DEV-LOG 18:18:25]: UPS: 60 FPS: 127
+[DEV-LOG 18:18:26]: UPS: 60 FPS: 133
+[DEV-LOG 18:18:27]: UPS: 60 FPS: 128
+[DEV-LOG 18:18:28]: UPS: 60 FPS: 131
+[DEV-LOG 18:18:29]: UPS: 60 FPS: 131
+[DEV-LOG 18:18:30]: UPS: 60 FPS: 131
+[DEV-LOG 18:18:31]: UPS: 60 FPS: 127
+[DEV-LOG 18:18:32]: UPS: 60 FPS: 125
+[DEV-LOG 18:18:33]: UPS: 60 FPS: 133
+[DEV-LOG 18:18:34]: UPS: 60 FPS: 130
+[DEV-LOG 18:18:35]: UPS: 60 FPS: 135
+[DEV-LOG 18:18:36]: UPS: 60 FPS: 130
+[DEV-LOG 18:18:37]: UPS: 61 FPS: 292
+[DEV-LOG 18:18:38]: UPS: 59 FPS: 201
+[DEV-LOG 18:18:38]: Ball touched bottom x-axis.
+[DEV-LOG 18:18:39]: UPS: 60 FPS: 207
+[DEV-LOG 18:18:40]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:18:40]: UPS: 60 FPS: 217
+[DEV-LOG 18:18:41]: Ball touched right y-axis.
+[DEV-LOG 18:18:41]: Ball collision with BlockList[189].
+[DEV-LOG 18:18:41]: UPS: 60 FPS: 203
+[DEV-LOG 18:18:42]: Ball touched bottom x-axis.
+[DEV-LOG 18:18:42]: UPS: 60 FPS: 204
+[DEV-LOG 18:18:43]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:18:43]: UPS: 60 FPS: 208
+[DEV-LOG 18:18:44]: Ball collision with BlockList[188].
+[DEV-LOG 18:18:44]: UPS: 60 FPS: 204
+[DEV-LOG 18:18:44]: Ball touched right y-axis.
+[DEV-LOG 18:18:45]: Ball touched bottom x-axis.
+[DEV-LOG 18:18:45]: UPS: 60 FPS: 207
+[DEV-LOG 18:18:46]: UPS: 61 FPS: 210
+[DEV-LOG 18:18:46]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:18:47]: UPS: 59 FPS: 223
+[DEV-LOG 18:18:47]: Ball collision with BlockList[186].
+[DEV-LOG 18:18:48]: Ball touched right y-axis.
+[DEV-LOG 18:18:48]: UPS: 60 FPS: 200
+[DEV-LOG 18:18:48]: Ball touched bottom x-axis.
+[DEV-LOG 18:18:49]: UPS: 60 FPS: 214
+[DEV-LOG 18:18:50]: Ball touched bottom x-axis.
+[DEV-LOG 18:18:50]: UPS: 61 FPS: 207
+[DEV-LOG 18:18:51]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:18:51]: UPS: 59 FPS: 224
+[DEV-LOG 18:18:52]: Ball collision with BlockList[192].
+[DEV-LOG 18:18:52]: Ball touched left y-axis.
+[DEV-LOG 18:18:52]: UPS: 60 FPS: 197
+[DEV-LOG 18:18:53]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:18:53]: UPS: 60 FPS: 216
+[DEV-LOG 18:18:54]: Ball collision with BlockList[196].
+[DEV-LOG 18:18:54]: UPS: 60 FPS: 214
+[DEV-LOG 18:18:54]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:18:55]: UPS: 61 FPS: 221
+[DEV-LOG 18:18:55]: Ball collision with BlockList[169].
+[DEV-LOG 18:18:56]: Ball touched right y-axis.
+[DEV-LOG 18:18:56]: UPS: 60 FPS: 219
+[DEV-LOG 18:18:57]: Ball touched bottom x-axis.
+[DEV-LOG 18:18:57]: UPS: 59 FPS: 220
+[DEV-LOG 18:18:58]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:18:58]: UPS: 60 FPS: 217
+[DEV-LOG 18:18:59]: Ball collision with BlockList[193].
+[DEV-LOG 18:18:59]: UPS: 60 FPS: 204
+[DEV-LOG 18:18:59]: Ball touched left y-axis.
+[DEV-LOG 18:19:00]: Ball touched bottom x-axis.
+[DEV-LOG 18:19:00]: UPS: 60 FPS: 215
+[DEV-LOG 18:19:01]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:01]: UPS: 60 FPS: 211
+[DEV-LOG 18:19:02]: Ball collision with BlockList[191].
+[DEV-LOG 18:19:02]: Ball touched left y-axis.
+[DEV-LOG 18:19:02]: UPS: 60 FPS: 235
+[DEV-LOG 18:19:03]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:03]: UPS: 60 FPS: 205
+[DEV-LOG 18:19:04]: Ball collision with BlockList[197].
+[DEV-LOG 18:19:04]: UPS: 60 FPS: 207
+[DEV-LOG 18:19:04]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:05]: UPS: 60 FPS: 227
+[DEV-LOG 18:19:05]: Ball collision with BlockList[170].
+[DEV-LOG 18:19:06]: Ball touched right y-axis.
+[DEV-LOG 18:19:06]: UPS: 61 FPS: 212
+[DEV-LOG 18:19:06]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:07]: UPS: 59 FPS: 214
+[DEV-LOG 18:19:07]: Ball collision with BlockList[199].
+[DEV-LOG 18:19:08]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:08]: UPS: 60 FPS: 190
+[DEV-LOG 18:19:09]: Ball touched left y-axis.
+[DEV-LOG 18:19:09]: Ball collision with BlockList[171].
+[DEV-LOG 18:19:09]: Ball collision with BlockList[190].
+[DEV-LOG 18:19:09]: UPS: 60 FPS: 221
+[DEV-LOG 18:19:09]: Ball collision with BlockList[152].
+[DEV-LOG 18:19:09]: Ball collision with BlockList[172].
+[DEV-LOG 18:19:09]: Ball collision with BlockList[153].
+[DEV-LOG 18:19:10]: UPS: 60 FPS: 210
+[DEV-LOG 18:19:11]: Ball touched bottom x-axis.
+[DEV-LOG 18:19:11]: UPS: 60 FPS: 198
+[DEV-LOG 18:19:12]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:12]: UPS: 61 FPS: 236
+[DEV-LOG 18:19:13]: Ball collision with BlockList[133].
+[DEV-LOG 18:19:13]: Ball touched left y-axis.
+[DEV-LOG 18:19:13]: UPS: 60 FPS: 214
+[DEV-LOG 18:19:14]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:14]: UPS: 59 FPS: 219
+[DEV-LOG 18:19:15]: Ball collision with BlockList[181].
+[DEV-LOG 18:19:15]: UPS: 60 FPS: 222
+[DEV-LOG 18:19:16]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:16]: UPS: 60 FPS: 215
+[DEV-LOG 18:19:17]: Ball touched right y-axis.
+[DEV-LOG 18:19:17]: Ball collision with BlockList[187].
+[DEV-LOG 18:19:17]: UPS: 61 FPS: 213
+[DEV-LOG 18:19:18]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:18]: UPS: 59 FPS: 205
+[DEV-LOG 18:19:19]: Ball collision with BlockList[177].
+[DEV-LOG 18:19:19]: Ball collision with BlockList[195].
+[DEV-LOG 18:19:19]: Ball collision with BlockList[176].
+[DEV-LOG 18:19:19]: UPS: 60 FPS: 213
+[DEV-LOG 18:19:20]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:20]: Ball touched left y-axis.
+[DEV-LOG 18:19:20]: UPS: 61 FPS: 210
+[DEV-LOG 18:19:21]: Ball collision with BlockList[194].
+[DEV-LOG 18:19:21]: UPS: 59 FPS: 211
+[DEV-LOG 18:19:22]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:22]: UPS: 60 FPS: 218
+[DEV-LOG 18:19:23]: Ball collision with BlockList[185].
+[DEV-LOG 18:19:23]: UPS: 60 FPS: 220
+[DEV-LOG 18:19:24]: Ball touched right y-axis.
+[DEV-LOG 18:19:24]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:24]: UPS: 60 FPS: 237
+[DEV-LOG 18:19:25]: Ball collision with BlockList[184].
+[DEV-LOG 18:19:25]: UPS: 60 FPS: 211
+[DEV-LOG 18:19:26]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:26]: UPS: 61 FPS: 227
+[DEV-LOG 18:19:27]: Ball collision with BlockList[173].
+[DEV-LOG 18:19:27]: Ball touched left y-axis.
+[DEV-LOG 18:19:27]: UPS: 59 FPS: 216
+[DEV-LOG 18:19:28]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:28]: UPS: 60 FPS: 212
+[DEV-LOG 18:19:29]: Ball collision with BlockList[178].
+[DEV-LOG 18:19:29]: UPS: 60 FPS: 226
+[DEV-LOG 18:19:30]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:30]: UPS: 60 FPS: 220
+[DEV-LOG 18:19:31]: Ball touched right y-axis.
+[DEV-LOG 18:19:31]: Ball collision with BlockList[132].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[151].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[113].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[131].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[112].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[150].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[130].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[149].
+[DEV-LOG 18:19:31]: UPS: 60 FPS: 227
+[DEV-LOG 18:19:31]: Ball collision with BlockList[111].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[129].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[110].
+[DEV-LOG 18:19:31]: Ball collision with BlockList[148].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[128].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[147].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[109].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[127].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[108].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[146].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[126].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[145].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[107].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[125].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[106].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[144].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[124].
+[DEV-LOG 18:19:32]: UPS: 60 FPS: 207
+[DEV-LOG 18:19:32]: Ball collision with BlockList[143].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[105].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[123].
+[DEV-LOG 18:19:32]: Ball collision with BlockList[104].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[142].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[122].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[141].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[103].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[121].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[102].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[140].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[120].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[139].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[100].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[119].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[81].
+[DEV-LOG 18:19:33]: UPS: 60 FPS: 215
+[DEV-LOG 18:19:33]: Ball collision with BlockList[99].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[80].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[118].
+[DEV-LOG 18:19:33]: Ball collision with BlockList[98].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[117].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[79].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[97].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[78].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[116].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[96].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[115].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[77].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[95].
+[DEV-LOG 18:19:34]: Ball collision with BlockList[76].
+[DEV-LOG 18:19:34]: Ball touched left y-axis.
+[DEV-LOG 18:19:34]: UPS: 60 FPS: 227
+[DEV-LOG 18:19:35]: UPS: 60 FPS: 239
+[DEV-LOG 18:19:36]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:36]: UPS: 61 FPS: 243
+[DEV-LOG 18:19:37]: Ball collision with BlockList[183].
+[DEV-LOG 18:19:37]: UPS: 60 FPS: 226
+[DEV-LOG 18:19:38]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:38]: Ball touched right y-axis.
+[DEV-LOG 18:19:38]: UPS: 59 FPS: 215
+[DEV-LOG 18:19:39]: Ball collision with BlockList[167].
+[DEV-LOG 18:19:39]: UPS: 60 FPS: 254
+[DEV-LOG 18:19:40]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:40]: UPS: 60 FPS: 238
+[DEV-LOG 18:19:41]: Ball collision with BlockList[174].
+[DEV-LOG 18:19:41]: UPS: 60 FPS: 236
+[DEV-LOG 18:19:41]: Ball touched left y-axis.
+[DEV-LOG 18:19:42]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:42]: UPS: 61 FPS: 255
+[DEV-LOG 18:19:43]: Ball collision with BlockList[158].
+[DEV-LOG 18:19:43]: UPS: 59 FPS: 233
+[DEV-LOG 18:19:44]: Ball touched bottom x-axis.
+[DEV-LOG 18:19:44]: UPS: 60 FPS: 233
+[DEV-LOG 18:19:45]: Ball touched bottom x-axis.
+[DEV-LOG 18:19:45]: UPS: 60 FPS: 241
+[DEV-LOG 18:19:46]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:46]: UPS: 60 FPS: 249
+[DEV-LOG 18:19:47]: Ball collision with BlockList[168].
+[DEV-LOG 18:19:47]: UPS: 60 FPS: 252
+[DEV-LOG 18:19:48]: Ball touched right y-axis.
+[DEV-LOG 18:19:48]: UPS: 60 FPS: 238
+[DEV-LOG 18:19:48]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:49]: UPS: 60 FPS: 234
+[DEV-LOG 18:19:49]: Ball collision with BlockList[161].
+[DEV-LOG 18:19:49]: Ball collision with BlockList[180].
+[DEV-LOG 18:19:50]: Ball collision with BlockList[83].
+[DEV-LOG 18:19:50]: UPS: 60 FPS: 226
+[DEV-LOG 18:19:51]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:51]: Ball touched left y-axis.
+[DEV-LOG 18:19:51]: UPS: 60 FPS: 242
+[DEV-LOG 18:19:52]: Ball collision with BlockList[175].
+[DEV-LOG 18:19:52]: UPS: 60 FPS: 242
+[DEV-LOG 18:19:53]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:53]: UPS: 60 FPS: 241
+[DEV-LOG 18:19:54]: UPS: 60 FPS: 241
+[DEV-LOG 18:19:55]: Ball collision with BlockList[94].
+[DEV-LOG 18:19:55]: Ball touched right y-axis.
+[DEV-LOG 18:19:55]: UPS: 60 FPS: 240
+[DEV-LOG 18:19:56]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:19:56]: UPS: 60 FPS: 256
+[DEV-LOG 18:19:57]: UPS: 60 FPS: 223
+[DEV-LOG 18:19:57]: Ball collision with BlockList[61].
+[DEV-LOG 18:19:58]: Ball collision with BlockList[136].
+[DEV-LOG 18:19:58]: Ball collision with BlockList[58].
+[DEV-LOG 18:19:58]: Ball collision with BlockList[114].
+[DEV-LOG 18:19:58]: UPS: 60 FPS: 228
+[DEV-LOG 18:19:58]: Ball touched left y-axis.
+[DEV-LOG 18:19:58]: Ball collision with BlockList[57].
+[DEV-LOG 18:19:59]: Ball collision with BlockList[134].
+[DEV-LOG 18:19:59]: Ball collision with BlockList[60].
+[DEV-LOG 18:19:59]: Ball collision with BlockList[137].
+[DEV-LOG 18:19:59]: UPS: 61 FPS: 239
+[DEV-LOG 18:19:59]: Ball collision with BlockList[82].
+[DEV-LOG 18:19:59]: Ball collision with BlockList[101].
+[DEV-LOG 18:20:00]: Ball collision with BlockList[63].
+[DEV-LOG 18:20:00]: Ball collision with BlockList[160].
+[DEV-LOG 18:20:00]: Ball collision with BlockList[86].
+[DEV-LOG 18:20:00]: UPS: 59 FPS: 226
+[DEV-LOG 18:20:00]: Ball collision with BlockList[163].
+[DEV-LOG 18:20:01]: Ball collision with BlockList[89].
+[DEV-LOG 18:20:01]: Ball collision with BlockList[166].
+[DEV-LOG 18:20:01]: Ball collision with BlockList[92].
+[DEV-LOG 18:20:01]: UPS: 60 FPS: 228
+[DEV-LOG 18:20:02]: Ball touched right y-axis.
+[DEV-LOG 18:20:02]: UPS: 60 FPS: 242
+[DEV-LOG 18:20:03]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:03]: UPS: 60 FPS: 257
+[DEV-LOG 18:20:04]: Ball collision with BlockList[179].
+[DEV-LOG 18:20:04]: Ball collision with BlockList[198].
+[DEV-LOG 18:20:04]: Ball collision with BlockList[159].
+[DEV-LOG 18:20:04]: UPS: 60 FPS: 241
+[DEV-LOG 18:20:05]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:05]: UPS: 60 FPS: 248
+[DEV-LOG 18:20:05]: Ball touched left y-axis.
+[DEV-LOG 18:20:06]: Ball collision with BlockList[155].
+[DEV-LOG 18:20:06]: UPS: 61 FPS: 246
+[DEV-LOG 18:20:07]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:07]: UPS: 59 FPS: 225
+[DEV-LOG 18:20:08]: UPS: 60 FPS: 253
+[DEV-LOG 18:20:08]: Ball collision with BlockList[74].
+[DEV-LOG 18:20:09]: Ball collision with BlockList[93].
+[DEV-LOG 18:20:09]: Ball collision with BlockList[55].
+[DEV-LOG 18:20:09]: Ball collision with BlockList[75].
+[DEV-LOG 18:20:09]: Ball collision with BlockList[56].
+[DEV-LOG 18:20:09]: Ball touched right y-axis.
+[DEV-LOG 18:20:09]: UPS: 60 FPS: 238
+[DEV-LOG 18:20:10]: UPS: 60 FPS: 242
+[DEV-LOG 18:20:10]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:11]: UPS: 60 FPS: 265
+[DEV-LOG 18:20:11]: Ball collision with BlockList[157].
+[DEV-LOG 18:20:12]: UPS: 61 FPS: 260
+[DEV-LOG 18:20:12]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:12]: Ball touched left y-axis.
+[DEV-LOG 18:20:13]: UPS: 60 FPS: 255
+[DEV-LOG 18:20:14]: Ball collision with BlockList[138].
+[DEV-LOG 18:20:14]: UPS: 59 FPS: 257
+[DEV-LOG 18:20:15]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:15]: UPS: 61 FPS: 241
+[DEV-LOG 18:20:16]: Ball touched right y-axis.
+[DEV-LOG 18:20:16]: UPS: 59 FPS: 235
+[DEV-LOG 18:20:16]: Ball collision with BlockList[36].
+[DEV-LOG 18:20:16]: Ball collision with BlockList[54].
+[DEV-LOG 18:20:16]: Ball collision with BlockList[35].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[72].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[53].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[91].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[71].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[90].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[52].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[70].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[51].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[88].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[69].
+[DEV-LOG 18:20:17]: Ball collision with BlockList[87].
+[DEV-LOG 18:20:17]: UPS: 60 FPS: 251
+[DEV-LOG 18:20:17]: Ball collision with BlockList[68].
+[DEV-LOG 18:20:18]: UPS: 60 FPS: 262
+[DEV-LOG 18:20:19]: Ball touched bottom x-axis.
+[DEV-LOG 18:20:19]: UPS: 60 FPS: 257
+[DEV-LOG 18:20:20]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:20]: UPS: 61 FPS: 251
+[DEV-LOG 18:20:21]: UPS: 59 FPS: 262
+[DEV-LOG 18:20:21]: Ball touched left y-axis.
+[DEV-LOG 18:20:22]: Ball collision with BlockList[38].
+[DEV-LOG 18:20:22]: Ball collision with BlockList[135].
+[DEV-LOG 18:20:22]: UPS: 61 FPS: 259
+[DEV-LOG 18:20:22]: Ball collision with BlockList[42].
+[DEV-LOG 18:20:22]: Ball collision with BlockList[62].
+[DEV-LOG 18:20:23]: Ball collision with BlockList[43].
+[DEV-LOG 18:20:23]: UPS: 59 FPS: 247
+[DEV-LOG 18:20:24]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:24]: UPS: 60 FPS: 268
+[DEV-LOG 18:20:25]: Ball touched right y-axis.
+[DEV-LOG 18:20:25]: UPS: 60 FPS: 243
+[DEV-LOG 18:20:26]: Ball collision with BlockList[34].
+[DEV-LOG 18:20:26]: UPS: 60 FPS: 244
+[DEV-LOG 18:20:26]: Ball collision with BlockList[164].
+[DEV-LOG 18:20:27]: Ball collision with BlockList[67].
+[DEV-LOG 18:20:27]: Ball collision with BlockList[85].
+[DEV-LOG 18:20:27]: Ball collision with BlockList[66].
+[DEV-LOG 18:20:27]: UPS: 60 FPS: 262
+[DEV-LOG 18:20:28]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:28]: UPS: 60 FPS: 261
+[DEV-LOG 18:20:29]: Ball touched left y-axis.
+[DEV-LOG 18:20:29]: UPS: 60 FPS: 257
+[DEV-LOG 18:20:29]: Ball collision with BlockList[156].
+[DEV-LOG 18:20:30]: UPS: 60 FPS: 258
+[DEV-LOG 18:20:30]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:31]: UPS: 60 FPS: 253
+[DEV-LOG 18:20:32]: Ball touched right y-axis.
+[DEV-LOG 18:20:32]: Ball collision with BlockList[37].
+[DEV-LOG 18:20:32]: UPS: 59 FPS: 250
+[DEV-LOG 18:20:33]: UPS: 61 FPS: 234
+[DEV-LOG 18:20:34]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:34]: UPS: 60 FPS: 266
+[DEV-LOG 18:20:35]: UPS: 60 FPS: 260
+[DEV-LOG 18:20:35]: Ball collision with BlockList[19].
+[DEV-LOG 18:20:36]: Ball touched left y-axis.
+[DEV-LOG 18:20:36]: Ball collision with BlockList[154].
+[DEV-LOG 18:20:36]: UPS: 60 FPS: 237
+[DEV-LOG 18:20:37]: Ball collision with BlockList[24].
+[DEV-LOG 18:20:37]: UPS: 60 FPS: 252
+[DEV-LOG 18:20:38]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:38]: UPS: 60 FPS: 249
+[DEV-LOG 18:20:39]: Ball touched right y-axis.
+[DEV-LOG 18:20:39]: UPS: 60 FPS: 256
+[DEV-LOG 18:20:40]: Ball collision with BlockList[73].
+[DEV-LOG 18:20:40]: UPS: 60 FPS: 253
+[DEV-LOG 18:20:41]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:41]: UPS: 61 FPS: 267
+[DEV-LOG 18:20:42]: UPS: 59 FPS: 265
+[DEV-LOG 18:20:43]: Ball touched left y-axis.
+[DEV-LOG 18:20:43]: Ball collision with BlockList[0].
+[DEV-LOG 18:20:43]: Ball collision with BlockList[20].
+[DEV-LOG 18:20:43]: Ball collision with BlockList[1].
+[DEV-LOG 18:20:43]: Ball collision with BlockList[39].
+[DEV-LOG 18:20:43]: Ball collision with BlockList[21].
+[DEV-LOG 18:20:43]: Ball collision with BlockList[40].
+[DEV-LOG 18:20:43]: Ball collision with BlockList[2].
+[DEV-LOG 18:20:43]: Ball collision with BlockList[22].
+[DEV-LOG 18:20:43]: UPS: 61 FPS: 243
+[DEV-LOG 18:20:43]: Ball collision with BlockList[3].
+[DEV-LOG 18:20:43]: Ball collision with BlockList[41].
+[DEV-LOG 18:20:43]: Ball collision with BlockList[23].
+[DEV-LOG 18:20:44]: UPS: 59 FPS: 256
+[DEV-LOG 18:20:45]: Ball touched bottom x-axis.
+[DEV-LOG 18:20:45]: UPS: 60 FPS: 265
+[DEV-LOG 18:20:46]: UPS: 61 FPS: 266
+[DEV-LOG 18:20:47]: Ball touched bottom x-axis.
+[DEV-LOG 18:20:47]: UPS: 59 FPS: 271
+[DEV-LOG 18:20:48]: Ball touched bottom x-axis.
+[DEV-LOG 18:20:48]: UPS: 60 FPS: 246
+[DEV-LOG 18:20:49]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:49]: UPS: 61 FPS: 259
+[DEV-LOG 18:20:50]: UPS: 59 FPS: 256
+[DEV-LOG 18:20:50]: Ball touched right y-axis.
+[DEV-LOG 18:20:51]: Ball collision with BlockList[17].
+[DEV-LOG 18:20:51]: UPS: 60 FPS: 254
+[DEV-LOG 18:20:51]: Ball collision with BlockList[165].
+[DEV-LOG 18:20:52]: Ball collision with BlockList[49].
+[DEV-LOG 18:20:52]: UPS: 60 FPS: 269
+[DEV-LOG 18:20:53]: UPS: 60 FPS: 259
+[DEV-LOG 18:20:53]: Ball touched bottom x-axis.
+[DEV-LOG 18:20:54]: UPS: 60 FPS: 259
+[DEV-LOG 18:20:55]: Ball touched bottom x-axis.
+[DEV-LOG 18:20:55]: UPS: 60 FPS: 271
+[DEV-LOG 18:20:56]: Ball touched bottom x-axis.
+[DEV-LOG 18:20:56]: UPS: 60 FPS: 272
+[DEV-LOG 18:20:57]: UPS: 60 FPS: 263
+[DEV-LOG 18:20:57]: Ball touched bottom x-axis.
+[DEV-LOG 18:20:58]: UPS: 60 FPS: 240
+[DEV-LOG 18:20:59]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:20:59]: UPS: 60 FPS: 274
+[DEV-LOG 18:21:00]: Ball touched left y-axis.
+[DEV-LOG 18:21:00]: UPS: 60 FPS: 282
+[DEV-LOG 18:21:00]: Ball touched top x-axis.
+[DEV-LOG 18:21:01]: Ball collision with BlockList[4].
+[DEV-LOG 18:21:01]: Ball touched top x-axis.
+[DEV-LOG 18:21:01]: Ball collision with BlockList[5].
+[DEV-LOG 18:21:01]: Ball touched top x-axis.
+[DEV-LOG 18:21:01]: Ball collision with BlockList[6].
+[DEV-LOG 18:21:01]: Ball touched top x-axis.
+[DEV-LOG 18:21:01]: Ball collision with BlockList[7].
+[DEV-LOG 18:21:01]: Ball touched top x-axis.
+[DEV-LOG 18:21:01]: Ball collision with BlockList[8].
+[DEV-LOG 18:21:01]: UPS: 60 FPS: 259
+[DEV-LOG 18:21:01]: Ball touched top x-axis.
+[DEV-LOG 18:21:01]: Ball collision with BlockList[9].
+[DEV-LOG 18:21:02]: Ball touched top x-axis.
+[DEV-LOG 18:21:02]: Ball collision with BlockList[10].
+[DEV-LOG 18:21:02]: Ball touched top x-axis.
+[DEV-LOG 18:21:02]: Ball collision with BlockList[11].
+[DEV-LOG 18:21:02]: Ball touched top x-axis.
+[DEV-LOG 18:21:02]: Ball collision with BlockList[12].
+[DEV-LOG 18:21:02]: Ball touched top x-axis.
+[DEV-LOG 18:21:02]: Ball collision with BlockList[13].
+[DEV-LOG 18:21:02]: Ball touched top x-axis.
+[DEV-LOG 18:21:02]: UPS: 60 FPS: 262
+[DEV-LOG 18:21:02]: Ball collision with BlockList[14].
+[DEV-LOG 18:21:02]: Ball touched top x-axis.
+[DEV-LOG 18:21:03]: Ball collision with BlockList[15].
+[DEV-LOG 18:21:03]: Ball touched top x-axis.
+[DEV-LOG 18:21:03]: Ball collision with BlockList[16].
+[DEV-LOG 18:21:03]: Ball touched top x-axis.
+[DEV-LOG 18:21:03]: UPS: 60 FPS: 255
+[DEV-LOG 18:21:03]: Ball touched right y-axis.
+[DEV-LOG 18:21:04]: UPS: 60 FPS: 269
+[DEV-LOG 18:21:05]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:21:05]: UPS: 60 FPS: 250
+[DEV-LOG 18:21:06]: UPS: 61 FPS: 266
+[DEV-LOG 18:21:06]: Ball touched top x-axis.
+[DEV-LOG 18:21:07]: Ball touched left y-axis.
+[DEV-LOG 18:21:07]: UPS: 59 FPS: 267
+[DEV-LOG 18:21:08]: UPS: 60 FPS: 268
+[DEV-LOG 18:21:08]: Ball touched bottom x-axis.
+[DEV-LOG 18:21:09]: UPS: 61 FPS: 273
+[DEV-LOG 18:21:10]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:21:10]: UPS: 60 FPS: 272
+[DEV-LOG 18:21:11]: Ball touched left y-axis.
+[DEV-LOG 18:21:11]: UPS: 59 FPS: 263
+[DEV-LOG 18:21:11]: Ball touched top x-axis.
+[DEV-LOG 18:21:12]: UPS: 60 FPS: 265
+[DEV-LOG 18:21:13]: UPS: 60 FPS: 267
+[DEV-LOG 18:21:13]: Ball touched bottom x-axis.
+[DEV-LOG 18:21:14]: UPS: 60 FPS: 279
+[DEV-LOG 18:21:15]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:21:15]: UPS: 60 FPS: 262
+[DEV-LOG 18:21:16]: Ball touched right y-axis.
+[DEV-LOG 18:21:16]: UPS: 60 FPS: 253
+[DEV-LOG 18:21:16]: Ball touched top x-axis.
+[DEV-LOG 18:21:17]: UPS: 60 FPS: 267
+[DEV-LOG 18:21:17]: Ball collision with BlockList[182].
+[DEV-LOG 18:21:18]: Ball collision with BlockList[47].
+[DEV-LOG 18:21:18]: Ball collision with BlockList[65].
+[DEV-LOG 18:21:18]: Ball collision with BlockList[46].
+[DEV-LOG 18:21:18]: Ball collision with BlockList[84].
+[DEV-LOG 18:21:18]: Ball collision with BlockList[64].
+[DEV-LOG 18:21:18]: UPS: 60 FPS: 279
+[DEV-LOG 18:21:19]: UPS: 60 FPS: 261
+[DEV-LOG 18:21:19]: Ball touched left y-axis.
+[DEV-LOG 18:21:20]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:21:20]: UPS: 60 FPS: 264
+[DEV-LOG 18:21:21]: Ball collision with BlockList[28].
+[DEV-LOG 18:21:21]: UPS: 60 FPS: 256
+[DEV-LOG 18:22:57]: ########### NEW APPLICATION INSTANCE AT 14-05-2017 18:22:57 ###########
+[DEV-LOG 18:22:58]: Loaded from 'redlevel.config' successfully.
+[DEV-LOG 18:22:59]: UPS: 59 FPS: 24
+[DEV-LOG 18:23:00]: UPS: 60 FPS: 74
+[DEV-LOG 18:23:01]: UPS: 60 FPS: 103
+[DEV-LOG 18:23:02]: UPS: 60 FPS: 111
+[DEV-LOG 18:23:03]: UPS: 60 FPS: 106
+[DEV-LOG 18:23:04]: UPS: 61 FPS: 126
+[DEV-LOG 18:23:05]: UPS: 59 FPS: 118
+[DEV-LOG 18:23:06]: UPS: 60 FPS: 127
+[DEV-LOG 18:23:07]: UPS: 60 FPS: 130
+[DEV-LOG 18:23:08]: UPS: 60 FPS: 122
+[DEV-LOG 18:23:09]: UPS: 60 FPS: 125
+[DEV-LOG 18:23:28]: ########### NEW APPLICATION INSTANCE AT 14-05-2017 18:23:28 ###########
+[DEV-LOG 18:23:29]: Loaded from 'redlevel.config' successfully.
+[DEV-LOG 18:23:30]: UPS: 59 FPS: 18
+[DEV-LOG 18:23:31]: UPS: 60 FPS: 73
+[DEV-LOG 18:23:32]: UPS: 60 FPS: 96
+[DEV-LOG 18:23:33]: UPS: 60 FPS: 97
+[DEV-LOG 18:23:34]: UPS: 60 FPS: 124
+[DEV-LOG 18:23:35]: UPS: 60 FPS: 131
+[DEV-LOG 18:23:36]: UPS: 60 FPS: 127
+[DEV-LOG 18:23:37]: UPS: 60 FPS: 128
+[DEV-LOG 18:23:38]: UPS: 60 FPS: 132
+[DEV-LOG 18:23:39]: UPS: 60 FPS: 127
+[DEV-LOG 18:23:40]: UPS: 60 FPS: 126
+[DEV-LOG 18:23:41]: UPS: 60 FPS: 132
+[DEV-LOG 18:23:42]: UPS: 60 FPS: 127
+[DEV-LOG 18:23:43]: UPS: 60 FPS: 132
+[DEV-LOG 18:23:44]: UPS: 60 FPS: 127
+[DEV-LOG 18:23:45]: UPS: 60 FPS: 126
+[DEV-LOG 18:23:46]: UPS: 60 FPS: 128
+[DEV-LOG 18:23:47]: UPS: 60 FPS: 132
+[DEV-LOG 18:23:48]: UPS: 60 FPS: 132
+[DEV-LOG 18:23:49]: UPS: 60 FPS: 131
+[DEV-LOG 18:23:50]: UPS: 60 FPS: 122
+[DEV-LOG 18:23:51]: UPS: 60 FPS: 109
+[DEV-LOG 18:23:52]: UPS: 60 FPS: 126
+[DEV-LOG 18:23:53]: UPS: 60 FPS: 131
+[DEV-LOG 18:23:54]: UPS: 60 FPS: 133
+[DEV-LOG 18:23:55]: UPS: 60 FPS: 137
+[DEV-LOG 18:23:56]: UPS: 60 FPS: 132
+[DEV-LOG 18:23:57]: UPS: 60 FPS: 132
+[DEV-LOG 18:23:58]: UPS: 61 FPS: 132
+[DEV-LOG 18:23:59]: UPS: 59 FPS: 124
+[DEV-LOG 18:24:00]: UPS: 60 FPS: 133
+[DEV-LOG 18:24:01]: UPS: 60 FPS: 131
+[DEV-LOG 18:24:02]: UPS: 60 FPS: 248
+[DEV-LOG 18:24:03]: UPS: 60 FPS: 291
+[DEV-LOG 18:24:04]: UPS: 61 FPS: 318
+[DEV-LOG 18:24:05]: UPS: 60 FPS: 337
+[DEV-LOG 18:24:06]: UPS: 59 FPS: 289
+[DEV-LOG 18:24:07]: UPS: 60 FPS: 223
+[DEV-LOG 18:24:08]: UPS: 61 FPS: 298
+[DEV-LOG 18:24:09]: UPS: 59 FPS: 292
+[DEV-LOG 18:24:10]: UPS: 60 FPS: 303
+[DEV-LOG 18:24:11]: UPS: 60 FPS: 313
+[DEV-LOG 18:24:12]: UPS: 60 FPS: 319
+[DEV-LOG 18:24:13]: UPS: 60 FPS: 231
+[DEV-LOG 18:24:14]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:14]: UPS: 60 FPS: 204
+[DEV-LOG 18:24:15]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:15]: UPS: 60 FPS: 216
+[DEV-LOG 18:24:16]: Ball collision with BlockList[187].
+[DEV-LOG 18:24:16]: UPS: 60 FPS: 226
+[DEV-LOG 18:24:16]: Ball touched right y-axis.
+[DEV-LOG 18:24:17]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:17]: UPS: 61 FPS: 205
+[DEV-LOG 18:24:18]: Ball collision with BlockList[182].
+[DEV-LOG 18:24:18]: UPS: 59 FPS: 215
+[DEV-LOG 18:24:19]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:19]: UPS: 60 FPS: 220
+[DEV-LOG 18:24:20]: UPS: 60 FPS: 225
+[DEV-LOG 18:24:20]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:21]: UPS: 60 FPS: 219
+[DEV-LOG 18:24:21]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:22]: UPS: 60 FPS: 204
+[DEV-LOG 18:24:23]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:23]: UPS: 60 FPS: 207
+[DEV-LOG 18:24:24]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:24]: UPS: 60 FPS: 220
+[DEV-LOG 18:24:25]: UPS: 60 FPS: 229
+[DEV-LOG 18:24:25]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:26]: UPS: 60 FPS: 212
+[DEV-LOG 18:24:27]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:27]: UPS: 60 FPS: 204
+[DEV-LOG 18:24:28]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:28]: UPS: 60 FPS: 223
+[DEV-LOG 18:24:29]: UPS: 60 FPS: 216
+[DEV-LOG 18:24:29]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:30]: UPS: 60 FPS: 225
+[DEV-LOG 18:24:30]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:31]: UPS: 60 FPS: 226
+[DEV-LOG 18:24:32]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:32]: UPS: 60 FPS: 237
+[DEV-LOG 18:24:33]: UPS: 60 FPS: 222
+[DEV-LOG 18:24:33]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:34]: UPS: 60 FPS: 226
+[DEV-LOG 18:24:34]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:35]: UPS: 60 FPS: 209
+[DEV-LOG 18:24:36]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:36]: UPS: 61 FPS: 221
+[DEV-LOG 18:24:37]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:37]: UPS: 59 FPS: 218
+[DEV-LOG 18:24:38]: Ball collision with BlockList[168].
+[DEV-LOG 18:24:38]: Ball collision with BlockList[188].
+[DEV-LOG 18:24:38]: Ball collision with BlockList[169].
+[DEV-LOG 18:24:38]: UPS: 60 FPS: 208
+[DEV-LOG 18:24:38]: Ball touched right y-axis.
+[DEV-LOG 18:24:39]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:39]: UPS: 60 FPS: 220
+[DEV-LOG 18:24:40]: Ball collision with BlockList[181].
+[DEV-LOG 18:24:40]: Ball collision with BlockList[199].
+[DEV-LOG 18:24:40]: Ball collision with BlockList[180].
+[DEV-LOG 18:24:40]: UPS: 60 FPS: 220
+[DEV-LOG 18:24:41]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:41]: UPS: 60 FPS: 227
+[DEV-LOG 18:24:42]: Ball touched left y-axis.
+[DEV-LOG 18:24:42]: Ball collision with BlockList[190].
+[DEV-LOG 18:24:42]: UPS: 61 FPS: 230
+[DEV-LOG 18:24:43]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:43]: UPS: 59 FPS: 208
+[DEV-LOG 18:24:44]: Ball collision with BlockList[162].
+[DEV-LOG 18:24:44]: UPS: 60 FPS: 224
+[DEV-LOG 18:24:45]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:45]: UPS: 60 FPS: 200
+[DEV-LOG 18:24:46]: UPS: 60 FPS: 228
+[DEV-LOG 18:24:46]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:47]: UPS: 60 FPS: 217
+[DEV-LOG 18:24:48]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:48]: UPS: 60 FPS: 221
+[DEV-LOG 18:24:49]: Ball touched bottom x-axis.
+[DEV-LOG 18:24:49]: UPS: 60 FPS: 213
+[DEV-LOG 18:24:50]: UPS: 60 FPS: 218
+[DEV-LOG 18:24:50]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:51]: Ball collision with BlockList[193].
+[DEV-LOG 18:24:51]: UPS: 61 FPS: 232
+[DEV-LOG 18:24:52]: Ball touched left y-axis.
+[DEV-LOG 18:24:52]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:52]: UPS: 60 FPS: 236
+[DEV-LOG 18:24:53]: Ball collision with BlockList[195].
+[DEV-LOG 18:24:53]: UPS: 59 FPS: 220
+[DEV-LOG 18:24:54]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:54]: UPS: 61 FPS: 212
+[DEV-LOG 18:24:55]: Ball collision with BlockList[150].
+[DEV-LOG 18:24:55]: Ball collision with BlockList[189].
+[DEV-LOG 18:24:55]: Ball collision with BlockList[170].
+[DEV-LOG 18:24:55]: UPS: 59 FPS: 214
+[DEV-LOG 18:24:55]: Ball touched right y-axis.
+[DEV-LOG 18:24:56]: UPS: 60 FPS: 241
+[DEV-LOG 18:24:56]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:57]: Ball collision with BlockList[198].
+[DEV-LOG 18:24:57]: UPS: 61 FPS: 226
+[DEV-LOG 18:24:58]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:24:58]: UPS: 59 FPS: 217
+[DEV-LOG 18:24:59]: Ball touched left y-axis.
+[DEV-LOG 18:24:59]: Ball collision with BlockList[172].
+[DEV-LOG 18:24:59]: Ball collision with BlockList[191].
+[DEV-LOG 18:24:59]: UPS: 60 FPS: 216
+[DEV-LOG 18:24:59]: Ball collision with BlockList[153].
+[DEV-LOG 18:24:59]: Ball collision with BlockList[173].
+[DEV-LOG 18:24:59]: Ball collision with BlockList[154].
+[DEV-LOG 18:25:00]: UPS: 60 FPS: 216
+[DEV-LOG 18:25:00]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:01]: UPS: 60 FPS: 235
+[DEV-LOG 18:25:01]: Ball collision with BlockList[184].
+[DEV-LOG 18:25:02]: UPS: 60 FPS: 209
+[DEV-LOG 18:25:02]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:02]: Ball touched right y-axis.
+[DEV-LOG 18:25:03]: UPS: 61 FPS: 227
+[DEV-LOG 18:25:03]: Ball collision with BlockList[185].
+[DEV-LOG 18:25:04]: UPS: 59 FPS: 222
+[DEV-LOG 18:25:04]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:05]: UPS: 60 FPS: 226
+[DEV-LOG 18:25:05]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:06]: UPS: 60 FPS: 218
+[DEV-LOG 18:25:07]: Ball collision with BlockList[151].
+[DEV-LOG 18:25:07]: Ball touched right y-axis.
+[DEV-LOG 18:25:07]: UPS: 60 FPS: 222
+[DEV-LOG 18:25:08]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:08]: UPS: 60 FPS: 235
+[DEV-LOG 18:25:09]: Ball collision with BlockList[197].
+[DEV-LOG 18:25:09]: UPS: 60 FPS: 237
+[DEV-LOG 18:25:10]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:10]: UPS: 60 FPS: 222
+[DEV-LOG 18:25:10]: Ball touched left y-axis.
+[DEV-LOG 18:25:11]: Ball collision with BlockList[135].
+[DEV-LOG 18:25:11]: Ball collision with BlockList[155].
+[DEV-LOG 18:25:11]: Ball collision with BlockList[136].
+[DEV-LOG 18:25:11]: Ball collision with BlockList[174].
+[DEV-LOG 18:25:11]: UPS: 60 FPS: 223
+[DEV-LOG 18:25:11]: Ball collision with BlockList[156].
+[DEV-LOG 18:25:11]: Ball collision with BlockList[175].
+[DEV-LOG 18:25:11]: Ball collision with BlockList[137].
+[DEV-LOG 18:25:11]: Ball collision with BlockList[157].
+[DEV-LOG 18:25:11]: Ball collision with BlockList[138].
+[DEV-LOG 18:25:11]: Ball collision with BlockList[176].
+[DEV-LOG 18:25:11]: Ball collision with BlockList[158].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[177].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[139].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[159].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[140].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[178].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[160].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[179].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[142].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[161].
+[DEV-LOG 18:25:12]: UPS: 60 FPS: 220
+[DEV-LOG 18:25:12]: Ball collision with BlockList[123].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[143].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[124].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[163].
+[DEV-LOG 18:25:12]: Ball collision with BlockList[144].
+[DEV-LOG 18:25:13]: Ball collision with BlockList[183].
+[DEV-LOG 18:25:13]: Ball collision with BlockList[164].
+[DEV-LOG 18:25:13]: UPS: 60 FPS: 244
+[DEV-LOG 18:25:14]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:14]: UPS: 60 FPS: 247
+[DEV-LOG 18:25:15]: UPS: 60 FPS: 222
+[DEV-LOG 18:25:15]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:16]: UPS: 61 FPS: 254
+[DEV-LOG 18:25:16]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:17]: UPS: 59 FPS: 240
+[DEV-LOG 18:25:17]: Ball touched right y-axis.
+[DEV-LOG 18:25:17]: Ball collision with BlockList[131].
+[DEV-LOG 18:25:18]: UPS: 60 FPS: 234
+[DEV-LOG 18:25:19]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:19]: UPS: 60 FPS: 236
+[DEV-LOG 18:25:20]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:20]: UPS: 60 FPS: 240
+[DEV-LOG 18:25:21]: Ball collision with BlockList[192].
+[DEV-LOG 18:25:21]: UPS: 60 FPS: 233
+[DEV-LOG 18:25:21]: Ball touched left y-axis.
+[DEV-LOG 18:25:22]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:22]: UPS: 60 FPS: 223
+[DEV-LOG 18:25:23]: UPS: 60 FPS: 249
+[DEV-LOG 18:25:23]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:24]: UPS: 60 FPS: 243
+[DEV-LOG 18:25:25]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:25]: UPS: 60 FPS: 242
+[DEV-LOG 18:25:26]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:26]: UPS: 60 FPS: 247
+[DEV-LOG 18:25:27]: UPS: 60 FPS: 238
+[DEV-LOG 18:25:27]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:28]: UPS: 60 FPS: 223
+[DEV-LOG 18:25:28]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:29]: UPS: 60 FPS: 238
+[DEV-LOG 18:25:29]: Ball touched right y-axis.
+[DEV-LOG 18:25:30]: Ball collision with BlockList[112].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[130].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[111].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[149].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[129].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[148].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[110].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[128].
+[DEV-LOG 18:25:30]: UPS: 60 FPS: 215
+[DEV-LOG 18:25:30]: Ball collision with BlockList[109].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[147].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[127].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[146].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[108].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[126].
+[DEV-LOG 18:25:30]: Ball collision with BlockList[107].
+[DEV-LOG 18:25:31]: Ball collision with BlockList[145].
+[DEV-LOG 18:25:31]: Ball collision with BlockList[125].
+[DEV-LOG 18:25:31]: UPS: 60 FPS: 229
+[DEV-LOG 18:25:32]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:32]: UPS: 60 FPS: 242
+[DEV-LOG 18:25:33]: UPS: 60 FPS: 233
+[DEV-LOG 18:25:33]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:34]: UPS: 60 FPS: 241
+[DEV-LOG 18:25:34]: Ball touched left y-axis.
+[DEV-LOG 18:25:34]: Ball collision with BlockList[171].
+[DEV-LOG 18:25:35]: UPS: 60 FPS: 234
+[DEV-LOG 18:25:35]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:36]: UPS: 60 FPS: 257
+[DEV-LOG 18:25:36]: Ball collision with BlockList[89].
+[DEV-LOG 18:25:37]: Ball collision with BlockList[166].
+[DEV-LOG 18:25:37]: Ball collision with BlockList[92].
+[DEV-LOG 18:25:37]: UPS: 60 FPS: 256
+[DEV-LOG 18:25:38]: Ball touched right y-axis.
+[DEV-LOG 18:25:38]: UPS: 60 FPS: 243
+[DEV-LOG 18:25:38]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 18:25:39]: UPS: 61 FPS: 235
+[DEV-LOG 18:25:40]: Ball collision with BlockList[141].
+[DEV-LOG 18:25:40]: UPS: 60 FPS: 240
+[DEV-LOG 18:25:41]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:41]: UPS: 60 FPS: 227
+[DEV-LOG 18:25:42]: UPS: 60 FPS: 250
+[DEV-LOG 18:25:42]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:43]: UPS: 59 FPS: 246
+[DEV-LOG 18:25:43]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:44]: UPS: 60 FPS: 233
+[DEV-LOG 18:25:45]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:45]: UPS: 60 FPS: 234
+[DEV-LOG 18:25:46]: UPS: 61 FPS: 215
+[DEV-LOG 18:25:47]: UPS: 58 FPS: 309
+[DEV-LOG 18:25:47]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:48]: UPS: 61 FPS: 198
+[DEV-LOG 18:25:49]: UPS: 58 FPS: 301
+[DEV-LOG 18:25:50]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:50]: UPS: 63 FPS: 221
+[DEV-LOG 18:25:51]: UPS: 59 FPS: 243
+[DEV-LOG 18:25:51]: Ball touched bottom x-axis.
+[DEV-LOG 18:25:52]: UPS: 60 FPS: 210
+[DEV-LOG 18:25:53]: UPS: 60 FPS: 327
+[DEV-LOG 18:25:54]: UPS: 60 FPS: 311
+[DEV-LOG 18:25:55]: UPS: 60 FPS: 260
+[DEV-LOG 18:25:56]: UPS: 60 FPS: 294
+[DEV-LOG 21:36:39]: ########### NEW APPLICATION INSTANCE AT 14-05-2017 21:36:39 ###########
+[DEV-LOG 21:36:40]: Loaded from 'redlevel.config' successfully.
+[DEV-LOG 21:36:41]: UPS: 60 FPS: 6
+[DEV-LOG 21:36:42]: UPS: 59 FPS: 76
+[DEV-LOG 21:36:43]: UPS: 60 FPS: 81
+[DEV-LOG 21:36:44]: UPS: 60 FPS: 91
+[DEV-LOG 21:36:45]: UPS: 60 FPS: 86
+[DEV-LOG 21:36:46]: UPS: 60 FPS: 88
+[DEV-LOG 21:36:47]: UPS: 60 FPS: 94
+[DEV-LOG 21:36:48]: UPS: 60 FPS: 114
+[DEV-LOG 21:36:49]: UPS: 60 FPS: 126
+[DEV-LOG 21:36:50]: UPS: 60 FPS: 126
+[DEV-LOG 21:36:51]: UPS: 60 FPS: 126
+[DEV-LOG 21:36:52]: UPS: 60 FPS: 122
+[DEV-LOG 21:36:53]: UPS: 60 FPS: 130
+[DEV-LOG 21:36:54]: UPS: 60 FPS: 156
+[DEV-LOG 21:36:55]: UPS: 60 FPS: 198
+[DEV-LOG 21:36:55]: Ball touched bottom x-axis.
+[DEV-LOG 21:36:56]: UPS: 60 FPS: 190
+[DEV-LOG 21:36:57]: Ball touched bottom x-axis.
+[DEV-LOG 21:36:57]: UPS: 60 FPS: 215
+[DEV-LOG 21:36:58]: Ball touched bottom x-axis.
+[DEV-LOG 21:36:58]: UPS: 60 FPS: 206
+[DEV-LOG 21:36:59]: UPS: 60 FPS: 194
+[DEV-LOG 21:36:59]: Ball touched bottom x-axis.
+[DEV-LOG 21:37:00]: UPS: 61 FPS: 215
+[DEV-LOG 21:37:00]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:01]: UPS: 59 FPS: 194
+[DEV-LOG 21:37:01]: Ball collision with BlockList[190].
+[DEV-LOG 21:37:01]: Ball touched left y-axis.
+[DEV-LOG 21:37:02]: UPS: 60 FPS: 206
+[DEV-LOG 21:37:02]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:03]: Ball collision with BlockList[199].
+[DEV-LOG 21:37:03]: UPS: 60 FPS: 206
+[DEV-LOG 21:37:04]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:04]: UPS: 60 FPS: 228
+[DEV-LOG 21:37:05]: Ball touched right y-axis.
+[DEV-LOG 21:37:05]: Ball collision with BlockList[189].
+[DEV-LOG 21:37:05]: UPS: 60 FPS: 210
+[DEV-LOG 21:37:06]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:06]: UPS: 60 FPS: 194
+[DEV-LOG 21:37:07]: Ball collision with BlockList[198].
+[DEV-LOG 21:37:07]: UPS: 60 FPS: 197
+[DEV-LOG 21:37:08]: Ball touched bottom x-axis.
+[DEV-LOG 21:37:08]: UPS: 60 FPS: 196
+[DEV-LOG 21:37:09]: UPS: 61 FPS: 208
+[DEV-LOG 21:37:09]: Ball touched bottom x-axis.
+[DEV-LOG 21:37:10]: UPS: 59 FPS: 202
+[DEV-LOG 21:37:11]: Ball touched bottom x-axis.
+[DEV-LOG 21:37:11]: UPS: 61 FPS: 219
+[DEV-LOG 21:37:12]: Ball touched bottom x-axis.
+[DEV-LOG 21:37:12]: UPS: 59 FPS: 216
+[DEV-LOG 21:37:13]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:13]: UPS: 60 FPS: 224
+[DEV-LOG 21:37:14]: Ball collision with BlockList[186].
+[DEV-LOG 21:37:14]: UPS: 60 FPS: 201
+[DEV-LOG 21:37:15]: Ball touched right y-axis.
+[DEV-LOG 21:37:15]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:15]: UPS: 60 FPS: 214
+[DEV-LOG 21:37:16]: Ball collision with BlockList[182].
+[DEV-LOG 21:37:16]: UPS: 60 FPS: 199
+[DEV-LOG 21:37:17]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:17]: UPS: 61 FPS: 222
+[DEV-LOG 21:37:18]: Ball collision with BlockList[191].
+[DEV-LOG 21:37:18]: Ball touched left y-axis.
+[DEV-LOG 21:37:18]: UPS: 60 FPS: 200
+[DEV-LOG 21:37:19]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:19]: UPS: 60 FPS: 200
+[DEV-LOG 21:37:20]: Ball collision with BlockList[179].
+[DEV-LOG 21:37:20]: UPS: 59 FPS: 207
+[DEV-LOG 21:37:21]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:21]: UPS: 60 FPS: 209
+[DEV-LOG 21:37:22]: Ball touched right y-axis.
+[DEV-LOG 21:37:22]: Ball collision with BlockList[170].
+[DEV-LOG 21:37:22]: UPS: 60 FPS: 214
+[DEV-LOG 21:37:23]: Ball touched bottom x-axis.
+[DEV-LOG 21:37:23]: UPS: 61 FPS: 207
+[DEV-LOG 21:37:24]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:24]: UPS: 59 FPS: 208
+[DEV-LOG 21:37:25]: Ball collision with BlockList[187].
+[DEV-LOG 21:37:25]: UPS: 60 FPS: 208
+[DEV-LOG 21:37:26]: Ball touched right y-axis.
+[DEV-LOG 21:37:26]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:26]: UPS: 60 FPS: 216
+[DEV-LOG 21:37:27]: Ball collision with BlockList[181].
+[DEV-LOG 21:37:27]: UPS: 60 FPS: 213
+[DEV-LOG 21:37:28]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:28]: UPS: 60 FPS: 202
+[DEV-LOG 21:37:29]: Ball touched left y-axis.
+[DEV-LOG 21:37:29]: UPS: 60 FPS: 211
+[DEV-LOG 21:37:29]: Ball collision with BlockList[152].
+[DEV-LOG 21:37:29]: Ball collision with BlockList[171].
+[DEV-LOG 21:37:29]: Ball collision with BlockList[133].
+[DEV-LOG 21:37:29]: Ball collision with BlockList[153].
+[DEV-LOG 21:37:29]: Ball collision with BlockList[134].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[172].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[154].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[173].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[135].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[155].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[136].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[174].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[156].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[175].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[137].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[157].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[138].
+[DEV-LOG 21:37:30]: UPS: 60 FPS: 189
+[DEV-LOG 21:37:30]: Ball collision with BlockList[176].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[158].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[177].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[139].
+[DEV-LOG 21:37:30]: Ball collision with BlockList[159].
+[DEV-LOG 21:37:31]: Ball collision with BlockList[140].
+[DEV-LOG 21:37:31]: UPS: 60 FPS: 219
+[DEV-LOG 21:37:32]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:32]: UPS: 60 FPS: 229
+[DEV-LOG 21:37:33]: Ball touched right y-axis.
+[DEV-LOG 21:37:33]: Ball collision with BlockList[150].
+[DEV-LOG 21:37:33]: Ball collision with BlockList[169].
+[DEV-LOG 21:37:33]: Ball collision with BlockList[131].
+[DEV-LOG 21:37:33]: Ball collision with BlockList[149].
+[DEV-LOG 21:37:33]: Ball collision with BlockList[130].
+[DEV-LOG 21:37:33]: UPS: 60 FPS: 222
+[DEV-LOG 21:37:33]: Ball collision with BlockList[168].
+[DEV-LOG 21:37:33]: Ball collision with BlockList[148].
+[DEV-LOG 21:37:33]: Ball collision with BlockList[167].
+[DEV-LOG 21:37:33]: Ball collision with BlockList[129].
+[DEV-LOG 21:37:33]: Ball collision with BlockList[147].
+[DEV-LOG 21:37:34]: Ball collision with BlockList[128].
+[DEV-LOG 21:37:34]: Ball collision with BlockList[166].
+[DEV-LOG 21:37:34]: Ball collision with BlockList[146].
+[DEV-LOG 21:37:34]: Ball collision with BlockList[165].
+[DEV-LOG 21:37:34]: Ball collision with BlockList[127].
+[DEV-LOG 21:37:34]: Ball collision with BlockList[145].
+[DEV-LOG 21:37:34]: Ball collision with BlockList[126].
+[DEV-LOG 21:37:34]: Ball collision with BlockList[163].
+[DEV-LOG 21:37:34]: Ball collision with BlockList[144].
+[DEV-LOG 21:37:34]: UPS: 60 FPS: 205
+[DEV-LOG 21:37:35]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:35]: UPS: 60 FPS: 243
+[DEV-LOG 21:37:36]: UPS: 60 FPS: 236
+[DEV-LOG 21:37:36]: Ball touched left y-axis.
+[DEV-LOG 21:37:36]: Ball collision with BlockList[114].
+[DEV-LOG 21:37:37]: Ball collision with BlockList[192].
+[DEV-LOG 21:37:37]: Ball collision with BlockList[117].
+[DEV-LOG 21:37:37]: Ball collision with BlockList[194].
+[DEV-LOG 21:37:37]: UPS: 60 FPS: 226
+[DEV-LOG 21:37:37]: Ball collision with BlockList[120].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[178].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[141].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[160].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[122].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[142].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[123].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[161].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[143].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[162].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[124].
+[DEV-LOG 21:37:38]: UPS: 60 FPS: 214
+[DEV-LOG 21:37:38]: Ball collision with BlockList[183].
+[DEV-LOG 21:37:38]: Ball collision with BlockList[164].
+[DEV-LOG 21:37:39]: UPS: 60 FPS: 215
+[DEV-LOG 21:37:40]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:40]: Ball touched right y-axis.
+[DEV-LOG 21:37:40]: UPS: 60 FPS: 212
+[DEV-LOG 21:37:41]: Ball collision with BlockList[185].
+[DEV-LOG 21:37:41]: UPS: 60 FPS: 240
+[DEV-LOG 21:37:41]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:42]: UPS: 60 FPS: 242
+[DEV-LOG 21:37:43]: Ball collision with BlockList[116].
+[DEV-LOG 21:37:43]: UPS: 60 FPS: 231
+[DEV-LOG 21:37:43]: Ball touched left y-axis.
+[DEV-LOG 21:37:44]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:44]: UPS: 60 FPS: 240
+[DEV-LOG 21:37:45]: Ball collision with BlockList[180].
+[DEV-LOG 21:37:45]: UPS: 60 FPS: 236
+[DEV-LOG 21:37:46]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:46]: UPS: 60 FPS: 235
+[DEV-LOG 21:37:47]: Ball touched right y-axis.
+[DEV-LOG 21:37:47]: UPS: 60 FPS: 229
+[DEV-LOG 21:37:47]: Ball collision with BlockList[111].
+[DEV-LOG 21:37:48]: UPS: 60 FPS: 232
+[DEV-LOG 21:37:49]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:49]: UPS: 60 FPS: 235
+[DEV-LOG 21:37:50]: Ball collision with BlockList[97].
+[DEV-LOG 21:37:50]: Ball collision with BlockList[115].
+[DEV-LOG 21:37:50]: Ball collision with BlockList[96].
+[DEV-LOG 21:37:50]: UPS: 60 FPS: 216
+[DEV-LOG 21:37:50]: Ball touched left y-axis.
+[DEV-LOG 21:37:51]: UPS: 60 FPS: 204
+[DEV-LOG 21:37:51]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:37:52]: UPS: 60 FPS: 228
+[DEV-LOG 21:38:07]: ########### NEW APPLICATION INSTANCE AT 14-05-2017 21:38:07 ###########
+[DEV-LOG 21:38:09]: Loaded from 'redlevel.config' successfully.
+[DEV-LOG 21:38:10]: UPS: 59 FPS: 15
+[DEV-LOG 21:38:11]: UPS: 60 FPS: 76
+[DEV-LOG 21:38:12]: Ball touched bottom x-axis.
+[DEV-LOG 21:38:12]: UPS: 60 FPS: 41
+[DEV-LOG 21:38:13]: Ball touched bottom x-axis.
+[DEV-LOG 21:38:13]: UPS: 60 FPS: 39
+[DEV-LOG 21:38:14]: UPS: 60 FPS: 41
+[DEV-LOG 21:38:14]: Ball touched bottom x-axis.
+[DEV-LOG 21:38:15]: UPS: 60 FPS: 42
+[DEV-LOG 21:38:15]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:38:16]: UPS: 59 FPS: 39
+[DEV-LOG 21:38:16]: Ball collision with BlockList[186].
+[DEV-LOG 21:38:17]: Ball touched right y-axis.
+[DEV-LOG 21:38:17]: UPS: 61 FPS: 41
+[DEV-LOG 21:38:17]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:38:18]: UPS: 60 FPS: 41
+[DEV-LOG 21:38:18]: Ball collision with BlockList[183].
+[DEV-LOG 21:38:19]: UPS: 60 FPS: 40
+[DEV-LOG 21:38:19]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:38:20]: UPS: 59 FPS: 40
+[DEV-LOG 21:38:20]: Ball collision with BlockList[191].
+[DEV-LOG 21:38:20]: Ball touched left y-axis.
+[DEV-LOG 21:38:21]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:38:21]: UPS: 61 FPS: 44
+[DEV-LOG 21:38:22]: Ball collision with BlockList[197].
+[DEV-LOG 21:38:22]: UPS: 60 FPS: 41
+[DEV-LOG 21:49:11]: ########### NEW APPLICATION INSTANCE AT 14-05-2017 21:49:11 ###########
+[DEV-LOG 21:49:11]: Loaded from 'redlevel.config' successfully.
+[DEV-LOG 21:49:13]: UPS: 59 FPS: 15
+[DEV-LOG 21:49:14]: UPS: 61 FPS: 75
+[DEV-LOG 21:49:15]: UPS: 60 FPS: 193
+[DEV-LOG 21:49:15]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:16]: UPS: 59 FPS: 182
+[DEV-LOG 21:49:17]: UPS: 60 FPS: 203
+[DEV-LOG 21:49:17]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:18]: UPS: 61 FPS: 231
+[DEV-LOG 21:49:18]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:19]: UPS: 59 FPS: 203
+[DEV-LOG 21:49:19]: Ball collision with BlockList[189].
+[DEV-LOG 21:49:19]: Ball touched right y-axis.
+[DEV-LOG 21:49:20]: UPS: 60 FPS: 218
+[DEV-LOG 21:49:20]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:21]: UPS: 60 FPS: 216
+[DEV-LOG 21:49:21]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:22]: UPS: 60 FPS: 221
+[DEV-LOG 21:49:22]: Ball collision with BlockList[190].
+[DEV-LOG 21:49:22]: Ball touched left y-axis.
+[DEV-LOG 21:49:23]: UPS: 60 FPS: 213
+[DEV-LOG 21:49:23]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:24]: UPS: 60 FPS: 210
+[DEV-LOG 21:49:24]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:25]: UPS: 60 FPS: 203
+[DEV-LOG 21:49:25]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:26]: UPS: 60 FPS: 208
+[DEV-LOG 21:49:26]: Ball collision with BlockList[187].
+[DEV-LOG 21:49:27]: UPS: 61 FPS: 229
+[DEV-LOG 21:49:27]: Ball touched right y-axis.
+[DEV-LOG 21:49:27]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:28]: UPS: 59 FPS: 231
+[DEV-LOG 21:49:28]: Ball collision with BlockList[182].
+[DEV-LOG 21:49:29]: UPS: 60 FPS: 213
+[DEV-LOG 21:49:29]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:30]: UPS: 60 FPS: 219
+[DEV-LOG 21:49:30]: Ball collision with BlockList[191].
+[DEV-LOG 21:49:30]: Ball touched left y-axis.
+[DEV-LOG 21:49:31]: UPS: 61 FPS: 220
+[DEV-LOG 21:49:31]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:32]: UPS: 59 FPS: 227
+[DEV-LOG 21:49:32]: Ball collision with BlockList[198].
+[DEV-LOG 21:49:33]: UPS: 60 FPS: 230
+[DEV-LOG 21:49:33]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:34]: UPS: 60 FPS: 227
+[DEV-LOG 21:49:34]: Ball collision with BlockList[170].
+[DEV-LOG 21:49:34]: Ball touched right y-axis.
+[DEV-LOG 21:49:35]: UPS: 60 FPS: 215
+[DEV-LOG 21:49:35]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:36]: UPS: 60 FPS: 203
+[DEV-LOG 21:49:36]: Ball collision with BlockList[199].
+[DEV-LOG 21:49:37]: UPS: 60 FPS: 214
+[DEV-LOG 21:49:37]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:38]: UPS: 60 FPS: 217
+[DEV-LOG 21:49:38]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:39]: UPS: 60 FPS: 203
+[DEV-LOG 21:49:39]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:40]: UPS: 61 FPS: 226
+[DEV-LOG 21:49:40]: Ball collision with BlockList[151].
+[DEV-LOG 21:49:40]: Ball touched right y-axis.
+[DEV-LOG 21:49:41]: UPS: 59 FPS: 228
+[DEV-LOG 21:49:41]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:42]: UPS: 60 FPS: 231
+[DEV-LOG 21:49:42]: Ball collision with BlockList[197].
+[DEV-LOG 21:49:43]: UPS: 60 FPS: 226
+[DEV-LOG 21:49:43]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:49:44]: UPS: 61 FPS: 228
+[DEV-LOG 21:49:44]: Ball touched left y-axis.
+[DEV-LOG 21:49:44]: Ball collision with BlockList[172].
+[DEV-LOG 21:49:44]: Ball collision with BlockList[192].
+[DEV-LOG 21:49:44]: Ball collision with BlockList[173].
+[DEV-LOG 21:49:45]: UPS: 59 FPS: 221
+[DEV-LOG 21:49:45]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:46]: UPS: 61 FPS: 227
+[DEV-LOG 21:49:47]: UPS: 59 FPS: 178
+[DEV-LOG 21:49:47]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:48]: UPS: 60 FPS: 221
+[DEV-LOG 21:49:49]: UPS: 58 FPS: 218
+[DEV-LOG 21:49:50]: UPS: 62 FPS: 290
+[DEV-LOG 21:49:51]: UPS: 52 FPS: 270
+[DEV-LOG 21:49:51]: Ball touched bottom x-axis.
+[DEV-LOG 21:49:52]: UPS: 68 FPS: 217
+[DEV-LOG 21:49:52]: Ball touched bottom x-axis.
+[DEV-LOG 21:51:34]: ########### NEW APPLICATION INSTANCE AT 14-05-2017 21:51:34 ###########
+[DEV-LOG 21:51:35]: Loaded from 'greenlevel.config' successfully.
+[DEV-LOG 21:51:36]: UPS: 59 FPS: 21
+[DEV-LOG 21:51:37]: UPS: 60 FPS: 71
+[DEV-LOG 21:51:38]: UPS: 60 FPS: 105
+[DEV-LOG 21:51:39]: UPS: 60 FPS: 119
+[DEV-LOG 21:51:40]: UPS: 60 FPS: 128
+[DEV-LOG 21:51:41]: UPS: 60 FPS: 177
+[DEV-LOG 21:51:42]: Ball touched bottom x-axis.
+[DEV-LOG 21:51:42]: UPS: 60 FPS: 225
+[DEV-LOG 21:51:43]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:51:43]: UPS: 60 FPS: 206
+[DEV-LOG 21:51:44]: UPS: 60 FPS: 234
+[DEV-LOG 21:51:44]: Ball collision with BlockList[94].
+[DEV-LOG 21:51:44]: Ball touched right y-axis.
+[DEV-LOG 21:51:45]: UPS: 60 FPS: 229
+[DEV-LOG 21:51:46]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:51:46]: UPS: 60 FPS: 248
+[DEV-LOG 21:51:47]: UPS: 60 FPS: 232
+[DEV-LOG 21:51:47]: Ball collision with BlockList[81].
+[DEV-LOG 21:51:47]: Ball collision with BlockList[99].
+[DEV-LOG 21:51:47]: Ball collision with BlockList[80].
+[DEV-LOG 21:51:48]: UPS: 61 FPS: 261
+[DEV-LOG 21:51:48]: Ball touched left y-axis.
+[DEV-LOG 21:51:48]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:51:49]: UPS: 59 FPS: 232
+[DEV-LOG 21:51:50]: Ball collision with BlockList[85].
+[DEV-LOG 21:51:50]: UPS: 60 FPS: 240
+[DEV-LOG 21:51:51]: UPS: 60 FPS: 219
+[DEV-LOG 21:51:51]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:51:51]: Ball touched right y-axis.
+[DEV-LOG 21:51:52]: UPS: 60 FPS: 241
+[DEV-LOG 21:51:53]: Ball collision with BlockList[89].
+[DEV-LOG 21:51:53]: UPS: 60 FPS: 232
+[DEV-LOG 21:51:54]: UPS: 60 FPS: 221
+[DEV-LOG 21:51:54]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:51:55]: UPS: 60 FPS: 242
+[DEV-LOG 21:51:55]: Ball touched left y-axis.
+[DEV-LOG 21:51:55]: Ball collision with BlockList[95].
+[DEV-LOG 21:51:56]: UPS: 60 FPS: 250
+[DEV-LOG 21:51:57]: Ball touched bottom x-axis.
+[DEV-LOG 21:51:57]: UPS: 61 FPS: 255
+[DEV-LOG 21:51:58]: UPS: 59 FPS: 253
+[DEV-LOG 21:51:58]: Ball touched bottom x-axis.
+[DEV-LOG 21:51:59]: UPS: 60 FPS: 235
+[DEV-LOG 21:51:59]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:52:00]: UPS: 60 FPS: 226
+[DEV-LOG 21:52:00]: Ball collision with BlockList[96].
+[DEV-LOG 21:52:01]: Ball touched left y-axis.
+[DEV-LOG 21:52:01]: UPS: 60 FPS: 236
+[DEV-LOG 21:52:02]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:52:02]: UPS: 60 FPS: 238
+[DEV-LOG 21:52:03]: UPS: 60 FPS: 233
+[DEV-LOG 21:52:03]: Ball collision with BlockList[88].
+[DEV-LOG 21:52:04]: UPS: 60 FPS: 257
+[DEV-LOG 21:52:04]: Ball touched right y-axis.
+[DEV-LOG 21:52:05]: Ball touched bottom x-axis.
+[DEV-LOG 21:52:05]: UPS: 60 FPS: 247
+[DEV-LOG 21:52:06]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:52:06]: UPS: 60 FPS: 241
+[DEV-LOG 21:52:07]: UPS: 60 FPS: 244
+[DEV-LOG 21:52:07]: Ball touched right y-axis.
+[DEV-LOG 21:52:07]: Ball collision with BlockList[75].
+[DEV-LOG 21:52:08]: UPS: 60 FPS: 256
+[DEV-LOG 21:52:09]: UPS: 60 FPS: 242
+[DEV-LOG 21:52:09]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:52:10]: UPS: 60 FPS: 249
+[DEV-LOG 21:52:10]: Ball collision with BlockList[98].
+[DEV-LOG 21:52:11]: Ball touched left y-axis.
+[DEV-LOG 21:52:11]: UPS: 60 FPS: 245
+[DEV-LOG 21:52:11]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:52:12]: UPS: 60 FPS: 253
+[DEV-LOG 21:52:13]: UPS: 60 FPS: 252
+[DEV-LOG 21:52:13]: Ball collision with BlockList[87].
+[DEV-LOG 21:52:14]: UPS: 60 FPS: 265
+[DEV-LOG 21:52:14]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:52:14]: Ball touched right y-axis.
+[DEV-LOG 21:52:15]: UPS: 60 FPS: 250
+[DEV-LOG 21:52:16]: Ball collision with BlockList[68].
+[DEV-LOG 21:52:16]: UPS: 60 FPS: 249
+[DEV-LOG 21:57:20]: ########### NEW APPLICATION INSTANCE AT 14-05-2017 21:57:20 ###########
+[DEV-LOG 21:57:21]: Loaded from 'greenlevel.config' successfully.
+[DEV-LOG 21:57:22]: UPS: 59 FPS: 18
+[DEV-LOG 21:57:23]: UPS: 60 FPS: 87
+[DEV-LOG 21:57:24]: UPS: 54 FPS: 188
+[DEV-LOG 21:57:24]: Ball touched bottom x-axis.
+[DEV-LOG 21:57:25]: UPS: 66 FPS: 166
+[DEV-LOG 21:57:26]: UPS: 60 FPS: 209
+[DEV-LOG 21:57:26]: Ball touched bottom x-axis.
+[DEV-LOG 21:57:27]: UPS: 60 FPS: 206
+[DEV-LOG 21:57:27]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:28]: UPS: 60 FPS: 235
+[DEV-LOG 21:57:28]: Ball collision with BlockList[94].
+[DEV-LOG 21:57:28]: Ball touched right y-axis.
+[DEV-LOG 21:57:29]: UPS: 61 FPS: 229
+[DEV-LOG 21:57:30]: UPS: 59 FPS: 235
+[DEV-LOG 21:57:30]: Ball touched bottom x-axis.
+[DEV-LOG 21:57:31]: UPS: 61 FPS: 237
+[DEV-LOG 21:57:31]: Ball touched bottom x-axis.
+[DEV-LOG 21:57:32]: UPS: 59 FPS: 225
+[DEV-LOG 21:57:32]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:33]: UPS: 61 FPS: 223
+[DEV-LOG 21:57:34]: Ball touched right y-axis.
+[DEV-LOG 21:57:34]: UPS: 59 FPS: 227
+[DEV-LOG 21:57:34]: Ball collision with BlockList[93].
+[DEV-LOG 21:57:35]: UPS: 60 FPS: 219
+[DEV-LOG 21:57:35]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:36]: UPS: 61 FPS: 195
+[DEV-LOG 21:57:36]: Ball collision with BlockList[97].
+[DEV-LOG 21:57:37]: UPS: 59 FPS: 238
+[DEV-LOG 21:57:37]: Ball touched left y-axis.
+[DEV-LOG 21:57:38]: UPS: 60 FPS: 228
+[DEV-LOG 21:57:38]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:39]: UPS: 61 FPS: 242
+[DEV-LOG 21:57:39]: Ball collision with BlockList[87].
+[DEV-LOG 21:57:40]: UPS: 59 FPS: 205
+[DEV-LOG 21:57:41]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:41]: Ball touched right y-axis.
+[DEV-LOG 21:57:41]: UPS: 60 FPS: 243
+[DEV-LOG 21:57:42]: UPS: 60 FPS: 247
+[DEV-LOG 21:57:42]: Ball collision with BlockList[68].
+[DEV-LOG 21:57:42]: Ball collision with BlockList[86].
+[DEV-LOG 21:57:42]: Ball collision with BlockList[67].
+[DEV-LOG 21:57:43]: UPS: 60 FPS: 235
+[DEV-LOG 21:57:44]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:44]: UPS: 60 FPS: 214
+[DEV-LOG 21:57:44]: Ball touched left y-axis.
+[DEV-LOG 21:57:45]: UPS: 60 FPS: 231
+[DEV-LOG 21:57:45]: Ball collision with BlockList[99].
+[DEV-LOG 21:57:46]: UPS: 60 FPS: 250
+[DEV-LOG 21:57:46]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:47]: UPS: 60 FPS: 222
+[DEV-LOG 21:57:48]: Ball touched right y-axis.
+[DEV-LOG 21:57:48]: UPS: 60 FPS: 219
+[DEV-LOG 21:57:48]: Ball collision with BlockList[75].
+[DEV-LOG 21:57:49]: UPS: 60 FPS: 240
+[DEV-LOG 21:57:49]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:50]: UPS: 60 FPS: 227
+[DEV-LOG 21:57:50]: Ball collision with BlockList[98].
+[DEV-LOG 21:57:51]: UPS: 60 FPS: 241
+[DEV-LOG 21:57:51]: Ball touched left y-axis.
+[DEV-LOG 21:57:52]: UPS: 60 FPS: 227
+[DEV-LOG 21:57:52]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:53]: UPS: 61 FPS: 236
+[DEV-LOG 21:57:53]: Ball collision with BlockList[49].
+[DEV-LOG 21:57:53]: Ball collision with BlockList[88].
+[DEV-LOG 21:57:53]: Ball collision with BlockList[69].
+[DEV-LOG 21:57:54]: UPS: 59 FPS: 239
+[DEV-LOG 21:57:55]: UPS: 60 FPS: 252
+[DEV-LOG 21:57:55]: Ball touched right y-axis.
+[DEV-LOG 21:57:55]: Ball touched bottom x-axis.
+[DEV-LOG 21:57:56]: UPS: 60 FPS: 250
+[DEV-LOG 21:57:56]: Ball touched bottom x-axis.
+[DEV-LOG 21:57:57]: UPS: 60 FPS: 247
+[DEV-LOG 21:57:58]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:57:58]: UPS: 60 FPS: 250
+[DEV-LOG 21:57:59]: UPS: 60 FPS: 253
+[DEV-LOG 21:57:59]: Ball collision with BlockList[95].
+[DEV-LOG 21:57:59]: Ball touched left y-axis.
+[DEV-LOG 21:58:00]: UPS: 60 FPS: 233
+[DEV-LOG 21:58:00]: Ball touched bottom x-axis.
+[DEV-LOG 21:58:01]: UPS: 61 FPS: 239
+[DEV-LOG 21:58:01]: Ball collision with Paddle. paddleCollisionTimer changed: 20
+[DEV-LOG 21:58:02]: UPS: 59 FPS: 257
+[DEV-LOG 21:58:03]: UPS: 60 FPS: 225
+[DEV-LOG 21:58:03]: Ball touched left y-axis.
+[DEV-LOG 21:58:03]: Ball collision with BlockList[76].
+[DEV-LOG 21:58:04]: UPS: 61 FPS: 247
+[DEV-LOG 21:58:04]: Ball touched bottom x-axis.
+[DEV-LOG 21:58:05]: UPS: 59 FPS: 272
+[DEV-LOG 21:58:06]: Ball touched bottom x-axis.
+[DEV-LOG 21:58:06]: UPS: 60 FPS: 268

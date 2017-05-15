@@ -5,7 +5,7 @@ _Welcome to Celestial Outbreak! A game inspired by Pong, Breakout and a few othe
 ### v0.01a
 
 ##### _menu_
-![io.inabsentia.celestialoutbreak.game.menu](https://u.teknik.io/GIZJp.png)
+![io.inabsentia.celestialoutbreak.menu](https://u.teknik.io/GIZJp.png)
 
 ##### _game_
 ![game](https://u.teknik.io/KgSns.png)
