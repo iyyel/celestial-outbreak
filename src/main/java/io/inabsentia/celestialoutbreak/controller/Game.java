@@ -1,12 +1,9 @@
 package io.inabsentia.celestialoutbreak.controller;
 
+import io.inabsentia.celestialoutbreak.entity.Player;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.graphics.Screen;
-import io.inabsentia.celestialoutbreak.handler.FileHandler;
-import io.inabsentia.celestialoutbreak.handler.InputHandler;
-import io.inabsentia.celestialoutbreak.handler.SoundHandler;
-import io.inabsentia.celestialoutbreak.handler.TextHandler;
-import io.inabsentia.celestialoutbreak.level.Level;
+import io.inabsentia.celestialoutbreak.handler.*;
 import io.inabsentia.celestialoutbreak.menu.MainMenu;
 import io.inabsentia.celestialoutbreak.menu.PauseMenu;
 import io.inabsentia.celestialoutbreak.utils.Utils;
@@ -69,17 +66,14 @@ public class Game extends Canvas implements Runnable {
     private final SoundHandler soundHandler;
     private final FileHandler fileHandler;
 
+    private final LevelHandler levelHandler;
+
     /*
      * Objects used for io.inabsentia.celestialoutbreak.menu's.
      */
     private final MainMenu mainMenu;
     private final PauseMenu pauseMenu;
     private Color menuColor;
-
-    /*
-     * Game levels. // TEST // Perhaps make a LevelManager.
-     */
-    private final Level greenLevel;
 
     /*
      * Current state of the game.
@@ -110,6 +104,8 @@ public class Game extends Canvas implements Runnable {
         soundHandler = SoundHandler.getInstance();
         fileHandler = FileHandler.getInstance();
 
+        levelHandler = new LevelHandler(this, inputHandler, soundHandler, fileHandler);
+
 		/* Create screen renderer */
         screen = new Screen(WIDTH, HEIGHT, pixels);
 
@@ -117,9 +113,6 @@ public class Game extends Canvas implements Runnable {
         mainMenu = new MainMenu(this, inputHandler, Color.WHITE, Color.WHITE, Color.BLACK);
         pauseMenu = new PauseMenu(this, inputHandler, Color.WHITE);
         menuColor = utils.generatePastelColor(0.9F, 9000F);
-
-        // TEST GREEN LEVEL
-        greenLevel = new Level("greenlevel.config", this, inputHandler, soundHandler, fileHandler);
 
 		/* Add input handlers */
         gameFrame.addKeyListener(inputHandler);
@@ -172,7 +165,9 @@ public class Game extends Canvas implements Runnable {
      * as well as the different menus.
      */
     private void update() {
-        if (inputHandler.pause) switchPlayPauseState();
+        if (inputHandler.pause)
+            switchPlayPauseState();
+
         inputHandler.update();
 
         switch (state) {
@@ -180,7 +175,7 @@ public class Game extends Canvas implements Runnable {
                 mainMenu.update();
                 break;
             case PLAY:
-                greenLevel.update();
+                levelHandler.update();
                 break;
             case SCORES:
                 break;
@@ -216,7 +211,7 @@ public class Game extends Canvas implements Runnable {
                 break;
             case PLAY:
             case PAUSE:
-                screen.render(greenLevel.getLevelColor());
+                screen.render(levelHandler.getActiveLevel().getLevelColor());
                 break;
             default:
                 break;
@@ -235,7 +230,7 @@ public class Game extends Canvas implements Runnable {
                 soundHandler.playStateMusic(state, true);
                 break;
             case PLAY:
-                greenLevel.render(g);
+                levelHandler.render(g);
                 soundHandler.playStateMusic(state, true);
                 break;
             case SCORES:

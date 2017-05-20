@@ -19,7 +19,7 @@ public class LevelSettings {
 
     /* Ball */
     private Point ballPos;
-    private int ballSize, ballSpeed;
+    private int ballPosXOffset, ballPosYOffset, ballSize, ballSpeed;
     private Color ballColor;
 
     /* BlockList */
@@ -29,7 +29,7 @@ public class LevelSettings {
     /* BottomPanel */
     private Color bottomPanelColor;
 
-    private Game game;
+    private final Game game;
     private final FileHandler fileHandler;
 
     public LevelSettings(String fileName, Game game, FileHandler fileHandler) {
@@ -64,8 +64,8 @@ public class LevelSettings {
         paddleColor = new Color(paddleColorHex);
 
         /* Ball Setup */
-        int ballPosXOffset = Integer.parseInt(map.get("LevelBallPosXOffset"));
-        int ballPosYOffset = Integer.parseInt(map.get("LevelBallPosYOffset"));
+        ballPosXOffset = Integer.parseInt(map.get("LevelBallPosXOffset"));
+        ballPosYOffset = Integer.parseInt(map.get("LevelBallPosYOffset"));
         ballPos = new Point((game.getWidth() / 2) - ballPosXOffset, (game.getHeight() / 2) - ballPosYOffset);
 
         ballSize = Integer.parseInt(map.get("LevelBallSize"));
@@ -77,8 +77,8 @@ public class LevelSettings {
         /* BlockList settings */
         blockAmount = Integer.parseInt(map.get("LevelBlockListBlockAmount"));
 
-        int blockListPosX = Integer.parseInt(map.get("LevelBlockListPosX"));
-        int blockListPosY = Integer.parseInt(map.get("LevelBlockListPosY"));
+        int blockListPosX = Integer.parseInt(map.get("LevelBlockListXPos"));
+        int blockListPosY = Integer.parseInt(map.get("LevelBlockListXPos"));
         blockPos = new Point(blockListPosX, blockListPosY);
         blockWidth = Integer.parseInt(map.get("LevelBlockListBlockWidth"));
         blockHeight = Integer.parseInt(map.get("LevelBlockListBlockHeight"));
@@ -119,6 +119,14 @@ public class LevelSettings {
 
     public Point getBallPos() {
         return ballPos;
+    }
+
+    public int getBallPosXOffset() {
+        return ballPosXOffset;
+    }
+
+    public int getBallPosYOffset() {
+        return ballPosYOffset;
     }
 
     public int getBallSize() {

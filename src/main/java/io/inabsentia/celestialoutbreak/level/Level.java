@@ -13,30 +13,40 @@ import java.awt.*;
 
 public class Level {
 
+    /* Rendering objects */
     private Paddle paddle;
     private Ball ball;
     private BlockList blockList;
+
     private Game game;
+
+    /* Settings for the level */
     private LevelSettings levelSettings;
 
+    /* Handlers for the level */
     private InputHandler inputHandler;
     private SoundHandler soundHandler;
     private FileHandler fileHandler;
 
+    /* Level settings */
     private String levelType;
     private Color levelColor;
 
+    /* Paddle settings */
     private Point paddlePos;
     private int paddleWidth, paddleHeight, paddleSpeed;
     private Color paddleColor;
 
+    /* Ball settings */
     private Point ballPos;
-    private int ballSize, ballSpeed;
+    private int ballPosXOffset, ballPosYOffset, ballSize, ballSpeed;
     private Color ballColor;
 
+    /* BlockList settings */
     private Point blockPos;
     private int blockAmount, blockWidth, blockHeight, blockSpacing;
 
+    /* BottomPanel settings */
     private BottomPanelMenu bottomPanelMenu;
     private Color bottomPanelColor;
 
@@ -45,13 +55,14 @@ public class Level {
         this.inputHandler = inputHandler;
         this.soundHandler = soundHandler;
         this.fileHandler = fileHandler;
+
         levelSettings = new LevelSettings(settingsFileName, game, fileHandler);
         assignLevelSettings();
 
         paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, game);
-        ball = new Ball(ballPos, ballSize, ballSize, ballSpeed, ballColor, game);
+        ball = new Ball(ballPos, ballPosXOffset, ballPosYOffset, ballSize, ballSize, ballSpeed, ballColor, game);
         blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, game);
-        bottomPanelMenu = new BottomPanelMenu(game, inputHandler, Color.WHITE);
+        bottomPanelMenu = new BottomPanelMenu(game, inputHandler, bottomPanelColor);
     }
 
     public void update() {
@@ -78,6 +89,8 @@ public class Level {
         paddleColor = levelSettings.getPaddleColor();
 
         ballPos = levelSettings.getBallPos();
+        ballPosXOffset = levelSettings.getBallPosXOffset();
+        ballPosYOffset = levelSettings.getBallPosYOffset();
         ballSize = levelSettings.getBallSize();
         ballSpeed = levelSettings.getBallSpeed();
         ballColor = levelSettings.getBallColor();
@@ -89,6 +102,10 @@ public class Level {
         blockSpacing = levelSettings.getBlockSpacing();
 
         bottomPanelColor = levelSettings.getBottomPanelColor();
+    }
+
+    public String getLevelType() {
+        return levelType;
     }
 
     public Color getLevelColor() {

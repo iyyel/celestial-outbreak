@@ -15,14 +15,19 @@ public class Ball extends MobileEntity {
 
     private int paddleCollisionTimer = 0;
     private int paddleCollisionTimerValue = 20;
-    private int ballStaleTimer = 0;
-    private int ballStaleTimerValue = 20;
+    private int ballStaleTimerValue = 40;
+    private int ballStaleTimer = ballStaleTimerValue;
+
+    private int ballPosXOffset;
+    private int ballPosYOffset;
 
     private Utils utils = Utils.getInstance();
     private final boolean DEV_ENABLED = utils.DEV_ENABLED;
 
-    public Ball(Point pos, int width, int height, int speed, Color color, Game game) {
+    public Ball(Point pos, int ballPosXOffset, int ballPosYOffset, int width, int height, int speed, Color color, Game game) {
         super(pos, width, height, speed, color, game);
+        this.ballPosXOffset = ballPosXOffset;
+        this.ballPosYOffset = ballPosYOffset;
         soundHandler = SoundHandler.getInstance();
         random = new Random();
         velocity = new Point(speed, speed);
@@ -34,10 +39,6 @@ public class Ball extends MobileEntity {
             pos.y += velocity.y;
         } else {
             ballStaleTimer--;
-        }
-
-        if (DEV_ENABLED) {
-            //utils.logMessage("Ball velocity.x: " + velocity.x + ", velocity.y: " + velocity.y);
         }
 
         checkCollision(paddle);
@@ -71,7 +72,7 @@ public class Ball extends MobileEntity {
             if (DEV_ENABLED) {
                 utils.logMessage("Ball touched bottom x-axis.");
             }
-            pos = new Point(game.getWidth() / 2, game.getHeight() / 2);
+            pos = new Point((game.getWidth() / 2) - ballPosXOffset, (game.getHeight() / 2) - ballPosYOffset);
             boolean isPositiveValue = random.nextBoolean();
             int ballSpeedDecrement = random.nextInt(speed);
             velocity.x = (isPositiveValue ? 1 : -1) * speed + (isPositiveValue ? -ballSpeedDecrement : ballSpeedDecrement);
@@ -120,7 +121,8 @@ public class Ball extends MobileEntity {
     public void render(Graphics2D g) {
         g.setColor(color);
         g.fillOval(pos.x, pos.y, width, height);
-        if (paddleCollisionTimer > 0) paddleCollisionTimer--;
+        if (paddleCollisionTimer > 0)
+            paddleCollisionTimer--;
     }
 
     @Override

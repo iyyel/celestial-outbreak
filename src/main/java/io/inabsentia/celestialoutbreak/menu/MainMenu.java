@@ -35,7 +35,8 @@ public class MainMenu extends Menu {
 
         rectColors = new Color[options.length];
 
-        for (Color c : rectColors) c = rectColor;
+        for (Color c : rectColors)
+            c = rectColor;
 
         titleFont = new Font("Verdana", Font.PLAIN, 52);
         btnFont = new Font("Verdana", Font.PLAIN, 25);
@@ -45,7 +46,8 @@ public class MainMenu extends Menu {
 
     @Override
     public void update() {
-        if (inputTimer > 0) inputTimer--;
+        if (inputTimer > 0)
+            inputTimer--;
 
         if (inputHandler.down && selected < options.length - 1 && inputTimer == 0) {
             selected++;
@@ -58,7 +60,6 @@ public class MainMenu extends Menu {
         }
 
         for (int i = 0, n = options.length; i < n; i++) {
-
             if (selected == i) {
                 rectColors[i] = selectedColor;
 
@@ -83,7 +84,6 @@ public class MainMenu extends Menu {
                             break;
                     }
                 }
-
             } else {
                 rectColors[i] = rectColor;
             }

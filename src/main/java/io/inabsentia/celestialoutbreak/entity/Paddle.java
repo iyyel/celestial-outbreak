@@ -14,8 +14,10 @@ public class Paddle extends MobileEntity {
     }
 
     public void update(boolean left, boolean right) {
-        if (left && pos.x > 0) pos.x -= speed;
-        if (right && pos.x <= (game.getWidth() - width)) pos.x += speed;
+        if (left && pos.x > 0)
+            pos.x -= speed;
+        if (right && pos.x <= (game.getWidth() - width))
+            pos.x += speed;
     }
 
     @Override

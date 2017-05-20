@@ -16,6 +16,7 @@ public class BottomPanelMenu extends Menu {
     public BottomPanelMenu(Game game, InputHandler inputHandler, Color fontColor) {
         super(game, inputHandler);
         this.fontColor = fontColor;
+
         panelFont = new Font("Verdana", Font.PLAIN, 12);
     }
 

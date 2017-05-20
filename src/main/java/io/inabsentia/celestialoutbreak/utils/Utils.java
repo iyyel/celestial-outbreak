@@ -14,7 +14,7 @@ public class Utils {
     private static final Utils instance = new Utils();
     private final Random random;
 
-    // Game flags
+    /* Game flags */
     public final boolean DEV_ENABLED = true;
     public final boolean SOUND_ENABLED = true;
 
