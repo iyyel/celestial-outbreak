@@ -1,19 +1,13 @@
 package io.inabsentia.celestialoutbreak.handler;
 
-/**
+/*
  * Singleton class.
  */
 public class TextHandler {
 
-    private static final TextHandler instance = new TextHandler();
-
     public final String TITLE = "Celestial Outbreak";
     public final String VERSION = "v0.01a";
     public final String EMAIL = "inabsentia.io";
-
-    private TextHandler() {
-
-    }
 
     public final String playBtn = "PLAY";
     public final String scoreBtn = "SCORES";
@@ -28,6 +22,12 @@ public class TextHandler {
 
     public String bottomPanelString(String levelName, int playerLives, int playerScore, int blocksLeft) {
         return "Level: " + levelName + spacing + spacing + "Lives: " + playerLives + spacing + "Score: " + playerScore + spacing + "Blocks: " + blocksLeft;
+    }
+
+    private static final TextHandler instance = new TextHandler();
+
+    private TextHandler() {
+
     }
 
     public synchronized static TextHandler getInstance() {

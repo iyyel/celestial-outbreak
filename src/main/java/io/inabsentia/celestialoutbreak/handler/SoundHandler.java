@@ -40,11 +40,11 @@ public class SoundHandler {
             if (clip.isActive()) return;
 
             stop();
-            if (loop) {
+
+            if (loop)
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
-            } else {
+            else
                 clip.start();
-            }
         }
 
         public void stop() {
@@ -59,20 +59,30 @@ public class SoundHandler {
     }
 
     public void playStateMusic(State state, boolean loop) {
-
-        // Use switch here instead of if statements.
-        if (state == State.MENU) {
-            if (play.clip.isActive()) play.stop();
-            if (pause.clip.isActive()) pause.stop();
-            menu.play(loop);
-        } else if (state == State.PLAY) {
-            if (menu.clip.isActive()) menu.stop();
-            if (pause.clip.isActive()) pause.stop();
-            play.play(loop);
-        } else if (state == State.PAUSE) {
-            if (menu.clip.isActive()) menu.stop();
-            if (play.clip.isActive()) play.stop();
-            pause.play(loop);
+        switch (state) {
+            case MENU:
+                if (play.clip.isActive()) play.stop();
+                if (pause.clip.isActive()) pause.stop();
+                menu.play(loop);
+                break;
+            case PLAY:
+                if (menu.clip.isActive()) menu.stop();
+                if (pause.clip.isActive()) pause.stop();
+                play.play(loop);
+                break;
+            case SCORES:
+                break;
+            case SETTINGS:
+                break;
+            case ABOUT:
+                break;
+            case PAUSE:
+                if (menu.clip.isActive()) menu.stop();
+                if (play.clip.isActive()) play.stop();
+                pause.play(loop);
+                break;
+            default:
+                break;
         }
     }
 

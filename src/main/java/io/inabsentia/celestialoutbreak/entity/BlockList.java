@@ -32,16 +32,16 @@ public class BlockList {
     }
 
     public void render(Graphics2D g) {
+        /* Disable antialiasing for blocks for performance concerns. */
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
-        for (Block block : blockList)
-            if (block != null) block.render(g);
+        for (Block block : blockList) if (block != null) block.render(g);
     }
 
     private void initBlocks() {
         int initialX = pos.x;
         int initialY = pos.y;
-        for (int i = 0, n = blockList.length; i < n; i++) {
+        for (int i = 0; i < blockList.length; i++) {
             blockList[i] = new Block(new Point(pos.x, pos.y), width, height, utils.generatePastelColor(0.8F, 9000F));
             pos.x += width + spacing;
             if (pos.x + width >= game.getWidth()) {

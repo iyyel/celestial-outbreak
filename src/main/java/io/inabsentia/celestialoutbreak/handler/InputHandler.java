@@ -3,7 +3,7 @@ package io.inabsentia.celestialoutbreak.handler;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-/**
+/*
  * Singleton class.
  */
 public class InputHandler implements KeyListener {

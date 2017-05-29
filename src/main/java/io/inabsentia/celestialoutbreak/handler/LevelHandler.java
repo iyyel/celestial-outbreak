@@ -35,9 +35,7 @@ public class LevelHandler {
 
     public void changeLevel(int index) {
         if (index >= 0 && index <= levels.length - 1) {
-            if (DEV_ENABLED && activeLevel != null) {
-                utils.logMessage("Changed level from '" + activeLevel.getLevelType() + "' to '" + levels[index].getLevelType() + "'.");
-            }
+            if (DEV_ENABLED && activeLevel != null) utils.logMessage("Changed level from '" + activeLevel.getLevelType() + "' to '" + levels[index].getLevelType() + "'.");
             activeLevel = levels[index];
         }
     }

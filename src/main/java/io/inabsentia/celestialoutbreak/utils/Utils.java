@@ -16,14 +16,11 @@ public class Utils {
 
     /* Game flags */
     public final boolean DEV_ENABLED = true;
-    public final boolean SOUND_ENABLED = true;
+    public final boolean SOUND_ENABLED = false;
 
     private Utils() {
         random = new Random();
-
-        if (DEV_ENABLED) {
-            logMessage("########### NEW APPLICATION INSTANCE AT " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " ###########");
-        }
+        if (DEV_ENABLED) logMessage("########### NEW APPLICATION INSTANCE AT " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " ###########");
     }
 
     public Color generatePastelColor(final float luminance, final float sat) {

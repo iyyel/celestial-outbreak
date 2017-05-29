@@ -1,6 +1,5 @@
 package io.inabsentia.celestialoutbreak.controller;
 
-import io.inabsentia.celestialoutbreak.entity.Player;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.graphics.Screen;
 import io.inabsentia.celestialoutbreak.handler.*;
@@ -18,8 +17,7 @@ public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
 
     /*
-     * WIDTH and HEIGHT will be multiplied by SCALE
-     * to make the width and height of the screen.
+     * WIDTH and HEIGHT will be multiplied by SCALE to make the width and height of the screen.
      * Update rate is the targeted update rate.
      */
     private final int WIDTH = 640;
@@ -27,19 +25,15 @@ public class Game extends Canvas implements Runnable {
     private final int SCALE = 2;
     private final int UPDATE_RATE = 60;
 
-    private final boolean DEV_ENABLED = Utils.getInstance().DEV_ENABLED;
-
     /*
-     * Timers to switch the mainMenu background color
-     * in a slower interval than 60 times a second.
+     * Timers to switch the mainMenu background color in a slower interval than 60 times a second.
      */
     private final int initialMenuColorTimer = UPDATE_RATE * 4;
     private int menuColorTimer = initialMenuColorTimer;
 
     /*
      * gameThread is the io.inabsentia.celestialoutbreak.main thread.
-     * isRunning determines whether the game loop is
-     * running or not.
+     * isRunning determines whether the game loop is running or not.
      */
     private Thread gameThread;
     private boolean isRunning = false;
@@ -66,6 +60,9 @@ public class Game extends Canvas implements Runnable {
     private final SoundHandler soundHandler;
     private final FileHandler fileHandler;
 
+    /*
+     * LevelHandler object.
+     */
     private final LevelHandler levelHandler;
 
     /*
@@ -77,7 +74,7 @@ public class Game extends Canvas implements Runnable {
 
     /*
      * Current state of the game.
-     * Start with showing the io.inabsentia.celestialoutbreak.menu.
+     * Starts with showing the io.inabsentia.celestialoutbreak.menu.
      */
     private State state = State.MENU;
 
@@ -104,6 +101,7 @@ public class Game extends Canvas implements Runnable {
         soundHandler = SoundHandler.getInstance();
         fileHandler = FileHandler.getInstance();
 
+        /* Initialize levelHandler */
         levelHandler = new LevelHandler(this, inputHandler, soundHandler, fileHandler);
 
 		/* Create screen renderer */
@@ -148,28 +146,26 @@ public class Game extends Canvas implements Runnable {
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | UPS: " + updates + " FPS: " + frames);
-                if (DEV_ENABLED) utils.logMessage("UPS: " + updates + " FPS: " + frames);
+                if (utils.DEV_ENABLED) utils.logMessage("UPS: " + updates + " FPS: " + frames);
                 updates = 0;
                 frames = 0;
             }
         }
-        /*
-         * If we get out of the game loop for some reason,
-         * stop execution immediately.
-         */
+        /* If we get out of the game loop for some reason, stop execution immediately. */
         stop();
     }
 
     /*
-     * Update the state of the game entities
-     * as well as the different menus.
+     * Update the state of the game entities as well as the different menus.
      */
     private void update() {
-        if (inputHandler.pause)
-            switchPlayPauseState();
+        /* If pause key is pressed, switch to game state. */
+        if (inputHandler.pause) switchPlayPauseState();
 
+        /* Update the currently pressed keys. */
         inputHandler.update();
 
+        /* Let the current game state decide what to update exactly. */
         switch (state) {
             case MENU:
                 mainMenu.update();
@@ -191,19 +187,22 @@ public class Game extends Canvas implements Runnable {
     }
 
     /*
-     * Render game entities as well as
-     * the menus and everything else.
+     * Render game entities as well as the menus and everything else.
      */
     private void render() {
+        /* Get BufferStrategy object handle. */
         BufferStrategy bs = getBufferStrategy();
 
+        /* Create the buffer strategy if it does not already exist. */
         if (bs == null) {
             createBufferStrategy(3);
             return;
         }
 
+        /* Clear the screen, i.e. make it go all black. */
         screen.clear();
 
+        /* Let the current game state decide whether to render a level's color or the menu's color. */
         switch (state) {
             case MENU:
                 switchMenuColor();
@@ -217,13 +216,17 @@ public class Game extends Canvas implements Runnable {
                 break;
         }
 
+        /* Get the graphics2D object from the buffer strategy. */
         Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 
+        /* Enable some sweet antialiasing to make the graphics look smoother. */
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
+        /* Draw the buffered image to the screen. */
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
+        /* Make the current state of the game decide what to render. */
         switch (state) {
             case MENU:
                 mainMenu.render(g);
@@ -247,9 +250,14 @@ public class Game extends Canvas implements Runnable {
                 break;
         }
 
+        /* Dispose the graphics and show the buffer to the screen. */
         g.dispose();
         bs.show();
     }
+
+    /*
+     * Start method for the game thread/loop.
+     */
 
     private synchronized void start() {
         if (!isRunning) {
@@ -259,6 +267,9 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /*
+     * Stop method for the game thread/loop. Will exit the application.
+     */
     private synchronized void stop() {
         if (isRunning) {
             isRunning = false;
@@ -271,6 +282,9 @@ public class Game extends Canvas implements Runnable {
         System.exit(0);
     }
 
+    /*
+     * Initialize settings for the JFrame.
+     */
     private void initFrame() {
         gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION);
         gameFrame.setResizable(false);
@@ -281,10 +295,16 @@ public class Game extends Canvas implements Runnable {
         gameFrame.requestFocus();
     }
 
+    /*
+     * Change the current state of the game.
+     */
     public void changeState(State state) {
         this.state = state;
     }
 
+    /*
+     * Continuously switch the menu background with a nice pastel color.
+     */
     private void switchMenuColor() {
         if (menuColorTimer == initialMenuColorTimer) {
             menuColor = utils.generatePastelColor(0.8F, 9000F);
@@ -295,12 +315,14 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /*
+     * Convenience method to switch between play and paused game state.
+     */
     private void switchPlayPauseState() {
-        if (state == State.PLAY) {
+        if (state == State.PLAY)
             changeState(State.PAUSE);
-        } else if (state == State.PAUSE) {
+        else if (state == State.PAUSE)
             changeState(State.PLAY);
-        }
         utils.sleep(100);
     }
 

@@ -4,12 +4,12 @@ import java.awt.*;
 
 public abstract class Entity {
 
+    protected Point pos;
+
     protected int width;
     protected int height;
 
     protected Color color;
-
-    protected Point pos;
 
     public Entity(Point pos, int width, int height, Color color) {
         this.pos = pos;

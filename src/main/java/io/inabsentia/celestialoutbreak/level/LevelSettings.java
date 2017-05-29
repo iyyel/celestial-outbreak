@@ -8,50 +8,66 @@ import java.util.Map;
 
 public class LevelSettings {
 
-    /* Level */
+    /*
+     * Level settings.
+     */
     private String levelType;
     private Color levelColor;
 
-    /* Paddle */
+    /*
+     * Paddle settings.
+     */
     private Point paddlePos;
     private int paddleWidth, paddleHeight, paddleSpeed;
     private Color paddleColor;
 
-    /* Ball */
+    /*
+     * Ball settings.
+     */
     private Point ballPos;
     private int ballPosXOffset, ballPosYOffset, ballSize, ballSpeed;
     private Color ballColor;
 
-    /* BlockList */
+    /*
+     * BlockList settings.
+     */
     private Point blockPos;
     private int blockAmount, blockWidth, blockHeight, blockSpacing;
 
-    /* BottomPanel */
+    /*
+     * BottomPanelMenu settings.
+     */
     private Color bottomPanelColor;
 
+    /*
+     * Required objects.
+     */
     private final Game game;
     private final FileHandler fileHandler;
 
+    /*
+     * Constructor.
+     */
     public LevelSettings(String fileName, Game game, FileHandler fileHandler) {
         this.game = game;
         this.fileHandler = fileHandler;
 
         try {
-            loadLevelSettings(fileName);
+            parseLevelSettings(fileName);
         } catch (Exception e) {
             System.err.println("[ERROR]: Failed parsing io.inabsentia.celestialoutbreak.level settings '" + fileName + "'. ERROR: " + e.getMessage());
         }
     }
 
-    private void loadLevelSettings(String fileName) throws Exception {
+    private void parseLevelSettings(String fileName) throws Exception {
         Map<String, String> map = fileHandler.loadFromFile(fileName);
 
-        /* Level settings */
+        /* Level settings. */
         levelType = map.get("LevelType");
         int levelColorValue = Integer.decode(map.get("LevelColorHex"));
         levelColor = new Color(levelColorValue);
 
-        /* Paddle settings */
+        /* Paddle settings. */
         int paddlePosXOffset = Integer.parseInt(map.get("LevelPaddlePosXOffset"));
         int paddlePosYOffset = Integer.parseInt(map.get("LevelPaddlePosYOffset"));
 
@@ -63,7 +79,7 @@ public class LevelSettings {
         int paddleColorHex = Integer.decode(map.get("LevelPaddleColorHex"));
         paddleColor = new Color(paddleColorHex);
 
-        /* Ball Setup */
+        /* Ball Setup. */
         ballPosXOffset = Integer.parseInt(map.get("LevelBallPosXOffset"));
         ballPosYOffset = Integer.parseInt(map.get("LevelBallPosYOffset"));
         ballPos = new Point((game.getWidth() / 2) - ballPosXOffset, (game.getHeight() / 2) - ballPosYOffset);
@@ -74,7 +90,7 @@ public class LevelSettings {
         int ballColorHex = Integer.decode(map.get("LevelBallColorHex"));
         ballColor = new Color(ballColorHex);
 
-        /* BlockList settings */
+        /* BlockList settings. */
         blockAmount = Integer.parseInt(map.get("LevelBlockListBlockAmount"));
 
         int blockListPosX = Integer.parseInt(map.get("LevelBlockListXPos"));
@@ -84,7 +100,7 @@ public class LevelSettings {
         blockHeight = Integer.parseInt(map.get("LevelBlockListBlockHeight"));
         blockSpacing = Integer.parseInt(map.get("LevelBlockListBlockSpacing"));
 
-        /* BottomPanel settings */
+        /* BottomPanel settings. */
         int bottomPanelColorHex = Integer.decode(map.get("LevelBottomPanelColor"));
         bottomPanelColor = new Color(bottomPanelColorHex);
     }

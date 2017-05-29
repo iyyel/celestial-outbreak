@@ -22,15 +22,15 @@ public class Ball extends MobileEntity {
     private int ballPosYOffset;
 
     private Utils utils = Utils.getInstance();
-    private final boolean DEV_ENABLED = utils.DEV_ENABLED;
 
     public Ball(Point pos, int ballPosXOffset, int ballPosYOffset, int width, int height, int speed, Color color, Game game) {
         super(pos, width, height, speed, color, game);
         this.ballPosXOffset = ballPosXOffset;
         this.ballPosYOffset = ballPosYOffset;
+
+        velocity = new Point(speed, speed);
         soundHandler = SoundHandler.getInstance();
         random = new Random();
-        velocity = new Point(speed, speed);
     }
 
     public void update(Paddle paddle, BlockList blockList) {
@@ -45,38 +45,34 @@ public class Ball extends MobileEntity {
         checkCollision(blockList);
 
         if (pos.x < 0) {
-            if (DEV_ENABLED) {
-                utils.logMessage("Ball touched left y-axis.");
-            }
+            if (utils.DEV_ENABLED) utils.logMessage("Ball touched left y-axis.");
             velocity.x = speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.x > (game.getWidth() - width)) {
-            if (DEV_ENABLED) {
-                utils.logMessage("Ball touched right y-axis.");
-            }
+            if (utils.DEV_ENABLED) utils.logMessage("Ball touched right y-axis.");
             velocity.x = -speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.y < 0) {
-            if (DEV_ENABLED) {
-                utils.logMessage("Ball touched top x-axis.");
-            }
+            if (utils.DEV_ENABLED) utils.logMessage("Ball touched top x-axis.");
             velocity.y = speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.y > (game.getHeight() - height)) {
-            if (DEV_ENABLED) {
-                utils.logMessage("Ball touched bottom x-axis.");
-            }
+            if (utils.DEV_ENABLED) utils.logMessage("Ball touched bottom x-axis.");
+
             pos = new Point((game.getWidth() / 2) - ballPosXOffset, (game.getHeight() / 2) - ballPosYOffset);
+
             boolean isPositiveValue = random.nextBoolean();
             int ballSpeedDecrement = random.nextInt(speed);
+
             velocity.x = (isPositiveValue ? 1 : -1) * speed + (isPositiveValue ? -ballSpeedDecrement : ballSpeedDecrement);
             velocity.y = speed;
+
             soundHandler.beep03.play(false);
             ballStaleTimer = ballStaleTimerValue;
         }
@@ -87,19 +83,16 @@ public class Ball extends MobileEntity {
             if (paddleCollisionTimer == 0) {
                 velocity.y *= -1;
 
-                if (velocity.x < 0) {
+                if (velocity.x < 0)
                     velocity.x = -speed;
-                } else {
+                else
                     velocity.x = speed;
-                }
 
                 paddleCollisionTimer = paddleCollisionTimerValue;
 
                 soundHandler.beep01.play(false);
 
-                if (DEV_ENABLED) {
-                    utils.logMessage("Ball collision with Paddle. paddleCollisionTimer changed: " + paddleCollisionTimer);
-                }
+                if (utils.DEV_ENABLED) utils.logMessage("Ball collision with Paddle. paddleCollisionTimer changed: " + paddleCollisionTimer);
             }
         } else if (t.getClass().equals(BlockList.class)) {
             for (int i = 0, n = ((BlockList) t).getLength(); i < n; i++) {
@@ -109,9 +102,7 @@ public class Ball extends MobileEntity {
 
                     soundHandler.beep01.play(false);
 
-                    if (DEV_ENABLED) {
-                        utils.logMessage("Ball collision with BlockList[" + i + "].");
-                    }
+                    if (utils.DEV_ENABLED) utils.logMessage("Ball collision with BlockList[" + i + "].");
                 }
             }
         }
@@ -121,8 +112,7 @@ public class Ball extends MobileEntity {
     public void render(Graphics2D g) {
         g.setColor(color);
         g.fillOval(pos.x, pos.y, width, height);
-        if (paddleCollisionTimer > 0)
-            paddleCollisionTimer--;
+        if (paddleCollisionTimer > 0) paddleCollisionTimer--;
     }
 
     @Override

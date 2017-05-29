@@ -6,25 +6,29 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f8ff5c6-2bc2-49cd-9128-c95ba28b9d78" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/15-05-2017_dev-log.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/20-05-2017_dev-log.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/config/bluelevel.config" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/config/bordeauxlevel.config" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/config/purplelevel.config" />
+    <list default="true" id="06a4bece-f043-43c0-93f7-996fa187f7bd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/29-05-2017_dev-log.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/log/30-05-2017_dev-log.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/config/levels.config" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/Game.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Ball.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Ball.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/BlockList.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/BlockList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Entity.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Entity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Paddle.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Paddle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/graphics/Screen.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/graphics/Screen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/FileHandler.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/FileHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/InputHandler.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/InputHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/LevelHandler.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/LevelHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/SoundHandler.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/SoundHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/LevelSettings.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/LevelSettings.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/BottomPanelMenu.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/BottomPanelMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/utils/Utils.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/utils/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/greenlevel.config" afterPath="$PROJECT_DIR$/src/main/resources/config/greenlevel.config" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/redlevel.config" afterPath="$PROJECT_DIR$/src/main/resources/config/redlevel.config" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/purplelevel.config" afterPath="$PROJECT_DIR$/src/main/resources/config/purplelevel.config" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,8 +40,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="celestialoutbreak" />
+  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -84,7 +91,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/entity/MobileEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/entity/Entity.java" />
         <option value="$PROJECT_DIR$/src/main/java/entity/BlockList.java" />
         <option value="$PROJECT_DIR$/src/main/java/entity/Block.java" />
@@ -92,11 +98,9 @@
         <option value="$PROJECT_DIR$/.idea/compiler.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PauseMenu.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Entity.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/GrassLevel.java" />
         <option value="$PROJECT_DIR$/src/TODO.md" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/GreenLevel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/test/TestDriver.java" />
         <option value="$PROJECT_DIR$/14-05-2017_dev-log.txt" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/game/handler/FileHandler.java" />
@@ -111,30 +115,33 @@
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/game/level/LevelSettings.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/game/controller/Game.java" />
         <option value="$PROJECT_DIR$/log/14-05-2017_dev-log.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/FileHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/BlockList.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/State.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/SoundHandler.java" />
         <option value="$PROJECT_DIR$/log/15-05-2017_dev-log.txt" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/InputHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/graphics/Screen.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/BottomPanelMenu.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Paddle.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/purplelevel.config" />
         <option value="$PROJECT_DIR$/src/main/resources/config/blacklevel.config" />
         <option value="$PROJECT_DIR$/src/main/resources/config/player.config" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Player.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/Game.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/utils/Utils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/LevelSettings.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/redlevel.config" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Ball.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/greenlevel.config" />
         <option value="$PROJECT_DIR$/src/main/resources/config/bluelevel.config" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Entity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Paddle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/graphics/Screen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/InputHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/SoundHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/LevelSettings.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/BottomPanelMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/levels.config" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/purplelevel.config" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/utils/Utils.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/LevelHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Ball.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/BlockList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/FileHandler.java" />
       </list>
     </option>
   </component>
@@ -192,9 +199,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="29" />
-    <option name="width" value="1920" />
-    <option name="height" value="1051" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1932" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -212,6 +220,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -220,8 +229,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -233,19 +242,356 @@
               <option name="myItemId" value="celestialoutbreak" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="META-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="audio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="powerup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="level" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="handler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="celestialoutbreak" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="editor.preferences.folding" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -582,7 +928,7 @@
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -605,7 +951,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7f8ff5c6-2bc2-49cd-9128-c95ba28b9d78" name="Default" comment="" />
+      <changelist id="06a4bece-f043-43c0-93f7-996fa187f7bd" name="Default" comment="" />
       <created>1494521889282</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -691,25 +1037,34 @@
     <option name="localTasksCounter" value="12" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="29" width="1920" height="1051" extended-state="6" />
+    <frame x="-8" y="-8" width="1932" height="1056" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31130064" sideWeight="0.49166667" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31078225" sideWeight="0.48958334" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3347548" sideWeight="0.53333336" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17758985" sideWeight="0.539666" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13072917" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3347548" sideWeight="0.46666667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17758985" sideWeight="0.46033403" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.171875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17223382" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22707888" sideWeight="0.49375" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -752,22 +1107,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/graphics/Screen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Block.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -779,7 +1118,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -794,7 +1132,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -820,13 +1157,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/default/src.zip!/java/awt/Rectangle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-99">
-          <caret line="782" column="19" lean-forward="false" selection-start-line="782" selection-start-column="19" selection-end-line="782" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///usr/lib/jvm/default/src.zip!/java/awt/Rectangle.java" />
     <entry file="file://$PROJECT_DIR$/src/TODO.md" />
     <entry file="file://$PROJECT_DIR$/testConfig" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/greenlevel.config">
@@ -840,7 +1171,7 @@
     <entry file="file://$PROJECT_DIR$/14-05-2017_dev-log.txt" />
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/game/level/GreenLevel.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/game/level/LevelType.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/RedLevel.config" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/redlevel.config" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -862,206 +1193,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/powerup/Powerup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PauseMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/BottomPanelMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/FileHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-375">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/InputHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/SoundHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="62" column="51" lean-forward="false" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/graphics/Screen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Paddle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="18" column="57" lean-forward="true" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="45" lean-forward="false" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/BlockList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-55">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/bordeauxlevel.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/player.config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/MobileEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
-          <caret line="18" column="45" lean-forward="false" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Ball.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
-          <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/LevelSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-470">
-          <caret line="121" column="4" lean-forward="false" selection-start-line="121" selection-start-column="4" selection-end-line="121" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1490">
-          <caret line="68" column="31" lean-forward="false" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-550">
-          <caret line="64" column="84" lean-forward="true" selection-start-line="64" selection-start-column="84" selection-end-line="64" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/player.config" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/redlevel.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-41">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1069,19 +1205,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/bluelevel.config">
+    <entry file="file://$PROJECT_DIR$/src/main/main.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/purplelevel.config">
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Paddle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1089,13 +1224,229 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/LevelHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="12" column="45" lean-forward="false" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/graphics/Screen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="47" lean-forward="false" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="45" lean-forward="false" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/bluelevel.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/bordeauxlevel.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/levels.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/purplelevel.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="15" lean-forward="false" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Ball.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2262">
+          <caret line="168" column="0" lean-forward="false" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/MobileEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/BlockList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="34" column="70" lean-forward="false" selection-start-line="34" selection-start-column="70" selection-end-line="34" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/FileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/InputHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/LevelHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="37" column="51" lean-forward="false" selection-start-line="37" selection-start-column="51" selection-end-line="37" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/SoundHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-588">
+          <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1686">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/LevelSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="183" column="0" lean-forward="false" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/BottomPanelMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="954">
+          <caret line="57" column="8" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PauseMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/powerup/Powerup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-264">
+          <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1153,7 +1504,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>celestialoutbreak</last-edited>
+          <last-edited>main</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

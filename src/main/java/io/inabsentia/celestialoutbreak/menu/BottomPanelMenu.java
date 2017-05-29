@@ -29,7 +29,6 @@ public class BottomPanelMenu extends Menu {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         g.setFont(panelFont);
-        // Figure these values out someday.
         g.drawString(textHandler.bottomPanelString(levelType, 0, 0, blockAmount), 900, 710);
     }
 
