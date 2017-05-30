@@ -55,12 +55,12 @@ public class LevelSettings {
         try {
             parseLevelSettings(fileName);
         } catch (Exception e) {
-            System.err.println("[ERROR]: Failed parsing io.inabsentia.celestialoutbreak.level settings '" + fileName + "'. ERROR: " + e.getMessage());
+            System.err.println("[ERROR]: Failed parsing io.inabsentia.celestialoutbreak.level settings '" + fileName + "'. ERROR: " + e.getStackTrace());
         }
     }
 
     private void parseLevelSettings(String fileName) throws Exception {
-        Map<String, String> map = fileHandler.loadFromFile(fileName);
+        Map<String, String> map = fileHandler.readPropertiesFromFile(fileName);
 
         /* Level settings. */
         levelType = map.get("LevelType");

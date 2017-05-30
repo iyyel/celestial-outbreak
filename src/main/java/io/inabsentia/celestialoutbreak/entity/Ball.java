@@ -21,7 +21,7 @@ public class Ball extends MobileEntity {
     private int ballPosXOffset;
     private int ballPosYOffset;
 
-    private Utils utils = Utils.getInstance();
+    private final Utils utils = Utils.getInstance();
 
     public Ball(Point pos, int ballPosXOffset, int ballPosYOffset, int width, int height, int speed, Color color, Game game) {
         super(pos, width, height, speed, color, game);
@@ -45,25 +45,25 @@ public class Ball extends MobileEntity {
         checkCollision(blockList);
 
         if (pos.x < 0) {
-            if (utils.DEV_ENABLED) utils.logMessage("Ball touched left y-axis.");
+            if (utils.VERBOSE_ENABLED) utils.logMessage("Ball touched left y-axis.");
             velocity.x = speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.x > (game.getWidth() - width)) {
-            if (utils.DEV_ENABLED) utils.logMessage("Ball touched right y-axis.");
+            if (utils.VERBOSE_ENABLED) utils.logMessage("Ball touched right y-axis.");
             velocity.x = -speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.y < 0) {
-            if (utils.DEV_ENABLED) utils.logMessage("Ball touched top x-axis.");
+            if (utils.VERBOSE_ENABLED) utils.logMessage("Ball touched top x-axis.");
             velocity.y = speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.y > (game.getHeight() - height)) {
-            if (utils.DEV_ENABLED) utils.logMessage("Ball touched bottom x-axis.");
+            if (utils.VERBOSE_ENABLED) utils.logMessage("Ball touched bottom x-axis.");
 
             pos = new Point((game.getWidth() / 2) - ballPosXOffset, (game.getHeight() / 2) - ballPosYOffset);
 
@@ -92,7 +92,7 @@ public class Ball extends MobileEntity {
 
                 soundHandler.beep01.play(false);
 
-                if (utils.DEV_ENABLED) utils.logMessage("Ball collision with Paddle. paddleCollisionTimer changed: " + paddleCollisionTimer);
+                if (utils.VERBOSE_ENABLED) utils.logMessage("Ball collision with Paddle. paddleCollisionTimer changed: " + paddleCollisionTimer);
             }
         } else if (t.getClass().equals(BlockList.class)) {
             for (int i = 0, n = ((BlockList) t).getLength(); i < n; i++) {
@@ -102,7 +102,7 @@ public class Ball extends MobileEntity {
 
                     soundHandler.beep01.play(false);
 
-                    if (utils.DEV_ENABLED) utils.logMessage("Ball collision with BlockList[" + i + "].");
+                    if (utils.VERBOSE_ENABLED) utils.logMessage("Ball collision with BlockList[" + i + "].");
                 }
             }
         }

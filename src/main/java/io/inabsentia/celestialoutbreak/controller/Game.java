@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.File;
 
 public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
@@ -54,11 +55,11 @@ public class Game extends Canvas implements Runnable {
     /*
      * Singleton objects.
      */
-    private final Utils utils;
-    private final TextHandler textHandler;
-    private final InputHandler inputHandler;
-    private final SoundHandler soundHandler;
-    private final FileHandler fileHandler;
+    private final Utils utils = Utils.getInstance();
+    private final TextHandler textHandler = TextHandler.getInstance();
+    private final InputHandler inputHandler = InputHandler.getInstance();
+    private final SoundHandler soundHandler = SoundHandler.getInstance();
+    private final FileHandler fileHandler = FileHandler.getInstance();
 
     /*
      * LevelHandler object.
@@ -93,13 +94,6 @@ public class Game extends Canvas implements Runnable {
 		/* Create JFrame */
         gameFrame = new JFrame();
         gameFrame.setSize(size);
-
-		/* Get singleton instances */
-        utils = Utils.getInstance();
-        textHandler = TextHandler.getInstance();
-        inputHandler = InputHandler.getInstance();
-        soundHandler = SoundHandler.getInstance();
-        fileHandler = FileHandler.getInstance();
 
         /* Initialize levelHandler */
         levelHandler = new LevelHandler(this, inputHandler, soundHandler, fileHandler);
@@ -146,7 +140,7 @@ public class Game extends Canvas implements Runnable {
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | UPS: " + updates + " FPS: " + frames);
-                if (utils.DEV_ENABLED) utils.logMessage("UPS: " + updates + " FPS: " + frames);
+                if (utils.VERBOSE_ENABLED) utils.logMessage("UPS: " + updates + " FPS: " + frames);
                 updates = 0;
                 frames = 0;
             }

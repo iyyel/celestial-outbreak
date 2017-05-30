@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class SoundHandler {
 
-    private final boolean SOUND_ENABLED = Utils.getInstance().SOUND_ENABLED;
+    private final Utils utils = Utils.getInstance();
 
     private static final SoundHandler instance = new SoundHandler();
 
@@ -36,7 +36,7 @@ public class SoundHandler {
         }
 
         public void play(boolean loop) {
-            if (!SOUND_ENABLED) return;
+            if (!utils.SOUND_ENABLED) return;
             if (clip.isActive()) return;
 
             stop();

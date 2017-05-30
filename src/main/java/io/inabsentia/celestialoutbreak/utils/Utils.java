@@ -1,5 +1,7 @@
 package io.inabsentia.celestialoutbreak.utils;
 
+import io.inabsentia.celestialoutbreak.handler.TextHandler;
+
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,15 +14,20 @@ import java.util.Random;
 public class Utils {
 
     private static final Utils instance = new Utils();
-    private final Random random;
+
+    private final TextHandler textHandler = TextHandler.getInstance();
+    private final Random random = new Random();
 
     /* Game flags */
-    public final boolean DEV_ENABLED = true;
+    public final boolean VERBOSE_ENABLED = true;
     public final boolean SOUND_ENABLED = false;
 
     private Utils() {
-        random = new Random();
-        if (DEV_ENABLED) logMessage("########### NEW APPLICATION INSTANCE AT " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " ###########");
+        if (VERBOSE_ENABLED) logMessage("########### NEW APPLICATION INSTANCE AT " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + " ###########");
+    }
+
+    public static synchronized Utils getInstance() {
+        return instance;
     }
 
     public Color generatePastelColor(final float luminance, final float sat) {
@@ -39,34 +46,39 @@ public class Utils {
     }
 
     public void logMessage(String message) {
-        String messagePrefix = "[DEV-LOG " + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]: ";
-        message = messagePrefix + message;
+        message = textHandler.LOG_MESSAGE_PREFIX + message;
 
         System.err.println(message);
 
-        // Terrible way to use the path. However, it works for now. o_o..
-        String fileName = "./log/" + new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_dev-log.txt";
+        File logDir = new File(textHandler.LOG_DIR);
+
+        if (!logDir.exists()) {
+            try {
+                logDir.mkdirs();
+            } catch (SecurityException se) {
+                se.printStackTrace();
+            }
+        }
+
+        String fileName = textHandler.LOG_DIR + File.separator + textHandler.LOG_FILE_NAME;
         File file = new File(fileName);
 
         if (file.exists() && !file.isDirectory()) {
             try (PrintWriter out = new PrintWriter(new FileOutputStream(new File(fileName), true))) {
-                out.append(message + "\n");
+                out.append(message + "\r\n");
                 out.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         } else {
             try (PrintWriter out = new PrintWriter(fileName)) {
-                out.println(message);
+                out.print(message + "\r\n");
                 out.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
-    }
 
-    public static synchronized Utils getInstance() {
-        return instance;
     }
 
 }

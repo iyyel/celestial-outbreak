@@ -13,7 +13,7 @@ public class BlockList {
     private int blocksLeft;
 
     private Block[] blockList;
-    private final Utils utils;
+    private final Utils utils = Utils.getInstance();
     private final Game game;
 
     private Point pos;
@@ -27,7 +27,6 @@ public class BlockList {
         this.game = game;
 
         blockList = new Block[blockAmount];
-        utils = Utils.getInstance();
         initBlocks();
     }
 
