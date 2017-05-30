@@ -3,8 +3,4 @@
   <library name="Maven: junit:junit:3.8.1">
     <archive path="/home/absencia/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar" />
   </library>
-  <library name="Maven: mysql:mysql-connector-java:5.1.42">
-    <archive path="/home/absencia/.m2/repository/mysql/mysql-connector-java/5.1.42/mysql-connector-java-5.1.42.jar" />
-  </library>
 </eclipse-userlibraries>
-
