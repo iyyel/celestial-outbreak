@@ -1,6 +1,7 @@
 package io.inabsentia.celestialoutbreak.entity;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.handler.FileHandler;
 import io.inabsentia.celestialoutbreak.handler.SoundHandler;
 import io.inabsentia.celestialoutbreak.utils.Utils;
 
@@ -10,8 +11,11 @@ import java.util.Random;
 public class Ball extends MobileEntity {
 
     private Point velocity;
-    private SoundHandler soundHandler;
-    private final Random random;
+
+    private final SoundHandler soundHandler = SoundHandler.getInstance();
+    private final FileHandler fileHandler = FileHandler.getInstance();
+
+    private final Random random = new Random();
 
     private int paddleCollisionTimer = 0;
     private int paddleCollisionTimerValue = 20;
@@ -29,8 +33,6 @@ public class Ball extends MobileEntity {
         this.ballPosYOffset = ballPosYOffset;
 
         velocity = new Point(speed, speed);
-        soundHandler = SoundHandler.getInstance();
-        random = new Random();
     }
 
     public void update(Paddle paddle, BlockList blockList) {
@@ -45,25 +47,25 @@ public class Ball extends MobileEntity {
         checkCollision(blockList);
 
         if (pos.x < 0) {
-            if (utils.VERBOSE_ENABLED) utils.logMessage("Ball touched left y-axis.");
+            if (utils.isVerboseEnabled()) fileHandler.writeLogMessage("Ball touched left y-axis.");
             velocity.x = speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.x > (game.getWidth() - width)) {
-            if (utils.VERBOSE_ENABLED) utils.logMessage("Ball touched right y-axis.");
+            if (utils.isVerboseEnabled()) fileHandler.writeLogMessage("Ball touched right y-axis.");
             velocity.x = -speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.y < 0) {
-            if (utils.VERBOSE_ENABLED) utils.logMessage("Ball touched top x-axis.");
+            if (utils.isVerboseEnabled()) fileHandler.writeLogMessage("Ball touched top x-axis.");
             velocity.y = speed;
             soundHandler.beep01.play(false);
         }
 
         if (pos.y > (game.getHeight() - height)) {
-            if (utils.VERBOSE_ENABLED) utils.logMessage("Ball touched bottom x-axis.");
+            if (utils.isVerboseEnabled()) fileHandler.writeLogMessage("Ball touched bottom x-axis.");
 
             pos = new Point((game.getWidth() / 2) - ballPosXOffset, (game.getHeight() / 2) - ballPosYOffset);
 
@@ -92,7 +94,7 @@ public class Ball extends MobileEntity {
 
                 soundHandler.beep01.play(false);
 
-                if (utils.VERBOSE_ENABLED) utils.logMessage("Ball collision with Paddle. paddleCollisionTimer changed: " + paddleCollisionTimer);
+                if (utils.isVerboseEnabled()) fileHandler.writeLogMessage("Ball collision with Paddle. paddleCollisionTimer changed: " + paddleCollisionTimer);
             }
         } else if (t.getClass().equals(BlockList.class)) {
             for (int i = 0, n = ((BlockList) t).getLength(); i < n; i++) {
@@ -102,7 +104,7 @@ public class Ball extends MobileEntity {
 
                     soundHandler.beep01.play(false);
 
-                    if (utils.VERBOSE_ENABLED) utils.logMessage("Ball collision with BlockList[" + i + "].");
+                    if (utils.isVerboseEnabled()) fileHandler.writeLogMessage("Ball collision with BlockList[" + i + "].");
                 }
             }
         }

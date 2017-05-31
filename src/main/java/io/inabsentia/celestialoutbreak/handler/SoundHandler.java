@@ -36,7 +36,7 @@ public class SoundHandler {
         }
 
         public void play(boolean loop) {
-            if (!utils.SOUND_ENABLED) return;
+            if (!utils.isSoundEnabled()) return;
             if (clip.isActive()) return;
 
             stop();

@@ -16,6 +16,7 @@ public class LevelHandler {
 
     private final Utils utils = Utils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
+    private final FileHandler fileHandler = FileHandler.getInstance();
 
     public LevelHandler(Game game, InputHandler inputHandler, SoundHandler soundHandler, FileHandler fileHandler) {
         ArrayList<String> levelConfigFileList = (ArrayList<String>) fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_PATH);
@@ -36,7 +37,7 @@ public class LevelHandler {
 
     public void changeLevel(int index) {
         if (index >= 0 && index <= levels.length - 1) {
-            if (utils.VERBOSE_ENABLED && activeLevel != null) utils.logMessage("Changed level from '" + activeLevel.getLevelType() + "' to '" + levels[index].getLevelType() + "'.");
+            if (utils.isVerboseEnabled() && activeLevel != null) fileHandler.writeLogMessage("Changed level from '" + activeLevel.getLevelType() + "' to '" + levels[index].getLevelType() + "'.");
             activeLevel = levels[index];
         }
     }

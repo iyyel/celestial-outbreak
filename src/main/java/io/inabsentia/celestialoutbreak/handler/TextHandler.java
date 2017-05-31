@@ -34,6 +34,9 @@ public class TextHandler {
 
     public final String spacing = "     ";
 
+    public final String NEW_APP_INSTANCE = "New application instance started at " + getDateTime() + ".";
+    public final String NEW_APP_INSTANCE_SUCCESS = "Successfully completed application initialization at " + getDateTime() + ".";
+
     /*
      * Main directory.
      */
@@ -47,9 +50,13 @@ public class TextHandler {
     /*
      * Log files.
      */
+    public final String LOG_DIR_NAME = "log";
+    public final String LOG_DIR_PATH = MAIN_DIR + File.separator + LOG_DIR_NAME;
+
     public final String LOG_FILE_NAME = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_verbose-log.txt";
+    public final String LOG_FILE_PATH = LOG_DIR_PATH + File.separator + LOG_FILE_NAME;
+
     public final String LOG_MESSAGE_PREFIX = "[VERBOSE-LOG " + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]: ";
-    public final String LOG_DIR = MAIN_DIR + File.separator + "log";
 
     /*
      * Level files.
@@ -66,6 +73,18 @@ public class TextHandler {
     public final String LEVEL_FILE_NAME_PURPLE = "purplelevel.config";
     public final String LEVEL_FILE_NAME_BORDEAUX = "bordeauxlevel.config";
 
+    /*
+     * Settings files.
+     */
+    public final String SETTINGS_DIR_NAME = "settings";
+    public final String SETTINGS_DIR_PATH = MAIN_DIR + File.separator + SETTINGS_DIR_NAME;
+
+    public final String SETTINGS_CONFIG_FILE_NAME = "settings.config";
+    public final String SETTINGS_CONFIG_FILE_PATH = SETTINGS_DIR_PATH + File.separator + SETTINGS_CONFIG_FILE_NAME;
+
+    /*
+     * Random methods. Clean this up.
+     */
     public final String bottomPanelString(String levelName, int playerLives, int playerScore, int blocksLeft) {
         return "Level: " + levelName + spacing + spacing + "Lives: " + playerLives + spacing + "Score: " + playerScore + spacing + "Blocks: " + blocksLeft;
     }
@@ -75,15 +94,23 @@ public class TextHandler {
     }
 
     public final String successReadProperties(String filePath) {
-        return "Read properties from '" + filePath + "' successfully.";
+        return "Successfully read properties from '" + filePath + "'.";
     }
 
     public final String successReadLines(String filePath) {
-        return "Read lines from '" + filePath + "' successfully.";
+        return "Successfully read lines from '" + filePath + "'.";
     }
 
     public final String successCreatedDir(String dirPath) {
-        return "Created directory '" + dirPath + "' successfully.";
+        return "Successfully created directory '" + dirPath + "'.";
+    }
+
+    public final String successCreatedFile(String filePath) {
+        return "Successfully created file '" + filePath + "'.";
+    }
+
+    private final String getDateTime() {
+        return new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
     }
 
 }
