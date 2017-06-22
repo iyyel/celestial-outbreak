@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.File;
 
 public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
