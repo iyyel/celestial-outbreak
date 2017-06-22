@@ -32,9 +32,9 @@ public class TextHandler {
     public final String pauseMsg = "Paused";
     public final String pauseStartMsg = "Press \"p\" to continue the game!";
 
-    public final String spacing = "     ";
+    private final String spacing = "     ";
 
-    public final String NEW_APP_INSTANCE = "New application instance started at " + getDateTime() + ".";
+    public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION +  " instance started at " + getDateTime() + ".";
     public final String NEW_APP_INSTANCE_SUCCESS = "Successfully completed application initialization at " + getDateTime() + ".";
 
     /*
@@ -74,6 +74,33 @@ public class TextHandler {
     public final String LEVEL_FILE_NAME_BORDEAUX = "bordeauxlevel.config";
 
     /*
+     * Level related messages.
+     */
+    private final String ERR_PREFIX = "[ERROR]: ";
+
+    public final String changedLevelMessage(String prevLevel, String newLevel) {
+        return "Changed level from '" + prevLevel + "' to '" + newLevel + "'.";
+    }
+
+    public final String errParsingLevelSettings(String fileName, String exceptionMessage) {
+        return ERR_PREFIX + "Failed parsing level settings from file '" + fileName + "' cause: '" + exceptionMessage + "'.";
+    }
+
+    /* Ball related messages */
+    public final String vBallTouchedYAxisBottomMsg = "Ball touched bottom y-axis.";
+    public final String vBallTouchedYAxisTopMsg = "Ball touched top y-axis.";
+    public final String vBallTouchedXAxisLeftMsg = "Ball touched left x-axis.";
+    public final String vBallTouchedXAxisRightMsg = "Ball touched right x-axis.";
+
+    public final String vBallPaddleCollisionMsg(int paddleCollisionTimer) {
+        return "Ball collision with Paddle. Changed paddleCollisionTimer: " + paddleCollisionTimer;
+    }
+
+    public final String vBallBlockListCollisionMsg(int blockListIndex) {
+        return "Ball collision with BlockList[" + blockListIndex + "].";
+    }
+
+    /*
      * Settings files.
      */
     public final String SETTINGS_DIR_NAME = "settings";
@@ -107,6 +134,10 @@ public class TextHandler {
 
     public final String successCreatedFile(String filePath) {
         return "Successfully created file '" + filePath + "'.";
+    }
+
+    public final String performanceMessage(int frames, int updates) {
+        return "UPS: " + updates + " | FPS: " + frames;
     }
 
     private final String getDateTime() {

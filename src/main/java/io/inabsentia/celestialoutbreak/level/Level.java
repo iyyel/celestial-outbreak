@@ -131,6 +131,11 @@ public class Level {
         bottomPanelColor = levelSettings.getBottomPanelColor();
     }
 
+    public boolean isFinished() {
+        if (blockList.getBlocksLeft() == 0) return true;
+        else return false;
+    }
+
     public String getLevelType() {
         return levelType;
     }

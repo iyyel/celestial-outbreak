@@ -7,16 +7,16 @@ import java.awt.*;
 
 public class BlockList {
 
+    private final Utils utils = Utils.getInstance();
+    private final Game game;
+
     private final int width;
     private final int height;
     private final int spacing;
     private int blocksLeft;
 
-    private Block[] blockList;
-    private final Utils utils = Utils.getInstance();
-    private final Game game;
-
     private Point pos;
+    private Block[] blockList;
 
     public BlockList(int blockAmount, Point pos, int width, int height, int spacing, Game game) {
         this.pos = pos;

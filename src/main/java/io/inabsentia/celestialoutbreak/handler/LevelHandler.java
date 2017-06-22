@@ -12,7 +12,7 @@ public class LevelHandler {
 
     private Level[] levels;
     private Level activeLevel;
-    private final int INITIAL_LEVEL_INDEX = 3;
+    private final int INITIAL_LEVEL_INDEX = 0;
 
     private final Utils utils = Utils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
@@ -29,15 +29,19 @@ public class LevelHandler {
 
     public void update() {
         activeLevel.update();
+
+        if (activeLevel.isFinished()) {
+            fileHandler.writeLogMessage(getActiveLevel().getLevelType() + " finished.");
+        }
     }
 
     public void render(Graphics2D g) {
         activeLevel.render(g);
     }
 
-    public void changeLevel(int index) {
+    private void changeLevel(int index) {
         if (index >= 0 && index <= levels.length - 1) {
-            if (utils.isVerboseEnabled() && activeLevel != null) fileHandler.writeLogMessage("Changed level from '" + activeLevel.getLevelType() + "' to '" + levels[index].getLevelType() + "'.");
+            if (utils.isVerboseEnabled() && activeLevel != null) fileHandler.writeLogMessage(textHandler.changedLevelMessage(activeLevel.getLevelType(), levels[index].getLevelType()));
             activeLevel = levels[index];
         }
     }

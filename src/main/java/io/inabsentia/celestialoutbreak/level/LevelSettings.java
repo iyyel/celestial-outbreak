@@ -2,11 +2,15 @@ package io.inabsentia.celestialoutbreak.level;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
+import io.inabsentia.celestialoutbreak.handler.TextHandler;
 
+import javax.xml.soap.Text;
 import java.awt.*;
 import java.util.Map;
 
 public class LevelSettings {
+
+    private final TextHandler textHandler = TextHandler.getInstance();
 
     /*
      * Level settings.
@@ -55,7 +59,8 @@ public class LevelSettings {
         try {
             parseLevelSettings(fileName);
         } catch (Exception e) {
-            System.err.println("[ERROR]: Failed parsing io.inabsentia.celestialoutbreak.level settings '" + fileName + "'. ERROR: " + e.getStackTrace());
+            fileHandler.writeLogMessage(textHandler.errParsingLevelSettings(fileName, e.getMessage()));
+            System.exit(1);
         }
     }
 
