@@ -11,7 +11,7 @@ public class InputHandler implements KeyListener {
     private static final InputHandler instance = new InputHandler();
 
     private boolean[] keys = new boolean[120];
-    public boolean up, down, left, right, use, pause;
+    public boolean up, down, left, right, use, pause, yes, no;
 
     private InputHandler() {
 
@@ -24,6 +24,8 @@ public class InputHandler implements KeyListener {
         right = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
         use = keys[KeyEvent.VK_SPACE] || keys[KeyEvent.VK_ENTER];
         pause = keys[KeyEvent.VK_P];
+        yes = keys[KeyEvent.VK_Y];
+        no = keys[KeyEvent.VK_N];
     }
 
     public void keyPressed(KeyEvent e) {

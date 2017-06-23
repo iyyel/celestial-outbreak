@@ -10,7 +10,7 @@ import java.util.Date;
 public class TextHandler {
 
     public final String TITLE = "Celestial Outbreak";
-    public final String VERSION = "v0.01a";
+    public final String VERSION = "v0.10a";
     public final String EMAIL = "inabsentia.io";
 
     private static final TextHandler instance = new TextHandler();
@@ -34,7 +34,7 @@ public class TextHandler {
 
     private final String spacing = "     ";
 
-    public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION +  " instance started at " + getDateTime() + ".";
+    public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION + " instance started at " + getDateTime() + ".";
     public final String NEW_APP_INSTANCE_SUCCESS = "Successfully completed application initialization at " + getDateTime() + ".";
 
     /*
@@ -56,7 +56,9 @@ public class TextHandler {
     public final String LOG_FILE_NAME = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_verbose-log.txt";
     public final String LOG_FILE_PATH = LOG_DIR_PATH + File.separator + LOG_FILE_NAME;
 
-    public final String LOG_MESSAGE_PREFIX = "[VERBOSE-LOG " + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]: ";
+    public final String logMsgPrefix() {
+        return "[VERBOSE-LOG " + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]: ";
+    }
 
     /*
      * Level files.
@@ -78,12 +80,16 @@ public class TextHandler {
      */
     private final String ERR_PREFIX = "[ERROR]: ";
 
-    public final String changedLevelMessage(String prevLevel, String newLevel) {
+    public final String vChangedLevelMsg(String prevLevel, String newLevel) {
         return "Changed level from '" + prevLevel + "' to '" + newLevel + "'.";
     }
 
     public final String errParsingLevelSettings(String fileName, String exceptionMessage) {
         return ERR_PREFIX + "Failed parsing level settings from file '" + fileName + "' cause: '" + exceptionMessage + "'.";
+    }
+
+    public final String vLevelFinishedMsg(String levelType) {
+        return "Level '" + levelType + "' finished.";
     }
 
     /* Ball related messages */
@@ -137,7 +143,7 @@ public class TextHandler {
     }
 
     public final String performanceMessage(int frames, int updates) {
-        return "UPS: " + updates + " | FPS: " + frames;
+        return "UPS: " + updates + " FPS: " + frames;
     }
 
     private final String getDateTime() {

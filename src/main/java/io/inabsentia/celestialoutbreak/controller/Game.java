@@ -3,6 +3,7 @@ package io.inabsentia.celestialoutbreak.controller;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.graphics.Screen;
 import io.inabsentia.celestialoutbreak.handler.*;
+import io.inabsentia.celestialoutbreak.menu.LevelMenu;
 import io.inabsentia.celestialoutbreak.menu.MainMenu;
 import io.inabsentia.celestialoutbreak.menu.PauseMenu;
 import io.inabsentia.celestialoutbreak.utils.Utils;
@@ -70,6 +71,7 @@ public class Game extends Canvas implements Runnable {
      */
     private final MainMenu mainMenu;
     private final PauseMenu pauseMenu;
+    private final LevelMenu levelMenu;
     private Color menuColor;
 
     /*
@@ -103,6 +105,7 @@ public class Game extends Canvas implements Runnable {
 		/* Create io.inabsentia.celestialoutbreak.menu objects */
         mainMenu = new MainMenu(this, inputHandler, Color.WHITE, Color.WHITE, Color.BLACK);
         pauseMenu = new PauseMenu(this, inputHandler, Color.WHITE);
+        levelMenu = new LevelMenu(this, inputHandler, Color.WHITE);
         menuColor = utils.generatePastelColor(0.9F, 9000F);
 
 		/* Add input handlers */
@@ -164,7 +167,7 @@ public class Game extends Canvas implements Runnable {
                 mainMenu.update();
                 break;
             case PLAY:
-                levelHandler.update();
+                levelHandler.update(state);
                 break;
             case SCORES:
                 break;
@@ -173,6 +176,10 @@ public class Game extends Canvas implements Runnable {
             case ABOUT:
                 break;
             case PAUSE:
+                break;
+            case NEW_LEVEL:
+                levelMenu.setLevelTypes(levelHandler.getPrevLevel().getLevelType(), levelHandler.getActiveLevel().getLevelType());
+                levelMenu.update();
                 break;
             default:
                 break;
@@ -204,6 +211,9 @@ public class Game extends Canvas implements Runnable {
             case PLAY:
             case PAUSE:
                 screen.render(levelHandler.getActiveLevel().getLevelColor());
+                break;
+            case NEW_LEVEL:
+                screen.render(levelHandler.getPrevLevel().getLevelColor());
                 break;
             default:
                 break;
@@ -238,6 +248,9 @@ public class Game extends Canvas implements Runnable {
             case PAUSE:
                 pauseMenu.render(g);
                 soundHandler.playStateMusic(state, true);
+                break;
+            case NEW_LEVEL:
+                levelMenu.render(g);
                 break;
             default:
                 break;

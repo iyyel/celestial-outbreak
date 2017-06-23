@@ -149,7 +149,7 @@ public class FileHandler {
             try (PrintWriter out = new PrintWriter(filePath)) {
                 out.print(message + "\r\n");
 
-                String fileMessage = textHandler.LOG_MESSAGE_PREFIX + textHandler.successCreatedFile(filePath) + "\r\n";
+                String fileMessage = textHandler.logMsgPrefix() + textHandler.successCreatedFile(filePath) + "\r\n";
                 out.print(fileMessage);
                 System.err.print(fileMessage);
 
@@ -161,7 +161,7 @@ public class FileHandler {
     }
 
     public void writeLogMessage(String message) {
-        message = textHandler.LOG_MESSAGE_PREFIX + message;
+        message = textHandler.logMsgPrefix() + message;
         System.err.println(message);
         initDir(textHandler.LOG_DIR_PATH);
         writeToFile(message, textHandler.LOG_FILE_PATH);
