@@ -61,6 +61,24 @@ public class TextHandler {
     }
 
     /*
+     * Database.
+     */
+    public final String DATABASE_DIR_NAME = "db";
+    public final String DATABASE_DIR_PATH = MAIN_DIR + File.separator + DATABASE_DIR_NAME;
+
+    public final String DATABASE_CONFIG_FILE_NAME = "db.config";
+    public final String DATABASE_CONFIG_FILE_PATH = DATABASE_DIR_PATH + File.separator + DATABASE_CONFIG_FILE_NAME;
+
+    /*
+     * Settings files.
+     */
+    public final String SETTINGS_DIR_NAME = "settings";
+    public final String SETTINGS_DIR_PATH = MAIN_DIR + File.separator + SETTINGS_DIR_NAME;
+
+    public final String SETTINGS_CONFIG_FILE_NAME = "settings.config";
+    public final String SETTINGS_CONFIG_FILE_PATH = SETTINGS_DIR_PATH + File.separator + SETTINGS_CONFIG_FILE_NAME;
+
+    /*
      * Level files.
      */
     public final String LEVEL_DIR_NAME = "levels";
@@ -105,15 +123,6 @@ public class TextHandler {
     public final String vBallBlockListCollisionMsg(int blockListIndex) {
         return "Ball collision with BlockList[" + blockListIndex + "].";
     }
-
-    /*
-     * Settings files.
-     */
-    public final String SETTINGS_DIR_NAME = "settings";
-    public final String SETTINGS_DIR_PATH = MAIN_DIR + File.separator + SETTINGS_DIR_NAME;
-
-    public final String SETTINGS_CONFIG_FILE_NAME = "settings.config";
-    public final String SETTINGS_CONFIG_FILE_PATH = SETTINGS_DIR_PATH + File.separator + SETTINGS_CONFIG_FILE_NAME;
 
     /*
      * Random methods. Clean this up.
