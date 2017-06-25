@@ -17,13 +17,13 @@ _This is only a subset of the new things included, however there is still a lot 
 close to a beta release. Enjoy! :)_
 
 ##### _Main Menu_
-![Main Menu](http://imgur.com/rHK93EB)
+![Main Menu](http://i.imgur.com/rHK93EB.png)
 
 ##### _Gameplay_
-![Gameplay](http://imgur.com/yVMmRjS)
+![Gameplay](http://i.imgur.com/yVMmRjS.png)
 
 ##### _Beat Planet_
-![Beat Planet](http://imgur.com/PqmPuSs)
+![Beat Planet](http://i.imgur.com/PqmPuSs.gif)
 
 ### License
 
