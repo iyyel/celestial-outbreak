@@ -22,7 +22,7 @@ close to a beta release. Enjoy! :)_
 ##### _Gameplay_
 ![Gameplay](http://imgur.com/yVMmRjS)
 
-#####_Beat Planet_
+##### _Beat Planet_
 ![Beat Planet](http://imgur.com/PqmPuSs)
 
 ### License
