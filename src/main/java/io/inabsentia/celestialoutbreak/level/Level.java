@@ -102,7 +102,7 @@ public class Level {
 
     private void assignLevelSettings() {
         /* Level settings. */
-        levelType = levelSettings.getLevelType();
+        levelType = levelSettings.getLevelName();
         levelColor = levelSettings.getLevelColor();
 
         /* Paddle settings. */
@@ -131,7 +131,12 @@ public class Level {
         bottomPanelColor = levelSettings.getBottomPanelColor();
     }
 
-    public String getLevelType() {
+    public boolean isFinished() {
+        if (blockList.getBlocksLeft() == 0) return true;
+        else return false;
+    }
+
+    public String getLevelName() {
         return levelType;
     }
 

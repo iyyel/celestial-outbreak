@@ -64,7 +64,7 @@ public class MainMenu extends Menu {
                 if (inputHandler.use) {
                     switch (i) {
                         case 0:
-                            game.changeState(State.PAUSE);
+                            game.changeState(State.PLAY);
                             break;
                         case 1:
                             System.out.println("SCORES!");

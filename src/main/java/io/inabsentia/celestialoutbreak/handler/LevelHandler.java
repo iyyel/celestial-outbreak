@@ -1,6 +1,7 @@
 package io.inabsentia.celestialoutbreak.handler;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.level.Level;
 import io.inabsentia.celestialoutbreak.utils.Utils;
 
@@ -12,38 +13,56 @@ public class LevelHandler {
 
     private Level[] levels;
     private Level activeLevel;
-    private final int INITIAL_LEVEL_INDEX = 3;
+    private int currentLevelIndex = 2;
 
     private final Utils utils = Utils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
-    private final FileHandler fileHandler = FileHandler.getInstance();
+
+    private Game game;
+    private final InputHandler inputHandler;
+    private final SoundHandler soundHandler;
+    private final FileHandler fileHandler;
 
     public LevelHandler(Game game, InputHandler inputHandler, SoundHandler soundHandler, FileHandler fileHandler) {
+        this.game = game;
+        this.inputHandler = inputHandler;
+        this.soundHandler = soundHandler;
+        this.fileHandler = fileHandler;
         ArrayList<String> levelConfigFileList = (ArrayList<String>) fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_PATH);
 
         levels = new Level[levelConfigFileList.size()];
         for (int i = 0; i < levels.length; i++) levels[i] = new Level(textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i), game, inputHandler, soundHandler, fileHandler);
 
-        changeLevel(INITIAL_LEVEL_INDEX);
+        changeLevel(currentLevelIndex);
     }
 
-    public void update() {
+    public void update(State state) {
         activeLevel.update();
+
+        if (activeLevel.isFinished()) {
+            changeLevel(++currentLevelIndex);
+            game.changeState(State.FINISHED_LEVEL);
+            if (utils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vLevelFinishedMsg(activeLevel.getLevelName()));
+        }
     }
 
     public void render(Graphics2D g) {
         activeLevel.render(g);
     }
 
-    public void changeLevel(int index) {
+    private void changeLevel(int index) {
         if (index >= 0 && index <= levels.length - 1) {
-            if (utils.isVerboseEnabled() && activeLevel != null) fileHandler.writeLogMessage("Changed level from '" + activeLevel.getLevelType() + "' to '" + levels[index].getLevelType() + "'.");
+            if (utils.isVerboseEnabled() && activeLevel != null) fileHandler.writeLogMessage(textHandler.vChangedLevelMsg(activeLevel.getLevelName(), levels[index].getLevelName()));
             activeLevel = levels[index];
         }
     }
 
     public Level getActiveLevel() {
         return activeLevel;
+    }
+
+    public Level getPrevLevel() {
+        return levels[currentLevelIndex - 1];
     }
 
 }

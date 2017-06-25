@@ -1,1 +1,4 @@
-/target
+\target
+\src\main\resources\config\db\db.config
+/src/main/resources/config/db.config
+/target/

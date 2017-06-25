@@ -2,16 +2,19 @@ package io.inabsentia.celestialoutbreak.level;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
+import io.inabsentia.celestialoutbreak.handler.TextHandler;
 
 import java.awt.*;
 import java.util.Map;
 
 public class LevelSettings {
 
+    private final TextHandler textHandler = TextHandler.getInstance();
+
     /*
      * Level settings.
      */
-    private String levelType;
+    private String levelName;
     private Color levelColor;
 
     /*
@@ -55,7 +58,8 @@ public class LevelSettings {
         try {
             parseLevelSettings(fileName);
         } catch (Exception e) {
-            System.err.println("[ERROR]: Failed parsing io.inabsentia.celestialoutbreak.level settings '" + fileName + "'. ERROR: " + e.getStackTrace());
+            fileHandler.writeLogMessage(textHandler.errParsingLevelSettings(fileName, e.getMessage()));
+            System.exit(1);
         }
     }
 
@@ -63,7 +67,7 @@ public class LevelSettings {
         Map<String, String> map = fileHandler.readPropertiesFromFile(fileName);
 
         /* Level settings. */
-        levelType = map.get("LevelType");
+        levelName = map.get("LevelName");
         int levelColorValue = Integer.decode(map.get("LevelColorHex"));
         levelColor = new Color(levelColorValue);
 
@@ -105,8 +109,8 @@ public class LevelSettings {
         bottomPanelColor = new Color(bottomPanelColorHex);
     }
 
-    public String getLevelType() {
-        return levelType;
+    public String getLevelName() {
+        return levelName;
     }
 
     public Color getLevelColor() {

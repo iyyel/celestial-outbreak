@@ -3,6 +3,7 @@ package io.inabsentia.celestialoutbreak.controller;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.graphics.Screen;
 import io.inabsentia.celestialoutbreak.handler.*;
+import io.inabsentia.celestialoutbreak.menu.FinishedLevelMenu;
 import io.inabsentia.celestialoutbreak.menu.MainMenu;
 import io.inabsentia.celestialoutbreak.menu.PauseMenu;
 import io.inabsentia.celestialoutbreak.utils.Utils;
@@ -12,7 +13,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.File;
 
 public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
@@ -71,6 +71,7 @@ public class Game extends Canvas implements Runnable {
      */
     private final MainMenu mainMenu;
     private final PauseMenu pauseMenu;
+    private final FinishedLevelMenu finishedLevelMenu;
     private Color menuColor;
 
     /*
@@ -104,6 +105,7 @@ public class Game extends Canvas implements Runnable {
 		/* Create io.inabsentia.celestialoutbreak.menu objects */
         mainMenu = new MainMenu(this, inputHandler, Color.WHITE, Color.WHITE, Color.BLACK);
         pauseMenu = new PauseMenu(this, inputHandler, Color.WHITE);
+        finishedLevelMenu = new FinishedLevelMenu(this, inputHandler, Color.WHITE);
         menuColor = utils.generatePastelColor(0.9F, 9000F);
 
 		/* Add input handlers */
@@ -139,8 +141,8 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | UPS: " + updates + " FPS: " + frames);
-                if (utils.isVerboseEnabled()) fileHandler.writeLogMessage("UPS: " + updates + " FPS: " + frames);
+                gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | " + textHandler.performanceMessage(frames, updates));
+                if (utils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.performanceMessage(frames, updates));
                 updates = 0;
                 frames = 0;
             }
@@ -165,7 +167,7 @@ public class Game extends Canvas implements Runnable {
                 mainMenu.update();
                 break;
             case PLAY:
-                levelHandler.update();
+                levelHandler.update(state);
                 break;
             case SCORES:
                 break;
@@ -174,6 +176,12 @@ public class Game extends Canvas implements Runnable {
             case ABOUT:
                 break;
             case PAUSE:
+                break;
+            case NEW_LEVEL:
+                break;
+            case FINISHED_LEVEL:
+                finishedLevelMenu.setLevelNames(levelHandler.getPrevLevel().getLevelName(), levelHandler.getActiveLevel().getLevelName());
+                finishedLevelMenu.update();
                 break;
             default:
                 break;
@@ -204,7 +212,11 @@ public class Game extends Canvas implements Runnable {
                 break;
             case PLAY:
             case PAUSE:
+            case NEW_LEVEL:
                 screen.render(levelHandler.getActiveLevel().getLevelColor());
+                break;
+            case FINISHED_LEVEL:
+                screen.render(levelHandler.getPrevLevel().getLevelColor());
                 break;
             default:
                 break;
@@ -240,6 +252,11 @@ public class Game extends Canvas implements Runnable {
                 pauseMenu.render(g);
                 soundHandler.playStateMusic(state, true);
                 break;
+            case NEW_LEVEL:
+                break;
+            case FINISHED_LEVEL:
+                finishedLevelMenu.render(g);
+                break;
             default:
                 break;
         }
@@ -252,7 +269,6 @@ public class Game extends Canvas implements Runnable {
     /*
      * Start method for the game thread/loop.
      */
-
     private synchronized void start() {
         if (!isRunning) {
             isRunning = true;

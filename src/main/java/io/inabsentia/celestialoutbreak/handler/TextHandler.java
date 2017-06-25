@@ -10,7 +10,7 @@ import java.util.Date;
 public class TextHandler {
 
     public final String TITLE = "Celestial Outbreak";
-    public final String VERSION = "v0.01a";
+    public final String VERSION = "v0.11a";
     public final String EMAIL = "inabsentia.io";
 
     private static final TextHandler instance = new TextHandler();
@@ -32,15 +32,15 @@ public class TextHandler {
     public final String pauseMsg = "Paused";
     public final String pauseStartMsg = "Press \"p\" to continue the game!";
 
-    public final String spacing = "     ";
+    private final String spacing = "     ";
 
-    public final String NEW_APP_INSTANCE = "New application instance started at " + getDateTime() + ".";
-    public final String NEW_APP_INSTANCE_SUCCESS = "Successfully completed application initialization at " + getDateTime() + ".";
+    public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION + " instance started at " + getDateTime() + " on " + System.getProperty("os.name") + ".";
+    public final String NEW_APP_INSTANCE_SUCCESS = "Successfully completed " + TITLE + " " + VERSION + " initialization at " + getDateTime() + ".";
 
     /*
      * Main directory.
      */
-    public final String MAIN_DIR = System.getProperty("user.home") + File.separator + TITLE.toLowerCase().replaceAll("\\s+", "") + "-config";
+    public final String MAIN_DIR = System.getProperty("user.home") + File.separator + TITLE.toLowerCase().replaceAll("\\s+", "");
 
     /*
      * Configuration files.
@@ -56,22 +56,18 @@ public class TextHandler {
     public final String LOG_FILE_NAME = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_verbose-log.txt";
     public final String LOG_FILE_PATH = LOG_DIR_PATH + File.separator + LOG_FILE_NAME;
 
-    public final String LOG_MESSAGE_PREFIX = "[VERBOSE-LOG " + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]: ";
+    public final String logMsgPrefix() {
+        return "[VERBOSE-LOG " + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]: ";
+    }
 
     /*
-     * Level files.
+     * Database.
      */
-    public final String LEVEL_DIR_NAME = "levels";
-    public final String LEVEL_DIR_PATH = MAIN_DIR + File.separator + LEVEL_DIR_NAME;
+    public final String DATABASE_DIR_NAME = "db";
+    public final String DATABASE_DIR_PATH = MAIN_DIR + File.separator + DATABASE_DIR_NAME;
 
-    public final String LEVEL_CONFIG_FILE_NAME = "levels.config";
-    public final String LEVEL_CONFIG_FILE_PATH = LEVEL_DIR_PATH + File.separator + LEVEL_CONFIG_FILE_NAME;
-
-    public final String LEVEL_FILE_NAME_RED = "redlevel.config";
-    public final String LEVEL_FILE_NAME_GREEN = "greenlevel.config";
-    public final String LEVEL_FILE_NAME_BLUE = "bluelevel.config";
-    public final String LEVEL_FILE_NAME_PURPLE = "purplelevel.config";
-    public final String LEVEL_FILE_NAME_BORDEAUX = "bordeauxlevel.config";
+    public final String DATABASE_CONFIG_FILE_NAME = "db.config";
+    public final String DATABASE_CONFIG_FILE_PATH = DATABASE_DIR_PATH + File.separator + DATABASE_CONFIG_FILE_NAME;
 
     /*
      * Settings files.
@@ -83,10 +79,56 @@ public class TextHandler {
     public final String SETTINGS_CONFIG_FILE_PATH = SETTINGS_DIR_PATH + File.separator + SETTINGS_CONFIG_FILE_NAME;
 
     /*
+     * Level files.
+     */
+    public final String LEVEL_DIR_NAME = "levels";
+    public final String LEVEL_DIR_PATH = MAIN_DIR + File.separator + LEVEL_DIR_NAME;
+
+    public final String LEVEL_CONFIG_FILE_NAME = "levels.config";
+    public final String LEVEL_CONFIG_FILE_PATH = LEVEL_DIR_PATH + File.separator + LEVEL_CONFIG_FILE_NAME;
+
+    public final String LEVEL_FILE_NAME_MARS = "mars_level.config";
+    public final String LEVEL_FILE_NAME_EARTH = "earth_level.config";
+    public final String LEVEL_FILE_NAME_NEPTUNE = "neptune_level.config";
+    public final String LEVEL_FILE_NAME_VENUS = "venus_level.config";
+    public final String LEVEL_FILE_NAME_JUPITER = "jupiter_level.config";
+
+    /*
+     * Level related messages.
+     */
+    private final String ERR_PREFIX = "[ERROR]: ";
+
+    public final String vChangedLevelMsg(String prevLevel, String newLevel) {
+        return "Changed level from '" + prevLevel + "' to '" + newLevel + "'.";
+    }
+
+    public final String errParsingLevelSettings(String fileName, String exceptionMessage) {
+        return ERR_PREFIX + "Failed parsing level settings from file '" + fileName + "' cause: '" + exceptionMessage + "'.";
+    }
+
+    public final String vLevelFinishedMsg(String levelType) {
+        return "Level '" + levelType + "' finished.";
+    }
+
+    /* Ball related messages */
+    public final String vBallTouchedYAxisBottomMsg = "Ball touched bottom y-axis.";
+    public final String vBallTouchedYAxisTopMsg = "Ball touched top y-axis.";
+    public final String vBallTouchedXAxisLeftMsg = "Ball touched left x-axis.";
+    public final String vBallTouchedXAxisRightMsg = "Ball touched right x-axis.";
+
+    public final String vBallPaddleCollisionMsg(int paddleCollisionTimer) {
+        return "Ball collision with Paddle. Changed paddleCollisionTimer: " + paddleCollisionTimer;
+    }
+
+    public final String vBallBlockListCollisionMsg(int blockListIndex) {
+        return "Ball collision with BlockList[" + blockListIndex + "].";
+    }
+
+    /*
      * Random methods. Clean this up.
      */
     public final String bottomPanelString(String levelName, int playerLives, int playerScore, int blocksLeft) {
-        return "Level: " + levelName + spacing + spacing + "Lives: " + playerLives + spacing + "Score: " + playerScore + spacing + "Blocks: " + blocksLeft;
+        return "Planet: " + levelName + spacing + spacing + "Lives: " + playerLives + spacing + "Score: " + playerScore + spacing + "Blocks: " + blocksLeft;
     }
 
     public final String successCopiedFile(String srcFilePath, String destFilePath) {
@@ -107,6 +149,10 @@ public class TextHandler {
 
     public final String successCreatedFile(String filePath) {
         return "Successfully created file '" + filePath + "'.";
+    }
+
+    public final String performanceMessage(int frames, int updates) {
+        return "UPS: " + updates + " FPS: " + frames;
     }
 
     private final String getDateTime() {
