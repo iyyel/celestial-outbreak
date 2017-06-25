@@ -102,7 +102,7 @@ public class Level {
 
     private void assignLevelSettings() {
         /* Level settings. */
-        levelType = levelSettings.getLevelType();
+        levelType = levelSettings.getLevelName();
         levelColor = levelSettings.getLevelColor();
 
         /* Paddle settings. */
@@ -136,7 +136,7 @@ public class Level {
         else return false;
     }
 
-    public String getLevelType() {
+    public String getLevelName() {
         return levelType;
     }
 

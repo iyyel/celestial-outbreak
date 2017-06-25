@@ -10,7 +10,7 @@ import java.util.Date;
 public class TextHandler {
 
     public final String TITLE = "Celestial Outbreak";
-    public final String VERSION = "v0.10a";
+    public final String VERSION = "v0.11a";
     public final String EMAIL = "inabsentia.io";
 
     private static final TextHandler instance = new TextHandler();
@@ -34,13 +34,13 @@ public class TextHandler {
 
     private final String spacing = "     ";
 
-    public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION + " instance started at " + getDateTime() + ".";
-    public final String NEW_APP_INSTANCE_SUCCESS = "Successfully completed application initialization at " + getDateTime() + ".";
+    public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION + " instance started at " + getDateTime() + " on " + System.getProperty("os.name") + ".";
+    public final String NEW_APP_INSTANCE_SUCCESS = "Successfully completed " + TITLE + " " + VERSION + " initialization at " + getDateTime() + ".";
 
     /*
      * Main directory.
      */
-    public final String MAIN_DIR = System.getProperty("user.home") + File.separator + TITLE.toLowerCase().replaceAll("\\s+", "") + "-config";
+    public final String MAIN_DIR = System.getProperty("user.home") + File.separator + TITLE.toLowerCase().replaceAll("\\s+", "");
 
     /*
      * Configuration files.
@@ -87,11 +87,11 @@ public class TextHandler {
     public final String LEVEL_CONFIG_FILE_NAME = "levels.config";
     public final String LEVEL_CONFIG_FILE_PATH = LEVEL_DIR_PATH + File.separator + LEVEL_CONFIG_FILE_NAME;
 
-    public final String LEVEL_FILE_NAME_RED = "redlevel.config";
-    public final String LEVEL_FILE_NAME_GREEN = "greenlevel.config";
-    public final String LEVEL_FILE_NAME_BLUE = "bluelevel.config";
-    public final String LEVEL_FILE_NAME_PURPLE = "purplelevel.config";
-    public final String LEVEL_FILE_NAME_BORDEAUX = "bordeauxlevel.config";
+    public final String LEVEL_FILE_NAME_MARS = "mars_level.config";
+    public final String LEVEL_FILE_NAME_EARTH = "earth_level.config";
+    public final String LEVEL_FILE_NAME_NEPTUNE = "neptune_level.config";
+    public final String LEVEL_FILE_NAME_VENUS = "venus_level.config";
+    public final String LEVEL_FILE_NAME_JUPITER = "jupiter_level.config";
 
     /*
      * Level related messages.
@@ -128,7 +128,7 @@ public class TextHandler {
      * Random methods. Clean this up.
      */
     public final String bottomPanelString(String levelName, int playerLives, int playerScore, int blocksLeft) {
-        return "Level: " + levelName + spacing + spacing + "Lives: " + playerLives + spacing + "Score: " + playerScore + spacing + "Blocks: " + blocksLeft;
+        return "Planet: " + levelName + spacing + spacing + "Lives: " + playerLives + spacing + "Score: " + playerScore + spacing + "Blocks: " + blocksLeft;
     }
 
     public final String successCopiedFile(String srcFilePath, String destFilePath) {

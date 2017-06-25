@@ -4,7 +4,6 @@ import io.inabsentia.celestialoutbreak.controller.Game;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
 
-import javax.xml.soap.Text;
 import java.awt.*;
 import java.util.Map;
 
@@ -15,7 +14,7 @@ public class LevelSettings {
     /*
      * Level settings.
      */
-    private String levelType;
+    private String levelName;
     private Color levelColor;
 
     /*
@@ -68,7 +67,7 @@ public class LevelSettings {
         Map<String, String> map = fileHandler.readPropertiesFromFile(fileName);
 
         /* Level settings. */
-        levelType = map.get("LevelType");
+        levelName = map.get("LevelName");
         int levelColorValue = Integer.decode(map.get("LevelColorHex"));
         levelColor = new Color(levelColorValue);
 
@@ -110,8 +109,8 @@ public class LevelSettings {
         bottomPanelColor = new Color(bottomPanelColorHex);
     }
 
-    public String getLevelType() {
-        return levelType;
+    public String getLevelName() {
+        return levelName;
     }
 
     public Color getLevelColor() {

@@ -22,11 +22,11 @@ public class FileHandler {
     }
 
     private void initApp() {
-        if (utils.isVerboseEnabled()) writeLogMessage(textHandler.NEW_APP_INSTANCE);
+        writeLogMessage(textHandler.NEW_APP_INSTANCE);
         initStandardDirs();
         initConfigFiles();
         initSettingFlags();
-        if (utils.isVerboseEnabled()) writeLogMessage(textHandler.NEW_APP_INSTANCE_SUCCESS);
+        writeLogMessage(textHandler.NEW_APP_INSTANCE_SUCCESS);
     }
 
     private void initStandardDirs() {
@@ -37,12 +37,12 @@ public class FileHandler {
 
     private void initConfigFiles() {
         /* Initial level configurations copied to client local config dir. */
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_RED).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_RED);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_GREEN).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_GREEN);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_BLUE).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_BLUE);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_GREEN).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_GREEN);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_PURPLE).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_PURPLE);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_BORDEAUX).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_BORDEAUX);
+        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_MARS).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_MARS);
+        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_EARTH).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_EARTH);
+        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_NEPTUNE).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_NEPTUNE);
+        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_EARTH).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_EARTH);
+        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_VENUS).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_VENUS);
+        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_JUPITER).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_JUPITER);
 
         /* Level config file. */
         copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_CONFIG_FILE_NAME).getPath(), textHandler.LEVEL_CONFIG_FILE_PATH);
@@ -57,20 +57,21 @@ public class FileHandler {
         utils.setSoundEnabled(Boolean.parseBoolean(map.get("SOUND_ENABLED")));
     }
 
-    public Map<String, String> readPropertiesFromFile(String filePath) {
+    public Map<String, String> readPropertiesFromFile(String fileName) {
         Properties p = new Properties();
         Map<String, String> map = new HashMap<>();
 
-        try (InputStream is = new FileInputStream(filePath)) {
+        try (InputStream is = new FileInputStream(fileName)) {
             p.load(is);
 
             for (String key : p.stringPropertyNames()) {
                 String value = p.getProperty(key);
                 map.put(key, value);
+                if (utils.isVerboseEnabled()) writeLogMessage("Successfully read property '" + key + ":" + value + "' from '" + fileName + "'.");
             }
-            is.close();
 
-            if (utils.isVerboseEnabled()) writeLogMessage(textHandler.successReadProperties(filePath));
+            is.close();
+            writeLogMessage(textHandler.successReadProperties(fileName));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -88,9 +89,12 @@ public class FileHandler {
             String line;
             while ((line = br.readLine()) != null) {
                 /* Ignore lines containing comments marked with # */
-                if (!line.contains("#")) lineList.add(line);
+                if (!line.contains("#")) {
+                    lineList.add(line);
+                    if (utils.isVerboseEnabled()) writeLogMessage("Successfully read line '" + line + "' from '" + fileName + "'.");
+                }
             }
-            if (utils.isVerboseEnabled()) writeLogMessage(textHandler.successReadLines(fileName));
+            writeLogMessage(textHandler.successReadLines(fileName));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -129,7 +133,7 @@ public class FileHandler {
              */
             if (!destFile.exists()) {
                 FileUtils.copyFile(srcFile, destFile);
-                if (utils.isVerboseEnabled()) writeLogMessage(textHandler.successCopiedFile(srcFile.getPath(), destFile.getPath()));
+                writeLogMessage(textHandler.successCopiedFile(srcFile.getPath(), destFile.getPath()));
             }
         } catch (IOException e) {
             e.printStackTrace();
