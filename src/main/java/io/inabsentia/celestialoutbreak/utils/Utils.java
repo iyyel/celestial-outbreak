@@ -10,8 +10,9 @@ public class Utils {
     private final Random random = new Random();
 
     /* Game flags */
-    private boolean verboseEnabled = true;
-    private boolean soundEnabled = true;
+    private boolean isVerboseEnabled = true;
+    private boolean isSoundEnabled = true;
+    private boolean isGodModeEnabled = false;
 
     private Utils() {
 
@@ -37,19 +38,27 @@ public class Utils {
     }
 
     public boolean isVerboseEnabled() {
-        return verboseEnabled;
+        return isVerboseEnabled;
     }
 
     public void setVerboseEnabled(boolean verboseEnabled) {
-        this.verboseEnabled = verboseEnabled;
+        this.isVerboseEnabled = verboseEnabled;
     }
 
     public boolean isSoundEnabled() {
-        return soundEnabled;
+        return isSoundEnabled;
     }
 
     public void setSoundEnabled(boolean soundEnabled) {
-        this.soundEnabled = soundEnabled;
+        this.isSoundEnabled = soundEnabled;
+    }
+
+    public boolean isGodModeEnabled() {
+        return isGodModeEnabled;
+    }
+
+    public void setGodModeEnabled(boolean isGodModeEnabled) {
+        this.isGodModeEnabled = isGodModeEnabled;
     }
 
 }

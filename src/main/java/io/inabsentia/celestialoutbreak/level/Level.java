@@ -7,7 +7,7 @@ import io.inabsentia.celestialoutbreak.entity.Paddle;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.SoundHandler;
-import io.inabsentia.celestialoutbreak.menu.BottomPanelMenu;
+import io.inabsentia.celestialoutbreak.menu.GamePanel;
 
 import java.awt.*;
 
@@ -40,7 +40,8 @@ public class Level {
     /*
      * Level settings.
      */
-    private String levelType;
+    private String levelName;
+    private String levelDesc;
     private Color levelColor;
 
     /*
@@ -66,7 +67,7 @@ public class Level {
     /*
      * BottomPanel settings.
      */
-    private BottomPanelMenu bottomPanelMenu;
+    private GamePanel gamePanel;
     private Color bottomPanelColor;
 
     /*
@@ -84,25 +85,26 @@ public class Level {
         paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, game);
         ball = new Ball(ballPos, ballPosXOffset, ballPosYOffset, ballSize, ballSize, ballSpeed, ballColor, game);
         blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, game);
-        bottomPanelMenu = new BottomPanelMenu(game, inputHandler, bottomPanelColor);
+        gamePanel = new GamePanel(game, inputHandler, bottomPanelColor);
     }
 
     public void update() {
-        paddle.update(inputHandler.left, inputHandler.right);
+        paddle.update(inputHandler.isLeftPressed(), inputHandler.isRightPressed());
         ball.update(paddle, blockList);
-        bottomPanelMenu.updatePanel(levelType, 0, 0, blockList.getBlocksLeft());
+        gamePanel.updatePanel(levelName, 0, 0, blockList.getBlocksLeft());
     }
 
     public void render(Graphics2D g) {
         paddle.render(g);
         ball.render(g);
         blockList.render(g);
-        bottomPanelMenu.render(g);
+        gamePanel.render(g);
     }
 
     private void assignLevelSettings() {
         /* Level settings. */
-        levelType = levelSettings.getLevelName();
+        levelName = levelSettings.getLevelName();
+        levelDesc = levelSettings.getLevelDesc();
         levelColor = levelSettings.getLevelColor();
 
         /* Paddle settings. */
@@ -137,7 +139,11 @@ public class Level {
     }
 
     public String getLevelName() {
-        return levelType;
+        return levelName;
+    }
+
+    public String getLevelDesc() {
+        return levelDesc;
     }
 
     public Color getLevelColor() {

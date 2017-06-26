@@ -13,20 +13,16 @@ public class LevelHandler {
 
     private Level[] levels;
     private Level activeLevel;
-    private int currentLevelIndex = 2;
+    private int currentLevelIndex = 0;
 
     private final Utils utils = Utils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
 
     private Game game;
-    private final InputHandler inputHandler;
-    private final SoundHandler soundHandler;
     private final FileHandler fileHandler;
 
     public LevelHandler(Game game, InputHandler inputHandler, SoundHandler soundHandler, FileHandler fileHandler) {
         this.game = game;
-        this.inputHandler = inputHandler;
-        this.soundHandler = soundHandler;
         this.fileHandler = fileHandler;
         ArrayList<String> levelConfigFileList = (ArrayList<String>) fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_PATH);
 
@@ -41,7 +37,7 @@ public class LevelHandler {
 
         if (activeLevel.isFinished()) {
             changeLevel(++currentLevelIndex);
-            game.changeState(State.FINISHED_LEVEL);
+            game.switchState(State.FINISHED_LEVEL);
             if (utils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vLevelFinishedMsg(activeLevel.getLevelName()));
         }
     }

@@ -8,10 +8,10 @@ import java.awt.*;
 
 public class MainMenu extends Menu {
 
-    private final Rectangle playRect, settingsRect, scoreRect, aboutRect, quitRect, versionRect, emailRect;
-    private final Font titleFont, btnFont, versionFont, emailFont;
+    private final Rectangle playRect, settingsRect, scoreRect, aboutRect, exitRect;
+    private final Font btnFont;
 
-    private String[] options = {textHandler.playBtn, textHandler.scoreBtn, textHandler.settingsBtn, textHandler.aboutBtn, textHandler.quitBtn};
+    private String[] options = {textHandler.playBtn, textHandler.scoreBtn, textHandler.settingsBtn, textHandler.aboutBtn, textHandler.exitBtn};
     private Color[] rectColors;
 
     private Color fontColor, rectColor, selectedColor;
@@ -25,34 +25,30 @@ public class MainMenu extends Menu {
         this.rectColor = rectColor;
         this.selectedColor = selectedColor;
 
+        /* Menu buttons */
         playRect = new Rectangle(game.getWidth() / 2 - 50, 250, 100, 50);
-        scoreRect = new Rectangle(game.getWidth() / 2 - 55, 330, 110, 50);
-        settingsRect = new Rectangle(game.getWidth() / 2 - 68, 410, 135, 50);
-        aboutRect = new Rectangle(game.getWidth() / 2 - 50, 490, 100, 50);
-        quitRect = new Rectangle(game.getWidth() / 2 - 50, 570, 100, 50);
-        versionRect = new Rectangle(game.getWidth() / 2 + 15, game.getHeight() - 20, 40, 15);
-        emailRect = new Rectangle(game.getWidth() / 2 - 55, game.getHeight() - 20, 65, 15);
+        scoreRect = new Rectangle(game.getWidth() / 2 - 65, 330, 130, 50);
+        settingsRect = new Rectangle(game.getWidth() / 2 - 75, 410, 150, 50);
+        aboutRect = new Rectangle(game.getWidth() / 2 - 60, 490, 120, 50);
+        exitRect = new Rectangle(game.getWidth() / 2 - 50, 570, 100, 50);
 
         rectColors = new Color[options.length];
 
         for (Color c : rectColors) c = rectColor;
 
-        titleFont = new Font("Verdana", Font.PLAIN, 52);
         btnFont = new Font("Verdana", Font.PLAIN, 25);
-        versionFont = new Font("Verdana", Font.PLAIN, 10);
-        emailFont = new Font("Verdana", Font.PLAIN, 10);
     }
 
     @Override
     public void update() {
         if (inputTimer > 0) inputTimer--;
 
-        if (inputHandler.down && selected < options.length - 1 && inputTimer == 0) {
+        if (inputHandler.isDownPressed() && selected < options.length - 1 && inputTimer == 0) {
             selected++;
             inputTimer = 10;
         }
 
-        if (inputHandler.up && selected > 0 && inputTimer == 0) {
+        if (inputHandler.isUpPressed() && selected > 0 && inputTimer == 0) {
             selected--;
             inputTimer = 10;
         }
@@ -61,22 +57,22 @@ public class MainMenu extends Menu {
             if (selected == i) {
                 rectColors[i] = selectedColor;
 
-                if (inputHandler.use) {
+                if (inputHandler.isUsePressed()) {
                     switch (i) {
                         case 0:
-                            game.changeState(State.PLAY);
+                            game.switchState(State.NEW_LEVEL);
                             break;
                         case 1:
-                            System.out.println("SCORES!");
+                            game.switchState(State.SCORES);
                             break;
                         case 2:
-                            System.out.println("SETTINGS!");
+                            game.switchState(State.SETTINGS);
                             break;
                         case 3:
-                            System.out.println("ABOUT!");
+                            game.switchState(State.ABOUT);
                             break;
                         case 4:
-                            System.out.println("QUIT!");
+                            game.switchState(State.EXIT);
                             break;
                         default:
                             break;
@@ -90,50 +86,40 @@ public class MainMenu extends Menu {
 
     @Override
     public void render(Graphics2D g) {
+        int yBtnOffset = 35;
+
         /* Render game title */
-        g.setColor(fontColor);
-        g.setFont(titleFont);
-        g.drawString(textHandler.TITLE, game.getWidth() / 2 - 220, 100);
+        drawMenuTitle(g);
 
 		/* Render io.inabsentia.celestialoutbreak.menu buttons */
         g.setFont(btnFont);
 
         g.setColor(fontColor);
-        g.drawString(options[0], playRect.x + 20, playRect.y + 35);
+        drawXCenteredString(options[0], playRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[0]);
         g.draw(playRect);
 
         g.setColor(fontColor);
-        g.drawString(options[1], scoreRect.x + 4, scoreRect.y + 35);
+        drawXCenteredString(options[1], scoreRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[1]);
         g.draw(scoreRect);
 
         g.setColor(fontColor);
-        g.drawString(options[2], settingsRect.x + 6, settingsRect.y + 35);
+        drawXCenteredString(options[2], settingsRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[2]);
         g.draw(settingsRect);
 
         g.setColor(fontColor);
-        g.drawString(options[3], aboutRect.x + 6, aboutRect.y + 35);
+        drawXCenteredString(options[3], aboutRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[3]);
         g.draw(aboutRect);
 
         g.setColor(fontColor);
-        g.drawString(options[4], quitRect.x + 17, quitRect.y + 35);
+        drawXCenteredString(options[4], exitRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[4]);
-        g.draw(quitRect);
+        g.draw(exitRect);
 
-		/* Render version number */
-        g.setColor(fontColor);
-        g.setFont(versionFont);
-        g.drawString(textHandler.VERSION, versionRect.x + 3, versionRect.y + 11);
-        g.draw(versionRect);
-
-        /* Render email tag */
-        g.setColor(fontColor);
-        g.setFont(emailFont);
-        g.drawString(textHandler.EMAIL, emailRect.x + 3, emailRect.y + 11);
-        g.draw(emailRect);
+        drawGamePanel(g);
     }
 
 }

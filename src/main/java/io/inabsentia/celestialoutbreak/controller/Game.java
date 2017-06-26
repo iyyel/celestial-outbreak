@@ -3,9 +3,7 @@ package io.inabsentia.celestialoutbreak.controller;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.graphics.Screen;
 import io.inabsentia.celestialoutbreak.handler.*;
-import io.inabsentia.celestialoutbreak.menu.FinishedLevelMenu;
-import io.inabsentia.celestialoutbreak.menu.MainMenu;
-import io.inabsentia.celestialoutbreak.menu.PauseMenu;
+import io.inabsentia.celestialoutbreak.menu.*;
 import io.inabsentia.celestialoutbreak.utils.Utils;
 
 import javax.swing.*;
@@ -29,7 +27,7 @@ public class Game extends Canvas implements Runnable {
     /*
      * Timers to switch the mainMenu background color in a slower interval than 60 times a second.
      */
-    private final int initialMenuColorTimer = UPDATE_RATE * 4;
+    private final int initialMenuColorTimer = UPDATE_RATE * 7;
     private int menuColorTimer = initialMenuColorTimer;
 
     /*
@@ -71,6 +69,11 @@ public class Game extends Canvas implements Runnable {
      */
     private final MainMenu mainMenu;
     private final PauseMenu pauseMenu;
+    private final ScoresMenu scoresMenu;
+    private final SettingsMenu settingsMenu;
+    private final AboutMenu aboutMenu;
+    private final ExitMenu exitMenu;
+    private final NewLevelMenu newLevelMenu;
     private final FinishedLevelMenu finishedLevelMenu;
     private Color menuColor;
 
@@ -104,8 +107,13 @@ public class Game extends Canvas implements Runnable {
 
 		/* Create io.inabsentia.celestialoutbreak.menu objects */
         mainMenu = new MainMenu(this, inputHandler, Color.WHITE, Color.WHITE, Color.BLACK);
-        pauseMenu = new PauseMenu(this, inputHandler, Color.WHITE);
-        finishedLevelMenu = new FinishedLevelMenu(this, inputHandler, Color.WHITE);
+        pauseMenu = new PauseMenu(this, inputHandler);
+        scoresMenu = new ScoresMenu(this, inputHandler);
+        settingsMenu = new SettingsMenu(this, inputHandler);
+        aboutMenu = new AboutMenu(this, inputHandler);
+        exitMenu = new ExitMenu(this, inputHandler);
+        newLevelMenu = new NewLevelMenu(this, inputHandler);
+        finishedLevelMenu = new FinishedLevelMenu(this, inputHandler);
         menuColor = utils.generatePastelColor(0.9F, 9000F);
 
 		/* Add input handlers */
@@ -155,9 +163,6 @@ public class Game extends Canvas implements Runnable {
      * Update the state of the game entities as well as the different menus.
      */
     private void update() {
-        /* If pause key is pressed, switch to game state. */
-        if (inputHandler.pause) switchPlayPauseState();
-
         /* Update the currently pressed keys. */
         inputHandler.update();
 
@@ -168,16 +173,27 @@ public class Game extends Canvas implements Runnable {
                 break;
             case PLAY:
                 levelHandler.update(state);
+                if (inputHandler.isPausePressed()) switchPlayPauseState();
                 break;
             case SCORES:
+                scoresMenu.update();
                 break;
             case SETTINGS:
+                settingsMenu.update();
                 break;
             case ABOUT:
+                aboutMenu.update();
+                break;
+            case EXIT:
+                exitMenu.update();
                 break;
             case PAUSE:
+                pauseMenu.update();
+                if (inputHandler.isPausePressed()) switchPlayPauseState();
                 break;
             case NEW_LEVEL:
+                newLevelMenu.update();
+                newLevelMenu.updateActiveLevelDesc(levelHandler.getActiveLevel().getLevelDesc());
                 break;
             case FINISHED_LEVEL:
                 finishedLevelMenu.setLevelNames(levelHandler.getPrevLevel().getLevelName(), levelHandler.getActiveLevel().getLevelName());
@@ -208,6 +224,12 @@ public class Game extends Canvas implements Runnable {
         switch (state) {
             case MENU:
                 switchMenuColor();
+                screen.render(menuColor);
+                break;
+            case SCORES:
+            case SETTINGS:
+            case ABOUT:
+            case EXIT:
                 screen.render(menuColor);
                 break;
             case PLAY:
@@ -243,16 +265,23 @@ public class Game extends Canvas implements Runnable {
                 soundHandler.playStateMusic(state, true);
                 break;
             case SCORES:
+                scoresMenu.render(g);
                 break;
             case SETTINGS:
+                settingsMenu.render(g);
                 break;
             case ABOUT:
+                aboutMenu.render(g);
+                break;
+            case EXIT:
+                exitMenu.render(g);
                 break;
             case PAUSE:
                 pauseMenu.render(g);
                 soundHandler.playStateMusic(state, true);
                 break;
             case NEW_LEVEL:
+                newLevelMenu.render(g);
                 break;
             case FINISHED_LEVEL:
                 finishedLevelMenu.render(g);
@@ -298,6 +327,7 @@ public class Game extends Canvas implements Runnable {
     private void initFrame() {
         gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION);
         gameFrame.setResizable(false);
+        gameFrame.setLocationRelativeTo(null);
         gameFrame.add(this);
         gameFrame.pack();
         gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -308,7 +338,7 @@ public class Game extends Canvas implements Runnable {
     /*
      * Change the current state of the game.
      */
-    public void changeState(State state) {
+    public void switchState(State state) {
         this.state = state;
     }
 
@@ -330,9 +360,9 @@ public class Game extends Canvas implements Runnable {
      */
     private void switchPlayPauseState() {
         if (state == State.PLAY)
-            changeState(State.PAUSE);
+            switchState(State.PAUSE);
         else if (state == State.PAUSE)
-            changeState(State.PLAY);
+            switchState(State.PLAY);
         utils.sleep(100);
     }
 

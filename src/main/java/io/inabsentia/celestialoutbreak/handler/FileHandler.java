@@ -55,6 +55,7 @@ public class FileHandler {
         Map<String, String> map = readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_PATH);
         utils.setVerboseEnabled(Boolean.parseBoolean(map.get("VERBOSE_ENABLED")));
         utils.setSoundEnabled(Boolean.parseBoolean(map.get("SOUND_ENABLED")));
+        utils.setGodModeEnabled(Boolean.parseBoolean(map.get("GOD_MODE_ENABLED")));
     }
 
     public Map<String, String> readPropertiesFromFile(String fileName) {

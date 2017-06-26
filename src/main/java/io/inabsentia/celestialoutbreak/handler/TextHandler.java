@@ -27,10 +27,9 @@ public class TextHandler {
     public final String scoreBtn = "SCORES";
     public final String settingsBtn = "SETTINGS";
     public final String aboutBtn = "ABOUT";
-    public final String quitBtn = "QUIT";
+    public final String exitBtn = "EXIT";
 
     public final String pauseMsg = "Paused";
-    public final String pauseStartMsg = "Press \"p\" to continue the game!";
 
     private final String spacing = "     ";
 
@@ -125,10 +124,41 @@ public class TextHandler {
     }
 
     /*
+     * Menu messages.
+     */
+
+    /* SCORES message */
+
+
+    /* SETTINGS message */
+    public final String menuSettingsMsg01 = "All configurable settings can be found in the following directory";
+    public final String menuSettingsMsg02 = MAIN_DIR;
+    public final String menuSettingsMsg03 = "The levels directory contain individual level configuration files";
+    public final String menuSettingsMsg04 = "such as " + LEVEL_FILE_NAME_MARS + ", as well as a main configuration file";
+    public final String menuSettingsMsg05 = LEVEL_CONFIG_FILE_NAME + ", which contains all the level file names.";
+    public final String menuSettingsMsg06 = "The levels will be encountered starting from top to bottom in this file.";
+
+
+    /* ABOUT message */
+
+
+    /* EXIT message */
+
+
+    /* PAUSE message */
+
+
+    /* NEW_LEVEL message */
+
+
+    /* FINISHED_LEVEL message */
+
+
+    /*
      * Random methods. Clean this up.
      */
-    public final String bottomPanelString(String levelName, int playerLives, int playerScore, int blocksLeft) {
-        return "Planet: " + levelName + spacing + spacing + "Lives: " + playerLives + spacing + "Score: " + playerScore + spacing + "Blocks: " + blocksLeft;
+    public final String gamePanelString(String levelName, int playerLives, int playerScore, int blocksLeft) {
+        return "Planet: " + levelName + spacing + spacing + spacing + spacing + spacing + spacing + spacing + spacing + "Lives: " + playerLives + spacing + "Score: " + playerScore + spacing + "Blocks: " + blocksLeft;
     }
 
     public final String successCopiedFile(String srcFilePath, String destFilePath) {

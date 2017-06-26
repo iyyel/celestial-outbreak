@@ -15,6 +15,7 @@ public class LevelSettings {
      * Level settings.
      */
     private String levelName;
+    private String levelDesc;
     private Color levelColor;
 
     /*
@@ -38,7 +39,7 @@ public class LevelSettings {
     private int blockAmount, blockWidth, blockHeight, blockSpacing;
 
     /*
-     * BottomPanelMenu settings.
+     * GamePanel settings.
      */
     private Color bottomPanelColor;
 
@@ -68,6 +69,7 @@ public class LevelSettings {
 
         /* Level settings. */
         levelName = map.get("LevelName");
+        levelDesc = map.get("levelDesc");
         int levelColorValue = Integer.decode(map.get("LevelColorHex"));
         levelColor = new Color(levelColorValue);
 
@@ -111,6 +113,10 @@ public class LevelSettings {
 
     public String getLevelName() {
         return levelName;
+    }
+
+    public String getLevelDesc() {
+        return levelDesc;
     }
 
     public Color getLevelColor() {
