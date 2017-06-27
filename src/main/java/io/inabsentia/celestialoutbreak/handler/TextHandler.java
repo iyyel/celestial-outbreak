@@ -78,6 +78,13 @@ public class TextHandler {
     public final String SETTINGS_CONFIG_FILE_NAME = "settings.config";
     public final String SETTINGS_CONFIG_FILE_PATH = SETTINGS_DIR_PATH + File.separator + SETTINGS_CONFIG_FILE_NAME;
 
+    /* Player file. */
+    public final String PLAYER_DIR_NAME = SETTINGS_DIR_NAME;
+    public final String PLAYER_DIR_PATH = SETTINGS_DIR_PATH;
+
+    public final String PLAYER_CONFIG_FILE_NAME = "player.config";
+    public final String PLAYER_CONFIG_FILE_PATH = PLAYER_DIR_PATH + File.separator + PLAYER_CONFIG_FILE_NAME;
+
     /*
      * Level files.
      */

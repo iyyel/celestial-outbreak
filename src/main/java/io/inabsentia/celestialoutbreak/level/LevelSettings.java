@@ -69,7 +69,7 @@ public class LevelSettings {
 
         /* Level settings. */
         levelName = map.get("LevelName");
-        levelDesc = map.get("levelDesc");
+        levelDesc = map.get("LevelDesc");
         int levelColorValue = Integer.decode(map.get("LevelColorHex"));
         levelColor = new Color(levelColorValue);
 

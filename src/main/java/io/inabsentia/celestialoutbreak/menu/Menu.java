@@ -1,6 +1,7 @@
 package io.inabsentia.celestialoutbreak.menu;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.entity.Player;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
 
@@ -11,6 +12,7 @@ public abstract class Menu {
     protected final Game game;
     protected final InputHandler inputHandler;
     protected final TextHandler textHandler = TextHandler.getInstance();
+    protected final Player player = Player.getInstance();
 
     protected final Rectangle versionRect, emailRect;
     protected final Font titleFont, msgFont, infoPanelFont;

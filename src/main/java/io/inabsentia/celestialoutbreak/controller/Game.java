@@ -1,5 +1,6 @@
 package io.inabsentia.celestialoutbreak.controller;
 
+import io.inabsentia.celestialoutbreak.entity.Player;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.graphics.Screen;
 import io.inabsentia.celestialoutbreak.handler.*;
@@ -58,6 +59,7 @@ public class Game extends Canvas implements Runnable {
     private final InputHandler inputHandler = InputHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
+    private final Player player = Player.getInstance();
 
     /*
      * LevelHandler object.
@@ -100,7 +102,7 @@ public class Game extends Canvas implements Runnable {
         gameFrame.setSize(size);
 
         /* Initialize levelHandler */
-        levelHandler = new LevelHandler(this, inputHandler, soundHandler, fileHandler);
+        levelHandler = new LevelHandler(player.getPlayerCurrentLevelIndex(), this, inputHandler, soundHandler, fileHandler);
 
 		/* Create screen renderer */
         screen = new Screen(WIDTH, HEIGHT, pixels);

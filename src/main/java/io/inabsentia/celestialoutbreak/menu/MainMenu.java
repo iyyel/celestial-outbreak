@@ -1,6 +1,7 @@
 package io.inabsentia.celestialoutbreak.menu;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.entity.Player;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 
@@ -90,6 +91,9 @@ public class MainMenu extends Menu {
 
         /* Render game title */
         drawMenuTitle(g);
+
+        /* Show player name */
+        drawXCenteredString("Welcome " + player.getPlayerName(), 200, g, msgFont);
 
 		/* Render io.inabsentia.celestialoutbreak.menu buttons */
         g.setFont(btnFont);

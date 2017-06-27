@@ -18,7 +18,6 @@ public class GamePanel extends Menu {
         super(game, inputHandler);
         this.fontColor = fontColor;
 
-        //versionRect = new Rectangle(game.getWidth() / 2 + 20, game.getHeight() - 20, 45, 15);
         gamePanelRect = new Rectangle(2, game.getHeight() - 20, game.getWidth() - 5, 17);
 
         panelFont = new Font("Verdana", Font.PLAIN, 12);
@@ -34,7 +33,7 @@ public class GamePanel extends Menu {
         g.setColor(fontColor);
         g.setFont(panelFont);
         g.draw(gamePanelRect);
-        drawGamePanel(g, levelName, 5, 10000, blockAmountLeft);
+        drawGamePanel(g, levelName,  blockAmountLeft);
     }
 
     public void updatePanel(String levelName, int playerLives, int playerScore, int blockAmountLeft) {
@@ -42,10 +41,11 @@ public class GamePanel extends Menu {
         this.blockAmountLeft = blockAmountLeft;
     }
 
-    private void drawGamePanel(Graphics2D g, String levelName, int playerLives, int playerScore, int blockAmountLeft) {
+    private void drawGamePanel(Graphics2D g, String levelName, int blockAmountLeft) {
         g.drawString("Planet: " + levelName, 5, 714);
-        g.drawString("Lives: " + Integer.toString(playerLives), game.getWidth() / 2 - 100, 714);
-        g.drawString("Score: " + Integer.toString(playerScore), game.getWidth() / 2 - 30, 714);
+        g.drawString("Player: " + player.getPlayerName(), 100, 714);
+        g.drawString("Lives: " + Integer.toString(player.getPlayerLives()), game.getWidth() / 2 - 100, 714);
+        g.drawString("Score: " + Integer.toString(player.getPlayerScore()), game.getWidth() / 2 - 30, 714);
         g.drawString("Blocks: " + Integer.toString(blockAmountLeft), game.getWidth() / 2 + 75, 714);
     }
 

@@ -21,7 +21,8 @@ public class LevelHandler {
     private Game game;
     private final FileHandler fileHandler;
 
-    public LevelHandler(Game game, InputHandler inputHandler, SoundHandler soundHandler, FileHandler fileHandler) {
+    public LevelHandler(int currentLevelIndex, Game game, InputHandler inputHandler, SoundHandler soundHandler, FileHandler fileHandler) {
+        this.currentLevelIndex = currentLevelIndex;
         this.game = game;
         this.fileHandler = fileHandler;
         ArrayList<String> levelConfigFileList = (ArrayList<String>) fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_PATH);
@@ -29,16 +30,16 @@ public class LevelHandler {
         levels = new Level[levelConfigFileList.size()];
         for (int i = 0; i < levels.length; i++) levels[i] = new Level(textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i), game, inputHandler, soundHandler, fileHandler);
 
-        changeLevel(currentLevelIndex);
+        activeLevel = levels[currentLevelIndex];
     }
 
     public void update(State state) {
         activeLevel.update();
 
         if (activeLevel.isFinished()) {
-            changeLevel(++currentLevelIndex);
+            switchNextLevel();
             game.switchState(State.FINISHED_LEVEL);
-            if (utils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vLevelFinishedMsg(activeLevel.getLevelName()));
+            if (utils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vLevelFinishedMsg(getPrevLevel().getLevelName()));
         }
     }
 
@@ -46,10 +47,10 @@ public class LevelHandler {
         activeLevel.render(g);
     }
 
-    private void changeLevel(int index) {
-        if (index >= 0 && index <= levels.length - 1) {
-            if (utils.isVerboseEnabled() && activeLevel != null) fileHandler.writeLogMessage(textHandler.vChangedLevelMsg(activeLevel.getLevelName(), levels[index].getLevelName()));
-            activeLevel = levels[index];
+    private void switchNextLevel() {
+        if (currentLevelIndex >= 0 && currentLevelIndex + 1 <= levels.length - 1) {
+            if (utils.isVerboseEnabled() && activeLevel != null) fileHandler.writeLogMessage(textHandler.vChangedLevelMsg(activeLevel.getLevelName(), levels[currentLevelIndex + 1].getLevelName()));
+            activeLevel = levels[++currentLevelIndex];
         }
     }
 
