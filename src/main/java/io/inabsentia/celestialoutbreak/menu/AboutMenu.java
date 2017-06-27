@@ -22,7 +22,11 @@ public class AboutMenu extends Menu {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         drawMenuTitle(g);
-        drawXCenteredString("About :)", game.getHeight() / 2, g, msgFont);
+        drawXCenteredString("Controls are as follows", game.getHeight() / 2 - 200, g, msgFont);
+        drawXCenteredString("WASD / Arrow keys to navigate and move", game.getHeight() / 2 - 100, g, msgFont);
+        drawXCenteredString("confirm:           z", game.getHeight() / 2, g, msgFont);
+        drawXCenteredString("reject:           x", game.getHeight() / 2 + 100, g, msgFont);
+        drawXCenteredString("select/use:       space bar", game.getHeight() / 2 + 200, g, msgFont);
         drawGamePanel(g);
     }
 

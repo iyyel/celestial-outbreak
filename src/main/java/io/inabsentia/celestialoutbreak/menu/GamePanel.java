@@ -34,10 +34,7 @@ public class GamePanel extends Menu {
         g.setColor(fontColor);
         g.setFont(panelFont);
         g.draw(gamePanelRect);
-
-        g.drawString(textHandler.gamePanelString(levelName, 5, 234, blockAmountLeft), 5, 714);
-
-        //drawGamePanel(g, levelName, 5, 10000, blockAmountLeft);
+        drawGamePanel(g, levelName, 5, 10000, blockAmountLeft);
     }
 
     public void updatePanel(String levelName, int playerLives, int playerScore, int blockAmountLeft) {
@@ -46,11 +43,10 @@ public class GamePanel extends Menu {
     }
 
     private void drawGamePanel(Graphics2D g, String levelName, int playerLives, int playerScore, int blockAmountLeft) {
-        int rightOffset = game.getWidth();
-        g.drawString("Planet: " + levelName, 50, 741);
-
-        //g.drawString("Lives: " + Integer.toString(playerLives), 500, 741);
-        //g.drawString("Score: " + Integer.toString(playerScore), 550, 741);
-        //g.drawString("Blocks: " + Integer.toString(blockAmountLeft), rightOffset, 741);
+        g.drawString("Planet: " + levelName, 5, 714);
+        g.drawString("Lives: " + Integer.toString(playerLives), game.getWidth() / 2 - 100, 714);
+        g.drawString("Score: " + Integer.toString(playerScore), game.getWidth() / 2 - 30, 714);
+        g.drawString("Blocks: " + Integer.toString(blockAmountLeft), game.getWidth() / 2 + 75, 714);
     }
+
 }
