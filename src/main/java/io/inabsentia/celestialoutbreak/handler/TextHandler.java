@@ -46,8 +46,8 @@ public class TextHandler {
 
     public final String pauseMsg = "Paused";
 
-    public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION + " instance started at " + getDateTime() + " on " + System.getProperty("os.name") + ".";
-    public final String NEW_APP_INSTANCE_SUCCESS = "Successfully completed " + TITLE + " " + VERSION + " initialization at " + getDateTime() + ".";
+    public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION + " instance started at " + getDateTime() + " on " + System.getProperty("os.name");
+    public final String NEW_APP_INSTANCE_SUCCESS = "Finished " + TITLE + " " + VERSION + " initialization at " + getDateTime() + " on " + System.getProperty("os.name");
 
     /*
      * Main directory.
@@ -88,14 +88,24 @@ public class TextHandler {
     public final String SETTINGS_DIR_PATH = MAIN_DIR + File.separator + SETTINGS_DIR_NAME;
 
     public final String SETTINGS_CONFIG_FILE_NAME = "settings.config";
-    public final String SETTINGS_CONFIG_FILE_PATH = SETTINGS_DIR_PATH + File.separator + SETTINGS_CONFIG_FILE_NAME;
+    public final String SETTINGS_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(JAR_CONFIG_DIR + SETTINGS_CONFIG_FILE_NAME).getPath();
+    public final String SETTINGS_CONFIG_FILE_CLIENT_PATH = SETTINGS_DIR_PATH + File.separator + SETTINGS_CONFIG_FILE_NAME;
 
-    /* Player file. */
+    /*
+     * Font paths.
+     */
+    public final String GAME_FONT_NAME = "neuropol.ttf";
+    public final String GAME_FONT_DIR_LOCAL_PATH = "/fonts/";
+    public final String GAME_FONT_LOCAL_PATH = TextHandler.class.getResource(GAME_FONT_DIR_LOCAL_PATH + GAME_FONT_NAME).getPath();
+
+    /*
+     * Player files.
+     */
     public final String PLAYER_DIR_NAME = SETTINGS_DIR_NAME;
     public final String PLAYER_DIR_PATH = SETTINGS_DIR_PATH;
 
     public final String PLAYER_CONFIG_FILE_NAME = "player.config";
-    public final String PLAYER_CONFIG_FILE_PATH = PLAYER_DIR_PATH + File.separator + PLAYER_CONFIG_FILE_NAME;
+    public final String PLAYER_CONFIG_FILE_CLIENT_PATH = PLAYER_DIR_PATH + File.separator + PLAYER_CONFIG_FILE_NAME;
 
     /*
      * Level files.
@@ -104,7 +114,8 @@ public class TextHandler {
     public final String LEVEL_DIR_PATH = MAIN_DIR + File.separator + LEVEL_DIR_NAME;
 
     public final String LEVEL_CONFIG_FILE_NAME = "levels.config";
-    public final String LEVEL_CONFIG_FILE_PATH = LEVEL_DIR_PATH + File.separator + LEVEL_CONFIG_FILE_NAME;
+    public final String LEVEL_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_CONFIG_FILE_NAME).getPath();
+    public final String LEVEL_CONFIG_FILE_CLIENT_PATH = LEVEL_DIR_PATH + File.separator + LEVEL_CONFIG_FILE_NAME;
 
     public final String LEVEL_FILE_NAME_MARS = "mars_level.config";
     public final String LEVEL_FILE_NAME_EARTH = "earth_level.config";
@@ -112,21 +123,35 @@ public class TextHandler {
     public final String LEVEL_FILE_NAME_VENUS = "venus_level.config";
     public final String LEVEL_FILE_NAME_JUPITER = "jupiter_level.config";
 
+    /* Level file local paths. */
+    public final String LEVEL_FILE_LOCAL_PATH_MARS = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_MARS).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_EARTH = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_EARTH).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_NEPTUNE).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_VENUS = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_VENUS).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_JUPITER = FileHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_JUPITER).getPath();
+
+    /* Level file client paths. */
+    public final String LEVEL_FILE_CLIENT_PATH_MARS = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_MARS;
+    public final String LEVEL_FILE_CLIENT_PATH_EARTH = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_EARTH;
+    public final String LEVEL_FILE_CLIENT_PATH_NEPTUNE = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_NEPTUNE;
+    public final String LEVEL_FILE_CLIENT_PATH_VENUS = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_VENUS;
+    public final String LEVEL_FILE_CLIENT_PATH_JUPITER = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_JUPITER;
+
     /*
      * Level related messages.
      */
     private final String ERR_PREFIX = "[ERROR]: ";
 
     public final String vChangedLevelMsg(String prevLevel, String newLevel) {
-        return "Changed level from '" + prevLevel + "' to '" + newLevel + "'.";
+        return "Changed level from '" + prevLevel + "' to '" + newLevel + "'";
     }
 
     public final String errParsingProperties(String fileName, String errMsg) {
-        return ERR_PREFIX + "Failed parsing properties from file '" + fileName + "' cause '" + errMsg + "'.";
+        return ERR_PREFIX + "Failed parsing properties from file '" + fileName + "' cause '" + errMsg + "'";
     }
 
     public final String vLevelFinishedMsg(String levelType) {
-        return "Level '" + levelType + "' finished.";
+        return "Level '" + levelType + "' finished";
     }
 
     /* Ball related messages */
@@ -140,8 +165,27 @@ public class TextHandler {
     }
 
     public final String vBallBlockListCollisionMsg(int blockListIndex) {
-        return "Ball collision with BlockList[" + blockListIndex + "].";
+        return "Ball collision with BlockList[" + blockListIndex + "]";
     }
+
+    /*
+     * Audio related messages.
+     */
+
+    public final String AUDIO_CONFIG_DIR_LOCAL_PATH = "/audio/";
+
+    public final String AUDIO_FILE_NAME_MENU = "arpanauts.wav";
+    public final String AUDIO_FILE_NAME_PLAY = "digital.wav";
+    public final String AUDIO_FILE_NAME_PAUSE = "prologue.wav";
+    public final String AUDIO_FILE_NAME_BALL_BOUNCE = "ball_bounce.wav";
+    public final String AUDIO_FILE_NAME_BALL_RESET = "reset_ball.wav";
+
+    /* Audio file paths. */
+    public final String AUDIO_FILE_PATH_MENU = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_MENU).getPath();
+    public final String AUDIO_FILE_PATH_PLAY = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_PLAY).getPath();
+    public final String AUDIO_FILE_PATH_PAUSE = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_PAUSE).getPath();
+    public final String AUDIO_FILE_PATH_BALL_BOUNCE = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_BALL_BOUNCE).getPath();
+    public final String AUDIO_FILE_PATH_BALL_RESET = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_BALL_RESET).getPath();
 
     /*
      * Menu messages.
@@ -178,35 +222,35 @@ public class TextHandler {
      * Random methods. Clean this up.
      */
     public final String successCopiedFile(String srcFilePath, String destFilePath) {
-        return "Successfully copied '" + srcFilePath + "' to '" + destFilePath + "'.";
+        return "Successfully copied '" + srcFilePath + "' to '" + destFilePath + "'";
     }
 
     public final String successReadProperties(String filePath) {
-        return "Successfully read properties from '" + filePath + "'.";
+        return "Finished reading properties from '" + filePath + "'";
     }
 
     public final String successReadLines(String filePath) {
-        return "Successfully read lines from '" + filePath + "'.";
+        return "Finished reading lines from '" + filePath + "'";
     }
 
     public final String successReadProperty(String key, String value, String fileName) {
-        return "Successfully read property '" + key + ":" + value + "' from '" + fileName + "'.";
+        return "Successfully read property '" + key + ":" + value + "' from '" + fileName + "'";
     }
 
     public final String successReadLine(String line, String fileName) {
-        return "Successfully read line '" + line + "' from '" + fileName + "'.";
+        return "Successfully read line '" + line + "' from '" + fileName + "'";
     }
 
     public final String successCreatedDir(String dirPath) {
-        return "Successfully created directory '" + dirPath + "'.";
+        return "Successfully created directory '" + dirPath + "'";
     }
 
     public final String successCreatedFile(String filePath) {
-        return "Successfully created file '" + filePath + "'.";
+        return "Successfully created file '" + filePath + "'";
     }
 
     public final String errCreatedDir(String dirPath) {
-        return "Failed to create directory '" + dirPath + "'.";
+        return "Failed to create directory '" + dirPath + "'";
     }
 
     public final String performanceMsg(int frames, int updates, double allocatedRam) {

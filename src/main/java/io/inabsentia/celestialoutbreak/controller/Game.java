@@ -119,7 +119,7 @@ public class Game extends Canvas implements Runnable {
         try {
             initMenuColors();
         } catch (Exception e) {
-            fileHandler.writeLogMessage(textHandler.errParsingProperties(textHandler.SETTINGS_CONFIG_FILE_PATH, e.getMessage()));
+            fileHandler.writeLogMessage(textHandler.errParsingProperties(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH, e.getMessage()));
             stop();
         }
 
@@ -372,7 +372,7 @@ public class Game extends Canvas implements Runnable {
      * Read settings for the menuColors at startup.
      */
     private void initMenuColors() {
-        Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_PATH);
+        Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
         this.menuFontColor = new Color(Integer.decode(map.get("MENU_FONT_COLOR")));
         this.menuBtnColor = new Color(Integer.decode(map.get("MENU_BTN_COLOR")));
         this.menuSelectedBtnColor = new Color(Integer.decode(map.get("MENU_SELECTED_BTN_COLOR")));

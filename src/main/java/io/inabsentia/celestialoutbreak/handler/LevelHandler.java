@@ -26,7 +26,7 @@ public class LevelHandler {
         this.currentLevelIndex = currentLevelIndex;
         this.game = game;
         this.fileHandler = fileHandler;
-        List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_PATH);
+        List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_LOCAL_PATH);
 
         levels = new Level[levelConfigFileList.size()];
         for (int i = 0; i < levels.length; i++) levels[i] = new Level(textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i), game, inputHandler, soundHandler, fileHandler);

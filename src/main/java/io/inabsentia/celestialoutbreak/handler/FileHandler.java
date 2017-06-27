@@ -40,23 +40,23 @@ public class FileHandler {
 
     private void initConfigFiles() {
         /* Initial level configurations copied to client local config dir. */
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_MARS).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_MARS);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_EARTH).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_EARTH);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_NEPTUNE).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_NEPTUNE);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_EARTH).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_EARTH);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_VENUS).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_VENUS);
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_FILE_NAME_JUPITER).getPath(), textHandler.LEVEL_DIR_PATH + File.separator + textHandler.LEVEL_FILE_NAME_JUPITER);
+        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MARS, textHandler.LEVEL_FILE_CLIENT_PATH_MARS);
+        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_EARTH, textHandler.LEVEL_FILE_CLIENT_PATH_EARTH);
+        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_NEPTUNE, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);
+        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_VENUS, textHandler.LEVEL_FILE_CLIENT_PATH_VENUS);
+        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_JUPITER, textHandler.LEVEL_FILE_CLIENT_PATH_JUPITER);
 
         /* Level config file. */
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.LEVEL_CONFIG_FILE_NAME).getPath(), textHandler.LEVEL_CONFIG_FILE_PATH);
+        copyFile(textHandler.LEVEL_CONFIG_FILE_LOCAL_PATH, textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
 
         /* Settings config file. */
-        copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.SETTINGS_CONFIG_FILE_NAME).getPath(), textHandler.SETTINGS_CONFIG_FILE_PATH);
+        copyFile(textHandler.SETTINGS_CONFIG_FILE_LOCAL_PATH, textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
     }
 
     public Map<String, String> readPropertiesFromFile(String fileName) {
         Properties p = new Properties();
         Map<String, String> map = new HashMap<>();
+        writeLogMessage("Reading properties from '" + fileName + "'...");
 
         try (InputStream is = new FileInputStream(fileName)) {
             p.load(is);
@@ -78,6 +78,7 @@ public class FileHandler {
 
     public List<String> readLinesFromFile(String fileName) {
         List<String> lineList = new ArrayList<>();
+        writeLogMessage("Reading lines from '" + fileName + "'...");
 
         try (FileInputStream fis = new FileInputStream(new File(fileName))) {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));

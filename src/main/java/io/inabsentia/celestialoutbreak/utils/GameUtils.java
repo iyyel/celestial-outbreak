@@ -58,10 +58,9 @@ public class GameUtils {
     public Font getGameFont() {
         Font gameFont = null;
         try {
-            String fontPath = GameUtils.class.getResource("/fonts/neuropol.ttf").getPath();
-            gameFont = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath));
+            gameFont = Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.GAME_FONT_LOCAL_PATH));
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(fontPath)));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.GAME_FONT_LOCAL_PATH)));
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
@@ -69,7 +68,7 @@ public class GameUtils {
     }
 
     private void initGameProperties() {
-        Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_PATH);
+        Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
         this.isVerboseEnabled = Boolean.parseBoolean(map.get("VERBOSE_ENABLED"));
         this.isSoundEnabled = Boolean.parseBoolean(map.get("SOUND_ENABLED"));
         this.isGodModeEnabled = Boolean.parseBoolean(map.get("GOD_MODE_ENABLED"));

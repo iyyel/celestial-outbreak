@@ -13,15 +13,15 @@ import java.io.IOException;
 public class SoundHandler {
 
     private final GameUtils gameUtils = GameUtils.getInstance();
+    private final TextHandler textHandler = TextHandler.getInstance();
 
     private static SoundHandler instance;
 
-    public Sound menu = new Sound(SoundHandler.class.getResource("/audio/arpanauts.wav").getPath());
-    public Sound play = new Sound(SoundHandler.class.getResource("/audio/digital.wav").getPath());
-    public Sound pause = new Sound(SoundHandler.class.getResource("/audio/prologue.wav").getPath());
-    public Sound beep01 = new Sound(SoundHandler.class.getResource("/audio/beep_01.wav").getPath());
-    public Sound beep02 = new Sound(SoundHandler.class.getResource("/audio/beep_02.wav").getPath());
-    public Sound beep03 = new Sound(SoundHandler.class.getResource("/audio/beep_03.wav").getPath());
+    public final Sound menu = new Sound(textHandler.AUDIO_FILE_PATH_MENU);
+    public final Sound play = new Sound(textHandler.AUDIO_FILE_PATH_PLAY);
+    public final Sound pause = new Sound(textHandler.AUDIO_FILE_PATH_PAUSE);
+    public final Sound ballBounce = new Sound(textHandler.AUDIO_FILE_PATH_BALL_BOUNCE);
+    public final Sound ballReset = new Sound(textHandler.AUDIO_FILE_PATH_BALL_RESET);
 
     public class Sound {
         private Clip clip;
