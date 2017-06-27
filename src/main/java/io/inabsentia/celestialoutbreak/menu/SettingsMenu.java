@@ -28,7 +28,7 @@ public class SettingsMenu extends Menu {
         drawXCenteredString(textHandler.menuSettingsMsg04, 400, g, msgFont);
         drawXCenteredString(textHandler.menuSettingsMsg05, 450, g, msgFont);
         drawXCenteredString(textHandler.menuSettingsMsg06, 500, g, msgFont);
-        drawGamePanel(g);
+        drawInformationPanel(g);
     }
 
 }

@@ -23,7 +23,7 @@ public class ScoresMenu extends Menu {
         g.setColor(fontColor);
         drawMenuTitle(g);
         drawXCenteredString("Not yet implemented :(", game.getHeight() / 2, g, msgFont);
-        drawGamePanel(g);
+        drawInformationPanel(g);
     }
 
 }

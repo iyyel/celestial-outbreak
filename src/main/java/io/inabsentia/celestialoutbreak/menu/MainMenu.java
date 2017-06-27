@@ -119,7 +119,7 @@ public class MainMenu extends Menu {
         g.setColor(rectColors[4]);
         g.draw(exitRect);
 
-        drawGamePanel(g);
+        drawInformationPanel(g);
     }
 
 }

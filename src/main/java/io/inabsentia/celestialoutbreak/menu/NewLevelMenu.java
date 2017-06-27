@@ -37,6 +37,8 @@ public class NewLevelMenu extends Menu {
 
         if (firstLevelDescMsg != null) drawXCenteredString(firstLevelDescMsg, game.getHeight() / 2, g, msgFont);
         if (secondLevelDescMsg != null) drawXCenteredString(secondLevelDescMsg, game.getHeight() / 2 + 75, g, msgFont);
+
+        drawInformationPanel(g);
     }
 
     public void updateActiveLevelDesc(String activeLevelDesc) {

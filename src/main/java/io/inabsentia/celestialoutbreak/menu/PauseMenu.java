@@ -21,6 +21,7 @@ public class PauseMenu extends Menu {
         g.setColor(fontColor);
         drawMenuTitle(g);
         drawXCenteredString(textHandler.pauseMsg, game.getHeight() / 2, g, msgFont);
+        drawInformationPanel(g);
     }
 
 }

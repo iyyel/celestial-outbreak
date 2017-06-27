@@ -27,6 +27,7 @@ public class FinishedLevelMenu extends Menu {
         drawXCenteredString(prevLevelName + " has been obliterated", 300, g, msgFont);
         drawXCenteredString(nextLevelName + " is the next awaiting challenge", 350, g, msgFont);
         drawXCenteredString("Are you prepared?", 450, g, msgFont);
+        drawInformationPanel(g);
     }
 
     public void setLevelNames(String prevLevelName, String nextLevelName) {

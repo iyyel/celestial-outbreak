@@ -27,7 +27,7 @@ public class AboutMenu extends Menu {
         drawXCenteredString("confirm:           z", game.getHeight() / 2, g, msgFont);
         drawXCenteredString("reject:           x", game.getHeight() / 2 + 100, g, msgFont);
         drawXCenteredString("select/use:       space bar", game.getHeight() / 2 + 200, g, msgFont);
-        drawGamePanel(g);
+        drawInformationPanel(g);
     }
 
 }

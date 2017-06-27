@@ -42,7 +42,7 @@ public abstract class Menu {
         g.drawString(text, x, y);
     }
 
-    public void drawGamePanel(Graphics2D g) {
+    public void drawInformationPanel(Graphics2D g) {
         g.setColor(fontColor);
         g.setFont(infoPanelFont);
 
