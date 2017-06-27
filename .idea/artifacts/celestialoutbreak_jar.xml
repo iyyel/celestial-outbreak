@@ -3,7 +3,6 @@
     <output-path>$USER_HOME$</output-path>
     <root id="archive" name="celestialoutbreak.jar">
       <element id="module-output" name="celestialoutbreak" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.42/mysql-connector-java-5.1.42.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

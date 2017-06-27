@@ -8,6 +8,5 @@
 	<lib name="Maven: junit:junit:3.8.1" scope="TEST"/>
 	<levels>
 		<level name="Maven: junit:junit:3.8.1" value="project"/>
-		<level name="Maven: mysql:mysql-connector-java:5.1.42" value="project"/>
 	</levels>
 </component>
