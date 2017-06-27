@@ -41,7 +41,7 @@ public class LevelSettings {
     /*
      * GamePanel settings.
      */
-    private Color bottomPanelColor;
+    private Color gamePanelColor;
 
     /*
      * Required objects.
@@ -59,12 +59,17 @@ public class LevelSettings {
         try {
             parseLevelSettings(fileName);
         } catch (Exception e) {
-            fileHandler.writeLogMessage(textHandler.errParsingLevelSettings(fileName, e.getMessage()));
-            System.exit(1);
+            /*
+             * If the level settings aren't able to be parsed correctly, any exception that will be
+             * thrown will be printed to the console as well as the current log file, and then the
+             * game will be stopped, since invalid level settings has been found.
+             */
+            fileHandler.writeLogMessage(textHandler.errParsingProperties(fileName, e.getMessage()));
+            game.stop();
         }
     }
 
-    private void parseLevelSettings(String fileName) throws Exception {
+    private void parseLevelSettings(String fileName) {
         Map<String, String> map = fileHandler.readPropertiesFromFile(fileName);
 
         /* Level settings. */
@@ -106,9 +111,9 @@ public class LevelSettings {
         blockHeight = Integer.parseInt(map.get("LevelBlockListBlockHeight"));
         blockSpacing = Integer.parseInt(map.get("LevelBlockListBlockSpacing"));
 
-        /* BottomPanel settings. */
-        int bottomPanelColorHex = Integer.decode(map.get("LevelBottomPanelColor"));
-        bottomPanelColor = new Color(bottomPanelColorHex);
+        /* GamePanel settings. */
+        int gamePanelColorHex = Integer.decode(map.get("LevelGamePanelColor"));
+        gamePanelColor = new Color(gamePanelColorHex);
     }
 
     public String getLevelName() {
@@ -187,8 +192,8 @@ public class LevelSettings {
         return blockSpacing;
     }
 
-    public Color getBottomPanelColor() {
-        return bottomPanelColor;
+    public Color getGamePanelColor() {
+        return gamePanelColor;
     }
 
 }

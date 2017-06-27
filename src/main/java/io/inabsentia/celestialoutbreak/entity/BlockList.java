@@ -1,13 +1,13 @@
 package io.inabsentia.celestialoutbreak.entity;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
-import io.inabsentia.celestialoutbreak.utils.Utils;
+import io.inabsentia.celestialoutbreak.utils.GameUtils;
 
 import java.awt.*;
 
 public class BlockList {
 
-    private final Utils utils = Utils.getInstance();
+    private final GameUtils gameUtils = GameUtils.getInstance();
     private final Game game;
 
     private final int width;
@@ -41,7 +41,7 @@ public class BlockList {
         int initialX = pos.x;
         int initialY = pos.y;
         for (int i = 0; i < blockList.length; i++) {
-            blockList[i] = new Block(new Point(pos.x, pos.y), width, height, utils.generatePastelColor(0.8F, 9000F));
+            blockList[i] = new Block(new Point(pos.x, pos.y), width, height, gameUtils.generatePastelColor(0.8F, 9000F));
             pos.x += width + spacing;
             if (pos.x + width >= game.getWidth()) {
                 pos.y += initialY;

@@ -2,14 +2,14 @@ package io.inabsentia.celestialoutbreak.graphics;
 
 import java.awt.*;
 
-public class Screen {
+public class ScreenRenderer {
 
     private final int WIDTH;
     private final int HEIGHT;
 
     public int[] pixels;
 
-    public Screen(int width, int height, int[] pixels) {
+    public ScreenRenderer(int width, int height, int[] pixels) {
         this.WIDTH = width;
         this.HEIGHT = height;
         this.pixels = pixels;

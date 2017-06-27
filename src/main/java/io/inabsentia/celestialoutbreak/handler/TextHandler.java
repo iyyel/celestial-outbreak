@@ -10,20 +10,34 @@ import java.util.Date;
  */
 public class TextHandler {
 
-    public final String TITLE = "Celestial Outbreak";
-    public final String VERSION = "v0.11a";
-    public final String EMAIL = "inabsentia.io";
-
-    private static final TextHandler instance = new TextHandler();
+    private static TextHandler instance;
 
     private TextHandler() {
 
+    }
+
+    static {
+        try {
+            instance = new TextHandler();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public synchronized static TextHandler getInstance() {
         return instance;
     }
 
+    /*
+     * Important game strings.
+     */
+    public final String TITLE = "Celestial Outbreak";
+    public final String VERSION = "v0.12a";
+    public final String EMAIL = "inabsentia.io";
+
+    /*
+     * Menu button names.
+     */
     public final String playBtn = "PLAY";
     public final String scoreBtn = "SCORES";
     public final String settingsBtn = "SETTINGS";
@@ -31,8 +45,6 @@ public class TextHandler {
     public final String exitBtn = "EXIT";
 
     public final String pauseMsg = "Paused";
-
-    private final String spacing = "     ";
 
     public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION + " instance started at " + getDateTime() + " on " + System.getProperty("os.name") + ".";
     public final String NEW_APP_INSTANCE_SUCCESS = "Successfully completed " + TITLE + " " + VERSION + " initialization at " + getDateTime() + ".";
@@ -109,8 +121,8 @@ public class TextHandler {
         return "Changed level from '" + prevLevel + "' to '" + newLevel + "'.";
     }
 
-    public final String errParsingLevelSettings(String fileName, String exceptionMessage) {
-        return ERR_PREFIX + "Failed parsing level settings from file '" + fileName + "' cause: '" + exceptionMessage + "'.";
+    public final String errParsingProperties(String fileName, String errMsg) {
+        return ERR_PREFIX + "Failed parsing properties from file '" + fileName + "' cause '" + errMsg + "'.";
     }
 
     public final String vLevelFinishedMsg(String levelType) {
@@ -165,10 +177,6 @@ public class TextHandler {
     /*
      * Random methods. Clean this up.
      */
-    public final String gamePanelString(String levelName, int playerLives, int playerScore, int blocksLeft) {
-        return "Planet: " + levelName + spacing + spacing + spacing + spacing + spacing + spacing + spacing + spacing + "Lives: " + playerLives + spacing + "Score: " + playerScore + spacing + "Blocks: " + blocksLeft;
-    }
-
     public final String successCopiedFile(String srcFilePath, String destFilePath) {
         return "Successfully copied '" + srcFilePath + "' to '" + destFilePath + "'.";
     }
@@ -181,12 +189,24 @@ public class TextHandler {
         return "Successfully read lines from '" + filePath + "'.";
     }
 
+    public final String successReadProperty(String key, String value, String fileName) {
+        return "Successfully read property '" + key + ":" + value + "' from '" + fileName + "'.";
+    }
+
+    public final String successReadLine(String line, String fileName) {
+        return "Successfully read line '" + line + "' from '" + fileName + "'.";
+    }
+
     public final String successCreatedDir(String dirPath) {
         return "Successfully created directory '" + dirPath + "'.";
     }
 
     public final String successCreatedFile(String filePath) {
         return "Successfully created file '" + filePath + "'.";
+    }
+
+    public final String errCreatedDir(String dirPath) {
+        return "Failed to create directory '" + dirPath + "'.";
     }
 
     public final String performanceMsg(int frames, int updates, double allocatedRam) {

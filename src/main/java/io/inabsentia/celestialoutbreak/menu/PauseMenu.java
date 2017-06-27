@@ -1,19 +1,21 @@
 package io.inabsentia.celestialoutbreak.menu;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 
 import java.awt.*;
 
 public class PauseMenu extends Menu {
 
-    public PauseMenu(Game game, InputHandler inputHandler) {
-        super(game, inputHandler);
+    public PauseMenu(Game game, InputHandler inputHandler, Color fontColor) {
+        super(game, inputHandler, fontColor);
     }
 
     @Override
     public void update() {
-
+        if (inputHandler.isCancelPressed()) game.switchState(State.MENU);
+        if (inputHandler.isPausePressed()) game.switchState(State.PLAY);
     }
 
     @Override

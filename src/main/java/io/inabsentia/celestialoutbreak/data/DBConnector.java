@@ -8,7 +8,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
-import io.inabsentia.celestialoutbreak.utils.Utils;
+import io.inabsentia.celestialoutbreak.utils.GameUtils;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class DBConnector implements IDBConnector {
 
     private static DBConnector instance;
 
-    private final Utils utils = Utils.getInstance();
+    private final GameUtils gameUtils = GameUtils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
 
@@ -60,7 +60,7 @@ public class DBConnector implements IDBConnector {
     public void closeDB() throws DALException {
         try {
             mongoClient.close();
-            if (utils.isVerboseEnabled()) fileHandler.writeLogMessage("Successfully closed database connection.");
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMessage("Successfully closed database connection.");
         } catch (Exception e) {
             throw new DALException(e.getMessage(), e);
         }

@@ -10,14 +10,14 @@ public class FinishedLevelMenu extends Menu {
 
     private String prevLevelName, nextLevelName;
 
-    public FinishedLevelMenu(Game game, InputHandler inputHandler) {
-        super(game, inputHandler);
+    public FinishedLevelMenu(Game game, InputHandler inputHandler, Color fontColor) {
+        super(game, inputHandler, fontColor);
     }
 
     @Override
     public void update() {
-        if (inputHandler.isConfirmPressed()) game.switchState(State.NEW_LEVEL);
-        if (inputHandler.isRejectPressed()) game.switchState(State.MENU);
+        if (inputHandler.isOKPressed()) game.switchState(State.NEW_LEVEL);
+        if (inputHandler.isCancelPressed()) game.switchState(State.MENU);
     }
 
     @Override

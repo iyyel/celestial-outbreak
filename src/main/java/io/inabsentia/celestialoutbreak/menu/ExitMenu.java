@@ -1,6 +1,5 @@
 package io.inabsentia.celestialoutbreak.menu;
 
-
 import io.inabsentia.celestialoutbreak.controller.Game;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
@@ -9,14 +8,14 @@ import java.awt.*;
 
 public class ExitMenu extends Menu {
 
-    public ExitMenu(Game game, InputHandler inputHandler) {
-        super(game, inputHandler);
+    public ExitMenu(Game game, InputHandler inputHandler, Color fontColor) {
+        super(game, inputHandler, fontColor);
     }
 
     @Override
     public void update() {
-        if (inputHandler.isConfirmPressed()) System.exit(0);
-        if (inputHandler.isRejectPressed()) game.switchState(State.MENU);
+        if (inputHandler.isOKPressed()) game.stop();
+        if (inputHandler.isCancelPressed()) game.switchState(State.MENU);
     }
 
     @Override

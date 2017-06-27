@@ -1,6 +1,5 @@
 package io.inabsentia.celestialoutbreak.menu;
 
-
 import io.inabsentia.celestialoutbreak.controller.Game;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
@@ -9,13 +8,13 @@ import java.awt.*;
 
 public class SettingsMenu extends Menu {
 
-    public SettingsMenu(Game game, InputHandler inputHandler) {
-        super(game, inputHandler);
+    public SettingsMenu(Game game, InputHandler inputHandler, Color fontColor) {
+        super(game, inputHandler, fontColor);
     }
 
     @Override
     public void update() {
-        if (inputHandler.isRejectPressed()) game.switchState(State.MENU);
+        if (inputHandler.isCancelPressed()) game.switchState(State.MENU);
     }
 
     @Override

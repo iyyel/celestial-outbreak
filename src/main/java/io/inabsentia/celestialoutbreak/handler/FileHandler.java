@@ -1,23 +1,26 @@
 package io.inabsentia.celestialoutbreak.handler;
 
-import io.inabsentia.celestialoutbreak.entity.Player;
-import io.inabsentia.celestialoutbreak.utils.Utils;
 import org.apache.commons.io.FileUtils;
 
-import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
 public class FileHandler {
 
-    private final static FileHandler instance = new FileHandler();
+    private static FileHandler instance;
 
     private final TextHandler textHandler = TextHandler.getInstance();
-    private final Utils utils = Utils.getInstance();
-    private final Player player = Player.getInstance();
 
     private FileHandler() {
         initApp();
+    }
+
+    static {
+        try {
+            instance = new FileHandler();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static synchronized FileHandler getInstance() {
@@ -25,12 +28,8 @@ public class FileHandler {
     }
 
     private void initApp() {
-        writeLogMessage(textHandler.NEW_APP_INSTANCE);
         initStandardDirs();
         initConfigFiles();
-        initGameFlags();
-        initPlayerProperties();
-        writeLogMessage(textHandler.NEW_APP_INSTANCE_SUCCESS);
     }
 
     private void initStandardDirs() {
@@ -53,24 +52,6 @@ public class FileHandler {
 
         /* Settings config file. */
         copyFile(FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.SETTINGS_CONFIG_FILE_NAME).getPath(), textHandler.SETTINGS_CONFIG_FILE_PATH);
-
-        /* Player config file. */
-        initPlayerConfigFile();
-    }
-
-    private void initGameFlags() {
-        Map<String, String> map = readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_PATH);
-        utils.setVerboseEnabled(Boolean.parseBoolean(map.get("VERBOSE_ENABLED")));
-        utils.setSoundEnabled(Boolean.parseBoolean(map.get("SOUND_ENABLED")));
-        utils.setGodModeEnabled(Boolean.parseBoolean(map.get("GOD_MODE_ENABLED")));
-    }
-
-    private void initPlayerProperties() {
-        Map<String, String> map = readPropertiesFromFile(textHandler.PLAYER_CONFIG_FILE_PATH);
-        player.setPlayerName(map.get("PLAYER_NAME"));
-        player.setPlayerLives(Integer.parseInt(map.get("PLAYER_LIVES")));
-        player.setPlayerScore(Integer.parseInt(map.get("PLAYER_SCORE")));
-        player.setPlayerCurrentLevelIndex(Integer.parseInt(map.get("PLAYER_CURRENT_LEVEL_INDEX")));
     }
 
     public Map<String, String> readPropertiesFromFile(String fileName) {
@@ -83,13 +64,11 @@ public class FileHandler {
             for (String key : p.stringPropertyNames()) {
                 String value = p.getProperty(key);
                 map.put(key, value);
-                if (utils.isVerboseEnabled()) writeLogMessage("Successfully read property '" + key + ":" + value + "' from '" + fileName + "'.");
+                writeLogMessage(textHandler.successReadProperty(key, value, fileName));
             }
 
             is.close();
             writeLogMessage(textHandler.successReadProperties(fileName));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,14 +84,12 @@ public class FileHandler {
             String line;
             while ((line = br.readLine()) != null) {
                 /* Ignore lines containing comments marked with # */
-                if (!line.contains("#")) {
+                if (!line.contains("#") && line.length() > 0) {
                     lineList.add(line);
-                    if (utils.isVerboseEnabled()) writeLogMessage("Successfully read line '" + line + "' from '" + fileName + "'.");
+                    writeLogMessage(textHandler.successReadLine(line, fileName));
                 }
             }
             writeLogMessage(textHandler.successReadLines(fileName));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,21 +97,17 @@ public class FileHandler {
         return lineList;
     }
 
-    /*
-     * Returns true if the directory gets created and false it it does not.
-     */
-    private boolean initDir(String dirPath) {
+    private void initDir(String dirPath) {
         File dir = new File(dirPath);
         if (!dir.exists()) {
             try {
-                dir.mkdirs();
-                writeLogMessage(textHandler.successCreatedDir(dirPath));
-                return true;
-            } catch (SecurityException se) {
-                se.printStackTrace();
+                boolean result = dir.mkdirs();
+                if (result) writeLogMessage(textHandler.successCreatedDir(dirPath));
+                else writeLogMessage(textHandler.errCreatedDir(dirPath));
+            } catch (SecurityException e) {
+                e.printStackTrace();
             }
         }
-        return false;
     }
 
     private void copyFile(String srcFilePath, String destFilePath) {
@@ -170,7 +143,6 @@ public class FileHandler {
                 out.print(message + "\r\n");
 
                 String fileMessage = textHandler.logMsgPrefix() + textHandler.successCreatedFile(filePath) + "\r\n";
-                //out.print(fileMessage); Disabled to prevent writing log message into a file that isn't a log file. Its ok to show it in console.
                 System.err.print(fileMessage);
 
                 out.close();
@@ -185,19 +157,6 @@ public class FileHandler {
         System.err.println(message);
         initDir(textHandler.LOG_DIR_PATH);
         writeToFile(message, textHandler.LOG_FILE_PATH);
-    }
-
-    private void initPlayerConfigFile() {
-        File file = new File(textHandler.PLAYER_CONFIG_FILE_PATH);
-        if (file.exists()) {
-            return;
-        } else {
-            String playerName = JOptionPane.showInputDialog("Enter player name", JOptionPane.INFORMATION_MESSAGE);
-            writeToFile("PLAYER_NAME=" + playerName, file.getPath());
-            writeToFile("PLAYER_LIVES=5", file.getPath());
-            writeToFile("PLAYER_SCORE=0", file.getPath());
-            writeToFile("PLAYER_CURRENT_LEVEL_INDEX=0", file.getPath());
-        }
     }
 
 }

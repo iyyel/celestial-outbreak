@@ -1,47 +1,46 @@
 package io.inabsentia.celestialoutbreak.menu;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
-import io.inabsentia.celestialoutbreak.entity.Player;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
+import io.inabsentia.celestialoutbreak.utils.GameUtils;
 
 import java.awt.*;
 
 public abstract class Menu {
 
     protected final Game game;
-    protected final InputHandler inputHandler;
+    protected final GameUtils gameUtils = GameUtils.getInstance();
     protected final TextHandler textHandler = TextHandler.getInstance();
-    protected final Player player = Player.getInstance();
+    protected final InputHandler inputHandler;
 
+    protected Font titleFont, msgFont, infoPanelFont;
     protected final Rectangle versionRect, emailRect;
-    protected final Font titleFont, msgFont, infoPanelFont;
     protected final Color fontColor;
 
-    public Menu(Game game, InputHandler inputHandler) {
+    public Menu(Game game, InputHandler inputHandler, Color fontColor) {
         this.game = game;
         this.inputHandler = inputHandler;
+        this.fontColor = fontColor;
+
+        titleFont = gameUtils.getGameFont().deriveFont(52F);
+        msgFont = gameUtils.getGameFont().deriveFont(32F);
+        infoPanelFont = gameUtils.getGameFont().deriveFont(10F);
 
         /* Information rectangles */
-        versionRect = new Rectangle(game.getWidth() / 2 + 20, game.getHeight() - 20, 45, 15);
-        emailRect = new Rectangle(game.getWidth() / 2 - 65, game.getHeight() - 20, 80, 15);
-
-        titleFont = new Font("Verdana", Font.PLAIN, 52);
-        msgFont = new Font("Verdana", Font.PLAIN, 32);
-        infoPanelFont = new Font("Verdana", Font.PLAIN, 10);
-
-        fontColor = Color.WHITE;
+        versionRect = new Rectangle(game.getWidth() / 2 + 30, game.getHeight() - 20, 45, 15);
+        emailRect = new Rectangle(game.getWidth() / 2 - 71, game.getHeight() - 20, 96, 15);
     }
 
     public abstract void update();
 
     public abstract void render(Graphics2D g);
 
-    public void drawXCenteredString(String text, int y, Graphics2D g, Font font) {
+    public void drawXCenteredString(String msg, int y, Graphics2D g, Font font) {
         FontMetrics metrics = g.getFontMetrics(font);
-        int x = (game.getWidth() - metrics.stringWidth(text)) / 2;
+        int x = (game.getWidth() - metrics.stringWidth(msg)) / 2;
         g.setFont(font);
-        g.drawString(text, x, y);
+        g.drawString(msg, x, y);
     }
 
     public void drawInformationPanel(Graphics2D g) {
@@ -59,6 +58,7 @@ public abstract class Menu {
 
     public void drawMenuTitle(Graphics2D g) {
         g.setColor(fontColor);
+        g.setFont(titleFont);
         drawXCenteredString(textHandler.TITLE, 100, g, titleFont);
     }
 

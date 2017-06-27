@@ -65,10 +65,10 @@ public class Level {
     private int blockAmount, blockWidth, blockHeight, blockSpacing;
 
     /*
-     * BottomPanel settings.
+     * GamePanel settings.
      */
     private GamePanel gamePanel;
-    private Color bottomPanelColor;
+    private Color GamePanelColor;
 
     /*
      * Constructor.
@@ -80,18 +80,19 @@ public class Level {
         this.fileHandler = fileHandler;
 
         levelSettings = new LevelSettings(settingsFileName, game, fileHandler);
-        assignLevelSettings();
+        initLevelSettings();
 
+        /* Create objects after initializing the settings. */
         paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, game);
         ball = new Ball(ballPos, ballPosXOffset, ballPosYOffset, ballSize, ballSize, ballSpeed, ballColor, game);
         blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, game);
-        gamePanel = new GamePanel(game, inputHandler, bottomPanelColor);
+        gamePanel = new GamePanel(game, inputHandler, GamePanelColor);
     }
 
     public void update() {
         paddle.update(inputHandler.isLeftPressed(), inputHandler.isRightPressed());
         ball.update(paddle, blockList);
-        gamePanel.updatePanel(levelName, 0, 0, blockList.getBlocksLeft());
+        gamePanel.updatePanel(levelName, blockList.getBlocksLeft());
     }
 
     public void render(Graphics2D g) {
@@ -101,7 +102,7 @@ public class Level {
         gamePanel.render(g);
     }
 
-    private void assignLevelSettings() {
+    private void initLevelSettings() {
         /* Level settings. */
         levelName = levelSettings.getLevelName();
         levelDesc = levelSettings.getLevelDesc();
@@ -129,13 +130,13 @@ public class Level {
         blockHeight = levelSettings.getBlockHeight();
         blockSpacing = levelSettings.getBlockSpacing();
 
-        /* bottomPanel settings. */
-        bottomPanelColor = levelSettings.getBottomPanelColor();
+        /* GamePanel settings. */
+        GamePanelColor = levelSettings.getGamePanelColor();
     }
 
     public boolean isFinished() {
         if (blockList.getBlocksLeft() == 0) return true;
-        else return false;
+        return false;
     }
 
     public String getLevelName() {

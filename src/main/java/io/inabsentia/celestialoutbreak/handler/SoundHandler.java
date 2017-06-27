@@ -1,7 +1,7 @@
 package io.inabsentia.celestialoutbreak.handler;
 
 import io.inabsentia.celestialoutbreak.entity.State;
-import io.inabsentia.celestialoutbreak.utils.Utils;
+import io.inabsentia.celestialoutbreak.utils.GameUtils;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -12,9 +12,9 @@ import java.io.IOException;
 
 public class SoundHandler {
 
-    private final Utils utils = Utils.getInstance();
+    private final GameUtils gameUtils = GameUtils.getInstance();
 
-    private static final SoundHandler instance = new SoundHandler();
+    private static SoundHandler instance;
 
     public Sound menu = new Sound(SoundHandler.class.getResource("/audio/arpanauts.wav").getPath());
     public Sound play = new Sound(SoundHandler.class.getResource("/audio/digital.wav").getPath());
@@ -26,17 +26,17 @@ public class SoundHandler {
     public class Sound {
         private Clip clip;
 
-        public Sound(String path) {
+        public Sound(String filePath) {
             try {
                 clip = AudioSystem.getClip();
-                clip.open(AudioSystem.getAudioInputStream(new File(path)));
+                clip.open(AudioSystem.getAudioInputStream(new File(filePath)));
             } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
                 e.printStackTrace();
             }
         }
 
         public void play(boolean loop) {
-            if (!utils.isSoundEnabled()) return;
+            if (!gameUtils.isSoundEnabled()) return;
             if (clip.isActive()) return;
 
             stop();
@@ -56,6 +56,18 @@ public class SoundHandler {
 
     private SoundHandler() {
 
+    }
+
+    static {
+        try {
+            instance = new SoundHandler();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public synchronized static SoundHandler getInstance() {
+        return instance;
     }
 
     public void playStateMusic(State state, boolean loop) {
@@ -84,10 +96,6 @@ public class SoundHandler {
             default:
                 break;
         }
-    }
-
-    public synchronized static SoundHandler getInstance() {
-        return instance;
     }
 
 }

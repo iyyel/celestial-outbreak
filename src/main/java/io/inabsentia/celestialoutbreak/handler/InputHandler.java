@@ -8,19 +8,37 @@ import java.awt.event.KeyListener;
  */
 public class InputHandler implements KeyListener {
 
-    private static final InputHandler instance = new InputHandler();
+    private static InputHandler instance;
 
     private boolean[] keys = new boolean[120];
-    private boolean isUpPressed, isDownPressed, isLeftPressed, isRightPressed, isUsePressed, isPausePressed, isConfirmPressed, isRejectPressed;
+    private boolean isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
+    private boolean isUsePressed, isPausePressed, isOKPressed, isCancelPressed;
 
-    private int confirmInputTimer = 5;
+    private final int INITIAL_OK_INPUT_TIMER_VALUE = 5;
+    private int okInputTimer = INITIAL_OK_INPUT_TIMER_VALUE;
+
+    private final int INITIAL_PAUSE_INPUT_TIMER_VALUE = 5;
+    private int pauseInputTimer = INITIAL_PAUSE_INPUT_TIMER_VALUE;
 
     private InputHandler() {
 
     }
 
+    static {
+        try {
+            instance = new InputHandler();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public synchronized static InputHandler getInstance() {
+        return instance;
+    }
+
     public void update() {
-        if (confirmInputTimer > 0) confirmInputTimer--;
+        if (pauseInputTimer > 0) pauseInputTimer--;
+        if (okInputTimer > 0) okInputTimer--;
 
         isUpPressed = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W];
         isDownPressed = keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];
@@ -28,15 +46,22 @@ public class InputHandler implements KeyListener {
         isRightPressed = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
 
         isUsePressed = keys[KeyEvent.VK_SPACE];
-        isPausePressed = keys[KeyEvent.VK_P];
 
-        if (confirmInputTimer == 0) {
-            isConfirmPressed = keys[KeyEvent.VK_Z];
-            confirmInputTimer = 5;
+        if (pauseInputTimer == 0) {
+            isPausePressed = keys[KeyEvent.VK_P];
+            pauseInputTimer = INITIAL_PAUSE_INPUT_TIMER_VALUE;
         } else {
-            isConfirmPressed = false;
+            isPausePressed = false;
         }
-        isRejectPressed = keys[KeyEvent.VK_X];
+
+        if (okInputTimer == 0) {
+            isOKPressed = keys[KeyEvent.VK_Z];
+            okInputTimer = INITIAL_OK_INPUT_TIMER_VALUE;
+        } else {
+            isOKPressed = false;
+        }
+
+        isCancelPressed = keys[KeyEvent.VK_X];
     }
 
     public void keyPressed(KeyEvent e) {
@@ -49,10 +74,6 @@ public class InputHandler implements KeyListener {
 
     public void keyTyped(KeyEvent e) {
 
-    }
-
-    public synchronized static InputHandler getInstance() {
-        return instance;
     }
 
     public boolean isUpPressed() {
@@ -79,12 +100,12 @@ public class InputHandler implements KeyListener {
         return isPausePressed;
     }
 
-    public boolean isConfirmPressed() {
-        return isConfirmPressed;
+    public boolean isOKPressed() {
+        return isOKPressed;
     }
 
-    public boolean isRejectPressed() {
-        return isRejectPressed;
+    public boolean isCancelPressed() {
+        return isCancelPressed;
     }
 
 }

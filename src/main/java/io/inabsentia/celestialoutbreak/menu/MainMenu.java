@@ -1,9 +1,9 @@
 package io.inabsentia.celestialoutbreak.menu;
 
 import io.inabsentia.celestialoutbreak.controller.Game;
-import io.inabsentia.celestialoutbreak.entity.Player;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
+import io.inabsentia.celestialoutbreak.utils.GameUtils;
 
 import java.awt.*;
 
@@ -15,14 +15,13 @@ public class MainMenu extends Menu {
     private String[] options = {textHandler.playBtn, textHandler.scoreBtn, textHandler.settingsBtn, textHandler.aboutBtn, textHandler.exitBtn};
     private Color[] rectColors;
 
-    private Color fontColor, rectColor, selectedColor;
+    private Color rectColor, selectedColor;
 
     private int selected = 0;
     private int inputTimer = 18;
 
     public MainMenu(Game game, InputHandler inputHandler, Color fontColor, Color rectColor, Color selectedColor) {
-        super(game, inputHandler);
-        this.fontColor = fontColor;
+        super(game, inputHandler, fontColor);
         this.rectColor = rectColor;
         this.selectedColor = selectedColor;
 
@@ -37,7 +36,7 @@ public class MainMenu extends Menu {
 
         for (Color c : rectColors) c = rectColor;
 
-        btnFont = new Font("Verdana", Font.PLAIN, 25);
+        btnFont = gameUtils.getGameFont().deriveFont(20F);
     }
 
     @Override
@@ -87,13 +86,13 @@ public class MainMenu extends Menu {
 
     @Override
     public void render(Graphics2D g) {
-        int yBtnOffset = 35;
+        int yBtnOffset = 33;
 
         /* Render game title */
         drawMenuTitle(g);
 
         /* Show player name */
-        drawXCenteredString("Welcome " + player.getPlayerName(), 200, g, msgFont);
+        drawXCenteredString("Welcome Player", 200, g, msgFont);
 
 		/* Render io.inabsentia.celestialoutbreak.menu buttons */
         g.setFont(btnFont);
