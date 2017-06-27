@@ -122,7 +122,6 @@ public class Game extends Canvas implements Runnable {
 
 		/* Initialize the JFrame and start the game loop */
         initFrame();
-        start();
     }
 
     /*
@@ -149,8 +148,14 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | " + textHandler.performanceMessage(frames, updates));
-                if (utils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.performanceMessage(frames, updates));
+                /* Is this correctly calculated? */
+                double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1048576.0;
+                if (utils.isVerboseEnabled()) {
+                    gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | " + textHandler.performanceMsg(frames, updates, allocatedRam));
+                    fileHandler.writeLogMessage(textHandler.performanceMsg(frames, updates, allocatedRam));
+                } else {
+                    gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION);
+                }
                 updates = 0;
                 frames = 0;
             }
@@ -298,7 +303,7 @@ public class Game extends Canvas implements Runnable {
     /*
      * Start method for the game thread/loop.
      */
-    private synchronized void start() {
+    public synchronized void start() {
         if (!isRunning) {
             isRunning = true;
             gameThread = new Thread(this, "Display");
@@ -309,7 +314,7 @@ public class Game extends Canvas implements Runnable {
     /*
      * Stop method for the game thread/loop. Will exit the application.
      */
-    private synchronized void stop() {
+    public synchronized void stop() {
         if (isRunning) {
             isRunning = false;
             try {

@@ -1,6 +1,7 @@
 package io.inabsentia.celestialoutbreak.handler;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -181,8 +182,9 @@ public class TextHandler {
         return "Successfully created file '" + filePath + "'.";
     }
 
-    public final String performanceMessage(int frames, int updates) {
-        return "UPS: " + updates + " FPS: " + frames;
+    public final String performanceMsg(int frames, int updates, double allocatedRam) {
+        DecimalFormat df = new DecimalFormat("000");
+        return "UPS: " + updates + " - FPS: " + frames + " - RAM: " + df.format(allocatedRam) + "MB";
     }
 
     private final String getDateTime() {
