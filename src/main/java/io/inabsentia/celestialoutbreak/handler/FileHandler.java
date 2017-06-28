@@ -130,21 +130,22 @@ public class FileHandler {
         }
     }
 
-    public void writeToFile(String message, String filePath) {
+    public void writeToFile(String msg, String filePath) {
         File file = new File(filePath);
         if (file.exists() && !file.isDirectory()) {
             try (PrintWriter out = new PrintWriter(new FileOutputStream(file, true))) {
-                out.append(message + "\r\n");
+                out.append(msg + "\r\n");
                 out.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         } else if (!file.exists() && !file.isDirectory()) {
             try (PrintWriter out = new PrintWriter(filePath)) {
-                out.print(message + "\r\n");
+                out.print(msg + "\r\n");
 
                 String fileMessage = textHandler.logMsgPrefix() + textHandler.successCreatedFile(filePath) + "\r\n";
-                System.err.print(fileMessage);
+                // Find a way for this to print to the log file, only if its trying to create a log file.. errhh.
+                System.out.print(fileMessage);
 
                 out.close();
             } catch (FileNotFoundException e) {
@@ -153,11 +154,11 @@ public class FileHandler {
         }
     }
 
-    public void writeLogMessage(String message) {
-        message = textHandler.logMsgPrefix() + message;
-        System.err.println(message);
+    public void writeLogMessage(String msg) {
+        msg = textHandler.logMsgPrefix() + msg;
+        System.out.println(msg);
         initDir(textHandler.LOG_DIR_PATH);
-        writeToFile(message, textHandler.LOG_FILE_PATH);
+        writeToFile(msg, textHandler.LOG_FILE_PATH);
     }
 
 }

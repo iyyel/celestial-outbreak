@@ -47,14 +47,6 @@ public class GameUtils {
         return color;
     }
 
-    public void sleep(long milliseconds) {
-        try {
-            TimeUnit.MILLISECONDS.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     public Font getGameFont() {
         Font gameFont = null;
         try {
