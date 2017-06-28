@@ -165,23 +165,25 @@ public class TextHandler {
     }
 
     /*
-     * Audio related messages.
+     * Sound related messages.
      */
 
-    public final String AUDIO_CONFIG_DIR_LOCAL_PATH = "/audio/";
+    public final String SOUND_CONFIG_DIR_LOCAL_PATH = "/sound/";
 
-    public final String AUDIO_FILE_NAME_MENU = "arpanauts.wav";
-    public final String AUDIO_FILE_NAME_PLAY = "digital.wav";
-    public final String AUDIO_FILE_NAME_PAUSE = "prologue.wav";
-    public final String AUDIO_FILE_NAME_BALL_BOUNCE = "ball_bounce.wav";
-    public final String AUDIO_FILE_NAME_BALL_RESET = "reset_ball.wav";
+    public final String SOUND_FILE_NAME_MENU = "menu.wav";
+    public final String SOUND_FILE_NAME_PLAY = "play.wav";
+    public final String SOUND_FILE_NAME_PAUSE = "pause.wav";
+    public final String SOUND_FILE_NAME_BALL_BOUNCE = "ball_bounce.wav";
+    public final String SOUND_FILE_NAME_BALL_RESET = "ball_reset.wav";
+    public final String SOUND_FILE_NAME_MENU_BTN_SELECTION = "menu_btn_selection.wav";
 
     /* Audio file paths. */
-    public final String AUDIO_FILE_PATH_MENU = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_MENU).getPath();
-    public final String AUDIO_FILE_PATH_PLAY = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_PLAY).getPath();
-    public final String AUDIO_FILE_PATH_PAUSE = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_PAUSE).getPath();
-    public final String AUDIO_FILE_PATH_BALL_BOUNCE = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_BALL_BOUNCE).getPath();
-    public final String AUDIO_FILE_PATH_BALL_RESET = TextHandler.class.getResource(AUDIO_CONFIG_DIR_LOCAL_PATH + AUDIO_FILE_NAME_BALL_RESET).getPath();
+    public final String SOUND_FILE_PATH_MENU = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_MENU).getPath();
+    public final String SOUND_FILE_PATH_PLAY = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_PLAY).getPath();
+    public final String SOUND_FILE_PATH_PAUSE = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_PAUSE).getPath();
+    public final String SOUND_FILE_PATH_BALL_BOUNCE = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_BALL_BOUNCE).getPath();
+    public final String SOUND_FILE_PATH_BALL_RESET = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_BALL_RESET).getPath();
+    public final String SOUND_FILE_PATH_MENU_BTN_SELECTION = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_MENU_BTN_SELECTION).getPath();
 
     /*
      * Menu messages.
@@ -276,16 +278,21 @@ public class TextHandler {
         return ERR_PREFIX + "Failed to copy '" + srcFilePath + "' to '" + destFilePath + "' cause '" + errMsg + "'";
     }
 
+    public final String errParsingProperties(String filePath, String errMsg) {
+        return ERR_PREFIX + "Failed parsing properties from file '" + filePath + "' cause '" + errMsg + "'";
+    }
+
+    public final String errCreatingAudioClip(String filePath, String errMsg) {
+        return ERR_PREFIX + "Failed to create AudioClip from '" + filePath + "' cause '" + errMsg + "'";
+    }
+
+
     public final String readingLinesMsg(String filePath) {
         return "Reading lines from '" + filePath + "'...";
     }
 
     public final String readingPropertiesMsg(String filePath) {
         return "Reading properties from '" + filePath + "'...";
-    }
-
-    public final String errParsingProperties(String fileName, String errMsg) {
-        return ERR_PREFIX + "Failed parsing properties from file '" + fileName + "' cause '" + errMsg + "'";
     }
 
     public final String performanceMsg(int frames, int updates, double allocatedRam) {

@@ -30,7 +30,7 @@ public class FileHandler {
 
     private void initApp() {
         createStandardDirs();
-        initConfigFiles();
+        copyConfigFiles();
     }
 
     private void createStandardDirs() {
@@ -39,7 +39,7 @@ public class FileHandler {
         createDir(textHandler.LEVEL_DIR_PATH);
     }
 
-    private void initConfigFiles() {
+    private void copyConfigFiles() {
         /* Initial level configurations copied to client local config dir. */
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MARS, textHandler.LEVEL_FILE_CLIENT_PATH_MARS);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_EARTH, textHandler.LEVEL_FILE_CLIENT_PATH_EARTH);
@@ -47,10 +47,10 @@ public class FileHandler {
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_VENUS, textHandler.LEVEL_FILE_CLIENT_PATH_VENUS);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_JUPITER, textHandler.LEVEL_FILE_CLIENT_PATH_JUPITER);
 
-        /* Level config file. */
+        /* Main level configuration file coped to client machine. */
         copyFile(textHandler.LEVEL_CONFIG_FILE_LOCAL_PATH, textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
 
-        /* Settings config file. */
+        /* Settings configuration file copied to client machine. */
         copyFile(textHandler.SETTINGS_CONFIG_FILE_LOCAL_PATH, textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
     }
 
@@ -148,9 +148,9 @@ public class FileHandler {
                 }
             } else {
                 try (PrintWriter out = new PrintWriter(filePath)) {
-                    writeLogMsg(textHandler.successCreatedFileMsg(filePath));
                     out.print(msg + "\r\n");
                 }
+                writeLogMsg(textHandler.successCreatedFileMsg(filePath));
             }
         } catch (IOException e) {
             writeLogMsg(textHandler.errWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)));

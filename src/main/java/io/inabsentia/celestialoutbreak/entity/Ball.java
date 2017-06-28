@@ -49,19 +49,19 @@ public class Ball extends MobileEntity {
         if (pos.x < 0) {
             if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedXAxisLeftMsg);
             velocity.x = speed;
-            soundHandler.ballBounce.play(false);
+            soundHandler.BALL_BOUNCE_CLIP.play(false);
         }
 
         if (pos.x > (game.getWidth() - width)) {
             if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedXAxisRightMsg);
             velocity.x = -speed;
-            soundHandler.ballBounce.play(false);
+            soundHandler.BALL_BOUNCE_CLIP.play(false);
         }
 
         if (pos.y < 0) {
             if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedYAxisTopMsg);
             velocity.y = speed;
-            soundHandler.ballBounce.play(false);
+            soundHandler.BALL_BOUNCE_CLIP.play(false);
         }
 
         if (pos.y > (game.getHeight() - height)) {
@@ -75,7 +75,7 @@ public class Ball extends MobileEntity {
             velocity.x = (isPositiveValue ? 1 : -1) * speed + (isPositiveValue ? -ballSpeedDecrement : ballSpeedDecrement);
             velocity.y = speed;
 
-            soundHandler.ballReset.play(false);
+            soundHandler.BALL_RESET_CLIP.play(false);
             ballStaleTimer = ballStaleTimerValue;
         }
     }
@@ -92,7 +92,7 @@ public class Ball extends MobileEntity {
 
                 paddleCollisionTimer = paddleCollisionTimerValue;
 
-                soundHandler.ballBounce.play(false);
+                soundHandler.BALL_BOUNCE_CLIP.play(false);
 
                 if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
             }
@@ -102,7 +102,7 @@ public class Ball extends MobileEntity {
                     velocity.y *= -1;
                     ((BlockList) t).destroyBlock(i);
 
-                    soundHandler.ballBounce.play(false);
+                    soundHandler.BALL_BOUNCE_CLIP.play(false);
 
                     if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallBlockListCollisionMsg(i));
                 }

@@ -28,8 +28,8 @@ public abstract class Menu {
         infoPanelFont = gameUtils.getGameFont().deriveFont(10F);
 
         /* Information rectangles */
-        versionRect = new Rectangle(game.getWidth() / 2 + 30, game.getHeight() - 20, 45, 15);
-        emailRect = new Rectangle(game.getWidth() / 2 - 71, game.getHeight() - 20, 96, 15);
+        versionRect = new Rectangle(game.getWidth() / 2 + 28, game.getHeight() - 20, 50, 15);
+        emailRect = new Rectangle(game.getWidth() / 2 - 72, game.getHeight() - 20, 96, 15);
     }
 
     public abstract void update();

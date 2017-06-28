@@ -73,7 +73,7 @@ public class Game extends Canvas implements Runnable {
     private Color menuSelectedBtnColor;
 
     /*
-     * Objects used for io.inabsentia.celestialoutbreak.menu's.
+     * Objects used for io.inabsentia.celestialoutbreak.MENU_CLIP's.
      */
     private final MainMenu mainMenu;
     private final PauseMenu pauseMenu;
@@ -87,7 +87,7 @@ public class Game extends Canvas implements Runnable {
 
     /*
      * Current state of the game.
-     * Starts with showing the io.inabsentia.celestialoutbreak.menu.
+     * Starts with showing the io.inabsentia.celestialoutbreak.MENU_CLIP.
      */
     private State state = State.MENU;
 
@@ -115,7 +115,7 @@ public class Game extends Canvas implements Runnable {
 		/* Create screenRenderer renderer */
         screenRenderer = new ScreenRenderer(WIDTH, HEIGHT, pixels);
 
-        /* Instantiate menu colors */
+        /* Instantiate MENU_CLIP colors */
         try {
             initMenuColors();
         } catch (Exception e) {
@@ -123,8 +123,8 @@ public class Game extends Canvas implements Runnable {
             stop();
         }
 
-        /* Create io.inabsentia.celestialoutbreak.menu objects */
-        mainMenu = new MainMenu(this, inputHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
+        /* Create io.inabsentia.celestialoutbreak.MENU_CLIP objects */
+        mainMenu = new MainMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         pauseMenu = new PauseMenu(this, inputHandler, menuFontColor);
         scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
         settingsMenu = new SettingsMenu(this, inputHandler, menuFontColor);
@@ -168,7 +168,7 @@ public class Game extends Canvas implements Runnable {
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 /* Is this correctly calculated? */
-                double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1048576.0;
+                double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                 if (gameUtils.isVerboseEnabled()) {
                     gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | " + textHandler.performanceMsg(frames, updates, allocatedRam));
                     fileHandler.writeLogMsg(textHandler.performanceMsg(frames, updates, allocatedRam));
@@ -187,6 +187,8 @@ public class Game extends Canvas implements Runnable {
     private void update() {
         /* Update the currently pressed keys. */
         inputHandler.update();
+
+        soundHandler.playStateMusic(state, true);
 
         /* Let the current game state decide what to update exactly. */
         switch (state) {
@@ -217,8 +219,8 @@ public class Game extends Canvas implements Runnable {
                 newLevelMenu.updateActiveLevelDesc(levelHandler.getActiveLevel().getLevelDesc());
                 break;
             case FINISHED_LEVEL:
-                finishedLevelMenu.setLevelNames(levelHandler.getPrevLevel().getLevelName(), levelHandler.getActiveLevel().getLevelName());
                 finishedLevelMenu.update();
+                finishedLevelMenu.updateLevelNames(levelHandler.getPrevLevel().getLevelName(), levelHandler.getActiveLevel().getLevelName());
                 break;
             default:
                 break;
@@ -241,7 +243,7 @@ public class Game extends Canvas implements Runnable {
         /* Clear the screenRenderer, i.e. make it go all black. */
         screenRenderer.clear();
 
-        /* Let the current game state decide whether to render a level's color or the menu's color. */
+        /* Let the current game state decide whether to render a level's color or the MENU_CLIP's color. */
         switch (state) {
             case MENU:
                 switchMenuColor();
@@ -279,11 +281,9 @@ public class Game extends Canvas implements Runnable {
         switch (state) {
             case MENU:
                 mainMenu.render(g);
-                soundHandler.playStateMusic(state, true);
                 break;
             case PLAY:
                 levelHandler.render(g);
-                soundHandler.playStateMusic(state, true);
                 break;
             case SCORES:
                 scoresMenu.render(g);
@@ -299,7 +299,6 @@ public class Game extends Canvas implements Runnable {
                 break;
             case PAUSE:
                 pauseMenu.render(g);
-                soundHandler.playStateMusic(state, true);
                 break;
             case NEW_LEVEL:
                 newLevelMenu.render(g);
@@ -357,7 +356,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /*
-     * Continuously switch the menu background with a nice pastel color.
+     * Continuously switch the MENU_CLIP background with a nice pastel color.
      */
     private void switchMenuColor() {
         if (menuColorTimer == 0) {

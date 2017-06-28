@@ -3,7 +3,7 @@ package io.inabsentia.celestialoutbreak.menu;
 import io.inabsentia.celestialoutbreak.controller.Game;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
-import io.inabsentia.celestialoutbreak.utils.GameUtils;
+import io.inabsentia.celestialoutbreak.handler.SoundHandler;
 
 import java.awt.*;
 
@@ -20,8 +20,11 @@ public class MainMenu extends Menu {
     private int selected = 0;
     private int inputTimer = 18;
 
-    public MainMenu(Game game, InputHandler inputHandler, Color fontColor, Color rectColor, Color selectedColor) {
+    private final SoundHandler soundHandler;
+
+    public MainMenu(Game game, InputHandler inputHandler, SoundHandler soundHandler, Color fontColor, Color rectColor, Color selectedColor) {
         super(game, inputHandler, fontColor);
+        this.soundHandler = soundHandler;
         this.rectColor = rectColor;
         this.selectedColor = selectedColor;
 
@@ -45,11 +48,13 @@ public class MainMenu extends Menu {
 
         if (inputHandler.isDownPressed() && selected < options.length - 1 && inputTimer == 0) {
             selected++;
+            soundHandler.MENU_BTN_SELECTION_CLIP.play(false);
             inputTimer = 10;
         }
 
         if (inputHandler.isUpPressed() && selected > 0 && inputTimer == 0) {
             selected--;
+            soundHandler.MENU_BTN_SELECTION_CLIP.play(false);
             inputTimer = 10;
         }
 
@@ -94,7 +99,7 @@ public class MainMenu extends Menu {
         /* Show player name */
         drawXCenteredString("Welcome Player", 200, g, msgFont);
 
-		/* Render io.inabsentia.celestialoutbreak.menu buttons */
+		/* Render io.inabsentia.celestialoutbreak.MENU_CLIP buttons */
         g.setFont(btnFont);
 
         g.setColor(fontColor);

@@ -30,7 +30,7 @@ public class FinishedLevelMenu extends Menu {
         drawInformationPanel(g);
     }
 
-    public void setLevelNames(String prevLevelName, String nextLevelName) {
+    public void updateLevelNames(String prevLevelName, String nextLevelName) {
         this.prevLevelName = prevLevelName;
         this.nextLevelName = nextLevelName;
     }
