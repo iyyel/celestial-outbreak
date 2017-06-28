@@ -96,7 +96,7 @@ public class Game extends Canvas implements Runnable {
      * Initialize above objects here. Start game loop.
      */
     public Game() {
-        fileHandler.writeLogMessage(textHandler.NEW_APP_INSTANCE);
+        fileHandler.writeLogMsg(textHandler.NEW_APP_INSTANCE);
 
         /* Set dimensions of the JFrame and Canvas */
         Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
@@ -119,7 +119,7 @@ public class Game extends Canvas implements Runnable {
         try {
             initMenuColors();
         } catch (Exception e) {
-            fileHandler.writeLogMessage(textHandler.errParsingProperties(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH, e.getMessage()));
+            fileHandler.writeLogMsg(textHandler.errParsingProperties(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH, e.getMessage()));
             stop();
         }
 
@@ -140,7 +140,7 @@ public class Game extends Canvas implements Runnable {
 
 		/* Initialize the JFrame and start the game loop */
         initFrame();
-        fileHandler.writeLogMessage(textHandler.NEW_APP_INSTANCE_SUCCESS);
+        fileHandler.writeLogMsg(textHandler.NEW_APP_INSTANCE_SUCCESS);
     }
 
     /*
@@ -171,7 +171,7 @@ public class Game extends Canvas implements Runnable {
                 double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1048576.0;
                 if (gameUtils.isVerboseEnabled()) {
                     gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | " + textHandler.performanceMsg(frames, updates, allocatedRam));
-                    fileHandler.writeLogMessage(textHandler.performanceMsg(frames, updates, allocatedRam));
+                    fileHandler.writeLogMsg(textHandler.performanceMsg(frames, updates, allocatedRam));
                 } else {
                     gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION);
                 }

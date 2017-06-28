@@ -60,7 +60,7 @@ public class DBConnector implements IDBConnector {
     public void closeDB() throws DALException {
         try {
             mongoClient.close();
-            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMessage("Successfully closed database connection.");
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg("Successfully closed database connection.");
         } catch (Exception e) {
             throw new DALException(e.getMessage(), e);
         }

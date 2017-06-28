@@ -3,6 +3,7 @@ package io.inabsentia.celestialoutbreak.level;
 import io.inabsentia.celestialoutbreak.controller.Game;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
+import org.apache.commons.lang.exception.ExceptionUtils;
 
 import java.awt.*;
 import java.util.Map;
@@ -62,9 +63,10 @@ public class LevelSettings {
             /*
              * If the level settings aren't able to be parsed correctly, any exception that will be
              * thrown will be printed to the console as well as the current log file, and then the
-             * game will be stopped, since invalid level settings has been found.
+             * game will be stopped, since invalid level settings has been found which might cause
+             * the application to be in an inconsistent state.
              */
-            fileHandler.writeLogMessage(textHandler.errParsingProperties(fileName, e.getMessage()));
+            fileHandler.writeLogMsg(textHandler.errParsingProperties(fileName, ExceptionUtils.getStackTrace(e)));
             game.stop();
         }
     }

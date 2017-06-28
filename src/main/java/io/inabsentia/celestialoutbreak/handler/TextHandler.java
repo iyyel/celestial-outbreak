@@ -140,15 +140,11 @@ public class TextHandler {
     /*
      * Level related messages.
      */
-    private final String ERR_PREFIX = "[ERROR]: ";
 
     public final String vChangedLevelMsg(String prevLevel, String newLevel) {
         return "Changed level from '" + prevLevel + "' to '" + newLevel + "'";
     }
 
-    public final String errParsingProperties(String fileName, String errMsg) {
-        return ERR_PREFIX + "Failed parsing properties from file '" + fileName + "' cause '" + errMsg + "'";
-    }
 
     public final String vLevelFinishedMsg(String levelType) {
         return "Level '" + levelType + "' finished";
@@ -221,42 +217,85 @@ public class TextHandler {
     /*
      * Random methods. Clean this up.
      */
-    public final String successCopiedFile(String srcFilePath, String destFilePath) {
+
+    /*
+     * Success messages
+     */
+
+    /* Success copying file message */
+    public final String successCopiedFileMsg(String srcFilePath, String destFilePath) {
         return "Successfully copied '" + srcFilePath + "' to '" + destFilePath + "'";
     }
 
-    public final String successReadProperties(String filePath) {
-        return "Finished reading properties from '" + filePath + "'";
-    }
-
-    public final String successReadLines(String filePath) {
-        return "Finished reading lines from '" + filePath + "'";
-    }
-
-    public final String successReadProperty(String key, String value, String fileName) {
+    /* Property/properties messages */
+    public final String successReadPropertyMsg(String key, String value, String fileName) {
         return "Successfully read property '" + key + ":" + value + "' from '" + fileName + "'";
     }
 
-    public final String successReadLine(String line, String fileName) {
+    public final String finishReadPropertiesMsg(String filePath) {
+        return "Finished reading properties from '" + filePath + "'";
+    }
+
+    /* Line/lines messages */
+    public final String successReadLineMsg(String line, String fileName) {
         return "Successfully read line '" + line + "' from '" + fileName + "'";
     }
 
-    public final String successCreatedDir(String dirPath) {
-        return "Successfully created directory '" + dirPath + "'";
+    public final String successReadLinesMsg(String filePath) {
+        return "Finished reading lines from '" + filePath + "'";
     }
 
-    public final String successCreatedFile(String filePath) {
+    /* Successfully created file message */
+    public final String successCreatedFileMsg(String filePath) {
         return "Successfully created file '" + filePath + "'";
     }
 
-    public final String errCreatedDir(String dirPath) {
-        return "Failed to create directory '" + dirPath + "'";
+    /* Successfully created directory message */
+    public final String successCreatedDirMsg(String dirPath) {
+        return "Successfully created directory '" + dirPath + "'";
+    }
+
+    /*
+     * Error messages.
+     */
+    private final String ERR_PREFIX = "[ERROR] ";
+
+    public final String errCreatingDirMsg(String dirPath) {
+        return ERR_PREFIX + "Failed to create directory '" + dirPath + "'";
+    }
+
+    public final String errCreatingDirMsg(String dirPath, String errMsg) {
+        return ERR_PREFIX + "Failed to create directory '" + dirPath + "' cause '" + errMsg + "'";
+    }
+
+    public final String errWritingToFileMsg(String filePath, String errMsg) {
+        return ERR_PREFIX + "Failed writing to '" + filePath + "' cause '" + errMsg + "'";
+    }
+
+    public final String errCopyingFileMsg(String srcFilePath, String destFilePath, String errMsg) {
+        return ERR_PREFIX + "Failed to copy '" + srcFilePath + "' to '" + destFilePath + "' cause '" + errMsg + "'";
+    }
+
+    public final String readingLinesMsg(String filePath) {
+        return "Reading lines from '" + filePath + "'...";
+    }
+
+    public final String readingPropertiesMsg(String filePath) {
+        return "Reading properties from '" + filePath + "'...";
+    }
+
+    public final String errParsingProperties(String fileName, String errMsg) {
+        return ERR_PREFIX + "Failed parsing properties from file '" + fileName + "' cause '" + errMsg + "'";
     }
 
     public final String performanceMsg(int frames, int updates, double allocatedRam) {
         DecimalFormat df = new DecimalFormat("000");
         return "UPS: " + updates + " - FPS: " + frames + " - RAM: " + df.format(allocatedRam) + "MB";
     }
+
+    /*
+     * private utility messages.
+     */
 
     private final String getDateTime() {
         return new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());

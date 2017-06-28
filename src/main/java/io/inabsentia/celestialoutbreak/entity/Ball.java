@@ -47,25 +47,25 @@ public class Ball extends MobileEntity {
         checkCollision(blockList);
 
         if (pos.x < 0) {
-            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vBallTouchedXAxisLeftMsg);
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedXAxisLeftMsg);
             velocity.x = speed;
             soundHandler.ballBounce.play(false);
         }
 
         if (pos.x > (game.getWidth() - width)) {
-            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vBallTouchedXAxisRightMsg);
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedXAxisRightMsg);
             velocity.x = -speed;
             soundHandler.ballBounce.play(false);
         }
 
         if (pos.y < 0) {
-            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vBallTouchedYAxisTopMsg);
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedYAxisTopMsg);
             velocity.y = speed;
             soundHandler.ballBounce.play(false);
         }
 
         if (pos.y > (game.getHeight() - height)) {
-            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vBallTouchedYAxisBottomMsg);
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedYAxisBottomMsg);
 
             pos = new Point((game.getWidth() / 2) - ballPosXOffset, (game.getHeight() / 2) - ballPosYOffset);
 
@@ -94,7 +94,7 @@ public class Ball extends MobileEntity {
 
                 soundHandler.ballBounce.play(false);
 
-                if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
+                if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
             }
         } else if (t.getClass().equals(BlockList.class)) {
             for (int i = 0, n = ((BlockList) t).getLength(); i < n; i++) {
@@ -104,7 +104,7 @@ public class Ball extends MobileEntity {
 
                     soundHandler.ballBounce.play(false);
 
-                    if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMessage(textHandler.vBallBlockListCollisionMsg(i));
+                    if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallBlockListCollisionMsg(i));
                 }
             }
         }

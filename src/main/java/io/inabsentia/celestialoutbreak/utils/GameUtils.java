@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class GameUtils {
 
@@ -62,11 +61,11 @@ public class GameUtils {
     private void initGameProperties() {
         Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
         this.isVerboseEnabled = Boolean.parseBoolean(map.get("VERBOSE_ENABLED"));
-        if (isVerboseEnabled) fileHandler.writeLogMessage("Verbose logging enabled");
+        if (isVerboseEnabled) fileHandler.writeLogMsg("Verbose logging enabled");
         this.isSoundEnabled = Boolean.parseBoolean(map.get("SOUND_ENABLED"));
-        if (isSoundEnabled) fileHandler.writeLogMessage("Sound enabled");
+        if (isSoundEnabled) fileHandler.writeLogMsg("Sound enabled");
         this.isGodModeEnabled = Boolean.parseBoolean(map.get("GOD_MODE_ENABLED"));
-        if (isGodModeEnabled) fileHandler.writeLogMessage("God Mode enabled. Go crazy!");
+        if (isGodModeEnabled) fileHandler.writeLogMsg("God Mode enabled. Go crazy!");
     }
 
     public boolean isVerboseEnabled() {

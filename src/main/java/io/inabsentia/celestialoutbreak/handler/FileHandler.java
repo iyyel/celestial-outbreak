@@ -1,6 +1,7 @@
 package io.inabsentia.celestialoutbreak.handler;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.exception.ExceptionUtils;
 
 import java.io.*;
 import java.util.*;
@@ -28,14 +29,14 @@ public class FileHandler {
     }
 
     private void initApp() {
-        initStandardDirs();
+        createStandardDirs();
         initConfigFiles();
     }
 
-    private void initStandardDirs() {
-        initDir(textHandler.LOG_DIR_PATH);
-        initDir(textHandler.SETTINGS_DIR_PATH);
-        initDir(textHandler.LEVEL_DIR_PATH);
+    private void createStandardDirs() {
+        createDir(textHandler.LOG_DIR_PATH);
+        createDir(textHandler.SETTINGS_DIR_PATH);
+        createDir(textHandler.LEVEL_DIR_PATH);
     }
 
     private void initConfigFiles() {
@@ -53,21 +54,21 @@ public class FileHandler {
         copyFile(textHandler.SETTINGS_CONFIG_FILE_LOCAL_PATH, textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
     }
 
-    public Map<String, String> readPropertiesFromFile(String fileName) {
+    public Map<String, String> readPropertiesFromFile(String filePath) {
         Properties p = new Properties();
         Map<String, String> map = new HashMap<>();
-        writeLogMessage("Reading properties from '" + fileName + "'...");
+        writeLogMsg(textHandler.readingPropertiesMsg(filePath));
 
-        try (InputStream is = new FileInputStream(fileName)) {
+        try (InputStream is = new FileInputStream(filePath)) {
             p.load(is);
 
             for (String key : p.stringPropertyNames()) {
                 String value = p.getProperty(key);
                 map.put(key, value);
-                writeLogMessage(textHandler.successReadProperty(key, value, fileName));
+                writeLogMsg(textHandler.successReadPropertyMsg(key, value, filePath));
             }
 
-            writeLogMessage(textHandler.successReadProperties(fileName));
+            writeLogMsg(textHandler.finishReadPropertiesMsg(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,21 +76,25 @@ public class FileHandler {
         return map;
     }
 
-    public List<String> readLinesFromFile(String fileName) {
+    public List<String> readLinesFromFile(String filePath) {
         List<String> lineList = new ArrayList<>();
-        writeLogMessage("Reading lines from '" + fileName + "'...");
+        writeLogMsg(textHandler.readingLinesMsg(filePath));
 
-        try (FileInputStream fis = new FileInputStream(new File(fileName))) {
+        try (FileInputStream fis = new FileInputStream(new File(filePath))) {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = br.readLine()) != null) {
-                /* Ignore lines containing comments marked with # */
+                /*
+                 * Ignore lines containing comments starting with #
+                 * and only add the line if the length of it is greater than zero,
+                 * to make sure that there actually is a worthy line to read.
+                 */
                 if (!line.contains("#") && line.length() > 0) {
                     lineList.add(line);
-                    writeLogMessage(textHandler.successReadLine(line, fileName));
+                    writeLogMsg(textHandler.successReadLineMsg(line, filePath));
                 }
             }
-            writeLogMessage(textHandler.successReadLines(fileName));
+            writeLogMsg(textHandler.successReadLinesMsg(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,15 +102,18 @@ public class FileHandler {
         return lineList;
     }
 
-    private void initDir(String dirPath) {
+    private void createDir(String dirPath) {
         File dir = new File(dirPath);
+
         if (!dir.exists()) {
             try {
                 boolean result = dir.mkdirs();
-                if (result) writeLogMessage(textHandler.successCreatedDir(dirPath));
-                else writeLogMessage(textHandler.errCreatedDir(dirPath));
+                if (result)
+                    writeLogMsg(textHandler.successCreatedDirMsg(dirPath));
+                else
+                    writeLogMsg(textHandler.errCreatingDirMsg(dirPath));
             } catch (SecurityException e) {
-                e.printStackTrace();
+                writeLogMsg(textHandler.errCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)));
             }
         }
     }
@@ -122,10 +130,10 @@ public class FileHandler {
              */
             if (!destFile.exists()) {
                 FileUtils.copyFile(srcFile, destFile);
-                writeLogMessage(textHandler.successCopiedFile(srcFile.getPath(), destFile.getPath()));
+                writeLogMsg(textHandler.successCopiedFileMsg(srcFile.getPath(), destFile.getPath()));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            writeLogMsg(textHandler.errCopyingFileMsg(srcFilePath, destFilePath, ExceptionUtils.getStackTrace(e)));
         }
     }
 
@@ -140,19 +148,19 @@ public class FileHandler {
                 }
             } else {
                 try (PrintWriter out = new PrintWriter(filePath)) {
-                    writeLogMessage(textHandler.successCreatedFile(filePath));
+                    writeLogMsg(textHandler.successCreatedFileMsg(filePath));
                     out.print(msg + "\r\n");
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            writeLogMsg(textHandler.errWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)));
         }
     }
 
-    public void writeLogMessage(String msg) {
+    public void writeLogMsg(String msg) {
         msg = textHandler.logMsgPrefix() + msg;
         System.out.println(msg);
-        initDir(textHandler.LOG_DIR_PATH);
+        createDir(textHandler.LOG_DIR_PATH);
         writeToFile(msg, textHandler.LOG_FILE_PATH);
     }
 
