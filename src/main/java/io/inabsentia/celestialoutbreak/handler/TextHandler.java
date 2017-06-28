@@ -65,11 +65,11 @@ public class TextHandler {
     public final String LOG_DIR_NAME = "log";
     public final String LOG_DIR_PATH = MAIN_DIR + File.separator + LOG_DIR_NAME;
 
-    public final String LOG_FILE_NAME = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_verbose-log.txt";
+    public final String LOG_FILE_NAME = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_log.txt";
     public final String LOG_FILE_PATH = LOG_DIR_PATH + File.separator + LOG_FILE_NAME;
 
     public final String logMsgPrefix() {
-        return "[VERBOSE-LOG " + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]: ";
+        return "[LOG " + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]: ";
     }
 
     /*

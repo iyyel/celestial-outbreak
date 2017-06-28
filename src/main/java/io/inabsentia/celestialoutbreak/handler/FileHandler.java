@@ -67,7 +67,6 @@ public class FileHandler {
                 writeLogMessage(textHandler.successReadProperty(key, value, fileName));
             }
 
-            is.close();
             writeLogMessage(textHandler.successReadProperties(fileName));
         } catch (IOException e) {
             e.printStackTrace();
@@ -132,25 +131,21 @@ public class FileHandler {
 
     public void writeToFile(String msg, String filePath) {
         File file = new File(filePath);
-        if (file.exists() && !file.isDirectory()) {
-            try (PrintWriter out = new PrintWriter(new FileOutputStream(file, true))) {
-                out.append(msg + "\r\n");
-                out.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        } else if (!file.exists() && !file.isDirectory()) {
-            try (PrintWriter out = new PrintWriter(filePath)) {
-                out.print(msg + "\r\n");
+        if (file.isDirectory()) return;
 
-                String fileMessage = textHandler.logMsgPrefix() + textHandler.successCreatedFile(filePath) + "\r\n";
-                // Find a way for this to print to the log file, only if its trying to create a log file.. errhh.
-                System.out.print(fileMessage);
-
-                out.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+        try {
+            if (file.exists()) {
+                try (PrintWriter out = new PrintWriter(new FileOutputStream(file, true))) {
+                    out.append(msg + "\r\n");
+                }
+            } else {
+                try (PrintWriter out = new PrintWriter(filePath)) {
+                    writeLogMessage(textHandler.successCreatedFile(filePath));
+                    out.print(msg + "\r\n");
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

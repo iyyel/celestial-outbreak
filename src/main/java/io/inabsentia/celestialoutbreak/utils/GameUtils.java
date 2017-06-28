@@ -62,8 +62,11 @@ public class GameUtils {
     private void initGameProperties() {
         Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
         this.isVerboseEnabled = Boolean.parseBoolean(map.get("VERBOSE_ENABLED"));
+        if (isVerboseEnabled) fileHandler.writeLogMessage("Verbose logging enabled");
         this.isSoundEnabled = Boolean.parseBoolean(map.get("SOUND_ENABLED"));
+        if (isSoundEnabled) fileHandler.writeLogMessage("Sound enabled");
         this.isGodModeEnabled = Boolean.parseBoolean(map.get("GOD_MODE_ENABLED"));
+        if (isGodModeEnabled) fileHandler.writeLogMessage("God Mode enabled. Go crazy!");
     }
 
     public boolean isVerboseEnabled() {
