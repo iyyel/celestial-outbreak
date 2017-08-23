@@ -14,7 +14,7 @@ public abstract class Menu {
     protected final TextHandler textHandler = TextHandler.getInstance();
     protected final InputHandler inputHandler;
 
-    protected Font titleFont, msgFont, infoPanelFont;
+    protected Font titleFont, submenuTitleFont, msgFont, infoPanelFont;
     protected final Rectangle versionRect, emailRect;
     protected final Color fontColor;
 
@@ -24,7 +24,8 @@ public abstract class Menu {
         this.fontColor = fontColor;
 
         titleFont = gameUtils.getGameFont().deriveFont(52F);
-        msgFont = gameUtils.getGameFont().deriveFont(32F);
+        submenuTitleFont = gameUtils.getGameFont().deriveFont(32F);
+        msgFont = gameUtils.getGameFont().deriveFont(28F);
         infoPanelFont = gameUtils.getGameFont().deriveFont(10F);
 
         /* Information rectangles */
@@ -43,8 +44,8 @@ public abstract class Menu {
         g.drawString(msg, x, y);
     }
 
-    public void drawSubmenuTitle(String msg, Graphics2D g, Font font) {
-        drawXCenteredString(msg, game.getHeight() / 2 - 170, g, font);
+    public void drawSubmenuTitle(String msg, Graphics2D g) {
+        drawXCenteredString(msg, game.getHeight() / 2 - 170, g, submenuTitleFont);
     }
 
     public void drawInformationPanel(Graphics2D g) {

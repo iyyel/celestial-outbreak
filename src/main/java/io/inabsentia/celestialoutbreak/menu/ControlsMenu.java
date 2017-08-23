@@ -23,12 +23,25 @@ public class ControlsMenu extends Menu {
         drawMenuTitle(g);
         g.setFont(msgFont);
 
-       // drawXCenteredString("Controls", game.getHeight() / 2 - 170, g, msgFont);
-        drawSubmenuTitle("Controls", g, msgFont);
-        g.drawString("Movement & Navigation:      WASD/Arrow keys", 200, game.getHeight() / 2 - 100);
-        g.drawString("OK:                                     z", 250, game.getHeight() / 2 - 50);
-        g.drawString("Cancel:                                x", 250, game.getHeight() / 2);
-        g.drawString("Select & Use:                       space", 250, game.getHeight() / 2 + 50);
+        int textXPos = 135;
+        int textXPosOffset = 130;
+        int textYPos = -50;
+        int textYPosInc = 70;
+
+        drawSubmenuTitle("Controls", g);
+
+        g.setFont(msgFont);
+        g.drawString("Movement & Navigation:", textXPos, game.getHeight() / 2 + textYPos);
+        g.drawString("WASD/Arrow keys", game.getWidth() / 2 + textXPosOffset, game.getHeight() / 2 + textYPos);
+
+        g.drawString("Confirm/OK:", textXPos, game.getHeight() / 2 + (textYPos + textYPosInc));
+        g.drawString("z", game.getWidth() / 2 + textXPosOffset, game.getHeight() / 2 + (textYPos + textYPosInc));
+
+        g.drawString("Cancel/Back:", textXPos, game.getHeight() / 2 + (textYPos + textYPosInc * 2));
+        g.drawString("x", game.getWidth() / 2 + textXPosOffset, game.getHeight() / 2 + (textYPos + textYPosInc * 2));
+
+        g.drawString("Select & Use:", textXPos, game.getHeight() / 2 + (textYPos + textYPosInc * 3));
+        g.drawString("Space", game.getWidth() / 2 + textXPosOffset, game.getHeight() / 2 + (textYPos + textYPosInc * 3));
 
         drawInformationPanel(g);
     }

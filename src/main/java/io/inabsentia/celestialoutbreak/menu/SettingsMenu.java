@@ -21,16 +21,22 @@ public class SettingsMenu extends Menu {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         drawMenuTitle(g);
+
+        drawSubmenuTitle("Settings", g);
+
         g.setFont(msgFont);
+        g.drawString("All of the configuration related files can be found in the", 80, 260);
+        g.drawString("following directory '" + textHandler.MAIN_DIR + "'", 80, 305);
 
-        drawSubmenuTitle("Settings", g, msgFont);
+        g.drawString("General settings can be found in the settings.config file,", 80, 375);
+        g.drawString("in the settings directory.", 80, 410);
 
-       // drawXCenteredString(textHandler.menuSettingsMsg01, 200, g, msgFont);
-        //drawXCenteredString(textHandler.menuSettingsMsg02, 250, g, msgFont);
-        //drawXCenteredString(textHandler.menuSettingsMsg03, 350, g, msgFont);
-        drawXCenteredString(textHandler.menuSettingsMsg04, 400, g, msgFont);
-        drawXCenteredString(textHandler.menuSettingsMsg05, 450, g, msgFont);
-        drawXCenteredString(textHandler.menuSettingsMsg06, 500, g, msgFont);
+        g.drawString("Level specific settings can be found in the various level files", 80, 480);
+        g.drawString("in the levels directory, e.g. mars_level.config.", 80, 515);
+
+        g.drawString("Levels are played in order from the levels.config file.", 80, 585);
+        g.drawString("If creating custom levels, make sure to add them to this file.", 80, 620);
+
         drawInformationPanel(g);
     }
 

@@ -21,11 +21,13 @@ public class ScoresMenu extends Menu {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         drawMenuTitle(g);
+
+        drawSubmenuTitle("Scores", g);
+
         g.setFont(msgFont);
 
-        drawSubmenuTitle("Scores", g, msgFont);
 
-        drawXCenteredString("Not yet implemented :(", game.getHeight() / 2, g, msgFont);
+
         drawInformationPanel(g);
     }
 

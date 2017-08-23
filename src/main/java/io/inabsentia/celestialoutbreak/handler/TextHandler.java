@@ -202,7 +202,6 @@ public class TextHandler {
     public final String menuSettingsMsg05 = LEVEL_CONFIG_FILE_NAME + ", which contains all the level file names.";
     public final String menuSettingsMsg06 = "The levels will be encountered starting from top to bottom in this file.";
 
-
     /* ABOUT message */
 
 
