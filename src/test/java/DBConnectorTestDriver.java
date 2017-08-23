@@ -21,7 +21,12 @@ public class DBConnectorTestDriver {
 
         IScoreBoardDAO sbDAO = new ScoreBoardDAO(dbConnector);
 
+
         try {
+            // Only use these 3 statements if you need to create the initial data.
+            //sbDAO.createScoreBoard(sbDTO0);
+            //sbDAO.createScoreBoard(sbDTO1);
+            //sbDAO.createScoreBoard(sbDTO2);
 
             List<Document> docList = dbConnector.getDocumentList();
             for (Document doc : docList) System.out.println(doc);

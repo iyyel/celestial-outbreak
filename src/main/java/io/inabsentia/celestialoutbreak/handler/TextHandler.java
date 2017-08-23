@@ -38,11 +38,12 @@ public class TextHandler {
     /*
      * Menu button names.
      */
-    public final String playBtn = "PLAY";
-    public final String scoreBtn = "SCORES";
-    public final String settingsBtn = "SETTINGS";
-    public final String aboutBtn = "ABOUT";
-    public final String exitBtn = "EXIT";
+    public final String BTN_PLAY_TEXT = "PLAY";
+    public final String BTN_SCORES_TEXT = "SCORES";
+    public final String BTN_SETTINGS_TEXT = "SETTINGS";
+    public final String BTN_CONTROLS_TEXT = "CONTROLS";
+    public final String BTN_ABOUT_TEXT = "ABOUT";
+    public final String BTN_EXIT_TEXT = "EXIT";
 
     public final String pauseMsg = "Paused";
 

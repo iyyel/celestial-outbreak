@@ -79,6 +79,7 @@ public class Game extends Canvas implements Runnable {
     private final PauseMenu pauseMenu;
     private final ScoresMenu scoresMenu;
     private final SettingsMenu settingsMenu;
+    private final ControlsMenu controlMenu;
     private final AboutMenu aboutMenu;
     private final ExitMenu exitMenu;
     private final NewLevelMenu newLevelMenu;
@@ -128,6 +129,7 @@ public class Game extends Canvas implements Runnable {
         pauseMenu = new PauseMenu(this, inputHandler, menuFontColor);
         scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
         settingsMenu = new SettingsMenu(this, inputHandler, menuFontColor);
+        controlMenu = new ControlsMenu(this, inputHandler, menuFontColor);
         aboutMenu = new AboutMenu(this, inputHandler, menuFontColor);
         exitMenu = new ExitMenu(this, inputHandler, menuFontColor);
         newLevelMenu = new NewLevelMenu(this, inputHandler, menuFontColor);
@@ -202,6 +204,9 @@ public class Game extends Canvas implements Runnable {
             case SCORES:
                 scoresMenu.update();
                 break;
+            case CONTROLS:
+                controlMenu.update();
+                break;
             case SETTINGS:
                 settingsMenu.update();
                 break;
@@ -250,6 +255,7 @@ public class Game extends Canvas implements Runnable {
                 screenRenderer.render(menuColor);
                 break;
             case SCORES:
+            case CONTROLS:
             case SETTINGS:
             case ABOUT:
             case EXIT:
@@ -287,6 +293,9 @@ public class Game extends Canvas implements Runnable {
                 break;
             case SCORES:
                 scoresMenu.render(g);
+                break;
+            case CONTROLS:
+                controlMenu.render(g);
                 break;
             case SETTINGS:
                 settingsMenu.render(g);
