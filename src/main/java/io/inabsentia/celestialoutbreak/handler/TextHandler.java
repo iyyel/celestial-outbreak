@@ -192,6 +192,7 @@ public class TextHandler {
 
     /* SCORES message */
 
+    /* Controls message */
 
     /* SETTINGS message */
     public final String menuSettingsMsg01 = "All configurable settings can be found in the following directory";

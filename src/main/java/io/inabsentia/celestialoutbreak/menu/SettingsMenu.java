@@ -21,9 +21,13 @@ public class SettingsMenu extends Menu {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         drawMenuTitle(g);
-        drawXCenteredString(textHandler.menuSettingsMsg01, 200, g, msgFont);
-        drawXCenteredString(textHandler.menuSettingsMsg02, 250, g, msgFont);
-        drawXCenteredString(textHandler.menuSettingsMsg03, 350, g, msgFont);
+        g.setFont(msgFont);
+
+        drawSubmenuTitle("Settings", g, msgFont);
+
+       // drawXCenteredString(textHandler.menuSettingsMsg01, 200, g, msgFont);
+        //drawXCenteredString(textHandler.menuSettingsMsg02, 250, g, msgFont);
+        //drawXCenteredString(textHandler.menuSettingsMsg03, 350, g, msgFont);
         drawXCenteredString(textHandler.menuSettingsMsg04, 400, g, msgFont);
         drawXCenteredString(textHandler.menuSettingsMsg05, 450, g, msgFont);
         drawXCenteredString(textHandler.menuSettingsMsg06, 500, g, msgFont);

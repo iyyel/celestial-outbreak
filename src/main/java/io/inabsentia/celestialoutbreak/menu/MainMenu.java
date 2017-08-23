@@ -104,7 +104,7 @@ public class MainMenu extends Menu {
         drawMenuTitle(g);
 
         /* Show player name */
-        drawXCenteredString("Welcome Player", 190, g, msgFont);
+        drawSubmenuTitle("Welcome Player", g, msgFont);
 
 		/* Render io.inabsentia.celestialoutbreak.MENU_CLIP buttons */
         g.setFont(btnFont);

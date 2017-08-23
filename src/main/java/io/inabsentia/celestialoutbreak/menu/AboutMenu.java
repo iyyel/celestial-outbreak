@@ -23,7 +23,7 @@ public class AboutMenu extends Menu {
         drawMenuTitle(g);
         g.setFont(msgFont);
 
-        drawXCenteredString("About..", game.getHeight() / 2 - 150, g, msgFont);
+        drawSubmenuTitle("About", g, msgFont);
 
         drawInformationPanel(g);
     }

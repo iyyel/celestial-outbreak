@@ -43,6 +43,10 @@ public abstract class Menu {
         g.drawString(msg, x, y);
     }
 
+    public void drawSubmenuTitle(String msg, Graphics2D g, Font font) {
+        drawXCenteredString(msg, game.getHeight() / 2 - 170, g, font);
+    }
+
     public void drawInformationPanel(Graphics2D g) {
         g.setColor(fontColor);
         g.setFont(infoPanelFont);

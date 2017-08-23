@@ -23,7 +23,8 @@ public class ControlsMenu extends Menu {
         drawMenuTitle(g);
         g.setFont(msgFont);
 
-        drawXCenteredString("Controls", game.getHeight() / 2 - 150, g, msgFont);
+       // drawXCenteredString("Controls", game.getHeight() / 2 - 170, g, msgFont);
+        drawSubmenuTitle("Controls", g, msgFont);
         g.drawString("Movement & Navigation:      WASD/Arrow keys", 200, game.getHeight() / 2 - 100);
         g.drawString("OK:                                     z", 250, game.getHeight() / 2 - 50);
         g.drawString("Cancel:                                x", 250, game.getHeight() / 2);
