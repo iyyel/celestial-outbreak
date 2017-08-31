@@ -8,15 +8,12 @@ import java.awt.*;
 public class GamePanel extends Menu {
 
     private final Font panelFont;
-    private final Rectangle gamePanelRect;
 
     private String levelName;
     private int blockAmountLeft;
 
     public GamePanel(Game game, InputHandler inputHandler, Color fontColor) {
         super(game, inputHandler, fontColor);
-
-        gamePanelRect = new Rectangle(2, game.getHeight() - 20, game.getWidth() - 5, 17);
 
         panelFont = gameUtils.getGameFont().deriveFont(12F);
     }
@@ -30,7 +27,6 @@ public class GamePanel extends Menu {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         g.setFont(panelFont);
-        g.draw(gamePanelRect);
         drawGamePanel(g, levelName, blockAmountLeft);
     }
 
