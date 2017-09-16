@@ -15,7 +15,7 @@ public abstract class Menu {
     protected final InputHandler inputHandler;
 
     protected Font titleFont, submenuTitleFont, msgFont, infoPanelFont;
-    protected final Rectangle versionRect, emailRect;
+    protected final Rectangle versionRect, siteRect;
     protected final Color fontColor;
 
     public Menu(Game game, InputHandler inputHandler, Color fontColor) {
@@ -30,7 +30,7 @@ public abstract class Menu {
 
         /* Information rectangles */
         versionRect = new Rectangle(game.getWidth() / 2 + 28, game.getHeight() - 20, 50, 15);
-        emailRect = new Rectangle(game.getWidth() / 2 - 72, game.getHeight() - 20, 96, 15);
+        siteRect = new Rectangle(game.getWidth() / 2 - 72, game.getHeight() - 20, 96, 15);
     }
 
     public abstract void update();
@@ -53,18 +53,18 @@ public abstract class Menu {
         g.setFont(infoPanelFont);
 
         /* Render version number */
-        g.drawString(textHandler.VERSION, versionRect.x + 4, versionRect.y + 11);
+        g.drawString(textHandler.GAME_VERSION, versionRect.x + 4, versionRect.y + 11);
         g.draw(versionRect);
 
         /* Render email tag */
-        g.drawString(textHandler.EMAIL, emailRect.x + 5, emailRect.y + 11);
-        g.draw(emailRect);
+        g.drawString(textHandler.AUTHOR_SITE, siteRect.x + 5, siteRect.y + 11);
+        g.draw(siteRect);
     }
 
     public void drawMenuTitle(Graphics2D g) {
         g.setColor(fontColor);
         g.setFont(titleFont);
-        drawXCenteredString(textHandler.TITLE, 100, g, titleFont);
+        drawXCenteredString(textHandler.GAME_TITLE, 100, g, titleFont);
     }
 
 }

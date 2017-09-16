@@ -22,7 +22,7 @@ public class PauseMenu extends Menu {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         drawMenuTitle(g);
-        drawXCenteredString(textHandler.pauseMsg, game.getHeight() / 2, g, msgFont);
+        drawXCenteredString(textHandler.MSG_PAUSED, game.getHeight() / 2, g, msgFont);
         drawInformationPanel(g);
     }
 

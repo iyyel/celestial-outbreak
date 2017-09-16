@@ -27,7 +27,7 @@ public class NewLevelMenu extends Menu {
     @Override
     public void render(Graphics2D g) {
         g.setColor(fontColor);
-        drawXCenteredString(textHandler.TITLE, 100, g, titleFont);
+        drawXCenteredString(textHandler.GAME_TITLE, 100, g, titleFont);
         if (activeLevelDesc != null) drawXCenteredString(activeLevelDesc, game.getHeight() / 2, g, msgFont);
         drawInformationPanel(g);
     }

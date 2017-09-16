@@ -1,5 +1,5 @@
-import io.inabsentia.celestialoutbreak.data.DBConnector;
-import io.inabsentia.celestialoutbreak.data.IDBConnector.DALException;
+import io.inabsentia.celestialoutbreak.data.Connector;
+import io.inabsentia.celestialoutbreak.data.IConnector.DALException;
 import io.inabsentia.celestialoutbreak.data.dao.IScoreBoardDAO;
 import io.inabsentia.celestialoutbreak.data.dao.ScoreBoardDAO;
 import io.inabsentia.celestialoutbreak.data.dto.ScoreBoardDTO;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DBConnectorTestDriver {
 
-    private final static DBConnector dbConnector = DBConnector.getInstance();
+    private final static Connector dbConnector = Connector.getInstance();
 
     public static void main(String[] args) {
 

@@ -4,8 +4,8 @@ import org.bson.Document;
 
 import java.util.List;
 
-public interface IDBConnector {
-    void closeDB() throws DALException;
+public interface IConnector {
+    void close() throws DALException;
     Document getDocument(int docId) throws DALException;
     List<Document> getDocumentList() throws DALException;
     void createDocument(Document doc) throws DALException;

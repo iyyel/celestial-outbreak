@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class DBConnector implements IDBConnector {
+public class Connector implements IConnector {
 
-    private static DBConnector instance;
+    private static Connector instance;
 
     private final GameUtils gameUtils = GameUtils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
@@ -29,7 +29,7 @@ public class DBConnector implements IDBConnector {
 
     private String dbUrl, dbName, dbCollection;
 
-    private DBConnector() {
+    private Connector() {
         initDatabaseProperties();
         mongoClient = new MongoClient(new MongoClientURI(dbUrl));
         mongoDatabase = mongoClient.getDatabase(dbName);
@@ -38,13 +38,13 @@ public class DBConnector implements IDBConnector {
 
     static {
         try {
-            instance = new DBConnector();
+            instance = new Connector();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static synchronized DBConnector getInstance() {
+    public static synchronized Connector getInstance() {
         return instance;
     }
 
@@ -57,7 +57,7 @@ public class DBConnector implements IDBConnector {
     }
 
     @Override
-    public void closeDB() throws DALException {
+    public void close() throws DALException {
         try {
             mongoClient.close();
             if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg("Successfully closed database connection.");

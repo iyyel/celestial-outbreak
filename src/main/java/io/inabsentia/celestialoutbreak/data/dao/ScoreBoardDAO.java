@@ -1,7 +1,7 @@
 package io.inabsentia.celestialoutbreak.data.dao;
 
-import io.inabsentia.celestialoutbreak.data.IDBConnector;
-import io.inabsentia.celestialoutbreak.data.IDBConnector.DALException;
+import io.inabsentia.celestialoutbreak.data.IConnector;
+import io.inabsentia.celestialoutbreak.data.IConnector.DALException;
 import io.inabsentia.celestialoutbreak.data.dto.ScoreBoardDTO;
 import org.bson.Document;
 
@@ -10,9 +10,9 @@ import java.util.List;
 
 public class ScoreBoardDAO implements IScoreBoardDAO {
 
-    private final IDBConnector dbConnector;
+    private final IConnector dbConnector;
 
-    public ScoreBoardDAO(IDBConnector dbConnector) {
+    public ScoreBoardDAO(IConnector dbConnector) {
         this.dbConnector = dbConnector;
     }
 

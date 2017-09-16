@@ -1,6 +1,6 @@
 package io.inabsentia.celestialoutbreak.data.dao;
 
-import io.inabsentia.celestialoutbreak.data.IDBConnector.DALException;
+import io.inabsentia.celestialoutbreak.data.IConnector.DALException;
 import io.inabsentia.celestialoutbreak.data.dto.ScoreBoardDTO;
 
 import java.util.List;

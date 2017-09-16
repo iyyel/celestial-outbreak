@@ -172,10 +172,10 @@ public class Game extends Canvas implements Runnable {
                 /* Is this correctly calculated? */
                 double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                 if (gameUtils.isVerboseEnabled()) {
-                    gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION + " | " + textHandler.performanceMsg(frames, updates, allocatedRam));
+                    gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION + " | " + textHandler.performanceMsg(frames, updates, allocatedRam));
                     fileHandler.writeLogMsg(textHandler.performanceMsg(frames, updates, allocatedRam));
                 } else {
-                    gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION);
+                    gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION);
                 }
                 updates = 0;
                 frames = 0;
@@ -347,7 +347,7 @@ public class Game extends Canvas implements Runnable {
      * Initialize settings for the JFrame.
      */
     private void initFrame() {
-        gameFrame.setTitle(textHandler.TITLE + " " + textHandler.VERSION);
+        gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION);
         gameFrame.setResizable(false);
         gameFrame.setLocationRelativeTo(null);
         gameFrame.add(this);

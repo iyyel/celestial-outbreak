@@ -31,9 +31,9 @@ public class TextHandler {
     /*
      * Important game strings.
      */
-    public final String TITLE = "Celestial Outbreak";
-    public final String VERSION = "v0.12a";
-    public final String EMAIL = "inabsentia.io";
+    public final String GAME_TITLE = "Celestial Outbreak";
+    public final String GAME_VERSION = "v0.12a";
+    public final String AUTHOR_SITE = "inabsentia.io";
 
     /*
      * Menu button names.
@@ -45,15 +45,14 @@ public class TextHandler {
     public final String BTN_ABOUT_TEXT = "ABOUT";
     public final String BTN_EXIT_TEXT = "EXIT";
 
-    public final String pauseMsg = "Paused";
 
-    public final String NEW_APP_INSTANCE = "New " + TITLE + " " + VERSION + " instance started at " + getDateTime() + " on " + System.getProperty("os.name");
-    public final String NEW_APP_INSTANCE_SUCCESS = "Finished " + TITLE + " " + VERSION + " initialization at " + getDateTime() + " on " + System.getProperty("os.name");
+    public final String NEW_APP_INSTANCE = "New " + GAME_TITLE + " " + GAME_VERSION + " instance started at " + getDateTime() + " on " + System.getProperty("os.name");
+    public final String NEW_APP_INSTANCE_SUCCESS = "Finished " + GAME_TITLE + " " + GAME_VERSION + " initialization at " + getDateTime() + " on " + System.getProperty("os.name");
 
     /*
      * Main directory.
      */
-    public final String MAIN_DIR = System.getProperty("user.home") + File.separator + TITLE.toLowerCase().replaceAll("\\s+", "");
+    public final String MAIN_DIR = System.getProperty("user.home") + File.separator + GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
 
     /*
      * Configuration files.
@@ -210,6 +209,7 @@ public class TextHandler {
 
     /* PAUSE message */
 
+    public final String MSG_PAUSED = "Paused";
 
     /* NEW_LEVEL message */
 
