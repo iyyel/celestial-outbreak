@@ -1,6 +1,8 @@
 package io.inabsentia.celestialoutbreak.data.dto;
 
-public class ScoreBoardDTO {
+import java.io.Serializable;
+
+public class ScoreBoardDTO implements Serializable {
 
     private int sbId;
     private int sbLevelScore;

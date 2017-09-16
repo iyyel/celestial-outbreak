@@ -7,7 +7,7 @@ import org.bson.Document;
 
 import java.util.List;
 
-public class DBConnectorTestDriver {
+public class ConnectorTestDriver {
 
     private final static Connector dbConnector = Connector.getInstance();
 
@@ -21,12 +21,12 @@ public class DBConnectorTestDriver {
 
         IScoreBoardDAO sbDAO = new ScoreBoardDAO(dbConnector);
 
-
         try {
             // Only use these 3 statements if you need to create the initial data.
-            //sbDAO.createScoreBoard(sbDTO0);
+            sbDAO.createScoreBoard(sbDTO0);
             //sbDAO.createScoreBoard(sbDTO1);
             //sbDAO.createScoreBoard(sbDTO2);
+
 
             List<Document> docList = dbConnector.getDocumentList();
             for (Document doc : docList) System.out.println(doc);
@@ -45,6 +45,7 @@ public class DBConnectorTestDriver {
             List<ScoreBoardDTO> scoreBoardList = sbDAO.getScoreBoardList();
 
             for (ScoreBoardDTO sbDTO : scoreBoardList) System.out.println(sbDTO);
+
 
         } catch (DALException e) {
             e.printStackTrace();

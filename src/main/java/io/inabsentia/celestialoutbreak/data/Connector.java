@@ -2,7 +2,8 @@ package io.inabsentia.celestialoutbreak.data;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -24,16 +25,18 @@ public class Connector implements IConnector {
     private final FileHandler fileHandler = FileHandler.getInstance();
 
     private final MongoClient mongoClient;
-    private final MongoDatabase mongoDatabase;
+    private final MongoDatabase mongoDb;
     private final MongoCollection collection;
 
     private String dbUrl, dbName, dbCollection;
+    private int dbPort;
 
     private Connector() {
-        initDatabaseProperties();
-        mongoClient = new MongoClient(new MongoClientURI(dbUrl));
-        mongoDatabase = mongoClient.getDatabase(dbName);
-        collection = mongoDatabase.getCollection(dbCollection);
+        initDbProperties();
+        ServerAddress serverAddress = new ServerAddress(dbUrl, dbPort);
+        mongoClient = new MongoClient(serverAddress, getAuthList());
+        mongoDb = mongoClient.getDatabase(dbName);
+        collection = mongoDb.getCollection(dbCollection);
     }
 
     static {
@@ -48,12 +51,21 @@ public class Connector implements IConnector {
         return instance;
     }
 
-    private void initDatabaseProperties() {
+    private void initDbProperties() {
         String dbConfigFilePath = FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.DATABASE_CONFIG_FILE_NAME).getPath();
         Map<String, String> map = fileHandler.readPropertiesFromFile(dbConfigFilePath);
-        this.dbUrl = map.get("DATABASE_URL");
-        this.dbName = map.get("DATABASE_NAME");
-        this.dbCollection = map.get("DATABASE_COLLECTION");
+        this.dbUrl = map.get("DB_URL");
+        this.dbPort = Integer.parseInt(map.get("DB_PORT"));
+        this.dbName = map.get("DB_NAME");
+        this.dbCollection = map.get("DB_COLLECTION");
+    }
+
+    private List<MongoCredential> getAuthList() {
+        List<MongoCredential> dbAuths = new ArrayList<>();
+        MongoCredential adminAuth = MongoCredential.createPlainCredential("admin", "admin", "testpass".toCharArray());
+        //MongoCredential coAuth = MongoCredential.createPlainCredential("co-admin", "co-gamedb", "testpass".toCharArray());
+        dbAuths.add(adminAuth);
+        return dbAuths;
     }
 
     @Override
@@ -71,7 +83,8 @@ public class Connector implements IConnector {
         BasicDBObject query = new BasicDBObject("_id", docId);
         MongoCursor<Document> cursor = collection.find(query).iterator();
 
-        if (!cursor.hasNext()) throw new DALException("No document with [" + docId + "] exist in collection [" + collection.getNamespace().getFullName() + "]");
+        if (!cursor.hasNext())
+            throw new DALException("No document with [" + docId + "] exist in collection [" + collection.getNamespace().getFullName() + "]");
 
         return cursor.next();
     }
@@ -81,7 +94,8 @@ public class Connector implements IConnector {
         List<Document> docList = new ArrayList<>();
         MongoCursor<Document> cursor = collection.find().iterator();
 
-        if (!cursor.hasNext()) throw new DALException("No entries in collection [" + collection.getNamespace().getFullName() + "]");
+        if (!cursor.hasNext())
+            throw new DALException("No entries in collection [" + collection.getNamespace().getFullName() + "]");
 
         while (cursor.hasNext()) docList.add(cursor.next());
 
