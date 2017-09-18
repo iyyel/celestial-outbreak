@@ -24,18 +24,26 @@ public class SettingsMenu extends Menu {
 
         drawSubmenuTitle("Settings", g);
 
+        String msg = textHandler.menuSettingsMsg01 +
+                textHandler.menuSettingsMsg02 + textHandler.menuSettingsMsg03 + textHandler.menuSettingsMsg04 + textHandler.menuSettingsMsg05 + textHandler.menuSettingsMsg06 + textHandler.menuSettingsMsg07 + textHandler.menuSettingsMsg08 + textHandler.menuSettingsMsg09;
+
+
         g.setFont(msgFont);
-        g.drawString("All of the configuration related files can be found in the", 80, 260);
-        g.drawString("following directory '" + textHandler.MAIN_DIR + "'", 80, 305);
+        /*
+        g.drawString(textHandler.menuSettingsMsg01, 80, 260);
+        g.drawString(textHandler.menuSettingsMsg02, 80, 295);
 
-        g.drawString("General settings can be found in the settings.config file,", 80, 375);
-        g.drawString("in the settings directory.", 80, 410);
+        g.drawString(textHandler.menuSettingsMsg03, 80, 365);
+        g.drawString(textHandler.menuSettingsMsg04, 80, 400);
 
-        g.drawString("Level specific settings can be found in the various level files", 80, 480);
-        g.drawString("in the levels directory, e.g. mars_level.config.", 80, 515);
+        g.drawString(textHandler.menuSettingsMsg05, 80, 470);
+        g.drawString(textHandler.menuSettingsMsg06, 80, 505);
 
-        g.drawString("Levels are played in order from the levels.config file.", 80, 585);
-        g.drawString("If creating custom levels, make sure to add them to this file.", 80, 620);
+        g.drawString(textHandler.menuSettingsMsg07, 80, 575);
+        g.drawString(textHandler.menuSettingsMsg08, 80, 610);
+        g.drawString(textHandler.menuSettingsMsg09, 80, 645);
+        */
+        drawMenuMessage(msg, g, 80, 260, 35, 70);
 
         drawInformationPanel(g);
     }

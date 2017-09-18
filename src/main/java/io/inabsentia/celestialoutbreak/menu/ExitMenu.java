@@ -22,7 +22,8 @@ public class ExitMenu extends Menu {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         drawMenuTitle(g);
-        drawXCenteredString("Exit?", game.getHeight() / 2, g, msgFont);
+        drawSubmenuTitle("Exit", g);
+        drawXCenteredString("Do you wish to exit the game?", game.getHeight() / 2, g, msgFont);
         drawInformationPanel(g);
     }
 

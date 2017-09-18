@@ -34,7 +34,10 @@ public class BlockList {
         /* Disable antialiasing for blocks for performance concerns. */
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
+
+        /* Render the blocks if they exist, i.e. if they aren't equal to null. */
         for (Block block : blockList) if (block != null) block.render(g);
+
         /* Enables antialiasing when blocks have rendered. */
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -53,17 +56,17 @@ public class BlockList {
         }
     }
 
+    public void destroyBlock(int index) {
+        blockList[index] = null;
+        blocksLeft--;
+    }
+
     public int getBlocksLeft() {
         return blocksLeft;
     }
 
     public int getLength() {
         return blockList.length;
-    }
-
-    public void destroyBlock(int index) {
-        blockList[index] = null;
-        blocksLeft--;
     }
 
     public Block getBlock(int index) {

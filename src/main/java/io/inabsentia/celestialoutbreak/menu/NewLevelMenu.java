@@ -3,12 +3,13 @@ package io.inabsentia.celestialoutbreak.menu;
 import io.inabsentia.celestialoutbreak.controller.Game;
 import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
+import io.inabsentia.celestialoutbreak.level.Level;
 
 import java.awt.*;
 
 public class NewLevelMenu extends Menu {
 
-    private String activeLevelDesc;
+    private Level activeLevel;
 
     public NewLevelMenu(Game game, InputHandler inputHandler, Color fontColor) {
         super(game, inputHandler, fontColor);
@@ -20,15 +21,26 @@ public class NewLevelMenu extends Menu {
         if (inputHandler.isCancelPressed()) game.switchState(State.MENU);
     }
 
-    public void updateActiveLevelDesc(String activeLevelDesc) {
-        this.activeLevelDesc = activeLevelDesc;
+    public void updateActiveLevel(Level activeLevel) {
+        this.activeLevel = activeLevel;
     }
 
     @Override
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         drawXCenteredString(textHandler.GAME_TITLE, 100, g, titleFont);
-        if (activeLevelDesc != null) drawXCenteredString(activeLevelDesc, game.getHeight() / 2, g, msgFont);
+
+        /*
+         * A small amount of time is needed
+         * for the update function to catch up,
+         * so it's needed to check whether the
+         * active level is null or not.
+         */
+        if (activeLevel != null) {
+            drawSubmenuTitle(activeLevel.getName(), g);
+            drawXCenteredString(activeLevel.getDesc(), game.getHeight() / 2, g, msgFont);
+        }
+
         drawInformationPanel(g);
     }
 

@@ -16,16 +16,14 @@ public class Ball extends MobileEntity {
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
 
-    private final Random random = new Random();
-
-    private Point velocity;
-
     private int paddleCollisionTimer = 0;
     private int paddleCollisionTimerValue = 20;
     private int ballStaleTimerValue = 40;
     private int ballStaleTimer = ballStaleTimerValue;
+    private int ballPosXOffset, ballPosYOffset;
 
-    private int ballPosXOffset;private int ballPosYOffset;
+    private final Random random = new Random();
+    private Point velocity;
 
     public Ball(Point pos, int ballPosXOffset, int ballPosYOffset, int width, int height, int speed, Color color, Game game) {
         super(pos, width, height, speed, color, game);

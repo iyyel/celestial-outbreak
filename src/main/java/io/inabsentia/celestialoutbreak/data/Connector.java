@@ -52,7 +52,7 @@ public class Connector implements IConnector {
     }
 
     private void initDbProperties() {
-        String dbConfigFilePath = FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.DATABASE_CONFIG_FILE_NAME).getPath();
+        String dbConfigFilePath = FileHandler.class.getResource(textHandler.JAR_CONFIG_DIR + textHandler.DB_CONFIG_FILE_NAME).getPath();
         Map<String, String> map = fileHandler.readPropertiesFromFile(dbConfigFilePath);
         this.dbUrl = map.get("DB_URL");
         this.dbPort = Integer.parseInt(map.get("DB_PORT"));

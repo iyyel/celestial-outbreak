@@ -40,9 +40,9 @@ public class Level {
     /*
      * Level settings.
      */
-    private String levelName;
-    private String levelDesc;
-    private Color levelColor;
+    private String name;
+    private String desc;
+    private Color color;
 
     /*
      * Paddle settings.
@@ -80,7 +80,7 @@ public class Level {
         this.fileHandler = fileHandler;
 
         levelSettings = new LevelSettings(settingsFileName, game, fileHandler);
-        initLevelSettings();
+        initSettings();
 
         /* Create objects after initializing the settings. */
         paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, game);
@@ -92,7 +92,7 @@ public class Level {
     public void update() {
         paddle.update(inputHandler.isLeftPressed(), inputHandler.isRightPressed());
         ball.update(paddle, blockList);
-        gamePanel.updatePanel(levelName, blockList.getBlocksLeft());
+        gamePanel.updatePanel(name, blockList.getBlocksLeft());
     }
 
     public void render(Graphics2D g) {
@@ -102,11 +102,11 @@ public class Level {
         gamePanel.render(g);
     }
 
-    private void initLevelSettings() {
+    private void initSettings() {
         /* Level settings. */
-        levelName = levelSettings.getLevelName();
-        levelDesc = levelSettings.getLevelDesc();
-        levelColor = levelSettings.getLevelColor();
+        name = levelSettings.getLevelName();
+        desc = levelSettings.getLevelDesc();
+        color = levelSettings.getLevelColor();
 
         /* Paddle settings. */
         paddlePos = levelSettings.getPaddlePos();
@@ -135,20 +135,20 @@ public class Level {
     }
 
     public boolean isFinished() {
-        if (blockList.getBlocksLeft() == 0) return true;
+        if (blockList.getBlocksLeft() <= 0) return true;
         return false;
     }
 
-    public String getLevelName() {
-        return levelName;
+    public String getName() {
+        return name;
     }
 
-    public String getLevelDesc() {
-        return levelDesc;
+    public String getDesc() {
+        return desc;
     }
 
-    public Color getLevelColor() {
-        return levelColor;
+    public Color getColor() {
+        return color;
     }
 
 }

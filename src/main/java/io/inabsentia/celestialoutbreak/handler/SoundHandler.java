@@ -35,7 +35,7 @@ public class SoundHandler {
                 clip = AudioSystem.getClip();
                 clip.open(AudioSystem.getAudioInputStream(new File(filePath)));
             } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-                fileHandler.writeLogMsg(textHandler.errCreatingAudioClip(filePath, ExceptionUtils.getStackTrace(e)));
+                fileHandler.writeLogMsg(textHandler.errorCreatingAudioClipMsg(filePath, ExceptionUtils.getStackTrace(e)));
             }
         }
 

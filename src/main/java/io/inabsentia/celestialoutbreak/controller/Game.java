@@ -14,25 +14,24 @@ import java.awt.image.DataBufferInt;
 import java.util.Map;
 
 public class Game extends Canvas implements Runnable {
-    private static final long serialVersionUID = 1L;
 
     /*
-     * WIDTH and HEIGHT will be multiplied by SCALE to make the width and height of the screenRenderer.
+     * SCREEN_WIDTH and SCREEN_HEIGHT will be multiplied by SCREEN_SCALE to make the width and height of the screenRenderer.
      * Update rate is the targeted update rate.
      */
-    private final int WIDTH = 640;
-    private final int HEIGHT = 360;
-    private final int SCALE = 2;
-    private final int UPDATE_RATE = 60;
+    private final int SCREEN_WIDTH = 640;
+    private final int SCREEN_HEIGHT = 360;
+    private final int SCREEN_SCALE = 2;
+    private final int SCREEN_UPDATE_RATE = 60;
 
     /*
      * Timers to switch the mainMenu background color in a slower interval than 60 times a second.
      */
-    private final int INITIAL_MENU_COLOR_TIMER_VALUE = UPDATE_RATE * 7;
+    private final int INITIAL_MENU_COLOR_TIMER_VALUE = SCREEN_UPDATE_RATE * 7;
     private int menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
 
     /*
-     * gameThread is the io.inabsentia.celestialoutbreak.main thread.
+     * gameThread is the main thread of the application.
      * isRunning determines whether the game loop is running or not.
      */
     private Thread gameThread;
@@ -42,7 +41,7 @@ public class Game extends Canvas implements Runnable {
      * BufferedImage for the actual rendering of the screenRenderer.
      * pixels[] is the extracted pixels from the image.
      */
-    private final BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    private final BufferedImage image = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
     /*
@@ -73,7 +72,7 @@ public class Game extends Canvas implements Runnable {
     private Color menuSelectedBtnColor;
 
     /*
-     * Objects used for io.inabsentia.celestialoutbreak.MENU_CLIP's.
+     * Objects used for menu's.
      */
     private final MainMenu mainMenu;
     private final PauseMenu pauseMenu;
@@ -88,19 +87,19 @@ public class Game extends Canvas implements Runnable {
 
     /*
      * Current state of the game.
-     * Starts with showing the io.inabsentia.celestialoutbreak.MENU_CLIP.
+     * Starts with showing the menu state.
      */
     private State state = State.MENU;
 
     /*
      * Constructor of Game class.
-     * Initialize above objects here. Start game loop.
+     * Initialize above objects here. Start game loop, etc.
      */
     public Game() {
-        fileHandler.writeLogMsg(textHandler.NEW_APP_INSTANCE);
+        fileHandler.writeLogMsg(textHandler.START_NEW_APP_INSTANCE);
 
         /* Set dimensions of the JFrame and Canvas */
-        Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
+        Dimension size = new Dimension(SCREEN_WIDTH * SCREEN_SCALE, SCREEN_HEIGHT * SCREEN_SCALE);
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -114,17 +113,17 @@ public class Game extends Canvas implements Runnable {
         levelHandler = new LevelHandler(0, this, inputHandler, soundHandler, fileHandler);
 
 		/* Create screenRenderer renderer */
-        screenRenderer = new ScreenRenderer(WIDTH, HEIGHT, pixels);
+        screenRenderer = new ScreenRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, pixels);
 
-        /* Instantiate MENU_CLIP colors */
+        /* Instantiate main menu colors */
         try {
             initMenuColors();
         } catch (Exception e) {
-            fileHandler.writeLogMsg(textHandler.errParsingProperties(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH, e.getMessage()));
+            fileHandler.writeLogMsg(textHandler.errorParsingPropertiesMsg(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH, e.getMessage()));
             stop();
         }
 
-        /* Create io.inabsentia.celestialoutbreak.MENU_CLIP objects */
+        /* Create menu objects */
         mainMenu = new MainMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         pauseMenu = new PauseMenu(this, inputHandler, menuFontColor);
         scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
@@ -142,7 +141,7 @@ public class Game extends Canvas implements Runnable {
 
 		/* Initialize the JFrame and start the game loop */
         initFrame();
-        fileHandler.writeLogMsg(textHandler.NEW_APP_INSTANCE_SUCCESS);
+        fileHandler.writeLogMsg(textHandler.SUCCESS_NEW_APP_INSTANCE);
     }
 
     /*
@@ -152,7 +151,7 @@ public class Game extends Canvas implements Runnable {
     public void run() {
         long lastTime = System.nanoTime();
         long timer = System.currentTimeMillis();
-        final double ns = 1000000000.0 / UPDATE_RATE;
+        final double ns = 1000000000.0 / SCREEN_UPDATE_RATE;
         double delta = 0;
         int frames = 0;
         int updates = 0;
@@ -169,11 +168,11 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                /* Is this correctly calculated? */
+                /* Is this correctly calculated? (ram) */
                 double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                 if (gameUtils.isVerboseEnabled()) {
-                    gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION + " | " + textHandler.performanceMsg(frames, updates, allocatedRam));
-                    fileHandler.writeLogMsg(textHandler.performanceMsg(frames, updates, allocatedRam));
+                    gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION + " | " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
+                    fileHandler.writeLogMsg(textHandler.vPerformanceMsg(frames, updates, allocatedRam));
                 } else {
                     gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION);
                 }
@@ -221,11 +220,11 @@ public class Game extends Canvas implements Runnable {
                 break;
             case NEW_LEVEL:
                 newLevelMenu.update();
-                newLevelMenu.updateActiveLevelDesc(levelHandler.getActiveLevel().getLevelDesc());
+                newLevelMenu.updateActiveLevel(levelHandler.getActiveLevel());
                 break;
             case FINISHED_LEVEL:
                 finishedLevelMenu.update();
-                finishedLevelMenu.updateLevelNames(levelHandler.getPrevLevel().getLevelName(), levelHandler.getActiveLevel().getLevelName());
+                finishedLevelMenu.updateLevelNames(levelHandler.getPrevLevel().getName(), levelHandler.getActiveLevel().getName());
                 break;
             default:
                 break;
@@ -248,7 +247,7 @@ public class Game extends Canvas implements Runnable {
         /* Clear the screenRenderer, i.e. make it go all black. */
         screenRenderer.clear();
 
-        /* Let the current game state decide whether to render a level's color or the MENU_CLIP's color. */
+        /* Let the current game state decide whether to render a level's color or the menu's color. */
         switch (state) {
             case MENU:
                 switchMenuColor();
@@ -264,10 +263,10 @@ public class Game extends Canvas implements Runnable {
             case PLAY:
             case PAUSE:
             case NEW_LEVEL:
-                screenRenderer.render(levelHandler.getActiveLevel().getLevelColor());
+                screenRenderer.render(levelHandler.getActiveLevel().getColor());
                 break;
             case FINISHED_LEVEL:
-                screenRenderer.render(levelHandler.getPrevLevel().getLevelColor());
+                screenRenderer.render(levelHandler.getPrevLevel().getColor());
                 break;
             default:
                 break;
@@ -280,7 +279,7 @@ public class Game extends Canvas implements Runnable {
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-        /* Draw the buffered image to the screenRenderer. */
+        /* Draw the buffered image to the screen. */
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
         /* Make the current state of the game decide what to render. */
@@ -381,9 +380,9 @@ public class Game extends Canvas implements Runnable {
      */
     private void initMenuColors() {
         Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
-        this.menuFontColor = new Color(Integer.decode(map.get("MENU_FONT_COLOR")));
-        this.menuBtnColor = new Color(Integer.decode(map.get("MENU_BTN_COLOR")));
-        this.menuSelectedBtnColor = new Color(Integer.decode(map.get("MENU_SELECTED_BTN_COLOR")));
+        this.menuFontColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_FONT_COLOR_HEX)));
+        this.menuBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_COLOR_HEX)));
+        this.menuSelectedBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_SELECTED_BTN_COLOR_HEX)));
     }
 
 }

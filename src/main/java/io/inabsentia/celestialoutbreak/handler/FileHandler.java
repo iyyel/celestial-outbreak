@@ -8,14 +8,23 @@ import java.util.*;
 
 public class FileHandler {
 
+    /* Singleton FileHandler instance. */
     private static FileHandler instance;
 
     private final TextHandler textHandler = TextHandler.getInstance();
 
+    /*
+     * Private constructor so that FileHandler
+     * can't be instantiated outside.
+     */
     private FileHandler() {
         initApp();
     }
 
+    /*
+     * Static block to instantiate the
+     * Singleton FileHandler instance.
+     */
     static {
         try {
             instance = new FileHandler();
@@ -24,21 +33,36 @@ public class FileHandler {
         }
     }
 
+    /*
+     * Getter for the Singleton instance.
+     */
     public static synchronized FileHandler getInstance() {
         return instance;
     }
 
+    /*
+     * Setup the standard game directories and
+     * copy the necessary configuration files over
+     * to the client machine.
+     */
     private void initApp() {
         createStandardDirs();
         copyConfigFiles();
     }
 
+    /*
+     * Create the standard game directories.
+     */
     private void createStandardDirs() {
         createDir(textHandler.LOG_DIR_PATH);
         createDir(textHandler.SETTINGS_DIR_PATH);
         createDir(textHandler.LEVEL_DIR_PATH);
     }
 
+    /*
+     * Copy the necessary configuration files
+     * over to the client machine.
+     */
     private void copyConfigFiles() {
         /* Initial level configurations copied to client local config dir. */
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MARS, textHandler.LEVEL_FILE_CLIENT_PATH_MARS);
@@ -54,10 +78,16 @@ public class FileHandler {
         copyFile(textHandler.SETTINGS_CONFIG_FILE_LOCAL_PATH, textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
     }
 
+    /*
+     * Read properties from the file given by the filePath.
+     * The properties are returned as a map data structure,
+     * where the property name is the key, and the property
+     * value is equal to the, well, value.
+     */
     public Map<String, String> readPropertiesFromFile(String filePath) {
         Properties p = new Properties();
         Map<String, String> map = new HashMap<>();
-        writeLogMsg(textHandler.readingPropertiesMsg(filePath));
+        writeLogMsg(textHandler.actionReadingPropertiesMsg(filePath));
 
         try (InputStream is = new FileInputStream(filePath)) {
             p.load(is);
@@ -76,9 +106,13 @@ public class FileHandler {
         return map;
     }
 
+    /*
+     * Read lines from the file given by filePath
+     * and return them as a List<String> object.
+     */
     public List<String> readLinesFromFile(String filePath) {
         List<String> lineList = new ArrayList<>();
-        writeLogMsg(textHandler.readingLinesMsg(filePath));
+        writeLogMsg(textHandler.actionReadingLinesMsg(filePath));
 
         try (FileInputStream fis = new FileInputStream(new File(filePath))) {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -94,7 +128,7 @@ public class FileHandler {
                     writeLogMsg(textHandler.successReadLineMsg(line, filePath));
                 }
             }
-            writeLogMsg(textHandler.successReadLinesMsg(filePath));
+            writeLogMsg(textHandler.finishReadLinesMsg(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -102,6 +136,11 @@ public class FileHandler {
         return lineList;
     }
 
+    /*
+     * Creates the directory given by dirPath
+     * if it does not already exist.
+     * If it does exist, nothing happens.
+     */
     private void createDir(String dirPath) {
         File dir = new File(dirPath);
 
@@ -111,13 +150,18 @@ public class FileHandler {
                 if (result)
                     writeLogMsg(textHandler.successCreatedDirMsg(dirPath));
                 else
-                    writeLogMsg(textHandler.errCreatingDirMsg(dirPath));
+                    writeLogMsg(textHandler.errorCreatingDirMsg(dirPath));
             } catch (SecurityException e) {
-                writeLogMsg(textHandler.errCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)));
+                writeLogMsg(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)));
             }
         }
     }
 
+    /*
+     * Copies the file at srcFilePath to
+     * the path at destFilePath, if it does
+     * not already exist at the destFilePath.
+     */
     private void copyFile(String srcFilePath, String destFilePath) {
         File srcFile = new File(srcFilePath);
         File destFile = new File(destFilePath);
@@ -133,10 +177,16 @@ public class FileHandler {
                 writeLogMsg(textHandler.successCopiedFileMsg(srcFile.getPath(), destFile.getPath()));
             }
         } catch (IOException e) {
-            writeLogMsg(textHandler.errCopyingFileMsg(srcFilePath, destFilePath, ExceptionUtils.getStackTrace(e)));
+            writeLogMsg(textHandler.errorCopyingFileMsg(srcFilePath, destFilePath, ExceptionUtils.getStackTrace(e)));
         }
     }
 
+    /*
+     * Writes the content of msg into the
+     * file given by filePath.
+     * Creates the file anyway if it doesn't
+     * already exist.
+     */
     public void writeToFile(String msg, String filePath) {
         File file = new File(filePath);
         if (file.isDirectory()) return;
@@ -153,10 +203,14 @@ public class FileHandler {
                 writeLogMsg(textHandler.successCreatedFileMsg(filePath));
             }
         } catch (IOException e) {
-            writeLogMsg(textHandler.errWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)));
+            writeLogMsg(textHandler.errorWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)));
         }
     }
 
+    /*
+     * Outputs the content of msg into the console
+     * and writes it to the game's log file.
+     */
     public void writeLogMsg(String msg) {
         msg = textHandler.logMsgPrefix() + msg;
         System.out.println(msg);
