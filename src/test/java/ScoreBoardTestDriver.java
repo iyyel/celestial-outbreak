@@ -1,21 +1,21 @@
-import io.inabsentia.celestialoutbreak.data.IConnector;
-import io.inabsentia.celestialoutbreak.data.dao.LocalScoreBoardDAO;
+import io.inabsentia.celestialoutbreak.data.dao.IScoreBoardDAO.DALException;
+import io.inabsentia.celestialoutbreak.data.dao.ScoreBoardDAO;
 import io.inabsentia.celestialoutbreak.data.dto.ScoreBoardDTO;
 
 import java.util.List;
 
-public class LocalScoreBoardTestDriver {
+public class ScoreBoardTestDriver {
 
     public static void main(String[] args) {
 
-        LocalScoreBoardDAO sbDAO = new LocalScoreBoardDAO();
+        ScoreBoardDAO sbDAO = new ScoreBoardDAO();
 
         try {
             List<ScoreBoardDTO> sbList = sbDAO.getScoreBoardList();
             for (ScoreBoardDTO sbDTO : sbList) System.out.println(sbDTO);
             int length = sbDAO.getScoreBoardList().size();
             System.out.println("Length: " + length);
-        } catch (IConnector.DALException e) {
+        } catch (DALException e) {
             e.printStackTrace();
         }
 
@@ -24,7 +24,7 @@ public class LocalScoreBoardTestDriver {
         try {
             ScoreBoardDTO sbDTO23 = sbDAO.getScoreBoard(23);
             System.out.println("Got: " + sbDTO23);
-        } catch (IConnector.DALException e) {
+        } catch (DALException e) {
             e.printStackTrace();
         }
 
@@ -44,7 +44,7 @@ public class LocalScoreBoardTestDriver {
             sbDAO.deleteScoreBoard(newSbDTO.getSbId());
             System.out.println("Got deleted: " + sbDAO.getScoreBoard(newUpdSbDTO.getSbId()));
 
-        } catch (IConnector.DALException e) {
+        } catch (DALException e) {
             e.printStackTrace();
         }
 

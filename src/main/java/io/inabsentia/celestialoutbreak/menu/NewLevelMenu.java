@@ -39,6 +39,7 @@ public class NewLevelMenu extends Menu {
         if (activeLevel != null) {
             drawSubmenuTitle(activeLevel.getName(), g);
             drawXCenteredString(activeLevel.getDesc(), game.getHeight() / 2, g, msgFont);
+            //drawMenuMessage(activeLevel.getDesc(), g, 80,game.getHeight() / 2, 20, 20, 60);
         }
 
         drawInformationPanel(g);

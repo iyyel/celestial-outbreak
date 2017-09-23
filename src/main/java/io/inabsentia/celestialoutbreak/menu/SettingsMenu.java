@@ -19,31 +19,30 @@ public class SettingsMenu extends Menu {
 
     @Override
     public void render(Graphics2D g) {
+        int msgXPos = 80;
+        int msgYPos = 260;
+        int msgYInc = 35;
+        int msgYSepInc = 70;
+
         g.setColor(fontColor);
         drawMenuTitle(g);
 
         drawSubmenuTitle("Settings", g);
 
-        String msg = textHandler.menuSettingsMsg01 +
-                textHandler.menuSettingsMsg02 + textHandler.menuSettingsMsg03 + textHandler.menuSettingsMsg04 + textHandler.menuSettingsMsg05 + textHandler.menuSettingsMsg06 + textHandler.menuSettingsMsg07 + textHandler.menuSettingsMsg08 + textHandler.menuSettingsMsg09;
-
-
         g.setFont(msgFont);
-        /*
-        g.drawString(textHandler.menuSettingsMsg01, 80, 260);
-        g.drawString(textHandler.menuSettingsMsg02, 80, 295);
 
-        g.drawString(textHandler.menuSettingsMsg03, 80, 365);
-        g.drawString(textHandler.menuSettingsMsg04, 80, 400);
+        g.drawString(textHandler.menuSettingsMsg01, msgXPos, 260);
+        g.drawString(textHandler.menuSettingsMsg02, msgXPos, 295);
 
-        g.drawString(textHandler.menuSettingsMsg05, 80, 470);
-        g.drawString(textHandler.menuSettingsMsg06, 80, 505);
+        g.drawString(textHandler.menuSettingsMsg03, msgXPos, 365);
+        g.drawString(textHandler.menuSettingsMsg04, msgXPos, 400);
 
-        g.drawString(textHandler.menuSettingsMsg07, 80, 575);
-        g.drawString(textHandler.menuSettingsMsg08, 80, 610);
-        g.drawString(textHandler.menuSettingsMsg09, 80, 645);
-        */
-        drawMenuMessage(msg, g, 80, 260, 35, 70);
+        g.drawString(textHandler.menuSettingsMsg05, msgXPos, 470);
+        g.drawString(textHandler.menuSettingsMsg06, msgXPos, 505);
+
+        g.drawString(textHandler.menuSettingsMsg07, msgXPos, 575);
+        g.drawString(textHandler.menuSettingsMsg08, msgXPos, 610);
+        g.drawString(textHandler.menuSettingsMsg09, msgXPos, 645);
 
         drawInformationPanel(g);
     }

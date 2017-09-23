@@ -234,15 +234,12 @@ public class TextHandler {
     public final String menuSettingsMsg02 = "following directory '" + GAME_DIR + "'";
     public final String menuSettingsMsg03 = "general settings can be found in the settings.config file,";
     public final String menuSettingsMsg04 = "in the settings directory.";
-
     public final String menuSettingsMsg05 = "Level specific settings can be found in the various level files";
     public final String menuSettingsMsg06 = "in the levels directory, e.g. mars_level.config.";
     public final String menuSettingsMsg07 = "Levels are played in order from the levels.config file.";
     public final String menuSettingsMsg08 = "If creating custom levels, make sure to add them to this file.";
     public final String menuSettingsMsg09 = "If more information is needed, visit: https://goo.gl/JxxeL6";
-    public final String menuMsg = "All of the configuration related files can be found in the following directory " +
 
-            "following directory '" + GAME_DIR + "' general settings can be found in the settings.config file, in the settings directory.";
     /* ABOUT messages. */
 
 

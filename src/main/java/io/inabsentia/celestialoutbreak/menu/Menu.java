@@ -6,13 +6,15 @@ import io.inabsentia.celestialoutbreak.handler.TextHandler;
 import io.inabsentia.celestialoutbreak.utils.GameUtils;
 
 import java.awt.*;
+import java.util.List;
 
 public abstract class Menu {
 
-    protected final Game game;
     protected final GameUtils gameUtils = GameUtils.getInstance();
     protected final TextHandler textHandler = TextHandler.getInstance();
     protected final InputHandler inputHandler;
+
+    protected final Game game;
 
     protected Font titleFont, submenuTitleFont, msgFont, infoPanelFont;
     protected final Rectangle versionRect, siteRect;
@@ -67,33 +69,45 @@ public abstract class Menu {
         drawXCenteredString(textHandler.GAME_TITLE, 100, g, titleFont);
     }
 
-    protected void drawMenuMessage(String msg, Graphics2D g, int x, int y, int yLineInc, int yBigInc) {
-        int maxLineSize = 60;
-        //int x = 80;
-        //int y = 260;
-        //int yLineInc = 35;
-        //int yBigInc = 70;
-
+    protected void drawMenuMessage(String msg, Graphics2D g, int x, int y, int xInc, int yInc, int maxLineSize) {
+        /*
+         * If the message is longer than maxLineSize, we know that we need to
+         * split up the string in smaller pieces, and fit it on the screen.
+         */
         if (msg.length() > maxLineSize) {
+            /* Get the first 60 characters of the message into the string line */
             String line = msg.substring(0, maxLineSize);
 
+            /*
+             * We need to check whether the current index of the message
+             * (which is maxLineSize, essentially) ends in the middle of a word or not.
+             * If it does, use a helper function to decrease the index until we find any
+             * type of whitespace, to indicate that we are out of a word.
+             */
             int index = line.length();
-            while (checkIfEndIsAChar(line, index)) index--;
+            while (isEndAChar(line, index)) index--;
 
+            /* When the new index is calculated, we recreate the line string. */
             line = msg.substring(0, index);
+
+            /* Remove all characters up to the new line index, so that we don't get same characters. */
             msg = msg.substring(line.length(), msg.length());
 
+            /* Draw the string to the screen! */
             g.drawString(line, x, y);
 
-            /* Recursive call */
-            drawMenuMessage(msg, g, x, y + yLineInc, yLineInc, yBigInc);
+            /*
+             *
+             */
+            drawMenuMessage(msg, g, x + xInc, y + yInc, xInc, yInc, maxLineSize);
         } else {
-            System.out.println(msg);
+            String line = msg.substring(0, msg.length() - 1);
+            g.drawString(line, x, y);
         }
     }
 
-    private boolean checkIfEndIsAChar(String line, int length) {
-        char lastChar = line.charAt(length - 1);
+    private boolean isEndAChar(String line, int index) {
+        char lastChar = line.charAt(index - 1);
         return (lastChar != ' ') && (lastChar != '\t') && (lastChar != '\n');
     }
 

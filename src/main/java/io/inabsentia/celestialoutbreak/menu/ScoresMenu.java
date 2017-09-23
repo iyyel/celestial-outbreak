@@ -26,8 +26,6 @@ public class ScoresMenu extends Menu {
 
         g.setFont(msgFont);
 
-
-
         drawInformationPanel(g);
     }
 
