@@ -23,25 +23,25 @@ public class ControlsMenu extends Menu {
         drawMenuTitle(g);
         g.setFont(msgFont);
 
-        int textXPos = 135;
-        int textXPosOffset = 130;
-        int textYPos = -50;
-        int textYPosInc = 70;
+        int xPos = 135;
+        int xPoxInc = 130;
+        int yPos = -50;
+        int yPosInc = 70;
 
         drawSubmenuTitle("Controls", g);
 
         g.setFont(msgFont);
-        g.drawString("Movement & Navigation:", textXPos, game.getHeight() / 2 + textYPos);
-        g.drawString("WASD/Arrow keys", game.getWidth() / 2 + textXPosOffset, game.getHeight() / 2 + textYPos);
+        g.drawString(textHandler.menuControlsMsg01, xPos, game.getHeight() / 2 + yPos);
+        g.drawString(textHandler.menuControlsMsg02, game.getWidth() / 2 + xPoxInc, game.getHeight() / 2 + yPos);
 
-        g.drawString("Confirm/OK:", textXPos, game.getHeight() / 2 + (textYPos + textYPosInc));
-        g.drawString("z", game.getWidth() / 2 + textXPosOffset, game.getHeight() / 2 + (textYPos + textYPosInc));
+        g.drawString(textHandler.menuControlsMsg03, xPos, game.getHeight() / 2 + (yPos + yPosInc));
+        g.drawString(textHandler.menuControlsMsg04, game.getWidth() / 2 + xPoxInc, game.getHeight() / 2 + (yPos + yPosInc));
 
-        g.drawString("Cancel/Back:", textXPos, game.getHeight() / 2 + (textYPos + textYPosInc * 2));
-        g.drawString("x", game.getWidth() / 2 + textXPosOffset, game.getHeight() / 2 + (textYPos + textYPosInc * 2));
+        g.drawString(textHandler.menuControlsMsg05, xPos, game.getHeight() / 2 + (yPos + yPosInc * 2));
+        g.drawString(textHandler.menuControlsMsg06, game.getWidth() / 2 + xPoxInc, game.getHeight() / 2 + (yPos + yPosInc * 2));
 
-        g.drawString("Select & Use:", textXPos, game.getHeight() / 2 + (textYPos + textYPosInc * 3));
-        g.drawString("Space", game.getWidth() / 2 + textXPosOffset, game.getHeight() / 2 + (textYPos + textYPosInc * 3));
+        g.drawString(textHandler.menuControlsMsg07, xPos, game.getHeight() / 2 + (yPos + yPosInc * 3));
+        g.drawString(textHandler.menuControlsMsg08, game.getWidth() / 2 + xPoxInc, game.getHeight() / 2 + (yPos + yPosInc * 3));
 
         drawInformationPanel(g);
     }

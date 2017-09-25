@@ -7,23 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06a4bece-f043-43c0-93f7-996fa187f7bd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongo_java_driver_3_4_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/Connector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/IConnector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/ConnectorTestDriver.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/LocalScoreBoardDAO.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/ScoreBoardDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/LocalScoreBoardTestDriver.java" afterPath="$PROJECT_DIR$/src/test/java/ScoreBoardTestDriver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/celestialoutbreak.iml" afterPath="$PROJECT_DIR$/celestialoutbreak.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IScoreBoardDAO.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IScoreBoardDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/Menu.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/NewLevelMenu.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/NewLevelMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ScoresMenu.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ScoresMenu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/GeneralTestDriver.java" afterPath="$PROJECT_DIR$/src/test/java/GeneralTestDriver.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -135,11 +122,9 @@
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/GamePanel.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/FinishedLevelMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ExitMenu.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/AboutMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ScoresMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/Menu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/NewLevelMenu.java" />
@@ -149,6 +134,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/ScoreBoardTestDriver.java" />
         <option value="$PROJECT_DIR$/src/test/java/GeneralTestDriver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java" />
       </list>
     </option>
@@ -252,6 +239,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -260,13 +250,54 @@
               <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
               <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="handler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -955,7 +986,8 @@
       <workItem from="1505741410292" duration="11995000" />
       <workItem from="1505815558162" duration="6000" />
       <workItem from="1506058709201" duration="129000" />
-      <workItem from="1506191699273" duration="9862000" />
+      <workItem from="1506191699273" duration="9909000" />
+      <workItem from="1506323786812" duration="912000" />
     </task>
     <task id="LOCAL-00001" summary="Setting up project environment.">
       <created>1494522530451</created>
@@ -1251,11 +1283,18 @@
       <option name="project" value="LOCAL" />
       <updated>1505753359942</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Project cleanup. Refactoring.">
+      <created>1506201591660</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1506201591660</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168304000" />
+    <option name="totallyTimeSpent" value="169263000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1267,7 +1306,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1456" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.49841017" order="6" side_tool="false" content_ui="tabs" />
@@ -1276,16 +1315,15 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2530303" sideWeight="0.5306041" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1172496" sideWeight="0.49369085" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.532516" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11673774" sideWeight="0.49369085" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2651515" sideWeight="0.67289346" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2530303" sideWeight="0.46939588" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.467484" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.49841017" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13195549" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16577825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22604166" sideWeight="0.4642857" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.49841017" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1301,6 +1339,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18070363" sideWeight="0.50630915" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22604166" sideWeight="0.4642857" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1350,7 +1389,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refacted and polishing file I/O handling. Getting better at this!" />
     <MESSAGE value="Refactored a few log messages." />
     <MESSAGE value="Added levelMenu." />
     <MESSAGE value="Version bump. 0.10a." />
@@ -1375,7 +1413,8 @@
     <MESSAGE value="Refactoring data layer." />
     <MESSAGE value="Implementing local data storage." />
     <MESSAGE value="Refactoring. Started work on menu message algorithm." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring. Started work on menu message algorithm." />
+    <MESSAGE value="Project cleanup. Refactoring." />
+    <option name="LAST_COMMIT_MESSAGE" value="Project cleanup. Refactoring." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1491,7 +1530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1499,7 +1537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="74" column="37" lean-forward="false" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1507,7 +1544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="565">
           <caret line="59" column="3" lean-forward="false" selection-start-line="59" selection-start-column="3" selection-end-line="59" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1515,18 +1551,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MessageMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="852">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MessageMenu.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="829">
@@ -1539,7 +1567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1547,7 +1574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1555,15 +1581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="21" column="35" lean-forward="false" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1571,7 +1588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1579,15 +1595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="102" column="4" lean-forward="false" selection-start-line="102" selection-start-column="4" selection-end-line="102" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ScoresMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1595,14 +1602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="237" column="11" lean-forward="false" selection-start-line="237" selection-start-column="11" selection-end-line="237" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1619,39 +1618,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="722">
           <caret line="41" column="11" lean-forward="true" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/Connector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/IConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/DALException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="45" lean-forward="false" selection-start-line="0" selection-start-column="45" selection-end-line="0" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/Connector.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/IConnector.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/DALException.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IScoreBoardDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1659,7 +1635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="36" column="12" lean-forward="false" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1667,7 +1642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="24" column="35" lean-forward="false" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1691,7 +1665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1699,7 +1672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1707,7 +1679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1719,19 +1690,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ConnectorTestDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="54" lean-forward="false" selection-start-line="0" selection-start-column="54" selection-end-line="0" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ConnectorTestDriver.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/SoundHandlerTestDriver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1739,7 +1702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="34" column="12" lean-forward="false" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1747,7 +1709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1755,7 +1716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1767,10 +1727,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="220">
+          <caret line="29" column="23" lean-forward="false" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ScoresMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1738">
+          <caret line="221" column="27" lean-forward="false" selection-start-line="221" selection-start-column="27" selection-end-line="221" selection-end-column="27" />
           <folding />
         </state>
       </provider>

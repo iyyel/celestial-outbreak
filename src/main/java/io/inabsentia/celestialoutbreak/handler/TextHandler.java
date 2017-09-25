@@ -228,6 +228,14 @@ public class TextHandler {
     /* SCORES messages. */
 
     /* CONTROLS messages. */
+    public final String menuControlsMsg01 = "Movement & Navigation:";
+    public final String menuControlsMsg02 = "WASD/Arrow keys";
+    public final String menuControlsMsg03 = "Confirm/OK:";
+    public final String menuControlsMsg04 = "z";
+    public final String menuControlsMsg05 = "Cancel/Back:";
+    public final String menuControlsMsg06 = "x";
+    public final String menuControlsMsg07 = "Select & Use";
+    public final String menuControlsMsg08 = "Space";
 
     /* SETTINGS messages. */
     public final String menuSettingsMsg01 = "All of the configuration related files can be found in the";
