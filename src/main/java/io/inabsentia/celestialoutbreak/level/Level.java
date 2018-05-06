@@ -1,6 +1,6 @@
 package io.inabsentia.celestialoutbreak.level;
 
-import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.entity.Ball;
 import io.inabsentia.celestialoutbreak.entity.BlockList;
 import io.inabsentia.celestialoutbreak.entity.Paddle;
@@ -11,7 +11,7 @@ import io.inabsentia.celestialoutbreak.menu.GamePanel;
 
 import java.awt.*;
 
-public class Level {
+public final class Level {
 
     /*
      * Rendering objects.
@@ -21,9 +21,9 @@ public class Level {
     private BlockList blockList;
 
     /*
-     * Game object.
+     * GameController object.
      */
-    private Game game;
+    private GameController gameController;
 
     /*
      * Settings for the level.
@@ -73,20 +73,20 @@ public class Level {
     /*
      * Constructor.
      */
-    public Level(String settingsFileName, Game game, InputHandler inputHandler, SoundHandler soundHandler, FileHandler fileHandler) {
-        this.game = game;
+    public Level(String settingsFileName, GameController gameController, InputHandler inputHandler, SoundHandler soundHandler, FileHandler fileHandler) {
+        this.gameController = gameController;
         this.inputHandler = inputHandler;
         this.soundHandler = soundHandler;
         this.fileHandler = fileHandler;
 
-        levelSettings = new LevelSettings(settingsFileName, game, fileHandler);
+        levelSettings = new LevelSettings(settingsFileName, gameController, fileHandler);
         initSettings();
 
         /* Create objects after initializing the settings. */
-        paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, game);
-        ball = new Ball(ballPos, ballPosXOffset, ballPosYOffset, ballSize, ballSize, ballSpeed, ballColor, game);
-        blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, game);
-        gamePanel = new GamePanel(game, inputHandler, GamePanelColor);
+        paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, gameController);
+        ball = new Ball(ballPos, ballPosXOffset, ballPosYOffset, ballSize, ballSize, ballSpeed, ballColor, gameController);
+        blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, gameController);
+        gamePanel = new GamePanel(gameController, inputHandler, GamePanelColor);
     }
 
     public void update() {

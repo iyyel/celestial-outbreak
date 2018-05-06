@@ -2,7 +2,7 @@ package io.inabsentia.celestialoutbreak.data.dto;
 
 import java.io.Serializable;
 
-public class ScoreBoardDTO implements Serializable {
+public final class ScoreBoardDTO implements Serializable {
 
     private int sbId;
     private int sbLevelScore;

@@ -2,7 +2,7 @@ package io.inabsentia.celestialoutbreak.entity;
 
 import java.awt.*;
 
-public class Block extends Entity {
+public final class Block extends Entity {
 
     public Block(Point pos, int width, int height, Color color) {
         super(pos, width, height, color);

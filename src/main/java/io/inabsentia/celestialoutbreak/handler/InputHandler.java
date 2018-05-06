@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 /*
  * Singleton class.
  */
-public class InputHandler implements KeyListener {
+public final class InputHandler implements KeyListener {
 
     private static InputHandler instance;
 

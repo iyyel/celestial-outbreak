@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class ScoreBoardDAO implements IScoreBoardDAO {
+public final class ScoreBoardDAO implements IScoreBoardDAO {
 
     private List<ScoreBoardDTO> scoreBoardList;
     private Comparator<ScoreBoardDTO> scoreBoardComparator;

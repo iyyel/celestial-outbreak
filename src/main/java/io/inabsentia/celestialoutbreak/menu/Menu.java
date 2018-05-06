@@ -1,12 +1,11 @@
 package io.inabsentia.celestialoutbreak.menu;
 
-import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
 import io.inabsentia.celestialoutbreak.utils.GameUtils;
 
 import java.awt.*;
-import java.util.List;
 
 public abstract class Menu {
 
@@ -14,14 +13,14 @@ public abstract class Menu {
     protected final TextHandler textHandler = TextHandler.getInstance();
     protected final InputHandler inputHandler;
 
-    protected final Game game;
+    protected final GameController gameController;
 
     protected Font titleFont, submenuTitleFont, msgFont, infoPanelFont;
     protected final Rectangle versionRect, siteRect;
     protected final Color fontColor;
 
-    public Menu(Game game, InputHandler inputHandler, Color fontColor) {
-        this.game = game;
+    public Menu(GameController gameController, InputHandler inputHandler, Color fontColor) {
+        this.gameController = gameController;
         this.inputHandler = inputHandler;
         this.fontColor = fontColor;
 
@@ -31,8 +30,8 @@ public abstract class Menu {
         infoPanelFont = gameUtils.getGameFont().deriveFont(10F);
 
         /* Information rectangles */
-        versionRect = new Rectangle(game.getWidth() / 2 + 28, game.getHeight() - 20, 50, 15);
-        siteRect = new Rectangle(game.getWidth() / 2 - 72, game.getHeight() - 20, 96, 15);
+        versionRect = new Rectangle(gameController.getWidth() / 2 + 28, gameController.getHeight() - 20, 50, 15);
+        siteRect = new Rectangle(gameController.getWidth() / 2 - 72, gameController.getHeight() - 20, 96, 15);
     }
 
     public abstract void update();
@@ -41,13 +40,13 @@ public abstract class Menu {
 
     protected void drawXCenteredString(String msg, int y, Graphics2D g, Font font) {
         FontMetrics metrics = g.getFontMetrics(font);
-        int x = (game.getWidth() - metrics.stringWidth(msg)) / 2;
+        int x = (gameController.getWidth() - metrics.stringWidth(msg)) / 2;
         g.setFont(font);
         g.drawString(msg, x, y);
     }
 
     protected void drawSubmenuTitle(String msg, Graphics2D g) {
-        drawXCenteredString(msg, game.getHeight() / 2 - 170, g, submenuTitleFont);
+        drawXCenteredString(msg, gameController.getHeight() / 2 - 170, g, submenuTitleFont);
     }
 
     public void drawInformationPanel(Graphics2D g) {

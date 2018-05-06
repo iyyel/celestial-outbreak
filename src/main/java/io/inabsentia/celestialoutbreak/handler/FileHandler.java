@@ -6,7 +6,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import java.io.*;
 import java.util.*;
 
-public class FileHandler {
+public final class FileHandler {
 
     /* Singleton FileHandler instance. */
     private static FileHandler instance;
@@ -41,7 +41,7 @@ public class FileHandler {
     }
 
     /*
-     * Setup the standard game directories and
+     * Setup the standard gameController directories and
      * copy the necessary configuration files over
      * to the client machine.
      */
@@ -51,7 +51,7 @@ public class FileHandler {
     }
 
     /*
-     * Create the standard game directories.
+     * Create the standard gameController directories.
      */
     private void createStandardDirs() {
         createDir(textHandler.LOG_DIR_PATH);
@@ -87,7 +87,7 @@ public class FileHandler {
     public Map<String, String> readPropertiesFromFile(String filePath) {
         Properties p = new Properties();
         Map<String, String> map = new HashMap<>();
-        writeLogMsg(textHandler.actionReadingPropertiesMsg(filePath));
+        writeLog(textHandler.actionReadingPropertiesMsg(filePath));
 
         try (InputStream is = new FileInputStream(filePath)) {
             p.load(is);
@@ -95,10 +95,10 @@ public class FileHandler {
             for (String key : p.stringPropertyNames()) {
                 String value = p.getProperty(key);
                 map.put(key, value);
-                writeLogMsg(textHandler.successReadPropertyMsg(key, value, filePath));
+                writeLog(textHandler.successReadPropertyMsg(key, value, filePath));
             }
 
-            writeLogMsg(textHandler.finishReadPropertiesMsg(filePath));
+            writeLog(textHandler.finishReadPropertiesMsg(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -112,7 +112,7 @@ public class FileHandler {
      */
     public List<String> readLinesFromFile(String filePath) {
         List<String> lineList = new ArrayList<>();
-        writeLogMsg(textHandler.actionReadingLinesMsg(filePath));
+        writeLog(textHandler.actionReadingLinesMsg(filePath));
 
         try (FileInputStream fis = new FileInputStream(new File(filePath))) {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -125,10 +125,10 @@ public class FileHandler {
                  */
                 if (!line.contains("#") && line.length() > 0) {
                     lineList.add(line);
-                    writeLogMsg(textHandler.successReadLineMsg(line, filePath));
+                    writeLog(textHandler.successReadLineMsg(line, filePath));
                 }
             }
-            writeLogMsg(textHandler.finishReadLinesMsg(filePath));
+            writeLog(textHandler.finishReadLinesMsg(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,11 +148,11 @@ public class FileHandler {
             try {
                 boolean result = dir.mkdirs();
                 if (result)
-                    writeLogMsg(textHandler.successCreatedDirMsg(dirPath));
+                    writeLog(textHandler.successCreatedDirMsg(dirPath));
                 else
-                    writeLogMsg(textHandler.errorCreatingDirMsg(dirPath));
+                    writeLog(textHandler.errorCreatingDirMsg(dirPath));
             } catch (SecurityException e) {
-                writeLogMsg(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)));
+                writeLog(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)));
             }
         }
     }
@@ -174,10 +174,10 @@ public class FileHandler {
              */
             if (!destFile.exists()) {
                 FileUtils.copyFile(srcFile, destFile);
-                writeLogMsg(textHandler.successCopiedFileMsg(srcFile.getPath(), destFile.getPath()));
+                writeLog(textHandler.successCopiedFileMsg(srcFile.getPath(), destFile.getPath()));
             }
         } catch (IOException e) {
-            writeLogMsg(textHandler.errorCopyingFileMsg(srcFilePath, destFilePath, ExceptionUtils.getStackTrace(e)));
+            writeLog(textHandler.errorCopyingFileMsg(srcFilePath, destFilePath, ExceptionUtils.getStackTrace(e)));
         }
     }
 
@@ -200,18 +200,18 @@ public class FileHandler {
                 try (PrintWriter out = new PrintWriter(filePath)) {
                     out.print(msg + "\r\n");
                 }
-                writeLogMsg(textHandler.successCreatedFileMsg(filePath));
+                writeLog(textHandler.successCreatedFileMsg(filePath));
             }
         } catch (IOException e) {
-            writeLogMsg(textHandler.errorWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)));
+            writeLog(textHandler.errorWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)));
         }
     }
 
     /*
      * Outputs the content of msg into the console
-     * and writes it to the game's log file.
+     * and writes it to the gameController's log file.
      */
-    public void writeLogMsg(String msg) {
+    public void writeLog(String msg) {
         msg = textHandler.logMsgPrefix() + msg;
         System.out.println(msg);
         createDir(textHandler.LOG_DIR_PATH);

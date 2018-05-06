@@ -1,23 +1,23 @@
 package io.inabsentia.celestialoutbreak.menu;
 
-import io.inabsentia.celestialoutbreak.controller.Game;
-import io.inabsentia.celestialoutbreak.entity.State;
+import io.inabsentia.celestialoutbreak.controller.GameController;
+import io.inabsentia.celestialoutbreak.controller.GameController.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 
 import java.awt.*;
 
-public class FinishedLevelMenu extends Menu {
+public final class FinishedLevelMenu extends Menu {
 
     private String prevLevelName, nextLevelName;
 
-    public FinishedLevelMenu(Game game, InputHandler inputHandler, Color fontColor) {
-        super(game, inputHandler, fontColor);
+    public FinishedLevelMenu(GameController gameController, InputHandler inputHandler, Color fontColor) {
+        super(gameController, inputHandler, fontColor);
     }
 
     @Override
     public void update() {
-        if (inputHandler.isOKPressed()) game.switchState(State.NEW_LEVEL);
-        if (inputHandler.isCancelPressed()) game.switchState(State.MENU);
+        if (inputHandler.isOKPressed()) gameController.switchState(State.NEW_LEVEL);
+        if (inputHandler.isCancelPressed()) gameController.switchState(State.MENU);
     }
 
     @Override

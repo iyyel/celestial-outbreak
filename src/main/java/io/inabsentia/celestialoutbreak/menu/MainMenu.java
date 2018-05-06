@@ -1,13 +1,13 @@
 package io.inabsentia.celestialoutbreak.menu;
 
-import io.inabsentia.celestialoutbreak.controller.Game;
-import io.inabsentia.celestialoutbreak.entity.State;
+import io.inabsentia.celestialoutbreak.controller.GameController;
+import io.inabsentia.celestialoutbreak.controller.GameController.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.SoundHandler;
 
 import java.awt.*;
 
-public class MainMenu extends Menu {
+public final class MainMenu extends Menu {
 
     private final Rectangle playRect, scoreRect, controlsRect, settingsRect, aboutRect, exitRect;
     private final Font btnFont;
@@ -22,8 +22,8 @@ public class MainMenu extends Menu {
 
     private final SoundHandler soundHandler;
 
-    public MainMenu(Game game, InputHandler inputHandler, SoundHandler soundHandler, Color fontColor, Color rectColor, Color selectedColor) {
-        super(game, inputHandler, fontColor);
+    public MainMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler, Color fontColor, Color rectColor, Color selectedColor) {
+        super(gameController, inputHandler, fontColor);
         this.soundHandler = soundHandler;
         this.rectColor = rectColor;
         this.selectedColor = selectedColor;
@@ -32,12 +32,12 @@ public class MainMenu extends Menu {
         int btnYIncrement = 75;
 
         /* Menu buttons */
-        playRect = new Rectangle(game.getWidth() / 2 - 50, initialBtnYPos, 100, 50);
-        scoreRect = new Rectangle(game.getWidth() / 2 - 65, initialBtnYPos + btnYIncrement, 130, 50);
-        controlsRect = new Rectangle(game.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 2, 160, 50);
-        settingsRect = new Rectangle(game.getWidth() / 2 - 75, initialBtnYPos + btnYIncrement * 3, 150, 50);
-        aboutRect = new Rectangle(game.getWidth() / 2 - 60, initialBtnYPos + btnYIncrement * 4, 120, 50);
-        exitRect = new Rectangle(game.getWidth() / 2 - 50, initialBtnYPos + btnYIncrement * 5, 100, 50);
+        playRect = new Rectangle(gameController.getWidth() / 2 - 50, initialBtnYPos, 100, 50);
+        scoreRect = new Rectangle(gameController.getWidth() / 2 - 65, initialBtnYPos + btnYIncrement, 130, 50);
+        controlsRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 2, 160, 50);
+        settingsRect = new Rectangle(gameController.getWidth() / 2 - 75, initialBtnYPos + btnYIncrement * 3, 150, 50);
+        aboutRect = new Rectangle(gameController.getWidth() / 2 - 60, initialBtnYPos + btnYIncrement * 4, 120, 50);
+        exitRect = new Rectangle(gameController.getWidth() / 2 - 50, initialBtnYPos + btnYIncrement * 5, 100, 50);
 
         rectColors = new Color[options.length];
 
@@ -69,22 +69,22 @@ public class MainMenu extends Menu {
                 if (inputHandler.isUsePressed()) {
                     switch (i) {
                         case 0:
-                            game.switchState(State.NEW_LEVEL);
+                            gameController.switchState(State.NEW_LEVEL);
                             break;
                         case 1:
-                            game.switchState(State.SCORES);
+                            gameController.switchState(State.SCORES);
                             break;
                         case 2:
-                            game.switchState(State.CONTROLS);
+                            gameController.switchState(State.CONTROLS);
                             break;
                         case 3:
-                            game.switchState(State.SETTINGS);
+                            gameController.switchState(State.SETTINGS);
                             break;
                         case 4:
-                            game.switchState(State.ABOUT);
+                            gameController.switchState(State.ABOUT);
                             break;
                         case 5:
-                            game.switchState(State.EXIT);
+                            gameController.switchState(State.EXIT);
                             break;
                         default:
                             break;
@@ -100,7 +100,7 @@ public class MainMenu extends Menu {
     public void render(Graphics2D g) {
         int yBtnOffset = 33;
 
-        /* Render game title */
+        /* Render gameController title */
         drawMenuTitle(g);
 
         /* Show player name */

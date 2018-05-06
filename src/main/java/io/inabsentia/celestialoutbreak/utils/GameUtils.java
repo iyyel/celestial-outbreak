@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
 
-public class GameUtils {
+public final class GameUtils {
 
     private static GameUtils instance;
 
@@ -18,7 +18,7 @@ public class GameUtils {
 
     private final Random random = new Random();
 
-    /* Game flags */
+    /* GameController flags */
     private boolean isVerboseEnabled = true;
     private boolean isSoundEnabled = true;
     private boolean isGodModeEnabled = false;
@@ -60,12 +60,18 @@ public class GameUtils {
 
     private void initGameProperties() {
         Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
+
         this.isVerboseEnabled = Boolean.parseBoolean(map.get(textHandler.PROP_VERBOSE_ENABLED));
-        if (isVerboseEnabled) fileHandler.writeLogMsg("Verbose logging enabled");
+        if (isVerboseEnabled)
+            fileHandler.writeLog("Verbose logging enabled!");
+
         this.isSoundEnabled = Boolean.parseBoolean(map.get(textHandler.PROP_SOUND_ENABLED));
-        if (isSoundEnabled) fileHandler.writeLogMsg("Sound enabled");
+        if (isSoundEnabled)
+            fileHandler.writeLog("Sound enabled!");
+
         this.isGodModeEnabled = Boolean.parseBoolean(map.get(textHandler.PROP_GOD_MODE_ENABLED));
-        if (isGodModeEnabled) fileHandler.writeLogMsg("God Mode enabled. Go crazy!");
+        if (isGodModeEnabled)
+            fileHandler.writeLog("God Mode enabled. Go crazy!");
     }
 
     public boolean isVerboseEnabled() {

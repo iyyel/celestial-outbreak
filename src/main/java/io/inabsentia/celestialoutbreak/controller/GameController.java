@@ -1,6 +1,5 @@
 package io.inabsentia.celestialoutbreak.controller;
 
-import io.inabsentia.celestialoutbreak.entity.State;
 import io.inabsentia.celestialoutbreak.graphics.ScreenRenderer;
 import io.inabsentia.celestialoutbreak.handler.*;
 import io.inabsentia.celestialoutbreak.menu.*;
@@ -13,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.Map;
 
-public class Game extends Canvas implements Runnable {
+public class GameController extends Canvas implements Runnable {
 
     /*
      * SCREEN_WIDTH and SCREEN_HEIGHT will be multiplied by SCREEN_SCALE to make the width and height of the screenRenderer.
@@ -32,7 +31,7 @@ public class Game extends Canvas implements Runnable {
 
     /*
      * gameThread is the main thread of the application.
-     * isRunning determines whether the game loop is running or not.
+     * isRunning determines whether the gameController loop is running or not.
      */
     private Thread gameThread;
     private boolean isRunning = false;
@@ -85,18 +84,23 @@ public class Game extends Canvas implements Runnable {
     private final FinishedLevelMenu finishedLevelMenu;
     private Color menuColor;
 
+    public enum State {
+        MENU, PLAY, SCORES, CONTROLS, SETTINGS,
+        ABOUT, EXIT, PAUSE, NEW_LEVEL, FINISHED_LEVEL
+    }
+
     /*
-     * Current state of the game.
+     * Current state of the gameController.
      * Starts with showing the menu state.
      */
     private State state = State.MENU;
 
     /*
-     * Constructor of Game class.
-     * Initialize above objects here. Start game loop, etc.
+     * Constructor of GameController class.
+     * Initialize above objects here. Start gameController loop, etc.
      */
-    public Game() {
-        fileHandler.writeLogMsg(textHandler.START_NEW_APP_INSTANCE);
+    public GameController() {
+        fileHandler.writeLog(textHandler.START_NEW_APP_INSTANCE);
 
         /* Set dimensions of the JFrame and Canvas */
         Dimension size = new Dimension(SCREEN_WIDTH * SCREEN_SCALE, SCREEN_HEIGHT * SCREEN_SCALE);
@@ -105,21 +109,21 @@ public class Game extends Canvas implements Runnable {
         setMaximumSize(size);
         setSize(size);
 
-		/* Create JFrame */
+        /* Create JFrame */
         gameFrame = new JFrame();
         gameFrame.setSize(size);
 
         /* Initialize levelHandler */
         levelHandler = new LevelHandler(0, this, inputHandler, soundHandler, fileHandler);
 
-		/* Create screenRenderer renderer */
+        /* Create screenRenderer renderer */
         screenRenderer = new ScreenRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, pixels);
 
         /* Instantiate main menu colors */
         try {
             initMenuColors();
         } catch (Exception e) {
-            fileHandler.writeLogMsg(textHandler.errorParsingPropertiesMsg(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH, e.getMessage()));
+            fileHandler.writeLog(textHandler.errorParsingPropertiesMsg(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH, e.getMessage()));
             stop();
         }
 
@@ -135,17 +139,17 @@ public class Game extends Canvas implements Runnable {
         finishedLevelMenu = new FinishedLevelMenu(this, inputHandler, menuFontColor);
         menuColor = gameUtils.generatePastelColor(0.9F, 9000F);
 
-		/* Add input handlers */
+        /* Add input handlers */
         gameFrame.addKeyListener(inputHandler);
         addKeyListener(inputHandler);
 
-		/* Initialize the JFrame and start the game loop */
+        /* Initialize the JFrame and start the gameController loop */
         initFrame();
-        fileHandler.writeLogMsg(textHandler.SUCCESS_NEW_APP_INSTANCE);
+        fileHandler.writeLog(textHandler.SUCCESS_NEW_APP_INSTANCE);
     }
 
     /*
-     * Game loop with frames and updates counter.
+     * GameController loop with frames and updates counter.
      */
     @Override
     public void run() {
@@ -172,7 +176,7 @@ public class Game extends Canvas implements Runnable {
                 double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                 if (gameUtils.isVerboseEnabled()) {
                     gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION + " | " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
-                    fileHandler.writeLogMsg(textHandler.vPerformanceMsg(frames, updates, allocatedRam));
+                    fileHandler.writeLog(textHandler.vPerformanceMsg(frames, updates, allocatedRam));
                 } else {
                     gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION);
                 }
@@ -183,7 +187,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /*
-     * Update the state of the game entities as well as the different menus.
+     * Update the state of the gameController entities as well as the different menus.
      */
     private void update() {
         /* Update the currently pressed keys. */
@@ -191,7 +195,7 @@ public class Game extends Canvas implements Runnable {
 
         soundHandler.playStateMusic(state, true);
 
-        /* Let the current game state decide what to update exactly. */
+        /* Let the current gameController state decide what to update exactly. */
         switch (state) {
             case MENU:
                 mainMenu.update();
@@ -232,7 +236,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /*
-     * Render game entities as well as the menus and everything else.
+     * Render gameController entities as well as the menus and everything else.
      */
     private void render() {
         /* Get BufferStrategy object handle. */
@@ -247,7 +251,7 @@ public class Game extends Canvas implements Runnable {
         /* Clear the screenRenderer, i.e. make it go all black. */
         screenRenderer.clear();
 
-        /* Let the current game state decide whether to render a level's color or the menu's color. */
+        /* Let the current gameController state decide whether to render a level's color or the menu's color. */
         switch (state) {
             case MENU:
                 switchMenuColor();
@@ -282,7 +286,7 @@ public class Game extends Canvas implements Runnable {
         /* Draw the buffered image to the screen. */
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
-        /* Make the current state of the game decide what to render. */
+        /* Make the current state of the gameController decide what to render. */
         switch (state) {
             case MENU:
                 mainMenu.render(g);
@@ -324,18 +328,18 @@ public class Game extends Canvas implements Runnable {
     }
 
     /*
-     * Start method for the game thread/loop.
+     * Start method for the gameController thread/loop.
      */
     public synchronized void start() {
         if (!isRunning) {
             isRunning = true;
-            gameThread = new Thread(this, "Game");
+            gameThread = new Thread(this, "GameController");
             gameThread.start();
         }
     }
 
     /*
-     * Stop method for the game thread/loop. Will exit the application.
+     * Stop method for the gameController thread/loop. Will exit the application.
      */
     public synchronized void stop() {
         if (isRunning) isRunning = false;
@@ -357,7 +361,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     /*
-     * Change the current state of the game.
+     * Change the current state of the gameController.
      */
     public void switchState(State state) {
         this.state = state;

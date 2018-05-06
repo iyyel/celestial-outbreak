@@ -2,7 +2,7 @@ package io.inabsentia.celestialoutbreak.graphics;
 
 import java.awt.*;
 
-public class ScreenRenderer {
+public final class ScreenRenderer {
 
     private final int WIDTH;
     private final int HEIGHT;

@@ -1,19 +1,19 @@
 package io.inabsentia.celestialoutbreak.menu;
 
-import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 
 import java.awt.*;
 
-public class GamePanel extends Menu {
+public final class GamePanel extends Menu {
 
     private final Font panelFont;
 
     private String levelName;
     private int blockAmountLeft;
 
-    public GamePanel(Game game, InputHandler inputHandler, Color fontColor) {
-        super(game, inputHandler, fontColor);
+    public GamePanel(GameController gameController, InputHandler inputHandler, Color fontColor) {
+        super(gameController, inputHandler, fontColor);
 
         panelFont = gameUtils.getGameFont().deriveFont(12F);
     }
@@ -38,9 +38,9 @@ public class GamePanel extends Menu {
     private void drawGamePanel(Graphics2D g, String levelName, int blockAmountLeft) {
         g.drawString("Planet: " + levelName, 5, 714);
         g.drawString("Player: N/A", 150, 714);
-        g.drawString("Lives: N/A", game.getWidth() / 2 - 100, 714);
-        g.drawString("Score: N/A", game.getWidth() / 2, 714);
-        g.drawString("Blocks: " + Integer.toString(blockAmountLeft), game.getWidth() / 2 + 200, 714);
+        g.drawString("Lives: N/A", gameController.getWidth() / 2 - 100, 714);
+        g.drawString("Score: N/A", gameController.getWidth() / 2, 714);
+        g.drawString("Blocks: " + Integer.toString(blockAmountLeft), gameController.getWidth() / 2 + 200, 714);
     }
 
 }

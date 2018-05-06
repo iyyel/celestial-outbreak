@@ -5,10 +5,12 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TextHandler {
+public final class TextHandler {
 
     /* Singleton TextHandler instance. */
     private static TextHandler instance;
+
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     /*
      * Private constructor so that TextHandler can't
@@ -38,7 +40,7 @@ public class TextHandler {
     }
 
     /*
-     * Important game strings.
+     * Important gameController strings.
      */
     public final String GAME_TITLE = "Celestial Outbreak";
     public final String GAME_VERSION = "v0.12a";
@@ -57,11 +59,14 @@ public class TextHandler {
     /*
      * Log announcement messages.
      */
-    public final String START_NEW_APP_INSTANCE = "New " + GAME_TITLE + " " + GAME_VERSION + " instance started at " + getDateTime() + " on " + System.getProperty("os.name");
-    public final String SUCCESS_NEW_APP_INSTANCE = "Finished " + GAME_TITLE + " " + GAME_VERSION + " initialization at " + getDateTime() + " on " + System.getProperty("os.name");
+    public final String START_NEW_APP_INSTANCE = "New " + GAME_TITLE + " " + GAME_VERSION +
+            " instance started at " + getDateTime() + " on " + System.getProperty("os.name") + ".";
+
+    public final String SUCCESS_NEW_APP_INSTANCE = "Finished " + GAME_TITLE + " " + GAME_VERSION +
+            " initialization at " + getDateTime() + " on " + System.getProperty("os.name") + ".";
 
     /*
-     * Client local game directory.
+     * Client local gameController directory.
      */
     public final String GAME_DIR = System.getProperty("user.home") + File.separator + GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
 
@@ -80,17 +85,8 @@ public class TextHandler {
     public final String LOG_FILE_PATH = LOG_DIR_PATH + File.separator + LOG_FILE_NAME;
 
     public final String logMsgPrefix() {
-        return "[LOG " + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "]: ";
+        return "[LOG " + dateFormat.format(new Date()) + "]: ";
     }
-
-    /*
-     * Database file information.
-     */
-    public final String DB_DIR_NAME = "db";
-    public final String DB_DIR_PATH = GAME_DIR + File.separator + DB_DIR_NAME;
-
-    public final String DB_CONFIG_FILE_NAME = "db.config";
-    public final String DB_CONFIG_FILE_PATH = DB_DIR_PATH + File.separator + DB_CONFIG_FILE_NAME;
 
     /*
      * Settings file information.
@@ -179,7 +175,6 @@ public class TextHandler {
     public final String PROP_VERBOSE_ENABLED = "VERBOSE_ENABLED";
     public final String PROP_SOUND_ENABLED = "SOUND_ENABLED";
     public final String PROP_GOD_MODE_ENABLED = "GOD_MODE_ENABLED";
-    public final String PROP_LOCAL_DB_ENABLED = "LOCAL_DB_ENABLED";
 
     /*
      * Menu color properties.

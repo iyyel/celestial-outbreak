@@ -1,11 +1,11 @@
 package io.inabsentia.celestialoutbreak.main;
 
-import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.controller.GameController;
 
-public class Main {
+public final class Main {
 
     public static void main(String[] args) {
-        new Game().start();
+        new GameController().start();
     }
 
 }

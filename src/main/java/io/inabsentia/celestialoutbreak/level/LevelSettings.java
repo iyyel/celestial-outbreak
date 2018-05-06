@@ -1,6 +1,6 @@
 package io.inabsentia.celestialoutbreak.level;
 
-import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -8,7 +8,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import java.awt.*;
 import java.util.Map;
 
-public class LevelSettings {
+public final class LevelSettings {
 
     private final TextHandler textHandler = TextHandler.getInstance();
 
@@ -47,14 +47,14 @@ public class LevelSettings {
     /*
      * Required objects.
      */
-    private final Game game;
+    private final GameController gameController;
     private final FileHandler fileHandler;
 
     /*
      * Constructor.
      */
-    public LevelSettings(String fileName, Game game, FileHandler fileHandler) {
-        this.game = game;
+    public LevelSettings(String fileName, GameController gameController, FileHandler fileHandler) {
+        this.gameController = gameController;
         this.fileHandler = fileHandler;
 
         try {
@@ -63,11 +63,11 @@ public class LevelSettings {
             /*
              * If the level settings aren't able to be parsed correctly, any exception that will be
              * thrown will be printed to the console as well as the current log file, and then the
-             * game will be stopped, since invalid level settings has been found which might cause
+             * gameController will be stopped, since invalid level settings has been found which might cause
              * the application to be in an inconsistent state.
              */
-            fileHandler.writeLogMsg(textHandler.errorParsingPropertiesMsg(fileName, ExceptionUtils.getStackTrace(e)));
-            game.stop();
+            fileHandler.writeLog(textHandler.errorParsingPropertiesMsg(fileName, ExceptionUtils.getStackTrace(e)));
+            gameController.stop();
         }
     }
 
@@ -84,7 +84,7 @@ public class LevelSettings {
         int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_PADDLE_POS_X_OFFSET));
         int paddlePosYOffset = Integer.parseInt(map.get(textHandler.PROP_PADDLE_POS_Y_OFFSET));
 
-        paddlePos = new Point((game.getWidth() / 2) - paddlePosXOffset, game.getHeight() - paddlePosYOffset);
+        paddlePos = new Point((gameController.getWidth() / 2) - paddlePosXOffset, gameController.getHeight() - paddlePosYOffset);
         paddleWidth = Integer.parseInt(map.get(textHandler.PROP_PADDLE_WIDTH));
         paddleHeight = Integer.parseInt(map.get(textHandler.PROP_PADDLE_HEIGHT));
         paddleSpeed = Integer.parseInt(map.get(textHandler.PROP_PADDLE_SPEED));
@@ -95,7 +95,7 @@ public class LevelSettings {
         /* Ball Setup. */
         ballPosXOffset = Integer.parseInt(map.get(textHandler.PROP_BALL_POS_X_OFFSET));
         ballPosYOffset = Integer.parseInt(map.get(textHandler.PROP_BALL_POS_Y_OFFSET));
-        ballPos = new Point((game.getWidth() / 2) - ballPosXOffset, (game.getHeight() / 2) - ballPosYOffset);
+        ballPos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
 
         ballSize = Integer.parseInt(map.get(textHandler.PROP_BALL_SIZE));
         ballSpeed = Integer.parseInt(map.get(textHandler.PROP_BALL_SPEED));

@@ -1,9 +1,9 @@
 # _Celestial Outbreak_
 
-_Welcome to Celestial Outbreak! A game inspired by Pong, Breakout and a few others. Currently in development._
+_Welcome to Celestial Outbreak! A gameController inspired by Pong, Breakout and a few others. Currently in development._
 
 ### _v0.11a_
-_Version 0.11 alpha has been released. While still being an alpha release, the game is actually fairly playable
+_Version 0.11 alpha has been released. While still being an alpha release, the gameController is actually fairly playable
 in its current state._
 
 _This version include some new major features, listed below._

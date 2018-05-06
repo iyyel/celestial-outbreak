@@ -1,6 +1,6 @@
 package io.inabsentia.celestialoutbreak.handler;
 
-import io.inabsentia.celestialoutbreak.entity.State;
+import io.inabsentia.celestialoutbreak.controller.GameController.State;
 import io.inabsentia.celestialoutbreak.utils.GameUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
@@ -11,7 +11,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 
-public class SoundHandler {
+public final class SoundHandler {
 
     private final GameUtils gameUtils = GameUtils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
@@ -35,7 +35,7 @@ public class SoundHandler {
                 clip = AudioSystem.getClip();
                 clip.open(AudioSystem.getAudioInputStream(new File(filePath)));
             } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-                fileHandler.writeLogMsg(textHandler.errorCreatingAudioClipMsg(filePath, ExceptionUtils.getStackTrace(e)));
+                fileHandler.writeLog(textHandler.errorCreatingAudioClipMsg(filePath, ExceptionUtils.getStackTrace(e)));
             }
         }
 

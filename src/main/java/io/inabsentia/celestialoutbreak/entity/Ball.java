@@ -1,6 +1,6 @@
 package io.inabsentia.celestialoutbreak.entity;
 
-import io.inabsentia.celestialoutbreak.controller.Game;
+import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
 import io.inabsentia.celestialoutbreak.handler.SoundHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
@@ -9,7 +9,7 @@ import io.inabsentia.celestialoutbreak.utils.GameUtils;
 import java.awt.*;
 import java.util.Random;
 
-public class Ball extends MobileEntity {
+public final class Ball extends MobileEntity {
 
     private final GameUtils gameUtils = GameUtils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
@@ -25,8 +25,8 @@ public class Ball extends MobileEntity {
     private final Random random = new Random();
     private Point velocity;
 
-    public Ball(Point pos, int ballPosXOffset, int ballPosYOffset, int width, int height, int speed, Color color, Game game) {
-        super(pos, width, height, speed, color, game);
+    public Ball(Point pos, int ballPosXOffset, int ballPosYOffset, int width, int height, int speed, Color color, GameController gameController) {
+        super(pos, width, height, speed, color, gameController);
         this.ballPosXOffset = ballPosXOffset;
         this.ballPosYOffset = ballPosYOffset;
 
@@ -45,27 +45,27 @@ public class Ball extends MobileEntity {
         checkCollision(blockList);
 
         if (pos.x < 0) {
-            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedXAxisLeftMsg);
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLog(textHandler.vBallTouchedXAxisLeftMsg);
             velocity.x = speed;
             soundHandler.BALL_BOUNCE_CLIP.play(false);
         }
 
-        if (pos.x > (game.getWidth() - width)) {
-            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedXAxisRightMsg);
+        if (pos.x > (gameController.getWidth() - width)) {
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLog(textHandler.vBallTouchedXAxisRightMsg);
             velocity.x = -speed;
             soundHandler.BALL_BOUNCE_CLIP.play(false);
         }
 
         if (pos.y < 0) {
-            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedYAxisTopMsg);
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLog(textHandler.vBallTouchedYAxisTopMsg);
             velocity.y = speed;
             soundHandler.BALL_BOUNCE_CLIP.play(false);
         }
 
-        if (pos.y > (game.getHeight() - height)) {
-            if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallTouchedYAxisBottomMsg);
+        if (pos.y > (gameController.getHeight() - height)) {
+            if (gameUtils.isVerboseEnabled()) fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
 
-            pos = new Point((game.getWidth() / 2) - ballPosXOffset, (game.getHeight() / 2) - ballPosYOffset);
+            pos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
 
             boolean isPositiveValue = random.nextBoolean();
             int ballSpeedDecrement = random.nextInt(speed);
@@ -92,7 +92,7 @@ public class Ball extends MobileEntity {
 
                 soundHandler.BALL_BOUNCE_CLIP.play(false);
 
-                if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
+                if (gameUtils.isVerboseEnabled()) fileHandler.writeLog(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
             }
         } else if (t.getClass().equals(BlockList.class)) {
             for (int i = 0, n = ((BlockList) t).getLength(); i < n; i++) {
@@ -102,7 +102,7 @@ public class Ball extends MobileEntity {
 
                     soundHandler.BALL_BOUNCE_CLIP.play(false);
 
-                    if (gameUtils.isVerboseEnabled()) fileHandler.writeLogMsg(textHandler.vBallBlockListCollisionMsg(i));
+                    if (gameUtils.isVerboseEnabled()) fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i));
                 }
             }
         }
