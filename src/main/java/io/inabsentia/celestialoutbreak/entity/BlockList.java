@@ -36,11 +36,30 @@ public final class BlockList {
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
 
         /* Render the blocks if they exist, i.e. if they aren't equal to null. */
-        for (Block block : blockList) if (block != null) block.render(g);
+        for (Block block : blockList)
+            if (block != null)
+                block.render(g);
 
-        /* Enables antialiasing when blocks have rendered. */
+        /* Enables antialiasing when blocks have been rendered. */
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+    }
+
+    public void destroyBlock(int index) {
+        blockList[index] = null;
+        blocksLeft--;
+    }
+
+    public Block getBlock(int index) {
+        return blockList[index];
+    }
+
+    public int getLength() {
+        return blockList.length;
+    }
+
+    public int getBlocksLeft() {
+        return blocksLeft;
     }
 
     private void initBlocks() {
@@ -54,23 +73,6 @@ public final class BlockList {
                 pos.x = initialX;
             }
         }
-    }
-
-    public void destroyBlock(int index) {
-        blockList[index] = null;
-        blocksLeft--;
-    }
-
-    public int getBlocksLeft() {
-        return blocksLeft;
-    }
-
-    public int getLength() {
-        return blockList.length;
-    }
-
-    public Block getBlock(int index) {
-        return blockList[index];
     }
 
 }

@@ -15,7 +15,8 @@ import java.util.Map;
 public class GameController extends Canvas implements Runnable {
 
     /*
-     * SCREEN_WIDTH and SCREEN_HEIGHT will be multiplied by SCREEN_SCALE to make the width and height of the screenRenderer.
+     * SCREEN_WIDTH and SCREEN_HEIGHT will be multiplied by
+     * SCREEN_SCALE to make the width and height of the screenRenderer.
      * Update rate is the targeted update rate.
      */
     private final int SCREEN_WIDTH = 640;
