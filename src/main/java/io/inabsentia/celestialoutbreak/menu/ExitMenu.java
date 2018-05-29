@@ -23,7 +23,7 @@ public final class ExitMenu extends Menu {
         g.setColor(fontColor);
         drawMenuTitle(g);
         drawSubmenuTitle("Exit", g);
-        drawXCenteredString("Do you wish to exit the gameController?", gameController.getHeight() / 2, g, msgFont);
+        drawXCenteredString("Do you wish to exit the game?", gameController.getHeight() / 2, g, msgFont);
         drawInformationPanel(g);
     }
 

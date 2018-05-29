@@ -1,7 +1,7 @@
 package io.inabsentia.celestialoutbreak.handler;
 
 import io.inabsentia.celestialoutbreak.controller.GameController.State;
-import io.inabsentia.celestialoutbreak.utils.GameUtils;
+import io.inabsentia.celestialoutbreak.utils.Utils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
 import javax.sound.sampled.AudioSystem;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public final class SoundHandler {
 
-    private final GameUtils gameUtils = GameUtils.getInstance();
+    private final Utils utils = Utils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
 
@@ -40,7 +40,7 @@ public final class SoundHandler {
         }
 
         public void play(boolean loop) {
-            if (!gameUtils.isSoundEnabled() || clip.isActive()) return;
+            if (!utils.isSoundEnabled() || clip.isActive()) return;
             stop();
 
             if (loop)
@@ -50,7 +50,7 @@ public final class SoundHandler {
         }
 
         public void resume(boolean loop) {
-            if (!gameUtils.isSoundEnabled() || clip.isActive()) return;
+            if (!utils.isSoundEnabled() || clip.isActive()) return;
             clip.setMicrosecondPosition(currentMicrosecondClipPosition);
 
             if (loop)
@@ -60,13 +60,13 @@ public final class SoundHandler {
         }
 
         public void pause() {
-            if (!gameUtils.isSoundEnabled()) return;
+            if (!utils.isSoundEnabled()) return;
             currentMicrosecondClipPosition = clip.getMicrosecondPosition();
             stop();
         }
 
         public void stop() {
-            if (!gameUtils.isSoundEnabled()) return;
+            if (!utils.isSoundEnabled()) return;
             clip.stop();
             clip.setFramePosition(0);
         }

@@ -84,7 +84,7 @@ public final class Level {
 
         /* Create objects after initializing the settings. */
         paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, gameController);
-        ball = new Ball(ballPos, ballPosXOffset, ballPosYOffset, ballSize, ballSize, ballSpeed, ballColor, gameController);
+        ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, ballPosXOffset, ballPosYOffset, gameController);
         blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, gameController);
         gamePanel = new GamePanel(gameController, inputHandler, GamePanelColor);
     }

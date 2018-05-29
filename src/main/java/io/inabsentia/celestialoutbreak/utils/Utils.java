@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
 
-public final class GameUtils {
+public final class Utils {
 
-    private static GameUtils instance;
+    private static Utils instance;
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
@@ -23,19 +23,19 @@ public final class GameUtils {
     private boolean isSoundEnabled = true;
     private boolean isGodModeEnabled = false;
 
-    private GameUtils() {
+    private Utils() {
         initGameProperties();
     }
 
     static {
         try {
-            instance = new GameUtils();
+            instance = new Utils();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static synchronized GameUtils getInstance() {
+    public static synchronized Utils getInstance() {
         return instance;
     }
 

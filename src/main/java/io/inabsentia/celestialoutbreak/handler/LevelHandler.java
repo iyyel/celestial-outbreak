@@ -3,7 +3,7 @@ package io.inabsentia.celestialoutbreak.handler;
 import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.controller.GameController.State;
 import io.inabsentia.celestialoutbreak.level.Level;
-import io.inabsentia.celestialoutbreak.utils.GameUtils;
+import io.inabsentia.celestialoutbreak.utils.Utils;
 
 import java.awt.*;
 import java.io.File;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public final class LevelHandler {
 
-    private final GameUtils gameUtils = GameUtils.getInstance();
+    private final Utils utils = Utils.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
 
     private GameController gameController;
@@ -44,7 +44,7 @@ public final class LevelHandler {
         if (activeLevel.isFinished()) {
             startNextLevel();
             gameController.switchState(State.FINISHED_LEVEL);
-            if (gameUtils.isVerboseEnabled())
+            if (utils.isVerboseEnabled())
                 fileHandler.writeLog(textHandler.vLevelFinishedMsg(getPrevLevel().getName()));
         }
     }
@@ -56,7 +56,7 @@ public final class LevelHandler {
     private void startNextLevel() {
         if (currentLevelIndex >= 0 && currentLevelIndex + 1 <= levels.length - 1) {
             currentLevelIndex++;
-            if (gameUtils.isVerboseEnabled())
+            if (utils.isVerboseEnabled())
                 fileHandler.writeLog(textHandler.vChangedLevelMsg(activeLevel.getName(), levels[currentLevelIndex].getName()));
             activeLevel = levels[currentLevelIndex];
         }

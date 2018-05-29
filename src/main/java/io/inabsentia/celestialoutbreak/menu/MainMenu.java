@@ -22,7 +22,8 @@ public final class MainMenu extends Menu {
 
     private final SoundHandler soundHandler;
 
-    public MainMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler, Color fontColor, Color rectColor, Color selectedColor) {
+    public MainMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler,
+                    Color fontColor, Color rectColor, Color selectedColor) {
         super(gameController, inputHandler, fontColor);
         this.soundHandler = soundHandler;
         this.rectColor = rectColor;
@@ -41,9 +42,10 @@ public final class MainMenu extends Menu {
 
         rectColors = new Color[options.length];
 
-        for (Color c : rectColors) c = rectColor;
+        for (Color c : rectColors)
+            c = rectColor;
 
-        btnFont = gameUtils.getGameFont().deriveFont(20F);
+        btnFont = utils.getGameFont().deriveFont(20F);
     }
 
     @Override
@@ -69,7 +71,7 @@ public final class MainMenu extends Menu {
                 if (inputHandler.isUsePressed()) {
                     switch (i) {
                         case 0:
-                            gameController.switchState(State.NEW_LEVEL);
+                            gameController.switchState(State.PLAYER);
                             break;
                         case 1:
                             gameController.switchState(State.SCORES);
@@ -100,13 +102,13 @@ public final class MainMenu extends Menu {
     public void render(Graphics2D g) {
         int yBtnOffset = 33;
 
-        /* Render gameController title */
+        /* Render game title */
         drawMenuTitle(g);
 
         /* Show player name */
         drawSubmenuTitle("Welcome Player", g);
 
-		/* Render io.inabsentia.celestialoutbreak.MENU_CLIP buttons */
+		/* Render buttons  */
         g.setFont(btnFont);
 
         /* Play button */

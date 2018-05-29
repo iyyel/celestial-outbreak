@@ -26,7 +26,7 @@ public final class Block extends Entity {
     }
 
     /**
-     * Draws the Block onto the screen.
+     * Draws the @Block onto the screen.
      *
      * @param g Graphics object used to render this Entity.
      */

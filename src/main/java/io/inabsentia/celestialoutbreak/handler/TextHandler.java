@@ -99,6 +99,24 @@ public final class TextHandler {
     public final String SETTINGS_CONFIG_FILE_CLIENT_PATH = SETTINGS_DIR_PATH + File.separator + SETTINGS_CONFIG_FILE_NAME;
 
     /*
+     * Player binary file information.
+     */
+    public final String PLAYER_DIR_NAME = "player";
+    public final String PLAYER_DIR_PATH = GAME_DIR + File.separator + PLAYER_DIR_NAME;
+
+    public final String PLAYER_CONFIG_FILE_NAME = "players.bin";
+    public final String PLAYER_CONFIG_FILE_CLIENT_PATH = PLAYER_DIR_PATH + File.separator + PLAYER_CONFIG_FILE_NAME;
+
+    /*
+     * Score binary file information.
+     */
+    public final String SCORE_DIR_NAME = "score";
+    public final String SCORE_DIR_PATH = GAME_DIR + File.separator + SCORE_DIR_NAME;
+
+    public final String SCORE_CONFIG_FILE_NAME = "score.bin";
+    public final String SCORE_CONFIG_FILE_CLIENT_PATH = SCORE_DIR_PATH + File.separator + SCORE_CONFIG_FILE_NAME;
+
+    /*
      * Local font file information.
      */
     public final String GAME_FONT_NAME = "neuropol.ttf";
@@ -106,18 +124,9 @@ public final class TextHandler {
     public final String GAME_FONT_LOCAL_PATH = TextHandler.class.getResource(GAME_FONT_DIR_LOCAL_PATH + GAME_FONT_NAME).getPath();
 
     /*
-     * Player file information.
-     */
-    public final String PLAYER_DIR_NAME = SETTINGS_DIR_NAME;
-    public final String PLAYER_DIR_PATH = SETTINGS_DIR_PATH;
-
-    public final String PLAYER_CONFIG_FILE_NAME = "player.config";
-    public final String PLAYER_CONFIG_FILE_CLIENT_PATH = PLAYER_DIR_PATH + File.separator + PLAYER_CONFIG_FILE_NAME;
-
-    /*
      * Level file information.
      */
-    public final String LEVEL_DIR_NAME = "levels";
+    public final String LEVEL_DIR_NAME = "level";
     public final String LEVEL_DIR_PATH = GAME_DIR + File.separator + LEVEL_DIR_NAME;
 
     public final String LEVEL_CONFIG_FILE_NAME = "levels.config";
@@ -170,7 +179,7 @@ public final class TextHandler {
      */
 
     /*
-     * GameUtils properties.
+     * Utils properties.
      */
     public final String PROP_VERBOSE_ENABLED = "VERBOSE_ENABLED";
     public final String PROP_SOUND_ENABLED = "SOUND_ENABLED";

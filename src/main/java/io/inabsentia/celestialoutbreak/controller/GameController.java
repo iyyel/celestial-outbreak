@@ -1,9 +1,11 @@
 package io.inabsentia.celestialoutbreak.controller;
 
+import io.inabsentia.celestialoutbreak.data.dao.IPlayerDAO;
+import io.inabsentia.celestialoutbreak.data.dao.PlayerDAO;
 import io.inabsentia.celestialoutbreak.graphics.ScreenRenderer;
 import io.inabsentia.celestialoutbreak.handler.*;
 import io.inabsentia.celestialoutbreak.menu.*;
-import io.inabsentia.celestialoutbreak.utils.GameUtils;
+import io.inabsentia.celestialoutbreak.utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,10 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.Map;
 
+/*
+ * This is the GameController class.
+ * This is the canvas upon where the game is drawn and played.
+ */
 public class GameController extends Canvas implements Runnable {
 
     /*
@@ -27,7 +33,7 @@ public class GameController extends Canvas implements Runnable {
     /*
      * Timers to switch the mainMenu background color in a slower interval than 60 times a second.
      */
-    private final int INITIAL_MENU_COLOR_TIMER_VALUE = SCREEN_UPDATE_RATE * 7;
+    private final int INITIAL_MENU_COLOR_TIMER_VALUE = SCREEN_UPDATE_RATE * 15;
     private int menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
 
     /*
@@ -54,10 +60,11 @@ public class GameController extends Canvas implements Runnable {
      * Singleton objects.
      */
     private final TextHandler textHandler = TextHandler.getInstance();
-    private final GameUtils gameUtils = GameUtils.getInstance();
+    private final Utils utils = Utils.getInstance();
     private final InputHandler inputHandler = InputHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
+    private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
     /*
      * LevelHandler object.
@@ -75,6 +82,7 @@ public class GameController extends Canvas implements Runnable {
      * Objects used for menu's.
      */
     private final MainMenu mainMenu;
+    private final PlayerMenu playerMenu;
     private final PauseMenu pauseMenu;
     private final ScoresMenu scoresMenu;
     private final SettingsMenu settingsMenu;
@@ -86,7 +94,7 @@ public class GameController extends Canvas implements Runnable {
     private Color menuColor;
 
     public enum State {
-        MENU, PLAY, SCORES, CONTROLS, SETTINGS,
+        MENU, PLAY, PLAYER, SCORES, CONTROLS, SETTINGS,
         ABOUT, EXIT, PAUSE, NEW_LEVEL, FINISHED_LEVEL
     }
 
@@ -130,6 +138,7 @@ public class GameController extends Canvas implements Runnable {
 
         /* Create menu objects */
         mainMenu = new MainMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
+        playerMenu = new PlayerMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor, playerDAO);
         pauseMenu = new PauseMenu(this, inputHandler, menuFontColor);
         scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
         settingsMenu = new SettingsMenu(this, inputHandler, menuFontColor);
@@ -138,11 +147,19 @@ public class GameController extends Canvas implements Runnable {
         exitMenu = new ExitMenu(this, inputHandler, menuFontColor);
         newLevelMenu = new NewLevelMenu(this, inputHandler, menuFontColor);
         finishedLevelMenu = new FinishedLevelMenu(this, inputHandler, menuFontColor);
-        menuColor = gameUtils.generatePastelColor(0.9F, 9000F);
+        menuColor = utils.generatePastelColor(0.9F, 9000F);
 
         /* Add input handlers */
         gameFrame.addKeyListener(inputHandler);
         addKeyListener(inputHandler);
+
+        /* Load players */
+        try {
+            playerDAO.loadPlayerList();
+        } catch (IPlayerDAO.PlayerDAOException e) {
+            // Handle this.
+            e.printStackTrace();
+        }
 
         /* Initialize the JFrame and start the gameController loop */
         initFrame();
@@ -175,7 +192,7 @@ public class GameController extends Canvas implements Runnable {
                 timer += 1000;
                 /* Is this correctly calculated? (ram) */
                 double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
-                if (gameUtils.isVerboseEnabled()) {
+                if (utils.isVerboseEnabled()) {
                     gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION + " | " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
                     fileHandler.writeLog(textHandler.vPerformanceMsg(frames, updates, allocatedRam));
                 } else {
@@ -203,7 +220,11 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case PLAY:
                 levelHandler.update();
-                if (inputHandler.isPausePressed()) switchState(State.PAUSE);
+                if (inputHandler.isPausePressed())
+                    switchState(State.PAUSE);
+                break;
+            case PLAYER:
+                playerMenu.update();
                 break;
             case SCORES:
                 scoresMenu.update();
@@ -258,6 +279,7 @@ public class GameController extends Canvas implements Runnable {
                 switchMenuColor();
                 screenRenderer.render(menuColor);
                 break;
+            case PLAYER:
             case SCORES:
             case CONTROLS:
             case SETTINGS:
@@ -294,6 +316,9 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case PLAY:
                 levelHandler.render(g);
+                break;
+            case PLAYER:
+                playerMenu.render(g);
                 break;
             case SCORES:
                 scoresMenu.render(g);
@@ -373,7 +398,7 @@ public class GameController extends Canvas implements Runnable {
      */
     private void switchMenuColor() {
         if (menuColorTimer == 0) {
-            menuColor = gameUtils.generatePastelColor(0.8F, 9000F);
+            menuColor = utils.generatePastelColor(0.8F, 9000F);
             menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
         } else {
             menuColorTimer--;

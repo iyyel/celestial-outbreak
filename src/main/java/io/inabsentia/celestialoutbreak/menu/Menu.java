@@ -3,13 +3,13 @@ package io.inabsentia.celestialoutbreak.menu;
 import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
-import io.inabsentia.celestialoutbreak.utils.GameUtils;
+import io.inabsentia.celestialoutbreak.utils.Utils;
 
 import java.awt.*;
 
 public abstract class Menu {
 
-    protected final GameUtils gameUtils = GameUtils.getInstance();
+    protected final Utils utils = Utils.getInstance();
     protected final TextHandler textHandler = TextHandler.getInstance();
     protected final InputHandler inputHandler;
 
@@ -24,10 +24,10 @@ public abstract class Menu {
         this.inputHandler = inputHandler;
         this.fontColor = fontColor;
 
-        titleFont = gameUtils.getGameFont().deriveFont(52F);
-        submenuTitleFont = gameUtils.getGameFont().deriveFont(32F);
-        msgFont = gameUtils.getGameFont().deriveFont(28F);
-        infoPanelFont = gameUtils.getGameFont().deriveFont(10F);
+        titleFont = utils.getGameFont().deriveFont(52F);
+        submenuTitleFont = utils.getGameFont().deriveFont(32F);
+        msgFont = utils.getGameFont().deriveFont(28F);
+        infoPanelFont = utils.getGameFont().deriveFont(10F);
 
         /* Information rectangles */
         versionRect = new Rectangle(gameController.getWidth() / 2 + 28, gameController.getHeight() - 20, 50, 15);

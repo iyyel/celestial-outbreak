@@ -15,7 +15,7 @@ public final class GamePanel extends Menu {
     public GamePanel(GameController gameController, InputHandler inputHandler, Color fontColor) {
         super(gameController, inputHandler, fontColor);
 
-        panelFont = gameUtils.getGameFont().deriveFont(12F);
+        panelFont = utils.getGameFont().deriveFont(12F);
     }
 
     @Override

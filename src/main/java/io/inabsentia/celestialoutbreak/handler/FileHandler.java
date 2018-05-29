@@ -57,6 +57,8 @@ public final class FileHandler {
         createDir(textHandler.LOG_DIR_PATH);
         createDir(textHandler.SETTINGS_DIR_PATH);
         createDir(textHandler.LEVEL_DIR_PATH);
+        createDir(textHandler.PLAYER_DIR_PATH);
+        createDir(textHandler.SCORE_DIR_PATH);
     }
 
     /*
