@@ -4,7 +4,12 @@ import io.inabsentia.celestialoutbreak.data.dao.IPlayerDAO;
 import io.inabsentia.celestialoutbreak.data.dao.PlayerDAO;
 import io.inabsentia.celestialoutbreak.graphics.ScreenRenderer;
 import io.inabsentia.celestialoutbreak.handler.*;
-import io.inabsentia.celestialoutbreak.menu.*;
+import io.inabsentia.celestialoutbreak.menu.game.FinishedLevelMenu;
+import io.inabsentia.celestialoutbreak.menu.game.NewLevelMenu;
+import io.inabsentia.celestialoutbreak.menu.main_menu.*;
+import io.inabsentia.celestialoutbreak.menu.settings.CustomSettingsMenu;
+import io.inabsentia.celestialoutbreak.menu.settings.PlayerSettingsMenu;
+import io.inabsentia.celestialoutbreak.menu.settings.SettingsMenu;
 import io.inabsentia.celestialoutbreak.utils.Utils;
 
 import javax.swing.*;
@@ -82,10 +87,11 @@ public class GameController extends Canvas implements Runnable {
      * Objects used for menu's.
      */
     private final MainMenu mainMenu;
-    private final PlayerMenu playerMenu;
     private final PauseMenu pauseMenu;
     private final ScoresMenu scoresMenu;
     private final SettingsMenu settingsMenu;
+    private final PlayerSettingsMenu playerSettingsMenu;
+    private final CustomSettingsMenu customSettingsMenu;
     private final ControlsMenu controlMenu;
     private final AboutMenu aboutMenu;
     private final ExitMenu exitMenu;
@@ -94,9 +100,10 @@ public class GameController extends Canvas implements Runnable {
     private Color menuColor;
 
     public enum State {
-        MAIN_MENU, PLAY, PLAYER_MENU, SCORES_MENU, CONTROLS_MENU, SETTINGS_MENU,
-        PLAYER_SETTINGS_MENU, PLAYER_CREATE_SETTINGS, PLAYER_UPDATE_SETTINGS, PLAYER_DELETE_SETTINGS,
-        ABOUT_MENU, EXIT_MENU, PAUSE, NEW_LEVEL, FINISHED_LEVEL
+        MAIN_MENU, PLAY, SCORES_MENU, CONTROLS_MENU, SETTINGS_MENU,
+        PLAYER_SETTINGS_MENU, CUSTOM_SETTINGS_MENU,
+        PLAYER_SELECT_SETTINGS, PLAYER_NEW_SETTINGS, PLAYER_UPDATE_SETTINGS, PLAYER_REMOVE_SETTINGS,
+        ABOUT_MENU, EXIT_MENU, PAUSE_SCREEN, NEW_LEVEL, FINISHED_LEVEL
     }
 
     /*
@@ -114,7 +121,7 @@ public class GameController extends Canvas implements Runnable {
 
         /* Load players */
         try {
-            playerDAO.loadPlayerList();
+            playerDAO.loadPlayerDTO();
         } catch (IPlayerDAO.PlayerDAOException e) {
             // Handle this.
             e.printStackTrace();
@@ -147,10 +154,11 @@ public class GameController extends Canvas implements Runnable {
 
         /* Create menu objects */
         mainMenu = new MainMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
-        playerMenu = new PlayerMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor, playerDAO);
         pauseMenu = new PauseMenu(this, inputHandler, menuFontColor);
         scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
         settingsMenu = new SettingsMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
+        playerSettingsMenu = new PlayerSettingsMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
+        customSettingsMenu = new CustomSettingsMenu(this, inputHandler, menuFontColor);
         controlMenu = new ControlsMenu(this, inputHandler, menuFontColor);
         aboutMenu = new AboutMenu(this, inputHandler, menuFontColor);
         exitMenu = new ExitMenu(this, inputHandler, menuFontColor);
@@ -222,10 +230,7 @@ public class GameController extends Canvas implements Runnable {
             case PLAY:
                 levelHandler.update();
                 if (inputHandler.isPausePressed())
-                    switchState(State.PAUSE);
-                break;
-            case PLAYER_MENU:
-                playerMenu.update();
+                    switchState(State.PAUSE_SCREEN);
                 break;
             case SCORES_MENU:
                 scoresMenu.update();
@@ -236,13 +241,19 @@ public class GameController extends Canvas implements Runnable {
             case SETTINGS_MENU:
                 settingsMenu.update();
                 break;
+            case PLAYER_SETTINGS_MENU:
+                playerSettingsMenu.update();
+                break;
+            case CUSTOM_SETTINGS_MENU:
+                customSettingsMenu.update();
+                break;
             case ABOUT_MENU:
                 aboutMenu.update();
                 break;
             case EXIT_MENU:
                 exitMenu.update();
                 break;
-            case PAUSE:
+            case PAUSE_SCREEN:
                 pauseMenu.update();
                 break;
             case NEW_LEVEL:
@@ -280,16 +291,17 @@ public class GameController extends Canvas implements Runnable {
                 switchMenuColor();
                 screenRenderer.render(menuColor);
                 break;
-            case PLAYER_MENU:
             case SCORES_MENU:
             case CONTROLS_MENU:
             case SETTINGS_MENU:
+            case PLAYER_SETTINGS_MENU:
+            case CUSTOM_SETTINGS_MENU:
             case ABOUT_MENU:
             case EXIT_MENU:
                 screenRenderer.render(menuColor);
                 break;
             case PLAY:
-            case PAUSE:
+            case PAUSE_SCREEN:
             case NEW_LEVEL:
                 screenRenderer.render(levelHandler.getActiveLevel().getColor());
                 break;
@@ -318,9 +330,6 @@ public class GameController extends Canvas implements Runnable {
             case PLAY:
                 levelHandler.render(g);
                 break;
-            case PLAYER_MENU:
-                playerMenu.render(g);
-                break;
             case SCORES_MENU:
                 scoresMenu.render(g);
                 break;
@@ -330,13 +339,19 @@ public class GameController extends Canvas implements Runnable {
             case SETTINGS_MENU:
                 settingsMenu.render(g);
                 break;
+            case PLAYER_SETTINGS_MENU:
+                playerSettingsMenu.render(g);
+                break;
+            case CUSTOM_SETTINGS_MENU:
+                customSettingsMenu.render(g);
+                break;
             case ABOUT_MENU:
                 aboutMenu.render(g);
                 break;
             case EXIT_MENU:
                 exitMenu.render(g);
                 break;
-            case PAUSE:
+            case PAUSE_SCREEN:
                 pauseMenu.render(g);
                 break;
             case NEW_LEVEL:

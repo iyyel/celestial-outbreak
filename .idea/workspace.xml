@@ -7,21 +7,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06a4bece-f043-43c0-93f7-996fa187f7bd" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dto/PlayerDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/RemovePlayerMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/SelectPlayerMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/UpdatePlayerMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/CustomSettingsMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/PlayerSettingsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/celestialoutbreak.iml" beforeDir="false" afterPath="$PROJECT_DIR$/celestialoutbreak.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IPlayerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IPlayerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/PlayerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/PlayerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/SoundHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/SoundHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/AboutMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/AboutMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ExitMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ExitMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/FinishedLevelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/FinishedLevelMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/NewLevelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/NewLevelMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PauseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PauseMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PlayerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PlayerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ScoresMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ScoresMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/AboutMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/AboutMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/ControlsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ExitMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/ExitMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/FinishedLevelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/game/FinishedLevelMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/game/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/NewLevelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/game/NewLevelMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PauseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/PauseMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PlayerMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ScoresMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/ScoresMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/SettingsMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/PlayerDAOTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PlayerDAOTestDriver.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -35,6 +47,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/celestialoutbreak$Run_Game.coverage" NAME="Run Game Coverage Results" MODIFIED="1498427436528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/celestialoutbreak$Run_CelestialOutbreak.ic" NAME="Run CelestialOutbreak Coverage Results" MODIFIED="1527795418181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -50,20 +63,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SettingsMenu.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java">
+      <file leaf-file-name="PlayerSettingsMenu.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/PlayerSettingsMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+            <state relative-caret-position="378">
+              <caret line="89" column="54" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="81" column="61" selection-start-line="81" selection-start-column="61" selection-end-line="81" selection-end-column="61" />
+            <state relative-caret-position="169">
+              <caret line="193" selection-start-line="193" selection-end-line="193" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TextHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="240" column="60" selection-start-line="240" selection-start-column="60" selection-end-line="240" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/PlayerDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="511">
+              <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerDTO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dto/PlayerDTO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IPlayerDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IPlayerDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="42" selection-start-column="42" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -95,6 +144,7 @@
       <find>DEV_ENABLED</find>
       <find>gameController</find>
       <find>score</find>
+      <find>SCORE</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -113,14 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/config/mars_level.config" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/neptune_level.config" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/venus_level.config" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/LevelMenu.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/Game.java" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/utils/GameUtils.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/State.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/State.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/graphics/ScreenRenderer.java" />
@@ -151,19 +193,27 @@
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/Level.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ExitMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/ScoreDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dto/PlayerDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dto/ScoreDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IPlayerDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/FileHandler.java" />
         <option value="$PROJECT_DIR$/TODO.md" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/Menu.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/PlayerDAO.java" />
-        <option value="$PROJECT_DIR$/src/test/java/PlayerDAOTestDriver.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PlayerMenu.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PlayerSettingsMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IPlayerDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/PlayerDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/CreatePlayerMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/DeletePlayerMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/SelectPlayerMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/UpdatePlayerMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/CustomSettingsMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/SettingsMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/GameController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/PlayerDAOTestDriver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dto/PlayerDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/PlayerSettingsMenu.java" />
       </list>
     </option>
   </component>
@@ -230,10 +280,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="316" />
-    <option name="y" value="200" />
-    <option name="width" value="1940" />
-    <option name="height" value="1060" />
+    <option name="x" value="1272" />
+    <option name="width" value="1297" />
+    <option name="height" value="1398" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -357,6 +406,16 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
               <item name="handler" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -366,7 +425,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
@@ -376,6 +435,27 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
               <item name="menu" type="462c0819:PsiDirectoryNode" />
+              <item name="main_menu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
+              <item name="player" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
+              <item name="settings" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
@@ -625,7 +705,7 @@
       <workItem from="1527617824824" duration="1350000" />
       <workItem from="1527619213473" duration="8671000" />
       <workItem from="1527771299345" duration="93000" />
-      <workItem from="1527778834761" duration="6322000" />
+      <workItem from="1527778834761" duration="14691000" />
     </task>
     <task id="LOCAL-00001" summary="Setting up project environment.">
       <created>1494522530451</created>
@@ -781,11 +861,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527627792233</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Safety push. :)">
+      <created>1527787286114</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1527787286114</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62102000" />
+    <option name="totallyTimeSpent" value="70471000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -801,7 +888,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.51464844" side_tool="true" visible="true" weight="0.21322803" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.10498047" side_tool="true" weight="0.0" />
       <window_info anchor="right" id="Maven Projects" order="4" weight="0.13072917" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info id="Capture Tool" order="3" />
@@ -810,17 +897,17 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.47802734" weight="0.29022706" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.47802734" visible="true" weight="0.17077987" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.46972656" weight="0.43040475" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.46826172" weight="0.43040475" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8964844" weight="0.21322803" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89501953" weight="0.106614016" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.48645833" weight="0.5462274" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49937266" visible="true" weight="0.19238281" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48535156" weight="0.22507404" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48486328" weight="0.22507404" />
       <window_info id="Learn" order="8" />
       <window_info anchor="right" id="SciView" order="11" />
       <window_info anchor="right" id="Theme Preview" order="7" />
@@ -864,11 +951,12 @@
     <MESSAGE value="Cleanup. Back at it again!" />
     <MESSAGE value="Added JavaDoc. Subte cleanup." />
     <MESSAGE value="Finished Entity Javadoc for now. Attempting to create Player selection menu." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished Entity Javadoc for now. Attempting to create Player selection menu." />
+    <MESSAGE value="Safety push. :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Safety push. :)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="37" />
+      <option name="time" value="40" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -876,69 +964,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/LICENSE.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/GeneralTestDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/State.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/level/LevelSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/FinishedLevelMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/NewLevelMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ScoresMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="380">
-            <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IScoreBoardDAO.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/ScoreBoardDAO.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dto/ScoreBoardDTO.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/entity/Block.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1013,24 +1038,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/mars_level.config">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ExitMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/settings.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/ScoreDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1062,22 +1073,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/AboutMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ScoreBoardTestDriver.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dto/PlayerDTO.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/GamePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -1107,55 +1103,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/ControlsMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="33" column="97" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PauseMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="17" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="103" column="24" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IPlayerDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/PlayerDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/PlayerDAOTestDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/InputHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -1163,31 +1110,192 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/PlayerMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/NewPlayerMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="97" column="9" lean-forward="true" selection-start-line="97" selection-start-column="9" selection-end-line="100" selection-end-column="13" />
+        <state relative-caret-position="80">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/RemovePlayerMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/SelectPlayerMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/player/UpdatePlayerMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/game/GamePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/game/NewLevelMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/game/FinishedLevelMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/PauseMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/ExitMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/AboutMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-495">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/CustomSettingsMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/ScoresMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/main_menu/ControlsMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret line="43" column="44" lean-forward="true" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9/lib/src.zip!/java.desktop/javax/swing/JOptionPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="530" column="41" selection-start-line="530" selection-start-column="41" selection-end-line="531" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/SettingsMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/PlayerDAOTestDriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9/lib/src.zip!/java.base/java/util/function/Predicate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dto/PlayerDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/ScoreDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/IPlayerDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="42" selection-start-column="42" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/data/dao/PlayerDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/handler/TextHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="240" column="60" selection-start-line="240" selection-start-column="60" selection-end-line="240" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/controller/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="98" column="63" lean-forward="true" selection-start-line="98" selection-start-column="63" selection-end-line="98" selection-end-column="63" />
+        <state relative-caret-position="169">
+          <caret line="193" selection-start-line="193" selection-end-line="193" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/MainMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/settings/PlayerSettingsMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="81" column="61" selection-start-line="81" selection-start-column="61" selection-end-line="81" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/inabsentia/celestialoutbreak/menu/SettingsMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+        <state relative-caret-position="378">
+          <caret line="89" column="54" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
         </state>
       </provider>
     </entry>

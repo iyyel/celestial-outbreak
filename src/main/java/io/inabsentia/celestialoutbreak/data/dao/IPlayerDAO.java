@@ -1,16 +1,12 @@
 package io.inabsentia.celestialoutbreak.data.dao;
 
-import java.util.List;
+import io.inabsentia.celestialoutbreak.data.dto.PlayerDTO;
 
 public interface IPlayerDAO {
 
-    void loadPlayerList() throws PlayerDAOException;
-    void savePlayerList() throws PlayerDAOException;
-    void createPlayer(String playerName) throws PlayerDAOException;
-    boolean isExistingPlayer(String playerName) throws PlayerDAOException;
-    List<String> getPlayerList() throws PlayerDAOException;
-    void updatePlayer(String oldPlayerName, String newPlayerName) throws PlayerDAOException;
-    void deletePlayer(String playerName) throws PlayerDAOException;
+    void loadPlayerDTO() throws PlayerDAOException;
+    void savePlayerDTO(PlayerDTO playerDTO) throws PlayerDAOException;
+    PlayerDTO getPlayerDTO() throws PlayerDAOException;
 
     class PlayerDAOException extends Exception {
 

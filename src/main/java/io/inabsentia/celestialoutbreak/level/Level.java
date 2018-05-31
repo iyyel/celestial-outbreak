@@ -7,7 +7,7 @@ import io.inabsentia.celestialoutbreak.entity.Paddle;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.SoundHandler;
-import io.inabsentia.celestialoutbreak.menu.GamePanel;
+import io.inabsentia.celestialoutbreak.menu.game.GamePanel;
 
 import java.awt.*;
 

@@ -1,8 +1,9 @@
-package io.inabsentia.celestialoutbreak.menu;
+package io.inabsentia.celestialoutbreak.menu.settings;
 
 import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.SoundHandler;
+import io.inabsentia.celestialoutbreak.menu.Menu;
 
 import java.awt.*;
 
@@ -11,13 +12,14 @@ public final class SettingsMenu extends Menu {
     private final Rectangle playerRect, customInfoRect;
     private final Font btnFont;
 
-    private String[] options = {"Player", "Customization"};
+    private String[] options = {"PLAYER", "CUSTOMIZATION"};
     private Color[] rectColors;
 
     private Color rectColor, selectedColor;
 
     private int selected = 0;
     private int inputTimer = 18;
+    private boolean isFirstUse = true;
 
     private final SoundHandler soundHandler;
 
@@ -32,8 +34,8 @@ public final class SettingsMenu extends Menu {
         int btnYInc = 75;
 
         /* buttons */
-        playerRect = new Rectangle(gameController.getWidth() / 2 - 50, initialBtnYPos, 100, 50);
-        customInfoRect = new Rectangle(gameController.getWidth() / 2 - 105, initialBtnYPos + btnYInc, 210, 50);
+        playerRect = new Rectangle(gameController.getWidth() / 2 - 65, initialBtnYPos, 130, 50);
+        customInfoRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYInc, 240, 50);
 
         rectColors = new Color[options.length];
 
@@ -49,7 +51,13 @@ public final class SettingsMenu extends Menu {
             inputTimer--;
 
         if (inputHandler.isCancelPressed() && inputTimer == 0) {
+            if (isFirstUse) {
+                isFirstUse = false;
+                inputTimer = 10;
+                return;
+            }
             gameController.switchState(GameController.State.MAIN_MENU);
+            isFirstUse = true;
             inputTimer = 10;
         }
 
@@ -69,11 +77,15 @@ public final class SettingsMenu extends Menu {
             if (selected == i) {
                 rectColors[i] = selectedColor;
 
-                if (inputHandler.isUsePressed()) {
+                if (inputHandler.isUsePressed() && inputTimer == 0) {
                     switch (i) {
                         case 0:
+                            // Player settings
+                            gameController.switchState(GameController.State.PLAYER_SETTINGS_MENU);
                             break;
                         case 1:
+                            // Customization settings
+                            gameController.switchState(GameController.State.CUSTOM_SETTINGS_MENU);
                             break;
                         default:
                             break;

@@ -1,16 +1,15 @@
 package io.inabsentia.celestialoutbreak.data.dao;
 
+import io.inabsentia.celestialoutbreak.data.dto.PlayerDTO;
 import io.inabsentia.celestialoutbreak.handler.FileHandler;
 import io.inabsentia.celestialoutbreak.handler.TextHandler;
 import io.inabsentia.celestialoutbreak.utils.Utils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public final class PlayerDAO implements IPlayerDAO {
 
-    private List<String> playerList;
+    private PlayerDTO playerDTO;
 
     private final Utils utils = Utils.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
@@ -35,99 +34,43 @@ public final class PlayerDAO implements IPlayerDAO {
     }
 
     @Override
-    public void loadPlayerList() throws PlayerDAOException {
+    public void loadPlayerDTO() throws PlayerDAOException {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.PLAYER_CONFIG_FILE_CLIENT_PATH));
-            playerList = (List<String>) ois.readObject();
+            this.playerDTO = (PlayerDTO) ois.readObject();
 
             if (utils.isVerboseEnabled())
                 fileHandler.writeLog("Successfully loaded '" + textHandler.PLAYER_CONFIG_FILE_NAME + "'!");
 
         } catch (FileNotFoundException e) {
-            /* If the file is not found, create it with an empty list. */
-            playerList = new ArrayList<>();
-            writePlayerList();
+            if (utils.isVerboseEnabled())
+                fileHandler.writeLog("Failed to load '" + textHandler.PLAYER_CONFIG_FILE_NAME + "'. Creating new one!");
 
-            if (utils.isVerboseEnabled())
-                fileHandler.writeLog("Player list empty! Created empty player list.");
+            PlayerDTO playerDTO = new PlayerDTO();
+            savePlayerDTO(playerDTO);
+            this.playerDTO = playerDTO;
+
         } catch (IOException | ClassNotFoundException e) {
-            if (utils.isVerboseEnabled())
-                fileHandler.writeLog("Failed to load player list: " + e.getMessage());
-            e.printStackTrace();
+            throw new PlayerDAOException(e.getMessage());
         }
     }
 
     @Override
-    public void savePlayerList() throws PlayerDAOException {
-        writePlayerList();
-        if (utils.isVerboseEnabled())
-            fileHandler.writeLog("Successfully saved '" + textHandler.PLAYER_CONFIG_FILE_NAME + "'!");
-    }
-
-    @Override
-    public void createPlayer(String playerName) throws PlayerDAOException {
-        if (isExistingPlayer(playerName))
-            throw new PlayerDAOException(playerName + " is already a existing Player!");
-
-        checkPlayerNameBounds(playerName);
-
-        /* Add new player */
-        playerList.add(playerName);
-
-        if (utils.isVerboseEnabled())
-            fileHandler.writeLog("Successfully created Player '" + playerName + "'!");
-    }
-
-    @Override
-    public boolean isExistingPlayer(String playerName) throws PlayerDAOException {
-        return playerList.contains(playerName);
-    }
-
-    @Override
-    public List<String> getPlayerList() throws PlayerDAOException {
-        return playerList;
-    }
-
-    @Override
-    public void updatePlayer(String oldPlayerName, String newPlayerName) throws PlayerDAOException {
-        if (!isExistingPlayer(oldPlayerName))
-            throw new PlayerDAOException(oldPlayerName + " is not an existing Player!");
-
-        checkPlayerNameBounds(oldPlayerName);
-        checkPlayerNameBounds(newPlayerName);
-
-        /* Remove old, add new. */
-        playerList.remove(oldPlayerName);
-        playerList.add(newPlayerName);
-
-        if (utils.isVerboseEnabled())
-            fileHandler.writeLog("Successfully updated Player '" + oldPlayerName + "' -> " + newPlayerName + "!");
-    }
-
-    @Override
-    public void deletePlayer(String playerName) throws PlayerDAOException {
-        playerList.remove(playerName);
-
-        if (utils.isVerboseEnabled())
-            fileHandler.writeLog("Successfully deleted Player '" + playerName + "'!");
-    }
-
-    private void writePlayerList() throws PlayerDAOException {
+    public void savePlayerDTO(PlayerDTO playerDTO) throws PlayerDAOException {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.PLAYER_CONFIG_FILE_CLIENT_PATH));
-            oos.writeObject(playerList);
+            oos.writeObject(playerDTO);
             oos.close();
         } catch (IOException e) {
             throw new PlayerDAOException(e.getMessage());
         }
     }
 
-    private void checkPlayerNameBounds(String playerName) throws PlayerDAOException {
-        if (playerName.length() < 3)
-            throw new PlayerDAOException("Player name must be 3 characters or more!");
-
-        if (playerName.length() > 8)
-            throw new PlayerDAOException("Player name must be 8 characters or less!");
+    @Override
+    public PlayerDTO getPlayerDTO() throws PlayerDAOException {
+        if (playerDTO == null)
+            throw new PlayerDAOException("PlayerDTO has not been loaded yet!");
+        return playerDTO;
     }
 
 }

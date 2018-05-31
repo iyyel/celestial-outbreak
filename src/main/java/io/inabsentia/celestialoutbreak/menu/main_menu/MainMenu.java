@@ -1,9 +1,10 @@
-package io.inabsentia.celestialoutbreak.menu;
+package io.inabsentia.celestialoutbreak.menu.main_menu;
 
 import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.controller.GameController.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.SoundHandler;
+import io.inabsentia.celestialoutbreak.menu.Menu;
 
 import java.awt.*;
 
@@ -70,7 +71,7 @@ public final class MainMenu extends Menu {
             if (selected == i) {
                 rectColors[i] = selectedColor;
 
-                if (inputHandler.isUsePressed()) {
+                if (inputHandler.isUsePressed() && inputTimer == 0) {
                     switch (i) {
                         case 0:
                             gameController.switchState(State.PLAY);

@@ -1,8 +1,9 @@
-package io.inabsentia.celestialoutbreak.menu;
+package io.inabsentia.celestialoutbreak.menu.game;
 
 import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.controller.GameController.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
+import io.inabsentia.celestialoutbreak.menu.Menu;
 
 import java.awt.*;
 

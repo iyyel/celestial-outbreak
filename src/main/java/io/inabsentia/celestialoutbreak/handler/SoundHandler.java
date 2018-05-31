@@ -107,7 +107,7 @@ public final class SoundHandler {
                 break;
             case ABOUT_MENU:
                 break;
-            case PAUSE:
+            case PAUSE_SCREEN:
                 if (MENU_CLIP.clip.isActive()) MENU_CLIP.stop();
                 if (PLAY_CLIP.clip.isActive()) PLAY_CLIP.stop();
                 PAUSE_CLIP.play(loop);

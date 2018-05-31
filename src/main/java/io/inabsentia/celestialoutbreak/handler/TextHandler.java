@@ -50,10 +50,10 @@ public final class TextHandler {
      * Menu button names.
      */
     public final String BTN_PLAY_TEXT = "PLAY";
-    public final String BTN_SCORES_TEXT = "SCORES_MENU";
-    public final String BTN_SETTINGS_TEXT = "SETTINGS_MENU";
-    public final String BTN_CONTROLS_TEXT = "CONTROLS_MENU";
-    public final String BTN_ABOUT_TEXT = "ABOUT_MENU";
+    public final String BTN_SCORES_TEXT = "SCORES";
+    public final String BTN_SETTINGS_TEXT = "SETTINGS";
+    public final String BTN_CONTROLS_TEXT = "CONTROLS";
+    public final String BTN_ABOUT_TEXT = "ABOUT";
     public final String BTN_EXIT_TEXT = "EXIT";
 
     /*
@@ -238,7 +238,7 @@ public final class TextHandler {
     public final String menuControlsMsg04 = "z";
     public final String menuControlsMsg05 = "Cancel/Back:";
     public final String menuControlsMsg06 = "x";
-    public final String menuControlsMsg07 = "Select & Use";
+    public final String menuControlsMsg07 = "Select & Use:";
     public final String menuControlsMsg08 = "Space";
 
     /* SETTINGS_MENU messages. */
@@ -258,7 +258,7 @@ public final class TextHandler {
     /* EXIT_MENU messages. */
 
 
-    /* PAUSE messages. */
+    /* PAUSE_SCREEN messages. */
     public final String MENU_MSG_PAUSED = "Paused";
 
     /* NEW_LEVEL messages. */
