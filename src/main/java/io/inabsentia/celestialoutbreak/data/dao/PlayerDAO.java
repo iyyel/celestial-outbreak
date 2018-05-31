@@ -41,7 +41,7 @@ public final class PlayerDAO implements IPlayerDAO {
             playerList = (List<String>) ois.readObject();
 
             if (utils.isVerboseEnabled())
-                fileHandler.writeLog("Successfully loaded 'players.bin'.");
+                fileHandler.writeLog("Successfully loaded '" + textHandler.PLAYER_CONFIG_FILE_NAME + "'!");
 
         } catch (FileNotFoundException e) {
             /* If the file is not found, create it with an empty list. */
@@ -60,6 +60,8 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public void savePlayerList() throws PlayerDAOException {
         writePlayerList();
+        if (utils.isVerboseEnabled())
+            fileHandler.writeLog("Successfully saved '" + textHandler.PLAYER_CONFIG_FILE_NAME + "'!");
     }
 
     @Override
@@ -71,6 +73,9 @@ public final class PlayerDAO implements IPlayerDAO {
 
         /* Add new player */
         playerList.add(playerName);
+
+        if (utils.isVerboseEnabled())
+            fileHandler.writeLog("Successfully created Player '" + playerName + "'!");
     }
 
     @Override
@@ -94,11 +99,17 @@ public final class PlayerDAO implements IPlayerDAO {
         /* Remove old, add new. */
         playerList.remove(oldPlayerName);
         playerList.add(newPlayerName);
+
+        if (utils.isVerboseEnabled())
+            fileHandler.writeLog("Successfully updated Player '" + oldPlayerName + "' -> " + newPlayerName + "!");
     }
 
     @Override
     public void deletePlayer(String playerName) throws PlayerDAOException {
         playerList.remove(playerName);
+
+        if (utils.isVerboseEnabled())
+            fileHandler.writeLog("Successfully deleted Player '" + playerName + "'!");
     }
 
     private void writePlayerList() throws PlayerDAOException {

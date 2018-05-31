@@ -94,15 +94,16 @@ public class GameController extends Canvas implements Runnable {
     private Color menuColor;
 
     public enum State {
-        MENU, PLAY, PLAYER, SCORES, CONTROLS, SETTINGS,
-        ABOUT, EXIT, PAUSE, NEW_LEVEL, FINISHED_LEVEL
+        MAIN_MENU, PLAY, PLAYER_MENU, SCORES_MENU, CONTROLS_MENU, SETTINGS_MENU,
+        PLAYER_SETTINGS_MENU, PLAYER_CREATE_SETTINGS, PLAYER_UPDATE_SETTINGS, PLAYER_DELETE_SETTINGS,
+        ABOUT_MENU, EXIT_MENU, PAUSE, NEW_LEVEL, FINISHED_LEVEL
     }
 
     /*
      * Current state of the gameController.
      * Starts with showing the menu state.
      */
-    private State state = State.MENU;
+    private State state = State.MAIN_MENU;
 
     /*
      * Constructor of GameController class.
@@ -110,6 +111,14 @@ public class GameController extends Canvas implements Runnable {
      */
     public GameController() {
         fileHandler.writeLog(textHandler.START_NEW_APP_INSTANCE);
+
+        /* Load players */
+        try {
+            playerDAO.loadPlayerList();
+        } catch (IPlayerDAO.PlayerDAOException e) {
+            // Handle this.
+            e.printStackTrace();
+        }
 
         /* Set dimensions of the JFrame and Canvas */
         Dimension size = new Dimension(SCREEN_WIDTH * SCREEN_SCALE, SCREEN_HEIGHT * SCREEN_SCALE);
@@ -141,7 +150,7 @@ public class GameController extends Canvas implements Runnable {
         playerMenu = new PlayerMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor, playerDAO);
         pauseMenu = new PauseMenu(this, inputHandler, menuFontColor);
         scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
-        settingsMenu = new SettingsMenu(this, inputHandler, menuFontColor);
+        settingsMenu = new SettingsMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         controlMenu = new ControlsMenu(this, inputHandler, menuFontColor);
         aboutMenu = new AboutMenu(this, inputHandler, menuFontColor);
         exitMenu = new ExitMenu(this, inputHandler, menuFontColor);
@@ -152,14 +161,6 @@ public class GameController extends Canvas implements Runnable {
         /* Add input handlers */
         gameFrame.addKeyListener(inputHandler);
         addKeyListener(inputHandler);
-
-        /* Load players */
-        try {
-            playerDAO.loadPlayerList();
-        } catch (IPlayerDAO.PlayerDAOException e) {
-            // Handle this.
-            e.printStackTrace();
-        }
 
         /* Initialize the JFrame and start the gameController loop */
         initFrame();
@@ -215,7 +216,7 @@ public class GameController extends Canvas implements Runnable {
 
         /* Let the current gameController state decide what to update exactly. */
         switch (state) {
-            case MENU:
+            case MAIN_MENU:
                 mainMenu.update();
                 break;
             case PLAY:
@@ -223,22 +224,22 @@ public class GameController extends Canvas implements Runnable {
                 if (inputHandler.isPausePressed())
                     switchState(State.PAUSE);
                 break;
-            case PLAYER:
+            case PLAYER_MENU:
                 playerMenu.update();
                 break;
-            case SCORES:
+            case SCORES_MENU:
                 scoresMenu.update();
                 break;
-            case CONTROLS:
+            case CONTROLS_MENU:
                 controlMenu.update();
                 break;
-            case SETTINGS:
+            case SETTINGS_MENU:
                 settingsMenu.update();
                 break;
-            case ABOUT:
+            case ABOUT_MENU:
                 aboutMenu.update();
                 break;
-            case EXIT:
+            case EXIT_MENU:
                 exitMenu.update();
                 break;
             case PAUSE:
@@ -275,16 +276,16 @@ public class GameController extends Canvas implements Runnable {
 
         /* Let the current gameController state decide whether to render a level's color or the menu's color. */
         switch (state) {
-            case MENU:
+            case MAIN_MENU:
                 switchMenuColor();
                 screenRenderer.render(menuColor);
                 break;
-            case PLAYER:
-            case SCORES:
-            case CONTROLS:
-            case SETTINGS:
-            case ABOUT:
-            case EXIT:
+            case PLAYER_MENU:
+            case SCORES_MENU:
+            case CONTROLS_MENU:
+            case SETTINGS_MENU:
+            case ABOUT_MENU:
+            case EXIT_MENU:
                 screenRenderer.render(menuColor);
                 break;
             case PLAY:
@@ -311,28 +312,28 @@ public class GameController extends Canvas implements Runnable {
 
         /* Make the current state of the gameController decide what to render. */
         switch (state) {
-            case MENU:
+            case MAIN_MENU:
                 mainMenu.render(g);
                 break;
             case PLAY:
                 levelHandler.render(g);
                 break;
-            case PLAYER:
+            case PLAYER_MENU:
                 playerMenu.render(g);
                 break;
-            case SCORES:
+            case SCORES_MENU:
                 scoresMenu.render(g);
                 break;
-            case CONTROLS:
+            case CONTROLS_MENU:
                 controlMenu.render(g);
                 break;
-            case SETTINGS:
+            case SETTINGS_MENU:
                 settingsMenu.render(g);
                 break;
-            case ABOUT:
+            case ABOUT_MENU:
                 aboutMenu.render(g);
                 break;
-            case EXIT:
+            case EXIT_MENU:
                 exitMenu.render(g);
                 break;
             case PAUSE:

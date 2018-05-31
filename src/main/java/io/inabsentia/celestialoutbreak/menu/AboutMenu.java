@@ -14,7 +14,7 @@ public final class AboutMenu extends Menu {
 
     @Override
     public void update() {
-        if (inputHandler.isCancelPressed()) gameController.switchState(State.MENU);
+        if (inputHandler.isCancelPressed()) gameController.switchState(State.MAIN_MENU);
     }
 
     @Override

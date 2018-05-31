@@ -15,7 +15,7 @@ public final class ExitMenu extends Menu {
     @Override
     public void update() {
         if (inputHandler.isOKPressed()) gameController.stop();
-        if (inputHandler.isCancelPressed()) gameController.switchState(State.MENU);
+        if (inputHandler.isCancelPressed()) gameController.switchState(State.MAIN_MENU);
     }
 
     @Override

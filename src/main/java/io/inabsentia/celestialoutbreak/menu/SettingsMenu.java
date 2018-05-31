@@ -1,47 +1,114 @@
 package io.inabsentia.celestialoutbreak.menu;
 
 import io.inabsentia.celestialoutbreak.controller.GameController;
-import io.inabsentia.celestialoutbreak.controller.GameController.State;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
+import io.inabsentia.celestialoutbreak.handler.SoundHandler;
 
 import java.awt.*;
 
 public final class SettingsMenu extends Menu {
 
-    public SettingsMenu(GameController gameController, InputHandler inputHandler, Color fontColor) {
+    private final Rectangle playerRect, customInfoRect;
+    private final Font btnFont;
+
+    private String[] options = {"Player", "Customization"};
+    private Color[] rectColors;
+
+    private Color rectColor, selectedColor;
+
+    private int selected = 0;
+    private int inputTimer = 18;
+
+    private final SoundHandler soundHandler;
+
+    public SettingsMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler,
+                        Color fontColor, Color rectColor, Color selectedColor) {
         super(gameController, inputHandler, fontColor);
+        this.soundHandler = soundHandler;
+        this.rectColor = rectColor;
+        this.selectedColor = selectedColor;
+
+        int initialBtnYPos = 230;
+        int btnYInc = 75;
+
+        /* buttons */
+        playerRect = new Rectangle(gameController.getWidth() / 2 - 50, initialBtnYPos, 100, 50);
+        customInfoRect = new Rectangle(gameController.getWidth() / 2 - 105, initialBtnYPos + btnYInc, 210, 50);
+
+        rectColors = new Color[options.length];
+
+        for (Color c : rectColors)
+            c = rectColor;
+
+        btnFont = utils.getGameFont().deriveFont(20F);
     }
 
     @Override
     public void update() {
-        if (inputHandler.isCancelPressed()) gameController.switchState(State.MENU);
+        if (inputTimer > 0)
+            inputTimer--;
+
+        if (inputHandler.isCancelPressed() && inputTimer == 0) {
+            gameController.switchState(GameController.State.MAIN_MENU);
+            inputTimer = 10;
+        }
+
+        if (inputHandler.isDownPressed() && selected < options.length - 1 && inputTimer == 0) {
+            selected++;
+            soundHandler.MENU_BTN_SELECTION_CLIP.play(false);
+            inputTimer = 10;
+        }
+
+        if (inputHandler.isUpPressed() && selected > 0 && inputTimer == 0) {
+            selected--;
+            soundHandler.MENU_BTN_SELECTION_CLIP.play(false);
+            inputTimer = 10;
+        }
+
+        for (int i = 0, n = options.length; i < n; i++) {
+            if (selected == i) {
+                rectColors[i] = selectedColor;
+
+                if (inputHandler.isUsePressed()) {
+                    switch (i) {
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            } else {
+                rectColors[i] = rectColor;
+            }
+        }
     }
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(fontColor);
+        int yBtnOffset = 33;
+
+        /* Render game title */
         drawMenuTitle(g);
 
+        /* Show player name */
         drawSubmenuTitle("Settings", g);
-        g.setFont(msgFont);
 
-        int xPos = 80;
-        int yPos = 260;
-        int yPosInc = 35;
-        int yPosSepInc = 70;
+        /* Render buttons  */
+        g.setFont(btnFont);
 
-        g.drawString(textHandler.menuSettingsMsg01, xPos, yPos);
-        g.drawString(textHandler.menuSettingsMsg02, xPos, yPos + yPosInc);
+        /* Play button */
+        g.setColor(fontColor);
+        drawXCenteredString(options[0], playerRect.y + yBtnOffset, g, btnFont);
+        g.setColor(rectColors[0]);
+        g.draw(playerRect);
 
-        g.drawString(textHandler.menuSettingsMsg03, xPos, yPos + yPosSepInc + yPosInc);
-        g.drawString(textHandler.menuSettingsMsg04, xPos, yPos + yPosSepInc + yPosInc * 2);
-
-        g.drawString(textHandler.menuSettingsMsg05, xPos, yPos + yPosSepInc * 2 + yPosInc * 2);
-        g.drawString(textHandler.menuSettingsMsg06, xPos, yPos + yPosSepInc * 2 + yPosInc * 3);
-
-        g.drawString(textHandler.menuSettingsMsg07, xPos, yPos + yPosSepInc * 3 + yPosInc * 3);
-        g.drawString(textHandler.menuSettingsMsg08, xPos, yPos + yPosSepInc * 3 + yPosInc * 4);
-        g.drawString(textHandler.menuSettingsMsg09, xPos, yPos + yPosSepInc * 3 + yPosInc * 5);
+        /* Score button */
+        g.setColor(fontColor);
+        drawXCenteredString(options[1], customInfoRect.y + yBtnOffset, g, btnFont);
+        g.setColor(rectColors[1]);
+        g.draw(customInfoRect);
 
         drawInformationPanel(g);
     }

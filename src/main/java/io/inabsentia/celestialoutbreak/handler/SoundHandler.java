@@ -91,7 +91,7 @@ public final class SoundHandler {
 
     public void playStateMusic(State state, boolean loop) {
         switch (state) {
-            case MENU:
+            case MAIN_MENU:
                 if (PLAY_CLIP.clip.isActive()) PLAY_CLIP.stop();
                 if (PAUSE_CLIP.clip.isActive()) PAUSE_CLIP.stop();
                 MENU_CLIP.play(loop);
@@ -101,11 +101,11 @@ public final class SoundHandler {
                 if (PAUSE_CLIP.clip.isActive()) PAUSE_CLIP.stop();
                 PLAY_CLIP.play(loop);
                 break;
-            case SCORES:
+            case SCORES_MENU:
                 break;
-            case SETTINGS:
+            case SETTINGS_MENU:
                 break;
-            case ABOUT:
+            case ABOUT_MENU:
                 break;
             case PAUSE:
                 if (MENU_CLIP.clip.isActive()) MENU_CLIP.stop();

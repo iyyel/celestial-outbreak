@@ -18,7 +18,7 @@ public final class NewLevelMenu extends Menu {
     @Override
     public void update() {
         if (inputHandler.isOKPressed()) gameController.switchState(State.PLAY);
-        if (inputHandler.isCancelPressed()) gameController.switchState(State.MENU);
+        if (inputHandler.isCancelPressed()) gameController.switchState(State.MAIN_MENU);
     }
 
     public void updateActiveLevel(Level activeLevel) {

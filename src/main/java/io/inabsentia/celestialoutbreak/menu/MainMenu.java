@@ -12,7 +12,8 @@ public final class MainMenu extends Menu {
     private final Rectangle playRect, scoreRect, controlsRect, settingsRect, aboutRect, exitRect;
     private final Font btnFont;
 
-    private String[] options = {textHandler.BTN_PLAY_TEXT, textHandler.BTN_SCORES_TEXT, textHandler.BTN_CONTROLS_TEXT, textHandler.BTN_SETTINGS_TEXT, textHandler.BTN_ABOUT_TEXT, textHandler.BTN_EXIT_TEXT};
+    private String[] options = {textHandler.BTN_PLAY_TEXT, textHandler.BTN_SCORES_TEXT, textHandler.BTN_CONTROLS_TEXT,
+            textHandler.BTN_SETTINGS_TEXT, textHandler.BTN_ABOUT_TEXT, textHandler.BTN_EXIT_TEXT};
     private Color[] rectColors;
 
     private Color rectColor, selectedColor;
@@ -50,7 +51,8 @@ public final class MainMenu extends Menu {
 
     @Override
     public void update() {
-        if (inputTimer > 0) inputTimer--;
+        if (inputTimer > 0)
+            inputTimer--;
 
         if (inputHandler.isDownPressed() && selected < options.length - 1 && inputTimer == 0) {
             selected++;
@@ -71,22 +73,22 @@ public final class MainMenu extends Menu {
                 if (inputHandler.isUsePressed()) {
                     switch (i) {
                         case 0:
-                            gameController.switchState(State.PLAYER);
+                            gameController.switchState(State.PLAY);
                             break;
                         case 1:
-                            gameController.switchState(State.SCORES);
+                            gameController.switchState(State.SCORES_MENU);
                             break;
                         case 2:
-                            gameController.switchState(State.CONTROLS);
+                            gameController.switchState(State.CONTROLS_MENU);
                             break;
                         case 3:
-                            gameController.switchState(State.SETTINGS);
+                            gameController.switchState(State.SETTINGS_MENU);
                             break;
                         case 4:
-                            gameController.switchState(State.ABOUT);
+                            gameController.switchState(State.ABOUT_MENU);
                             break;
                         case 5:
-                            gameController.switchState(State.EXIT);
+                            gameController.switchState(State.EXIT_MENU);
                             break;
                         default:
                             break;
@@ -108,7 +110,7 @@ public final class MainMenu extends Menu {
         /* Show player name */
         drawSubmenuTitle("Welcome Player", g);
 
-		/* Render buttons  */
+        /* Render buttons  */
         g.setFont(btnFont);
 
         /* Play button */

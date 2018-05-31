@@ -9,6 +9,8 @@ public class PlayerDAOTestDriver {
 
         try {
             playerDAO.loadPlayerList();
+            // Do stuff
+            playerDAO.savePlayerList();
         } catch (IPlayerDAO.PlayerDAOException e) {
             e.printStackTrace();
         }

@@ -50,10 +50,10 @@ public final class TextHandler {
      * Menu button names.
      */
     public final String BTN_PLAY_TEXT = "PLAY";
-    public final String BTN_SCORES_TEXT = "SCORES";
-    public final String BTN_SETTINGS_TEXT = "SETTINGS";
-    public final String BTN_CONTROLS_TEXT = "CONTROLS";
-    public final String BTN_ABOUT_TEXT = "ABOUT";
+    public final String BTN_SCORES_TEXT = "SCORES_MENU";
+    public final String BTN_SETTINGS_TEXT = "SETTINGS_MENU";
+    public final String BTN_CONTROLS_TEXT = "CONTROLS_MENU";
+    public final String BTN_ABOUT_TEXT = "ABOUT_MENU";
     public final String BTN_EXIT_TEXT = "EXIT";
 
     /*
@@ -229,9 +229,9 @@ public final class TextHandler {
      * Menu messages.
      */
 
-    /* SCORES messages. */
+    /* SCORES_MENU messages. */
 
-    /* CONTROLS messages. */
+    /* CONTROLS_MENU messages. */
     public final String menuControlsMsg01 = "Movement & Navigation:";
     public final String menuControlsMsg02 = "WASD/Arrow keys";
     public final String menuControlsMsg03 = "Confirm/OK:";
@@ -241,7 +241,7 @@ public final class TextHandler {
     public final String menuControlsMsg07 = "Select & Use";
     public final String menuControlsMsg08 = "Space";
 
-    /* SETTINGS messages. */
+    /* SETTINGS_MENU messages. */
     public final String menuSettingsMsg01 = "All of the configuration related files can be found in the";
     public final String menuSettingsMsg02 = "following directory '" + GAME_DIR + "'";
     public final String menuSettingsMsg03 = "general settings can be found in the settings.config file,";
@@ -252,10 +252,10 @@ public final class TextHandler {
     public final String menuSettingsMsg08 = "If creating custom levels, make sure to add them to this file.";
     public final String menuSettingsMsg09 = "If more information is needed, visit: https://goo.gl/JxxeL6";
 
-    /* ABOUT messages. */
+    /* ABOUT_MENU messages. */
 
 
-    /* EXIT messages. */
+    /* EXIT_MENU messages. */
 
 
     /* PAUSE messages. */
