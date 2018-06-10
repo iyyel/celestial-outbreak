@@ -145,7 +145,7 @@ public final class TextHandler {
     public final String LEVEL_FILE_LOCAL_PATH_EARTH = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_EARTH).getPath();
     public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_NEPTUNE).getPath();
     public final String LEVEL_FILE_LOCAL_PATH_VENUS = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_VENUS).getPath();
-    public final String LEVEL_FILE_LOCAL_PATH_JUPITER = FileHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_JUPITER).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_JUPITER = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_JUPITER).getPath();
 
     /* Client level file paths. */
     public final String LEVEL_FILE_CLIENT_PATH_MARS = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_MARS;

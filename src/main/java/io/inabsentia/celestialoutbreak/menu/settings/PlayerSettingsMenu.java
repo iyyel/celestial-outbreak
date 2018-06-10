@@ -27,7 +27,8 @@ public final class PlayerSettingsMenu extends Menu {
     private int selected = 0;
     private int inputTimer = 18;
 
-    public PlayerSettingsMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler, Color fontColor, Color rectColor, Color selectedColor) {
+    public PlayerSettingsMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler,
+                              Color fontColor, Color rectColor, Color selectedColor) {
         super(gameController, inputHandler, fontColor);
         this.soundHandler = soundHandler;
         this.rectColor = rectColor;
@@ -78,12 +79,11 @@ public final class PlayerSettingsMenu extends Menu {
                 rectColors[i] = selectedColor;
 
                 if (inputHandler.isUsePressed() && inputTimer == 0) {
-                    System.out.println("OUT isUsePressed: " + inputHandler.isUsePressed());
-                    System.out.println("OUT inputTimer: " + inputTimer);
                     inputTimer = 10;
                     switch (i) {
                         case 0:
                             // SELECT
+                            gameController.switchState(GameController.State.PLAYER_SELECT_MENU);
                             break;
                         case 1:
                             // NEW

@@ -31,7 +31,13 @@ public final class PlayerDTO implements Serializable {
     }
 
     public boolean isPlayerSelected() {
-        return selectedPlayer.equals("NONE");
+        return !selectedPlayer.equals("NONE");
+    }
+
+    public String getSelectedPlayer() {
+        if (isPlayerSelected())
+            return selectedPlayer;
+        return null;
     }
 
     public List<String> getPlayers() {

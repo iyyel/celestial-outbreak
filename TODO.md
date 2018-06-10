@@ -13,3 +13,5 @@
 # 11. Save last selected player.
 # 12. Customization -> Configuration
 # 13. isFpsLocked Configuration option :)
+# 14. Reset functionality for players, or something? i.e. delete all players.
+# 15. Get sound for use, ok, back, click etc.

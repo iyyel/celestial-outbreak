@@ -7,6 +7,7 @@ import io.inabsentia.celestialoutbreak.handler.*;
 import io.inabsentia.celestialoutbreak.menu.game.FinishedLevelMenu;
 import io.inabsentia.celestialoutbreak.menu.game.NewLevelMenu;
 import io.inabsentia.celestialoutbreak.menu.main_menu.*;
+import io.inabsentia.celestialoutbreak.menu.player.PlayerSelectMenu;
 import io.inabsentia.celestialoutbreak.menu.settings.CustomSettingsMenu;
 import io.inabsentia.celestialoutbreak.menu.settings.PlayerSettingsMenu;
 import io.inabsentia.celestialoutbreak.menu.settings.SettingsMenu;
@@ -17,6 +18,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.net.URL;
 import java.util.Map;
 
 /*
@@ -91,6 +93,7 @@ public class GameController extends Canvas implements Runnable {
     private final ScoresMenu scoresMenu;
     private final SettingsMenu settingsMenu;
     private final PlayerSettingsMenu playerSettingsMenu;
+    private final PlayerSelectMenu playerSelectMenu;
     private final CustomSettingsMenu customSettingsMenu;
     private final ControlsMenu controlMenu;
     private final AboutMenu aboutMenu;
@@ -102,7 +105,7 @@ public class GameController extends Canvas implements Runnable {
     public enum State {
         MAIN_MENU, PLAY, SCORES_MENU, CONTROLS_MENU, SETTINGS_MENU,
         PLAYER_SETTINGS_MENU, CUSTOM_SETTINGS_MENU,
-        PLAYER_SELECT_SETTINGS, PLAYER_NEW_SETTINGS, PLAYER_UPDATE_SETTINGS, PLAYER_REMOVE_SETTINGS,
+        PLAYER_SELECT_MENU, PLAYER_NEW_SETTINGS, PLAYER_UPDATE_SETTINGS, PLAYER_REMOVE_SETTINGS,
         ABOUT_MENU, EXIT_MENU, PAUSE_SCREEN, NEW_LEVEL, FINISHED_LEVEL
     }
 
@@ -147,6 +150,12 @@ public class GameController extends Canvas implements Runnable {
         gameFrame = new JFrame();
         gameFrame.setSize(size);
 
+        /* Game Icon */
+        URL url = ClassLoader.getSystemResource("icon/app_icon.png");
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image img = kit.createImage(url);
+        gameFrame.setIconImage(img);
+
         /* Initialize levelHandler */
         levelHandler = new LevelHandler(0, this, inputHandler, soundHandler, fileHandler);
 
@@ -167,6 +176,7 @@ public class GameController extends Canvas implements Runnable {
         scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
         settingsMenu = new SettingsMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         playerSettingsMenu = new PlayerSettingsMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
+        playerSelectMenu = new PlayerSelectMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         customSettingsMenu = new CustomSettingsMenu(this, inputHandler, menuFontColor);
         controlMenu = new ControlsMenu(this, inputHandler, menuFontColor);
         aboutMenu = new AboutMenu(this, inputHandler, menuFontColor);
@@ -260,6 +270,9 @@ public class GameController extends Canvas implements Runnable {
             case PLAYER_SETTINGS_MENU:
                 playerSettingsMenu.update();
                 break;
+            case PLAYER_SELECT_MENU:
+                playerSelectMenu.update();
+                break;
             case CUSTOM_SETTINGS_MENU:
                 customSettingsMenu.update();
                 break;
@@ -310,6 +323,7 @@ public class GameController extends Canvas implements Runnable {
             case CONTROLS_MENU:
             case SETTINGS_MENU:
             case PLAYER_SETTINGS_MENU:
+            case PLAYER_SELECT_MENU:
             case CUSTOM_SETTINGS_MENU:
             case ABOUT_MENU:
             case EXIT_MENU:
@@ -357,6 +371,9 @@ public class GameController extends Canvas implements Runnable {
             case PLAYER_SETTINGS_MENU:
                 playerSettingsMenu.render(g);
                 break;
+            case PLAYER_SELECT_MENU:
+                playerSelectMenu.render(g);
+                break;
             case CUSTOM_SETTINGS_MENU:
                 customSettingsMenu.render(g);
                 break;
@@ -399,7 +416,8 @@ public class GameController extends Canvas implements Runnable {
      * Stop method for the gameController thread/loop. Will exit the application.
      */
     public synchronized void stop() {
-        if (isRunning) isRunning = false;
+        if (isRunning)
+            isRunning = false;
         System.exit(0);
     }
 
