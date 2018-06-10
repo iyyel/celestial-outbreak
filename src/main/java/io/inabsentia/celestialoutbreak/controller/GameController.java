@@ -38,7 +38,7 @@ public class GameController extends Canvas implements Runnable {
     /*
      * Timers to switch the mainMenu background color in a slower interval than 60 times a second.
      */
-    private final int INITIAL_MENU_COLOR_TIMER_VALUE = SCREEN_UPDATE_RATE * 15;
+    private final int INITIAL_MENU_COLOR_TIMER_VALUE = SCREEN_UPDATE_RATE;
     private int menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
 
     /*
@@ -194,9 +194,15 @@ public class GameController extends Canvas implements Runnable {
                 update();
                 updates++;
                 delta--;
+                if (utils.isFpsLocked()) {
+                    render();
+                    frames++;
+                }
             }
-            render();
-            frames++;
+            if (!utils.isFpsLocked()) {
+                render();
+                frames++;
+            }
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 /* Is this correctly calculated? (ram) */
@@ -225,6 +231,7 @@ public class GameController extends Canvas implements Runnable {
         /* Let the current gameController state decide what to update exactly. */
         switch (state) {
             case MAIN_MENU:
+                switchMenuColor();
                 mainMenu.update();
                 break;
             case PLAY:
@@ -288,7 +295,6 @@ public class GameController extends Canvas implements Runnable {
         /* Let the current gameController state decide whether to render a level's color or the menu's color. */
         switch (state) {
             case MAIN_MENU:
-                switchMenuColor();
                 screenRenderer.render(menuColor);
                 break;
             case SCORES_MENU:

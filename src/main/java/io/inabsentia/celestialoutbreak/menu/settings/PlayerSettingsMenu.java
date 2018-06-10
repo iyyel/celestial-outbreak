@@ -27,8 +27,6 @@ public final class PlayerSettingsMenu extends Menu {
     private int selected = 0;
     private int inputTimer = 18;
 
-    private boolean isFirstNewUse = true;
-
     public PlayerSettingsMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler, Color fontColor, Color rectColor, Color selectedColor) {
         super(gameController, inputHandler, fontColor);
         this.soundHandler = soundHandler;
@@ -85,10 +83,8 @@ public final class PlayerSettingsMenu extends Menu {
                             break;
                         case 1:
                             // NEW
-                            if (isFirstNewUse) {
-                                createNewPlayer();
-                                isFirstNewUse = false;
-                            }
+                            //createNewPlayer();
+                            System.out.println("fisse");
                         case 2:
                             // UPDATE
                             break;

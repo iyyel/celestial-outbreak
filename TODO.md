@@ -11,3 +11,5 @@
 
 # 10. "Welcome" if no player is created or selected. "Welcome "PlayerName"" if selected.
 # 11. Save last selected player.
+# 12. Customization -> Configuration
+# 13. isFpsLocked Configuration option :)

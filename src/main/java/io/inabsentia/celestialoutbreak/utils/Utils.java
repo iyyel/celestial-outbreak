@@ -19,9 +19,10 @@ public final class Utils {
     private final Random random = new Random();
 
     /* GameController flags */
-    private boolean isVerboseEnabled = true;
-    private boolean isSoundEnabled = true;
-    private boolean isGodModeEnabled = false;
+    private boolean isVerboseEnabled = true; // verbose logging and info in the game
+    private boolean isSoundEnabled = true; // sound on or off
+    private boolean isGodModeEnabled = false; // GOD MODE :) // fast paced? endless life?
+    private boolean isFpsLocked = true; // lock game to 60 fps and not ASAP performance.
 
     private Utils() {
         initGameProperties();
@@ -84,6 +85,10 @@ public final class Utils {
 
     public boolean isGodModeEnabled() {
         return isGodModeEnabled;
+    }
+
+    public boolean isFpsLocked() {
+        return isFpsLocked;
     }
 
 }
