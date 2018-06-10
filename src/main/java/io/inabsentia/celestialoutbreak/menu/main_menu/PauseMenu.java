@@ -15,8 +15,11 @@ public final class PauseMenu extends Menu {
 
     @Override
     public void update() {
-        if (inputHandler.isCancelPressed()) gameController.switchState(State.MAIN_MENU);
-        if (inputHandler.isPausePressed()) gameController.switchState(State.PLAY);
+        if (inputHandler.isCancelPressed())
+            gameController.switchState(State.MAIN_MENU);
+
+        if (inputHandler.isPausePressed())
+            gameController.switchState(State.PLAY);
     }
 
     @Override

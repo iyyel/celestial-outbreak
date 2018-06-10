@@ -19,7 +19,6 @@ public final class SettingsMenu extends Menu {
 
     private int selected = 0;
     private int inputTimer = 18;
-    private boolean isFirstUse = true;
 
     private final SoundHandler soundHandler;
 
@@ -51,13 +50,7 @@ public final class SettingsMenu extends Menu {
             inputTimer--;
 
         if (inputHandler.isCancelPressed() && inputTimer == 0) {
-            if (isFirstUse) {
-                isFirstUse = false;
-                inputTimer = 10;
-                return;
-            }
             gameController.switchState(GameController.State.MAIN_MENU);
-            isFirstUse = true;
             inputTimer = 10;
         }
 
@@ -78,6 +71,7 @@ public final class SettingsMenu extends Menu {
                 rectColors[i] = selectedColor;
 
                 if (inputHandler.isUsePressed() && inputTimer == 0) {
+                    inputTimer = 10;
                     switch (i) {
                         case 0:
                             // Player settings

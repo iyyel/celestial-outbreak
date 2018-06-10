@@ -72,6 +72,7 @@ public final class MainMenu extends Menu {
                 rectColors[i] = selectedColor;
 
                 if (inputHandler.isUsePressed() && inputTimer == 0) {
+                    inputTimer = 10;
                     switch (i) {
                         case 0:
                             gameController.switchState(State.PLAY);

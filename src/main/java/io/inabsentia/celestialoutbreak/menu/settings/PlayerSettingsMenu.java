@@ -52,8 +52,9 @@ public final class PlayerSettingsMenu extends Menu {
 
     @Override
     public void update() {
-        if (inputTimer > 0)
+        if (inputTimer > 0) {
             inputTimer--;
+        }
 
         if (inputHandler.isCancelPressed() && inputTimer == 0) {
             gameController.switchState(GameController.State.SETTINGS_MENU);
@@ -77,19 +78,25 @@ public final class PlayerSettingsMenu extends Menu {
                 rectColors[i] = selectedColor;
 
                 if (inputHandler.isUsePressed() && inputTimer == 0) {
+                    System.out.println("OUT isUsePressed: " + inputHandler.isUsePressed());
+                    System.out.println("OUT inputTimer: " + inputTimer);
+                    inputTimer = 10;
                     switch (i) {
                         case 0:
                             // SELECT
                             break;
                         case 1:
                             // NEW
-                            //createNewPlayer();
-                            System.out.println("fisse");
+                            inputHandler.setIsUsePressed(false);
+                            createNewPlayer();
+                            break;
                         case 2:
                             // UPDATE
+                            //
                             break;
                         case 3:
                             // REMOVE
+                            //
                             break;
                         default:
                             break;
@@ -144,39 +151,43 @@ public final class PlayerSettingsMenu extends Menu {
     }
 
     private void createNewPlayer() {
-        String newPlayerName = JOptionPane.showInputDialog(null,
-                "Enter a name for the new player:", "New Player", JOptionPane.PLAIN_MESSAGE);
+        new Thread(() -> {
+            String newPlayerName = JOptionPane.showInputDialog(null,
+                    "Enter a name for the new player:", "New Player", JOptionPane.PLAIN_MESSAGE);
 
-        if (newPlayerName == null)
-            return;
+            if (newPlayerName == null) {
+                return;
+            }
 
-        // check if name is in bounds.
-        if (newPlayerName.length() < 3 || newPlayerName.length() > 8) {
-            JOptionPane.showMessageDialog(null, "Player name must be between 3 and 8 characters!", "New Player", JOptionPane.ERROR_MESSAGE);
-            createNewPlayer();
-            return;
-        }
+            // check if name is in bounds.
+            if (newPlayerName.length() < 3 || newPlayerName.length() > 8) {
+                JOptionPane.showMessageDialog(null, "Player name must be between 3 and 8 characters!", "New Player", JOptionPane.ERROR_MESSAGE);
+                createNewPlayer();
+                return;
+            }
 
-        PlayerDTO playerDTO = null;
-        try {
-            playerDTO = playerDAO.getPlayerDTO();
-        } catch (IPlayerDAO.PlayerDAOException e) {
-            e.printStackTrace();
-        }
+            PlayerDTO playerDTO = null;
+            try {
+                playerDTO = playerDAO.getPlayerDTO();
+            } catch (IPlayerDAO.PlayerDAOException e) {
+                e.printStackTrace();
+            }
 
-        if (playerDTO != null && playerDTO.containsPlayer(newPlayerName)) {
-            JOptionPane.showMessageDialog(null, newPlayerName + " already exists!", "New Player", JOptionPane.ERROR_MESSAGE);
-            createNewPlayer();
-            return;
-        }
+            if (playerDTO != null && playerDTO.containsPlayer(newPlayerName)) {
+                JOptionPane.showMessageDialog(null, newPlayerName + " already exists!", "New Player", JOptionPane.ERROR_MESSAGE);
+                createNewPlayer();
+                return;
+            }
 
-        playerDTO.addPlayer(newPlayerName);
-        try {
-            playerDAO.savePlayerDTO(playerDTO);
-            JOptionPane.showMessageDialog(null, newPlayerName + " has been created!", "New Player", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IPlayerDAO.PlayerDAOException e) {
-            e.printStackTrace();
-        }
+            playerDTO.addPlayer(newPlayerName);
+            try {
+                playerDAO.savePlayerDTO(playerDTO);
+                JOptionPane.showMessageDialog(null, newPlayerName + " has been created!", "New Player", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IPlayerDAO.PlayerDAOException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
     }
 
 }

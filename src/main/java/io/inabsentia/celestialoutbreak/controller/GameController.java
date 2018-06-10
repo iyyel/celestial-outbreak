@@ -119,6 +119,15 @@ public class GameController extends Canvas implements Runnable {
     public GameController() {
         fileHandler.writeLog(textHandler.START_NEW_APP_INSTANCE);
 
+        /* UI Look and Feel */
+        EventQueue.invokeLater(() -> {
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                ex.printStackTrace();
+            }
+        });
+
         /* Load players */
         try {
             playerDAO.loadPlayerDTO();

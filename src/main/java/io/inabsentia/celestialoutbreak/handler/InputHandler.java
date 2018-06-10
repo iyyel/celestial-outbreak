@@ -108,4 +108,10 @@ public final class InputHandler implements KeyListener {
         return isCancelPressed;
     }
 
+    // Used for a bug in PlayerSettingsMenu.
+    public void setIsUsePressed(boolean isUsePressed) {
+        this.isUsePressed = isUsePressed;
+        keys[KeyEvent.VK_SPACE] = isUsePressed;
+    }
+
 }

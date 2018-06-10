@@ -15,7 +15,8 @@ public final class AboutMenu extends Menu {
 
     @Override
     public void update() {
-        if (inputHandler.isCancelPressed()) gameController.switchState(State.MAIN_MENU);
+        if (inputHandler.isCancelPressed())
+            gameController.switchState(State.MAIN_MENU);
     }
 
     @Override
@@ -26,7 +27,6 @@ public final class AboutMenu extends Menu {
         drawSubmenuTitle("About", g);
 
         g.setFont(msgFont);
-
 
         drawInformationPanel(g);
     }

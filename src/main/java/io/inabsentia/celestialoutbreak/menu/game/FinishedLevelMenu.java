@@ -17,8 +17,11 @@ public final class FinishedLevelMenu extends Menu {
 
     @Override
     public void update() {
-        if (inputHandler.isOKPressed()) gameController.switchState(State.NEW_LEVEL);
-        if (inputHandler.isCancelPressed()) gameController.switchState(State.MAIN_MENU);
+        if (inputHandler.isOKPressed())
+            gameController.switchState(State.NEW_LEVEL);
+
+        if (inputHandler.isCancelPressed())
+            gameController.switchState(State.MAIN_MENU);
     }
 
     @Override
