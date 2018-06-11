@@ -6,9 +6,9 @@ import io.inabsentia.celestialoutbreak.menu.Menu;
 
 import java.awt.*;
 
-public final class CustomSettingsMenu extends Menu {
+public final class ConfigurationMenu extends Menu {
 
-    public CustomSettingsMenu(GameController gameController, InputHandler inputHandler, Color fontColor) {
+    public ConfigurationMenu(GameController gameController, InputHandler inputHandler, Color fontColor) {
         super(gameController, inputHandler, fontColor);
     }
 
@@ -23,7 +23,7 @@ public final class CustomSettingsMenu extends Menu {
         g.setColor(fontColor);
         drawMenuTitle(g);
 
-        drawSubmenuTitle("Customization Settings", g);
+        drawSubmenuTitle("Configuration Settings", g);
         g.setFont(msgFont);
 
         int xPos = 80;

@@ -16,7 +16,7 @@ public abstract class Menu {
     protected final GameController gameController;
 
     protected Font titleFont, submenuTitleFont, msgFont, infoPanelFont;
-    protected final Rectangle versionRect, siteRect;
+    protected final Rectangle versionRect, authorRect;
     protected final Color fontColor;
 
     public Menu(GameController gameController, InputHandler inputHandler, Color fontColor) {
@@ -30,8 +30,8 @@ public abstract class Menu {
         infoPanelFont = utils.getGameFont().deriveFont(10F);
 
         /* Information rectangles */
-        versionRect = new Rectangle(gameController.getWidth() / 2 + 28, gameController.getHeight() - 20, 50, 15);
-        siteRect = new Rectangle(gameController.getWidth() / 2 - 72, gameController.getHeight() - 20, 96, 15);
+        versionRect = new Rectangle(gameController.getWidth() / 2 + 28, gameController.getHeight() - 20, 52, 15);
+        authorRect = new Rectangle(gameController.getWidth() / 2 - 77, gameController.getHeight() - 20, 100, 15);
     }
 
     public abstract void update();
@@ -58,8 +58,8 @@ public abstract class Menu {
         g.draw(versionRect);
 
         /* Render email tag */
-        g.drawString(textHandler.AUTHOR_WEBSITE, siteRect.x + 5, siteRect.y + 11);
-        g.draw(siteRect);
+        g.drawString(textHandler.AUTHOR_WEBSITE, authorRect.x + 5, authorRect.y + 11);
+        g.draw(authorRect);
     }
 
     protected void drawMenuTitle(Graphics2D g) {

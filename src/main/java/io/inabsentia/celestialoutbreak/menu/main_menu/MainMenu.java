@@ -2,6 +2,9 @@ package io.inabsentia.celestialoutbreak.menu.main_menu;
 
 import io.inabsentia.celestialoutbreak.controller.GameController;
 import io.inabsentia.celestialoutbreak.controller.GameController.State;
+import io.inabsentia.celestialoutbreak.data.dao.IPlayerDAO;
+import io.inabsentia.celestialoutbreak.data.dao.PlayerDAO;
+import io.inabsentia.celestialoutbreak.data.dto.PlayerDTO;
 import io.inabsentia.celestialoutbreak.handler.InputHandler;
 import io.inabsentia.celestialoutbreak.handler.SoundHandler;
 import io.inabsentia.celestialoutbreak.menu.Menu;
@@ -24,6 +27,11 @@ public final class MainMenu extends Menu {
 
     private final SoundHandler soundHandler;
 
+    private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
+    private PlayerDTO playerDTO = null;
+
+    private boolean isFirstUpdate = true;
+
     public MainMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler,
                     Color fontColor, Color rectColor, Color selectedColor) {
         super(gameController, inputHandler, fontColor);
@@ -35,12 +43,12 @@ public final class MainMenu extends Menu {
         int btnYIncrement = 75;
 
         /* Menu buttons */
-        playRect = new Rectangle(gameController.getWidth() / 2 - 50, initialBtnYPos, 100, 50);
-        scoreRect = new Rectangle(gameController.getWidth() / 2 - 65, initialBtnYPos + btnYIncrement, 130, 50);
+        playRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos, 160, 50);
+        scoreRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement, 160, 50);
         controlsRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 2, 160, 50);
-        settingsRect = new Rectangle(gameController.getWidth() / 2 - 75, initialBtnYPos + btnYIncrement * 3, 150, 50);
-        aboutRect = new Rectangle(gameController.getWidth() / 2 - 60, initialBtnYPos + btnYIncrement * 4, 120, 50);
-        exitRect = new Rectangle(gameController.getWidth() / 2 - 50, initialBtnYPos + btnYIncrement * 5, 100, 50);
+        settingsRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 3, 160, 50);
+        aboutRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 4, 160, 50);
+        exitRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 5, 160, 50);
 
         rectColors = new Color[options.length];
 
@@ -73,6 +81,8 @@ public final class MainMenu extends Menu {
 
                 if (inputHandler.isUsePressed() && inputTimer == 0) {
                     inputTimer = 10;
+                    isFirstUpdate = true;
+
                     switch (i) {
                         case 0:
                             gameController.switchState(State.PLAY);
@@ -106,11 +116,20 @@ public final class MainMenu extends Menu {
     public void render(Graphics2D g) {
         int yBtnOffset = 33;
 
+        if (isFirstUpdate) {
+            isFirstUpdate = false;
+            updatePlayerDTO();
+        }
+
         /* Render game title */
         drawMenuTitle(g);
 
         /* Show player name */
-        drawSubmenuTitle("Welcome Player", g);
+        if (playerDTO.isPlayerSelected()) {
+            drawSubmenuTitle("Welcome " + playerDTO.getSelectedPlayer(), g);
+        } else {
+            drawSubmenuTitle("Welcome", g);
+        }
 
         /* Render buttons  */
         g.setFont(btnFont);
@@ -152,6 +171,15 @@ public final class MainMenu extends Menu {
         g.draw(exitRect);
 
         drawInformationPanel(g);
+    }
+
+    private void updatePlayerDTO() {
+        try {
+            playerDAO.loadPlayerDTO();
+            playerDTO = playerDAO.getPlayerDTO();
+        } catch (IPlayerDAO.PlayerDAOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -9,10 +9,10 @@ import java.awt.*;
 
 public final class SettingsMenu extends Menu {
 
-    private final Rectangle playerRect, customInfoRect;
+    private final Rectangle playerRect, configurationRect;
     private final Font btnFont;
 
-    private String[] options = {"PLAYER", "CUSTOMIZATION"};
+    private String[] options = {"PLAYER", "CONFIGURATION"};
     private Color[] rectColors;
 
     private Color rectColor, selectedColor;
@@ -33,8 +33,8 @@ public final class SettingsMenu extends Menu {
         int btnYInc = 75;
 
         /* buttons */
-        playerRect = new Rectangle(gameController.getWidth() / 2 - 65, initialBtnYPos, 130, 50);
-        customInfoRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYInc, 240, 50);
+        playerRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos, 240, 50);
+        configurationRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYInc, 240, 50);
 
         rectColors = new Color[options.length];
 
@@ -112,9 +112,9 @@ public final class SettingsMenu extends Menu {
 
         /* Score button */
         g.setColor(fontColor);
-        drawXCenteredString(options[1], customInfoRect.y + yBtnOffset, g, btnFont);
+        drawXCenteredString(options[1], configurationRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[1]);
-        g.draw(customInfoRect);
+        g.draw(configurationRect);
 
         drawInformationPanel(g);
     }

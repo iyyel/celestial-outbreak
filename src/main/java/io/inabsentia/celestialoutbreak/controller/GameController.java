@@ -2,13 +2,14 @@ package io.inabsentia.celestialoutbreak.controller;
 
 import io.inabsentia.celestialoutbreak.data.dao.IPlayerDAO;
 import io.inabsentia.celestialoutbreak.data.dao.PlayerDAO;
+import io.inabsentia.celestialoutbreak.data.dto.PlayerDTO;
 import io.inabsentia.celestialoutbreak.graphics.ScreenRenderer;
 import io.inabsentia.celestialoutbreak.handler.*;
 import io.inabsentia.celestialoutbreak.menu.game.FinishedLevelMenu;
 import io.inabsentia.celestialoutbreak.menu.game.NewLevelMenu;
 import io.inabsentia.celestialoutbreak.menu.main_menu.*;
 import io.inabsentia.celestialoutbreak.menu.player.PlayerSelectMenu;
-import io.inabsentia.celestialoutbreak.menu.settings.CustomSettingsMenu;
+import io.inabsentia.celestialoutbreak.menu.settings.ConfigurationMenu;
 import io.inabsentia.celestialoutbreak.menu.settings.PlayerSettingsMenu;
 import io.inabsentia.celestialoutbreak.menu.settings.SettingsMenu;
 import io.inabsentia.celestialoutbreak.utils.Utils;
@@ -94,7 +95,7 @@ public class GameController extends Canvas implements Runnable {
     private final SettingsMenu settingsMenu;
     private final PlayerSettingsMenu playerSettingsMenu;
     private final PlayerSelectMenu playerSelectMenu;
-    private final CustomSettingsMenu customSettingsMenu;
+    private final ConfigurationMenu configurationMenu;
     private final ControlsMenu controlMenu;
     private final AboutMenu aboutMenu;
     private final ExitMenu exitMenu;
@@ -151,7 +152,7 @@ public class GameController extends Canvas implements Runnable {
         gameFrame.setSize(size);
 
         /* Game Icon */
-        URL url = ClassLoader.getSystemResource("icon/app_icon.png");
+        URL url = ClassLoader.getSystemResource("icon/app_icon_small.png");
         Toolkit kit = Toolkit.getDefaultToolkit();
         Image img = kit.createImage(url);
         gameFrame.setIconImage(img);
@@ -177,7 +178,7 @@ public class GameController extends Canvas implements Runnable {
         settingsMenu = new SettingsMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         playerSettingsMenu = new PlayerSettingsMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         playerSelectMenu = new PlayerSelectMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
-        customSettingsMenu = new CustomSettingsMenu(this, inputHandler, menuFontColor);
+        configurationMenu = new ConfigurationMenu(this, inputHandler, menuFontColor);
         controlMenu = new ControlsMenu(this, inputHandler, menuFontColor);
         aboutMenu = new AboutMenu(this, inputHandler, menuFontColor);
         exitMenu = new ExitMenu(this, inputHandler, menuFontColor);
@@ -192,6 +193,12 @@ public class GameController extends Canvas implements Runnable {
         /* Initialize the JFrame and start the gameController loop */
         initFrame();
         fileHandler.writeLog(textHandler.SUCCESS_NEW_APP_INSTANCE);
+
+        /* Show introduction dialog */
+        showIntroductionDialog();
+
+        /* Create first player */
+        showCreateFirstPlayerDialog();
     }
 
     /*
@@ -227,10 +234,10 @@ public class GameController extends Canvas implements Runnable {
                 /* Is this correctly calculated? (ram) */
                 double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                 if (utils.isVerboseEnabled()) {
-                    gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION + " | " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
+                    gameFrame.setTitle(textHandler.GAME_TITLE + " | " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
                     fileHandler.writeLog(textHandler.vPerformanceMsg(frames, updates, allocatedRam));
                 } else {
-                    gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION);
+                    gameFrame.setTitle(textHandler.GAME_TITLE);
                 }
                 updates = 0;
                 frames = 0;
@@ -274,7 +281,7 @@ public class GameController extends Canvas implements Runnable {
                 playerSelectMenu.update();
                 break;
             case CUSTOM_SETTINGS_MENU:
-                customSettingsMenu.update();
+                configurationMenu.update();
                 break;
             case ABOUT_MENU:
                 aboutMenu.update();
@@ -375,7 +382,7 @@ public class GameController extends Canvas implements Runnable {
                 playerSelectMenu.render(g);
                 break;
             case CUSTOM_SETTINGS_MENU:
-                customSettingsMenu.render(g);
+                configurationMenu.render(g);
                 break;
             case ABOUT_MENU:
                 aboutMenu.render(g);
@@ -462,6 +469,63 @@ public class GameController extends Canvas implements Runnable {
         this.menuFontColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_FONT_COLOR_HEX)));
         this.menuBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_COLOR_HEX)));
         this.menuSelectedBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_SELECTED_BTN_COLOR_HEX)));
+    }
+
+    private void showCreateFirstPlayerDialog() {
+        new Thread(() -> {
+            try {
+                while (playerDAO.getPlayerDTO().getPlayers().isEmpty()) {
+                    String newPlayerName = JOptionPane.showInputDialog(null,
+                            "Enter a name for the first player:", "Celestial Outbreak - Create first player", JOptionPane.PLAIN_MESSAGE);
+
+                    if (newPlayerName == null) {
+                        continue;
+                    }
+
+                    // check if name is in bounds.
+                    if (newPlayerName.length() < 3 || newPlayerName.length() > 8) {
+                        JOptionPane.showMessageDialog(null, "Player name must be between 3 and 8 characters!", "Celestial Outbreak - Create first player", JOptionPane.ERROR_MESSAGE);
+                        showCreateFirstPlayerDialog();
+                        return;
+                    }
+
+                    PlayerDTO playerDTO = null;
+                    try {
+                        playerDTO = playerDAO.getPlayerDTO();
+                    } catch (IPlayerDAO.PlayerDAOException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (playerDTO != null && playerDTO.containsPlayer(newPlayerName)) {
+                        JOptionPane.showMessageDialog(null, newPlayerName + " already exists!", "Celestial Outbreak - Create first player", JOptionPane.ERROR_MESSAGE);
+                        showCreateFirstPlayerDialog();
+                        return;
+                    }
+
+                    playerDTO.addPlayer(newPlayerName);
+                    playerDTO.setSelectedPlayer(newPlayerName);
+                    try {
+                        playerDAO.savePlayerDTO(playerDTO);
+                        JOptionPane.showMessageDialog(null, newPlayerName + " has been created!", "New Player", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (IPlayerDAO.PlayerDAOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (IPlayerDAO.PlayerDAOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void showIntroductionDialog() {
+        new Thread(() -> {
+            String path = ClassLoader.getSystemResource("icon/app_icon_small.png").getPath();
+            final ImageIcon icon = new ImageIcon(path);
+            JOptionPane.showMessageDialog(null,
+                    "Welcome to Celestial Outbreak!\n\nBlabble, blabble, blabble...\n\n" +
+                            "Baddoodle, baddoodle, mick mack, tingelang\n\n" +
+                            "yeah!\n\nThanks!", "Celestial Outbreak - Welcome", JOptionPane.PLAIN_MESSAGE, icon);
+        }).start();
     }
 
 }
