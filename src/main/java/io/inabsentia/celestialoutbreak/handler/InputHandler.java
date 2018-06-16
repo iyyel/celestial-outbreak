@@ -10,7 +10,8 @@ public final class InputHandler implements KeyListener {
 
     private static InputHandler instance;
 
-    private boolean[] keys = new boolean[120];
+    private boolean[] keys = new boolean[1000];
+
     private boolean isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
     private boolean isUsePressed, isPausePressed, isOKPressed, isCancelPressed;
 
@@ -37,8 +38,11 @@ public final class InputHandler implements KeyListener {
     }
 
     public void update() {
-        if (pauseInputTimer > 0) pauseInputTimer--;
-        if (okInputTimer > 0) okInputTimer--;
+        if (pauseInputTimer > 0)
+            pauseInputTimer--;
+
+        if (okInputTimer > 0)
+            okInputTimer--;
 
         isUpPressed = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W];
         isDownPressed = keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];
@@ -64,14 +68,17 @@ public final class InputHandler implements KeyListener {
         isCancelPressed = keys[KeyEvent.VK_X];
     }
 
+    @Override
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()] = true;
     }
 
+    @Override
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()] = false;
     }
 
+    @Override
     public void keyTyped(KeyEvent e) {
 
     }

@@ -5,6 +5,7 @@ import io.inabsentia.celestialoutbreak.data.dao.PlayerDAO;
 import io.inabsentia.celestialoutbreak.data.dto.PlayerDTO;
 import io.inabsentia.celestialoutbreak.graphics.ScreenRenderer;
 import io.inabsentia.celestialoutbreak.handler.*;
+import io.inabsentia.celestialoutbreak.menu.WelcomeMenu;
 import io.inabsentia.celestialoutbreak.menu.game.FinishedLevelMenu;
 import io.inabsentia.celestialoutbreak.menu.game.NewLevelMenu;
 import io.inabsentia.celestialoutbreak.menu.main_menu.*;
@@ -89,6 +90,7 @@ public class GameController extends Canvas implements Runnable {
     /*
      * Objects used for menu's.
      */
+    private final WelcomeMenu welcomeMenu;
     private final MainMenu mainMenu;
     private final PauseMenu pauseMenu;
     private final ScoresMenu scoresMenu;
@@ -104,6 +106,7 @@ public class GameController extends Canvas implements Runnable {
     private Color menuColor;
 
     public enum State {
+        WELCOME_MENU,
         MAIN_MENU, PLAY, SCORES_MENU, CONTROLS_MENU, SETTINGS_MENU,
         PLAYER_SETTINGS_MENU, CUSTOM_SETTINGS_MENU,
         PLAYER_SELECT_MENU, PLAYER_NEW_SETTINGS, PLAYER_UPDATE_SETTINGS, PLAYER_REMOVE_SETTINGS,
@@ -172,6 +175,7 @@ public class GameController extends Canvas implements Runnable {
         }
 
         /* Create menu objects */
+        welcomeMenu = new WelcomeMenu(this, inputHandler, menuFontColor);
         mainMenu = new MainMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         pauseMenu = new PauseMenu(this, inputHandler, menuFontColor);
         scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
@@ -193,9 +197,6 @@ public class GameController extends Canvas implements Runnable {
         /* Initialize the JFrame and start the gameController loop */
         initFrame();
         fileHandler.writeLog(textHandler.SUCCESS_NEW_APP_INSTANCE);
-
-        /* Show introduction dialog */
-        showIntroductionDialog();
 
         /* Create first player */
         showCreateFirstPlayerDialog();
@@ -256,6 +257,10 @@ public class GameController extends Canvas implements Runnable {
 
         /* Let the current gameController state decide what to update exactly. */
         switch (state) {
+            case WELCOME_MENU:
+                switchMenuColor();
+                welcomeMenu.update();
+                break;
             case MAIN_MENU:
                 switchMenuColor();
                 mainMenu.update();
@@ -323,9 +328,8 @@ public class GameController extends Canvas implements Runnable {
 
         /* Let the current gameController state decide whether to render a level's color or the menu's color. */
         switch (state) {
+            case WELCOME_MENU:
             case MAIN_MENU:
-                screenRenderer.render(menuColor);
-                break;
             case SCORES_MENU:
             case CONTROLS_MENU:
             case SETTINGS_MENU:
@@ -360,6 +364,9 @@ public class GameController extends Canvas implements Runnable {
 
         /* Make the current state of the gameController decide what to render. */
         switch (state) {
+            case WELCOME_MENU:
+                welcomeMenu.render(g);
+                break;
             case MAIN_MENU:
                 mainMenu.render(g);
                 break;
@@ -514,17 +521,6 @@ public class GameController extends Canvas implements Runnable {
             } catch (IPlayerDAO.PlayerDAOException e) {
                 e.printStackTrace();
             }
-        }).start();
-    }
-
-    private void showIntroductionDialog() {
-        new Thread(() -> {
-            String path = ClassLoader.getSystemResource("icon/app_icon_small.png").getPath();
-            final ImageIcon icon = new ImageIcon(path);
-            JOptionPane.showMessageDialog(null,
-                    "Welcome to Celestial Outbreak!\n\nBlabble, blabble, blabble...\n\n" +
-                            "Baddoodle, baddoodle, mick mack, tingelang\n\n" +
-                            "yeah!\n\nThanks!", "Celestial Outbreak - Welcome", JOptionPane.PLAIN_MESSAGE, icon);
         }).start();
     }
 
