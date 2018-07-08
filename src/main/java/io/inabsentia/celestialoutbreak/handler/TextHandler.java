@@ -44,7 +44,7 @@ public final class TextHandler {
      */
     public final String GAME_TITLE = "Celestial Outbreak";
     public final String GAME_VERSION = "v0.12a";
-    public final String AUTHOR_WEBSITE = "inabsentia.io";
+    public final String AUTHOR_WEBSITE = "iyyel.io";
 
     /*
      * Menu button names.
@@ -68,7 +68,7 @@ public final class TextHandler {
     /*
      * Client local gameController directory.
      */
-    public final String GAME_DIR = System.getProperty("user.home") + File.separator + GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
+    public final String GAME_DIR = System.getProperty("user.home") + File.separator + "." + GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
 
     /*
      * Local configuration directory.

@@ -26,7 +26,7 @@ public final class LevelHandler {
         this.currentLevelIndex = currentLevelIndex;
         this.gameController = gameController;
         this.fileHandler = fileHandler;
-        List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_LOCAL_PATH);
+        List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
 
         levels = new Level[levelConfigFileList.size()];
 
