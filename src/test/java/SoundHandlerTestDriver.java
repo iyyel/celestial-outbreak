@@ -1,4 +1,4 @@
-import io.inabsentia.celestialoutbreak.handler.SoundHandler;
+import io.iyyel.celestialoutbreak.handler.SoundHandler;
 
 import java.util.concurrent.TimeUnit;
 
