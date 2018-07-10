@@ -64,17 +64,23 @@ public final class BlockList {
      */
     public void render(Graphics2D g) {
         /* Disable antialiasing for blocks for performance concerns. */
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
-        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
+        if (utils.isAntiAliasingEnabled()) {
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+            g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
+        }
 
         /* Render the blocks if they exist, i.e. if they aren't equal to null. */
-        for (Block block : blockList)
-            if (block != null)
+        for (Block block : blockList) {
+            if (block != null) {
                 block.render(g);
+            }
+        }
 
         /* Enables antialiasing when blocks have been rendered. */
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        if (utils.isAntiAliasingEnabled()) {
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        }
     }
 
     /**

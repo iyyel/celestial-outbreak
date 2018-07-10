@@ -52,7 +52,7 @@ public final class InputHandler implements KeyListener {
         isLeftPressed = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
         isRightPressed = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
 
-        isUsePressed = keys[KeyEvent.VK_ENTER];
+        isUsePressed = keys[KeyEvent.VK_SPACE];
 
         if (pauseInputTimer == 0) {
             isPausePressed = keys[KeyEvent.VK_P];
@@ -62,13 +62,13 @@ public final class InputHandler implements KeyListener {
         }
 
         if (okInputTimer == 0) {
-            isOKPressed = keys[KeyEvent.VK_ENTER];
+            isOKPressed = keys[KeyEvent.VK_Z];
             okInputTimer = INITIAL_OK_INPUT_TIMER_VALUE;
         } else {
             isOKPressed = false;
         }
 
-        isCancelPressed = keys[KeyEvent.VK_BACK_SPACE];
+        isCancelPressed = keys[KeyEvent.VK_X];
     }
 
     @Override
@@ -76,15 +76,7 @@ public final class InputHandler implements KeyListener {
         keys[e.getKeyCode()] = true;
 
         if (isInputMode) {
-            if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                if (userInput.length() <= 1) {
-                    userInput = "";
-                } else {
-                    userInput = userInput.substring(0, userInput.length() - 1);
-                }
-            } else if (userInput.length() <= 20 && (Character.isAlphabetic(e.getKeyCode()))) {
-                userInput += e.getKeyChar();
-            }
+           addToUserInput(e);
         }
     }
 
@@ -130,12 +122,6 @@ public final class InputHandler implements KeyListener {
         return isCancelPressed;
     }
 
-    // Used for a bug in PlayerSettingsMenu. :(
-    public void setIsUsePressed(boolean isUsePressed) {
-        this.isUsePressed = isUsePressed;
-        keys[KeyEvent.VK_SPACE] = isUsePressed;
-    }
-
     public boolean isInputMode() {
         return isInputMode;
     }
@@ -151,6 +137,18 @@ public final class InputHandler implements KeyListener {
 
     public String getUserInput() {
         return userInput;
+    }
+
+    private void addToUserInput(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            if (userInput.length() <= 1) {
+                userInput = "";
+            } else {
+                userInput = userInput.substring(0, userInput.length() - 1);
+            }
+        } else if (userInput.length() <= 20 && (Character.isAlphabetic(e.getKeyCode()))) {
+            userInput += e.getKeyChar();
+        }
     }
 
 }

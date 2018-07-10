@@ -28,7 +28,8 @@ public final class TextHandler {
         try {
             instance = new TextHandler();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+
         }
     }
 
@@ -38,6 +39,9 @@ public final class TextHandler {
     public synchronized static TextHandler getInstance() {
         return instance;
     }
+
+
+    private final String fs = File.separator;
 
     /*
      * Important gameController strings.
@@ -49,12 +53,24 @@ public final class TextHandler {
     /*
      * Menu button names.
      */
+    public final String BTN_START_TEXT = "START";
     public final String BTN_PLAY_TEXT = "PLAY";
     public final String BTN_SCORES_TEXT = "SCORES";
     public final String BTN_SETTINGS_TEXT = "SETTINGS";
     public final String BTN_CONTROLS_TEXT = "CONTROLS";
     public final String BTN_ABOUT_TEXT = "ABOUT";
     public final String BTN_EXIT_TEXT = "EXIT";
+    public final String BTN_PLAYER_TEXT = "PLAYER";
+    public final String BTN_CONFIGURATION_TEXT = "CONFIGURATION";
+    public final String BTN_SELECT_TEXT = "SELECT";
+    public final String BTN_NEW_TEXT = "NEW";
+    public final String BTN_UPDATE_TEXT = "UPDATE";
+    public final String BTN_DELETE_TEXT = "DELETE";
+
+    public final String BTN_CONTROL_OK = "z";
+    public final String BTN_CONTROL_CANCEL = "x";
+    public final String BTN_CONTROL_USE = "Space";
+    public final String BTN_CONTROL_PAUSE = "p";
 
     /*
      * Log announcement messages.
@@ -68,21 +84,23 @@ public final class TextHandler {
     /*
      * Client local gameController directory.
      */
-    public final String GAME_DIR = System.getProperty("user.home") + File.separator + "." + GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
+    public final String GAME_DIR_NAME = "." + GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
+    public final String GAME_DIR_PATH = System.getProperty("user.home") + fs + GAME_DIR_NAME;
 
     /*
-     * Local configuration directory.
+     * Local configuration directories.
      */
-    public final String JAR_CONFIG_DIR = "/config/";
+    public final String LOCAL_JAR_CONFIG_DIR = "/config";
+
 
     /*
      * Log file information.
      */
     public final String LOG_DIR_NAME = "log";
-    public final String LOG_DIR_PATH = GAME_DIR + File.separator + LOG_DIR_NAME;
+    public final String LOG_DIR_PATH = GAME_DIR_PATH + fs + LOG_DIR_NAME;
 
     public final String LOG_FILE_NAME = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_log.txt";
-    public final String LOG_FILE_PATH = LOG_DIR_PATH + File.separator + LOG_FILE_NAME;
+    public final String LOG_FILE_PATH = LOG_DIR_PATH + fs + LOG_FILE_NAME;
 
     public final String logMsgPrefix() {
         return "[LOG " + dateFormat.format(new Date()) + "]: ";
@@ -92,72 +110,74 @@ public final class TextHandler {
      * Settings file information.
      */
     public final String SETTINGS_DIR_NAME = "settings";
-    public final String SETTINGS_DIR_PATH = GAME_DIR + File.separator + SETTINGS_DIR_NAME;
+    public final String SETTINGS_DIR_PATH = GAME_DIR_PATH + fs + SETTINGS_DIR_NAME;
+    public final String LOCAL_JAR_SETTINGS_DIR = LOCAL_JAR_CONFIG_DIR + fs + SETTINGS_DIR_NAME;
 
-    public final String SETTINGS_CONFIG_FILE_NAME = "settings.config";
-    public final String SETTINGS_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(JAR_CONFIG_DIR + SETTINGS_CONFIG_FILE_NAME).getPath();
-    public final String SETTINGS_CONFIG_FILE_CLIENT_PATH = SETTINGS_DIR_PATH + File.separator + SETTINGS_CONFIG_FILE_NAME;
+    public final String SETTINGS_CONFIG_FILE_NAME = "settings.conf";
+    public final String SETTINGS_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_SETTINGS_DIR + fs + SETTINGS_CONFIG_FILE_NAME).getPath();
+    public final String SETTINGS_CONFIG_FILE_CLIENT_PATH = SETTINGS_DIR_PATH + fs + SETTINGS_CONFIG_FILE_NAME;
 
     /*
      * Player binary file information.
      */
     public final String PLAYER_DIR_NAME = "player";
-    public final String PLAYER_DIR_PATH = GAME_DIR + File.separator + PLAYER_DIR_NAME;
+    public final String PLAYER_DIR_PATH = GAME_DIR_PATH + fs + PLAYER_DIR_NAME;
 
-    public final String PLAYER_CONFIG_FILE_NAME = "players.bin";
-    public final String PLAYER_CONFIG_FILE_CLIENT_PATH = PLAYER_DIR_PATH + File.separator + PLAYER_CONFIG_FILE_NAME;
+    public final String PLAYER_BIN_FILE_NAME = "player.bin";
+    public final String PLAYER_BIN_FILE_CLIENT_PATH = PLAYER_DIR_PATH + fs + PLAYER_BIN_FILE_NAME;
 
     /*
      * Score binary file information.
      */
     public final String SCORE_DIR_NAME = "score";
-    public final String SCORE_DIR_PATH = GAME_DIR + File.separator + SCORE_DIR_NAME;
+    public final String SCORE_DIR_PATH = GAME_DIR_PATH + fs + SCORE_DIR_NAME;
 
-    public final String SCORE_CONFIG_FILE_NAME = "score.bin";
-    public final String SCORE_CONFIG_FILE_CLIENT_PATH = SCORE_DIR_PATH + File.separator + SCORE_CONFIG_FILE_NAME;
+    public final String SCORE_BIN_FILE_NAME = "score.bin";
+    public final String SCORE_BIN_FILE_CLIENT_PATH = SCORE_DIR_PATH + fs + SCORE_BIN_FILE_NAME;
 
     /*
      * Local font file information.
      */
     public final String GAME_FONT_NAME = "neuropol.ttf";
-    public final String GAME_FONT_DIR_LOCAL_PATH = "/fonts/";
+    public final String GAME_FONT_DIR_LOCAL_PATH = fs + "fonts" + fs;
     public final String GAME_FONT_LOCAL_PATH = TextHandler.class.getResource(GAME_FONT_DIR_LOCAL_PATH + GAME_FONT_NAME).getPath();
 
     /*
      * Level file information.
      */
     public final String LEVEL_DIR_NAME = "level";
-    public final String LEVEL_DIR_PATH = GAME_DIR + File.separator + LEVEL_DIR_NAME;
+    public final String LEVEL_DIR_PATH = GAME_DIR_PATH + fs + LEVEL_DIR_NAME;
+    public final String LOCAL_JAR_LEVEL_DIR = LOCAL_JAR_CONFIG_DIR + fs + LEVEL_DIR_NAME;
 
-    public final String LEVEL_CONFIG_FILE_NAME = "levels.config";
-    public final String LEVEL_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_CONFIG_FILE_NAME).getPath();
-    public final String LEVEL_CONFIG_FILE_CLIENT_PATH = LEVEL_DIR_PATH + File.separator + LEVEL_CONFIG_FILE_NAME;
+    public final String LEVEL_CONFIG_FILE_NAME = "levels.conf";
+    public final String LEVEL_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_CONFIG_FILE_NAME).getPath();
+    public final String LEVEL_CONFIG_FILE_CLIENT_PATH = LEVEL_DIR_PATH + fs + LEVEL_CONFIG_FILE_NAME;
 
     /* Standard level configuration file names. */
-    public final String LEVEL_FILE_NAME_MARS = "mars_level.config";
-    public final String LEVEL_FILE_NAME_EARTH = "earth_level.config";
-    public final String LEVEL_FILE_NAME_NEPTUNE = "neptune_level.config";
-    public final String LEVEL_FILE_NAME_VENUS = "venus_level.config";
-    public final String LEVEL_FILE_NAME_JUPITER = "jupiter_level.config";
+    public final String LEVEL_FILE_NAME_MARS = "mars_level.conf";
+    public final String LEVEL_FILE_NAME_EARTH = "earth_level.conf";
+    public final String LEVEL_FILE_NAME_NEPTUNE = "neptune_level.conf";
+    public final String LEVEL_FILE_NAME_VENUS = "venus_level.conf";
+    public final String LEVEL_FILE_NAME_JUPITER = "jupiter_level.conf";
 
     /* Local level file paths. */
-    public final String LEVEL_FILE_LOCAL_PATH_MARS = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_MARS).getPath();
-    public final String LEVEL_FILE_LOCAL_PATH_EARTH = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_EARTH).getPath();
-    public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_NEPTUNE).getPath();
-    public final String LEVEL_FILE_LOCAL_PATH_VENUS = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_VENUS).getPath();
-    public final String LEVEL_FILE_LOCAL_PATH_JUPITER = TextHandler.class.getResource(JAR_CONFIG_DIR + LEVEL_FILE_NAME_JUPITER).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_MARS = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_MARS).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_EARTH = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_EARTH).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_NEPTUNE).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_VENUS = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_VENUS).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_JUPITER = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_JUPITER).getPath();
 
     /* Client level file paths. */
-    public final String LEVEL_FILE_CLIENT_PATH_MARS = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_MARS;
-    public final String LEVEL_FILE_CLIENT_PATH_EARTH = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_EARTH;
-    public final String LEVEL_FILE_CLIENT_PATH_NEPTUNE = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_NEPTUNE;
-    public final String LEVEL_FILE_CLIENT_PATH_VENUS = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_VENUS;
-    public final String LEVEL_FILE_CLIENT_PATH_JUPITER = LEVEL_DIR_PATH + File.separator + LEVEL_FILE_NAME_JUPITER;
+    public final String LEVEL_FILE_CLIENT_PATH_MARS = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_MARS;
+    public final String LEVEL_FILE_CLIENT_PATH_EARTH = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_EARTH;
+    public final String LEVEL_FILE_CLIENT_PATH_NEPTUNE = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_NEPTUNE;
+    public final String LEVEL_FILE_CLIENT_PATH_VENUS = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_VENUS;
+    public final String LEVEL_FILE_CLIENT_PATH_JUPITER = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_JUPITER;
 
     /*
      * Sound file information.
      */
-    public final String SOUND_CONFIG_DIR_LOCAL_PATH = "/sound/";
+    public final String SOUND_CONFIG_DIR_LOCAL_PATH = fs + "sound";
 
     public final String SOUND_FILE_NAME_MENU = "menu.wav";
     public final String SOUND_FILE_NAME_PLAY = "play.wav";
@@ -167,12 +187,12 @@ public final class TextHandler {
     public final String SOUND_FILE_NAME_MENU_BTN_SELECTION = "menu_btn_selection.wav";
 
     /* Local sound file paths. */
-    public final String SOUND_FILE_PATH_MENU = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_MENU).getPath();
-    public final String SOUND_FILE_PATH_PLAY = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_PLAY).getPath();
-    public final String SOUND_FILE_PATH_PAUSE = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_PAUSE).getPath();
-    public final String SOUND_FILE_PATH_BALL_BOUNCE = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_BALL_BOUNCE).getPath();
-    public final String SOUND_FILE_PATH_BALL_RESET = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_BALL_RESET).getPath();
-    public final String SOUND_FILE_PATH_MENU_BTN_SELECTION = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + SOUND_FILE_NAME_MENU_BTN_SELECTION).getPath();
+    public final String SOUND_FILE_PATH_MENU = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_MENU).getPath();
+    public final String SOUND_FILE_PATH_PLAY = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_PLAY).getPath();
+    public final String SOUND_FILE_PATH_PAUSE = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_PAUSE).getPath();
+    public final String SOUND_FILE_PATH_BALL_BOUNCE = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_BALL_BOUNCE).getPath();
+    public final String SOUND_FILE_PATH_BALL_RESET = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_BALL_RESET).getPath();
+    public final String SOUND_FILE_PATH_MENU_BTN_SELECTION = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_MENU_BTN_SELECTION).getPath();
 
     /*
      * Property names.
@@ -181,9 +201,12 @@ public final class TextHandler {
     /*
      * Utils properties.
      */
-    public final String PROP_VERBOSE_ENABLED = "VERBOSE_ENABLED";
+    public final String PROP_VERBOSE_LOG_ENABLED = "VERBOSE_LOG_ENABLED";
     public final String PROP_SOUND_ENABLED = "SOUND_ENABLED";
     public final String PROP_GOD_MODE_ENABLED = "GOD_MODE_ENABLED";
+    public final String PROP_FIRST_RUN_ENABLED = "FIRST_RUN_ENABLED";
+    public final String PROP_FPS_LOCK_ENABLED = "FPS_LOCK_ENABLED";
+    public final String PROP_ANTI_ALIASING_ENABLED = "ANTI_ALIASING_ENABLED";
 
     /*
      * Menu color properties.
@@ -235,20 +258,20 @@ public final class TextHandler {
     public final String menuControlsMsg01 = "Movement & Navigation:";
     public final String menuControlsMsg02 = "WASD/Arrow keys";
     public final String menuControlsMsg03 = "Confirm/OK:";
-    public final String menuControlsMsg04 = "Enter";
+    public final String menuControlsMsg04 = "z";
     public final String menuControlsMsg05 = "Cancel/Back:";
-    public final String menuControlsMsg06 = "Backspace";
+    public final String menuControlsMsg06 = "x";
     public final String menuControlsMsg07 = "Select/Use:";
-    public final String menuControlsMsg08 = "Enter";
+    public final String menuControlsMsg08 = "Space";
 
     /* SETTINGS_MENU messages. */
     public final String menuSettingsMsg01 = "All of the configuration related files can be found in the";
-    public final String menuSettingsMsg02 = "following directory '" + GAME_DIR + "'";
-    public final String menuSettingsMsg03 = "general settings can be found in the settings.config file,";
+    public final String menuSettingsMsg02 = "following directory '" + GAME_DIR_PATH + "'";
+    public final String menuSettingsMsg03 = "general settings can be found in the settings.settings file,";
     public final String menuSettingsMsg04 = "in the settings directory.";
     public final String menuSettingsMsg05 = "Level specific settings can be found in the various level files";
-    public final String menuSettingsMsg06 = "in the levels directory, e.g. mars_level.config.";
-    public final String menuSettingsMsg07 = "Levels are played in order from the levels.config file.";
+    public final String menuSettingsMsg06 = "in the levels directory, e.g. mars_level.settings.";
+    public final String menuSettingsMsg07 = "Levels are played in order from the levels.settings file.";
     public final String menuSettingsMsg08 = "If creating custom levels, make sure to add them to this file.";
     public final String menuSettingsMsg09 = "If more information is needed, visit: https://goo.gl/JxxeL6";
 
@@ -367,9 +390,10 @@ public final class TextHandler {
         return "Ball collision with BlockList[" + blockListIndex + "]";
     }
 
+    private final DecimalFormat df = new DecimalFormat("000");
+
     /* Application. */
     public final String vPerformanceMsg(int frames, int updates, double allocatedRam) {
-        DecimalFormat df = new DecimalFormat("000");
         return "UPS: " + updates + " - FPS: " + frames + " - RAM: " + df.format(allocatedRam) + "MB";
     }
 

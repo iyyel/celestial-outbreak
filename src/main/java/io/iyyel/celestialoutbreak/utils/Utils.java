@@ -19,9 +19,10 @@ public final class Utils {
     private final Random random = new Random();
 
     /* GameController flags */
-    private boolean isVerboseEnabled = true; // verbose logging and info in the game
+    private boolean isVerboseLogEnabled = true; // verbose logging and info in the game
     private boolean isSoundEnabled = true; // sound on or off
     private boolean isGodModeEnabled = false; // GOD MODE :) // fast paced? endless life?
+    private boolean isFirstRunEnabled = true; // first ever executing the game?
     private boolean isFpsLockEnabled = true; // lock game to 60 fps and not ASAP performance.
     private boolean isAntiAliasingEnabled = true; // speaks for itself :)
 
@@ -63,21 +64,58 @@ public final class Utils {
     private void initGameProperties() {
         Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
 
-        this.isVerboseEnabled = Boolean.parseBoolean(map.get(textHandler.PROP_VERBOSE_ENABLED));
-        if (isVerboseEnabled)
-            fileHandler.writeLog("Verbose logging enabled!");
+        // Verbose logging
+        this.isVerboseLogEnabled = parseProp(map, textHandler.PROP_VERBOSE_LOG_ENABLED);
+        if (isVerboseLogEnabled) {
+            fileHandler.writeLog("Verbose logging enabled.");
+        } else {
+            fileHandler.writeLog("Verbose logging disabled.");
+        }
 
-        this.isSoundEnabled = Boolean.parseBoolean(map.get(textHandler.PROP_SOUND_ENABLED));
-        if (isSoundEnabled)
-            fileHandler.writeLog("Sound enabled!");
+        // Sound
+        this.isSoundEnabled = parseProp(map, textHandler.PROP_SOUND_ENABLED);
+        if (isSoundEnabled) {
+            fileHandler.writeLog("Sound enabled.");
+        } else {
+            fileHandler.writeLog("Sound disabled.");
+        }
 
-        this.isGodModeEnabled = Boolean.parseBoolean(map.get(textHandler.PROP_GOD_MODE_ENABLED));
-        if (isGodModeEnabled)
-            fileHandler.writeLog("God Mode enabled. Go crazy!");
+        // God mode
+        this.isGodModeEnabled = parseProp(map, textHandler.PROP_GOD_MODE_ENABLED);
+        if (isGodModeEnabled) {
+            fileHandler.writeLog("God Mode enabled.");
+        } else {
+            fileHandler.writeLog("God Mode disabled.");
+        }
+
+        // First run
+        this.isFirstRunEnabled = parseProp(map, textHandler.PROP_FIRST_RUN_ENABLED);
+        if (isFirstRunEnabled) {
+            fileHandler.writeLog("First Run enabled.");
+        } else {
+            fileHandler.writeLog("First Run disabled.");
+        }
+
+        // FPS lock
+        this.isFpsLockEnabled = parseProp(map, textHandler.PROP_FPS_LOCK_ENABLED);
+        if (isFpsLockEnabled) {
+            fileHandler.writeLog("FPS lock enabled.");
+        } else {
+            fileHandler.writeLog("FPS lock disabled.");
+        }
+
+        // Anti aliasing
+        this.isAntiAliasingEnabled = parseProp(map, textHandler.PROP_ANTI_ALIASING_ENABLED);
+        if (isAntiAliasingEnabled) {
+            fileHandler.writeLog("Anti-aliasing enabled.");
+        } else {
+            fileHandler.writeLog("Anti-aliasing disabled.");
+        }
+
     }
 
-    public boolean isVerboseEnabled() {
-        return isVerboseEnabled;
+    public boolean isVerboseLogEnabled() {
+        return isVerboseLogEnabled;
     }
 
     public boolean isSoundEnabled() {
@@ -94,6 +132,10 @@ public final class Utils {
 
     public boolean isAntiAliasingEnabled() {
         return isAntiAliasingEnabled;
+    }
+
+    private boolean parseProp(Map<String, String> map, String prop) {
+        return Boolean.parseBoolean(map.get(prop));
     }
 
 }

@@ -13,10 +13,11 @@ import java.awt.*;
 public abstract class Entity {
 
     protected Point pos;
-    protected Color color;
 
     protected int width;
     protected int height;
+
+    protected Color color;
 
     /**
      * Default constructor.
@@ -45,8 +46,7 @@ public abstract class Entity {
      * that this Entity forms onto the screen. This is used
      * for collision detection.
      *
-     * @return Entity bounds.
+     * @return Rectangle with Entity bounds.
      */
     public abstract Rectangle getBounds();
-
 }

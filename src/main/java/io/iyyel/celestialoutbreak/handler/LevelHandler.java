@@ -43,7 +43,7 @@ public final class LevelHandler {
         if (activeLevel.isFinished()) {
             startNextLevel();
             gameController.switchState(GameController.State.FINISHED_LEVEL);
-            if (utils.isVerboseEnabled())
+            if (utils.isVerboseLogEnabled())
                 fileHandler.writeLog(textHandler.vLevelFinishedMsg(getPrevLevel().getName()));
         }
     }
@@ -55,7 +55,7 @@ public final class LevelHandler {
     private void startNextLevel() {
         if (currentLevelIndex >= 0 && currentLevelIndex + 1 <= levels.length - 1) {
             currentLevelIndex++;
-            if (utils.isVerboseEnabled())
+            if (utils.isVerboseLogEnabled())
                 fileHandler.writeLog(textHandler.vChangedLevelMsg(activeLevel.getName(), levels[currentLevelIndex].getName()));
             activeLevel = levels[currentLevelIndex];
         }

@@ -1,5 +1,6 @@
 package io.iyyel.celestialoutbreak.data.dao;
 
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dto.PlayerDTO;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
@@ -37,15 +38,15 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public void loadPlayerDTO() throws PlayerDAOException {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.PLAYER_CONFIG_FILE_CLIENT_PATH));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             this.playerDTO = (PlayerDTO) ois.readObject();
 
-            if (utils.isVerboseEnabled())
-                fileHandler.writeLog("Successfully loaded '" + textHandler.PLAYER_CONFIG_FILE_NAME + "'!");
+            if (utils.isVerboseLogEnabled())
+                fileHandler.writeLog("Successfully loaded '" + textHandler.PLAYER_BIN_FILE_NAME + "'!");
 
         } catch (FileNotFoundException e) {
-            if (utils.isVerboseEnabled())
-                fileHandler.writeLog("Failed to load '" + textHandler.PLAYER_CONFIG_FILE_NAME + "'. Creating new one!");
+            if (utils.isVerboseLogEnabled())
+                fileHandler.writeLog("Failed to load '" + textHandler.PLAYER_BIN_FILE_NAME + "'. Creating new one!");
 
             playerDTO = new PlayerDTO();
             savePlayerDTO();
@@ -58,7 +59,7 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public void savePlayerDTO() throws PlayerDAOException {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.PLAYER_CONFIG_FILE_CLIENT_PATH));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             oos.writeObject(playerDTO);
             oos.close();
         } catch (IOException e) {

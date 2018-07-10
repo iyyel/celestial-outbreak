@@ -18,7 +18,7 @@ public final class FileHandler {
      * can't be instantiated outside.
      */
     private FileHandler() {
-        initApp();
+        initFileHandler();
     }
 
     /*
@@ -45,7 +45,7 @@ public final class FileHandler {
      * copy the necessary configuration files over
      * to the client machine.
      */
-    private void initApp() {
+    private void initFileHandler() {
         createStandardDirs();
         copyConfigFiles();
     }
@@ -66,7 +66,7 @@ public final class FileHandler {
      * over to the client machine.
      */
     private void copyConfigFiles() {
-        /* Initial level configurations copied to client local config dir. */
+        /* Initial level configurations copied to client local settings dir. */
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MARS, textHandler.LEVEL_FILE_CLIENT_PATH_MARS);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_EARTH, textHandler.LEVEL_FILE_CLIENT_PATH_EARTH);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_NEPTUNE, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);
@@ -106,6 +106,10 @@ public final class FileHandler {
         }
 
         return map;
+    }
+
+    public void writePropertyToFile(String filePath, String propertyName, String value) {
+
     }
 
     /*
@@ -216,7 +220,6 @@ public final class FileHandler {
     public void writeLog(String msg) {
         msg = textHandler.logMsgPrefix() + msg;
         System.out.println(msg);
-        createDir(textHandler.LOG_DIR_PATH);
         writeToFile(msg, textHandler.LOG_FILE_PATH);
     }
 

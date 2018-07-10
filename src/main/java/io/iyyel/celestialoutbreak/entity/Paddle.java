@@ -37,11 +37,13 @@ public final class Paddle extends MobileEntity {
      * @param right Move right, if true.
      */
     public void update(boolean left, boolean right) {
-        if (left && pos.x > 0)
+        if (left && pos.x > 0) {
             pos.x -= speed;
+        }
 
-        if (right && pos.x <= gameController.getWidth() - width)
+        if (right && pos.x <= gameController.getWidth() - width) {
             pos.x += speed;
+        }
     }
 
     /**

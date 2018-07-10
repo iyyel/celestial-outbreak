@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.menu.player;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.menu.Menu;
@@ -76,7 +76,6 @@ public final class PlayerSelectMenu extends Menu {
                 rectColors[i] = selectedColor;
 
                 if (inputHandler.isUsePressed() && inputTimer == 0) {
-                    inputHandler.setIsUsePressed(false);
 
                     String selectedPlayer = playerDAO.getPlayerList().get(i);
 

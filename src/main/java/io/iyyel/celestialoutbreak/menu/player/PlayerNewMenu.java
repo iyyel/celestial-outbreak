@@ -1,18 +1,18 @@
-package io.iyyel.celestialoutbreak.menu.game;
+package io.iyyel.celestialoutbreak.menu.player;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.menu.Menu;
 
 import java.awt.*;
 
-public class NewPlayerMenu extends Menu {
+public class PlayerNewMenu extends Menu {
 
     private boolean firstUpdate = false;
     private String statusString = "";
 
-    public NewPlayerMenu(GameController gameController, InputHandler inputHandler, Color fontColor) {
+    public PlayerNewMenu(GameController gameController, InputHandler inputHandler, Color fontColor) {
         super(gameController, inputHandler, fontColor);
     }
 
@@ -33,8 +33,6 @@ public class NewPlayerMenu extends Menu {
 
         if (inputHandler.isOKPressed()) {
             String name = inputHandler.getUserInput();
-
-            System.out.println(name);
 
             try {
                 playerDAO.addPlayer(name);

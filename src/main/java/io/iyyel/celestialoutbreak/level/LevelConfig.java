@@ -8,7 +8,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import java.awt.*;
 import java.util.Map;
 
-public final class LevelSettings {
+public final class LevelConfig {
 
     private final TextHandler textHandler = TextHandler.getInstance();
 
@@ -53,7 +53,7 @@ public final class LevelSettings {
     /*
      * Constructor.
      */
-    public LevelSettings(String fileName, GameController gameController, FileHandler fileHandler) {
+    public LevelConfig(String fileName, GameController gameController, FileHandler fileHandler) {
         this.gameController = gameController;
         this.fileHandler = fileHandler;
 

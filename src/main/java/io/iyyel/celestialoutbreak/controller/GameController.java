@@ -1,14 +1,14 @@
 package io.iyyel.celestialoutbreak.controller;
 
-import io.iyyel.celestialoutbreak.data.dao.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.graphics.ScreenRenderer;
 import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.menu.game.FinishedLevelMenu;
 import io.iyyel.celestialoutbreak.menu.game.NewLevelMenu;
-import io.iyyel.celestialoutbreak.menu.game.NewPlayerMenu;
 import io.iyyel.celestialoutbreak.menu.game.WelcomeMenu;
 import io.iyyel.celestialoutbreak.menu.main_menu.*;
+import io.iyyel.celestialoutbreak.menu.player.PlayerNewMenu;
 import io.iyyel.celestialoutbreak.menu.player.PlayerSelectMenu;
 import io.iyyel.celestialoutbreak.menu.settings.ConfigurationMenu;
 import io.iyyel.celestialoutbreak.menu.settings.PlayerSettingsMenu;
@@ -91,7 +91,7 @@ public class GameController extends Canvas implements Runnable {
      * Objects used for menu's.
      */
     private final WelcomeMenu welcomeMenu;
-    private final NewPlayerMenu newPlayerMenu;
+    private final PlayerNewMenu playerNewMenu;
     private final MainMenu mainMenu;
     private final PauseMenu pauseMenu;
     private final ScoresMenu scoresMenu;
@@ -118,7 +118,8 @@ public class GameController extends Canvas implements Runnable {
      * Current state of the gameController.
      * Starts with showing the menu state.
      */
-    private State state = State.MAIN_MENU;
+    private State state = State.WELCOME_MENU;
+    private State prevState = null;
 
     /*
      * Constructor of GameController class.
@@ -176,8 +177,8 @@ public class GameController extends Canvas implements Runnable {
         }
 
         /* Create menu objects */
-        newPlayerMenu = new NewPlayerMenu(this, inputHandler, menuFontColor);
-        welcomeMenu = new WelcomeMenu(this, inputHandler, menuFontColor);
+        playerNewMenu = new PlayerNewMenu(this, inputHandler, menuFontColor);
+        welcomeMenu = new WelcomeMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         mainMenu = new MainMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
         pauseMenu = new PauseMenu(this, inputHandler, menuFontColor);
         scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
@@ -199,9 +200,6 @@ public class GameController extends Canvas implements Runnable {
         /* Initialize the JFrame and start the gameController loop */
         initFrame();
         fileHandler.writeLog(textHandler.SUCCESS_NEW_APP_INSTANCE);
-
-        /* Show new player menu if necessary. */
-        showNewPlayerMenu();
     }
 
     /*
@@ -235,7 +233,7 @@ public class GameController extends Canvas implements Runnable {
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 /* Is this correctly calculated? (ram) */
-                if (utils.isVerboseEnabled()) {
+                if (utils.isVerboseLogEnabled()) {
                     double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                     gameFrame.setTitle(textHandler.GAME_TITLE + " | " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
                     fileHandler.writeLog(textHandler.vPerformanceMsg(frames, updates, allocatedRam));
@@ -265,7 +263,7 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case NEW_PLAYER_MENU:
                 switchMenuColor();
-                newPlayerMenu.update();
+                playerNewMenu.update();
                 break;
             case MAIN_MENU:
                 switchMenuColor();
@@ -273,8 +271,9 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case PLAY:
                 levelHandler.update();
-                if (inputHandler.isPausePressed())
+                if (inputHandler.isPausePressed()) {
                     switchState(State.PAUSE_SCREEN);
+                }
                 break;
             case SCORES_MENU:
                 scoresMenu.update();
@@ -377,7 +376,7 @@ public class GameController extends Canvas implements Runnable {
                 welcomeMenu.render(g);
                 break;
             case NEW_PLAYER_MENU:
-                newPlayerMenu.render(g);
+                playerNewMenu.render(g);
                 break;
             case MAIN_MENU:
                 mainMenu.render(g);
@@ -442,8 +441,9 @@ public class GameController extends Canvas implements Runnable {
      * Stop method for the gameController thread/loop. Will exit the application.
      */
     public synchronized void stop() {
-        if (isRunning)
+        if (isRunning) {
             isRunning = false;
+        }
         System.exit(0);
     }
 
@@ -465,6 +465,7 @@ public class GameController extends Canvas implements Runnable {
      * Change the current state of the gameController.
      */
     public void switchState(State state) {
+        prevState = this.state;
         this.state = state;
     }
 
@@ -490,9 +491,8 @@ public class GameController extends Canvas implements Runnable {
         this.menuSelectedBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_SELECTED_BTN_COLOR_HEX)));
     }
 
-    private void showNewPlayerMenu() {
-        if (playerDAO.getPlayerList().isEmpty())
-            switchState(State.NEW_PLAYER_MENU);
+    public State getPrevState() {
+        return prevState;
     }
 
 }

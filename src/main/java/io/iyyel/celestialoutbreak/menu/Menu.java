@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
@@ -28,7 +28,7 @@ public abstract class Menu {
         this.fontColor = fontColor;
 
         titleFont = utils.getGameFont().deriveFont(52F);
-        submenuTitleFont = utils.getGameFont().deriveFont(32F);
+        submenuTitleFont = utils.getGameFont().deriveFont(36F);
         msgFont = utils.getGameFont().deriveFont(28F);
         infoPanelFont = utils.getGameFont().deriveFont(10F);
         inputFont = utils.getGameFont().deriveFont(20F);

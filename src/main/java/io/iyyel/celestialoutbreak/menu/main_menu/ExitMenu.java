@@ -17,8 +17,13 @@ public final class ExitMenu extends Menu {
         if (inputHandler.isOKPressed())
             gameController.stop();
 
-        if (inputHandler.isCancelPressed())
-            gameController.switchState(GameController.State.MAIN_MENU);
+        if (inputHandler.isCancelPressed()) {
+            if (gameController.getPrevState() != null && gameController.getPrevState() == GameController.State.WELCOME_MENU) {
+                gameController.switchState(GameController.State.WELCOME_MENU);
+            } else {
+                gameController.switchState(GameController.State.MAIN_MENU);
+            }
+        }
     }
 
     @Override

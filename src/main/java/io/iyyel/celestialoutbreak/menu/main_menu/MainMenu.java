@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.menu.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
@@ -22,6 +22,7 @@ public final class MainMenu extends Menu {
 
     private int selected = 0;
     private int inputTimer = 18;
+    private int yBtnOffset = 33;
 
     private final SoundHandler soundHandler;
 
@@ -111,8 +112,6 @@ public final class MainMenu extends Menu {
 
     @Override
     public void render(Graphics2D g) {
-        int yBtnOffset = 33;
-
         if (isFirstUpdate) {
             isFirstUpdate = false;
             updatePlayerDTO();

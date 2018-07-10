@@ -88,32 +88,36 @@ public final class Ball extends MobileEntity {
 
         /* Ball hit left x-axis. */
         if (pos.x < 0) {
-            if (utils.isVerboseEnabled())
+            if (utils.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisLeftMsg);
+            }
             velocity.x = speed;
             soundHandler.BALL_BOUNCE_CLIP.play(false);
         }
 
         /* Ball hit right x-axis. */
         if (pos.x > (gameController.getWidth() - width)) {
-            if (utils.isVerboseEnabled())
+            if (utils.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisRightMsg);
+            }
             velocity.x = -speed;
             soundHandler.BALL_BOUNCE_CLIP.play(false);
         }
 
         /* Ball hit top y-axis. */
         if (pos.y < 0) {
-            if (utils.isVerboseEnabled())
+            if (utils.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedYAxisTopMsg);
+            }
             velocity.y = speed;
             soundHandler.BALL_BOUNCE_CLIP.play(false);
         }
 
         /* Ball hit bottom y-axis. */
         if (pos.y > (gameController.getHeight() - height)) {
-            if (utils.isVerboseEnabled())
+            if (utils.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
+            }
 
             pos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
 
@@ -144,17 +148,19 @@ public final class Ball extends MobileEntity {
             if (paddleCollisionTimer == 0) {
                 velocity.y *= -1;
 
-                if (velocity.x < 0)
+                if (velocity.x < 0) {
                     velocity.x = -speed;
-                else
+                } else {
                     velocity.x = speed;
+                }
 
                 paddleCollisionTimer = PADDLE_COLLISION_TIMER_INITIAL;
 
                 soundHandler.BALL_BOUNCE_CLIP.play(false);
 
-                if (utils.isVerboseEnabled())
+                if (utils.isVerboseLogEnabled()) {
                     fileHandler.writeLog(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
+                }
             }
         } else if (t instanceof BlockList) {
 
@@ -168,8 +174,9 @@ public final class Ball extends MobileEntity {
 
                     soundHandler.BALL_BOUNCE_CLIP.play(false);
 
-                    if (utils.isVerboseEnabled())
+                    if (utils.isVerboseLogEnabled()) {
                         fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i));
+                    }
                 }
             }
         }
@@ -185,15 +192,16 @@ public final class Ball extends MobileEntity {
         g.setColor(color);
         g.fillOval(pos.x, pos.y, width, height);
 
-        if (paddleCollisionTimer > 0)
+        if (paddleCollisionTimer > 0) {
             paddleCollisionTimer--;
+        }
     }
 
     /**
      * This is used to check if the Ball collides
      * with the Block.
      *
-     * @return Rectangle using the Block's bounds.
+     * @return Rectangle using the Ball's bounds.
      */
     @Override
     public Rectangle getBounds() {

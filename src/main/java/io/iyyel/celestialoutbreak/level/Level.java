@@ -28,7 +28,7 @@ public final class Level {
     /*
      * Settings for the level.
      */
-    private LevelSettings levelSettings;
+    private LevelConfig levelConfig;
 
     /*
      * Handlers for the level.
@@ -79,7 +79,7 @@ public final class Level {
         this.soundHandler = soundHandler;
         this.fileHandler = fileHandler;
 
-        levelSettings = new LevelSettings(settingsFileName, gameController, fileHandler);
+        levelConfig = new LevelConfig(settingsFileName, gameController, fileHandler);
         initSettings();
 
         /* Create objects after initializing the settings. */
@@ -104,38 +104,40 @@ public final class Level {
 
     private void initSettings() {
         /* Level settings. */
-        name = levelSettings.getLevelName();
-        desc = levelSettings.getLevelDesc();
-        color = levelSettings.getLevelColor();
+        name = levelConfig.getLevelName();
+        desc = levelConfig.getLevelDesc();
+        color = levelConfig.getLevelColor();
 
         /* Paddle settings. */
-        paddlePos = levelSettings.getPaddlePos();
-        paddleWidth = levelSettings.getPaddleWidth();
-        paddleHeight = levelSettings.getPaddleHeight();
-        paddleSpeed = levelSettings.getPaddleSpeed();
-        paddleColor = levelSettings.getPaddleColor();
+        paddlePos = levelConfig.getPaddlePos();
+        paddleWidth = levelConfig.getPaddleWidth();
+        paddleHeight = levelConfig.getPaddleHeight();
+        paddleSpeed = levelConfig.getPaddleSpeed();
+        paddleColor = levelConfig.getPaddleColor();
 
         /* Ball settings. */
-        ballPos = levelSettings.getBallPos();
-        ballPosXOffset = levelSettings.getBallPosXOffset();
-        ballPosYOffset = levelSettings.getBallPosYOffset();
-        ballSize = levelSettings.getBallSize();
-        ballSpeed = levelSettings.getBallSpeed();
-        ballColor = levelSettings.getBallColor();
+        ballPos = levelConfig.getBallPos();
+        ballPosXOffset = levelConfig.getBallPosXOffset();
+        ballPosYOffset = levelConfig.getBallPosYOffset();
+        ballSize = levelConfig.getBallSize();
+        ballSpeed = levelConfig.getBallSpeed();
+        ballColor = levelConfig.getBallColor();
 
         /* BlockList settings. */
-        blockPos = levelSettings.getBlockPos();
-        blockAmount = levelSettings.getBlockAmount();
-        blockWidth = levelSettings.getBlockWidth();
-        blockHeight = levelSettings.getBlockHeight();
-        blockSpacing = levelSettings.getBlockSpacing();
+        blockPos = levelConfig.getBlockPos();
+        blockAmount = levelConfig.getBlockAmount();
+        blockWidth = levelConfig.getBlockWidth();
+        blockHeight = levelConfig.getBlockHeight();
+        blockSpacing = levelConfig.getBlockSpacing();
 
         /* GamePanel settings. */
-        GamePanelColor = levelSettings.getGamePanelColor();
+        GamePanelColor = levelConfig.getGamePanelColor();
     }
 
     public boolean isFinished() {
-        if (blockList.getBlocksLeft() <= 0) return true;
+        if (blockList.getBlocksLeft() <= 0) {
+            return true;
+        }
         return false;
     }
 
