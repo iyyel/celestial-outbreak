@@ -7,20 +7,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06a4bece-f043-43c0-93f7-996fa187f7bd" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/celestialoutbreak_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/celestialoutbreak_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/data/dao/PlayerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/data/dao/PlayerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/data/dao/interfaces/IPlayerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/data/dao/interfaces/IPlayerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/FileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/SoundHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/SoundHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/TextHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/TextHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/player/PlayerNewMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/player/PlayerNewMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/player/PlayerSelectMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/player/PlayerSelectMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/player/PlayerUpdateMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/settings/PlayerSettingsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/settings/PlayerSettingsMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GeneralTestDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GeneralTestDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fonts/neuropol.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/fonts/neuropol.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sound/ball_bounce.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/sound/ball_bounce.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sound/ball_reset.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/sound/ball_reset.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sound/menu.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/sound/menu.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sound/menu_btn_selection.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/sound/menu_btn_selection.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sound/pause.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/sound/pause.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sound/play.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/sound/play.wav" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -101,7 +101,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/data/dto/PlayerDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/data/dao/IPlayerDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/game/NewPlayerMenu.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/settings.config" />
@@ -139,10 +138,6 @@
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/entity/Ball.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/entity/BlockList.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/entity/Paddle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/FileHandler.java" />
-        <option value="$PROJECT_DIR$/src/test/java/GeneralTestDriver.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/utils/Utils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/TextHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/Menu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/InputHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/data/dao/interfaces/IPlayerDAO.java" />
@@ -152,6 +147,11 @@
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/controller/GameController.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/player/PlayerNewMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/player/PlayerSelectMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/SoundHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/TextHandler.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GeneralTestDriver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/FileHandler.java" />
       </list>
     </option>
   </component>
@@ -250,6 +250,24 @@
               <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
               <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="celestialoutbreak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="celestialoutbreak" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -262,23 +280,23 @@
     <property name="SearchEverywhereHistoryKey" value="FileHandler&#9;PSI&#9;JAVA://io.inabsentia.celestialoutbreak.handler.FileHandler" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/config/fonts" />
+      <recent name="$PROJECT_DIR$/src/main/resources/config" />
+      <recent name="$PROJECT_DIR$/src/main/resources/config/.system/fonts" />
+      <recent name="$PROJECT_DIR$/src/main/resources/config/.system" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
       <recent name="io.inabsentia.celestialoutbreak" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Iosevka\celestialoutbreak\src\main\resources\config" />
-      <recent name="$PROJECT_DIR$/src/main/resources/config" />
-      <recent name="$PROJECT_DIR$/src/main/resources/audio" />
-      <recent name="$PROJECT_DIR$/src/main/java/utils" />
-      <recent name="$PROJECT_DIR$/src/main/java/controller/powerup" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="io.iyyel.celestialoutbreak.level.interfaces" />
@@ -286,12 +304,12 @@
       <recent name="io.iyyel.celestialoutbreak.entity.interfaces" />
       <recent name="io.inabsentia.celestialoutbreak.utils" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Iosevka\celestialoutbreak\src\main\resources\config" />
       <recent name="$PROJECT_DIR$/src/main/resources/config" />
-      <recent name="$PROJECT_DIR$/src/main/resources/level" />
-      <recent name="C:\Users\phenotype\vault\software\workspaces\intellij\celestialoutbreak\src\main\resources\config" />
-      <recent name="C:\Users\phenotype\vault\software\workspaces\intellij\celestialoutbreak\src\main\resources\config\settings" />
-      <recent name="C:\Users\phenotype\vault\software\workspaces\intellij\celestialoutbreak\src\main\resources\config\level" />
+      <recent name="$PROJECT_DIR$/src/main/resources/audio" />
+      <recent name="$PROJECT_DIR$/src/main/java/utils" />
+      <recent name="$PROJECT_DIR$/src/main/java/controller/powerup" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -712,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531236642267</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="1. Menu structure development.">
+      <created>1531342815027</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1531342815027</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -740,16 +765,16 @@
       <window_info anchor="right" id="Maven Projects" order="4" weight="0.13027027" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.48645833" weight="0.5462274" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.89501953" visible="true" weight="0.3072573" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32987747" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49840596" visible="true" weight="0.15506329" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49840596" visible="true" weight="0.18407173" />
       <window_info id="Structure" order="1" sideWeight="0.50159407" side_tool="true" weight="0.16471839" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Favorites" order="6" sideWeight="0.50062734" side_tool="true" weight="0.13183594" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.47802734" weight="0.37134778" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.47802734" weight="0.21960415" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="SciView" order="11" />
@@ -776,7 +801,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Possibly fixed some bugs! Added SOUND_ENABLED and DEV_ENABLED flags." />
     <MESSAGE value="Possibly fixed some bugs! Added SOUND_ENABLED and DEV_ENABLED flags. :)" />
     <MESSAGE value="Changed ball movement. Added first level! :) Lots of refactoring to do though. Phew." />
     <MESSAGE value="Added logging. Added Level configuration files." />
@@ -801,11 +825,20 @@
     <MESSAGE value="1. Setting up Linux dev environment.&#10;2. Changes to level config reading at startup." />
     <MESSAGE value="1. Project cleanup.&#10;2. Rewrote PlayerDAO and PlayerDTO.&#10;3. Created input menu.&#10;4. NewPlayerMenu seems to be working well." />
     <MESSAGE value="1. General development." />
-    <option name="LAST_COMMIT_MESSAGE" value="1. General development." />
+    <MESSAGE value="1. Menu structure development." />
+    <option name="LAST_COMMIT_MESSAGE" value="1. Menu structure development." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="60" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/TextHandler.java</url>
+          <line>193</line>
+          <properties field="SOUND_FILE_NAME_MENU_BTN_SELECTION" class="io.iyyel.celestialoutbreak.handler.TextHandler" />
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="64" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -934,13 +967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/SoundHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="91" column="16" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config/settings/settings.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -1008,27 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/GeneralTestDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/FileHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="126" column="21" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="121" column="30" selection-start-line="121" selection-start-column="30" selection-end-line="121" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/menu/game/NewLevelMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1040,13 +1045,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="76" column="29" lean-forward="true" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/TextHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -1117,6 +1115,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1247">
           <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GeneralTestDriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="56" column="111" selection-start-line="56" selection-start-column="111" selection-end-line="56" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/TextHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="186" column="74" selection-start-line="186" selection-start-column="74" selection-end-line="186" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/SoundHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/iyyel/celestialoutbreak/handler/FileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="91" column="48" lean-forward="true" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
         </state>
       </provider>
     </entry>

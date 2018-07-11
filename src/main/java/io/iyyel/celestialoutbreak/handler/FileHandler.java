@@ -57,6 +57,8 @@ public final class FileHandler {
     private void createStandardDirs() {
         createDir(textHandler.LOG_DIR_PATH);
         createDir(textHandler.SETTINGS_DIR_PATH);
+        createDir(textHandler.SOUND_DIR_PATH);
+        createDir(textHandler.GAME_FONT_DIR_PATH);
         createDir(textHandler.LEVEL_DIR_PATH);
         createDir(textHandler.PLAYER_DIR_PATH);
         createDir(textHandler.SCORE_DIR_PATH);
@@ -79,6 +81,17 @@ public final class FileHandler {
 
         /* Settings configuration file copied to client machine. */
         copyFile(textHandler.SETTINGS_CONFIG_FILE_LOCAL_PATH, textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
+
+        /* Font */
+        copyFile(textHandler.GAME_FONT_FILE_LOCAL_PATH, textHandler.GAME_FONT_FILE_CLIENT_PATH);
+
+        /* Sound */
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU, textHandler.SOUND_FILE_CLIENT_PATH_MENU);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_PLAY, textHandler.SOUND_FILE_CLIENT_PATH_PLAY);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_PAUSE, textHandler.SOUND_FILE_CLIENT_PATH_PAUSE);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_BOUNCE, textHandler.SOUND_FILE_CLIENT_PATH_BALL_BOUNCE);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_RESET, textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_SELECTION, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_SELECTION);
     }
 
     /*

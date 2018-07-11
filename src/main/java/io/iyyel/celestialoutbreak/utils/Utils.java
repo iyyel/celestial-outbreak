@@ -52,9 +52,9 @@ public final class Utils {
     public Font getGameFont() {
         Font gameFont = null;
         try {
-            gameFont = Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.GAME_FONT_LOCAL_PATH));
+            gameFont = Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.GAME_FONT_FILE_CLIENT_PATH));
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.GAME_FONT_LOCAL_PATH)));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.GAME_FONT_FILE_CLIENT_PATH)));
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }

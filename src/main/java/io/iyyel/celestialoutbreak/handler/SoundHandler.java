@@ -19,12 +19,12 @@ public final class SoundHandler {
 
     private static SoundHandler instance;
 
-    public final SoundClip MENU_CLIP = new SoundClip(textHandler.SOUND_FILE_PATH_MENU);
-    public final SoundClip PLAY_CLIP = new SoundClip(textHandler.SOUND_FILE_PATH_PLAY);
-    public final SoundClip PAUSE_CLIP = new SoundClip(textHandler.SOUND_FILE_PATH_PAUSE);
-    public final SoundClip BALL_BOUNCE_CLIP = new SoundClip(textHandler.SOUND_FILE_PATH_BALL_BOUNCE);
-    public final SoundClip BALL_RESET_CLIP = new SoundClip(textHandler.SOUND_FILE_PATH_BALL_RESET);
-    public final SoundClip MENU_BTN_SELECTION_CLIP = new SoundClip(textHandler.SOUND_FILE_PATH_MENU_BTN_SELECTION);
+    public final SoundClip MENU_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU);
+    public final SoundClip PLAY_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_PLAY);
+    public final SoundClip PAUSE_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_PAUSE);
+    public final SoundClip BALL_BOUNCE_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BALL_BOUNCE);
+    public final SoundClip BALL_RESET_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET);
+    public final SoundClip MENU_BTN_SELECTION_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_SELECTION);
 
     public class SoundClip {
         private Clip clip;

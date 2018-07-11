@@ -90,7 +90,7 @@ public final class TextHandler {
     /*
      * Local configuration directories.
      */
-    public final String LOCAL_JAR_CONFIG_DIR = "/config";
+    public final String LOCAL_JAR_CONFIG_DIR = fs + "config";
 
 
     /*
@@ -138,9 +138,13 @@ public final class TextHandler {
     /*
      * Local font file information.
      */
-    public final String GAME_FONT_NAME = "neuropol.ttf";
-    public final String GAME_FONT_DIR_LOCAL_PATH = fs + "fonts" + fs;
-    public final String GAME_FONT_LOCAL_PATH = TextHandler.class.getResource(GAME_FONT_DIR_LOCAL_PATH + GAME_FONT_NAME).getPath();
+    public final String GAME_FONT_DIR_NAME = "fonts";
+    public final String GAME_FONT_DIR_PATH = GAME_DIR_PATH + fs + GAME_FONT_DIR_NAME;
+    public final String LOCAL_JAR_GAME_FONT_DIR = LOCAL_JAR_CONFIG_DIR + fs + GAME_FONT_DIR_NAME;
+
+    public final String GAME_FONT_FILE_NAME = "neuropol.ttf";
+    public final String GAME_FONT_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_GAME_FONT_DIR + fs + GAME_FONT_FILE_NAME).getPath();
+    public final String GAME_FONT_FILE_CLIENT_PATH = GAME_FONT_DIR_PATH + fs + GAME_FONT_FILE_NAME;
 
     /*
      * Level file information.
@@ -177,7 +181,10 @@ public final class TextHandler {
     /*
      * Sound file information.
      */
-    public final String SOUND_CONFIG_DIR_LOCAL_PATH = fs + "sound";
+
+    public final String SOUND_DIR_NAME = "sound";
+    public final String SOUND_DIR_PATH = GAME_DIR_PATH + fs + SOUND_DIR_NAME;
+    public final String LOCAL_JAR_SOUND_DIR = LOCAL_JAR_CONFIG_DIR + fs + SOUND_DIR_NAME;
 
     public final String SOUND_FILE_NAME_MENU = "menu.wav";
     public final String SOUND_FILE_NAME_PLAY = "play.wav";
@@ -187,12 +194,20 @@ public final class TextHandler {
     public final String SOUND_FILE_NAME_MENU_BTN_SELECTION = "menu_btn_selection.wav";
 
     /* Local sound file paths. */
-    public final String SOUND_FILE_PATH_MENU = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_MENU).getPath();
-    public final String SOUND_FILE_PATH_PLAY = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_PLAY).getPath();
-    public final String SOUND_FILE_PATH_PAUSE = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_PAUSE).getPath();
-    public final String SOUND_FILE_PATH_BALL_BOUNCE = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_BALL_BOUNCE).getPath();
-    public final String SOUND_FILE_PATH_BALL_RESET = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_BALL_RESET).getPath();
-    public final String SOUND_FILE_PATH_MENU_BTN_SELECTION = TextHandler.class.getResource(SOUND_CONFIG_DIR_LOCAL_PATH + fs + SOUND_FILE_NAME_MENU_BTN_SELECTION).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_MENU = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_MENU).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_PLAY = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_PLAY).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_PAUSE = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_PAUSE).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_BALL_BOUNCE = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_BALL_BOUNCE).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_BALL_RESET = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_BALL_RESET).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_SELECTION = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_MENU_BTN_SELECTION).getPath();
+
+    /* Client sound file paths. */
+    public final String SOUND_FILE_CLIENT_PATH_MENU = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU;
+    public final String SOUND_FILE_CLIENT_PATH_PLAY = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_PLAY;
+    public final String SOUND_FILE_CLIENT_PATH_PAUSE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_PAUSE;
+    public final String SOUND_FILE_CLIENT_PATH_BALL_BOUNCE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BALL_BOUNCE;
+    public final String SOUND_FILE_CLIENT_PATH_BALL_RESET = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BALL_RESET;
+    public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_SELECTION = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_SELECTION;
 
     /*
      * Property names.
