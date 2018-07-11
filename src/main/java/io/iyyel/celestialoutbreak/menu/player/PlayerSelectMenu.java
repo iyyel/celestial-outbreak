@@ -118,7 +118,17 @@ public final class PlayerSelectMenu extends Menu {
         for (int i = 0; i < playerAmount; i++) {
             g.setColor(fontColor);
             g.drawString(playerDAO.getPlayerList().get(i), playerRects[i].x + 5, playerRects[i].y + 32);
-            g.setColor(rectColors[i]);
+
+            try {
+                if (playerDAO.getPlayerList().get(i).equalsIgnoreCase(playerDAO.getSelectedPlayer())) {
+                    g.setColor(Color.MAGENTA);
+                } else {
+                    g.setColor(rectColors[i]);
+                }
+            } catch (IPlayerDAO.PlayerDAOException e) {
+                e.printStackTrace();
+            }
+
             g.draw(playerRects[i]);
         }
 

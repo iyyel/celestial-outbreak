@@ -47,7 +47,7 @@ public final class TextHandler {
      * Important gameController strings.
      */
     public final String GAME_TITLE = "Celestial Outbreak";
-    public final String GAME_VERSION = "v0.12a";
+    public final String GAME_VERSION = "v0.13a";
     public final String AUTHOR_WEBSITE = "iyyel.io";
 
     /*

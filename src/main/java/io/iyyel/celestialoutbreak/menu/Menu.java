@@ -1,8 +1,8 @@
 package io.iyyel.celestialoutbreak.menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.utils.Utils;
@@ -34,8 +34,8 @@ public abstract class Menu {
         inputFont = utils.getGameFont().deriveFont(20F);
 
         /* Information rectangles */
-        versionRect = new Rectangle(gameController.getWidth() / 2 + 28, gameController.getHeight() - 20, 52, 15);
-        authorRect = new Rectangle(gameController.getWidth() / 2 - 77, gameController.getHeight() - 20, 100, 15);
+        authorRect = new Rectangle(gameController.getWidth() / 2 - 1, gameController.getHeight() - 20, 58, 15);
+        versionRect = new Rectangle(gameController.getWidth() / 2 - 57, gameController.getHeight() - 20, 52, 15);
     }
 
     public abstract void update();
@@ -62,7 +62,7 @@ public abstract class Menu {
         g.draw(versionRect);
 
         /* Render email tag */
-        g.drawString(textHandler.AUTHOR_WEBSITE, authorRect.x + 5, authorRect.y + 11);
+        g.drawString(textHandler.AUTHOR_WEBSITE, authorRect.x + 6, authorRect.y + 11);
         g.draw(authorRect);
     }
 

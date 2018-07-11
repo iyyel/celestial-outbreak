@@ -1,8 +1,8 @@
 package io.iyyel.celestialoutbreak.menu.settings;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.menu.Menu;
@@ -11,12 +11,12 @@ import java.awt.*;
 
 public final class PlayerSettingsMenu extends Menu {
 
-    private final Rectangle chooseRect, newRect, updateRect, removeRect;
+    private final Rectangle selectRect, newRect, removeRect;
     private final Font btnFont;
 
     private Color rectColor, selectedColor;
 
-    private String[] options = {"SELECT", "NEW", "UPDATE", "REMOVE"};
+    private String[] options = {"SELECT", "NEW", "REMOVE"};
     private Color[] rectColors;
 
     private final SoundHandler soundHandler;
@@ -36,10 +36,9 @@ public final class PlayerSettingsMenu extends Menu {
         int btnYIncrement = 75;
 
         /* Menu buttons */
-        chooseRect = new Rectangle(gameController.getWidth() / 2 - 60, initialBtnYPos, 120, 50);
-        newRect = new Rectangle(gameController.getWidth() / 2 - 60, initialBtnYPos + btnYIncrement, 120, 50);
-        updateRect = new Rectangle(gameController.getWidth() / 2 - 65, initialBtnYPos + btnYIncrement * 2, 130, 50);
-        removeRect = new Rectangle(gameController.getWidth() / 2 - 65, initialBtnYPos + btnYIncrement * 3, 130, 50);
+        selectRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos, 160, 50);
+        newRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement, 160, 50);
+        removeRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 2, 160, 50);
 
         rectColors = new Color[options.length];
 
@@ -89,10 +88,6 @@ public final class PlayerSettingsMenu extends Menu {
                             gameController.switchState(GameController.State.NEW_PLAYER_MENU);
                             break;
                         case 2:
-                            // UPDATE
-                            //
-                            break;
-                        case 3:
                             // REMOVE
                             //
                             break;
@@ -120,29 +115,22 @@ public final class PlayerSettingsMenu extends Menu {
         /* Select button */
         g.setColor(fontColor);
         g.setFont(btnFont);
-        g.drawString(options[0], chooseRect.x + 7, chooseRect.y + 32);
+        g.drawString(options[0], selectRect.x + 27, selectRect.y + 33);
         g.setColor(rectColors[0]);
-        g.draw(chooseRect);
+        g.draw(selectRect);
 
         /* New button */
         g.setColor(fontColor);
         g.setFont(btnFont);
-        g.drawString(options[1], newRect.x + 27, newRect.y + 32);
+        g.drawString(options[1], newRect.x + 47, newRect.y + 33);
         g.setColor(rectColors[1]);
         g.draw(newRect);
-
-        /* Update button */
-        g.setColor(fontColor);
-        g.setFont(btnFont);
-        g.drawString(options[2], updateRect.x + 7, updateRect.y + 32);
-        g.setColor(rectColors[2]);
-        g.draw(updateRect);
 
         /* Remove button */
         g.setColor(fontColor);
         g.setFont(btnFont);
-        g.drawString(options[3], removeRect.x + 3, removeRect.y + 32);
-        g.setColor(rectColors[3]);
+        g.drawString(options[2], removeRect.x + 23, removeRect.y + 33);
+        g.setColor(rectColors[2]);
         g.draw(removeRect);
 
         drawInformationPanel(g);

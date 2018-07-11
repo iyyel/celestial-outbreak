@@ -126,6 +126,10 @@ public final class Utils {
         return isGodModeEnabled;
     }
 
+    public boolean isFirstRunEnabled() {
+        return isFirstRunEnabled;
+    }
+
     public boolean isFpsLockEnabled() {
         return isFpsLockEnabled;
     }

@@ -76,7 +76,7 @@ public final class InputHandler implements KeyListener {
         keys[e.getKeyCode()] = true;
 
         if (isInputMode) {
-           addToUserInput(e);
+            addToUserInput(e);
         }
     }
 
@@ -128,7 +128,6 @@ public final class InputHandler implements KeyListener {
 
     public void setInputMode(boolean isInputMode) {
         this.isInputMode = isInputMode;
-        userInput = "";
     }
 
     public void setUserInput(String userInput) {

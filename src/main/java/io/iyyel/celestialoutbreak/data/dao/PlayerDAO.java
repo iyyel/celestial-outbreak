@@ -78,6 +78,9 @@ public final class PlayerDAO implements IPlayerDAO {
         if (containsPlayer(name))
             throw new PlayerDAOException("'" + name + "' is an existing player!");
 
+        if (playerDTO.getPlayerList().size() >= 25)
+            throw new PlayerDAOLimitException("Player limit reached!");
+
         playerDTO.getPlayerList().add(name);
     }
 

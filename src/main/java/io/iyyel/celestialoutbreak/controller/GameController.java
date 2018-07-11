@@ -118,7 +118,7 @@ public class GameController extends Canvas implements Runnable {
      * Current state of the gameController.
      * Starts with showing the menu state.
      */
-    private State state = State.WELCOME_MENU;
+    private State state = State.MAIN_MENU;
     private State prevState = null;
 
     /*
@@ -197,10 +197,20 @@ public class GameController extends Canvas implements Runnable {
         gameFrame.addKeyListener(inputHandler);
         addKeyListener(inputHandler);
 
+        /* If first run is enabled, set it to false */
+        if (utils.isFirstRunEnabled()) {
+            switchState(State.WELCOME_MENU);
+            fileHandler.writePropertyToFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_FIRST_RUN_ENABLED, "false");
+        } else if (playerDAO.getPlayerList().isEmpty()) {
+            /* If its not the first run, but there's no players, go new player menu */
+            switchState(State.NEW_PLAYER_MENU);
+        }
+
         /* Initialize the JFrame and start the gameController loop */
         initFrame();
         fileHandler.writeLog(textHandler.SUCCESS_NEW_APP_INSTANCE);
     }
+
 
     /*
      * GameController loop with frames and updates counter.
@@ -465,6 +475,8 @@ public class GameController extends Canvas implements Runnable {
      * Change the current state of the gameController.
      */
     public void switchState(State state) {
+        if (state == null)
+            return;
         prevState = this.state;
         this.state = state;
     }

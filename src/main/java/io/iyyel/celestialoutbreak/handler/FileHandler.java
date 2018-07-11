@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 
 public final class FileHandler {
@@ -108,7 +109,43 @@ public final class FileHandler {
         return map;
     }
 
-    public void writePropertyToFile(String filePath, String propertyName, String value) {
+    public void writePropertyToFile(String filePath, String pKey, String pValue) {
+        File file = new File(filePath);
+
+        if (file.isDirectory()) {
+            return;
+        }
+
+        if (!file.exists()) {
+            return;
+        }
+
+        List<String> lines = null;
+
+        try {
+            lines = Files.readAllLines(file.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int index = 0;
+
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).contains(pKey)) {
+                index = i;
+                break;
+            }
+        }
+
+        String newLine = pKey + "=" + pValue;
+
+        lines.set(index, newLine);
+
+        try {
+            Files.write(file.toPath(), lines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
