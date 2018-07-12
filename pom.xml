@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.inabsentia.celestialoutbreak</groupId>
-    <artifactId>io.inabsentia.celestialoutbreak</artifactId>
+    <groupId>io.iyyel.celestialoutbreak</groupId>
+    <artifactId>io.iyyel.celestialoutbreak</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <build>
@@ -20,7 +20,7 @@
     </build>
     <packaging>jar</packaging>
 
-    <name>io.inabsentia.celestialoutbreak</name>
+    <name>io.iyyel.celestialoutbreak</name>
     <url>http://maven.apache.org</url>
 
     <properties>
