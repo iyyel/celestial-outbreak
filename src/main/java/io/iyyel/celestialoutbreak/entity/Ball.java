@@ -92,7 +92,7 @@ public final class Ball extends MobileEntity {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisLeftMsg);
             }
             velocity.x = speed;
-            soundHandler.BALL_BOUNCE_CLIP.play(false);
+            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
         }
 
         /* Ball hit right x-axis. */
@@ -101,7 +101,7 @@ public final class Ball extends MobileEntity {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisRightMsg);
             }
             velocity.x = -speed;
-            soundHandler.BALL_BOUNCE_CLIP.play(false);
+            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
         }
 
         /* Ball hit top y-axis. */
@@ -110,7 +110,7 @@ public final class Ball extends MobileEntity {
                 fileHandler.writeLog(textHandler.vBallTouchedYAxisTopMsg);
             }
             velocity.y = speed;
-            soundHandler.BALL_BOUNCE_CLIP.play(false);
+            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
         }
 
         /* Ball hit bottom y-axis. */
@@ -127,7 +127,7 @@ public final class Ball extends MobileEntity {
             velocity.x = (isPositiveValue ? 1 : -1) * speed + (isPositiveValue ? -ballSpeedDecrement : ballSpeedDecrement);
             velocity.y = speed;
 
-            soundHandler.BALL_RESET_CLIP.play(false);
+            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET).play(false);
             ballStaleTimer = BALL_STALE_TIMER_INITIAL;
         }
     }
@@ -156,7 +156,7 @@ public final class Ball extends MobileEntity {
 
                 paddleCollisionTimer = PADDLE_COLLISION_TIMER_INITIAL;
 
-                soundHandler.BALL_BOUNCE_CLIP.play(false);
+                soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
 
                 if (utils.isVerboseLogEnabled()) {
                     fileHandler.writeLog(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
@@ -172,7 +172,7 @@ public final class Ball extends MobileEntity {
                     velocity.y *= -1;
                     blockList.destroyBlock(i);
 
-                    soundHandler.BALL_BOUNCE_CLIP.play(false);
+                    soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
 
                     if (utils.isVerboseLogEnabled()) {
                         fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i));

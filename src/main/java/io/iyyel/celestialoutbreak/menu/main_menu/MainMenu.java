@@ -1,10 +1,8 @@
 package io.iyyel.celestialoutbreak.menu.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
-import io.iyyel.celestialoutbreak.handler.InputHandler;
-import io.iyyel.celestialoutbreak.handler.SoundHandler;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.menu.Menu;
 
 import java.awt.*;
@@ -18,24 +16,14 @@ public final class MainMenu extends Menu {
             textHandler.BTN_SETTINGS_TEXT, textHandler.BTN_ABOUT_TEXT, textHandler.BTN_EXIT_TEXT};
     private Color[] rectColors;
 
-    private Color rectColor, selectedColor;
-
     private int selected = 0;
     private int inputTimer = 18;
     private int yBtnOffset = 33;
 
-    private final SoundHandler soundHandler;
-
-    private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
-
     private boolean isFirstUpdate = true;
 
-    public MainMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler,
-                    Color fontColor, Color rectColor, Color selectedColor) {
-        super(gameController, inputHandler, fontColor);
-        this.soundHandler = soundHandler;
-        this.rectColor = rectColor;
-        this.selectedColor = selectedColor;
+    public MainMenu(GameController gameController) {
+        super(gameController);
 
         int initialBtnYPos = 230;
         int btnYIncrement = 75;
@@ -51,33 +39,35 @@ public final class MainMenu extends Menu {
         rectColors = new Color[options.length];
 
         for (Color c : rectColors)
-            c = rectColor;
+            c = menuSelectedBtnColor;
 
         btnFont = utils.getGameFont().deriveFont(20F);
     }
 
     @Override
     public void update() {
-        if (inputTimer > 0)
+        if (inputTimer > 0) {
             inputTimer--;
+        }
 
         if (inputHandler.isDownPressed() && selected < options.length - 1 && inputTimer == 0) {
             selected++;
-            soundHandler.MENU_BTN_SELECTION_CLIP.play(false);
+            menuNavClip.play(false);
             inputTimer = 10;
         }
 
         if (inputHandler.isUpPressed() && selected > 0 && inputTimer == 0) {
             selected--;
-            soundHandler.MENU_BTN_SELECTION_CLIP.play(false);
+            menuNavClip.play(false);
             inputTimer = 10;
         }
 
         for (int i = 0, n = options.length; i < n; i++) {
             if (selected == i) {
-                rectColors[i] = selectedColor;
+                rectColors[i] = menuSelectedBtnColor;
 
                 if (inputHandler.isUsePressed() && inputTimer == 0) {
+                    menuUseClip.play(false);
                     inputTimer = 10;
                     isFirstUpdate = true;
 
@@ -105,7 +95,7 @@ public final class MainMenu extends Menu {
                     }
                 }
             } else {
-                rectColors[i] = rectColor;
+                rectColors[i] = menuBtnColor;
             }
         }
     }
@@ -132,37 +122,37 @@ public final class MainMenu extends Menu {
         g.setFont(btnFont);
 
         /* Play button */
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawXCenteredString(options[0], playRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[0]);
         g.draw(playRect);
 
         /* Score button */
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawXCenteredString(options[1], scoreRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[1]);
         g.draw(scoreRect);
 
         /* Controls button */
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawXCenteredString(options[2], controlsRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[2]);
         g.draw(controlsRect);
 
         /* Settings button */
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawXCenteredString(options[3], settingsRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[3]);
         g.draw(settingsRect);
 
         /* About button */
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawXCenteredString(options[4], aboutRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[4]);
         g.draw(aboutRect);
 
         /* Exit button */
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawXCenteredString(options[5], exitRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[5]);
         g.draw(exitRect);

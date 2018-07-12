@@ -29,7 +29,6 @@ public final class TextHandler {
             instance = new TextHandler();
         } catch (Exception e) {
             e.printStackTrace();
-
         }
     }
 
@@ -42,6 +41,7 @@ public final class TextHandler {
 
 
     private final String fs = File.separator;
+    private final String fs_jar = "/";
 
     /*
      * Important gameController strings.
@@ -65,7 +65,7 @@ public final class TextHandler {
     public final String BTN_SELECT_TEXT = "SELECT";
     public final String BTN_NEW_TEXT = "NEW";
     public final String BTN_UPDATE_TEXT = "UPDATE";
-    public final String BTN_DELETE_TEXT = "DELETE";
+    public final String BTN_REMOVE_TEXT = "DELETE";
 
     public final String BTN_CONTROL_OK = "z";
     public final String BTN_CONTROL_CANCEL = "x";
@@ -90,7 +90,7 @@ public final class TextHandler {
     /*
      * Local configuration directories.
      */
-    public final String LOCAL_JAR_CONFIG_DIR = fs + "config";
+    public final String LOCAL_JAR_CONFIG_DIR = fs_jar + "config";
 
 
     /*
@@ -111,10 +111,11 @@ public final class TextHandler {
      */
     public final String SETTINGS_DIR_NAME = "settings";
     public final String SETTINGS_DIR_PATH = GAME_DIR_PATH + fs + SETTINGS_DIR_NAME;
-    public final String LOCAL_JAR_SETTINGS_DIR = LOCAL_JAR_CONFIG_DIR + fs + SETTINGS_DIR_NAME;
+    public final String LOCAL_JAR_SETTINGS_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + SETTINGS_DIR_NAME;
 
+    // config/settings/settings.conf
     public final String SETTINGS_CONFIG_FILE_NAME = "settings.conf";
-    public final String SETTINGS_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_SETTINGS_DIR + fs + SETTINGS_CONFIG_FILE_NAME).getPath();
+    public final String SETTINGS_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_SETTINGS_DIR + fs_jar + SETTINGS_CONFIG_FILE_NAME).getPath();
     public final String SETTINGS_CONFIG_FILE_CLIENT_PATH = SETTINGS_DIR_PATH + fs + SETTINGS_CONFIG_FILE_NAME;
 
     /*
@@ -140,10 +141,10 @@ public final class TextHandler {
      */
     public final String GAME_FONT_DIR_NAME = "fonts";
     public final String GAME_FONT_DIR_PATH = GAME_DIR_PATH + fs + GAME_FONT_DIR_NAME;
-    public final String LOCAL_JAR_GAME_FONT_DIR = LOCAL_JAR_CONFIG_DIR + fs + GAME_FONT_DIR_NAME;
+    public final String LOCAL_JAR_GAME_FONT_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + GAME_FONT_DIR_NAME;
 
     public final String GAME_FONT_FILE_NAME = "neuropol.ttf";
-    public final String GAME_FONT_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_GAME_FONT_DIR + fs + GAME_FONT_FILE_NAME).getPath();
+    public final String GAME_FONT_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_GAME_FONT_DIR + fs_jar + GAME_FONT_FILE_NAME).getPath();
     public final String GAME_FONT_FILE_CLIENT_PATH = GAME_FONT_DIR_PATH + fs + GAME_FONT_FILE_NAME;
 
     /*
@@ -151,10 +152,10 @@ public final class TextHandler {
      */
     public final String LEVEL_DIR_NAME = "level";
     public final String LEVEL_DIR_PATH = GAME_DIR_PATH + fs + LEVEL_DIR_NAME;
-    public final String LOCAL_JAR_LEVEL_DIR = LOCAL_JAR_CONFIG_DIR + fs + LEVEL_DIR_NAME;
+    public final String LOCAL_JAR_LEVEL_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + LEVEL_DIR_NAME;
 
     public final String LEVEL_CONFIG_FILE_NAME = "levels.conf";
-    public final String LEVEL_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_CONFIG_FILE_NAME).getPath();
+    public final String LEVEL_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs_jar + LEVEL_CONFIG_FILE_NAME).getPath();
     public final String LEVEL_CONFIG_FILE_CLIENT_PATH = LEVEL_DIR_PATH + fs + LEVEL_CONFIG_FILE_NAME;
 
     /* Standard level configuration file names. */
@@ -165,11 +166,11 @@ public final class TextHandler {
     public final String LEVEL_FILE_NAME_JUPITER = "jupiter_level.conf";
 
     /* Local level file paths. */
-    public final String LEVEL_FILE_LOCAL_PATH_MARS = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_MARS).getPath();
-    public final String LEVEL_FILE_LOCAL_PATH_EARTH = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_EARTH).getPath();
-    public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_NEPTUNE).getPath();
-    public final String LEVEL_FILE_LOCAL_PATH_VENUS = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_VENUS).getPath();
-    public final String LEVEL_FILE_LOCAL_PATH_JUPITER = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs + LEVEL_FILE_NAME_JUPITER).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_MARS = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs_jar + LEVEL_FILE_NAME_MARS).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_EARTH = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs_jar + LEVEL_FILE_NAME_EARTH).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs_jar + LEVEL_FILE_NAME_NEPTUNE).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_VENUS = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs_jar + LEVEL_FILE_NAME_VENUS).getPath();
+    public final String LEVEL_FILE_LOCAL_PATH_JUPITER = TextHandler.class.getResource(LOCAL_JAR_LEVEL_DIR + fs_jar + LEVEL_FILE_NAME_JUPITER).getPath();
 
     /* Client level file paths. */
     public final String LEVEL_FILE_CLIENT_PATH_MARS = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_MARS;
@@ -184,30 +185,33 @@ public final class TextHandler {
 
     public final String SOUND_DIR_NAME = "sound";
     public final String SOUND_DIR_PATH = GAME_DIR_PATH + fs + SOUND_DIR_NAME;
-    public final String LOCAL_JAR_SOUND_DIR = LOCAL_JAR_CONFIG_DIR + fs + SOUND_DIR_NAME;
+    public final String LOCAL_JAR_SOUND_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + SOUND_DIR_NAME;
 
-    public final String SOUND_FILE_NAME_MENU = "menu.wav";
-    public final String SOUND_FILE_NAME_PLAY = "play.wav";
-    public final String SOUND_FILE_NAME_PAUSE = "pause.wav";
-    public final String SOUND_FILE_NAME_BALL_BOUNCE = "ball_bounce.wav";
+    public final String SOUND_FILE_NAME_MENU = "menu.wav";               // final
+    public final String SOUND_FILE_NAME_PLAY = "play.wav";               // not sure
+    public final String SOUND_FILE_NAME_PAUSE = "pause.wav";             // not sure
+    public final String SOUND_FILE_NAME_BALL_HIT = "ball_hit.wav";
     public final String SOUND_FILE_NAME_BALL_RESET = "ball_reset.wav";
-    public final String SOUND_FILE_NAME_MENU_BTN_SELECTION = "menu_btn_selection.wav";
+    public final String SOUND_FILE_NAME_MENU_BTN_NAV = "menu_nav.wav";
+    public final String SOUND_FILE_NAME_MENU_BTN_USE = "menu_use.wav";
 
     /* Local sound file paths. */
-    public final String SOUND_FILE_LOCAL_PATH_MENU = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_MENU).getPath();
-    public final String SOUND_FILE_LOCAL_PATH_PLAY = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_PLAY).getPath();
-    public final String SOUND_FILE_LOCAL_PATH_PAUSE = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_PAUSE).getPath();
-    public final String SOUND_FILE_LOCAL_PATH_BALL_BOUNCE = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_BALL_BOUNCE).getPath();
-    public final String SOUND_FILE_LOCAL_PATH_BALL_RESET = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_BALL_RESET).getPath();
-    public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_SELECTION = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs + SOUND_FILE_NAME_MENU_BTN_SELECTION).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_MENU = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_MENU).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_PLAY = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_PLAY).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_PAUSE = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_PAUSE).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_BALL_HIT = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_BALL_HIT).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_BALL_RESET = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_BALL_RESET).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_MENU_BTN_NAV).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_USE = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_MENU_BTN_USE).getPath();
 
     /* Client sound file paths. */
     public final String SOUND_FILE_CLIENT_PATH_MENU = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU;
     public final String SOUND_FILE_CLIENT_PATH_PLAY = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_PLAY;
     public final String SOUND_FILE_CLIENT_PATH_PAUSE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_PAUSE;
-    public final String SOUND_FILE_CLIENT_PATH_BALL_BOUNCE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BALL_BOUNCE;
+    public final String SOUND_FILE_CLIENT_PATH_BALL_HIT = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BALL_HIT;
     public final String SOUND_FILE_CLIENT_PATH_BALL_RESET = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BALL_RESET;
-    public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_SELECTION = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_SELECTION;
+    public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_NAV;
+    public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_USE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_USE;
 
     /*
      * Property names.

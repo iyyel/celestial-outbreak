@@ -1,26 +1,26 @@
 package io.iyyel.celestialoutbreak.menu.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.menu.Menu;
 
 import java.awt.*;
 
 public final class ControlsMenu extends Menu {
 
-    public ControlsMenu(GameController gameController, InputHandler inputHandler, Color fontColor) {
-        super(gameController, inputHandler, fontColor);
+    public ControlsMenu(GameController gameController) {
+        super(gameController);
     }
 
     @Override
     public void update() {
-        if (inputHandler.isCancelPressed())
+        if (inputHandler.isCancelPressed()) {
             gameController.switchState(GameController.State.MAIN_MENU);
+        }
     }
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawMenuTitle(g);
         g.setFont(msgFont);
 

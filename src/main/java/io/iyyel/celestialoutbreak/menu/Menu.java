@@ -3,7 +3,9 @@ package io.iyyel.celestialoutbreak.menu;
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
+import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
+import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.utils.Utils;
 
@@ -13,19 +15,28 @@ public abstract class Menu {
 
     protected final Utils utils = Utils.getInstance();
     protected final TextHandler textHandler = TextHandler.getInstance();
-    protected final InputHandler inputHandler;
+    protected final InputHandler inputHandler = InputHandler.getInstance();
+    protected final SoundHandler soundHandler = SoundHandler.getInstance();
     protected final IPlayerDAO playerDAO = PlayerDAO.getInstance();
+    protected final FileHandler fileHandler = FileHandler.getInstance();
+
+    protected final SoundHandler.SoundClip menuNavClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV);
+    protected final SoundHandler.SoundClip menuUseClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE);
 
     protected final GameController gameController;
 
     protected Font titleFont, submenuTitleFont, msgFont, infoPanelFont, inputFont;
     protected final Rectangle versionRect, authorRect;
-    protected final Color fontColor;
 
-    public Menu(GameController gameController, InputHandler inputHandler, Color fontColor) {
+    /*
+     * Menu colors.
+     */
+    protected Color menuFontColor;
+    protected Color menuBtnColor;
+    protected Color menuSelectedBtnColor;
+
+    public Menu(GameController gameController) {
         this.gameController = gameController;
-        this.inputHandler = inputHandler;
-        this.fontColor = fontColor;
 
         titleFont = utils.getGameFont().deriveFont(52F);
         submenuTitleFont = utils.getGameFont().deriveFont(36F);
@@ -36,6 +47,10 @@ public abstract class Menu {
         /* Information rectangles */
         authorRect = new Rectangle(gameController.getWidth() / 2 - 1, gameController.getHeight() - 20, 58, 15);
         versionRect = new Rectangle(gameController.getWidth() / 2 - 57, gameController.getHeight() - 20, 52, 15);
+
+        this.menuFontColor = utils.getMenuFontColor();
+        this.menuBtnColor = utils.getMenuBtnColor();
+        this.menuSelectedBtnColor = utils.getMenuSelectedBtnColor();
     }
 
     public abstract void update();
@@ -54,7 +69,7 @@ public abstract class Menu {
     }
 
     public void drawInformationPanel(Graphics2D g) {
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         g.setFont(infoPanelFont);
 
         /* Render version number */
@@ -67,7 +82,7 @@ public abstract class Menu {
     }
 
     protected void drawMenuTitle(Graphics2D g) {
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         g.setFont(titleFont);
         drawXCenteredString(textHandler.GAME_TITLE, 100, g, titleFont);
     }

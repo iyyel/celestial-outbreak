@@ -86,7 +86,7 @@ public final class Level {
         paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, gameController);
         ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, ballPosXOffset, ballPosYOffset, gameController);
         blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, gameController);
-        gamePanel = new GamePanel(gameController, inputHandler, GamePanelColor);
+        gamePanel = new GamePanel(gameController);
     }
 
     public void update() {

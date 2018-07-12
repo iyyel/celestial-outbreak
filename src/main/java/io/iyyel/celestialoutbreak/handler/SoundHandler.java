@@ -1,15 +1,14 @@
 package io.iyyel.celestialoutbreak.handler;
 
-import io.iyyel.celestialoutbreak.utils.Utils;
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.utils.Utils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class SoundHandler {
 
@@ -17,18 +16,25 @@ public final class SoundHandler {
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
 
+    private GameController.State currentStateBackup = GameController.State.NONE;
+
     private static SoundHandler instance;
 
-    public final SoundClip MENU_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU);
-    public final SoundClip PLAY_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_PLAY);
-    public final SoundClip PAUSE_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_PAUSE);
-    public final SoundClip BALL_BOUNCE_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BALL_BOUNCE);
-    public final SoundClip BALL_RESET_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET);
-    public final SoundClip MENU_BTN_SELECTION_CLIP = new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_SELECTION);
+    private Map<String, SoundClip> soundClipMap = new HashMap<String, SoundClip>() {
+        {
+            put(textHandler.SOUND_FILE_NAME_MENU, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU));
+            put(textHandler.SOUND_FILE_NAME_PLAY, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_PLAY));
+            put(textHandler.SOUND_FILE_NAME_PAUSE, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_PAUSE));
+            put(textHandler.SOUND_FILE_NAME_BALL_HIT, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BALL_HIT));
+            put(textHandler.SOUND_FILE_NAME_BALL_RESET, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET));
+            put(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV));
+            put(textHandler.SOUND_FILE_NAME_MENU_BTN_USE, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_USE));
+        }
+    };
 
     public class SoundClip {
         private Clip clip;
-        private long currentMicrosecondClipPosition = 0;
+        private boolean isActive = false;
 
         public SoundClip(String filePath) {
             try {
@@ -40,41 +46,50 @@ public final class SoundHandler {
         }
 
         public void play(boolean loop) {
-            if (!utils.isSoundEnabled() || clip.isActive()) return;
+            if (!utils.isSoundEnabled() || clip.isActive()) {
+                return;
+            }
+
             stop();
 
-            if (loop)
+            if (loop) {
+                isActive = true;
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
-            else
+            } else {
+                isActive = true;
                 clip.start();
-        }
-
-        public void resume(boolean loop) {
-            if (!utils.isSoundEnabled() || clip.isActive()) return;
-            clip.setMicrosecondPosition(currentMicrosecondClipPosition);
-
-            if (loop)
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
-            else
-                clip.start();
-        }
-
-        public void pause() {
-            if (!utils.isSoundEnabled()) return;
-            currentMicrosecondClipPosition = clip.getMicrosecondPosition();
-            stop();
+            }
         }
 
         public void stop() {
             if (!utils.isSoundEnabled()) return;
+            isActive = false;
             clip.stop();
             clip.setFramePosition(0);
+        }
+
+        public void reduceClipDB(float db) {
+            if (-db >= 0) {
+                return;
+            }
+
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-db); // Reduce volume by 'db' decibels.
+        }
+
+        public void increaseClipDB(float db) {
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(+db); // Increase volume by 'db' decibels.
+        }
+
+        public boolean isActive() {
+            return isActive;
         }
 
     }
 
     private SoundHandler() {
-
+        initSoundHandler();
     }
 
     static {
@@ -89,32 +104,58 @@ public final class SoundHandler {
         return instance;
     }
 
-    public void playStateMusic(GameController.State state, boolean loop) {
+    public void playStateMusic(GameController.State state, GameController.State prevState, boolean loop) {
+
+        if (currentStateBackup != prevState) {
+            return;
+        }
+
+        currentStateBackup = state;
+
+        stopAllSound();
+
         switch (state) {
+            case WELCOME_MENU:
             case MAIN_MENU:
-                if (PLAY_CLIP.clip.isActive()) PLAY_CLIP.stop();
-                if (PAUSE_CLIP.clip.isActive()) PAUSE_CLIP.stop();
-                MENU_CLIP.play(loop);
+            case SCORES_MENU:
+            case CONTROLS_MENU:
+            case SETTINGS_MENU:
+            case PLAYER_SETTINGS_MENU:
+            case PLAYER_SELECT_MENU:
+            case PLAYER_NEW_SETTINGS:
+            case PLAYER_REMOVE_SETTINGS:
+            case NEW_PLAYER_MENU:
+            case CONFIG_SETTINGS_MENU:
+                SoundClip soundClip = getSoundClip(textHandler.SOUND_FILE_NAME_MENU);
+                soundClip.play(loop);
                 break;
             case PLAY:
-                if (MENU_CLIP.clip.isActive()) MENU_CLIP.stop();
-                if (PAUSE_CLIP.clip.isActive()) PAUSE_CLIP.stop();
-                PLAY_CLIP.play(loop);
-                break;
-            case SCORES_MENU:
-                break;
-            case SETTINGS_MENU:
-                break;
-            case ABOUT_MENU:
+                getSoundClip(textHandler.SOUND_FILE_NAME_PLAY).play(loop);
                 break;
             case PAUSE_SCREEN:
-                if (MENU_CLIP.clip.isActive()) MENU_CLIP.stop();
-                if (PLAY_CLIP.clip.isActive()) PLAY_CLIP.stop();
-                PAUSE_CLIP.play(loop);
+                getSoundClip(textHandler.SOUND_FILE_NAME_PAUSE).play(loop);
                 break;
             default:
                 break;
         }
+    }
+
+    public SoundClip getSoundClip(String clipKey) {
+        return soundClipMap.get(clipKey);
+    }
+
+    private void stopAllSound() {
+        for (String key : soundClipMap.keySet()) {
+            SoundClip soundClip = soundClipMap.get(key);
+            if (soundClip.clip.isActive()) {
+                soundClip.stop();
+            }
+        }
+    }
+
+    private void initSoundHandler() {
+        getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV).reduceClipDB(15);
+        getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE).reduceClipDB(15);
     }
 
 }

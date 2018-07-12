@@ -89,9 +89,10 @@ public final class FileHandler {
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU, textHandler.SOUND_FILE_CLIENT_PATH_MENU);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_PLAY, textHandler.SOUND_FILE_CLIENT_PATH_PLAY);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_PAUSE, textHandler.SOUND_FILE_CLIENT_PATH_PAUSE);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_BOUNCE, textHandler.SOUND_FILE_CLIENT_PATH_BALL_BOUNCE);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_HIT, textHandler.SOUND_FILE_CLIENT_PATH_BALL_HIT);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_RESET, textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_SELECTION, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_SELECTION);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_USE, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_USE);
     }
 
     /*

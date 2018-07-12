@@ -1,13 +1,11 @@
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 
-import java.util.concurrent.TimeUnit;
-
 public class SoundHandlerTestDriver {
 
     private static final SoundHandler soundHandler = SoundHandler.getInstance();
 
     public static void main(String[] args) throws InterruptedException {
-
+/*
         System.out.println("Playing clip...");
         soundHandler.MENU_CLIP.play(true);
 
@@ -39,6 +37,7 @@ public class SoundHandlerTestDriver {
             System.out.println("Terminating in " + i + " seconds...");
             TimeUnit.SECONDS.sleep(1);
         }
+        */
     }
 
 }

@@ -26,6 +26,12 @@ public final class Utils {
     private boolean isFpsLockEnabled = true; // lock game to 60 fps and not ASAP performance.
     private boolean isAntiAliasingEnabled = true; // speaks for itself :)
 
+    /* Menu colors */
+    private Color menuFontColor;
+    private Color menuBtnColor;
+
+    private Color menuSelectedBtnColor;
+
     private Utils() {
         initGameProperties();
     }
@@ -112,6 +118,14 @@ public final class Utils {
             fileHandler.writeLog("Anti-aliasing disabled.");
         }
 
+        this.menuFontColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_FONT_COLOR_HEX)));
+        fileHandler.writeLog("menuFontColor: " + menuFontColor);
+
+        this.menuBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_COLOR_HEX)));
+        fileHandler.writeLog("menuBtnColor: " + menuBtnColor);
+
+        this.menuSelectedBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_SELECTED_BTN_COLOR_HEX)));
+        fileHandler.writeLog("menuSelectedBtnColor: " + menuSelectedBtnColor);
     }
 
     public boolean isVerboseLogEnabled() {
@@ -136,6 +150,18 @@ public final class Utils {
 
     public boolean isAntiAliasingEnabled() {
         return isAntiAliasingEnabled;
+    }
+
+    public Color getMenuFontColor() {
+        return menuFontColor;
+    }
+
+    public Color getMenuBtnColor() {
+        return menuBtnColor;
+    }
+
+    public Color getMenuSelectedBtnColor() {
+        return menuSelectedBtnColor;
     }
 
     private boolean parseProp(Map<String, String> map, String prop) {

@@ -21,7 +21,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.net.URL;
-import java.util.Map;
 
 /*
  * This is the GameController class.
@@ -81,13 +80,6 @@ public class GameController extends Canvas implements Runnable {
     private final LevelHandler levelHandler;
 
     /*
-     * Menu colors.
-     */
-    private Color menuFontColor;
-    private Color menuBtnColor;
-    private Color menuSelectedBtnColor;
-
-    /*
      * Objects used for menu's.
      */
     private final WelcomeMenu welcomeMenu;
@@ -107,10 +99,11 @@ public class GameController extends Canvas implements Runnable {
     private Color menuColor;
 
     public enum State {
+        NONE,
         WELCOME_MENU, NEW_PLAYER_MENU,
         MAIN_MENU, PLAY, SCORES_MENU, CONTROLS_MENU, SETTINGS_MENU,
-        PLAYER_SETTINGS_MENU, CUSTOM_SETTINGS_MENU,
-        PLAYER_SELECT_MENU, PLAYER_NEW_SETTINGS, PLAYER_UPDATE_SETTINGS, PLAYER_REMOVE_SETTINGS,
+        PLAYER_SETTINGS_MENU, CONFIG_SETTINGS_MENU,
+        PLAYER_SELECT_MENU, PLAYER_NEW_SETTINGS, PLAYER_REMOVE_SETTINGS,
         ABOUT_MENU, EXIT_MENU, PAUSE_SCREEN, NEW_LEVEL, FINISHED_LEVEL
     }
 
@@ -119,7 +112,7 @@ public class GameController extends Canvas implements Runnable {
      * Starts with showing the menu state.
      */
     private State state = State.MAIN_MENU;
-    private State prevState = null;
+    private State prevState = State.NONE;
 
     /*
      * Constructor of GameController class.
@@ -168,29 +161,21 @@ public class GameController extends Canvas implements Runnable {
         /* Create screenRenderer renderer */
         screenRenderer = new ScreenRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, pixels);
 
-        /* Instantiate main menu colors */
-        try {
-            initMenuColors();
-        } catch (Exception e) {
-            fileHandler.writeLog(textHandler.errorParsingPropertiesMsg(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH, e.getMessage()));
-            stop();
-        }
-
         /* Create menu objects */
-        playerNewMenu = new PlayerNewMenu(this, inputHandler, menuFontColor);
-        welcomeMenu = new WelcomeMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
-        mainMenu = new MainMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
-        pauseMenu = new PauseMenu(this, inputHandler, menuFontColor);
-        scoresMenu = new ScoresMenu(this, inputHandler, menuFontColor);
-        settingsMenu = new SettingsMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
-        playerSettingsMenu = new PlayerSettingsMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
-        playerSelectMenu = new PlayerSelectMenu(this, inputHandler, soundHandler, menuFontColor, menuBtnColor, menuSelectedBtnColor);
-        configurationMenu = new ConfigurationMenu(this, inputHandler, menuFontColor);
-        controlMenu = new ControlsMenu(this, inputHandler, menuFontColor);
-        aboutMenu = new AboutMenu(this, inputHandler, menuFontColor);
-        exitMenu = new ExitMenu(this, inputHandler, menuFontColor);
-        newLevelMenu = new NewLevelMenu(this, inputHandler, menuFontColor);
-        finishedLevelMenu = new FinishedLevelMenu(this, inputHandler, menuFontColor);
+        playerNewMenu = new PlayerNewMenu(this);
+        welcomeMenu = new WelcomeMenu(this);
+        mainMenu = new MainMenu(this);
+        pauseMenu = new PauseMenu(this);
+        scoresMenu = new ScoresMenu(this);
+        settingsMenu = new SettingsMenu(this);
+        playerSettingsMenu = new PlayerSettingsMenu(this);
+        playerSelectMenu = new PlayerSelectMenu(this);
+        configurationMenu = new ConfigurationMenu(this);
+        controlMenu = new ControlsMenu(this);
+        aboutMenu = new AboutMenu(this);
+        exitMenu = new ExitMenu(this);
+        newLevelMenu = new NewLevelMenu(this);
+        finishedLevelMenu = new FinishedLevelMenu(this);
         menuColor = utils.generatePastelColor(0.9F, 9000F);
 
         /* Add input handlers */
@@ -263,7 +248,7 @@ public class GameController extends Canvas implements Runnable {
         /* Update the currently pressed keys. */
         inputHandler.update();
 
-        soundHandler.playStateMusic(state, true);
+        soundHandler.playStateMusic(state, prevState, true);
 
         /* Let the current gameController state decide what to update exactly. */
         switch (state) {
@@ -300,7 +285,7 @@ public class GameController extends Canvas implements Runnable {
             case PLAYER_SELECT_MENU:
                 playerSelectMenu.update();
                 break;
-            case CUSTOM_SETTINGS_MENU:
+            case CONFIG_SETTINGS_MENU:
                 configurationMenu.update();
                 break;
             case ABOUT_MENU:
@@ -351,7 +336,7 @@ public class GameController extends Canvas implements Runnable {
             case SETTINGS_MENU:
             case PLAYER_SETTINGS_MENU:
             case PLAYER_SELECT_MENU:
-            case CUSTOM_SETTINGS_MENU:
+            case CONFIG_SETTINGS_MENU:
             case ABOUT_MENU:
             case EXIT_MENU:
                 screenRenderer.render(menuColor);
@@ -409,7 +394,7 @@ public class GameController extends Canvas implements Runnable {
             case PLAYER_SELECT_MENU:
                 playerSelectMenu.render(g);
                 break;
-            case CUSTOM_SETTINGS_MENU:
+            case CONFIG_SETTINGS_MENU:
                 configurationMenu.render(g);
                 break;
             case ABOUT_MENU:
@@ -475,8 +460,10 @@ public class GameController extends Canvas implements Runnable {
      * Change the current state of the gameController.
      */
     public void switchState(State state) {
-        if (state == null)
+        if (state == null) {
             return;
+        }
+
         prevState = this.state;
         this.state = state;
     }
@@ -491,16 +478,6 @@ public class GameController extends Canvas implements Runnable {
         } else {
             menuColorTimer--;
         }
-    }
-
-    /*
-     * Read settings for the menuColors at startup.
-     */
-    private void initMenuColors() {
-        Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
-        this.menuFontColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_FONT_COLOR_HEX)));
-        this.menuBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_COLOR_HEX)));
-        this.menuSelectedBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_SELECTED_BTN_COLOR_HEX)));
     }
 
     public State getPrevState() {

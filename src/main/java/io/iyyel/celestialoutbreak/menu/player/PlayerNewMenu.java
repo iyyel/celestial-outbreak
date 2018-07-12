@@ -2,12 +2,11 @@ package io.iyyel.celestialoutbreak.menu.player;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.menu.Menu;
 
 import java.awt.*;
 
-public class PlayerNewMenu extends Menu {
+public final class PlayerNewMenu extends Menu {
 
     private boolean firstUpdate = true;
     private boolean isAcceptMode = false;
@@ -20,8 +19,8 @@ public class PlayerNewMenu extends Menu {
     private final String INIT_STATUS_STRING = "Press 'OK' button to start entering a player name or 'cancel' to go back.";
     private String statusString = INIT_STATUS_STRING;
 
-    public PlayerNewMenu(GameController gameController, InputHandler inputHandler, Color fontColor) {
-        super(gameController, inputHandler, fontColor);
+    public PlayerNewMenu(GameController gameController) {
+        super(gameController);
     }
 
     @Override
@@ -98,8 +97,7 @@ public class PlayerNewMenu extends Menu {
             firstUpdate = true;
             inputHandler.setInputMode(false);
             statusString = INIT_STATUS_STRING;
-            if (playerDAO.getPlayerList().size() != 0)
-                gameController.switchState(gameController.getPrevState());
+            exitMenu();
         }
 
         if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && isPlayerCreated) {
@@ -115,8 +113,7 @@ public class PlayerNewMenu extends Menu {
             isAcceptMode = false;
             firstUpdate = true;
             inputHandler.setInputMode(false);
-            if (playerDAO.getPlayerList().size() != 0)
-                gameController.switchState(gameController.getPrevState());
+            exitMenu();
         }
 
         if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && isAcceptMode && !isPlayerCreated) {
@@ -134,7 +131,7 @@ public class PlayerNewMenu extends Menu {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawMenuTitle(g);
 
         drawSubmenuTitle("New Player", g);
@@ -182,6 +179,14 @@ public class PlayerNewMenu extends Menu {
             e.printStackTrace();
         }
 
+    }
+
+    private void exitMenu() {
+        if (utils.isFirstRunEnabled()) {
+            gameController.switchState(GameController.State.MAIN_MENU);
+        } else if (playerDAO.getPlayerList().size() != 0) {
+            gameController.switchState(gameController.getPrevState());
+        }
     }
 
 }

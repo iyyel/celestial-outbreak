@@ -1,8 +1,6 @@
 package io.iyyel.celestialoutbreak.menu.settings;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.handler.InputHandler;
-import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.menu.Menu;
 
 import java.awt.*;
@@ -15,19 +13,11 @@ public final class SettingsMenu extends Menu {
     private String[] options = {"PLAYER", "CONFIGURATION"};
     private Color[] rectColors;
 
-    private Color rectColor, selectedColor;
-
     private int selected = 0;
     private int inputTimer = 18;
 
-    private final SoundHandler soundHandler;
-
-    public SettingsMenu(GameController gameController, InputHandler inputHandler, SoundHandler soundHandler,
-                        Color fontColor, Color rectColor, Color selectedColor) {
-        super(gameController, inputHandler, fontColor);
-        this.soundHandler = soundHandler;
-        this.rectColor = rectColor;
-        this.selectedColor = selectedColor;
+    public SettingsMenu(GameController gameController) {
+        super(gameController);
 
         int initialBtnYPos = 230;
         int btnYInc = 75;
@@ -39,7 +29,7 @@ public final class SettingsMenu extends Menu {
         rectColors = new Color[options.length];
 
         for (Color c : rectColors)
-            c = rectColor;
+            c = menuBtnColor;
 
         btnFont = utils.getGameFont().deriveFont(20F);
     }
@@ -56,22 +46,24 @@ public final class SettingsMenu extends Menu {
 
         if (inputHandler.isDownPressed() && selected < options.length - 1 && inputTimer == 0) {
             selected++;
-            soundHandler.MENU_BTN_SELECTION_CLIP.play(false);
+            menuNavClip.play(false);
             inputTimer = 10;
         }
 
         if (inputHandler.isUpPressed() && selected > 0 && inputTimer == 0) {
             selected--;
-            soundHandler.MENU_BTN_SELECTION_CLIP.play(false);
+            menuNavClip.play(false);
             inputTimer = 10;
         }
 
         for (int i = 0, n = options.length; i < n; i++) {
             if (selected == i) {
-                rectColors[i] = selectedColor;
+                rectColors[i] = menuSelectedBtnColor;
 
                 if (inputHandler.isUsePressed() && inputTimer == 0) {
+                    menuUseClip.play(false);
                     inputTimer = 10;
+
                     switch (i) {
                         case 0:
                             // Player settings
@@ -79,14 +71,14 @@ public final class SettingsMenu extends Menu {
                             break;
                         case 1:
                             // Customization settings
-                            gameController.switchState(GameController.State.CUSTOM_SETTINGS_MENU);
+                            gameController.switchState(GameController.State.CONFIG_SETTINGS_MENU);
                             break;
                         default:
                             break;
                     }
                 }
             } else {
-                rectColors[i] = rectColor;
+                rectColors[i] = menuBtnColor;
             }
         }
     }
@@ -105,13 +97,13 @@ public final class SettingsMenu extends Menu {
         g.setFont(btnFont);
 
         /* Play button */
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawXCenteredString(options[0], playerRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[0]);
         g.draw(playerRect);
 
         /* Score button */
-        g.setColor(fontColor);
+        g.setColor(menuFontColor);
         drawXCenteredString(options[1], configurationRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[1]);
         g.draw(configurationRect);
