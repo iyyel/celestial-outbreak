@@ -1,13 +1,12 @@
 package io.iyyel.celestialoutbreak.menu.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class MainMenu extends Menu {
+public final class MainMenu extends AbstractMenu {
 
     private final Rectangle playRect, scoreRect, controlsRect, settingsRect, aboutRect, exitRect;
     private final Font btnFont;
@@ -73,22 +72,22 @@ public final class MainMenu extends Menu {
 
                     switch (i) {
                         case 0:
-                            gameController.switchState(GameController.State.PLAY);
+                            gameController.switchState(GameController.State.PLAY_SCREEN);
                             break;
                         case 1:
-                            gameController.switchState(GameController.State.SCORES_MENU);
+                            gameController.switchState(GameController.State.SCORES_SCREEN);
                             break;
                         case 2:
-                            gameController.switchState(GameController.State.CONTROLS_MENU);
+                            gameController.switchState(GameController.State.CONTROLS_SCREEN);
                             break;
                         case 3:
                             gameController.switchState(GameController.State.SETTINGS_MENU);
                             break;
                         case 4:
-                            gameController.switchState(GameController.State.ABOUT_MENU);
+                            gameController.switchState(GameController.State.ABOUT_SCREEN);
                             break;
                         case 5:
-                            gameController.switchState(GameController.State.EXIT_MENU);
+                            gameController.switchState(GameController.State.EXIT_SCREEN);
                             break;
                         default:
                             break;
@@ -123,37 +122,37 @@ public final class MainMenu extends Menu {
 
         /* Play button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[0], playRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[0], playRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[0]);
         g.draw(playRect);
 
         /* Score button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[1], scoreRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[1], scoreRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[1]);
         g.draw(scoreRect);
 
         /* Controls button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[2], controlsRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[2], controlsRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[2]);
         g.draw(controlsRect);
 
         /* Settings button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[3], settingsRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[3], settingsRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[3]);
         g.draw(settingsRect);
 
         /* About button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[4], aboutRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[4], aboutRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[4]);
         g.draw(aboutRect);
 
         /* Exit button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[5], exitRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[5], exitRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[5]);
         g.draw(exitRect);
 

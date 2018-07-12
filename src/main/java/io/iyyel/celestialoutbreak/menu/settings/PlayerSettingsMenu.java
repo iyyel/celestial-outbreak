@@ -1,11 +1,11 @@
 package io.iyyel.celestialoutbreak.menu.settings;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class PlayerSettingsMenu extends Menu {
+public final class PlayerSettingsMenu extends AbstractMenu {
 
     private final Rectangle selectRect, newRect, removeRect;
     private final Font btnFont;
@@ -69,12 +69,12 @@ public final class PlayerSettingsMenu extends Menu {
                     switch (i) {
                         case 0:
                             // SELECT
-                            gameController.switchState(GameController.State.PLAYER_SELECT_MENU);
+                            gameController.switchState(GameController.State.PLAYER_SELECT_SCREEN);
                             break;
                         case 1:
                             // NEW
                             inputHandler.setInputMode(true);
-                            gameController.switchState(GameController.State.NEW_PLAYER_MENU);
+                            gameController.switchState(GameController.State.PLAYER_NEW_SCREEN);
                             break;
                         case 2:
                             // REMOVE

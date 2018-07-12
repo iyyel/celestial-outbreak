@@ -117,19 +117,18 @@ public final class SoundHandler {
         switch (state) {
             case WELCOME_MENU:
             case MAIN_MENU:
-            case SCORES_MENU:
-            case CONTROLS_MENU:
+            case SCORES_SCREEN:
+            case CONTROLS_SCREEN:
             case SETTINGS_MENU:
             case PLAYER_SETTINGS_MENU:
-            case PLAYER_SELECT_MENU:
-            case PLAYER_NEW_SETTINGS:
-            case PLAYER_REMOVE_SETTINGS:
-            case NEW_PLAYER_MENU:
-            case CONFIG_SETTINGS_MENU:
+            case PLAYER_SELECT_SCREEN:
+            case PLAYER_NEW_SCREEN:
+            case PLAYER_DELETE_SCREEN:
+            case CONFIG_SETTINGS_SCREEN:
                 SoundClip soundClip = getSoundClip(textHandler.SOUND_FILE_NAME_MENU);
                 soundClip.play(loop);
                 break;
-            case PLAY:
+            case PLAY_SCREEN:
                 getSoundClip(textHandler.SOUND_FILE_NAME_PLAY).play(loop);
                 break;
             case PAUSE_SCREEN:

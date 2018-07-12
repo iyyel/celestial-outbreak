@@ -42,9 +42,10 @@ public final class LevelHandler {
 
         if (activeLevel.isFinished()) {
             startNextLevel();
-            gameController.switchState(GameController.State.FINISHED_LEVEL);
-            if (utils.isVerboseLogEnabled())
+            gameController.switchState(GameController.State.FINISHED_LEVEL_SCREEN);
+            if (utils.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vLevelFinishedMsg(getPrevLevel().getName()));
+            }
         }
     }
 

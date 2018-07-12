@@ -1,11 +1,11 @@
 package io.iyyel.celestialoutbreak.menu.game;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class WelcomeMenu extends Menu {
+public final class WelcomeMenu extends AbstractMenu {
 
     private final Rectangle startRect, exitRect;
     private final Font btnFont;
@@ -62,13 +62,13 @@ public final class WelcomeMenu extends Menu {
                     switch (i) {
                         case 0:
                             if (playerDAO.getPlayerList().isEmpty()) {
-                                gameController.switchState(GameController.State.NEW_PLAYER_MENU);
+                                gameController.switchState(GameController.State.PLAYER_NEW_SCREEN);
                             } else {
                                 gameController.switchState(GameController.State.MAIN_MENU);
                             }
                             break;
                         case 1:
-                            gameController.switchState(GameController.State.EXIT_MENU);
+                            gameController.switchState(GameController.State.EXIT_SCREEN);
                             break;
                         default:
                             break;
@@ -87,18 +87,18 @@ public final class WelcomeMenu extends Menu {
 
         drawSubmenuTitle("Welcome", g);
 
-        drawXCenteredString("Are you ready to explore planets and their secrets?", 300, g, msgFont);
-        drawXCenteredString("Then please, do proceed.", 350, g, msgFont);
+        drawCenterString("Are you ready to explore planets and their secrets?", 300, g, msgFont);
+        drawCenterString("Then please, do proceed.", 350, g, msgFont);
 
         /* Start button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[0], startRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[0], startRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[0]);
         g.draw(startRect);
 
         /* Exit button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[1], exitRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[1], exitRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[1]);
         g.draw(exitRect);
 

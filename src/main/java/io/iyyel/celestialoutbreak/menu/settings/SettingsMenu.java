@@ -1,11 +1,11 @@
 package io.iyyel.celestialoutbreak.menu.settings;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class SettingsMenu extends Menu {
+public final class SettingsMenu extends AbstractMenu {
 
     private final Rectangle playerRect, configurationRect;
     private final Font btnFont;
@@ -71,7 +71,7 @@ public final class SettingsMenu extends Menu {
                             break;
                         case 1:
                             // Customization settings
-                            gameController.switchState(GameController.State.CONFIG_SETTINGS_MENU);
+                            gameController.switchState(GameController.State.CONFIG_SETTINGS_SCREEN);
                             break;
                         default:
                             break;
@@ -98,13 +98,13 @@ public final class SettingsMenu extends Menu {
 
         /* Play button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[0], playerRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[0], playerRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[0]);
         g.draw(playerRect);
 
         /* Score button */
         g.setColor(menuFontColor);
-        drawXCenteredString(options[1], configurationRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[1], configurationRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[1]);
         g.draw(configurationRect);
 

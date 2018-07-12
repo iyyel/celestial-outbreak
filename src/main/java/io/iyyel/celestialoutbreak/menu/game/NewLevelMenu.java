@@ -3,11 +3,11 @@ package io.iyyel.celestialoutbreak.menu.game;
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.controller.GameController.State;
 import io.iyyel.celestialoutbreak.level.Level;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class NewLevelMenu extends Menu {
+public final class NewLevelMenu extends AbstractMenu {
 
     private Level activeLevel;
 
@@ -18,7 +18,7 @@ public final class NewLevelMenu extends Menu {
     @Override
     public void update() {
         if (inputHandler.isOKPressed()) {
-            gameController.switchState(State.PLAY);
+            gameController.switchState(State.PLAY_SCREEN);
         }
 
         if (inputHandler.isCancelPressed()) {
@@ -33,7 +33,7 @@ public final class NewLevelMenu extends Menu {
     @Override
     public void render(Graphics2D g) {
         g.setColor(menuFontColor);
-        drawXCenteredString(textHandler.GAME_TITLE, 100, g, titleFont);
+        drawCenterString(textHandler.GAME_TITLE, 100, g, titleFont);
 
         /*
          * A small amount of time is needed
@@ -43,7 +43,7 @@ public final class NewLevelMenu extends Menu {
          */
         if (activeLevel != null) {
             drawSubmenuTitle(activeLevel.getName(), g);
-            drawXCenteredString(activeLevel.getDesc(), gameController.getHeight() / 2, g, msgFont);
+            drawCenterString(activeLevel.getDesc(), gameController.getHeight() / 2, g, msgFont);
             //drawMenuMessage(activeLevel.getDesc(), g, 80,gameController.getHeight() / 2, 20, 20, 60);
         }
 

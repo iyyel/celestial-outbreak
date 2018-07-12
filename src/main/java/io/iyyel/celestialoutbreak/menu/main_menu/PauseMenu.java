@@ -1,11 +1,11 @@
 package io.iyyel.celestialoutbreak.menu.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class PauseMenu extends Menu {
+public final class PauseMenu extends AbstractMenu {
 
     public PauseMenu(GameController gameController) {
         super(gameController);
@@ -18,7 +18,7 @@ public final class PauseMenu extends Menu {
         }
 
         if (inputHandler.isPausePressed()) {
-            gameController.switchState(GameController.State.PLAY);
+            gameController.switchState(GameController.State.PLAY_SCREEN);
         }
     }
 
@@ -26,7 +26,7 @@ public final class PauseMenu extends Menu {
     public void render(Graphics2D g) {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
-        drawXCenteredString(textHandler.MENU_MSG_PAUSED, gameController.getHeight() / 2, g, msgFont);
+        drawCenterString(textHandler.MENU_MSG_PAUSED, gameController.getHeight() / 2, g, msgFont);
         drawInformationPanel(g);
     }
 

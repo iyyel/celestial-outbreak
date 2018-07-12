@@ -1,11 +1,11 @@
 package io.iyyel.celestialoutbreak.menu.game;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class GamePanel extends Menu {
+public final class GamePanel extends AbstractMenu {
 
     private final Font panelFont;
 

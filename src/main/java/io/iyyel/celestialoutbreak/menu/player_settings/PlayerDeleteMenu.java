@@ -1,13 +1,13 @@
-package io.iyyel.celestialoutbreak.menu.player;
+package io.iyyel.celestialoutbreak.menu.player_settings;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class PlayerRemoveMenu extends Menu {
+public final class PlayerDeleteMenu extends AbstractMenu {
 
-    public PlayerRemoveMenu(GameController gameController) {
+    public PlayerDeleteMenu(GameController gameController) {
         super(gameController);
     }
 

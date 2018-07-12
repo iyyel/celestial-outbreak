@@ -1,12 +1,12 @@
-package io.iyyel.celestialoutbreak.menu.player;
+package io.iyyel.celestialoutbreak.menu.player_settings;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class PlayerNewMenu extends Menu {
+public final class PlayerNewMenu extends AbstractMenu {
 
     private boolean firstUpdate = true;
     private boolean isAcceptMode = false;
@@ -136,12 +136,12 @@ public final class PlayerNewMenu extends Menu {
 
         drawSubmenuTitle("New Player", g);
 
-        drawXCenteredString("Enter Player name:", 300, g, msgFont);
+        drawCenterString("Enter Player name:", 300, g, msgFont);
 
-        drawXCenteredString(inputHandler.getUserInput(), 350, g, inputFont);
+        drawCenterString(inputHandler.getUserInput(), 350, g, inputFont);
 
         g.setFont(msgFont);
-        drawXCenteredString(statusString, 450, g, inputFont);
+        drawCenterString(statusString, 450, g, inputFont);
 
         drawInformationPanel(g);
     }

@@ -2,11 +2,11 @@ package io.iyyel.celestialoutbreak.menu.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.controller.GameController.State;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class AboutMenu extends Menu {
+public final class AboutMenu extends AbstractMenu {
 
     public AboutMenu(GameController gameController) {
         super(gameController);

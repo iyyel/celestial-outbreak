@@ -1,13 +1,13 @@
 package io.iyyel.celestialoutbreak.menu.settings;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class ConfigurationMenu extends Menu {
+public final class ConfigSettingsMenu extends AbstractMenu {
 
-    public ConfigurationMenu(GameController gameController) {
+    public ConfigSettingsMenu(GameController gameController) {
         super(gameController);
     }
 

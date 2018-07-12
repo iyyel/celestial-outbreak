@@ -1,12 +1,12 @@
-package io.iyyel.celestialoutbreak.menu.player;
+package io.iyyel.celestialoutbreak.menu.player_settings;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.menu.Menu;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class PlayerSelectMenu extends Menu {
+public final class PlayerSelectMenu extends AbstractMenu {
 
     private Rectangle[] playerRects;
     private final Font btnFont;
