@@ -39,6 +39,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
         }
 
         if (inputHandler.isCancelPressed() && inputTimer == 0) {
+            menuUseClip.play(false);
             gameController.switchState(GameController.State.PLAYER_SETTINGS_MENU);
             firstUpdate = true;
             inputTimer = 10;

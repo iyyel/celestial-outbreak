@@ -65,7 +65,7 @@ public final class MainMenu extends AbstractMenu {
             if (selected == i) {
                 rectColors[i] = menuSelectedBtnColor;
 
-                if (inputHandler.isUsePressed() && inputTimer == 0) {
+                if (inputHandler.isOKPressed() && inputTimer == 0) {
                     menuUseClip.play(false);
                     inputTimer = 10;
                     isFirstUpdate = true;

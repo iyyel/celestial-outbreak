@@ -14,10 +14,12 @@ public final class PauseMenu extends AbstractMenu {
     @Override
     public void update() {
         if (inputHandler.isCancelPressed()) {
+            menuUseClip.play(false);
             gameController.switchState(GameController.State.MAIN_MENU);
         }
 
         if (inputHandler.isPausePressed()) {
+            menuUseClip.play(false);
             gameController.switchState(GameController.State.PLAY_SCREEN);
         }
     }

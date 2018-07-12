@@ -1,7 +1,6 @@
-package io.iyyel.celestialoutbreak.menu.game;
+package io.iyyel.celestialoutbreak.menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
@@ -36,8 +35,9 @@ public final class WelcomeMenu extends AbstractMenu {
 
     @Override
     public void update() {
-        if (inputTimer > 0)
+        if (inputTimer > 0) {
             inputTimer--;
+        }
 
         if (inputHandler.isDownPressed() && selected < options.length - 1 && inputTimer == 0) {
             selected++;

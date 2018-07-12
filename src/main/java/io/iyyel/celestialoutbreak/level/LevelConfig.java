@@ -11,6 +11,7 @@ import java.util.Map;
 public final class LevelConfig {
 
     private final TextHandler textHandler = TextHandler.getInstance();
+    private final FileHandler fileHandler = FileHandler.getInstance();
 
     /*
      * Level settings.
@@ -48,14 +49,12 @@ public final class LevelConfig {
      * Required objects.
      */
     private final GameController gameController;
-    private final FileHandler fileHandler;
 
     /*
      * Constructor.
      */
-    public LevelConfig(String fileName, GameController gameController, FileHandler fileHandler) {
+    public LevelConfig(String fileName, GameController gameController) {
         this.gameController = gameController;
-        this.fileHandler = fileHandler;
 
         try {
             parseLevelSettings(fileName);

@@ -182,6 +182,7 @@ public final class PlayerNewMenu extends AbstractMenu {
     }
 
     private void exitMenu() {
+        menuUseClip.play(false);
         if (utils.isFirstRunEnabled()) {
             gameController.switchState(GameController.State.MAIN_MENU);
         } else if (playerDAO.getPlayerList().size() != 0) {

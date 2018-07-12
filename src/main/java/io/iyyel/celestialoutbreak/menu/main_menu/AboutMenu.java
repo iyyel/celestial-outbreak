@@ -15,6 +15,7 @@ public final class AboutMenu extends AbstractMenu {
     @Override
     public void update() {
         if (inputHandler.isCancelPressed()) {
+            menuUseClip.play(false);
             gameController.switchState(State.MAIN_MENU);
         }
     }

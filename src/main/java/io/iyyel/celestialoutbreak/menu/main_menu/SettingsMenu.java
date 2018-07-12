@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.menu.settings;
+package io.iyyel.celestialoutbreak.menu.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.menu.AbstractMenu;
@@ -10,7 +10,7 @@ public final class SettingsMenu extends AbstractMenu {
     private final Rectangle playerRect, configurationRect;
     private final Font btnFont;
 
-    private String[] options = {"PLAYER", "CONFIGURATION"};
+    private String[] options = {textHandler.BTN_PLAYER_TEXT, textHandler.BTN_CONFIGURATION_TEXT};
     private Color[] rectColors;
 
     private int selected = 0;
@@ -36,10 +36,12 @@ public final class SettingsMenu extends AbstractMenu {
 
     @Override
     public void update() {
-        if (inputTimer > 0)
+        if (inputTimer > 0) {
             inputTimer--;
+        }
 
         if (inputHandler.isCancelPressed() && inputTimer == 0) {
+            menuUseClip.play(false);
             gameController.switchState(GameController.State.MAIN_MENU);
             inputTimer = 10;
         }
@@ -60,7 +62,7 @@ public final class SettingsMenu extends AbstractMenu {
             if (selected == i) {
                 rectColors[i] = menuSelectedBtnColor;
 
-                if (inputHandler.isUsePressed() && inputTimer == 0) {
+                if (inputHandler.isOKPressed() && inputTimer == 0) {
                     menuUseClip.play(false);
                     inputTimer = 10;
 
@@ -70,7 +72,7 @@ public final class SettingsMenu extends AbstractMenu {
                             gameController.switchState(GameController.State.PLAYER_SETTINGS_MENU);
                             break;
                         case 1:
-                            // Customization settings
+                            // Configuration settings
                             gameController.switchState(GameController.State.CONFIG_SETTINGS_SCREEN);
                             break;
                         default:

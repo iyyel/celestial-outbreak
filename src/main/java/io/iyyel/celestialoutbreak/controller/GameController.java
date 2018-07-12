@@ -4,15 +4,15 @@ import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.graphics.ScreenRenderer;
 import io.iyyel.celestialoutbreak.handler.*;
-import io.iyyel.celestialoutbreak.menu.game.FinishedLevelMenu;
-import io.iyyel.celestialoutbreak.menu.game.NewLevelMenu;
-import io.iyyel.celestialoutbreak.menu.game.WelcomeMenu;
+import io.iyyel.celestialoutbreak.menu.play.FinishedLevelMenu;
+import io.iyyel.celestialoutbreak.menu.play.NewLevelMenu;
+import io.iyyel.celestialoutbreak.menu.WelcomeMenu;
 import io.iyyel.celestialoutbreak.menu.main_menu.*;
 import io.iyyel.celestialoutbreak.menu.player_settings.PlayerNewMenu;
 import io.iyyel.celestialoutbreak.menu.player_settings.PlayerSelectMenu;
-import io.iyyel.celestialoutbreak.menu.settings.ConfigSettingsMenu;
-import io.iyyel.celestialoutbreak.menu.settings.PlayerSettingsMenu;
-import io.iyyel.celestialoutbreak.menu.settings.SettingsMenu;
+import io.iyyel.celestialoutbreak.menu.settings_menu.ConfigSettingsMenu;
+import io.iyyel.celestialoutbreak.menu.settings_menu.PlayerSettingsMenu;
+import io.iyyel.celestialoutbreak.menu.main_menu.SettingsMenu;
 import io.iyyel.celestialoutbreak.utils.Utils;
 
 import javax.swing.*;
@@ -186,7 +186,7 @@ public class GameController extends Canvas implements Runnable {
         gameFrame.setIconImage(img);
 
         /* Initialize levelHandler */
-        levelHandler = new LevelHandler(0, this, inputHandler, soundHandler, fileHandler);
+        levelHandler = new LevelHandler(0, this);
 
         /* Create screenRenderer renderer */
         screenRenderer = new ScreenRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, pixels);
@@ -257,8 +257,8 @@ public class GameController extends Canvas implements Runnable {
             }
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                /* Is this correctly calculated? (ram) */
                 if (utils.isVerboseLogEnabled()) {
+                    /* Is this correctly calculated? (ram) */
                     double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                     gameFrame.setTitle(textHandler.GAME_TITLE + " | " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
                     fileHandler.writeLog(textHandler.vPerformanceMsg(frames, updates, allocatedRam));
@@ -271,7 +271,6 @@ public class GameController extends Canvas implements Runnable {
         }
     }
 
-
     /*
      * Update the state of the gameController entities as well as the different menus.
      */
@@ -279,6 +278,7 @@ public class GameController extends Canvas implements Runnable {
         /* Update the currently pressed keys. */
         inputHandler.update();
 
+        /* Play music based on current state */
         soundHandler.playStateMusic(state, prevState, true);
 
         /* Let the current gameController state decide what to update exactly. */
@@ -358,6 +358,87 @@ public class GameController extends Canvas implements Runnable {
         screenRenderer.clear();
 
         /* Let the current gameController state decide whether to render a level's color or the menu's color. */
+        renderBgColor();
+
+        /* Get the graphics2D object from the buffer strategy. */
+        Graphics2D g = (Graphics2D) bs.getDrawGraphics();
+
+        /* Enable some sweet antialiasing to make the graphics look smoother. */
+        if (utils.isAntiAliasingEnabled()) {
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        }
+
+        /* Draw the buffered image to the screen. */
+        g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+
+        /* Make the current state of the gameController decide what to render. */
+        renderMenu(g);
+
+        /* Dispose the graphics and show the buffer to the screenRenderer. */
+        g.dispose();
+        bs.show();
+    }
+
+    /*
+     * Start method for the gameController thread/loop.
+     */
+    public synchronized void start() {
+        if (!isRunning) {
+            isRunning = true;
+            gameThread = new Thread(this, "GameController");
+            gameThread.start();
+        }
+    }
+
+    /*
+     * Stop method for the gameController thread/loop. Will exit the application.
+     */
+    public synchronized void stop() {
+        if (isRunning) {
+            isRunning = false;
+        }
+        System.exit(0);
+    }
+
+    /*
+     * Initialize settings for the JFrame.
+     */
+    private void initFrame() {
+        gameFrame.setTitle(textHandler.GAME_TITLE);
+        gameFrame.setResizable(false);
+        gameFrame.setLocationRelativeTo(null);
+        gameFrame.add(this);
+        gameFrame.pack();
+        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        gameFrame.setVisible(true);
+        gameFrame.requestFocus();
+    }
+
+    /*
+     * Change the current state of the gameController.
+     */
+    public void switchState(State state) {
+        if (state == null) {
+            return;
+        }
+        prevState = this.state;
+        this.state = state;
+    }
+
+    /*
+     * Continuously switch the MENU_CLIP background with a nice pastel color.
+     */
+    private void switchMenuColor() {
+        if (menuColorTimer == 0) {
+            menuColor = utils.generatePastelColor(0.8F, 9000F);
+            menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
+        } else {
+            menuColorTimer--;
+        }
+    }
+
+    private void renderBgColor() {
         switch (state) {
             case WELCOME_MENU:
             case PLAYER_NEW_SCREEN:
@@ -383,20 +464,9 @@ public class GameController extends Canvas implements Runnable {
             default:
                 break;
         }
+    }
 
-        /* Get the graphics2D object from the buffer strategy. */
-        Graphics2D g = (Graphics2D) bs.getDrawGraphics();
-
-        /* Enable some sweet antialiasing to make the graphics look smoother. */
-        if (utils.isAntiAliasingEnabled()) {
-            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        }
-
-        /* Draw the buffered image to the screen. */
-        g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-
-        /* Make the current state of the gameController decide what to render. */
+    private void renderMenu(Graphics2D g) {
         switch (state) {
             case WELCOME_MENU:
                 welcomeMenu.render(g);
@@ -446,71 +516,11 @@ public class GameController extends Canvas implements Runnable {
             default:
                 break;
         }
-
-        /* Dispose the graphics and show the buffer to the screenRenderer. */
-        g.dispose();
-        bs.show();
     }
 
     /*
-     * Start method for the gameController thread/loop.
+     * Getters and setters
      */
-    public synchronized void start() {
-        if (!isRunning) {
-            isRunning = true;
-            gameThread = new Thread(this, "GameController");
-            gameThread.start();
-        }
-    }
-
-    /*
-     * Stop method for the gameController thread/loop. Will exit the application.
-     */
-    public synchronized void stop() {
-        if (isRunning) {
-            isRunning = false;
-        }
-        System.exit(0);
-    }
-
-    /*
-     * Initialize settings for the JFrame.
-     */
-    private void initFrame() {
-        gameFrame.setTitle(textHandler.GAME_TITLE + " " + textHandler.GAME_VERSION);
-        gameFrame.setResizable(false);
-        gameFrame.setLocationRelativeTo(null);
-        gameFrame.add(this);
-        gameFrame.pack();
-        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        gameFrame.setVisible(true);
-        gameFrame.requestFocus();
-    }
-
-    /*
-     * Change the current state of the gameController.
-     */
-    public void switchState(State state) {
-        if (state == null) {
-            return;
-        }
-
-        prevState = this.state;
-        this.state = state;
-    }
-
-    /*
-     * Continuously switch the MENU_CLIP background with a nice pastel color.
-     */
-    private void switchMenuColor() {
-        if (menuColorTimer == 0) {
-            menuColor = utils.generatePastelColor(0.8F, 9000F);
-            menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
-        } else {
-            menuColorTimer--;
-        }
-    }
-
     public State getPrevState() {
         return prevState;
     }

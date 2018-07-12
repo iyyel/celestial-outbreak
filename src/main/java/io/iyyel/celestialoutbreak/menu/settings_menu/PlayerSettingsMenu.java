@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.menu.settings;
+package io.iyyel.celestialoutbreak.menu.settings_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.menu.AbstractMenu;
@@ -10,7 +10,7 @@ public final class PlayerSettingsMenu extends AbstractMenu {
     private final Rectangle selectRect, newRect, removeRect;
     private final Font btnFont;
 
-    private String[] options = {textHandler.BTN_SELECT_TEXT, textHandler.BTN_NEW_TEXT, textHandler.BTN_REMOVE_TEXT};
+    private String[] options = {textHandler.BTN_SELECT_TEXT, textHandler.BTN_NEW_TEXT, textHandler.BTN_DELETE_TEXT};
     private Color[] rectColors;
 
     private int selected = 0;
@@ -42,6 +42,7 @@ public final class PlayerSettingsMenu extends AbstractMenu {
         }
 
         if (inputHandler.isCancelPressed() && inputTimer == 0) {
+            menuUseClip.play(false);
             gameController.switchState(GameController.State.SETTINGS_MENU);
             inputTimer = 10;
         }
@@ -62,7 +63,7 @@ public final class PlayerSettingsMenu extends AbstractMenu {
             if (selected == i) {
                 rectColors[i] = menuSelectedBtnColor;
 
-                if (inputHandler.isUsePressed() && inputTimer == 0) {
+                if (inputHandler.isOKPressed() && inputTimer == 0) {
                     menuUseClip.play(false);
                     inputTimer = 10;
 

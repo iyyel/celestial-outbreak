@@ -14,24 +14,24 @@ public final class LevelHandler {
     private final TextHandler textHandler = TextHandler.getInstance();
 
     private GameController gameController;
-    private final FileHandler fileHandler;
+    private final FileHandler fileHandler = FileHandler.getInstance();
 
     private Level[] levels;
     private Level activeLevel;
 
     private int currentLevelIndex;
 
-    public LevelHandler(int currentLevelIndex, GameController gameController, InputHandler inputHandler, SoundHandler soundHandler, FileHandler fileHandler) {
+    public LevelHandler(int currentLevelIndex, GameController gameController) {
         this.currentLevelIndex = currentLevelIndex;
         this.gameController = gameController;
-        this.fileHandler = fileHandler;
+
         List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
 
         levels = new Level[levelConfigFileList.size()];
 
         for (int i = 0; i < levels.length; i++) {
             String settingsFileName = textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i);
-            levels[i] = new Level(settingsFileName, gameController, inputHandler, soundHandler, fileHandler);
+            levels[i] = new Level(settingsFileName, gameController);
         }
 
         activeLevel = levels[currentLevelIndex];
@@ -56,8 +56,9 @@ public final class LevelHandler {
     private void startNextLevel() {
         if (currentLevelIndex >= 0 && currentLevelIndex + 1 <= levels.length - 1) {
             currentLevelIndex++;
-            if (utils.isVerboseLogEnabled())
+            if (utils.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vChangedLevelMsg(activeLevel.getName(), levels[currentLevelIndex].getName()));
+            }
             activeLevel = levels[currentLevelIndex];
         }
     }

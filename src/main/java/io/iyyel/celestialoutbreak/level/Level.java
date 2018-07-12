@@ -7,7 +7,7 @@ import io.iyyel.celestialoutbreak.entity.Paddle;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
-import io.iyyel.celestialoutbreak.menu.game.GamePanel;
+import io.iyyel.celestialoutbreak.menu.GamePanel;
 
 import java.awt.*;
 
@@ -33,9 +33,9 @@ public final class Level {
     /*
      * Handlers for the level.
      */
-    private InputHandler inputHandler;
-    private SoundHandler soundHandler;
-    private FileHandler fileHandler;
+    private InputHandler inputHandler = InputHandler.getInstance();
+    private SoundHandler soundHandler = SoundHandler.getInstance();
+    private FileHandler fileHandler = FileHandler.getInstance();
 
     /*
      * Level settings.
@@ -73,13 +73,10 @@ public final class Level {
     /*
      * Constructor.
      */
-    public Level(String settingsFileName, GameController gameController, InputHandler inputHandler, SoundHandler soundHandler, FileHandler fileHandler) {
+    public Level(String settingsFileName, GameController gameController) {
         this.gameController = gameController;
-        this.inputHandler = inputHandler;
-        this.soundHandler = soundHandler;
-        this.fileHandler = fileHandler;
 
-        levelConfig = new LevelConfig(settingsFileName, gameController, fileHandler);
+        levelConfig = new LevelConfig(settingsFileName, gameController);
         initSettings();
 
         /* Create objects after initializing the settings. */

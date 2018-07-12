@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.menu.settings;
+package io.iyyel.celestialoutbreak.menu.settings_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.menu.AbstractMenu;
@@ -14,6 +14,7 @@ public final class ConfigSettingsMenu extends AbstractMenu {
     @Override
     public void update() {
         if (inputHandler.isCancelPressed()) {
+            menuUseClip.play(false);
             gameController.switchState(GameController.State.SETTINGS_MENU);
         }
     }

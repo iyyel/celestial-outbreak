@@ -39,7 +39,9 @@ public final class TextHandler {
         return instance;
     }
 
-
+    /*
+     * File separators.
+     */
     private final String fs = File.separator;
     private final String fs_jar = "/";
 
@@ -64,11 +66,10 @@ public final class TextHandler {
     public final String BTN_CONFIGURATION_TEXT = "CONFIGURATION";
     public final String BTN_SELECT_TEXT = "SELECT";
     public final String BTN_NEW_TEXT = "NEW";
-    public final String BTN_UPDATE_TEXT = "UPDATE";
-    public final String BTN_REMOVE_TEXT = "DELETE";
+    public final String BTN_DELETE_TEXT = "DELETE";
 
-    public final String BTN_CONTROL_OK = "z";
-    public final String BTN_CONTROL_CANCEL = "x";
+    public final String BTN_CONTROL_FORWARD_OK = "z";
+    public final String BTN_CONTROL_BACK_CANCEL = "x";
     public final String BTN_CONTROL_USE = "Space";
     public final String BTN_CONTROL_PAUSE = "p";
 
@@ -276,12 +277,14 @@ public final class TextHandler {
     /* CONTROLS_MENU messages. */
     public final String menuControlsMsg01 = "Movement & Navigation:";
     public final String menuControlsMsg02 = "WASD/Arrow keys";
-    public final String menuControlsMsg03 = "Confirm/OK:";
-    public final String menuControlsMsg04 = "z";
-    public final String menuControlsMsg05 = "Cancel/Back:";
-    public final String menuControlsMsg06 = "x";
-    public final String menuControlsMsg07 = "Select/Use:";
-    public final String menuControlsMsg08 = "Space";
+    public final String menuControlsMsg03 = "Forward/OK:";
+    public final String menuControlsMsg04 = BTN_CONTROL_FORWARD_OK;
+    public final String menuControlsMsg05 = "Back/Cancel:";
+    public final String menuControlsMsg06 = BTN_CONTROL_BACK_CANCEL;
+    public final String menuControlsMsg07 = "Use:";
+    public final String menuControlsMsg08 = BTN_CONTROL_USE;
+    public final String menuControlsMsg09 = "Pause:";
+    public final String menuControlsMsg10 = BTN_CONTROL_PAUSE;
 
     /* SETTINGS_MENU messages. */
     public final String menuSettingsMsg01 = "All of the configuration related files can be found in the";

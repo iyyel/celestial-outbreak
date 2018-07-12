@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.menu.game;
+package io.iyyel.celestialoutbreak.menu.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.controller.GameController.State;
@@ -21,6 +21,7 @@ public final class FinishedLevelMenu extends AbstractMenu {
         }
 
         if (inputHandler.isCancelPressed()) {
+            menuUseClip.play(false);
             gameController.switchState(State.MAIN_MENU);
         }
     }

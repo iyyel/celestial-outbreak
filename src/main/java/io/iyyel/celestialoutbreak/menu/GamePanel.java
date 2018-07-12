@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.menu.game;
+package io.iyyel.celestialoutbreak.menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.menu.AbstractMenu;

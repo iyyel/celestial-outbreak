@@ -18,6 +18,7 @@ public final class ExitMenu extends AbstractMenu {
         }
 
         if (inputHandler.isCancelPressed()) {
+            menuUseClip.play(false);
             if (gameController.getPrevState() != GameController.State.NONE && gameController.getPrevState() == GameController.State.WELCOME_MENU) {
                 gameController.switchState(GameController.State.WELCOME_MENU);
             } else {
