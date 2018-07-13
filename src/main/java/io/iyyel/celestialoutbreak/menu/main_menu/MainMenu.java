@@ -16,7 +16,6 @@ public final class MainMenu extends AbstractMenu {
     private Color[] rectColors;
 
     private int selected = 0;
-    private int inputTimer = 18;
     private int yBtnOffset = 33;
 
     private boolean isFirstUpdate = true;
@@ -45,30 +44,33 @@ public final class MainMenu extends AbstractMenu {
 
     @Override
     public void update() {
-        if (inputTimer > 0) {
-            inputTimer--;
+        decInputTimer();
+
+        if (isFirstUpdate) {
+            isFirstUpdate = false;
+            updatePlayerDTO();
         }
 
-        if (inputHandler.isDownPressed() && selected < options.length - 1 && inputTimer == 0) {
+        if (inputHandler.isDownPressed() && selected < options.length - 1 && isInputAvailable()) {
+            resetInputTimer();
             selected++;
             menuNavClip.play(false);
-            inputTimer = 10;
         }
 
-        if (inputHandler.isUpPressed() && selected > 0 && inputTimer == 0) {
+        if (inputHandler.isUpPressed() && selected > 0 && isInputAvailable()) {
+            resetInputTimer();
             selected--;
             menuNavClip.play(false);
-            inputTimer = 10;
         }
 
         for (int i = 0, n = options.length; i < n; i++) {
             if (selected == i) {
                 rectColors[i] = menuSelectedBtnColor;
 
-                if (inputHandler.isOKPressed() && inputTimer == 0) {
-                    menuUseClip.play(false);
-                    inputTimer = 10;
+                if (inputHandler.isOKPressed() && isInputAvailable()) {
+                    resetInputTimer();
                     isFirstUpdate = true;
+                    menuUseClip.play(false);
 
                     switch (i) {
                         case 0:
@@ -101,11 +103,6 @@ public final class MainMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        if (isFirstUpdate) {
-            isFirstUpdate = false;
-            updatePlayerDTO();
-        }
-
         /* Render game title */
         drawMenuTitle(g);
 

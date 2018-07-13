@@ -8,6 +8,7 @@ import io.iyyel.celestialoutbreak.menu.play.FinishedLevelMenu;
 import io.iyyel.celestialoutbreak.menu.play.NewLevelMenu;
 import io.iyyel.celestialoutbreak.menu.WelcomeMenu;
 import io.iyyel.celestialoutbreak.menu.main_menu.*;
+import io.iyyel.celestialoutbreak.menu.player_settings.PlayerDeleteMenu;
 import io.iyyel.celestialoutbreak.menu.player_settings.PlayerNewMenu;
 import io.iyyel.celestialoutbreak.menu.player_settings.PlayerSelectMenu;
 import io.iyyel.celestialoutbreak.menu.settings_menu.ConfigSettingsMenu;
@@ -90,6 +91,7 @@ public class GameController extends Canvas implements Runnable {
     private final SettingsMenu settingsMenu;
     private final PlayerSettingsMenu playerSettingsMenu;
     private final PlayerSelectMenu playerSelectMenu;
+    private final PlayerDeleteMenu playerDeleteMenu;
     private final ConfigSettingsMenu configurationMenu;
     private final ControlsMenu controlMenu;
     private final AboutMenu aboutMenu;
@@ -200,6 +202,7 @@ public class GameController extends Canvas implements Runnable {
         settingsMenu = new SettingsMenu(this);
         playerSettingsMenu = new PlayerSettingsMenu(this);
         playerSelectMenu = new PlayerSelectMenu(this);
+        playerDeleteMenu = new PlayerDeleteMenu(this);
         configurationMenu = new ConfigSettingsMenu(this);
         controlMenu = new ControlsMenu(this);
         aboutMenu = new AboutMenu(this);
@@ -224,6 +227,30 @@ public class GameController extends Canvas implements Runnable {
         /* Initialize the JFrame and start the gameController loop */
         initFrame();
         fileHandler.writeLog(textHandler.SUCCESS_NEW_APP_INSTANCE);
+
+        try {
+            playerDAO.addPlayer("hejlol");
+            playerDAO.selectPlayer("hejlol");
+            playerDAO.addPlayer("hejlol1");
+            playerDAO.addPlayer("hejlol2");
+            playerDAO.addPlayer("hejlol3");
+            playerDAO.addPlayer("hejlol4");
+            playerDAO.addPlayer("hejlol5");
+            playerDAO.addPlayer("hejlol6");
+            playerDAO.addPlayer("hejlol7");
+            playerDAO.addPlayer("hejlol8");
+            playerDAO.addPlayer("hejlol9");
+            playerDAO.addPlayer("hejlol10");
+            playerDAO.addPlayer("hejlol11");
+            playerDAO.addPlayer("hejlol12");
+            playerDAO.addPlayer("hejlol13");
+            playerDAO.addPlayer("hejlol14");
+            playerDAO.addPlayer("hejlol15");
+            playerDAO.addPlayer("hejlol16");
+            playerDAO.addPlayer("hejlol17");
+        } catch (IPlayerDAO.PlayerDAOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -297,7 +324,9 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case PLAY_SCREEN:
                 levelHandler.update();
-                if (inputHandler.isPausePressed()) {
+                pauseMenu.decInputTimer();
+                if (inputHandler.isPausePressed() && pauseMenu.isInputAvailable()) {
+                    pauseMenu.resetInputTimer();
                     switchState(State.PAUSE_SCREEN);
                 }
                 break;
@@ -315,6 +344,9 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case PLAYER_SELECT_SCREEN:
                 playerSelectMenu.update();
+                break;
+            case PLAYER_DELETE_SCREEN:
+                playerDeleteMenu.update();
                 break;
             case CONFIG_SETTINGS_SCREEN:
                 configurationMenu.update();
@@ -448,6 +480,7 @@ public class GameController extends Canvas implements Runnable {
             case SETTINGS_MENU:
             case PLAYER_SETTINGS_MENU:
             case PLAYER_SELECT_SCREEN:
+            case PLAYER_DELETE_SCREEN:
             case CONFIG_SETTINGS_SCREEN:
             case ABOUT_SCREEN:
             case EXIT_SCREEN:
@@ -494,6 +527,9 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case PLAYER_SELECT_SCREEN:
                 playerSelectMenu.render(g);
+                break;
+            case PLAYER_DELETE_SCREEN:
+                playerDeleteMenu.render(g);
                 break;
             case CONFIG_SETTINGS_SCREEN:
                 configurationMenu.render(g);

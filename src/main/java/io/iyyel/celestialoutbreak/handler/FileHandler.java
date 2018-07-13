@@ -93,6 +93,7 @@ public final class FileHandler {
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_RESET, textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_USE, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_USE);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BAD_ACTION, textHandler.SOUND_FILE_CLIENT_PATH_BAD_ACTION);
     }
 
     /*

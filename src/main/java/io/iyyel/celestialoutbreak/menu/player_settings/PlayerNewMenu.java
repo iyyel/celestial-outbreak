@@ -13,9 +13,6 @@ public final class PlayerNewMenu extends AbstractMenu {
     private boolean isPlayerCreated = false;
     private boolean isExiting = false;
 
-    private final int INIT_INPUT_TIMER = 10;
-    private int inputTimer = INIT_INPUT_TIMER;
-
     private final String INIT_STATUS_STRING = "Press 'OK' button to start entering a player name or 'cancel' to go back.";
     private String statusString = INIT_STATUS_STRING;
 
@@ -25,9 +22,7 @@ public final class PlayerNewMenu extends AbstractMenu {
 
     @Override
     public void update() {
-        if (inputTimer > 0) {
-            inputTimer--;
-        }
+        decInputTimer();
 
         /*
          * Do this ONCE every time the user is on this screen.
@@ -63,13 +58,15 @@ public final class PlayerNewMenu extends AbstractMenu {
         //
 
         // Stage 1
-        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated) {
+        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+            resetInputTimer();
             inputHandler.setInputMode(true);
             statusString = "Please type a player name. Press 'Use' when done.";
         }
 
         // Stage 2
-        if (inputHandler.isUsePressed() && inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated) {
+        if (inputHandler.isUsePressed() && inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+            resetInputTimer();
             String name = inputHandler.getUserInput();
 
             if (name.length() >= 3 && name.length() <= 8) {
@@ -84,14 +81,16 @@ public final class PlayerNewMenu extends AbstractMenu {
 
         }
 
-        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && isAcceptMode && !isPlayerCreated) {
+        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+            resetInputTimer();
             String name = inputHandler.getUserInput();
             isAcceptMode = false;
             inputHandler.setInputMode(false);
             createPlayer(name);
         }
 
-        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && isPlayerCreated && isExiting) {
+        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && isPlayerCreated && isExiting && isInputAvailable()) {
+            resetInputTimer();
             inputHandler.setUserInput("");
             isAcceptMode = false;
             firstUpdate = true;
@@ -100,7 +99,8 @@ public final class PlayerNewMenu extends AbstractMenu {
             exitMenu();
         }
 
-        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && isPlayerCreated) {
+        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && isPlayerCreated && isInputAvailable()) {
+            resetInputTimer();
             String name = inputHandler.getUserInput();
             isAcceptMode = false;
             isExiting = true;
@@ -108,7 +108,8 @@ public final class PlayerNewMenu extends AbstractMenu {
             statusString = name + " created. Press 'OK' to finish.";
         }
 
-        if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && inputTimer == 0) {
+        if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+            resetInputTimer();
             inputHandler.setUserInput("");
             isAcceptMode = false;
             firstUpdate = true;
@@ -116,15 +117,12 @@ public final class PlayerNewMenu extends AbstractMenu {
             exitMenu();
         }
 
-        if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && isAcceptMode && !isPlayerCreated) {
+        if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+            resetInputTimer();
             inputHandler.setUserInput("");
             isAcceptMode = false;
             inputHandler.setInputMode(false);
             statusString = INIT_STATUS_STRING;
-        }
-
-        if (inputTimer == 0) {
-            inputTimer = INIT_INPUT_TIMER;
         }
 
     }

@@ -13,18 +13,24 @@ public final class ExitMenu extends AbstractMenu {
 
     @Override
     public void update() {
-        if (inputHandler.isOKPressed()) {
+        decInputTimer();
+
+        if (inputHandler.isOKPressed() && isInputAvailable()) {
+            resetInputTimer();
             gameController.stop();
         }
 
-        if (inputHandler.isCancelPressed()) {
+        if (inputHandler.isCancelPressed() && isInputAvailable()) {
+            resetInputTimer();
             menuUseClip.play(false);
-            if (gameController.getPrevState() != GameController.State.NONE && gameController.getPrevState() == GameController.State.WELCOME_MENU) {
+            if (gameController.getPrevState() != GameController.State.NONE &&
+                    gameController.getPrevState() == GameController.State.WELCOME_MENU) {
                 gameController.switchState(GameController.State.WELCOME_MENU);
             } else {
                 gameController.switchState(GameController.State.MAIN_MENU);
             }
         }
+
     }
 
     @Override
@@ -32,7 +38,7 @@ public final class ExitMenu extends AbstractMenu {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
         drawSubmenuTitle("Exit", g);
-        drawCenterString("Do you wish to exit the game?", gameController.getHeight() / 2, g, msgFont);
+        drawCenterString("Exit " + textHandler.GAME_TITLE + "?", gameController.getHeight() / 2, g, msgFont);
         drawInformationPanel(g);
     }
 

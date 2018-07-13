@@ -90,6 +90,20 @@ public final class PlayerDAO implements IPlayerDAO {
     }
 
     @Override
+    public void removePlayer(int index) throws PlayerDAOException {
+        if (index > -1 && index <= playerDTO.getPlayerList().size() - 1) {
+            playerDTO.getPlayerList().remove(index);
+        } else {
+            throw new PlayerDAOException(index + " not found!");
+        }
+    }
+
+    @Override
+    public String getPlayer(int index) throws PlayerDAOException {
+        return playerDTO.getPlayerList().get(index);
+    }
+
+    @Override
     public void selectPlayer(String name) throws PlayerDAOException {
         if (!containsPlayer(name))
             throw new PlayerDAOException("'" + name + "' is not an existing player!");

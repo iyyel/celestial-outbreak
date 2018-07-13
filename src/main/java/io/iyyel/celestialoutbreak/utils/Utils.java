@@ -29,8 +29,9 @@ public final class Utils {
     /* Menu colors */
     private Color menuFontColor;
     private Color menuBtnColor;
-
-    private Color menuSelectedBtnColor;
+    private Color menuBtnSelectedColor;
+    private Color menuBtnPlayerSelectedColor;
+    private Color menuBtnPlayerDeletedColor;
 
     private Utils() {
         initGameProperties();
@@ -124,8 +125,14 @@ public final class Utils {
         this.menuBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_COLOR_HEX)));
         fileHandler.writeLog("menuBtnColor: " + menuBtnColor);
 
-        this.menuSelectedBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_SELECTED_BTN_COLOR_HEX)));
-        fileHandler.writeLog("menuSelectedBtnColor: " + menuSelectedBtnColor);
+        this.menuBtnSelectedColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_SELECTED_COLOR_HEX)));
+        fileHandler.writeLog("menuBtnSelectedColor: " + menuBtnSelectedColor);
+
+        this.menuBtnPlayerSelectedColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX)));
+        fileHandler.writeLog("menuBtnPlayerSelectedColor: " + menuBtnPlayerSelectedColor);
+
+        this.menuBtnPlayerDeletedColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX)));
+        fileHandler.writeLog("menuBtnPlayerDeletedColor: " + menuBtnPlayerDeletedColor);
     }
 
     public boolean isVerboseLogEnabled() {
@@ -160,8 +167,16 @@ public final class Utils {
         return menuBtnColor;
     }
 
-    public Color getMenuSelectedBtnColor() {
-        return menuSelectedBtnColor;
+    public Color getMenuBtnSelectedColor() {
+        return menuBtnSelectedColor;
+    }
+
+    public Color getMenuBtnPlayerSelectedColor() {
+        return menuBtnPlayerSelectedColor;
+    }
+
+    public Color getMenuBtnPlayerDeletedColor() {
+        return menuBtnPlayerDeletedColor;
     }
 
     private boolean parseProp(Map<String, String> map, String prop) {

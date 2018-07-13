@@ -29,6 +29,7 @@ public final class SoundHandler {
             put(textHandler.SOUND_FILE_NAME_BALL_RESET, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET));
             put(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV));
             put(textHandler.SOUND_FILE_NAME_MENU_BTN_USE, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_USE));
+            put(textHandler.SOUND_FILE_NAME_BAD_ACTION, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BAD_ACTION));
         }
     };
 
@@ -112,7 +113,7 @@ public final class SoundHandler {
 
         currentStateBackup = state;
 
-        stopAllSound();
+        String soundClipToPlay;
 
         switch (state) {
             case WELCOME_MENU:
@@ -125,36 +126,43 @@ public final class SoundHandler {
             case PLAYER_NEW_SCREEN:
             case PLAYER_DELETE_SCREEN:
             case CONFIG_SETTINGS_SCREEN:
-                SoundClip soundClip = getSoundClip(textHandler.SOUND_FILE_NAME_MENU);
-                soundClip.play(loop);
+            case ABOUT_SCREEN:
+            case EXIT_SCREEN:
+                soundClipToPlay = textHandler.SOUND_FILE_NAME_MENU;
                 break;
             case PLAY_SCREEN:
-                getSoundClip(textHandler.SOUND_FILE_NAME_PLAY).play(loop);
+                soundClipToPlay = textHandler.SOUND_FILE_NAME_PLAY;
                 break;
             case PAUSE_SCREEN:
-                getSoundClip(textHandler.SOUND_FILE_NAME_PAUSE).play(loop);
+                soundClipToPlay = textHandler.SOUND_FILE_NAME_PAUSE;
                 break;
             default:
-                break;
+                return;
         }
+
+        for (String key : soundClipMap.keySet()) {
+            SoundClip soundClip = soundClipMap.get(key);
+            if (soundClip.isActive && !key.equals(soundClipToPlay)) {
+                soundClip.stop();
+            }
+        }
+
+        SoundClip soundClip = getSoundClip(soundClipToPlay);
+
+        if (!soundClip.isActive) {
+            soundClip.play(loop);
+        }
+
     }
 
     public SoundClip getSoundClip(String clipKey) {
         return soundClipMap.get(clipKey);
     }
 
-    private void stopAllSound() {
-        for (String key : soundClipMap.keySet()) {
-            SoundClip soundClip = soundClipMap.get(key);
-            if (soundClip.clip.isActive()) {
-                soundClip.stop();
-            }
-        }
-    }
-
     private void initSoundHandler() {
         getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV).reduceClipDB(15);
         getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE).reduceClipDB(15);
+        getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION).reduceClipDB(15);
     }
 
 }

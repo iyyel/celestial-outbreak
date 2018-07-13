@@ -27,6 +27,7 @@ public abstract class AbstractMenu {
      */
     protected final SoundHandler.SoundClip menuNavClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV);
     protected final SoundHandler.SoundClip menuUseClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE);
+    protected final SoundHandler.SoundClip badActionClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION);
 
     /*
      * Fonts
@@ -46,9 +47,14 @@ public abstract class AbstractMenu {
     /*
      * Menu colors.
      */
-    protected Color menuFontColor;
-    protected Color menuBtnColor;
-    protected Color menuSelectedBtnColor;
+    protected Color menuFontColor = utils.getMenuFontColor();
+    protected Color menuBtnColor = utils.getMenuBtnColor();
+    protected Color menuSelectedBtnColor = utils.getMenuBtnSelectedColor();
+    protected Color menuBtnPlayerSelectedColor = utils.getMenuBtnPlayerSelectedColor();
+    protected Color menuBtnPlayerDeletedColor = utils.getMenuBtnPlayerDeletedColor();
+
+    private final int INIT_INPUT_TIMER = 18;
+    private int inputTimer = INIT_INPUT_TIMER;
 
     /*
      * GameController instance
@@ -60,11 +66,6 @@ public abstract class AbstractMenu {
      */
     public AbstractMenu(GameController gameController) {
         this.gameController = gameController;
-
-        /* MenuColors */
-        this.menuFontColor = utils.getMenuFontColor();
-        this.menuBtnColor = utils.getMenuBtnColor();
-        this.menuSelectedBtnColor = utils.getMenuSelectedBtnColor();
 
         /* Information rectangles */
         authorRect = new Rectangle(gameController.getWidth() / 2 - 1, gameController.getHeight() - 20, 58, 15);
@@ -103,6 +104,20 @@ public abstract class AbstractMenu {
         g.setColor(menuFontColor);
         g.setFont(titleFont);
         drawCenterString(textHandler.GAME_TITLE, 100, g, titleFont);
+    }
+
+    public void resetInputTimer() {
+        inputTimer = INIT_INPUT_TIMER;
+    }
+
+    public void decInputTimer() {
+        if (inputTimer > 0) {
+            inputTimer--;
+        }
+    }
+
+    public boolean isInputAvailable() {
+        return inputTimer == 0;
     }
 
 }

@@ -195,6 +195,7 @@ public final class TextHandler {
     public final String SOUND_FILE_NAME_BALL_RESET = "ball_reset.wav";
     public final String SOUND_FILE_NAME_MENU_BTN_NAV = "menu_nav.wav";
     public final String SOUND_FILE_NAME_MENU_BTN_USE = "menu_use.wav";
+    public final String SOUND_FILE_NAME_BAD_ACTION = "bad_action.wav";
 
     /* Local sound file paths. */
     public final String SOUND_FILE_LOCAL_PATH_MENU = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_MENU).getPath();
@@ -204,6 +205,7 @@ public final class TextHandler {
     public final String SOUND_FILE_LOCAL_PATH_BALL_RESET = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_BALL_RESET).getPath();
     public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_MENU_BTN_NAV).getPath();
     public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_USE = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_MENU_BTN_USE).getPath();
+    public final String SOUND_FILE_LOCAL_PATH_BAD_ACTION = TextHandler.class.getResource(LOCAL_JAR_SOUND_DIR + fs_jar + SOUND_FILE_NAME_BAD_ACTION).getPath();
 
     /* Client sound file paths. */
     public final String SOUND_FILE_CLIENT_PATH_MENU = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU;
@@ -213,6 +215,7 @@ public final class TextHandler {
     public final String SOUND_FILE_CLIENT_PATH_BALL_RESET = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BALL_RESET;
     public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_NAV;
     public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_USE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_USE;
+    public final String SOUND_FILE_CLIENT_PATH_BAD_ACTION = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BAD_ACTION;
 
     /*
      * Property names.
@@ -231,9 +234,11 @@ public final class TextHandler {
     /*
      * Menu color properties.
      */
-    public final String PROP_MENU_FONT_COLOR_HEX = "MenuFontColorHex";
-    public final String PROP_MENU_BTN_COLOR_HEX = "MenuBtnColorHex";
-    public final String PROP_SELECTED_BTN_COLOR_HEX = "MenuSelectedBtnColorHex";
+    public final String PROP_MENU_FONT_COLOR_HEX = "MENU_FONT_COLOR_HEX";
+    public final String PROP_MENU_BTN_COLOR_HEX = "MENU_BTN_COLOR_HEX";
+    public final String PROP_MENU_BTN_SELECTED_COLOR_HEX = "MENU_BTN_SELECTED_COLOR_HEX";
+    public final String PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX = "MENU_BTN_PLAYER_DELETED_COLOR_HEX";
+    public final String PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX = "MENU_BTN_PLAYER_SELECTED_COLOR_HEX";
 
     /*
      * Level properties.

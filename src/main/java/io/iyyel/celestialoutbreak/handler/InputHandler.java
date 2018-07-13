@@ -15,12 +15,6 @@ public final class InputHandler implements KeyListener {
     private boolean isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
     private boolean isUsePressed, isPausePressed, isOKPressed, isCancelPressed;
 
-    private final int INITIAL_OK_INPUT_TIMER_VALUE = 5;
-    private int okInputTimer = INITIAL_OK_INPUT_TIMER_VALUE;
-
-    private final int INITIAL_PAUSE_INPUT_TIMER_VALUE = 5;
-    private int pauseInputTimer = INITIAL_PAUSE_INPUT_TIMER_VALUE;
-
     private boolean isInputMode = true;
     private String userInput = "";
 
@@ -41,34 +35,15 @@ public final class InputHandler implements KeyListener {
     }
 
     public void update() {
-        if (pauseInputTimer > 0)
-            pauseInputTimer--;
-
-        if (okInputTimer > 0)
-            okInputTimer--;
-
         isUpPressed = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W];
         isDownPressed = keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];
         isLeftPressed = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
         isRightPressed = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
 
-        isUsePressed = keys[KeyEvent.VK_SPACE];
-
-        if (pauseInputTimer == 0) {
-            isPausePressed = keys[KeyEvent.VK_P];
-            pauseInputTimer = INITIAL_PAUSE_INPUT_TIMER_VALUE;
-        } else {
-            isPausePressed = false;
-        }
-
-        if (okInputTimer == 0) {
-            isOKPressed = keys[KeyEvent.VK_Z];
-            okInputTimer = INITIAL_OK_INPUT_TIMER_VALUE;
-        } else {
-            isOKPressed = false;
-        }
-
+        isOKPressed = keys[KeyEvent.VK_Z];
         isCancelPressed = keys[KeyEvent.VK_X];
+        isUsePressed = keys[KeyEvent.VK_SPACE];
+        isPausePressed = keys[KeyEvent.VK_P];
     }
 
     @Override

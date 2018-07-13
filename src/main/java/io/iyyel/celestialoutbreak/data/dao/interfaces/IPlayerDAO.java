@@ -8,6 +8,8 @@ public interface IPlayerDAO {
     void savePlayerDTO() throws PlayerDAOException;
     void addPlayer(String name) throws PlayerDAOException, PlayerDAOMaxNameException, PlayerDAOMinNameException;
     void removePlayer(String name) throws PlayerDAOException;
+    void removePlayer(int index) throws PlayerDAOException;
+    String getPlayer(int index) throws PlayerDAOException;
     void selectPlayer(String name) throws PlayerDAOException;
     List<String> getPlayerList();
     String getSelectedPlayer() throws PlayerDAOException;

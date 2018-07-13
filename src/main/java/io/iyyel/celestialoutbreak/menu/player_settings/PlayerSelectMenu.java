@@ -9,65 +9,61 @@ import java.awt.*;
 public final class PlayerSelectMenu extends AbstractMenu {
 
     private Rectangle[] playerRects;
-    private final Font btnFont;
     private Color[] rectColors;
 
     private int selected = 0;
-    private int inputTimer = 18;
-    private boolean firstUpdate = true;
+    private boolean isFirstUpdate = true;
     private int playerAmount = 0;
 
     public PlayerSelectMenu(GameController gameController) {
         super(gameController);
         playerRects = new Rectangle[0];
-        btnFont = utils.getGameFont().deriveFont(20F);
     }
 
     @Override
     public void update() {
+        decInputTimer();
+
         /*
          * Do this ONCE everytime the user is on this screen.
          */
-        if (firstUpdate) {
-            firstUpdate = false;
+        if (isFirstUpdate) {
+            isFirstUpdate = false;
             selected = 0;
             updatePlayerData();
         }
 
-        if (inputTimer > 0) {
-            inputTimer--;
-        }
-
-        if (inputHandler.isCancelPressed() && inputTimer == 0) {
+        if (inputHandler.isCancelPressed() && isInputAvailable()) {
+            resetInputTimer();
+            isFirstUpdate = true;
             menuUseClip.play(false);
             gameController.switchState(GameController.State.PLAYER_SETTINGS_MENU);
-            firstUpdate = true;
-            inputTimer = 10;
         }
 
-        if (inputHandler.isDownPressed() && selected < playerAmount - 1 && inputTimer == 0) {
+        if (inputHandler.isDownPressed() && selected < playerAmount - 1 && isInputAvailable()) {
+            resetInputTimer();
             selected++;
             menuNavClip.play(false);
-            inputTimer = 10;
         }
 
-        if (inputHandler.isUpPressed() && selected > 0 && inputTimer == 0) {
+        if (inputHandler.isUpPressed() && selected > 0 && isInputAvailable()) {
+            resetInputTimer();
             selected--;
             menuNavClip.play(false);
-            inputTimer = 10;
         }
 
         for (int i = 0, n = playerAmount; i < n; i++) {
             if (selected == i) {
                 rectColors[i] = menuSelectedBtnColor;
 
-                if (inputHandler.isUsePressed() && inputTimer == 0) {
-                    menuUseClip.play(false);
+                if (inputHandler.isUsePressed() && isInputAvailable()) {
+                    resetInputTimer();
 
                     String selectedPlayer = playerDAO.getPlayerList().get(i);
 
                     try {
                         if (!selectedPlayer.equalsIgnoreCase(playerDAO.getSelectedPlayer())) {
+                            menuUseClip.play(false);
                             playerDAO.selectPlayer(selectedPlayer);
                             try {
                                 playerDAO.savePlayerDTO();
@@ -75,7 +71,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
                                 e.printStackTrace();
                             }
                         } else {
-
+                            badActionClip.play(false);
                         }
                     } catch (IPlayerDAO.PlayerDAOException e) {
                         e.printStackTrace();
@@ -84,7 +80,18 @@ public final class PlayerSelectMenu extends AbstractMenu {
                 }
 
             } else {
-                rectColors[i] = menuBtnColor;
+                try {
+                    String selectedPlayer = playerDAO.getSelectedPlayer();
+
+                    if (playerDAO.getPlayerList().get(i).equals(selectedPlayer)) {
+                        rectColors[i] = menuBtnPlayerSelectedColor;
+                    } else {
+                        rectColors[i] = menuBtnColor;
+                    }
+
+                } catch (IPlayerDAO.PlayerDAOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -99,21 +106,13 @@ public final class PlayerSelectMenu extends AbstractMenu {
         drawSubmenuTitle("Select Player", g);
 
         /* Render buttons  */
-        g.setFont(btnFont);
+        g.setFont(inputFont);
 
         for (int i = 0; i < playerAmount; i++) {
             g.setColor(menuFontColor);
             g.drawString(playerDAO.getPlayerList().get(i), playerRects[i].x + 5, playerRects[i].y + 32);
 
-            try {
-                if (playerDAO.getPlayerList().get(i).equalsIgnoreCase(playerDAO.getSelectedPlayer())) {
-                    g.setColor(Color.MAGENTA);
-                } else {
-                    g.setColor(rectColors[i]);
-                }
-            } catch (IPlayerDAO.PlayerDAOException e) {
-                e.printStackTrace();
-            }
+            g.setColor(rectColors[i]);
 
             g.draw(playerRects[i]);
         }

@@ -13,7 +13,6 @@ public final class WelcomeMenu extends AbstractMenu {
     private Color[] rectColors;
 
     private int selected = 0;
-    private int inputTimer = 18;
     private int yBtnOffset = 33;
 
     public WelcomeMenu(GameController gameController) {
@@ -35,29 +34,27 @@ public final class WelcomeMenu extends AbstractMenu {
 
     @Override
     public void update() {
-        if (inputTimer > 0) {
-            inputTimer--;
-        }
+        decInputTimer();
 
-        if (inputHandler.isDownPressed() && selected < options.length - 1 && inputTimer == 0) {
+        if (inputHandler.isDownPressed() && selected < options.length - 1 && isInputAvailable()) {
+            resetInputTimer();
             selected++;
             menuNavClip.play(false);
-            inputTimer = 10;
         }
 
-        if (inputHandler.isUpPressed() && selected > 0 && inputTimer == 0) {
+        if (inputHandler.isUpPressed() && selected > 0 && isInputAvailable()) {
+            resetInputTimer();
             selected--;
             menuNavClip.play(false);
-            inputTimer = 10;
         }
 
         for (int i = 0, n = options.length; i < n; i++) {
             if (selected == i) {
                 rectColors[i] = menuSelectedBtnColor;
 
-                if (inputHandler.isUsePressed() && inputTimer == 0) {
+                if (inputHandler.isUsePressed() && isInputAvailable()) {
+                    resetInputTimer();
                     menuUseClip.play(false);
-                    inputTimer = 10;
 
                     switch (i) {
                         case 0:

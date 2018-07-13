@@ -16,11 +16,15 @@ public final class FinishedLevelMenu extends AbstractMenu {
 
     @Override
     public void update() {
-        if (inputHandler.isOKPressed()) {
+        decInputTimer();
+
+        if (inputHandler.isOKPressed() && isInputAvailable()) {
+            resetInputTimer();
             gameController.switchState(State.NEW_LEVEL_SCREEN);
         }
 
-        if (inputHandler.isCancelPressed()) {
+        if (inputHandler.isCancelPressed() && isInputAvailable()) {
+            resetInputTimer();
             menuUseClip.play(false);
             gameController.switchState(State.MAIN_MENU);
         }
