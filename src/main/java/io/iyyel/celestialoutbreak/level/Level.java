@@ -38,34 +38,34 @@ public final class Level {
     private FileHandler fileHandler = FileHandler.getInstance();
 
     /*
-     * Level settings.
+     * Level options.
      */
     private String name;
     private String desc;
     private Color color;
 
     /*
-     * Paddle settings.
+     * Paddle options.
      */
     private Point paddlePos;
     private int paddleWidth, paddleHeight, paddleSpeed;
     private Color paddleColor;
 
     /*
-     * Ball settings.
+     * Ball options.
      */
     private Point ballPos;
     private int ballPosXOffset, ballPosYOffset, ballSize, ballSpeed;
     private Color ballColor;
 
     /*
-     * BlockList settings.
+     * BlockList options.
      */
     private Point blockPos;
     private int blockAmount, blockWidth, blockHeight, blockSpacing;
 
     /*
-     * GamePanel settings.
+     * GamePanel options.
      */
     private GamePanel gamePanel;
     private Color GamePanelColor;
@@ -79,7 +79,7 @@ public final class Level {
         levelConfig = new LevelConfig(settingsFileName, gameController);
         initSettings();
 
-        /* Create objects after initializing the settings. */
+        /* Create objects after initializing the options. */
         paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, gameController);
         ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, ballPosXOffset, ballPosYOffset, gameController);
         blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, gameController);
@@ -100,19 +100,19 @@ public final class Level {
     }
 
     private void initSettings() {
-        /* Level settings. */
+        /* Level options. */
         name = levelConfig.getLevelName();
         desc = levelConfig.getLevelDesc();
         color = levelConfig.getLevelColor();
 
-        /* Paddle settings. */
+        /* Paddle options. */
         paddlePos = levelConfig.getPaddlePos();
         paddleWidth = levelConfig.getPaddleWidth();
         paddleHeight = levelConfig.getPaddleHeight();
         paddleSpeed = levelConfig.getPaddleSpeed();
         paddleColor = levelConfig.getPaddleColor();
 
-        /* Ball settings. */
+        /* Ball options. */
         ballPos = levelConfig.getBallPos();
         ballPosXOffset = levelConfig.getBallPosXOffset();
         ballPosYOffset = levelConfig.getBallPosYOffset();
@@ -120,14 +120,14 @@ public final class Level {
         ballSpeed = levelConfig.getBallSpeed();
         ballColor = levelConfig.getBallColor();
 
-        /* BlockList settings. */
+        /* BlockList options. */
         blockPos = levelConfig.getBlockPos();
         blockAmount = levelConfig.getBlockAmount();
         blockWidth = levelConfig.getBlockWidth();
         blockHeight = levelConfig.getBlockHeight();
         blockSpacing = levelConfig.getBlockSpacing();
 
-        /* GamePanel settings. */
+        /* GamePanel options. */
         GamePanelColor = levelConfig.getGamePanelColor();
     }
 

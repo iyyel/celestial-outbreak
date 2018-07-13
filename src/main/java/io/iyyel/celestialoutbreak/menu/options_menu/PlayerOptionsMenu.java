@@ -1,30 +1,30 @@
-package io.iyyel.celestialoutbreak.menu.settings_menu;
+package io.iyyel.celestialoutbreak.menu.options_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class PlayerSettingsMenu extends AbstractMenu {
+public final class PlayerOptionsMenu extends AbstractMenu {
 
-    private final Rectangle selectRect, newRect, removeRect;
+    private final Rectangle selectRect, createRect, deleteRect;
     private final Font btnFont;
 
-    private String[] options = {textHandler.BTN_SELECT_TEXT, textHandler.BTN_NEW_TEXT, textHandler.BTN_DELETE_TEXT};
+    private String[] options = {textHandler.BTN_SELECT_PLAYER_TEXT, textHandler.BTN_CREATE_PLAYER_TEXT, textHandler.BTN_DELETE_DELETE_TEXT};
     private Color[] rectColors;
 
     private int selected = 0;
 
-    public PlayerSettingsMenu(GameController gameController) {
+    public PlayerOptionsMenu(GameController gameController) {
         super(gameController);
 
         int initialBtnYPos = 230;
         int btnYIncrement = 75;
 
         /* Menu buttons */
-        selectRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos, 160, 50);
-        newRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement, 160, 50);
-        removeRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 2, 160, 50);
+        selectRect = new Rectangle(gameController.getWidth() / 2 - 135, initialBtnYPos, 270, 50);
+        createRect = new Rectangle(gameController.getWidth() / 2 - 135, initialBtnYPos + btnYIncrement, 270, 50);
+        deleteRect = new Rectangle(gameController.getWidth() / 2 - 135, initialBtnYPos + btnYIncrement * 2, 270, 50);
 
         rectColors = new Color[options.length];
 
@@ -41,7 +41,7 @@ public final class PlayerSettingsMenu extends AbstractMenu {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.SETTINGS_MENU);
+            gameController.switchState(GameController.State.OPTIONS_MENU);
         }
 
         if (inputHandler.isUpPressed() && selected > 0 && isInputAvailable()) {
@@ -66,15 +66,12 @@ public final class PlayerSettingsMenu extends AbstractMenu {
 
                     switch (i) {
                         case 0:
-                            // SELECT
                             gameController.switchState(GameController.State.PLAYER_SELECT_SCREEN);
                             break;
                         case 1:
-                            // NEW
-                            gameController.switchState(GameController.State.PLAYER_NEW_SCREEN);
+                            gameController.switchState(GameController.State.PLAYER_CREATE_SCREEN);
                             break;
                         case 2:
-                            // REMOVE
                             gameController.switchState(GameController.State.PLAYER_DELETE_SCREEN);
                             break;
                         default:
@@ -93,7 +90,7 @@ public final class PlayerSettingsMenu extends AbstractMenu {
         drawMenuTitle(g);
 
         /* Show sub menu */
-        drawSubmenuTitle("Player Settings", g);
+        drawSubmenuTitle(textHandler.TITLE_PLAYER_OPTIONS_MENU, g);
 
         /* Render buttons  */
         g.setFont(btnFont);
@@ -101,23 +98,23 @@ public final class PlayerSettingsMenu extends AbstractMenu {
         /* Select button */
         g.setColor(menuFontColor);
         g.setFont(btnFont);
-        g.drawString(options[0], selectRect.x + 27, selectRect.y + 33);
+        drawCenterString(options[0], selectRect.y + BTN_Y_OFFSET, g, btnFont);
         g.setColor(rectColors[0]);
         g.draw(selectRect);
 
         /* New button */
         g.setColor(menuFontColor);
         g.setFont(btnFont);
-        g.drawString(options[1], newRect.x + 47, newRect.y + 33);
+        drawCenterString(options[1], createRect.y + BTN_Y_OFFSET, g, btnFont);;
         g.setColor(rectColors[1]);
-        g.draw(newRect);
+        g.draw(createRect);
 
         /* Remove button */
         g.setColor(menuFontColor);
         g.setFont(btnFont);
-        g.drawString(options[2], removeRect.x + 23, removeRect.y + 33);
+        drawCenterString(options[2], deleteRect.y + BTN_Y_OFFSET, g, btnFont);
         g.setColor(rectColors[2]);
-        g.draw(removeRect);
+        g.draw(deleteRect);
 
         drawInformationPanel(g);
     }

@@ -5,26 +5,26 @@ import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class SettingsMenu extends AbstractMenu {
+public final class OptionsMenu extends AbstractMenu {
 
     private final Rectangle playerRect, configurationRect;
     private final Font btnFont;
 
-    private String[] options = {textHandler.BTN_PLAYER_TEXT, textHandler.BTN_CONFIGURATION_TEXT};
+    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
     private Color[] rectColors;
 
     private int selected = 0;
     private int yBtnOffset = 33;
 
-    public SettingsMenu(GameController gameController) {
+    public OptionsMenu(GameController gameController) {
         super(gameController);
 
         int initialBtnYPos = 230;
         int btnYInc = 75;
 
         /* buttons */
-        playerRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos, 240, 50);
-        configurationRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYInc, 240, 50);
+        playerRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos, 390, 50);
+        configurationRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos + btnYInc, 390, 50);
 
         rectColors = new Color[options.length];
 
@@ -66,12 +66,12 @@ public final class SettingsMenu extends AbstractMenu {
 
                     switch (i) {
                         case 0:
-                            // Player settings
-                            gameController.switchState(GameController.State.PLAYER_SETTINGS_MENU);
+                            // Player options
+                            gameController.switchState(GameController.State.PLAYER_OPTIONS_MENU);
                             break;
                         case 1:
-                            // Configuration settings
-                            gameController.switchState(GameController.State.CONFIG_SETTINGS_SCREEN);
+                            // Configuration options
+                            gameController.switchState(GameController.State.CONFIG_OPTIONS_SCREEN);
                             break;
                         default:
                             break;
@@ -89,7 +89,7 @@ public final class SettingsMenu extends AbstractMenu {
         drawMenuTitle(g);
 
         /* Show player name */
-        drawSubmenuTitle("Settings", g);
+        drawSubmenuTitle(textHandler.TITLE_OPTIONS_MENU, g);
 
         /* Render buttons  */
         g.setFont(btnFont);

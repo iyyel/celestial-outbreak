@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.menu.player_settings;
+package io.iyyel.celestialoutbreak.menu.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
@@ -24,31 +24,34 @@ public final class PlayerSelectMenu extends AbstractMenu {
     public void update() {
         decInputTimer();
 
-        /*
-         * Do this ONCE everytime the user is on this screen.
-         */
-        if (isFirstUpdate) {
-            isFirstUpdate = false;
-            selected = 0;
-            updatePlayerData();
-        }
-
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             isFirstUpdate = true;
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.PLAYER_SETTINGS_MENU);
+            gameController.switchState(GameController.State.PLAYER_OPTIONS_MENU);
         }
 
-        if (inputHandler.isDownPressed() && selected < playerAmount - 1 && isInputAvailable()) {
+        if (inputHandler.isDownPressed() && (selected + 1) % 5 != 0 && (selected + 1) < playerAmount && isInputAvailable()) {
             resetInputTimer();
             selected++;
             menuNavClip.play(false);
         }
 
-        if (inputHandler.isUpPressed() && selected > 0 && isInputAvailable()) {
+        if (inputHandler.isUpPressed() && selected % 5 != 0 && isInputAvailable()) {
             resetInputTimer();
             selected--;
+            menuNavClip.play(false);
+        }
+
+        if (inputHandler.isLeftPressed() && selected > 4 && isInputAvailable()) {
+            resetInputTimer();
+            selected -= 5;
+            menuNavClip.play(false);
+        }
+
+        if (inputHandler.isRightPressed() && selected < 20 && (selected + 5) < playerAmount && isInputAvailable()) {
+            resetInputTimer();
+            selected += 5;
             menuNavClip.play(false);
         }
 
@@ -99,11 +102,20 @@ public final class PlayerSelectMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
+        /*
+         * Do this ONCE everytime the user is on this screen.
+         */
+        if (isFirstUpdate) {
+            isFirstUpdate = false;
+            selected = 0;
+            updatePlayerData();
+        }
+
         /* Render game title */
         drawMenuTitle(g);
 
         /* Show sub menu */
-        drawSubmenuTitle("Select Player", g);
+        drawSubmenuTitle(textHandler.TITLE_SELECT_PLAYER_SCREEN, g);
 
         /* Render buttons  */
         g.setFont(inputFont);
@@ -116,6 +128,9 @@ public final class PlayerSelectMenu extends AbstractMenu {
 
             g.draw(playerRects[i]);
         }
+
+        g.setColor(menuFontColor);
+        drawCenterString("Press '" + textHandler.BTN_CONTROL_USE + "' to select a player.", 665, g, tooltipFont);
 
         drawInformationPanel(g);
     }

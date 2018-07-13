@@ -28,7 +28,7 @@ public final class AboutMenu extends AbstractMenu {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
 
-        drawSubmenuTitle("About", g);
+        drawSubmenuTitle(textHandler.TITLE_ABOUT_SCREEN, g);
 
         g.setFont(msgFont);
 

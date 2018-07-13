@@ -1,13 +1,13 @@
-package io.iyyel.celestialoutbreak.menu.settings_menu;
+package io.iyyel.celestialoutbreak.menu.options_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class ConfigSettingsMenu extends AbstractMenu {
+public final class ConfigOptionsMenu extends AbstractMenu {
 
-    public ConfigSettingsMenu(GameController gameController) {
+    public ConfigOptionsMenu(GameController gameController) {
         super(gameController);
     }
 
@@ -18,7 +18,7 @@ public final class ConfigSettingsMenu extends AbstractMenu {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.SETTINGS_MENU);
+            gameController.switchState(GameController.State.OPTIONS_MENU);
         }
     }
 
@@ -27,7 +27,7 @@ public final class ConfigSettingsMenu extends AbstractMenu {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
 
-        drawSubmenuTitle("Configuration Settings", g);
+        drawSubmenuTitle(textHandler.TITLE_CONFIGURATION_OPTIONS_MENU, g);
         g.setFont(msgFont);
 
         int xPos = 80;

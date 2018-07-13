@@ -13,7 +13,6 @@ public final class WelcomeMenu extends AbstractMenu {
     private Color[] rectColors;
 
     private int selected = 0;
-    private int yBtnOffset = 33;
 
     public WelcomeMenu(GameController gameController) {
         super(gameController);
@@ -52,14 +51,14 @@ public final class WelcomeMenu extends AbstractMenu {
             if (selected == i) {
                 rectColors[i] = menuSelectedBtnColor;
 
-                if (inputHandler.isUsePressed() && isInputAvailable()) {
+                if (inputHandler.isOKPressed() && isInputAvailable()) {
                     resetInputTimer();
                     menuUseClip.play(false);
 
                     switch (i) {
                         case 0:
                             if (playerDAO.getPlayerList().isEmpty()) {
-                                gameController.switchState(GameController.State.PLAYER_NEW_SCREEN);
+                                gameController.switchState(GameController.State.PLAYER_CREATE_SCREEN);
                             } else {
                                 gameController.switchState(GameController.State.MAIN_MENU);
                             }
@@ -82,20 +81,20 @@ public final class WelcomeMenu extends AbstractMenu {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
 
-        drawSubmenuTitle("Welcome", g);
+        drawSubmenuTitle(textHandler.TITLE_WELCOME_MENU, g);
 
         drawCenterString("Are you ready to explore planets and their secrets?", 300, g, msgFont);
         drawCenterString("Then please, do proceed.", 350, g, msgFont);
 
         /* Start button */
         g.setColor(menuFontColor);
-        drawCenterString(options[0], startRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[0], startRect.y + BTN_Y_OFFSET, g, btnFont);
         g.setColor(rectColors[0]);
         g.draw(startRect);
 
         /* Exit button */
         g.setColor(menuFontColor);
-        drawCenterString(options[1], exitRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[1], exitRect.y + BTN_Y_OFFSET, g, btnFont);
         g.setColor(rectColors[1]);
         g.draw(exitRect);
 

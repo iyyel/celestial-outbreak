@@ -33,7 +33,7 @@ public final class ControlsMenu extends AbstractMenu {
         int yPos = -50;
         int yPosInc = 70;
 
-        drawSubmenuTitle("Controls", g);
+        drawSubmenuTitle(textHandler.TITLE_CONTROLS_MENU, g);
 
         g.setFont(msgFont);
         g.drawString(textHandler.menuControlsMsg01, xPos, gameController.getHeight() / 2 + yPos);
@@ -47,6 +47,9 @@ public final class ControlsMenu extends AbstractMenu {
 
         g.drawString(textHandler.menuControlsMsg07, xPos, gameController.getHeight() / 2 + (yPos + yPosInc * 3));
         g.drawString(textHandler.menuControlsMsg08, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + (yPos + yPosInc * 3));
+
+        g.drawString(textHandler.menuControlsMsg09, xPos, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
+        g.drawString(textHandler.menuControlsMsg10, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
 
         drawInformationPanel(g);
     }

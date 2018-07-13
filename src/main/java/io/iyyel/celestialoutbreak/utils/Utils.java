@@ -1,5 +1,7 @@
 package io.iyyel.celestialoutbreak.utils;
 
+import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 
@@ -69,7 +71,7 @@ public final class Utils {
     }
 
     private void initGameProperties() {
-        Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
+        Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH);
 
         // Verbose logging
         this.isVerboseLogEnabled = parseProp(map, textHandler.PROP_VERBOSE_LOG_ENABLED);
@@ -181,6 +183,39 @@ public final class Utils {
 
     private boolean parseProp(Map<String, String> map, String prop) {
         return Boolean.parseBoolean(map.get(prop));
+    }
+
+    public void createDemoPlayers(PlayerDAO playerDAO) {
+        try {
+            playerDAO.addPlayer("Fluffy");
+            playerDAO.selectPlayer("Fluffy");
+            playerDAO.addPlayer("Rocket");
+            playerDAO.addPlayer("Jackson");
+            playerDAO.addPlayer("Sally");
+            playerDAO.addPlayer("Emil");
+            playerDAO.addPlayer("Dimitri");
+            playerDAO.addPlayer("Jake");
+            playerDAO.addPlayer("Veronica");
+            playerDAO.addPlayer("Mike");
+            playerDAO.addPlayer("Clarke");
+            playerDAO.addPlayer("Mustafa");
+            playerDAO.addPlayer("WoW");
+            playerDAO.addPlayer("Iyyel");
+            playerDAO.addPlayer("Musti");
+            playerDAO.addPlayer("Hassan");
+            playerDAO.addPlayer("Uweuweu");
+            playerDAO.addPlayer("Cododa");
+            playerDAO.addPlayer("Troels");
+            playerDAO.addPlayer("Behnia");
+            playerDAO.addPlayer("Thomas");
+            playerDAO.addPlayer("Daniel");
+            playerDAO.addPlayer("Kevin");
+            playerDAO.addPlayer("Alice");
+            playerDAO.addPlayer("Ryan");
+            playerDAO.addPlayer("Rackman");
+        } catch (IPlayerDAO.PlayerDAOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

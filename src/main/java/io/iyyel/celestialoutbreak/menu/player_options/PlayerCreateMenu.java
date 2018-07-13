@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.menu.player_settings;
+package io.iyyel.celestialoutbreak.menu.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
@@ -6,7 +6,7 @@ import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public final class PlayerNewMenu extends AbstractMenu {
+public final class PlayerCreateMenu extends AbstractMenu {
 
     private boolean firstUpdate = true;
     private boolean isAcceptMode = false;
@@ -16,7 +16,7 @@ public final class PlayerNewMenu extends AbstractMenu {
     private final String INIT_STATUS_STRING = "Press 'OK' button to start entering a player name or 'cancel' to go back.";
     private String statusString = INIT_STATUS_STRING;
 
-    public PlayerNewMenu(GameController gameController) {
+    public PlayerCreateMenu(GameController gameController) {
         super(gameController);
     }
 
@@ -132,7 +132,7 @@ public final class PlayerNewMenu extends AbstractMenu {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
 
-        drawSubmenuTitle("New Player", g);
+        drawSubmenuTitle(textHandler.TITLE_CREATE_PLAYER_SCREEN, g);
 
         drawCenterString("Enter Player name:", 300, g, msgFont);
 

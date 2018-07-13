@@ -56,7 +56,7 @@ public final class FileHandler {
      */
     private void createStandardDirs() {
         createDir(textHandler.LOG_DIR_PATH);
-        createDir(textHandler.SETTINGS_DIR_PATH);
+        createDir(textHandler.OPTIONS_DIR_PATH);
         createDir(textHandler.SOUND_DIR_PATH);
         createDir(textHandler.GAME_FONT_DIR_PATH);
         createDir(textHandler.LEVEL_DIR_PATH);
@@ -69,7 +69,7 @@ public final class FileHandler {
      * over to the client machine.
      */
     private void copyConfigFiles() {
-        /* Initial level configurations copied to client local settings dir. */
+        /* Initial level configurations copied to client local options dir. */
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MARS, textHandler.LEVEL_FILE_CLIENT_PATH_MARS);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_EARTH, textHandler.LEVEL_FILE_CLIENT_PATH_EARTH);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_NEPTUNE, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);
@@ -80,7 +80,7 @@ public final class FileHandler {
         copyFile(textHandler.LEVEL_CONFIG_FILE_LOCAL_PATH, textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
 
         /* Settings configuration file copied to client machine. */
-        copyFile(textHandler.SETTINGS_CONFIG_FILE_LOCAL_PATH, textHandler.SETTINGS_CONFIG_FILE_CLIENT_PATH);
+        copyFile(textHandler.OPTIONS_CONFIG_FILE_LOCAL_PATH, textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH);
 
         /* Font */
         copyFile(textHandler.GAME_FONT_FILE_LOCAL_PATH, textHandler.GAME_FONT_FILE_CLIENT_PATH);

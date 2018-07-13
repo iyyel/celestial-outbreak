@@ -11,7 +11,7 @@ import java.awt.*;
  * The @Paddle inherits from the @MobileEntity class because it has to move
  * left and right on the screen.
  * <p>
- * Features of the paddle can be adjusted with in the individual level settings.
+ * Features of the paddle can be adjusted with in the individual level options.
  */
 public final class Paddle extends MobileEntity {
 

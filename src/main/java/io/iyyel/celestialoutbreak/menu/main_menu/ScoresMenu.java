@@ -27,7 +27,7 @@ public final class ScoresMenu extends AbstractMenu {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
 
-        drawSubmenuTitle("Scores", g);
+        drawSubmenuTitle(textHandler.TITLE_SCORES_MENU, g);
 
         g.setFont(msgFont);
 

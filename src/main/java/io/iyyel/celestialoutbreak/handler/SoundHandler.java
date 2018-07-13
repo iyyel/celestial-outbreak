@@ -120,12 +120,12 @@ public final class SoundHandler {
             case MAIN_MENU:
             case SCORES_SCREEN:
             case CONTROLS_SCREEN:
-            case SETTINGS_MENU:
-            case PLAYER_SETTINGS_MENU:
+            case OPTIONS_MENU:
+            case PLAYER_OPTIONS_MENU:
             case PLAYER_SELECT_SCREEN:
-            case PLAYER_NEW_SCREEN:
+            case PLAYER_CREATE_SCREEN:
             case PLAYER_DELETE_SCREEN:
-            case CONFIG_SETTINGS_SCREEN:
+            case CONFIG_OPTIONS_SCREEN:
             case ABOUT_SCREEN:
             case EXIT_SCREEN:
                 soundClipToPlay = textHandler.SOUND_FILE_NAME_MENU;

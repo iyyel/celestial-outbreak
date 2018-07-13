@@ -14,34 +14,34 @@ public final class LevelConfig {
     private final FileHandler fileHandler = FileHandler.getInstance();
 
     /*
-     * Level settings.
+     * Level options.
      */
     private String levelName;
     private String levelDesc;
     private Color levelColor;
 
     /*
-     * Paddle settings.
+     * Paddle options.
      */
     private Point paddlePos;
     private int paddleWidth, paddleHeight, paddleSpeed;
     private Color paddleColor;
 
     /*
-     * Ball settings.
+     * Ball options.
      */
     private Point ballPos;
     private int ballPosXOffset, ballPosYOffset, ballSize, ballSpeed;
     private Color ballColor;
 
     /*
-     * BlockList settings.
+     * BlockList options.
      */
     private Point blockPos;
     private int blockAmount, blockWidth, blockHeight, blockSpacing;
 
     /*
-     * GamePanel settings.
+     * GamePanel options.
      */
     private Color gamePanelColor;
 
@@ -60,9 +60,9 @@ public final class LevelConfig {
             parseLevelSettings(fileName);
         } catch (Exception e) {
             /*
-             * If the level settings aren't able to be parsed correctly, any exception that will be
+             * If the level options aren't able to be parsed correctly, any exception that will be
              * thrown will be printed to the console as well as the current log file, and then the
-             * gameController will be stopped, since invalid level settings has been found which might cause
+             * gameController will be stopped, since invalid level options has been found which might cause
              * the application to be in an inconsistent state.
              */
             fileHandler.writeLog(textHandler.errorParsingPropertiesMsg(fileName, ExceptionUtils.getStackTrace(e)));
@@ -73,13 +73,13 @@ public final class LevelConfig {
     private void parseLevelSettings(String fileName) {
         Map<String, String> map = fileHandler.readPropertiesFromFile(fileName);
 
-        /* Level settings. */
+        /* Level options. */
         levelName = map.get(textHandler.PROP_LEVEL_NAME);
         levelDesc = map.get(textHandler.PROP_LEVEL_DESC);
         int levelColorValue = Integer.decode(map.get(textHandler.PROP_LEVEL_COLOR_HEX));
         levelColor = new Color(levelColorValue);
 
-        /* Paddle settings. */
+        /* Paddle options. */
         int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_PADDLE_POS_X_OFFSET));
         int paddlePosYOffset = Integer.parseInt(map.get(textHandler.PROP_PADDLE_POS_Y_OFFSET));
 
@@ -102,7 +102,7 @@ public final class LevelConfig {
         int ballColorHex = Integer.decode(map.get(textHandler.PROP_BALL_COLOR_HEX));
         ballColor = new Color(ballColorHex);
 
-        /* BlockList settings. */
+        /* BlockList options. */
         blockAmount = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_AMOUNT));
 
         int blockListPosX = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_POS_X));
@@ -113,7 +113,7 @@ public final class LevelConfig {
         blockHeight = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_HEIGHT));
         blockSpacing = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_SPACING));
 
-        /* GamePanel settings. */
+        /* GamePanel options. */
         int gamePanelColorHex = Integer.decode(map.get(textHandler.PROP_GAME_PANEL_COLOR_HEX));
         gamePanelColor = new Color(gamePanelColorHex);
     }

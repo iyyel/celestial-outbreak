@@ -58,20 +58,39 @@ public final class TextHandler {
     public final String BTN_START_TEXT = "START";
     public final String BTN_PLAY_TEXT = "PLAY";
     public final String BTN_SCORES_TEXT = "SCORES";
-    public final String BTN_SETTINGS_TEXT = "SETTINGS";
+    public final String BTN_OPTIONS_TEXT = "OPTIONS";
     public final String BTN_CONTROLS_TEXT = "CONTROLS";
     public final String BTN_ABOUT_TEXT = "ABOUT";
     public final String BTN_EXIT_TEXT = "EXIT";
-    public final String BTN_PLAYER_TEXT = "PLAYER";
-    public final String BTN_CONFIGURATION_TEXT = "CONFIGURATION";
-    public final String BTN_SELECT_TEXT = "SELECT";
-    public final String BTN_NEW_TEXT = "NEW";
-    public final String BTN_DELETE_TEXT = "DELETE";
+    public final String BTN_PLAYER_OPTIONS_TEXT = "PLAYER OPTIONS";
+    public final String BTN_CONFIGURATION_OPTIONS_TEXT = "CONFIGURATION OPTIONS";
+    public final String BTN_SELECT_PLAYER_TEXT = "SELECT PLAYER";
+    public final String BTN_CREATE_PLAYER_TEXT = "CREATE PLAYER";
+    public final String BTN_DELETE_DELETE_TEXT = "DELETE PLAYER";
 
     public final String BTN_CONTROL_FORWARD_OK = "z";
     public final String BTN_CONTROL_BACK_CANCEL = "x";
     public final String BTN_CONTROL_USE = "Space";
     public final String BTN_CONTROL_PAUSE = "p";
+
+    /*
+     * Menu title names.
+     */
+    public final String TITLE_WELCOME_MENU = "Welcome";
+    public final String TITLE_SCORES_MENU = "Scores";
+    public final String TITLE_CONTROLS_MENU = "Controls";
+    public final String TITLE_OPTIONS_MENU = "Options";
+    public final String TITLE_ABOUT_SCREEN = "About";
+    public final String TITLE_EXIT_SCREEN = "Exit";
+
+    public final String TITLE_PLAYER_OPTIONS_MENU = "Player Options";
+    public final String TITLE_CONFIGURATION_OPTIONS_MENU = "Configuration Options";
+
+    public final String TITLE_SELECT_PLAYER_SCREEN = "Select Player";
+    public final String TITLE_CREATE_PLAYER_SCREEN = "Create Player";
+    public final String TITLE_DELETE_PLAYER_SCREEN = "Delete Player";
+
+    public final String TITLE_PAUSE_SCREEN = "Pause";
 
     /*
      * Log announcement messages.
@@ -85,14 +104,14 @@ public final class TextHandler {
     /*
      * Client local gameController directory.
      */
-    public final String GAME_DIR_NAME = "." + GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
-    public final String GAME_DIR_PATH = System.getProperty("user.home") + fs + GAME_DIR_NAME;
+    public final String GAME_TOP_DIR_NAME = "." + AUTHOR_WEBSITE;
+    public final String GAME_DIR_NAME = GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
+    public final String GAME_DIR_PATH = System.getProperty("user.home") + fs + GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME;
 
     /*
      * Local configuration directories.
      */
     public final String LOCAL_JAR_CONFIG_DIR = fs_jar + "config";
-
 
     /*
      * Log file information.
@@ -108,16 +127,15 @@ public final class TextHandler {
     }
 
     /*
-     * Settings file information.
+     * Options file information.
      */
-    public final String SETTINGS_DIR_NAME = "settings";
-    public final String SETTINGS_DIR_PATH = GAME_DIR_PATH + fs + SETTINGS_DIR_NAME;
-    public final String LOCAL_JAR_SETTINGS_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + SETTINGS_DIR_NAME;
+    public final String OPTIONS_DIR_NAME = "options";
+    public final String OPTIONS_DIR_PATH = GAME_DIR_PATH + fs + OPTIONS_DIR_NAME;
+    public final String LOCAL_JAR_OPTIONS_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + OPTIONS_DIR_NAME;
 
-    // config/settings/settings.conf
-    public final String SETTINGS_CONFIG_FILE_NAME = "settings.conf";
-    public final String SETTINGS_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_SETTINGS_DIR + fs_jar + SETTINGS_CONFIG_FILE_NAME).getPath();
-    public final String SETTINGS_CONFIG_FILE_CLIENT_PATH = SETTINGS_DIR_PATH + fs + SETTINGS_CONFIG_FILE_NAME;
+    public final String OPTIONS_CONFIG_FILE_NAME = "options.conf";
+    public final String OPTIONS_CONFIG_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_OPTIONS_DIR + fs_jar + OPTIONS_CONFIG_FILE_NAME).getPath();
+    public final String OPTIONS_CONFIG_FILE_CLIENT_PATH = OPTIONS_DIR_PATH + fs + OPTIONS_CONFIG_FILE_NAME;
 
     /*
      * Player binary file information.
@@ -280,7 +298,7 @@ public final class TextHandler {
     /* SCORES_MENU messages. */
 
     /* CONTROLS_MENU messages. */
-    public final String menuControlsMsg01 = "Movement & Navigation:";
+    public final String menuControlsMsg01 = "Movement/Navigation:";
     public final String menuControlsMsg02 = "WASD/Arrow keys";
     public final String menuControlsMsg03 = "Forward/OK:";
     public final String menuControlsMsg04 = BTN_CONTROL_FORWARD_OK;
@@ -291,14 +309,14 @@ public final class TextHandler {
     public final String menuControlsMsg09 = "Pause:";
     public final String menuControlsMsg10 = BTN_CONTROL_PAUSE;
 
-    /* SETTINGS_MENU messages. */
+    /* OPTIONS_MENU messages. */
     public final String menuSettingsMsg01 = "All of the configuration related files can be found in the";
     public final String menuSettingsMsg02 = "following directory '" + GAME_DIR_PATH + "'";
-    public final String menuSettingsMsg03 = "general settings can be found in the settings.settings file,";
-    public final String menuSettingsMsg04 = "in the settings directory.";
-    public final String menuSettingsMsg05 = "Level specific settings can be found in the various level files";
-    public final String menuSettingsMsg06 = "in the levels directory, e.g. mars_level.settings.";
-    public final String menuSettingsMsg07 = "Levels are played in order from the levels.settings file.";
+    public final String menuSettingsMsg03 = "general options can be found in the options.options file,";
+    public final String menuSettingsMsg04 = "in the options directory.";
+    public final String menuSettingsMsg05 = "Level specific options can be found in the various level files";
+    public final String menuSettingsMsg06 = "in the levels directory, e.g. mars_level.options.";
+    public final String menuSettingsMsg07 = "Levels are played in order from the levels.options file.";
     public final String menuSettingsMsg08 = "If creating custom levels, make sure to add them to this file.";
     public final String menuSettingsMsg09 = "If more information is needed, visit: https://goo.gl/JxxeL6";
 

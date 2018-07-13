@@ -35,6 +35,7 @@ public abstract class AbstractMenu {
     protected final Font titleFont = utils.getGameFont().deriveFont(52F);
     protected final Font msgFont = utils.getGameFont().deriveFont(28F);
     protected final Font inputFont = utils.getGameFont().deriveFont(20F);
+    protected final Font tooltipFont = utils.getGameFont().deriveFont(18F);
 
     private final Font subTitleFont = utils.getGameFont().deriveFont(36F);
     private final Font infoPanelFont = utils.getGameFont().deriveFont(10F);
@@ -55,6 +56,8 @@ public abstract class AbstractMenu {
 
     private final int INIT_INPUT_TIMER = 18;
     private int inputTimer = INIT_INPUT_TIMER;
+
+    protected final int BTN_Y_OFFSET = 33;
 
     /*
      * GameController instance

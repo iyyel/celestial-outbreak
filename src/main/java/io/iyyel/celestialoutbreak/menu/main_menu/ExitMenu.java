@@ -37,7 +37,7 @@ public final class ExitMenu extends AbstractMenu {
     public void render(Graphics2D g) {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
-        drawSubmenuTitle("Exit", g);
+        drawSubmenuTitle(textHandler.TITLE_EXIT_SCREEN, g);
         drawCenterString("Exit " + textHandler.GAME_TITLE + "?", gameController.getHeight() / 2, g, msgFont);
         drawInformationPanel(g);
     }

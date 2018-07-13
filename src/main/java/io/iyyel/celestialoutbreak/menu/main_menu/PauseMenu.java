@@ -41,7 +41,8 @@ public final class PauseMenu extends AbstractMenu {
     public void render(Graphics2D g) {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
-        drawCenterString(textHandler.MENU_MSG_PAUSED, gameController.getHeight() / 2, g, msgFont);
+        drawSubmenuTitle(textHandler.TITLE_PAUSE_SCREEN, g);
+        drawCenterString(textHandler.GAME_TITLE + " is paused.", 350, g, msgFont);
         drawInformationPanel(g);
     }
 
