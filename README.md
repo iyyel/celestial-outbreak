@@ -1,28 +1,22 @@
 # Celestial Outbreak
 
-Welcome to Celestial Outbreak. A Breakout-like game inspired by planets with a focus on game and user customization. Currently in development, written in Java.
+Welcome to Celestial Outbreak. A Breakout-like game inspired by planets with a focus on game and user customization. Currently in development, written in Java with limited use of third-party libraries.
 
 ## Release
-Version 0.11 alpha has been released. While still being an alpha release, the game itself is fairly playable in it's current state.
+Version 0.13 alpha has been released.
 
 ## What's new
-A few things has been developed in this release.
+I've been focusing on finalizing the menu system and player system in this release, plus a few additional things, such as new sounds etc.
 
-* Level handling system
-    * The user is able to create their own custom levels with custom settings.
-* Enhanced logging system.
-* Enhanced I/O handling of levels and settings.
-
-This is only a subset of the new things included, however there is still a lot of work to do beforebbeing close to a beta release.
+* The user is now able to create players, select between the created players and delete them again, all in the menu.
+* Menu navigation is rewritten and works a lot better.
+* A lot of other small things, bug fixes, changes, etc.
 
 ## Main Menu
-![Main Menu](http://i.imgur.com/rHK93EB.png)
+![Main Menu](img/menu.png)
 
-## Gameplay
-![Gameplay](http://i.imgur.com/yVMmRjS.png)
-
-## Beat Planet
-![Beat Planet](http://i.imgur.com/PqmPuSs.gif)
+## Level
+![Gameplay](img/level.png)
 
 ## License 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
