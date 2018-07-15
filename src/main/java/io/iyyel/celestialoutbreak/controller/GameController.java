@@ -212,15 +212,9 @@ public class GameController extends Canvas implements Runnable {
         gameFrame.addKeyListener(inputHandler);
         addKeyListener(inputHandler);
 
-        //utils.createDemoPlayers((PlayerDAO) playerDAO);
-
-        /* If first run is enabled, set it to false */
-        if (utils.isFirstRunEnabled()) {
+        /* If no players exist, assume its first run */
+        if (playerDAO.getPlayerList().isEmpty()) {
             state = State.WELCOME_MENU;
-            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_FIRST_RUN_ENABLED, "false");
-        } else if (playerDAO.getPlayerList().isEmpty()) {
-            /* If its not the first run, but there's no players, go new player menu */
-            state = State.PLAYER_CREATE_SCREEN;
         }
 
         /* Initialize the JFrame and start the gameController loop */
@@ -407,8 +401,9 @@ public class GameController extends Canvas implements Runnable {
     public synchronized void stop() {
         if (isRunning) {
             isRunning = false;
+            fileHandler.writeLog(textHandler.GAME_TITLE + " shutting down.");
+            System.exit(0);
         }
-        System.exit(0);
     }
 
     /*

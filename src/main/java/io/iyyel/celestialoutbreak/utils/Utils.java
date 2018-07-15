@@ -24,7 +24,6 @@ public final class Utils {
     private boolean isVerboseLogEnabled = true; // verbose logging and info in the game
     private boolean isSoundEnabled = true; // sound on or off
     private boolean isGodModeEnabled = false; // GOD MODE :) // fast paced? endless life?
-    private boolean isFirstRunEnabled = true; // first ever executing the game?
     private boolean isFpsLockEnabled = true; // lock game to 60 fps and not ASAP performance.
     private boolean isAntiAliasingEnabled = true; // speaks for itself :)
 
@@ -97,14 +96,6 @@ public final class Utils {
             fileHandler.writeLog("God Mode disabled.");
         }
 
-        // First run
-        this.isFirstRunEnabled = parseProp(map, textHandler.PROP_FIRST_RUN_ENABLED);
-        if (isFirstRunEnabled) {
-            fileHandler.writeLog("First Run enabled.");
-        } else {
-            fileHandler.writeLog("First Run disabled.");
-        }
-
         // FPS lock
         this.isFpsLockEnabled = parseProp(map, textHandler.PROP_FPS_LOCK_ENABLED);
         if (isFpsLockEnabled) {
@@ -147,14 +138,6 @@ public final class Utils {
 
     public boolean isGodModeEnabled() {
         return isGodModeEnabled;
-    }
-
-    public boolean isFirstRunEnabled() {
-        return isFirstRunEnabled;
-    }
-
-    public void setIsFirstRunEnabled(boolean isFirstRunEnabled) {
-        this.isFirstRunEnabled = isFirstRunEnabled;
     }
 
     public boolean isFpsLockEnabled() {

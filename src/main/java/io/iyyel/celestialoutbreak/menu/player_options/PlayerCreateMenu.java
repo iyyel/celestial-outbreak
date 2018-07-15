@@ -72,7 +72,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
             if (name.length() >= 3 && name.length() <= 8) {
                 isAcceptMode = true;
                 inputHandler.setInputMode(false);
-                statusString = "Happy with \"" + name + "\"? Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to create or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to reset.";
+                statusString = "Create player '" + name + "'? Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to create or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to reset.";
             } else if (name.length() < 3) {
                 statusString = "Name is too small.";
             } else if (name.length() > 8) {
@@ -105,7 +105,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
             isAcceptMode = false;
             isExiting = true;
             inputHandler.setInputMode(false);
-            statusString = name + " created. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to finish.";
+            statusString = "'" + name + "' has been created. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to finish.";
         }
 
         if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
@@ -133,8 +133,10 @@ public final class PlayerCreateMenu extends AbstractMenu {
         drawMenuTitle(g);
         drawSubmenuTitle(textHandler.TITLE_CREATE_PLAYER_SCREEN, g);
 
-        drawCenterString("Enter Player name:", 300, g, msgFont);
-        drawCenterString(inputHandler.getUserInput(), 350, g, inputFont);
+        if (inputHandler.isInputMode()) {
+            drawCenterString("Enter Player name:", 300, g, msgFont);
+            drawCenterString(inputHandler.getUserInput(), 350, g, inputFont);
+        }
 
         drawMenuToolTip(statusString, g);
         drawInfoPanel(g);
@@ -176,18 +178,21 @@ public final class PlayerCreateMenu extends AbstractMenu {
     }
 
     private void exitMenu() {
-        if (utils.isFirstRunEnabled()) {
-            menuUseClip.play(false);
-            utils.setIsFirstRunEnabled(false);
-            gameController.switchState(GameController.State.MAIN_MENU);
-        } else if (!playerDAO.getPlayerList().isEmpty() && gameController.getPrevState() == GameController.State.NONE) {
+        if (playerDAO.getPlayerList().isEmpty() && !playerDAO.getPlayerList().isEmpty()
+                && gameController.getPrevState() == GameController.State.WELCOME_MENU) {
             menuUseClip.play(false);
             gameController.switchState(GameController.State.MAIN_MENU);
         } else if (!playerDAO.getPlayerList().isEmpty()) {
             menuUseClip.play(false);
-            gameController.switchState(gameController.getPrevState());
+            if (gameController.getPrevState() == GameController.State.NONE
+                    || gameController.getPrevState() == GameController.State.WELCOME_MENU) {
+                gameController.switchState(GameController.State.MAIN_MENU);
+            } else {
+                gameController.switchState(gameController.getPrevState());
+            }
         } else {
-            badActionClip.play(false);
+            menuUseClip.play(false);
+            gameController.switchState(GameController.State.WELCOME_MENU);
         }
     }
 

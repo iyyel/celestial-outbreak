@@ -52,6 +52,7 @@ public final class TextHandler {
     public final String GAME_TITLE = "Celestial Outbreak";
     public final String GAME_VERSION = "v0.13a";
     public final String AUTHOR_WEBSITE = "iyyel.io";
+    public final String GITHUB_URL = "github.com/iyyel/celestialoutbreak";
 
     public final String USER_HOME = System.getProperty("user.home");
     public final String USER_OS = System.getProperty("os.name");
@@ -318,15 +319,16 @@ public final class TextHandler {
     public final String menuControlsMsg10 = BTN_CONTROL_PAUSE;
 
     /* OPTIONS_MENU messages. */
-    public final String menuSettingsMsg01 = "All of the configuration related files can be found in the";
-    public final String menuSettingsMsg02 = "following directory '" + GAME_DIR_PATH + "'";
-    public final String menuSettingsMsg03 = "general options can be found in the options.options file,";
-    public final String menuSettingsMsg04 = "in the options directory.";
-    public final String menuSettingsMsg05 = "Level specific options can be found in the various level files";
-    public final String menuSettingsMsg06 = "in the levels directory, e.g. mars_level.options.";
-    public final String menuSettingsMsg07 = "Levels are played in order from the levels.options file.";
-    public final String menuSettingsMsg08 = "If creating custom levels, make sure to add them to this file.";
-    public final String menuSettingsMsg09 = "If more information is needed, visit: https://goo.gl/JxxeL6";
+    public final String menuOptionsMsg01 = "All of the configuration related files can be found in the";
+    public final String menuOptionsMsg02 = "'" + GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME + "' directory, in the OS home directory.";
+    public final String menuOptionsMsg03 = "General options can be found in the '" + OPTIONS_CONFIG_FILE_NAME + "' file,";
+    public final String menuOptionsMsg04 = "in the '" + OPTIONS_DIR_NAME + "' directory.";
+    public final String menuOptionsMsg05 = "Level specific options can be found in the various level files";
+    public final String menuOptionsMsg06 = "in the '" + LEVEL_DIR_NAME + "' directory, e.g. '" + LEVEL_FILE_NAME_MARS + "'.";
+    public final String menuOptionsMsg07 = "Levels are played in order from the '" + LEVEL_CONFIG_FILE_NAME + "' file.";
+    public final String menuOptionsMsg08 = "If creating custom levels, make sure to add them to this file.";
+    public final String menuOptionsMsg09 = "If more information is needed, please visit";
+    public final String menuOptionsMsg10 = "'" + GITHUB_URL + "'.";
 
     /* ABOUT_MENU messages. */
 

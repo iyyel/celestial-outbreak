@@ -33,7 +33,7 @@ public abstract class AbstractMenu {
      * Fonts
      */
     protected final Font titleFont = utils.getGameFont().deriveFont(52F);
-    protected final Font msgFont = utils.getGameFont().deriveFont(28F);
+    protected final Font msgFont = utils.getGameFont().deriveFont(26F);
     protected final Font inputFont = utils.getGameFont().deriveFont(20F);
     protected final Font tooltipFont = utils.getGameFont().deriveFont(18F);
 
