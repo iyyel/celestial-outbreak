@@ -48,7 +48,7 @@ public final class ConfigOptionsMenu extends AbstractMenu {
         g.drawString(textHandler.menuSettingsMsg08, xPos, yPos + yPosSepInc * 3 + yPosInc * 4);
         g.drawString(textHandler.menuSettingsMsg09, xPos, yPos + yPosSepInc * 3 + yPosInc * 5);
 
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }

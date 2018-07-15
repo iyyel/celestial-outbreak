@@ -13,7 +13,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
     private boolean isPlayerCreated = false;
     private boolean isExiting = false;
 
-    private final String INIT_STATUS_STRING = "Press 'OK' button to start entering a player name or 'cancel' to go back.";
+    private final String INIT_STATUS_STRING = "Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to enter a player name or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.";
     private String statusString = INIT_STATUS_STRING;
 
     public PlayerCreateMenu(GameController gameController) {
@@ -61,7 +61,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
         if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
             resetInputTimer();
             inputHandler.setInputMode(true);
-            statusString = "Please type a player name. Press 'Use' when done.";
+            statusString = "Please type a player name. Press '" + textHandler.BTN_CONTROL_USE + "' when done.";
         }
 
         // Stage 2
@@ -72,7 +72,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
             if (name.length() >= 3 && name.length() <= 8) {
                 isAcceptMode = true;
                 inputHandler.setInputMode(false);
-                statusString = "Happy with '" + name + "'? Press 'OK' to create or 'Cancel' to reset.";
+                statusString = "Happy with \"" + name + "\"? Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to create or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to reset.";
             } else if (name.length() < 3) {
                 statusString = "Name is too small.";
             } else if (name.length() > 8) {
@@ -105,7 +105,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
             isAcceptMode = false;
             isExiting = true;
             inputHandler.setInputMode(false);
-            statusString = name + " created. Press 'OK' to finish.";
+            statusString = name + " created. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to finish.";
         }
 
         if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
@@ -131,17 +131,13 @@ public final class PlayerCreateMenu extends AbstractMenu {
     public void render(Graphics2D g) {
         g.setColor(menuFontColor);
         drawMenuTitle(g);
-
         drawSubmenuTitle(textHandler.TITLE_CREATE_PLAYER_SCREEN, g);
 
         drawCenterString("Enter Player name:", 300, g, msgFont);
-
         drawCenterString(inputHandler.getUserInput(), 350, g, inputFont);
 
-        g.setFont(msgFont);
-        drawCenterString(statusString, 450, g, inputFont);
-
-        drawInformationPanel(g);
+        drawMenuToolTip(statusString, g);
+        drawInfoPanel(g);
     }
 
     private void createPlayer(String name) {
@@ -180,11 +176,18 @@ public final class PlayerCreateMenu extends AbstractMenu {
     }
 
     private void exitMenu() {
-        menuUseClip.play(false);
         if (utils.isFirstRunEnabled()) {
+            menuUseClip.play(false);
+            utils.setIsFirstRunEnabled(false);
             gameController.switchState(GameController.State.MAIN_MENU);
-        } else if (playerDAO.getPlayerList().size() != 0) {
+        } else if (!playerDAO.getPlayerList().isEmpty() && gameController.getPrevState() == GameController.State.NONE) {
+            menuUseClip.play(false);
+            gameController.switchState(GameController.State.MAIN_MENU);
+        } else if (!playerDAO.getPlayerList().isEmpty()) {
+            menuUseClip.play(false);
             gameController.switchState(gameController.getPrevState());
+        } else {
+            badActionClip.play(false);
         }
     }
 

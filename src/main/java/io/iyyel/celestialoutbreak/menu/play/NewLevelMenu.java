@@ -52,7 +52,7 @@ public final class NewLevelMenu extends AbstractMenu {
             //drawMenuMessage(activeLevel.getDesc(), g, 80,gameController.getHeight() / 2, 20, 20, 60);
         }
 
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }

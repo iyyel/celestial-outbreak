@@ -32,7 +32,7 @@ public final class AboutMenu extends AbstractMenu {
 
         g.setFont(msgFont);
 
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }

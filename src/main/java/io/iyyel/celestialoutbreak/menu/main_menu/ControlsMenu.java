@@ -51,7 +51,7 @@ public final class ControlsMenu extends AbstractMenu {
         g.drawString(textHandler.menuControlsMsg09, xPos, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
         g.drawString(textHandler.menuControlsMsg10, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
 
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }

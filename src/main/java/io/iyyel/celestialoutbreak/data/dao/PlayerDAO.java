@@ -41,12 +41,16 @@ public final class PlayerDAO implements IPlayerDAO {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             this.playerDTO = (PlayerDTO) ois.readObject();
 
-            if (utils.isVerboseLogEnabled())
-                fileHandler.writeLog("Successfully loaded '" + textHandler.PLAYER_BIN_FILE_NAME + "'!");
+            if (utils.isVerboseLogEnabled()) {
+                fileHandler.writeLog("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
+            }
 
+            ois.close();
         } catch (FileNotFoundException e) {
-            if (utils.isVerboseLogEnabled())
-                fileHandler.writeLog("Failed to load '" + textHandler.PLAYER_BIN_FILE_NAME + "'. Creating new one!");
+            if (utils.isVerboseLogEnabled()) {
+                fileHandler.writeLog("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
+                fileHandler.writeLog("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
+            }
 
             playerDTO = new PlayerDTO();
             savePlayerDTO();
@@ -62,52 +66,65 @@ public final class PlayerDAO implements IPlayerDAO {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             oos.writeObject(playerDTO);
             oos.close();
+
+            if (utils.isVerboseLogEnabled()) {
+                fileHandler.writeLog("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'");
+            }
         } catch (IOException e) {
             throw new PlayerDAOException(e.getMessage());
         }
     }
 
     @Override
-    public void addPlayer(String name) throws PlayerDAOException, PlayerDAOMaxNameException, PlayerDAOMinNameException {
-        if (!checkNameMaxBounds(name))
+    public void addPlayer(String name) throws PlayerDAOException {
+        if (!checkNameMaxBounds(name)) {
             throw new PlayerDAOMaxNameException("'" + name + "' is too long!");
+        }
 
-        if (!checkNameMinBounds(name))
+        if (!checkNameMinBounds(name)) {
             throw new PlayerDAOMinNameException("'" + name + "' is too small!");
+        }
 
-        if (containsPlayer(name))
+        if (containsPlayer(name)) {
             throw new PlayerDAOException("'" + name + "' is an existing player!");
+        }
 
-        if (playerDTO.getPlayerList().size() >= 25)
+        if (playerDTO.getPlayerList().size() >= 25) {
             throw new PlayerDAOLimitException("Player limit reached!");
+        }
 
         playerDTO.getPlayerList().add(name);
     }
 
     @Override
     public void removePlayer(String name) throws PlayerDAOException {
+        if (!containsPlayer(name)) {
+            throw new PlayerDAOException(name + " not found!");
+        }
         playerDTO.getPlayerList().remove(name);
     }
 
     @Override
     public void removePlayer(int index) throws PlayerDAOException {
-        if (index > -1 && index <= playerDTO.getPlayerList().size() - 1) {
-            playerDTO.getPlayerList().remove(index);
-        } else {
+        if (index < 0 || index > playerDTO.getPlayerList().size() - 1) {
             throw new PlayerDAOException(index + " not found!");
         }
+        playerDTO.getPlayerList().remove(index);
     }
 
     @Override
     public String getPlayer(int index) throws PlayerDAOException {
+        if (index < 0 || index > playerDTO.getPlayerList().size() - 1) {
+            throw new PlayerDAOException(index + " not found!");
+        }
         return playerDTO.getPlayerList().get(index);
     }
 
     @Override
     public void selectPlayer(String name) throws PlayerDAOException {
-        if (!containsPlayer(name))
+        if (!containsPlayer(name)) {
             throw new PlayerDAOException("'" + name + "' is not an existing player!");
-
+        }
         playerDTO.setSelectedPlayer(name);
     }
 
@@ -118,9 +135,9 @@ public final class PlayerDAO implements IPlayerDAO {
 
     @Override
     public String getSelectedPlayer() throws PlayerDAOException {
-        if (playerDTO.getSelectedPlayer() == null)
+        if (playerDTO.getSelectedPlayer() == null) {
             throw new PlayerDAOException("No player is selected!");
-
+        }
         return playerDTO.getSelectedPlayer();
     }
 

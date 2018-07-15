@@ -153,10 +153,8 @@ public final class PlayerDeleteMenu extends AbstractMenu {
             g.draw(playerRects[i]);
         }
 
-        g.setColor(menuFontColor);
-        drawCenterString("Press '" + textHandler.BTN_CONTROL_USE + "' to mark a player for deletion. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to delete marked players.", 665, g, tooltipFont);
-
-        drawInformationPanel(g);
+        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to mark a player for deletion. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to delete marked players.", g);
+        drawInfoPanel(g);
     }
 
     private void updatePlayerData() {

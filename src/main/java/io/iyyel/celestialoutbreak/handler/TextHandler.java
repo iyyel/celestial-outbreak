@@ -7,10 +7,11 @@ import java.util.Date;
 
 public final class TextHandler {
 
+    /* Log date format. */
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
     /* Singleton TextHandler instance. */
     private static TextHandler instance;
-
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     /*
      * Private constructor so that TextHandler can't
@@ -46,11 +47,15 @@ public final class TextHandler {
     private final String fs_jar = "/";
 
     /*
-     * Important gameController strings.
+     * Important game strings.
      */
     public final String GAME_TITLE = "Celestial Outbreak";
     public final String GAME_VERSION = "v0.13a";
     public final String AUTHOR_WEBSITE = "iyyel.io";
+
+    public final String USER_HOME = System.getProperty("user.home");
+    public final String USER_OS = System.getProperty("os.name");
+    public final String USER_JRE_ARCH = System.getProperty("os.arch");
 
     /*
      * Menu button names.
@@ -95,18 +100,18 @@ public final class TextHandler {
     /*
      * Log announcement messages.
      */
-    public final String START_NEW_APP_INSTANCE = "New " + GAME_TITLE + " " + GAME_VERSION +
-            " instance started at " + getDateTime() + " on " + System.getProperty("os.name") + ".";
+    public final String GAME_INIT_STARTED = "Started " + GAME_TITLE + " " + GAME_VERSION +
+            " initialization at " + getDateTime() + " on " + USER_OS + " with " + USER_JRE_ARCH + " JRE";
 
-    public final String SUCCESS_NEW_APP_INSTANCE = "Finished " + GAME_TITLE + " " + GAME_VERSION +
-            " initialization at " + getDateTime() + " on " + System.getProperty("os.name") + ".";
+    public final String GAME_INIT_FINISHED = "Finished " + GAME_TITLE + " " + GAME_VERSION +
+            " initialization at " + getDateTime() + " on " + USER_OS + " with " + USER_JRE_ARCH + " JRE";
 
     /*
      * Client local gameController directory.
      */
     public final String GAME_TOP_DIR_NAME = "." + AUTHOR_WEBSITE;
     public final String GAME_DIR_NAME = GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
-    public final String GAME_DIR_PATH = System.getProperty("user.home") + fs + GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME;
+    public final String GAME_DIR_PATH = USER_HOME + fs + GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME;
 
     /*
      * Local configuration directories.
@@ -121,6 +126,9 @@ public final class TextHandler {
 
     public final String LOG_FILE_NAME = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_log.txt";
     public final String LOG_FILE_PATH = LOG_DIR_PATH + fs + LOG_FILE_NAME;
+
+    public final String LOG_SEPARATOR = "########################################################################" +
+            "#########################################################################";
 
     public final String logMsgPrefix() {
         return "[LOG " + dateFormat.format(new Date()) + "]: ";
@@ -261,35 +269,35 @@ public final class TextHandler {
     /*
      * Level properties.
      */
-    public final String PROP_LEVEL_NAME = "LevelName";
-    public final String PROP_LEVEL_DESC = "LevelDesc";
-    public final String PROP_LEVEL_COLOR_HEX = "LevelColorHex";
+    public final String PROP_LEVEL_NAME = "LEVEL_NAME";
+    public final String PROP_LEVEL_DESC = "LEVEL_DESCRIPTION";
+    public final String PROP_LEVEL_COLOR_HEX = "LEVEL_COLOR_HEX";
 
     /* Paddle. */
-    public final String PROP_PADDLE_POS_X_OFFSET = "LevelPaddlePosXOffset";
-    public final String PROP_PADDLE_POS_Y_OFFSET = "LevelPaddlePosYOffset";
-    public final String PROP_PADDLE_WIDTH = "LevelPaddleWidth";
-    public final String PROP_PADDLE_HEIGHT = "LevelPaddleHeight";
-    public final String PROP_PADDLE_SPEED = "LevelPaddleSpeed";
-    public final String PROP_PADDLE_COLOR_HEX = "LevelPaddleColorHex";
+    public final String PROP_PADDLE_POS_X_OFFSET = "LEVEL_PADDLE_POS_X_OFFSET";
+    public final String PROP_PADDLE_POS_Y_OFFSET = "LEVEL_PADDLE_POS_Y_OFFSET";
+    public final String PROP_PADDLE_WIDTH = "LEVEL_PADDLE_WIDTH";
+    public final String PROP_PADDLE_HEIGHT = "LEVEL_PADDLE_HEIGHT";
+    public final String PROP_PADDLE_SPEED = "LEVEL_PADDLE_SPEED";
+    public final String PROP_PADDLE_COLOR_HEX = "LEVEL_PADDLE_COLOR_HEX";
 
     /* Ball. */
-    public final String PROP_BALL_POS_X_OFFSET = "LevelBallPosXOffset";
-    public final String PROP_BALL_POS_Y_OFFSET = "LevelBallPosYOffset";
-    public final String PROP_BALL_SIZE = "LevelBallSize";
-    public final String PROP_BALL_SPEED = "LevelBallSpeed";
-    public final String PROP_BALL_COLOR_HEX = "LevelBallColorHex";
+    public final String PROP_BALL_POS_X_OFFSET = "LEVEL_BALL_POS_X_OFFSET";
+    public final String PROP_BALL_POS_Y_OFFSET = "LEVEL_BALL_POS_Y_OFFSET";
+    public final String PROP_BALL_SIZE = "LEVEL_BALL_SIZE";
+    public final String PROP_BALL_SPEED = "LEVEL_BALL_SPEED";
+    public final String PROP_BALL_COLOR_HEX = "LEVEL_BALL_COLOR_HEX";
 
     /* BlockList. */
-    public final String PROP_BLOCKLIST_BLOCK_AMOUNT = "LevelBlockListBlockAmount";
-    public final String PROP_BLOCKLIST_POS_X = "LevelBlockListXPos";
-    public final String PROP_BLOCKLIST_POS_Y = "LevelBlockListYPos";
-    public final String PROP_BLOCKLIST_BLOCK_WIDTH = "LevelBlockListBlockWidth";
-    public final String PROP_BLOCKLIST_BLOCK_HEIGHT = "LevelBlockListBlockHeight";
-    public final String PROP_BLOCKLIST_BLOCK_SPACING = "LevelBlockListBlockSpacing";
+    public final String PROP_BLOCKLIST_POS_X = "LEVEL_BLOCKLIST_X_POS";
+    public final String PROP_BLOCKLIST_POS_Y = "LEVEL_BLOCKLIST_Y_POS";
+    public final String PROP_BLOCKLIST_BLOCK_AMOUNT = "LEVEL_BLOCKLIST_BLOCK_AMOUNT";
+    public final String PROP_BLOCKLIST_BLOCK_WIDTH = "LEVEL_BLOCKLIST_BLOCK_WIDTH";
+    public final String PROP_BLOCKLIST_BLOCK_HEIGHT = "LEVEL_BLOCKLIST_BLOCK_HEIGHT";
+    public final String PROP_BLOCKLIST_BLOCK_SPACING = "LEVEL_BLOCKLIST_BLOCK_SPACING";
 
     /* GamePanel. */
-    public final String PROP_GAME_PANEL_COLOR_HEX = "LevelGamePanelColorHex";
+    public final String PROP_GAME_PANEL_COLOR_HEX = "LEVEL_GAME_PANEL_COLOR_HEX";
 
     /*
      * Menu messages.
@@ -446,7 +454,7 @@ public final class TextHandler {
      * Private helper methods.
      */
     private final String getDateTime() {
-        return new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
+        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
     }
 
 }

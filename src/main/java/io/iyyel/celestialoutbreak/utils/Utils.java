@@ -122,19 +122,19 @@ public final class Utils {
         }
 
         this.menuFontColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_FONT_COLOR_HEX)));
-        fileHandler.writeLog("menuFontColor: " + menuFontColor);
+        fileHandler.writeLog(textHandler.PROP_MENU_FONT_COLOR_HEX + ": (" + menuFontColor.getRed() + ", " + menuFontColor.getGreen() + ", " + menuFontColor.getBlue() + ")");
 
         this.menuBtnColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_COLOR_HEX)));
-        fileHandler.writeLog("menuBtnColor: " + menuBtnColor);
+        fileHandler.writeLog(textHandler.PROP_MENU_BTN_COLOR_HEX + ": (" + menuBtnColor.getRed() + ", " + menuBtnColor.getGreen() + ", " + menuBtnColor.getBlue() + ")");
 
         this.menuBtnSelectedColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_SELECTED_COLOR_HEX)));
-        fileHandler.writeLog("menuBtnSelectedColor: " + menuBtnSelectedColor);
+        fileHandler.writeLog(textHandler.PROP_MENU_BTN_SELECTED_COLOR_HEX + ": (" + menuBtnSelectedColor.getRed() + ", " + menuBtnSelectedColor.getGreen() + ", " + menuBtnSelectedColor.getBlue() + ")");
 
         this.menuBtnPlayerSelectedColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX)));
-        fileHandler.writeLog("menuBtnPlayerSelectedColor: " + menuBtnPlayerSelectedColor);
+        fileHandler.writeLog(textHandler.PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX + ": (" + menuBtnPlayerSelectedColor.getRed() + ", " + menuBtnPlayerSelectedColor.getGreen() + ", " + menuBtnPlayerSelectedColor.getBlue() + ")");
 
         this.menuBtnPlayerDeletedColor = new Color(Integer.decode(map.get(textHandler.PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX)));
-        fileHandler.writeLog("menuBtnPlayerDeletedColor: " + menuBtnPlayerDeletedColor);
+        fileHandler.writeLog(textHandler.PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX + ": (" + menuBtnPlayerDeletedColor.getRed() + ", " + menuBtnPlayerDeletedColor.getGreen() + ", " + menuBtnPlayerDeletedColor.getBlue() + ")");
     }
 
     public boolean isVerboseLogEnabled() {
@@ -151,6 +151,10 @@ public final class Utils {
 
     public boolean isFirstRunEnabled() {
         return isFirstRunEnabled;
+    }
+
+    public void setIsFirstRunEnabled(boolean isFirstRunEnabled) {
+        this.isFirstRunEnabled = isFirstRunEnabled;
     }
 
     public boolean isFpsLockEnabled() {

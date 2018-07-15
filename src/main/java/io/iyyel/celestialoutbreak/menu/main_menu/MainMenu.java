@@ -152,7 +152,7 @@ public final class MainMenu extends AbstractMenu {
         g.setColor(rectColors[5]);
         g.draw(exitRect);
 
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
     private void updatePlayerDTO() {

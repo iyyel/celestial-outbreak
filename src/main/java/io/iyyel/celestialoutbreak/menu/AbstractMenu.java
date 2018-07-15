@@ -90,7 +90,7 @@ public abstract class AbstractMenu {
         drawCenterString(msg, gameController.getHeight() / 2 - 170, g, subTitleFont);
     }
 
-    public final void drawInformationPanel(Graphics2D g) {
+    public final void drawInfoPanel(Graphics2D g) {
         g.setColor(menuFontColor);
         g.setFont(infoPanelFont);
 
@@ -107,6 +107,11 @@ public abstract class AbstractMenu {
         g.setColor(menuFontColor);
         g.setFont(titleFont);
         drawCenterString(textHandler.GAME_TITLE, 100, g, titleFont);
+    }
+
+    protected void drawMenuToolTip(String msg, Graphics2D g) {
+        g.setColor(menuFontColor);
+        drawCenterString(msg, 665, g, tooltipFont);
     }
 
     public void resetInputTimer() {

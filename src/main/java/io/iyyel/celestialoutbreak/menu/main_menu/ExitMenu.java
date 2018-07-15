@@ -39,7 +39,7 @@ public final class ExitMenu extends AbstractMenu {
         drawMenuTitle(g);
         drawSubmenuTitle(textHandler.TITLE_EXIT_SCREEN, g);
         drawCenterString("Exit " + textHandler.GAME_TITLE + "?", gameController.getHeight() / 2, g, msgFont);
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }

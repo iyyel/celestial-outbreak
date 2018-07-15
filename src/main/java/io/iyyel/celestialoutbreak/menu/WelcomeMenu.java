@@ -98,7 +98,7 @@ public final class WelcomeMenu extends AbstractMenu {
         g.setColor(rectColors[1]);
         g.draw(exitRect);
 
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }

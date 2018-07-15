@@ -129,10 +129,8 @@ public final class PlayerSelectMenu extends AbstractMenu {
             g.draw(playerRects[i]);
         }
 
-        g.setColor(menuFontColor);
-        drawCenterString("Press '" + textHandler.BTN_CONTROL_USE + "' to select a player.", 665, g, tooltipFont);
-
-        drawInformationPanel(g);
+        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to select a player.", g);
+        drawInfoPanel(g);
     }
 
     private void updatePlayerData() {

@@ -150,8 +150,6 @@ public class GameController extends Canvas implements Runnable {
      * Initialize above objects here. Start gameController loop, etc.
      */
     public GameController() {
-        fileHandler.writeLog(textHandler.START_NEW_APP_INSTANCE);
-
         /* UI Look and Feel */
         EventQueue.invokeLater(() -> {
             try {
@@ -214,20 +212,22 @@ public class GameController extends Canvas implements Runnable {
         gameFrame.addKeyListener(inputHandler);
         addKeyListener(inputHandler);
 
-        utils.createDemoPlayers((PlayerDAO) playerDAO);
+        //utils.createDemoPlayers((PlayerDAO) playerDAO);
 
         /* If first run is enabled, set it to false */
         if (utils.isFirstRunEnabled()) {
-            switchState(State.WELCOME_MENU);
+            state = State.WELCOME_MENU;
             fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_FIRST_RUN_ENABLED, "false");
         } else if (playerDAO.getPlayerList().isEmpty()) {
             /* If its not the first run, but there's no players, go new player menu */
-            switchState(State.PLAYER_CREATE_SCREEN);
+            state = State.PLAYER_CREATE_SCREEN;
         }
 
         /* Initialize the JFrame and start the gameController loop */
         initFrame();
-        fileHandler.writeLog(textHandler.SUCCESS_NEW_APP_INSTANCE);
+
+        /* Log that the game has been initialized */
+        fileHandler.writeLog(textHandler.GAME_INIT_FINISHED);
     }
 
 
@@ -429,7 +429,7 @@ public class GameController extends Canvas implements Runnable {
      * Change the current state of the gameController.
      */
     public void switchState(State state) {
-        if (state == null) {
+        if (state == null || state == State.NONE) {
             return;
         }
         prevState = this.state;

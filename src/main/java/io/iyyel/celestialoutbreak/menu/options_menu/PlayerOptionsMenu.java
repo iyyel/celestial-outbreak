@@ -116,7 +116,7 @@ public final class PlayerOptionsMenu extends AbstractMenu {
         g.setColor(rectColors[2]);
         g.draw(deleteRect);
 
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }

@@ -43,7 +43,7 @@ public final class PauseMenu extends AbstractMenu {
         drawMenuTitle(g);
         drawSubmenuTitle(textHandler.TITLE_PAUSE_SCREEN, g);
         drawCenterString(textHandler.GAME_TITLE + " is paused.", 350, g, msgFont);
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }

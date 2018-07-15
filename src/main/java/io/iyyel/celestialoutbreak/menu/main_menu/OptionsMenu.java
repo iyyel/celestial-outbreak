@@ -106,7 +106,7 @@ public final class OptionsMenu extends AbstractMenu {
         g.setColor(rectColors[1]);
         g.draw(configurationRect);
 
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }

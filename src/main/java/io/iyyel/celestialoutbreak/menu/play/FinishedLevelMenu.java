@@ -37,7 +37,7 @@ public final class FinishedLevelMenu extends AbstractMenu {
         drawCenterString(prevLevelName + " has been obliterated", 300, g, msgFont);
         drawCenterString(nextLevelName + " is the next awaiting challenge", 350, g, msgFont);
         drawCenterString("Are you prepared?", 450, g, msgFont);
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
     public void updateLevelNames(String prevLevelName, String nextLevelName) {

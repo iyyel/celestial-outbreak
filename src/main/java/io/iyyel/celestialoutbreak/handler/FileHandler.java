@@ -112,8 +112,11 @@ public final class FileHandler {
 
             for (String key : p.stringPropertyNames()) {
                 String value = p.getProperty(key);
-                map.put(key, value);
-                writeLog(textHandler.successReadPropertyMsg(key, value, filePath));
+                value = removeComments(value);
+                if (value != null) {
+                    map.put(key, value);
+                    writeLog(textHandler.successReadPropertyMsg(key, value, filePath));
+                }
             }
 
             writeLog(textHandler.finishReadPropertiesMsg(filePath));
@@ -144,6 +147,11 @@ public final class FileHandler {
         }
 
         int index = 0;
+
+        if (lines == null) {
+            writeLog("FAILED TO WRITE PROPERTY TO FILE: " + filePath);
+            return;
+        }
 
         for (int i = 0; i < lines.size(); i++) {
             if (lines.get(i).contains(pKey)) {
@@ -176,12 +184,8 @@ public final class FileHandler {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = br.readLine()) != null) {
-                /*
-                 * Ignore lines containing comments starting with #
-                 * and only add the line if the length of it is greater than zero,
-                 * to make sure that there actually is a worthy line to read.
-                 */
-                if (!line.contains("#") && line.length() > 0) {
+                line = removeComments(line);
+                if (line != null) {
                     lineList.add(line);
                     writeLog(textHandler.successReadLineMsg(line, filePath));
                 }
@@ -201,14 +205,14 @@ public final class FileHandler {
      */
     private void createDir(String dirPath) {
         File dir = new File(dirPath);
-
         if (!dir.exists()) {
             try {
                 boolean result = dir.mkdirs();
-                if (result)
+                if (result) {
                     writeLog(textHandler.successCreatedDirMsg(dirPath));
-                else
+                } else {
                     writeLog(textHandler.errorCreatingDirMsg(dirPath));
+                }
             } catch (SecurityException e) {
                 writeLog(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)));
             }
@@ -252,7 +256,7 @@ public final class FileHandler {
         try {
             if (file.exists()) {
                 try (PrintWriter out = new PrintWriter(new FileOutputStream(file, true))) {
-                    out.append(msg + "\r\n");
+                    out.append(msg).append("\r\n");
                 }
             } else {
                 try (PrintWriter out = new PrintWriter(filePath)) {
@@ -273,6 +277,40 @@ public final class FileHandler {
         msg = textHandler.logMsgPrefix() + msg;
         System.out.println(msg);
         writeToFile(msg, textHandler.LOG_FILE_PATH);
+    }
+
+    /*
+     * Remove comments from String line.
+     */
+    private String removeComments(String line) {
+        if (line.trim().length() == 0) {
+            return null;
+        }
+
+        int nextWhitespace = -1;
+        for (int i = 0; i < line.length(); i++) {
+            if (Character.isWhitespace(line.charAt(i))) {
+                nextWhitespace = i;
+                break;
+            }
+        }
+
+        int nextCommentIndex = line.indexOf('#');
+
+        if (nextCommentIndex == 0) {
+            return null;
+        }
+
+        if (nextWhitespace == -1) {
+            return line;
+        }
+
+        if (line.length() >= nextWhitespace + 1 && nextCommentIndex > 0) {
+            line = line.substring(0, nextWhitespace);
+            return line;
+        } else {
+            return line;
+        }
     }
 
 }

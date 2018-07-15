@@ -31,7 +31,7 @@ public final class ScoresMenu extends AbstractMenu {
 
         g.setFont(msgFont);
 
-        drawInformationPanel(g);
+        drawInfoPanel(g);
     }
 
 }
