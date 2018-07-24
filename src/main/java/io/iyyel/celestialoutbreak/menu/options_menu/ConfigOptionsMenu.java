@@ -22,6 +22,11 @@ public final class ConfigOptionsMenu extends AbstractMenu {
         }
     }
 
+    int xPos = 80;
+    int yPos = 260;
+    int yPosInc = 35;
+    int yPosSepInc = 70;
+
     @Override
     public void render(Graphics2D g) {
         g.setColor(menuFontColor);
@@ -30,24 +35,19 @@ public final class ConfigOptionsMenu extends AbstractMenu {
         drawSubmenuTitle(textHandler.TITLE_CONFIGURATION_OPTIONS_MENU, g);
         g.setFont(msgFont);
 
-        int xPos = 80;
-        int yPos = 260;
-        int yPosInc = 35;
-        int yPosSepInc = 70;
+        g.drawString(textHandler.menuConfigMsg01, xPos, yPos);
+        g.drawString(textHandler.menuConfigMsg02, xPos, yPos + yPosInc);
 
-        g.drawString(textHandler.menuOptionsMsg01, xPos, yPos);
-        g.drawString(textHandler.menuOptionsMsg02, xPos, yPos + yPosInc);
+        g.drawString(textHandler.menuConfigMsg03, xPos, yPos + yPosSepInc + yPosInc);
+        g.drawString(textHandler.menuConfigMsg04, xPos, yPos + yPosSepInc + yPosInc * 2);
 
-        g.drawString(textHandler.menuOptionsMsg03, xPos, yPos + yPosSepInc + yPosInc);
-        g.drawString(textHandler.menuOptionsMsg04, xPos, yPos + yPosSepInc + yPosInc * 2);
+        g.drawString(textHandler.menuConfigMsg05, xPos, yPos + yPosSepInc * 2 + yPosInc * 2);
+        g.drawString(textHandler.menuConfigMsg06, xPos, yPos + yPosSepInc * 2 + yPosInc * 3);
 
-        g.drawString(textHandler.menuOptionsMsg05, xPos, yPos + yPosSepInc * 2 + yPosInc * 2);
-        g.drawString(textHandler.menuOptionsMsg06, xPos, yPos + yPosSepInc * 2 + yPosInc * 3);
-
-        g.drawString(textHandler.menuOptionsMsg07, xPos, yPos + yPosSepInc * 3 + yPosInc * 3);
-        g.drawString(textHandler.menuOptionsMsg08, xPos, yPos + yPosSepInc * 3 + yPosInc * 4);
-        g.drawString(textHandler.menuOptionsMsg09, xPos, yPos + yPosSepInc * 3 + yPosInc * 5);
-        g.drawString(textHandler.menuOptionsMsg10, xPos, yPos + yPosSepInc * 3 + yPosInc * 6);
+        g.drawString(textHandler.menuConfigMsg07, xPos, yPos + yPosSepInc * 3 + yPosInc * 3);
+        g.drawString(textHandler.menuConfigMsg08, xPos, yPos + yPosSepInc * 3 + yPosInc * 4);
+        g.drawString(textHandler.menuConfigMsg09, xPos, yPos + yPosSepInc * 3 + yPosInc * 5);
+        g.drawString(textHandler.menuConfigMsg10, xPos, yPos + yPosSepInc * 3 + yPosInc * 6);
 
         drawInfoPanel(g);
     }

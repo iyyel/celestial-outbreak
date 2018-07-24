@@ -319,19 +319,28 @@ public final class TextHandler {
     public final String menuControlsMsg10 = BTN_CONTROL_PAUSE;
 
     /* OPTIONS_MENU messages. */
-    public final String menuOptionsMsg01 = "All of the configuration related files can be found in the";
-    public final String menuOptionsMsg02 = "'" + GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME + "' directory, in the OS home directory.";
-    public final String menuOptionsMsg03 = "General options can be found in the '" + OPTIONS_CONFIG_FILE_NAME + "' file,";
-    public final String menuOptionsMsg04 = "in the '" + OPTIONS_DIR_NAME + "' directory.";
-    public final String menuOptionsMsg05 = "Level specific options can be found in the various level files";
-    public final String menuOptionsMsg06 = "in the '" + LEVEL_DIR_NAME + "' directory, e.g. '" + LEVEL_FILE_NAME_MARS + "'.";
-    public final String menuOptionsMsg07 = "Levels are played in order from the '" + LEVEL_CONFIG_FILE_NAME + "' file.";
-    public final String menuOptionsMsg08 = "If creating custom levels, make sure to add them to this file.";
-    public final String menuOptionsMsg09 = "If more information is needed, please visit";
-    public final String menuOptionsMsg10 = "'" + GITHUB_URL + "'.";
+    public final String menuConfigMsg01 = "All of the configuration related files can be found in the";
+    public final String menuConfigMsg02 = GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME + " directory, in the OS home directory.";
+    public final String menuConfigMsg03 = "General options can be found in the " + OPTIONS_CONFIG_FILE_NAME + " file,";
+    public final String menuConfigMsg04 = "in the " + OPTIONS_DIR_NAME + " directory.";
+    public final String menuConfigMsg05 = "Level specific options can be found in the various level files";
+    public final String menuConfigMsg06 = "in the " + LEVEL_DIR_NAME + " directory, e.g. " + LEVEL_FILE_NAME_MARS + ".";
+    public final String menuConfigMsg07 = "Levels are played in order from the " + LEVEL_CONFIG_FILE_NAME + " file.";
+    public final String menuConfigMsg08 = "If creating custom levels, make sure to add them to this file.";
+    public final String menuConfigMsg09 = "If more information is needed, please visit";
+    public final String menuConfigMsg10 = GITHUB_URL + ".";
 
     /* ABOUT_MENU messages. */
-
+    public final String aboutMenuMsg01 = "Celestial Outbreak is a Open Source, Breakout-like game with";
+    public final String aboutMenuMsg02 = "focus on game customization.";
+    public final String aboutMenuMsg03 = "The game has been a software development side project,";
+    public final String aboutMenuMsg04 = "and the latest version of the game can be found at";
+    public final String aboutMenuMsg05 = GITHUB_URL + ".";
+    public final String aboutMenuMsg06 = "The game plays like your typical Breakout game, with a few";
+    public final String aboutMenuMsg07 = "additions such as power ups, custom levels and player scores.";
+    public final String aboutMenuMsg08 = "If any help is needed, please look at the " + TITLE_CONTROLS_MENU + " and";
+    public final String aboutMenuMsg09 = TITLE_CONFIGURATION_OPTIONS_MENU + " menus for more information.";
+    public final String aboutMenuMsg10 = "Thanks for playing!";
 
     /* EXIT_MENU messages. */
 

@@ -116,7 +116,8 @@ public class GameController extends Canvas implements Runnable {
      *           PLAYER_DELETE_SCREEN,
      *       CONFIG_OPTIONS_SCREEN,
      *   ABOUT_SCREEN,
-     *   EXIT_SCREEN
+     *   EXIT_SCREEN,
+     *   ERROR_SCREEN
      */
     public enum State {
         NONE,
@@ -135,7 +136,8 @@ public class GameController extends Canvas implements Runnable {
         PLAYER_DELETE_SCREEN,
         CONFIG_OPTIONS_SCREEN,
         ABOUT_SCREEN,
-        EXIT_SCREEN
+        EXIT_SCREEN,
+        ERROR_SCREEN
     }
 
     /*
@@ -167,22 +169,17 @@ public class GameController extends Canvas implements Runnable {
             e.printStackTrace();
         }
 
-        /* Set dimensions of the JFrame and Canvas */
-        Dimension size = new Dimension(SCREEN_WIDTH * SCREEN_SCALE, SCREEN_HEIGHT * SCREEN_SCALE);
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-        setSize(size);
-
         /* Create JFrame */
         gameFrame = new JFrame();
-        gameFrame.setSize(size);
 
-        /* Game Icon */
-        URL url = ClassLoader.getSystemResource("icon/app_icon_small.png");
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Image img = kit.createImage(url);
-        gameFrame.setIconImage(img);
+        /* Set dimensions of the JFrame and Canvas */
+        Dimension size = new Dimension(SCREEN_WIDTH * SCREEN_SCALE, SCREEN_HEIGHT * SCREEN_SCALE);
+
+        /* Initialize the canvas. */
+        initCanvas(size);
+
+        /* Initialize game icon. */
+        initGameIcon();
 
         /* Initialize levelHandler */
         levelHandler = new LevelHandler(0, this);
@@ -532,6 +529,24 @@ public class GameController extends Canvas implements Runnable {
      */
     public State getPrevState() {
         return prevState;
+    }
+
+    private void initGameIcon() {
+        /* Game Icon */
+        URL url = ClassLoader.getSystemResource("icon/app_icon_small.png");
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image img = kit.createImage(url);
+        gameFrame.setIconImage(img);
+    }
+
+    private void initCanvas(Dimension size) {
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setSize(size);
+        if (gameFrame != null) {
+            gameFrame.setSize(size);
+        }
     }
 
 }
