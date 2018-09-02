@@ -74,6 +74,7 @@ public final class TextHandler {
     public final String BTN_CREATE_PLAYER_TEXT = "CREATE PLAYER";
     public final String BTN_DELETE_DELETE_TEXT = "DELETE PLAYER";
 
+    public final String BTN_CONTROL_MOV_NAV = "WASD/Arrow keys";
     public final String BTN_CONTROL_FORWARD_OK = "z";
     public final String BTN_CONTROL_BACK_CANCEL = "x";
     public final String BTN_CONTROL_USE = "Space";
@@ -254,7 +255,6 @@ public final class TextHandler {
     public final String PROP_VERBOSE_LOG_ENABLED = "VERBOSE_LOG_ENABLED";
     public final String PROP_SOUND_ENABLED = "SOUND_ENABLED";
     public final String PROP_GOD_MODE_ENABLED = "GOD_MODE_ENABLED";
-    public final String PROP_FIRST_RUN_ENABLED = "FIRST_RUN_ENABLED";
     public final String PROP_FPS_LOCK_ENABLED = "FPS_LOCK_ENABLED";
     public final String PROP_ANTI_ALIASING_ENABLED = "ANTI_ALIASING_ENABLED";
 
@@ -308,7 +308,7 @@ public final class TextHandler {
 
     /* CONTROLS_MENU messages. */
     public final String menuControlsMsg01 = "Movement/Navigation:";
-    public final String menuControlsMsg02 = "WASD/Arrow keys";
+    public final String menuControlsMsg02 = BTN_CONTROL_MOV_NAV;
     public final String menuControlsMsg03 = "Forward/OK:";
     public final String menuControlsMsg04 = BTN_CONTROL_FORWARD_OK;
     public final String menuControlsMsg05 = "Back/Cancel:";
@@ -320,8 +320,8 @@ public final class TextHandler {
 
     /* OPTIONS_MENU messages. */
     public final String menuConfigMsg01 = "All of the configuration related files can be found in the";
-    public final String menuConfigMsg02 = GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME + " directory, in the OS home directory.";
-    public final String menuConfigMsg03 = "General options can be found in the " + OPTIONS_CONFIG_FILE_NAME + " file,";
+    public final String menuConfigMsg02 = GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME + " directory in the OS home directory.";
+    public final String menuConfigMsg03 = "General options can be found in the " + OPTIONS_CONFIG_FILE_NAME + " file";
     public final String menuConfigMsg04 = "in the " + OPTIONS_DIR_NAME + " directory.";
     public final String menuConfigMsg05 = "Level specific options can be found in the various level files";
     public final String menuConfigMsg06 = "in the " + LEVEL_DIR_NAME + " directory, e.g. " + LEVEL_FILE_NAME_MARS + ".";
@@ -331,16 +331,15 @@ public final class TextHandler {
     public final String menuConfigMsg10 = GITHUB_URL + ".";
 
     /* ABOUT_MENU messages. */
-    public final String aboutMenuMsg01 = "Celestial Outbreak is a Open Source, Breakout-like game with";
+    public final String aboutMenuMsg01 = "Celestial Outbreak is an open source, Breakout-like game with";
     public final String aboutMenuMsg02 = "focus on game customization.";
-    public final String aboutMenuMsg03 = "The game has been a software development side project,";
-    public final String aboutMenuMsg04 = "and the latest version of the game can be found at";
+    public final String aboutMenuMsg03 = "The game is a software development side project and the";
+    public final String aboutMenuMsg04 = "latest version of the game can be seen and downloaded at";
     public final String aboutMenuMsg05 = GITHUB_URL + ".";
     public final String aboutMenuMsg06 = "The game plays like your typical Breakout game, with a few";
     public final String aboutMenuMsg07 = "additions such as power ups, custom levels and player scores.";
     public final String aboutMenuMsg08 = "If any help is needed, please look at the " + TITLE_CONTROLS_MENU + " and";
     public final String aboutMenuMsg09 = TITLE_CONFIGURATION_OPTIONS_MENU + " menus for more information.";
-    public final String aboutMenuMsg10 = "Thanks for playing!";
 
     /* EXIT_MENU messages. */
 

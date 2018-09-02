@@ -49,7 +49,6 @@ public final class AboutMenu extends AbstractMenu {
 
         g.drawString(textHandler.aboutMenuMsg08, xPos, yPos + yPosSepInc * 3 + yPosInc * 4);
         g.drawString(textHandler.aboutMenuMsg09, xPos, yPos + yPosSepInc * 3 + yPosInc * 5);
-        g.drawString(textHandler.aboutMenuMsg10, xPos, yPos + yPosSepInc * 3 + yPosInc * 6);
 
         drawInfoPanel(g);
     }

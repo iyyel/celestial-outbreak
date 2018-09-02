@@ -99,6 +99,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
             exitMenu();
         }
 
+        /*
         if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && isPlayerCreated && isInputAvailable()) {
             resetInputTimer();
             String name = inputHandler.getUserInput();
@@ -107,6 +108,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
             inputHandler.setInputMode(false);
             statusString = "'" + name + "' has been created. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to finish.";
         }
+        */
 
         if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
             resetInputTimer();
