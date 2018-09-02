@@ -54,7 +54,7 @@ public abstract class AbstractMenu {
     protected Color menuBtnPlayerSelectedColor = utils.getMenuBtnPlayerSelectedColor();
     protected Color menuBtnPlayerDeletedColor = utils.getMenuBtnPlayerDeletedColor();
 
-    private final int INIT_INPUT_TIMER = 18;
+    private final int INIT_INPUT_TIMER = 12;
     private int inputTimer = INIT_INPUT_TIMER;
 
     protected final int BTN_Y_OFFSET = 33;
