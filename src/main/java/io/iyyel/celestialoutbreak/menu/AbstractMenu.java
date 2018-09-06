@@ -38,7 +38,7 @@ public abstract class AbstractMenu {
     protected final Font tooltipFont = utils.getGameFont().deriveFont(18F);
 
     private final Font subTitleFont = utils.getGameFont().deriveFont(36F);
-    private final Font infoPanelFont = utils.getGameFont().deriveFont(10F);
+    private final Font infoPanelFont = utils.getGameFont().deriveFont(14F);
 
     /*
      * InfoPanel rectangles
@@ -70,9 +70,9 @@ public abstract class AbstractMenu {
     public AbstractMenu(GameController gameController) {
         this.gameController = gameController;
 
-        /* Information rectangles */
-        authorRect = new Rectangle(gameController.getWidth() / 2 - 1, gameController.getHeight() - 20, 58, 15);
-        versionRect = new Rectangle(gameController.getWidth() / 2 - 57, gameController.getHeight() - 20, 52, 15);
+        /* Information rectangles */ //+20, -90
+        authorRect = new Rectangle(gameController.getWidth() / 2 + 3, gameController.getHeight() - 22, 70, 18);
+        versionRect = new Rectangle(gameController.getWidth() / 2 - 73, gameController.getHeight() - 22, 66, 18);
     }
 
     public abstract void update();
@@ -95,11 +95,11 @@ public abstract class AbstractMenu {
         g.setFont(infoPanelFont);
 
         /* Render version number */
-        g.drawString(textHandler.GAME_VERSION, versionRect.x + 4, versionRect.y + 11);
+        g.drawString(textHandler.GAME_VERSION, versionRect.x + 3, versionRect.y + 15);
         g.draw(versionRect);
 
         /* Render email tag */
-        g.drawString(textHandler.AUTHOR_WEBSITE, authorRect.x + 6, authorRect.y + 11);
+        g.drawString(textHandler.AUTHOR_WEBSITE, authorRect.x + 2, authorRect.y + 13);
         g.draw(authorRect);
     }
 

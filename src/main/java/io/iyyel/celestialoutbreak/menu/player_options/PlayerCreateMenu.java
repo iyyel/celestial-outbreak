@@ -11,7 +11,6 @@ public final class PlayerCreateMenu extends AbstractMenu {
     private boolean firstUpdate = true;
     private boolean isAcceptMode = false;
     private boolean isPlayerCreated = false;
-    private boolean isExiting = false;
 
     private final String INIT_STATUS_STRING = "Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to enter a player name or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.";
     private String statusString = INIT_STATUS_STRING;
@@ -31,7 +30,6 @@ public final class PlayerCreateMenu extends AbstractMenu {
             firstUpdate = false;
             isAcceptMode = false;
             isPlayerCreated = false;
-            isExiting = false;
 
             inputHandler.setInputMode(false);
             inputHandler.setUserInput("");
@@ -75,10 +73,9 @@ public final class PlayerCreateMenu extends AbstractMenu {
                 statusString = "Create player '" + name + "'? Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to create or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to reset.";
             } else if (name.length() < 3) {
                 statusString = "Name is too small.";
-            } else if (name.length() > 8) {
+            } else {
                 statusString = "Name is too long.";
             }
-
         }
 
         if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && isAcceptMode && !isPlayerCreated && isInputAvailable()) {
@@ -87,28 +84,17 @@ public final class PlayerCreateMenu extends AbstractMenu {
             isAcceptMode = false;
             inputHandler.setInputMode(false);
             createPlayer(name);
-        }
 
-        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && isPlayerCreated && isExiting && isInputAvailable()) {
-            resetInputTimer();
-            inputHandler.setUserInput("");
-            isAcceptMode = false;
-            firstUpdate = true;
-            inputHandler.setInputMode(false);
-            statusString = INIT_STATUS_STRING;
-            exitMenu();
+            if (isPlayerCreated) {
+                resetInputTimer();
+                inputHandler.setUserInput("");
+                isAcceptMode = false;
+                firstUpdate = true;
+                inputHandler.setInputMode(false);
+                statusString = INIT_STATUS_STRING;
+                exitMenu();
+            }
         }
-
-        /*
-        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && isPlayerCreated && isInputAvailable()) {
-            resetInputTimer();
-            String name = inputHandler.getUserInput();
-            isAcceptMode = false;
-            isExiting = true;
-            inputHandler.setInputMode(false);
-            statusString = "'" + name + "' has been created. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to finish.";
-        }
-        */
 
         if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
             resetInputTimer();
@@ -180,8 +166,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
     }
 
     private void exitMenu() {
-        if (playerDAO.getPlayerList().isEmpty() && !playerDAO.getPlayerList().isEmpty()
-                && gameController.getPrevState() == GameController.State.WELCOME_MENU) {
+        if (playerDAO.getPlayerList().isEmpty() && gameController.getPrevState() == GameController.State.WELCOME_MENU) {
             menuUseClip.play(false);
             gameController.switchState(GameController.State.MAIN_MENU);
         } else if (!playerDAO.getPlayerList().isEmpty()) {

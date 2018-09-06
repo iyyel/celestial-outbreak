@@ -14,7 +14,7 @@ public final class GamePanel extends AbstractMenu {
 
     public GamePanel(GameController gameController) {
         super(gameController);
-        panelFont = utils.getGameFont().deriveFont(12F);
+        panelFont = utils.getGameFont().deriveFont(16F);
     }
 
     @Override
@@ -35,14 +35,18 @@ public final class GamePanel extends AbstractMenu {
     }
 
     private void drawGamePanel(Graphics2D g, String levelName, int blockAmountLeft) {
-        g.drawString("Planet: " + levelName, 5, 714);
+        String selectedPlayer = "N/A";
+
         try {
-            g.drawString("Player: " + playerDAO.getSelectedPlayer(), 150, 714);
+            selectedPlayer = playerDAO.getSelectedPlayer();
         } catch (IPlayerDAO.PlayerDAOException e) {
             e.printStackTrace();
         }
-        g.drawString("Lives: N/A", gameController.getWidth() / 2 - 100, 714);
-        g.drawString("Score: N/A", gameController.getWidth() / 2, 714);
+
+        g.drawString("Planet: " + levelName, 5, 714);
+        g.drawString("Player: " + selectedPlayer, 200, 714);
+        g.drawString("Lives: N/A", gameController.getWidth() / 2 - 150, 714);
+        g.drawString("Score: N/A", gameController.getWidth() / 2 + 50, 714);
         g.drawString("Blocks: " + Integer.toString(blockAmountLeft), gameController.getWidth() / 2 + 200, 714);
     }
 

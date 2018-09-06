@@ -14,10 +14,14 @@ public final class PlayerDeleteMenu extends AbstractMenu {
     private Rectangle[] playerRects;
     private Color[] rectColors;
 
+    private final String origToolTip = "Press '" + textHandler.BTN_CONTROL_USE + "' to mark a player for deletion. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to delete marked players.";
+    private String tooltipString = origToolTip;
+
     private int selected = 0;
     private boolean isFirstUpdate = true;
     private int playerAmount = 0;
 
+    private boolean isDeleting = false;
     private List<String> playerList;
     private boolean[] deleteArray;
 
@@ -32,10 +36,21 @@ public final class PlayerDeleteMenu extends AbstractMenu {
 
         if (inputHandler.isOKPressed() && isDeletions() && isInputAvailable()) {
             resetInputTimer();
+            tooltipString = "Are you sure you want to delete marked players?";
+            isDeleting = true;
+        }
+
+        if (inputHandler.isOKPressed() && isDeletions() && isInputAvailable() && isDeleting) {
             selected = 0;
+            isDeleting = false;
             menuUseClip.play(false);
             deletePlayers();
-            updatePlayerData();
+        }
+
+        if (inputHandler.isCancelPressed() && isDeletions() && isInputAvailable() && isDeleting) {
+            selected = 0;
+            isDeleting = false;
+            menuUseClip.play(false);
         }
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
@@ -102,7 +117,6 @@ public final class PlayerDeleteMenu extends AbstractMenu {
                 }
 
             } else {
-
                 try {
                     String player = playerList.get(i);
                     String selectedPlayer = playerDAO.getSelectedPlayer();
@@ -114,11 +128,9 @@ public final class PlayerDeleteMenu extends AbstractMenu {
                     } else {
                         rectColors[i] = menuBtnColor;
                     }
-
                 } catch (IPlayerDAO.PlayerDAOException e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }
@@ -153,7 +165,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
             g.draw(playerRects[i]);
         }
 
-        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to mark a player for deletion. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to delete marked players.", g);
+        drawMenuToolTip(tooltipString, g);
         drawInfoPanel(g);
     }
 
