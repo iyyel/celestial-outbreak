@@ -97,6 +97,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
         }
 
         if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+            System.out.println("first");
             resetInputTimer();
             inputHandler.setUserInput("");
             isAcceptMode = false;
@@ -106,6 +107,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
         }
 
         if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+            System.out.println("second");
             resetInputTimer();
             inputHandler.setUserInput("");
             isAcceptMode = false;
@@ -168,11 +170,10 @@ public final class PlayerCreateMenu extends AbstractMenu {
     private void exitMenu() {
         if (playerDAO.getPlayerList().isEmpty() && gameController.getPrevState() == GameController.State.WELCOME_MENU) {
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.MAIN_MENU);
+            gameController.switchState(GameController.State.WELCOME_MENU);
         } else if (!playerDAO.getPlayerList().isEmpty()) {
             menuUseClip.play(false);
-            if (gameController.getPrevState() == GameController.State.NONE
-                    || gameController.getPrevState() == GameController.State.WELCOME_MENU) {
+            if (gameController.getPrevState() == GameController.State.NONE || gameController.getPrevState() == GameController.State.WELCOME_MENU) {
                 gameController.switchState(GameController.State.MAIN_MENU);
             } else {
                 gameController.switchState(gameController.getPrevState());

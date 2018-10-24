@@ -57,11 +57,7 @@ public final class WelcomeMenu extends AbstractMenu {
 
                     switch (i) {
                         case 0:
-                            if (playerDAO.getPlayerList().isEmpty()) {
-                                gameController.switchState(GameController.State.PLAYER_CREATE_SCREEN);
-                            } else {
-                                gameController.switchState(GameController.State.MAIN_MENU);
-                            }
+                            proceed();
                             break;
                         case 1:
                             gameController.switchState(GameController.State.EXIT_SCREEN);
@@ -69,6 +65,7 @@ public final class WelcomeMenu extends AbstractMenu {
                         default:
                             break;
                     }
+
                 }
             } else {
                 rectColors[i] = menuBtnColor;
@@ -84,7 +81,7 @@ public final class WelcomeMenu extends AbstractMenu {
         drawSubmenuTitle(textHandler.TITLE_WELCOME_MENU, g);
 
         drawCenterString("Are you ready to explore planets and their secrets?", 300, g, msgFont);
-        drawCenterString("Then please, do proceed.", 350, g, msgFont);
+        drawCenterString("Go to next menu with '" + textHandler.BTN_CONTROL_FORWARD_OK + "' or back with '" + textHandler.BTN_CONTROL_BACK_CANCEL + "'.", 350, g, msgFont);
 
         /* Start button */
         g.setColor(menuFontColor);
@@ -99,6 +96,14 @@ public final class WelcomeMenu extends AbstractMenu {
         g.draw(exitRect);
 
         drawInfoPanel(g);
+    }
+
+    private void proceed() {
+        if (playerDAO.getPlayerList().isEmpty()) {
+            gameController.switchState(GameController.State.PLAYER_CREATE_SCREEN);
+        } else {
+            gameController.switchState(GameController.State.MAIN_MENU);
+        }
     }
 
 }

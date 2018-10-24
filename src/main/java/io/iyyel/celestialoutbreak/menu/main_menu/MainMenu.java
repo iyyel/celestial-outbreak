@@ -17,8 +17,6 @@ public final class MainMenu extends AbstractMenu {
 
     private int selected = 0;
 
-    private boolean isFirstUpdate = true;
-
     public MainMenu(GameController gameController) {
         super(gameController);
 
@@ -45,11 +43,6 @@ public final class MainMenu extends AbstractMenu {
     public void update() {
         decInputTimer();
 
-        if (isFirstUpdate) {
-            isFirstUpdate = false;
-            updatePlayerDTO();
-        }
-
         if (inputHandler.isDownPressed() && selected < options.length - 1 && isInputAvailable()) {
             resetInputTimer();
             selected++;
@@ -68,7 +61,6 @@ public final class MainMenu extends AbstractMenu {
 
                 if (inputHandler.isOKPressed() && isInputAvailable()) {
                     resetInputTimer();
-                    isFirstUpdate = true;
                     menuUseClip.play(false);
 
                     switch (i) {
@@ -153,15 +145,6 @@ public final class MainMenu extends AbstractMenu {
         g.draw(exitRect);
 
         drawInfoPanel(g);
-    }
-
-    private void updatePlayerDTO() {
-        try {
-            playerDAO.savePlayerDTO();
-            playerDAO.loadPlayerDTO();
-        } catch (IPlayerDAO.PlayerDAOException e) {
-            e.printStackTrace();
-        }
     }
 
 }

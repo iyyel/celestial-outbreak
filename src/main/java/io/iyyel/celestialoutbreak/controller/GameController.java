@@ -544,6 +544,7 @@ public class GameController extends Canvas implements Runnable {
         setMinimumSize(size);
         setMaximumSize(size);
         setSize(size);
+
         if (gameFrame != null) {
             gameFrame.setSize(size);
         }

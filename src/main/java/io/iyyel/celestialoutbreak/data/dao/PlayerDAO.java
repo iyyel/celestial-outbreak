@@ -39,24 +39,20 @@ public final class PlayerDAO implements IPlayerDAO {
     public void loadPlayerDTO() throws PlayerDAOException {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
-            this.playerDTO = (PlayerDTO) ois.readObject();
+            playerDTO = (PlayerDTO) ois.readObject();
+            ois.close();
 
             if (utils.isVerboseLogEnabled()) {
                 fileHandler.writeLog("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
             }
-
-            ois.close();
         } catch (FileNotFoundException e) {
             if (utils.isVerboseLogEnabled()) {
                 fileHandler.writeLog("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
-                fileHandler.writeLog("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
             }
 
-            playerDTO = new PlayerDTO();
-            savePlayerDTO();
-
+            createNewPlayerBinFile();
         } catch (IOException | ClassNotFoundException e) {
-            throw new PlayerDAOException(e.getMessage());
+            throw new PlayerDAOException("Failed to load PlayerDTO: " + e.getMessage());
         }
     }
 
@@ -71,7 +67,7 @@ public final class PlayerDAO implements IPlayerDAO {
                 fileHandler.writeLog("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'");
             }
         } catch (IOException e) {
-            throw new PlayerDAOException(e.getMessage());
+            throw new PlayerDAOException("Failed to save PlayerDTO: " + e.getMessage());
         }
     }
 
@@ -89,6 +85,7 @@ public final class PlayerDAO implements IPlayerDAO {
             throw new PlayerDAOException("'" + name + "' is an existing player!");
         }
 
+        // TODO: Remove magic number here.
         if (playerDTO.getPlayerList().size() >= 25) {
             throw new PlayerDAOLimitException("Player limit reached!");
         }
@@ -99,25 +96,9 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public void removePlayer(String name) throws PlayerDAOException {
         if (!containsPlayer(name)) {
-            throw new PlayerDAOException(name + " not found!");
+            throw new PlayerDAOException("'" + name + "' is not an existing player!");
         }
         playerDTO.getPlayerList().remove(name);
-    }
-
-    @Override
-    public void removePlayer(int index) throws PlayerDAOException {
-        if (index < 0 || index > playerDTO.getPlayerList().size() - 1) {
-            throw new PlayerDAOException(index + " not found!");
-        }
-        playerDTO.getPlayerList().remove(index);
-    }
-
-    @Override
-    public String getPlayer(int index) throws PlayerDAOException {
-        if (index < 0 || index > playerDTO.getPlayerList().size() - 1) {
-            throw new PlayerDAOException(index + " not found!");
-        }
-        return playerDTO.getPlayerList().get(index);
     }
 
     @Override
@@ -146,11 +127,22 @@ public final class PlayerDAO implements IPlayerDAO {
     }
 
     private boolean checkNameMinBounds(String name) {
+        // TODO: Remove magic number here.
         return name.length() >= 3;
     }
 
     private boolean checkNameMaxBounds(String name) {
+        // TODO: Remove magic number here.
         return name.length() <= 8;
+    }
+
+    private void createNewPlayerBinFile() throws PlayerDAOException {
+        if (utils.isVerboseLogEnabled()) {
+            fileHandler.writeLog("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
+        }
+
+        playerDTO = new PlayerDTO();
+        savePlayerDTO();
     }
 
 }

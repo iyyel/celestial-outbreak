@@ -18,8 +18,7 @@ public final class PauseMenu extends AbstractMenu {
         decInputTimer();
 
         if (isFirstUpdate) {
-            isFirstUpdate = false;
-            resetInputTimer();
+            doFirstUpdate();
         }
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
@@ -44,6 +43,11 @@ public final class PauseMenu extends AbstractMenu {
         drawSubmenuTitle(textHandler.TITLE_PAUSE_SCREEN, g);
         drawCenterString(textHandler.GAME_TITLE + " is paused.", 350, g, msgFont);
         drawInfoPanel(g);
+    }
+
+    private void doFirstUpdate() {
+        isFirstUpdate = false;
+        resetInputTimer();
     }
 
 }
