@@ -160,9 +160,9 @@ public final class SoundHandler {
     }
 
     private void initSoundHandler() {
-        getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV).reduceClipDB(15);
-        getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE).reduceClipDB(15);
-        getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION).reduceClipDB(15);
+        getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV).reduceClipDB(10);
+        getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE).reduceClipDB(10);
+        getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION).reduceClipDB(10);
     }
 
 }

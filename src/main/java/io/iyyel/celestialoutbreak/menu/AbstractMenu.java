@@ -27,7 +27,7 @@ public abstract class AbstractMenu {
      */
     protected final SoundHandler.SoundClip menuNavClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV);
     protected final SoundHandler.SoundClip menuUseClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE);
-    protected final SoundHandler.SoundClip badActionClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION);
+    protected final SoundHandler.SoundClip menuBadActionClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION);
 
     /*
      * Fonts

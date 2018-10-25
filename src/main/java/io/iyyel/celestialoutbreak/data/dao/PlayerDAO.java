@@ -81,7 +81,7 @@ public final class PlayerDAO implements IPlayerDAO {
             throw new PlayerDAOMinNameException("'" + name + "' is too small!");
         }
 
-        if (containsPlayer(name)) {
+        if (isPlayer(name)) {
             throw new PlayerDAOException("'" + name + "' is an existing player!");
         }
 
@@ -95,7 +95,7 @@ public final class PlayerDAO implements IPlayerDAO {
 
     @Override
     public void removePlayer(String name) throws PlayerDAOException {
-        if (!containsPlayer(name)) {
+        if (!isPlayer(name)) {
             throw new PlayerDAOException("'" + name + "' is not an existing player!");
         }
         playerDTO.getPlayerList().remove(name);
@@ -103,10 +103,15 @@ public final class PlayerDAO implements IPlayerDAO {
 
     @Override
     public void selectPlayer(String name) throws PlayerDAOException {
-        if (!containsPlayer(name)) {
+        if (!isPlayer(name)) {
             throw new PlayerDAOException("'" + name + "' is not an existing player!");
         }
         playerDTO.setSelectedPlayer(name);
+    }
+
+    @Override
+    public boolean isPlayer(String name) throws PlayerDAOException {
+        return playerDTO.getPlayerList().stream().anyMatch(name::equalsIgnoreCase);
     }
 
     @Override
@@ -120,10 +125,6 @@ public final class PlayerDAO implements IPlayerDAO {
             throw new PlayerDAOException("No player is selected!");
         }
         return playerDTO.getSelectedPlayer();
-    }
-
-    private boolean containsPlayer(String name) {
-        return playerDTO.getPlayerList().stream().anyMatch(name::equalsIgnoreCase);
     }
 
     private boolean checkNameMinBounds(String name) {

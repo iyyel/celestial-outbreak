@@ -134,6 +134,7 @@ public class GameController extends Canvas implements Runnable {
         PLAYER_SELECT_SCREEN,
         PLAYER_CREATE_SCREEN,
         PLAYER_DELETE_SCREEN,
+        GAME_OPTIONS_SCREEN,
         CONFIG_OPTIONS_SCREEN,
         ABOUT_SCREEN,
         EXIT_SCREEN,
@@ -220,7 +221,6 @@ public class GameController extends Canvas implements Runnable {
         /* Log that the game has been initialized */
         fileHandler.writeLog(textHandler.GAME_INIT_FINISHED);
     }
-
 
     /*
      * GameController loop with frames and updates counter.

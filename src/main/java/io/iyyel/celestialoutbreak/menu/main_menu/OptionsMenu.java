@@ -7,24 +7,25 @@ import java.awt.*;
 
 public final class OptionsMenu extends AbstractMenu {
 
-    private final Rectangle playerRect, configurationRect;
+    private final Rectangle playerRect, gameRect, configurationRect;
     private final Font btnFont;
 
-    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
+    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GAME_OPTIONS_TEXT, textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
     private Color[] rectColors;
 
     private int selected = 0;
     private int yBtnOffset = 33;
 
+    int initialBtnYPos = 230;
+    int btnYInc = 75;
+
     public OptionsMenu(GameController gameController) {
         super(gameController);
 
-        int initialBtnYPos = 230;
-        int btnYInc = 75;
-
         /* buttons */
         playerRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos, 390, 50);
-        configurationRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos + btnYInc, 390, 50);
+        gameRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos + btnYInc, 390, 50);
+        configurationRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos + btnYInc * 2, 390, 50);
 
         rectColors = new Color[options.length];
 
@@ -40,6 +41,7 @@ public final class OptionsMenu extends AbstractMenu {
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
+            selected = 0;
             menuUseClip.play(false);
             gameController.switchState(GameController.State.MAIN_MENU);
         }
@@ -70,6 +72,10 @@ public final class OptionsMenu extends AbstractMenu {
                             gameController.switchState(GameController.State.PLAYER_OPTIONS_MENU);
                             break;
                         case 1:
+                            // Game options
+                            //gameController.switchState(GameController.State.GAME_OPTIONS_SCREEN);
+                            break;
+                        case 2:
                             // Configuration options
                             gameController.switchState(GameController.State.CONFIG_OPTIONS_SCREEN);
                             break;
@@ -94,16 +100,22 @@ public final class OptionsMenu extends AbstractMenu {
         /* Render buttons  */
         g.setFont(btnFont);
 
-        /* Play button */
+        /* Player options button */
         g.setColor(menuFontColor);
         drawCenterString(options[0], playerRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[0]);
         g.draw(playerRect);
 
-        /* Score button */
+        /* Configuration options button */
         g.setColor(menuFontColor);
-        drawCenterString(options[1], configurationRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[1], gameRect.y + yBtnOffset, g, btnFont);
         g.setColor(rectColors[1]);
+        g.draw(gameRect);
+
+        /* Configuration options button */
+        g.setColor(menuFontColor);
+        drawCenterString(options[2], configurationRect.y + yBtnOffset, g, btnFont);
+        g.setColor(rectColors[2]);
         g.draw(configurationRect);
 
         drawInfoPanel(g);

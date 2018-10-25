@@ -80,8 +80,8 @@ public final class WelcomeMenu extends AbstractMenu {
 
         drawSubmenuTitle(textHandler.TITLE_WELCOME_MENU, g);
 
-        drawCenterString("Are you ready to explore planets and their secrets?", 300, g, msgFont);
-        drawCenterString("Go to next menu with '" + textHandler.BTN_CONTROL_FORWARD_OK + "' or back with '" + textHandler.BTN_CONTROL_BACK_CANCEL + "'.", 350, g, msgFont);
+        drawCenterString("What lies beyond the cosmos is inevitable", 300, g, msgFont);
+        drawCenterString("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to start", 350, g, msgFont);
 
         /* Start button */
         g.setColor(menuFontColor);

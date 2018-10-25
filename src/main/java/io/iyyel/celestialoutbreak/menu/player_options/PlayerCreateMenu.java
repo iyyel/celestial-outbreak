@@ -59,6 +59,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
         if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
             resetInputTimer();
             inputHandler.setInputMode(true);
+            menuUseClip.play(false);
             statusString = "Please type a player name. Press '" + textHandler.BTN_CONTROL_USE + "' when done.";
         }
 
@@ -68,13 +69,26 @@ public final class PlayerCreateMenu extends AbstractMenu {
             String name = inputHandler.getUserInput();
 
             if (name.length() >= 3 && name.length() <= 8) {
+                try {
+                    if (playerDAO.isPlayer(name)) {
+                        statusString = "Player already exists.";
+                        menuBadActionClip.play(false);
+                        return;
+                    }
+                } catch (IPlayerDAO.PlayerDAOException e) {
+                    e.printStackTrace();
+                }
+
                 isAcceptMode = true;
                 inputHandler.setInputMode(false);
+                menuUseClip.play(false);
                 statusString = "Create player '" + name + "'? Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to create or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to reset.";
             } else if (name.length() < 3) {
                 statusString = "Name is too small.";
+                menuBadActionClip.play(false);
             } else {
                 statusString = "Name is too long.";
+                menuBadActionClip.play(false);
             }
         }
 
@@ -97,7 +111,6 @@ public final class PlayerCreateMenu extends AbstractMenu {
         }
 
         if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
-            System.out.println("first");
             resetInputTimer();
             inputHandler.setUserInput("");
             isAcceptMode = false;
@@ -107,11 +120,11 @@ public final class PlayerCreateMenu extends AbstractMenu {
         }
 
         if (inputHandler.isCancelPressed() && !inputHandler.isInputMode() && isAcceptMode && !isPlayerCreated && isInputAvailable()) {
-            System.out.println("second");
             resetInputTimer();
             inputHandler.setUserInput("");
             isAcceptMode = false;
             inputHandler.setInputMode(false);
+            menuUseClip.play(false);
             statusString = INIT_STATUS_STRING;
         }
 

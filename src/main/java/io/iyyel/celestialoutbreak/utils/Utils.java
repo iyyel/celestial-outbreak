@@ -1,6 +1,5 @@
 package io.iyyel.celestialoutbreak.utils;
 
-import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
@@ -172,7 +171,7 @@ public final class Utils {
         return Boolean.parseBoolean(map.get(prop));
     }
 
-    public void createDemoPlayers(PlayerDAO playerDAO) {
+    public void createDemoPlayers(IPlayerDAO playerDAO) {
         try {
             playerDAO.addPlayer("Fluffy");
             playerDAO.selectPlayer("Fluffy");
@@ -200,6 +199,8 @@ public final class Utils {
             playerDAO.addPlayer("Alice");
             playerDAO.addPlayer("Ryan");
             playerDAO.addPlayer("Rackman");
+            playerDAO.savePlayerDTO();
+            playerDAO.loadPlayerDTO();
         } catch (IPlayerDAO.PlayerDAOException e) {
             e.printStackTrace();
         }

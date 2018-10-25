@@ -68,6 +68,7 @@ public final class TextHandler {
     public final String BTN_CONTROLS_TEXT = "CONTROLS";
     public final String BTN_ABOUT_TEXT = "ABOUT";
     public final String BTN_EXIT_TEXT = "EXIT";
+    public final String BTN_GAME_OPTIONS_TEXT = "GAME OPTIONS";
     public final String BTN_PLAYER_OPTIONS_TEXT = "PLAYER OPTIONS";
     public final String BTN_CONFIGURATION_OPTIONS_TEXT = "CONFIGURATION OPTIONS";
     public final String BTN_SELECT_PLAYER_TEXT = "SELECT PLAYER";
@@ -211,7 +212,6 @@ public final class TextHandler {
     /*
      * Sound file information.
      */
-
     public final String SOUND_DIR_NAME = "sound";
     public final String SOUND_DIR_PATH = GAME_DIR_PATH + fs + SOUND_DIR_NAME;
     public final String LOCAL_JAR_SOUND_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + SOUND_DIR_NAME;
@@ -244,6 +244,15 @@ public final class TextHandler {
     public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_NAV;
     public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_USE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_USE;
     public final String SOUND_FILE_CLIENT_PATH_BAD_ACTION = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BAD_ACTION;
+
+    /*
+     * README.txt file information.
+     */
+    public final String README_FILE_NAME = "README.txt";
+    public final String README_FILE_DIR_PATH = GAME_DIR_PATH + fs;
+    public final String LOCAL_JAR_README_FILE_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar;
+    public final String README_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_README_FILE_DIR + fs_jar + README_FILE_NAME).getPath();
+    public final String README_FILE_CLIENT_PATH = README_FILE_DIR_PATH + fs + README_FILE_NAME;
 
     /*
      * Property names.

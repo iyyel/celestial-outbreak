@@ -6,6 +6,7 @@ import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -23,7 +24,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
 
     private boolean isDeleting = false;
     private List<String> playerList;
-    private boolean[] deleteArray;
+    private boolean[] deleteMarkings;
 
     public PlayerDeleteMenu(GameController gameController) {
         super(gameController);
@@ -34,22 +35,30 @@ public final class PlayerDeleteMenu extends AbstractMenu {
     public void update() {
         decInputTimer();
 
-        if (inputHandler.isOKPressed() && isDeletions() && isInputAvailable()) {
+
+        if (inputHandler.isOKPressed() && isDeletions() && isInputAvailable() && !isDeleting) {
             resetInputTimer();
             tooltipString = "Are you sure you want to delete marked players?";
+            menuUseClip.play(false);
             isDeleting = true;
         }
 
         if (inputHandler.isOKPressed() && isDeletions() && isInputAvailable() && isDeleting) {
+            resetInputTimer();
             selected = 0;
+            tooltipString = origToolTip;
             isDeleting = false;
             menuUseClip.play(false);
             deletePlayers();
+            updatePlayerData();
         }
 
         if (inputHandler.isCancelPressed() && isDeletions() && isInputAvailable() && isDeleting) {
+            resetInputTimer();
             selected = 0;
+            tooltipString = origToolTip;
             isDeleting = false;
+            resetDeletions();
             menuUseClip.play(false);
         }
 
@@ -105,11 +114,11 @@ public final class PlayerDeleteMenu extends AbstractMenu {
 
                     try {
                         if (player.equals(playerDAO.getSelectedPlayer())) {
-                            badActionClip.play(false);
+                            menuBadActionClip.play(false);
                         } else {
                             menuUseClip.play(false);
                             // invert
-                            deleteArray[i] = !deleteArray[i];
+                            deleteMarkings[i] = !deleteMarkings[i];
                         }
                     } catch (IPlayerDAO.PlayerDAOException e) {
                         e.printStackTrace();
@@ -121,7 +130,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
                     String player = playerList.get(i);
                     String selectedPlayer = playerDAO.getSelectedPlayer();
 
-                    if (deleteArray[i]) {
+                    if (deleteMarkings[i]) {
                         rectColors[i] = menuBtnPlayerDeletedColor;
                     } else if (player.equals(selectedPlayer)) {
                         rectColors[i] = menuBtnPlayerSelectedColor;
@@ -141,9 +150,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
          * Do this ONCE everytime the user is on this screen.
          */
         if (isFirstUpdate) {
-            isFirstUpdate = false;
-            selected = 0;
-            updatePlayerData();
+            doFirstUpdate();
         }
 
         /* Render game title */
@@ -182,7 +189,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
         playerAmount = playerList.size();
 
         // default value = false
-        deleteArray = new boolean[playerAmount];
+        deleteMarkings = new boolean[playerAmount];
 
         // Update rectangles
         playerRects = new Rectangle[playerAmount];
@@ -207,8 +214,8 @@ public final class PlayerDeleteMenu extends AbstractMenu {
     }
 
     private void deletePlayers() {
-        for (int i = 0; i < deleteArray.length; i++) {
-            boolean isDeleted = deleteArray[i];
+        for (int i = 0; i < deleteMarkings.length; i++) {
+            boolean isDeleted = deleteMarkings[i];
             String player = playerList.get(i);
             if (isDeleted) {
                 try {
@@ -227,12 +234,22 @@ public final class PlayerDeleteMenu extends AbstractMenu {
     }
 
     private boolean isDeletions() {
-        for (boolean isDeleted : deleteArray) {
+        for (boolean isDeleted : deleteMarkings) {
             if (isDeleted) {
                 return true;
             }
         }
         return false;
+    }
+
+    private void resetDeletions() {
+        Arrays.fill(deleteMarkings, false);
+    }
+
+    private void doFirstUpdate() {
+        isFirstUpdate = false;
+        selected = 0;
+        updatePlayerData();
     }
 
 }

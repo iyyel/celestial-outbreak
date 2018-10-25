@@ -114,13 +114,14 @@ public final class InputHandler implements KeyListener {
     }
 
     private void addToUserInput(KeyEvent e) {
+        // TODO: Remove magic numbers here.
         if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             if (userInput.length() <= 1) {
                 userInput = "";
             } else {
                 userInput = userInput.substring(0, userInput.length() - 1);
             }
-        } else if (userInput.length() <= 20 && (Character.isAlphabetic(e.getKeyCode()))) {
+        } else if (userInput.length() <= 7 && (Character.isAlphabetic(e.getKeyCode()))) {
             userInput += e.getKeyChar();
         }
     }

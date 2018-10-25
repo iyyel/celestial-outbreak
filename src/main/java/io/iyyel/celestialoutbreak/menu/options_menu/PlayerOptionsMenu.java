@@ -40,6 +40,7 @@ public final class PlayerOptionsMenu extends AbstractMenu {
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
+            selected = 0;
             menuUseClip.play(false);
             gameController.switchState(GameController.State.OPTIONS_MENU);
         }
@@ -105,7 +106,7 @@ public final class PlayerOptionsMenu extends AbstractMenu {
         /* New button */
         g.setColor(menuFontColor);
         g.setFont(btnFont);
-        drawCenterString(options[1], createRect.y + BTN_Y_OFFSET, g, btnFont);;
+        drawCenterString(options[1], createRect.y + BTN_Y_OFFSET, g, btnFont);
         g.setColor(rectColors[1]);
         g.draw(createRect);
 

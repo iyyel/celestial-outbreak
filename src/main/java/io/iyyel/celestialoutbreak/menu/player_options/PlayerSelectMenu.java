@@ -74,7 +74,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
                                 e.printStackTrace();
                             }
                         } else {
-                            badActionClip.play(false);
+                            menuBadActionClip.play(false);
                         }
                     } catch (IPlayerDAO.PlayerDAOException e) {
                         e.printStackTrace();
