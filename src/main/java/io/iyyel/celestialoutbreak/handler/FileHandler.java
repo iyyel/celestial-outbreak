@@ -58,7 +58,7 @@ public final class FileHandler {
         createDir(textHandler.LOG_DIR_PATH);
         createDir(textHandler.OPTIONS_DIR_PATH);
         createDir(textHandler.SOUND_DIR_PATH);
-        createDir(textHandler.GAME_FONT_DIR_PATH);
+        createDir(textHandler.FONT_DIR_PATH);
         createDir(textHandler.LEVEL_DIR_PATH);
         createDir(textHandler.PLAYER_DIR_PATH);
         createDir(textHandler.SCORE_DIR_PATH);
@@ -84,6 +84,7 @@ public final class FileHandler {
 
         /* Font */
         copyFile(textHandler.GAME_FONT_FILE_LOCAL_PATH, textHandler.GAME_FONT_FILE_CLIENT_PATH);
+        copyFile(textHandler.PANEL_FONT_FILE_LOCAL_PATH, textHandler.PANEL_FONT_FILE_CLIENT_PATH);
 
         /* Sound */
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU, textHandler.SOUND_FILE_CLIENT_PATH_MENU);

@@ -169,13 +169,19 @@ public final class TextHandler {
     /*
      * Local font file information.
      */
-    public final String GAME_FONT_DIR_NAME = "fonts";
-    public final String GAME_FONT_DIR_PATH = GAME_DIR_PATH + fs + GAME_FONT_DIR_NAME;
-    public final String LOCAL_JAR_GAME_FONT_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + GAME_FONT_DIR_NAME;
+    public final String FONT_DIR_NAME = "fonts";
+    public final String FONT_DIR_PATH = GAME_DIR_PATH + fs + FONT_DIR_NAME;
+    public final String LOCAL_JAR_FONT_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + FONT_DIR_NAME;
 
+    /* gameFont */
     public final String GAME_FONT_FILE_NAME = "neuropol.ttf";
-    public final String GAME_FONT_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_GAME_FONT_DIR + fs_jar + GAME_FONT_FILE_NAME).getPath();
-    public final String GAME_FONT_FILE_CLIENT_PATH = GAME_FONT_DIR_PATH + fs + GAME_FONT_FILE_NAME;
+    public final String GAME_FONT_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_FONT_DIR + fs_jar + GAME_FONT_FILE_NAME).getPath();
+    public final String GAME_FONT_FILE_CLIENT_PATH = FONT_DIR_PATH + fs + GAME_FONT_FILE_NAME;
+
+    /* panelFont */
+    public final String PANEL_FONT_FILE_NAME = "courier.ttf";
+    public final String PANEL_FONT_FILE_LOCAL_PATH = TextHandler.class.getResource(LOCAL_JAR_FONT_DIR + fs_jar + PANEL_FONT_FILE_NAME).getPath();
+    public final String PANEL_FONT_FILE_CLIENT_PATH = FONT_DIR_PATH + fs + PANEL_FONT_FILE_NAME;
 
     /*
      * Level file information.

@@ -14,7 +14,7 @@ public final class GamePanel extends AbstractMenu {
 
     public GamePanel(GameController gameController) {
         super(gameController);
-        panelFont = utils.getGameFont().deriveFont(16F);
+        panelFont = utils.getPanelFont().deriveFont(16F);
     }
 
     @Override

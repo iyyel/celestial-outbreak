@@ -68,6 +68,18 @@ public final class Utils {
         return gameFont;
     }
 
+    public Font getPanelFont() {
+        Font panelFont = null;
+        try {
+            panelFont = Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.PANEL_FONT_FILE_CLIENT_PATH));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.PANEL_FONT_FILE_CLIENT_PATH)));
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+        return panelFont;
+    }
+
     private void initGameProperties() {
         Map<String, String> map = fileHandler.readPropertiesFromFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH);
 
