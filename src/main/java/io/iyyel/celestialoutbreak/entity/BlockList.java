@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.entity;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.handler.OptionsHandler;
 import io.iyyel.celestialoutbreak.utils.Utils;
 
 import java.awt.*;
@@ -20,6 +21,7 @@ import java.awt.*;
 public final class BlockList {
 
     private final Utils utils = Utils.getInstance();
+    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final GameController gameController;
 
     private final int width;
@@ -64,7 +66,7 @@ public final class BlockList {
      */
     public void render(Graphics2D g) {
         /* Disable antialiasing for blocks for performance concerns. */
-        if (utils.isAntiAliasingEnabled()) {
+        if (optionsHandler.isAntiAliasingEnabled()) {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
             g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
         }
@@ -77,7 +79,7 @@ public final class BlockList {
         }
 
         /* Enables antialiasing when blocks have been rendered. */
-        if (utils.isAntiAliasingEnabled()) {
+        if (optionsHandler.isAntiAliasingEnabled()) {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         }

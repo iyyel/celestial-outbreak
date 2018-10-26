@@ -12,7 +12,7 @@ import java.util.Map;
 
 public final class SoundHandler {
 
-    private final Utils utils = Utils.getInstance();
+    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
 
@@ -47,7 +47,7 @@ public final class SoundHandler {
         }
 
         public void play(boolean loop) {
-            if (!utils.isSoundEnabled() || clip.isActive()) {
+            if (!optionsHandler.isSoundEnabled() || clip.isActive()) {
                 return;
             }
 
@@ -63,7 +63,7 @@ public final class SoundHandler {
         }
 
         public void stop() {
-            if (!utils.isSoundEnabled()) return;
+            if (!optionsHandler.isSoundEnabled()) return;
             isActive = false;
             clip.stop();
             clip.setFramePosition(0);

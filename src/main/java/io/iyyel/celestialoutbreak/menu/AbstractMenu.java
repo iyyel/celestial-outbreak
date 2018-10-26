@@ -4,6 +4,7 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
+import io.iyyel.celestialoutbreak.handler.OptionsHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.utils.Utils;
@@ -16,6 +17,7 @@ public abstract class AbstractMenu {
      * Singleton helpers
      */
     protected final Utils utils = Utils.getInstance();
+    protected final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     protected final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
     protected final TextHandler textHandler = TextHandler.getInstance();
@@ -48,11 +50,11 @@ public abstract class AbstractMenu {
     /*
      * Menu colors.
      */
-    protected Color menuFontColor = utils.getMenuFontColor();
-    protected Color menuBtnColor = utils.getMenuBtnColor();
-    protected Color menuSelectedBtnColor = utils.getMenuBtnSelectedColor();
-    protected Color menuBtnPlayerSelectedColor = utils.getMenuBtnPlayerSelectedColor();
-    protected Color menuBtnPlayerDeletedColor = utils.getMenuBtnPlayerDeletedColor();
+    protected Color menuFontColor = optionsHandler.getMenuFontColor();
+    protected Color menuBtnColor = optionsHandler.getMenuBtnColor();
+    protected Color menuSelectedBtnColor = optionsHandler.getMenuBtnSelectedColor();
+    protected Color menuBtnPlayerSelectedColor = optionsHandler.getMenuBtnPlayerSelectedColor();
+    protected Color menuBtnPlayerDeletedColor = optionsHandler.getMenuBtnPlayerDeletedColor();
 
     private final int INIT_INPUT_TIMER = 12;
     private int inputTimer = INIT_INPUT_TIMER;

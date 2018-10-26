@@ -3,6 +3,7 @@ package io.iyyel.celestialoutbreak.data.dao;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dto.PlayerDTO;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
+import io.iyyel.celestialoutbreak.handler.OptionsHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.utils.Utils;
 
@@ -14,6 +15,7 @@ public final class PlayerDAO implements IPlayerDAO {
     private PlayerDTO playerDTO;
 
     private final Utils utils = Utils.getInstance();
+    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
 
@@ -42,11 +44,11 @@ public final class PlayerDAO implements IPlayerDAO {
             playerDTO = (PlayerDTO) ois.readObject();
             ois.close();
 
-            if (utils.isVerboseLogEnabled()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
             }
         } catch (FileNotFoundException e) {
-            if (utils.isVerboseLogEnabled()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
             }
 
@@ -63,7 +65,7 @@ public final class PlayerDAO implements IPlayerDAO {
             oos.writeObject(playerDTO);
             oos.close();
 
-            if (utils.isVerboseLogEnabled()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'");
             }
         } catch (IOException e) {
@@ -138,7 +140,7 @@ public final class PlayerDAO implements IPlayerDAO {
     }
 
     private void createNewPlayerBinFile() throws PlayerDAOException {
-        if (utils.isVerboseLogEnabled()) {
+        if (optionsHandler.isVerboseLogEnabled()) {
             fileHandler.writeLog("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
         }
 

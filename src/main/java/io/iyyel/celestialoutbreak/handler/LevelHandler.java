@@ -2,7 +2,6 @@ package io.iyyel.celestialoutbreak.handler;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.level.Level;
-import io.iyyel.celestialoutbreak.utils.Utils;
 
 import java.awt.*;
 import java.io.File;
@@ -10,7 +9,7 @@ import java.util.List;
 
 public final class LevelHandler {
 
-    private final Utils utils = Utils.getInstance();
+    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
 
     private GameController gameController;
@@ -43,7 +42,7 @@ public final class LevelHandler {
         if (activeLevel.isFinished()) {
             startNextLevel();
             gameController.switchState(GameController.State.FINISHED_LEVEL_SCREEN);
-            if (utils.isVerboseLogEnabled()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vLevelFinishedMsg(getPrevLevel().getName()));
             }
         }
@@ -56,7 +55,7 @@ public final class LevelHandler {
     private void startNextLevel() {
         if (currentLevelIndex >= 0 && currentLevelIndex + 1 <= levels.length - 1) {
             currentLevelIndex++;
-            if (utils.isVerboseLogEnabled()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vChangedLevelMsg(activeLevel.getName(), levels[currentLevelIndex].getName()));
             }
             activeLevel = levels[currentLevelIndex];

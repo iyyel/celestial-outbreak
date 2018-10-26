@@ -69,6 +69,7 @@ public class GameController extends Canvas implements Runnable {
      */
     private final TextHandler textHandler = TextHandler.getInstance();
     private final Utils utils = Utils.getInstance();
+    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final InputHandler inputHandler = InputHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
@@ -241,18 +242,18 @@ public class GameController extends Canvas implements Runnable {
                 update();
                 updates++;
                 delta--;
-                if (utils.isFpsLockEnabled()) {
+                if (optionsHandler.isFpsLockEnabled()) {
                     render();
                     frames++;
                 }
             }
-            if (!utils.isFpsLockEnabled()) {
+            if (!optionsHandler.isFpsLockEnabled()) {
                 render();
                 frames++;
             }
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                if (utils.isVerboseLogEnabled()) {
+                if (optionsHandler.isVerboseLogEnabled()) {
                     /* Is this correctly calculated? (ram) */
                     double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                     gameFrame.setTitle(textHandler.GAME_TITLE + " | Version: " + textHandler.GAME_VERSION +
@@ -365,7 +366,7 @@ public class GameController extends Canvas implements Runnable {
         Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 
         /* Enable some sweet antialiasing to make the graphics look smoother. */
-        if (utils.isAntiAliasingEnabled()) {
+        if (optionsHandler.isAntiAliasingEnabled()) {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         }

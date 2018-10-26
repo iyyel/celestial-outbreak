@@ -2,9 +2,9 @@ package io.iyyel.celestialoutbreak.entity;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
+import io.iyyel.celestialoutbreak.handler.OptionsHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.utils.Utils;
 
 import java.awt.*;
 import java.util.Random;
@@ -24,7 +24,7 @@ import java.util.Random;
  */
 public final class Ball extends MobileEntity {
 
-    private final Utils utils = Utils.getInstance();
+    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
@@ -88,7 +88,7 @@ public final class Ball extends MobileEntity {
 
         /* Ball hit left x-axis. */
         if (pos.x < 0) {
-            if (utils.isVerboseLogEnabled()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisLeftMsg);
             }
             velocity.x = speed;
@@ -97,7 +97,7 @@ public final class Ball extends MobileEntity {
 
         /* Ball hit right x-axis. */
         if (pos.x > (gameController.getWidth() - width)) {
-            if (utils.isVerboseLogEnabled()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisRightMsg);
             }
             velocity.x = -speed;
@@ -106,7 +106,7 @@ public final class Ball extends MobileEntity {
 
         /* Ball hit top y-axis. */
         if (pos.y < 0) {
-            if (utils.isVerboseLogEnabled()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedYAxisTopMsg);
             }
             velocity.y = speed;
@@ -115,7 +115,7 @@ public final class Ball extends MobileEntity {
 
         /* Ball hit bottom y-axis. */
         if (pos.y > (gameController.getHeight() - height)) {
-            if (utils.isVerboseLogEnabled()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
             }
 
@@ -158,7 +158,7 @@ public final class Ball extends MobileEntity {
 
                 soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
 
-                if (utils.isVerboseLogEnabled()) {
+                if (optionsHandler.isVerboseLogEnabled()) {
                     fileHandler.writeLog(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
                 }
             }
@@ -174,7 +174,7 @@ public final class Ball extends MobileEntity {
 
                     soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
 
-                    if (utils.isVerboseLogEnabled()) {
+                    if (optionsHandler.isVerboseLogEnabled()) {
                         fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i));
                     }
                 }

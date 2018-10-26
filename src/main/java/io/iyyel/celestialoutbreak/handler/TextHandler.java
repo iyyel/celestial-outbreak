@@ -1,5 +1,6 @@
 package io.iyyel.celestialoutbreak.handler;
 
+import java.awt.*;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -281,6 +282,17 @@ public final class TextHandler {
     public final String PROP_MENU_BTN_SELECTED_COLOR_HEX = "MENU_BTN_SELECTED_COLOR_HEX";
     public final String PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX = "MENU_BTN_PLAYER_DELETED_COLOR_HEX";
     public final String PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX = "MENU_BTN_PLAYER_SELECTED_COLOR_HEX";
+
+    public String getMenuColorLogString(String pKey, Color color) {
+        return pKey + ": (" + color.getRed() + ", " + color.getGreen() + ", " + color.getBlue() + ")";
+    }
+
+    public String getGamePropertyLogString(boolean prop, String prefix) {
+        if (prop) {
+            return prefix + " enabled.";
+        }
+        return prefix + " disabled.";
+    }
 
     /*
      * Level properties.
