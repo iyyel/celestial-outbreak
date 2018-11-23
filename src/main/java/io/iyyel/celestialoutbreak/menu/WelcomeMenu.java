@@ -81,7 +81,7 @@ public final class WelcomeMenu extends AbstractMenu {
         drawSubmenuTitle(textHandler.TITLE_WELCOME_MENU, g);
 
         drawCenterString("What lies beyond the cosmos is inevitable", 300, g, msgFont);
-        drawCenterString("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to start", 350, g, msgFont);
+
 
         /* Start button */
         g.setColor(menuFontColor);
@@ -94,6 +94,10 @@ public final class WelcomeMenu extends AbstractMenu {
         drawCenterString(options[1], exitRect.y + BTN_Y_OFFSET, g, btnFont);
         g.setColor(rectColors[1]);
         g.draw(exitRect);
+
+        /* */
+        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to confirm or '" +
+                textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back. Navigate with '" + textHandler.BTN_CONTROL_MOV_NAV + "'", g);
 
         drawInfoPanel(g);
     }

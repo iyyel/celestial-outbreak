@@ -8,7 +8,7 @@ import java.awt.*;
 
 public final class PlayerCreateMenu extends AbstractMenu {
 
-    private boolean firstUpdate = true;
+    private boolean isFirstUpdate = true;
     private boolean isAcceptMode = false;
     private boolean isPlayerCreated = false;
 
@@ -26,8 +26,8 @@ public final class PlayerCreateMenu extends AbstractMenu {
         /*
          * Do this ONCE every time the user is on this screen.
          */
-        if (firstUpdate) {
-            firstUpdate = false;
+        if (isFirstUpdate) {
+            isFirstUpdate = false;
             isAcceptMode = false;
             isPlayerCreated = false;
 
@@ -82,7 +82,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
                 isAcceptMode = true;
                 inputHandler.setInputMode(false);
                 menuUseClip.play(false);
-                statusString = "Create player '" + name + "'? Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to create or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to reset.";
+                statusString = "Create player '" + name + "'? Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to confirm or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.";
             } else if (name.length() < 3) {
                 statusString = "Name is too small.";
                 menuBadActionClip.play(false);
@@ -103,7 +103,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
                 resetInputTimer();
                 inputHandler.setUserInput("");
                 isAcceptMode = false;
-                firstUpdate = true;
+                isFirstUpdate = true;
                 inputHandler.setInputMode(false);
                 statusString = INIT_STATUS_STRING;
                 exitMenu();
@@ -114,7 +114,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
             resetInputTimer();
             inputHandler.setUserInput("");
             isAcceptMode = false;
-            firstUpdate = true;
+            isFirstUpdate = true;
             inputHandler.setInputMode(false);
             exitMenu();
         }
@@ -138,7 +138,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
 
         if (inputHandler.isInputMode()) {
             drawCenterString("Enter Player name:", 300, g, msgFont);
-            drawCenterString(inputHandler.getUserInput(), 350, g, inputFont);
+            drawCenterString(inputHandler.getUserInput(), 350, g, inputBtnFont);
         }
 
         drawMenuToolTip(statusString, g);

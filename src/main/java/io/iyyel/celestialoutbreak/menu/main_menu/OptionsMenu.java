@@ -8,7 +8,6 @@ import java.awt.*;
 public final class OptionsMenu extends AbstractMenu {
 
     private final Rectangle playerRect, gameRect, configurationRect;
-    private final Font btnFont;
 
     private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GAME_OPTIONS_TEXT, textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
     private Color[] rectColors;
@@ -31,8 +30,6 @@ public final class OptionsMenu extends AbstractMenu {
 
         for (Color c : rectColors)
             c = menuBtnColor;
-
-        btnFont = utils.getGameFont().deriveFont(20F);
     }
 
     @Override
@@ -73,7 +70,7 @@ public final class OptionsMenu extends AbstractMenu {
                             break;
                         case 1:
                             // Game options
-                            //gameController.switchState(GameController.State.GAME_OPTIONS_SCREEN);
+                            gameController.switchState(GameController.State.GAME_OPTIONS_SCREEN);
                             break;
                         case 2:
                             // Configuration options
@@ -94,27 +91,27 @@ public final class OptionsMenu extends AbstractMenu {
         /* Render game title */
         drawMenuTitle(g);
 
-        /* Show player name */
+        /* Show submenu title */
         drawSubmenuTitle(textHandler.TITLE_OPTIONS_MENU, g);
 
         /* Render buttons  */
-        g.setFont(btnFont);
+        g.setFont(inputBtnFont);
 
         /* Player options button */
         g.setColor(menuFontColor);
-        drawCenterString(options[0], playerRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[0], playerRect.y + yBtnOffset, g, inputBtnFont);
         g.setColor(rectColors[0]);
         g.draw(playerRect);
 
         /* Configuration options button */
         g.setColor(menuFontColor);
-        drawCenterString(options[1], gameRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[1], gameRect.y + yBtnOffset, g, inputBtnFont);
         g.setColor(rectColors[1]);
         g.draw(gameRect);
 
         /* Configuration options button */
         g.setColor(menuFontColor);
-        drawCenterString(options[2], configurationRect.y + yBtnOffset, g, btnFont);
+        drawCenterString(options[2], configurationRect.y + yBtnOffset, g, inputBtnFont);
         g.setColor(rectColors[2]);
         g.draw(configurationRect);
 

@@ -85,21 +85,23 @@ public final class TextHandler {
     /*
      * Menu title names.
      */
-    public final String TITLE_WELCOME_MENU = "Welcome";
-    public final String TITLE_SCORES_MENU = "Scores";
-    public final String TITLE_CONTROLS_MENU = "Controls";
-    public final String TITLE_OPTIONS_MENU = "Options";
-    public final String TITLE_ABOUT_SCREEN = "About";
-    public final String TITLE_EXIT_SCREEN = "Exit";
+    public final String TITLE_WELCOME_MENU = "WELCOME";
+    public final String TITLE_SCORES_MENU = "SCORES";
+    public final String TITLE_CONTROLS_MENU = "CONTROLS";
+    public final String TITLE_OPTIONS_MENU = "OPTIONS";
+    public final String TITLE_ABOUT_SCREEN = "ABOUT";
+    public final String TITLE_EXIT_SCREEN = "EXIT";
 
-    public final String TITLE_PLAYER_OPTIONS_MENU = "Player Options";
-    public final String TITLE_CONFIGURATION_OPTIONS_MENU = "Configuration Options";
+    public final String TITLE_PLAYER_OPTIONS_MENU = "PLAYER OPTIONS";
+    public final String TITLE_CONFIGURATION_OPTIONS_MENU = "CONFIGURATION OPTIONS";
 
-    public final String TITLE_SELECT_PLAYER_SCREEN = "Select Player";
-    public final String TITLE_CREATE_PLAYER_SCREEN = "Create Player";
-    public final String TITLE_DELETE_PLAYER_SCREEN = "Delete Player";
+    public final String TITLE_SELECT_PLAYER_SCREEN = "SELECT PLAYER";
+    public final String TITLE_CREATE_PLAYER_SCREEN = "CREATE PLAYER";
+    public final String TITLE_DELETE_PLAYER_SCREEN = "DELETE PLAYER";
 
-    public final String TITLE_PAUSE_SCREEN = "Pause";
+    public final String TITLE_GAME_OPTIONS_SCREEN = "GAME OPTIONS";
+
+    public final String TITLE_PAUSE_SCREEN = "PAUSE";
 
     /*
      * Log announcement messages.

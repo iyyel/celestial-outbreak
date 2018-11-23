@@ -14,6 +14,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
 
     private Rectangle[] playerRects;
     private Color[] rectColors;
+    private Color[] playerNameColors;
 
     private final String origToolTip = "Press '" + textHandler.BTN_CONTROL_USE + "' to mark a player for deletion. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to delete marked players.";
     private String tooltipString = origToolTip;
@@ -34,7 +35,6 @@ public final class PlayerDeleteMenu extends AbstractMenu {
     @Override
     public void update() {
         decInputTimer();
-
 
         if (inputHandler.isOKPressed() && isDeletions() && isInputAvailable() && !isDeleting) {
             resetInputTimer();
@@ -107,6 +107,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
         for (int i = 0; i < playerList.size(); i++) {
             if (selected == i) {
                 String player = playerList.get(i);
+                updatePlayerColors(i);
                 rectColors[i] = menuSelectedBtnColor;
 
                 if (inputHandler.isUsePressed() && isInputAvailable()) {
@@ -126,20 +127,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
                 }
 
             } else {
-                try {
-                    String player = playerList.get(i);
-                    String selectedPlayer = playerDAO.getSelectedPlayer();
-
-                    if (deleteMarkings[i]) {
-                        rectColors[i] = menuBtnPlayerDeletedColor;
-                    } else if (player.equals(selectedPlayer)) {
-                        rectColors[i] = menuBtnPlayerSelectedColor;
-                    } else {
-                        rectColors[i] = menuBtnColor;
-                    }
-                } catch (IPlayerDAO.PlayerDAOException e) {
-                    e.printStackTrace();
-                }
+                updatePlayerColors(i);
             }
         }
     }
@@ -160,12 +148,12 @@ public final class PlayerDeleteMenu extends AbstractMenu {
         drawSubmenuTitle(textHandler.TITLE_DELETE_PLAYER_SCREEN, g);
 
         /* Render buttons  */
-        g.setFont(inputFont);
+        g.setFont(inputBtnFont);
 
         for (int i = 0; i < playerList.size(); i++) {
             String player = playerList.get(i);
 
-            g.setColor(menuFontColor);
+            g.setColor(playerNameColors[i]);
             g.drawString(player, playerRects[i].x + 5, playerRects[i].y + 32);
 
             g.setColor(rectColors[i]);
@@ -194,6 +182,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
         // Update rectangles
         playerRects = new Rectangle[playerAmount];
         rectColors = new Color[playerAmount];
+        playerNameColors = new Color[playerAmount];
 
         int initialX = 150;
         int initialY = 240;
@@ -203,7 +192,8 @@ public final class PlayerDeleteMenu extends AbstractMenu {
         int yInc = 80;
 
         for (int i = 0; i < playerAmount; i++) {
-            rectColors[i] = Color.WHITE;
+            rectColors[i] = menuBtnColor;
+            playerNameColors[i] = menuBtnColor;
             if (i % 5 == 0 && i != 0) {
                 x += xInc;
                 y = initialY;
@@ -250,6 +240,24 @@ public final class PlayerDeleteMenu extends AbstractMenu {
         isFirstUpdate = false;
         selected = 0;
         updatePlayerData();
+    }
+
+    private void updatePlayerColors(int index) {
+        try {
+            String player = playerList.get(index);
+            String selectedPlayer = playerDAO.getSelectedPlayer();
+
+            if (deleteMarkings[index]) {
+                playerNameColors[index] = menuBtnPlayerDeletedColor;
+            } else if (player.equals(selectedPlayer)) {
+                playerNameColors[index] = menuBtnPlayerSelectedColor;
+            } else {
+                playerNameColors[index] = menuBtnColor;
+            }
+            rectColors[index] = menuBtnColor;
+        } catch (IPlayerDAO.PlayerDAOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -10,6 +10,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
 
     private Rectangle[] playerRects;
     private Color[] rectColors;
+    private Color[] playerNameColors;
 
     private int selected = 0;
     private boolean isFirstUpdate = true;
@@ -57,6 +58,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
 
         for (int i = 0, n = playerAmount; i < n; i++) {
             if (selected == i) {
+                updatePlayerColors(i);
                 rectColors[i] = menuSelectedBtnColor;
 
                 if (inputHandler.isUsePressed() && isInputAvailable()) {
@@ -83,18 +85,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
                 }
 
             } else {
-                try {
-                    String selectedPlayer = playerDAO.getSelectedPlayer();
-
-                    if (playerDAO.getPlayerList().get(i).equals(selectedPlayer)) {
-                        rectColors[i] = menuBtnPlayerSelectedColor;
-                    } else {
-                        rectColors[i] = menuBtnColor;
-                    }
-
-                } catch (IPlayerDAO.PlayerDAOException e) {
-                    e.printStackTrace();
-                }
+                updatePlayerColors(i);
             }
         }
 
@@ -118,10 +109,10 @@ public final class PlayerSelectMenu extends AbstractMenu {
         drawSubmenuTitle(textHandler.TITLE_SELECT_PLAYER_SCREEN, g);
 
         /* Render buttons  */
-        g.setFont(inputFont);
+        g.setFont(inputBtnFont);
 
         for (int i = 0; i < playerAmount; i++) {
-            g.setColor(menuFontColor);
+            g.setColor(playerNameColors[i]);
             g.drawString(playerDAO.getPlayerList().get(i), playerRects[i].x + 5, playerRects[i].y + 32);
 
             g.setColor(rectColors[i]);
@@ -146,6 +137,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
         // Update rectangles
         playerRects = new Rectangle[playerAmount];
         rectColors = new Color[playerAmount];
+        playerNameColors = new Color[playerAmount];
 
         int initialX = 150;
         int initialY = 240;
@@ -162,6 +154,22 @@ public final class PlayerSelectMenu extends AbstractMenu {
             }
             playerRects[i] = new Rectangle(x, y, 150, 50);
             y += yInc;
+        }
+    }
+
+    private void updatePlayerColors(int index) {
+        try {
+            String player = playerDAO.getPlayerList().get(index);
+            String selectedPlayer = playerDAO.getSelectedPlayer();
+
+            if (player.equals(selectedPlayer)) {
+                playerNameColors[index] = menuBtnPlayerSelectedColor;
+            } else {
+                playerNameColors[index] = menuBtnColor;
+            }
+            rectColors[index] = menuBtnColor;
+        } catch (IPlayerDAO.PlayerDAOException e) {
+            e.printStackTrace();
         }
     }
 

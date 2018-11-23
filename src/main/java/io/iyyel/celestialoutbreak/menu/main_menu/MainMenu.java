@@ -9,7 +9,6 @@ import java.awt.*;
 public final class MainMenu extends AbstractMenu {
 
     private final Rectangle playRect, scoreRect, controlsRect, optionsRect, aboutRect, exitRect;
-    private final Font btnFont;
 
     private String[] options = {textHandler.BTN_PLAY_TEXT, textHandler.BTN_SCORES_TEXT, textHandler.BTN_CONTROLS_TEXT,
             textHandler.BTN_OPTIONS_TEXT, textHandler.BTN_ABOUT_TEXT, textHandler.BTN_EXIT_TEXT};
@@ -35,8 +34,6 @@ public final class MainMenu extends AbstractMenu {
 
         for (Color c : rectColors)
             c = menuSelectedBtnColor;
-
-        btnFont = utils.getGameFont().deriveFont(20F);
     }
 
     @Override
@@ -106,41 +103,41 @@ public final class MainMenu extends AbstractMenu {
         }
 
         /* Render buttons  */
-        g.setFont(btnFont);
+        g.setFont(inputBtnFont);
 
         /* Play button */
         g.setColor(menuFontColor);
-        drawCenterString(options[0], playRect.y + BTN_Y_OFFSET, g, btnFont);
+        drawCenterString(options[0], playRect.y + BTN_Y_OFFSET, g, inputBtnFont);
         g.setColor(rectColors[0]);
         g.draw(playRect);
 
         /* Score button */
         g.setColor(menuFontColor);
-        drawCenterString(options[1], scoreRect.y + BTN_Y_OFFSET, g, btnFont);
+        drawCenterString(options[1], scoreRect.y + BTN_Y_OFFSET, g, inputBtnFont);
         g.setColor(rectColors[1]);
         g.draw(scoreRect);
 
         /* Controls button */
         g.setColor(menuFontColor);
-        drawCenterString(options[2], controlsRect.y + BTN_Y_OFFSET, g, btnFont);
+        drawCenterString(options[2], controlsRect.y + BTN_Y_OFFSET, g, inputBtnFont);
         g.setColor(rectColors[2]);
         g.draw(controlsRect);
 
         /* Settings button */
         g.setColor(menuFontColor);
-        drawCenterString(options[3], optionsRect.y + BTN_Y_OFFSET, g, btnFont);
+        drawCenterString(options[3], optionsRect.y + BTN_Y_OFFSET, g, inputBtnFont);
         g.setColor(rectColors[3]);
         g.draw(optionsRect);
 
         /* About button */
         g.setColor(menuFontColor);
-        drawCenterString(options[4], aboutRect.y + BTN_Y_OFFSET, g, btnFont);
+        drawCenterString(options[4], aboutRect.y + BTN_Y_OFFSET, g, inputBtnFont);
         g.setColor(rectColors[4]);
         g.draw(aboutRect);
 
         /* Exit button */
         g.setColor(menuFontColor);
-        drawCenterString(options[5], exitRect.y + BTN_Y_OFFSET, g, btnFont);
+        drawCenterString(options[5], exitRect.y + BTN_Y_OFFSET, g, inputBtnFont);
         g.setColor(rectColors[5]);
         g.draw(exitRect);
 

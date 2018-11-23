@@ -7,6 +7,7 @@ import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.menu.WelcomeMenu;
 import io.iyyel.celestialoutbreak.menu.main_menu.*;
 import io.iyyel.celestialoutbreak.menu.options_menu.ConfigOptionsMenu;
+import io.iyyel.celestialoutbreak.menu.options_menu.GameOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.options_menu.PlayerOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.play.FinishedLevelMenu;
 import io.iyyel.celestialoutbreak.menu.play.NewLevelMenu;
@@ -92,6 +93,7 @@ public class GameController extends Canvas implements Runnable {
     private final PlayerSelectMenu playerSelectMenu;
     private final PlayerCreateMenu playerNewMenu;
     private final PlayerDeleteMenu playerDeleteMenu;
+    private final GameOptionsMenu gameOptionsMenu;
     private final ConfigOptionsMenu configurationMenu;
     private final ControlsMenu controlMenu;
     private final AboutMenu aboutMenu;
@@ -199,6 +201,7 @@ public class GameController extends Canvas implements Runnable {
         playerOptionsMenu = new PlayerOptionsMenu(this);
         playerSelectMenu = new PlayerSelectMenu(this);
         playerDeleteMenu = new PlayerDeleteMenu(this);
+        gameOptionsMenu = new GameOptionsMenu(this);
         configurationMenu = new ConfigOptionsMenu(this);
         controlMenu = new ControlsMenu(this);
         aboutMenu = new AboutMenu(this);
@@ -221,6 +224,9 @@ public class GameController extends Canvas implements Runnable {
 
         /* Log that the game has been initialized */
         fileHandler.writeLog(textHandler.GAME_INIT_FINISHED);
+
+        /* TEST */
+        utils.createDemoPlayers(playerDAO);
     }
 
     /*
@@ -317,6 +323,9 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case PLAYER_DELETE_SCREEN:
                 playerDeleteMenu.update();
+                break;
+            case GAME_OPTIONS_SCREEN:
+                gameOptionsMenu.update();
                 break;
             case CONFIG_OPTIONS_SCREEN:
                 configurationMenu.update();
@@ -452,6 +461,7 @@ public class GameController extends Canvas implements Runnable {
             case PLAYER_OPTIONS_MENU:
             case PLAYER_SELECT_SCREEN:
             case PLAYER_DELETE_SCREEN:
+            case GAME_OPTIONS_SCREEN:
             case CONFIG_OPTIONS_SCREEN:
             case ABOUT_SCREEN:
             case EXIT_SCREEN:
@@ -501,6 +511,9 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case PLAYER_DELETE_SCREEN:
                 playerDeleteMenu.render(g);
+                break;
+            case GAME_OPTIONS_SCREEN:
+                gameOptionsMenu.render(g);
                 break;
             case CONFIG_OPTIONS_SCREEN:
                 configurationMenu.render(g);
