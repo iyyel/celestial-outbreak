@@ -226,7 +226,7 @@ public class GameController extends Canvas implements Runnable {
         fileHandler.writeLog(textHandler.GAME_INIT_FINISHED);
 
         /* TEST */
-        utils.createDemoPlayers(playerDAO);
+        //utils.createDemoPlayers(playerDAO);
     }
 
     /*
@@ -350,6 +350,13 @@ public class GameController extends Canvas implements Runnable {
             default:
                 break;
         }
+
+        // New stuff to do for the update function.
+        // Make sure that settings are always an actuality.
+        // e.g., make sure that sound gets disabled if it gets
+        // changed in settings, keep updating on the variable, etc.
+        // if it suddenly changes to false, stop it. If it suddenly changes to
+        // true, then start it, etc. Same goes with all of them.
     }
 
     /*

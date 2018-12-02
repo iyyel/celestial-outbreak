@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.handler;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.Map;
 
 public final class OptionsHandler {
@@ -10,19 +11,27 @@ public final class OptionsHandler {
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
 
-    /* Game Option flags */
-    private boolean isVerboseLogEnabled = true; // verbose logging and info in the game
-    private boolean isSoundEnabled = true; // sound on or off
-    private boolean isGodModeEnabled = false; // GOD MODE :) // fast paced? endless life?
-    private boolean isFpsLockEnabled = true; // lock game to 60 fps and not ASAP performance.
-    private boolean isAntiAliasingEnabled = true; // speaks for itself :)
+    /* Property Game Options map */
+    private final Map<String, Boolean> gamePropMap = new HashMap<String, Boolean>() {
+        {
+            put(textHandler.PROP_VERBOSE_LOG_ENABLED, false);
+            put(textHandler.PROP_SOUND_ENABLED, false);
+            put(textHandler.PROP_GOD_MODE_ENABLED, false);
+            put(textHandler.PROP_FPS_LOCK_ENABLED, false);
+            put(textHandler.PROP_ANTI_ALIASING_ENABLED, false);
+        }
+    };
 
-    /* Menu colors */
-    private Color menuFontColor;
-    private Color menuBtnColor;
-    private Color menuBtnSelectedColor;
-    private Color menuBtnPlayerSelectedColor;
-    private Color menuBtnPlayerDeletedColor;
+    /* MenuColor Property map */
+    private final Map<String, Color> menuColorPropMap = new HashMap<String, Color>() {
+        {
+            put(textHandler.PROP_MENU_FONT_COLOR_HEX, Color.BLACK);
+            put(textHandler.PROP_MENU_BTN_COLOR_HEX, Color.BLACK);
+            put(textHandler.PROP_MENU_BTN_SELECTED_COLOR_HEX, Color.BLACK);
+            put(textHandler.PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX, Color.BLACK);
+            put(textHandler.PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX, Color.BLACK);
+        }
+    };
 
     static {
         try {
@@ -47,90 +56,75 @@ public final class OptionsHandler {
     }
 
     private void loadGameOptions(Map<String, String> pMap) {
-        // Verbose logging
-        this.isVerboseLogEnabled = parseProp(pMap, textHandler.PROP_VERBOSE_LOG_ENABLED);
-        fileHandler.writeLog(textHandler.getGamePropertyLogString(isVerboseLogEnabled, "Verbose logging"));
-
-        // Sound
-        this.isSoundEnabled = parseProp(pMap, textHandler.PROP_SOUND_ENABLED);
-        fileHandler.writeLog(textHandler.getGamePropertyLogString(isSoundEnabled, "Sound"));
-
-        // God mode
-        this.isGodModeEnabled = parseProp(pMap, textHandler.PROP_GOD_MODE_ENABLED);
-        fileHandler.writeLog(textHandler.getGamePropertyLogString(isGodModeEnabled, "God Mode"));
-
-        // FPS lock
-        this.isFpsLockEnabled = parseProp(pMap, textHandler.PROP_FPS_LOCK_ENABLED);
-        fileHandler.writeLog(textHandler.getGamePropertyLogString(isSoundEnabled, "FPS Lock"));
-
-        // Anti aliasing
-        this.isAntiAliasingEnabled = parseProp(pMap, textHandler.PROP_ANTI_ALIASING_ENABLED);
-        fileHandler.writeLog(textHandler.getGamePropertyLogString(isSoundEnabled, "Anti-aliasing"));
+        for (String pKey : gamePropMap.keySet()) {
+            // Put the actual value of 'pKey' inside gamePropMap
+            boolean pValue = parseGameOptionProperty(pMap, pKey);
+            gamePropMap.put(pKey, pValue);
+            // Log
+            fileHandler.writeLog(textHandler.getGamePropertyLogString(pValue, pKey));
+        }
     }
 
     private void loadColorOptions(Map<String, String> pMap) {
-        this.menuFontColor = getPropertyColor(pMap, textHandler.PROP_MENU_FONT_COLOR_HEX);
-        fileHandler.writeLog(textHandler.getMenuColorLogString(textHandler.PROP_MENU_FONT_COLOR_HEX, menuFontColor));
-
-        this.menuBtnColor = getPropertyColor(pMap, textHandler.PROP_MENU_BTN_COLOR_HEX);
-        fileHandler.writeLog(textHandler.getMenuColorLogString(textHandler.PROP_MENU_BTN_COLOR_HEX, menuBtnColor));
-
-        this.menuBtnSelectedColor = getPropertyColor(pMap, textHandler.PROP_MENU_BTN_SELECTED_COLOR_HEX);
-        fileHandler.writeLog(textHandler.getMenuColorLogString(textHandler.PROP_MENU_BTN_SELECTED_COLOR_HEX, menuBtnSelectedColor));
-
-        this.menuBtnPlayerSelectedColor = getPropertyColor(pMap, textHandler.PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX);
-        fileHandler.writeLog(textHandler.getMenuColorLogString(textHandler.PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX, menuBtnPlayerSelectedColor));
-
-        this.menuBtnPlayerDeletedColor = getPropertyColor(pMap, textHandler.PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX);
-        fileHandler.writeLog(textHandler.getMenuColorLogString(textHandler.PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX, menuBtnPlayerDeletedColor));
+        for (String pKey : menuColorPropMap.keySet()) {
+            // Put the actual value of 'pKey' inside menuColorPropMap
+            Color color = parseMenuColorProperty(pMap, pKey);
+            menuColorPropMap.put(pKey, color);
+            // Log
+            fileHandler.writeLog(textHandler.getMenuColorLogString(pKey, color));
+        }
     }
 
-    private boolean parseProp(Map<String, String> map, String pKey) {
+    private boolean parseGameOptionProperty(Map<String, String> map, String pKey) {
         return Boolean.parseBoolean(map.get(pKey));
     }
 
-    private Color getPropertyColor(Map<String, String> map, String pKey) {
+    private Color parseMenuColorProperty(Map<String, String> map, String pKey) {
         return new Color(Integer.decode(map.get(pKey)));
     }
 
+    public void reloadProperty(String pKey, String pValue) {
+        gamePropMap.put(pKey, Boolean.parseBoolean(pValue));
+    }
+
     public boolean isVerboseLogEnabled() {
-        return isVerboseLogEnabled;
+        return gamePropMap.get(textHandler.PROP_VERBOSE_LOG_ENABLED);
     }
 
     public boolean isSoundEnabled() {
-        return isSoundEnabled;
+        return gamePropMap.get(textHandler.PROP_SOUND_ENABLED);
     }
 
     public boolean isGodModeEnabled() {
-        return isGodModeEnabled;
+        return gamePropMap.get(textHandler.PROP_GOD_MODE_ENABLED);
     }
 
     public boolean isFpsLockEnabled() {
-        return isFpsLockEnabled;
+        return gamePropMap.get(textHandler.PROP_FPS_LOCK_ENABLED);
     }
 
     public boolean isAntiAliasingEnabled() {
-        return isAntiAliasingEnabled;
+        return gamePropMap.get(textHandler.PROP_ANTI_ALIASING_ENABLED);
     }
 
     public Color getMenuFontColor() {
-        return menuFontColor;
+        return menuColorPropMap.get(textHandler.PROP_MENU_FONT_COLOR_HEX);
     }
 
     public Color getMenuBtnColor() {
-        return menuBtnColor;
+        return menuColorPropMap.get(textHandler.PROP_MENU_BTN_COLOR_HEX);
     }
 
     public Color getMenuBtnSelectedColor() {
-        return menuBtnSelectedColor;
+        return menuColorPropMap.get(textHandler.PROP_MENU_BTN_SELECTED_COLOR_HEX);
     }
 
     public Color getMenuBtnPlayerSelectedColor() {
-        return menuBtnPlayerSelectedColor;
+        return menuColorPropMap.get(textHandler.PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX);
     }
 
     public Color getMenuBtnPlayerDeletedColor() {
-        return menuBtnPlayerDeletedColor;
+        return menuColorPropMap.get(textHandler.PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX);
     }
 
 }

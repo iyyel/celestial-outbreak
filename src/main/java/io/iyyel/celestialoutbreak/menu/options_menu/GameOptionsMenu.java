@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.menu.options_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
@@ -13,6 +14,8 @@ public final class GameOptionsMenu extends AbstractMenu {
     private Color[] rectColors;
     private Color[] playerNameColors;
     private int selected = 0;
+
+    private final FileHandler fileHandler = FileHandler.getInstance();
 
     private boolean isFirstUpdate = true;
 
@@ -99,6 +102,12 @@ public final class GameOptionsMenu extends AbstractMenu {
                     switch (i) {
                         case 0:
                             System.out.println("0");
+                            String pValue = String.valueOf(!optionsHandler.isSoundEnabled());
+                            System.out.println("pValue:" + pValue);
+                            System.out.println("SoundEnabled Before: " + optionsHandler.isSoundEnabled());
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_SOUND_ENABLED, pValue);
+                            optionsHandler.reloadProperty(textHandler.PROP_SOUND_ENABLED, pValue);
+                            System.out.println("SoundEnabled After: " + optionsHandler.isSoundEnabled());
                             break;
                         case 1:
                             System.out.println("1");
