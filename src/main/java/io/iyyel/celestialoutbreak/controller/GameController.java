@@ -281,8 +281,13 @@ public class GameController extends Canvas implements Runnable {
         /* Update the currently pressed keys. */
         inputHandler.update();
 
-        /* Play music based on current state */
-        soundHandler.playStateMusic(state, prevState, true);
+        /* Play sound based on current state if sound is enabled */
+        if (optionsHandler.isSoundEnabled()) {
+            soundHandler.playStateSound(state, prevState, true, false);
+        } else {
+            /* If not, stop all sound immediately */
+            soundHandler.stopSound();
+        }
 
         /* Let the current gameController state decide what to update exactly. */
         switch (state) {
@@ -550,6 +555,10 @@ public class GameController extends Canvas implements Runnable {
      */
     public State getPrevState() {
         return prevState;
+    }
+
+    public State getState() {
+        return state;
     }
 
     private void initGameIcon() {

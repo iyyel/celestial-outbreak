@@ -17,8 +17,6 @@ public final class GameOptionsMenu extends AbstractMenu {
 
     private final FileHandler fileHandler = FileHandler.getInstance();
 
-    private boolean isFirstUpdate = true;
-
     public GameOptionsMenu(GameController gameController) {
         super(gameController);
 
@@ -42,38 +40,10 @@ public final class GameOptionsMenu extends AbstractMenu {
     public void update() {
         decInputTimer();
 
-        if (isFirstUpdate) {
-            isFirstUpdate = false;
-
-            if (optionsHandler.isSoundEnabled()) {
-                playerNameColors[0] = menuBtnPlayerSelectedColor;
-            } else {
-                playerNameColors[0] = menuBtnPlayerDeletedColor;
-            }
-
-            if (optionsHandler.isGodModeEnabled()) {
-                playerNameColors[1] = menuBtnPlayerSelectedColor;
-            } else {
-                playerNameColors[1] = menuBtnPlayerDeletedColor;
-            }
-
-            if (optionsHandler.isFpsLockEnabled()) {
-                playerNameColors[2] = menuBtnPlayerSelectedColor;
-            } else {
-                playerNameColors[2] = menuBtnPlayerDeletedColor;
-            }
-
-            if (optionsHandler.isAntiAliasingEnabled()) {
-                playerNameColors[3] = menuBtnPlayerSelectedColor;
-            } else {
-                playerNameColors[3] = menuBtnPlayerDeletedColor;
-            }
-
-        }
+        updateButtonColors();
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
-            isFirstUpdate = true;
             selected = 0;
             menuUseClip.play(false);
             gameController.switchState(GameController.State.OPTIONS_MENU);
@@ -95,28 +65,59 @@ public final class GameOptionsMenu extends AbstractMenu {
             if (selected == i) {
                 rectColors[i] = menuSelectedBtnColor;
 
-                if (inputHandler.isOKPressed() && isInputAvailable()) {
+                if (inputHandler.isUsePressed() && isInputAvailable()) {
                     menuUseClip.play(false);
                     resetInputTimer();
 
                     switch (i) {
                         case 0:
-                            System.out.println("0");
                             String pValue = String.valueOf(!optionsHandler.isSoundEnabled());
-                            System.out.println("pValue:" + pValue);
-                            System.out.println("SoundEnabled Before: " + optionsHandler.isSoundEnabled());
                             fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_SOUND_ENABLED, pValue);
                             optionsHandler.reloadProperty(textHandler.PROP_SOUND_ENABLED, pValue);
-                            System.out.println("SoundEnabled After: " + optionsHandler.isSoundEnabled());
+                            soundHandler.playStateSound(gameController.getState(), gameController.getPrevState(), true, true);
+                            if (optionsHandler.isVerboseLogEnabled()) {
+                                if (optionsHandler.isSoundEnabled()) {
+                                    fileHandler.writeLog("Sound has been enabled.");
+                                } else {
+                                    fileHandler.writeLog("Sound has been disabled.");
+                                }
+                            }
                             break;
                         case 1:
-                            System.out.println("1");
+                            pValue = String.valueOf(!optionsHandler.isGodModeEnabled());
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_GOD_MODE_ENABLED, pValue);
+                            optionsHandler.reloadProperty(textHandler.PROP_GOD_MODE_ENABLED, pValue);
+                            if (optionsHandler.isVerboseLogEnabled()) {
+                                if (optionsHandler.isGodModeEnabled()) {
+                                    fileHandler.writeLog("God Mode has been enabled.");
+                                } else {
+                                    fileHandler.writeLog("God Mode has been disabled.");
+                                }
+                            }
                             break;
                         case 2:
-                            System.out.println("2");
+                            pValue = String.valueOf(!optionsHandler.isFpsLockEnabled());
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_FPS_LOCK_ENABLED, pValue);
+                            optionsHandler.reloadProperty(textHandler.PROP_FPS_LOCK_ENABLED, pValue);
+                            if (optionsHandler.isVerboseLogEnabled()) {
+                                if (optionsHandler.isFpsLockEnabled()) {
+                                    fileHandler.writeLog("FPS Lock has been enabled.");
+                                } else {
+                                    fileHandler.writeLog("FPS Lock has been disabled.");
+                                }
+                            }
                             break;
                         case 3:
-                            System.out.println("3");
+                            pValue = String.valueOf(!optionsHandler.isAntiAliasingEnabled());
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_ANTI_ALIASING_ENABLED, pValue);
+                            optionsHandler.reloadProperty(textHandler.PROP_ANTI_ALIASING_ENABLED, pValue);
+                            if (optionsHandler.isVerboseLogEnabled()) {
+                                if (optionsHandler.isAntiAliasingEnabled()) {
+                                    fileHandler.writeLog("Anti-aliasing has been enabled.");
+                                } else {
+                                    fileHandler.writeLog("Anti-aliasing has been disabled.");
+                                }
+                            }
                             break;
                         default:
                             break;
@@ -165,6 +166,32 @@ public final class GameOptionsMenu extends AbstractMenu {
         g.draw(isAntiAliasingEnabledRect);
 
         drawInfoPanel(g);
+    }
+
+    private void updateButtonColors() {
+        if (optionsHandler.isSoundEnabled()) {
+            playerNameColors[0] = menuBtnPlayerSelectedColor;
+        } else {
+            playerNameColors[0] = menuBtnPlayerDeletedColor;
+        }
+
+        if (optionsHandler.isGodModeEnabled()) {
+            playerNameColors[1] = menuBtnPlayerSelectedColor;
+        } else {
+            playerNameColors[1] = menuBtnPlayerDeletedColor;
+        }
+
+        if (optionsHandler.isFpsLockEnabled()) {
+            playerNameColors[2] = menuBtnPlayerSelectedColor;
+        } else {
+            playerNameColors[2] = menuBtnPlayerDeletedColor;
+        }
+
+        if (optionsHandler.isAntiAliasingEnabled()) {
+            playerNameColors[3] = menuBtnPlayerSelectedColor;
+        } else {
+            playerNameColors[3] = menuBtnPlayerDeletedColor;
+        }
     }
 
 }

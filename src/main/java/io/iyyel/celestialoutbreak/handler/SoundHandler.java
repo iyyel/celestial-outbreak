@@ -1,7 +1,6 @@
 package io.iyyel.celestialoutbreak.handler;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.utils.Utils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 
 import javax.sound.sampled.*;
@@ -63,7 +62,6 @@ public final class SoundHandler {
         }
 
         public void stop() {
-            if (!optionsHandler.isSoundEnabled()) return;
             isActive = false;
             clip.stop();
             clip.setFramePosition(0);
@@ -81,10 +79,6 @@ public final class SoundHandler {
         public void increaseClipDB(float db) {
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(+db); // Increase volume by 'db' decibels.
-        }
-
-        public boolean isActive() {
-            return isActive;
         }
 
     }
@@ -105,9 +99,10 @@ public final class SoundHandler {
         return instance;
     }
 
-    public void playStateMusic(GameController.State state, GameController.State prevState, boolean loop) {
 
-        if (currentStateBackup != prevState) {
+    public void playStateSound(GameController.State state, GameController.State prevState, boolean loop, boolean restart) {
+
+        if (currentStateBackup != prevState && !restart) {
             return;
         }
 
@@ -125,6 +120,7 @@ public final class SoundHandler {
             case PLAYER_SELECT_SCREEN:
             case PLAYER_CREATE_SCREEN:
             case PLAYER_DELETE_SCREEN:
+            case GAME_OPTIONS_SCREEN:
             case CONFIG_OPTIONS_SCREEN:
             case ABOUT_SCREEN:
             case EXIT_SCREEN:
@@ -153,6 +149,18 @@ public final class SoundHandler {
             soundClip.play(loop);
         }
 
+    }
+
+    public void stopSound() {
+        for (String key : soundClipMap.keySet()) {
+            SoundClip soundClip = soundClipMap.get(key);
+            if (soundClip.isActive) {
+                if (optionsHandler.isVerboseLogEnabled()) {
+                    fileHandler.writeLog("SoundClip '" + key + "' has been stopped.");
+                }
+                soundClip.stop();
+            }
+        }
     }
 
     public SoundClip getSoundClip(String clipKey) {
