@@ -33,10 +33,13 @@ public final class SoundHandler {
     };
 
     public class SoundClip {
+
         private Clip clip;
         private boolean isActive = false;
+        private boolean isPaused = false;
+        private int framePosition = 0;
 
-        public SoundClip(String filePath) {
+        private SoundClip(String filePath) {
             try {
                 clip = AudioSystem.getClip();
                 clip.open(AudioSystem.getAudioInputStream(new File(filePath)));
@@ -50,13 +53,18 @@ public final class SoundHandler {
                 return;
             }
 
-            stop();
+            if (isPaused) {
+                clip.setFramePosition(framePosition);
+            } else {
+                stop();
+            }
+
+            isPaused = false;
+            isActive = true;
 
             if (loop) {
-                isActive = true;
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
             } else {
-                isActive = true;
                 clip.start();
             }
         }
@@ -67,7 +75,14 @@ public final class SoundHandler {
             clip.setFramePosition(0);
         }
 
-        public void reduceClipDB(float db) {
+        public void pause() {
+            isActive = false;
+            isPaused = true;
+            framePosition = clip.getFramePosition();
+            clip.stop();
+        }
+
+        private void reduceClipDB(float db) {
             if (-db >= 0) {
                 return;
             }
@@ -76,15 +91,6 @@ public final class SoundHandler {
             gainControl.setValue(-db); // Reduce volume by 'db' decibels.
         }
 
-        public void increaseClipDB(float db) {
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(+db); // Increase volume by 'db' decibels.
-        }
-
-    }
-
-    private SoundHandler() {
-        initSoundHandler();
     }
 
     static {
@@ -95,10 +101,13 @@ public final class SoundHandler {
         }
     }
 
+    private SoundHandler() {
+        initSoundHandler();
+    }
+
     public synchronized static SoundHandler getInstance() {
         return instance;
     }
-
 
     public void playStateSound(GameController.State state, GameController.State prevState, boolean loop, boolean restart) {
 
@@ -151,15 +160,33 @@ public final class SoundHandler {
 
     }
 
-    public void stopSound() {
+    public void stopAllSound() {
         for (String key : soundClipMap.keySet()) {
             SoundClip soundClip = soundClipMap.get(key);
             if (soundClip.isActive) {
+                soundClip.stop();
                 if (optionsHandler.isVerboseLogEnabled()) {
                     fileHandler.writeLog("SoundClip '" + key + "' has been stopped.");
                 }
-                soundClip.stop();
             }
+        }
+    }
+
+    public void pauseAllSound() {
+        for (String key : soundClipMap.keySet()) {
+            SoundClip soundClip = soundClipMap.get(key);
+            if (soundClip.isActive) {
+                soundClip.pause();
+                if (optionsHandler.isVerboseLogEnabled()) {
+                    fileHandler.writeLog("SoundClip '" + key + "' has been paused.");
+                }
+            }
+        }
+    }
+
+    public void pauseSoundClip(String pKey) {
+        if (soundClipMap.containsKey(pKey)) {
+            soundClipMap.get(pKey).pause();
         }
     }
 

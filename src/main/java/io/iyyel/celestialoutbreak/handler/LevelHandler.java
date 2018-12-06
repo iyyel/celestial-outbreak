@@ -9,42 +9,47 @@ import java.util.List;
 
 public final class LevelHandler {
 
-    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
-
-    private GameController gameController;
     private final FileHandler fileHandler = FileHandler.getInstance();
 
+    private int activeLevelIndex = 0;
     private Level[] levels;
     private Level activeLevel;
 
-    private int currentLevelIndex;
+    private GameController gameController;
 
-    public LevelHandler(int currentLevelIndex, GameController gameController) {
-        this.currentLevelIndex = currentLevelIndex;
-        this.gameController = gameController;
+    private static LevelHandler instance;
 
-        List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
-
-        levels = new Level[levelConfigFileList.size()];
-
-        for (int i = 0; i < levels.length; i++) {
-            String settingsFileName = textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i);
-            levels[i] = new Level(settingsFileName, gameController);
+    static {
+        try {
+            instance = new LevelHandler();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+    }
 
-        activeLevel = levels[currentLevelIndex];
+    private LevelHandler() {
+
+    }
+
+    public synchronized static LevelHandler getInstance() {
+        return instance;
     }
 
     public void update() {
+        if (activeLevel == null || gameController == null) {
+            return;
+        }
+
         activeLevel.update();
 
         if (activeLevel.isFinished()) {
-            startNextLevel();
-            gameController.switchState(GameController.State.FINISHED_LEVEL_SCREEN);
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog(textHandler.vLevelFinishedMsg(getPrevLevel().getName()));
-            }
+            //startNextLevel();
+            // gameController.switchState(GameController.State.FINISHED_LEVEL_SCREEN);
+            //if (optionsHandler.isVerboseLogEnabled()) {
+            //     fileHandler.writeLog(textHandler.vLevelFinishedMsg(getPrevLevel().getName()));
+            // }
+            fileHandler.writeLog("Finished " + activeLevel.getName() + " level!");
         }
     }
 
@@ -52,22 +57,22 @@ public final class LevelHandler {
         activeLevel.render(g);
     }
 
-    private void startNextLevel() {
-        if (currentLevelIndex >= 0 && currentLevelIndex + 1 <= levels.length - 1) {
-            currentLevelIndex++;
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog(textHandler.vChangedLevelMsg(activeLevel.getName(), levels[currentLevelIndex].getName()));
-            }
-            activeLevel = levels[currentLevelIndex];
+    public void initLevelHandler(GameController gameController) {
+        this.gameController = gameController;
+
+        List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
+        levels = new Level[levelConfigFileList.size()];
+
+        for (int i = 0; i < levels.length; i++) {
+            String settingsFileName = textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i);
+            levels[i] = new Level(settingsFileName, gameController);
         }
+
+        activeLevel = levels[activeLevelIndex];
     }
 
     public Level getActiveLevel() {
         return activeLevel;
-    }
-
-    public Level getPrevLevel() {
-        return levels[currentLevelIndex - 1];
     }
 
 }

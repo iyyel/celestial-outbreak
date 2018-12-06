@@ -74,12 +74,8 @@ public class GameController extends Canvas implements Runnable {
     private final InputHandler inputHandler = InputHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
     private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
-
-    /*
-     * LevelHandler object.
-     */
-    private final LevelHandler levelHandler;
 
     /*
      * Objects used for menu's.
@@ -107,6 +103,7 @@ public class GameController extends Canvas implements Runnable {
      * WELCOME_MENU,
      * MAIN_MENU,
      *   PLAY_SCREEN,
+     *       PRE_PLAY_SCREEN,
      *       PAUSE_SCREEN,
      *       NEW_LEVEL_SCREEN,
      *       FINISHED_LEVEL_SCREEN,
@@ -127,6 +124,7 @@ public class GameController extends Canvas implements Runnable {
         WELCOME_MENU,
         MAIN_MENU,
         PLAY_SCREEN,
+        PRE_PLAY_SCREEN,
         PAUSE_SCREEN,
         NEW_LEVEL_SCREEN,
         FINISHED_LEVEL_SCREEN,
@@ -186,7 +184,7 @@ public class GameController extends Canvas implements Runnable {
         initGameIcon();
 
         /* Initialize levelHandler */
-        levelHandler = new LevelHandler(0, this);
+        levelHandler.initLevelHandler(this);
 
         /* Create screenRenderer renderer */
         screenRenderer = new ScreenRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, pixels);
@@ -286,7 +284,7 @@ public class GameController extends Canvas implements Runnable {
             soundHandler.playStateSound(state, prevState, true, false);
         } else {
             /* If not, stop all sound immediately */
-            soundHandler.stopSound();
+            soundHandler.stopAllSound();
         }
 
         /* Let the current gameController state decide what to update exactly. */
@@ -308,6 +306,7 @@ public class GameController extends Canvas implements Runnable {
                 pauseMenu.decInputTimer();
                 if (inputHandler.isPausePressed() && pauseMenu.isInputAvailable()) {
                     pauseMenu.resetInputTimer();
+                    soundHandler.pauseSoundClip(textHandler.SOUND_FILE_NAME_PLAY);
                     switchState(State.PAUSE_SCREEN);
                 }
                 break;
@@ -350,7 +349,6 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case FINISHED_LEVEL_SCREEN:
                 finishedLevelMenu.update();
-                finishedLevelMenu.updateLevelNames(levelHandler.getPrevLevel().getName(), levelHandler.getActiveLevel().getName());
                 break;
             default:
                 break;
@@ -485,7 +483,7 @@ public class GameController extends Canvas implements Runnable {
                 screenRenderer.render(levelHandler.getActiveLevel().getColor());
                 break;
             case FINISHED_LEVEL_SCREEN:
-                screenRenderer.render(levelHandler.getPrevLevel().getColor());
+                screenRenderer.render(levelHandler.getActiveLevel().getColor());
                 break;
             default:
                 break;
