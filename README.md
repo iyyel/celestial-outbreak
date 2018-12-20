@@ -31,6 +31,4 @@ Any ideas or suggestions? Do not hesitate to contact me here or on my e-mail i@i
 ![LevelSelect](img/select_level.png)
 
 ## Gameplay
-<p align="center">
 ![Gameplay](img/gameplay.gif)
-</p>
