@@ -1,6 +1,9 @@
 # Celestial Outbreak
 
-Welcome to Celestial Outbreak. Celestial Outbreak is a open source Breakout-like, planet inspired video game, implemented in core Java with little to no use of third party libraries. Includes fully customizable levels and game configuration. The main purpose of this project was to create a stand-alone game with simple controls together with a great user experience, using core Java only. Currently in development.
+Welcome to Celestial Outbreak. Celestial Outbreak is a open source Breakout-like, planet inspired video game, implemented in core Java with little to no use of third party libraries. Includes fully customizable levels and game configuration. The main purpose of this project was to create a stand-alone game with simple controls together with a great user experience, using core Java only.
+
+## Status
+Currently in development.
 
 ## Release
 Version 0.1 Beta has been released.
