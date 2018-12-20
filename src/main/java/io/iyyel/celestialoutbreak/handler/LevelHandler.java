@@ -14,7 +14,6 @@ public final class LevelHandler {
 
     private int activeLevelIndex = 0;
     private Level[] levels;
-    private Level activeLevel;
 
     private GameController gameController;
 
@@ -37,24 +36,24 @@ public final class LevelHandler {
     }
 
     public void update() {
-        if (activeLevel == null || gameController == null) {
+        if (levels[activeLevelIndex] == null || gameController == null) {
             return;
         }
 
-        activeLevel.update();
+        levels[activeLevelIndex].update();
 
-        if (activeLevel.isFinished()) {
+        if (levels[activeLevelIndex].isFinished()) {
             //startNextLevel();
             // gameController.switchState(GameController.State.FINISHED_LEVEL_SCREEN);
             //if (optionsHandler.isVerboseLogEnabled()) {
             //     fileHandler.writeLog(textHandler.vLevelFinishedMsg(getPrevLevel().getName()));
             // }
-            fileHandler.writeLog("Finished " + activeLevel.getName() + " level!");
+            fileHandler.writeLog("Finished " + levels[activeLevelIndex].getName() + " level!");
         }
     }
 
     public void render(Graphics2D g) {
-        activeLevel.render(g);
+        levels[activeLevelIndex].render(g);
     }
 
     public void initLevelHandler(GameController gameController) {
@@ -63,16 +62,33 @@ public final class LevelHandler {
         List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
         levels = new Level[levelConfigFileList.size()];
 
+        //TODO: Remove magic number here.
+        if (levels.length > 16) {
+            fileHandler.writeLog("Maximum levels exceeded: 16 - shutting down. (MAKE THIS SHOW A POPUP!)");
+            gameController.stop();
+        }
+
         for (int i = 0; i < levels.length; i++) {
             String settingsFileName = textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i);
             levels[i] = new Level(settingsFileName, gameController);
         }
 
-        activeLevel = levels[activeLevelIndex];
     }
 
     public Level getActiveLevel() {
-        return activeLevel;
+        return levels[activeLevelIndex];
+    }
+
+    public int getLevelAmount() {
+        return levels.length;
+    }
+
+    public Level getLevel(int index) {
+        return levels[index];
+    }
+
+    public void setActiveLevelIndex(int index) {
+        this.activeLevelIndex = index;
     }
 
 }

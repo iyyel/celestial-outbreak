@@ -4,9 +4,7 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.entity.Ball;
 import io.iyyel.celestialoutbreak.entity.BlockList;
 import io.iyyel.celestialoutbreak.entity.Paddle;
-import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
-import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.menu.GamePanel;
 
 import java.awt.*;
@@ -18,7 +16,7 @@ public final class Level {
      */
     private Paddle paddle;
     private Ball ball;
-    private BlockList blockList;
+    public BlockList blockList;
 
     /*
      * GameController object.
@@ -34,8 +32,6 @@ public final class Level {
      * Handlers for the level.
      */
     private InputHandler inputHandler = InputHandler.getInstance();
-    private SoundHandler soundHandler = SoundHandler.getInstance();
-    private FileHandler fileHandler = FileHandler.getInstance();
 
     /*
      * Level options.
@@ -62,13 +58,12 @@ public final class Level {
      * BlockList options.
      */
     private Point blockPos;
-    private int blockAmount, blockWidth, blockHeight, blockSpacing;
+    private int blockAmount, blockHP, blockWidth, blockHeight, blockSpacing;
 
     /*
      * GamePanel options.
      */
     private GamePanel gamePanel;
-    private Color GamePanelColor;
 
     /*
      * Constructor.
@@ -82,7 +77,7 @@ public final class Level {
         /* Create objects after initializing the options. */
         paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, gameController);
         ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, ballPosXOffset, ballPosYOffset, gameController);
-        blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, gameController);
+        blockList = new BlockList(blockAmount, blockHP, blockPos, blockWidth, blockHeight, blockSpacing, gameController);
         gamePanel = new GamePanel(gameController);
     }
 
@@ -123,12 +118,10 @@ public final class Level {
         /* BlockList options. */
         blockPos = levelConfig.getBlockPos();
         blockAmount = levelConfig.getBlockAmount();
+        blockHP = levelConfig.getBlockHP();
         blockWidth = levelConfig.getBlockWidth();
         blockHeight = levelConfig.getBlockHeight();
         blockSpacing = levelConfig.getBlockSpacing();
-
-        /* GamePanel options. */
-        GamePanelColor = levelConfig.getGamePanelColor();
     }
 
     public boolean isFinished() {
@@ -148,6 +141,10 @@ public final class Level {
 
     public Color getColor() {
         return color;
+    }
+
+    public int getBlockAmount() {
+        return blockAmount;
     }
 
 }

@@ -147,7 +147,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
         int yInc = 80;
 
         for (int i = 0; i < playerAmount; i++) {
-            rectColors[i] = Color.WHITE;
+            rectColors[i] = menuBtnColor;
             if (i % 5 == 0 && i != 0) {
                 x += xInc;
                 y = initialY;

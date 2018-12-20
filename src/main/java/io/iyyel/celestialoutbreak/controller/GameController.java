@@ -10,6 +10,7 @@ import io.iyyel.celestialoutbreak.menu.options_menu.ConfigOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.options_menu.GameOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.options_menu.PlayerOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.play.FinishedLevelMenu;
+import io.iyyel.celestialoutbreak.menu.play.LevelSelectMenu;
 import io.iyyel.celestialoutbreak.menu.play.NewLevelMenu;
 import io.iyyel.celestialoutbreak.menu.player_options.PlayerCreateMenu;
 import io.iyyel.celestialoutbreak.menu.player_options.PlayerDeleteMenu;
@@ -82,6 +83,7 @@ public class GameController extends Canvas implements Runnable {
      */
     private final WelcomeMenu welcomeMenu;
     private final MainMenu mainMenu;
+    private final LevelSelectMenu levelSelectMenu;
     private final PauseMenu pauseMenu;
     private final ScoresMenu scoresMenu;
     private final OptionsMenu settingsMenu;
@@ -103,7 +105,7 @@ public class GameController extends Canvas implements Runnable {
      * WELCOME_MENU,
      * MAIN_MENU,
      *   PLAY_SCREEN,
-     *       PRE_PLAY_SCREEN,
+     *       LEVEL_SELECT_SCREEN,
      *       PAUSE_SCREEN,
      *       NEW_LEVEL_SCREEN,
      *       FINISHED_LEVEL_SCREEN,
@@ -124,7 +126,7 @@ public class GameController extends Canvas implements Runnable {
         WELCOME_MENU,
         MAIN_MENU,
         PLAY_SCREEN,
-        PRE_PLAY_SCREEN,
+        LEVEL_SELECT_SCREEN,
         PAUSE_SCREEN,
         NEW_LEVEL_SCREEN,
         FINISHED_LEVEL_SCREEN,
@@ -193,6 +195,7 @@ public class GameController extends Canvas implements Runnable {
         playerNewMenu = new PlayerCreateMenu(this);
         welcomeMenu = new WelcomeMenu(this);
         mainMenu = new MainMenu(this);
+        levelSelectMenu = new LevelSelectMenu(this);
         pauseMenu = new PauseMenu(this);
         scoresMenu = new ScoresMenu(this);
         settingsMenu = new OptionsMenu(this);
@@ -309,6 +312,9 @@ public class GameController extends Canvas implements Runnable {
                     soundHandler.pauseSoundClip(textHandler.SOUND_FILE_NAME_PLAY);
                     switchState(State.PAUSE_SCREEN);
                 }
+                break;
+            case LEVEL_SELECT_SCREEN:
+                levelSelectMenu.update();
                 break;
             case SCORES_SCREEN:
                 scoresMenu.update();
@@ -465,6 +471,7 @@ public class GameController extends Canvas implements Runnable {
             case WELCOME_MENU:
             case PLAYER_CREATE_SCREEN:
             case MAIN_MENU:
+            case LEVEL_SELECT_SCREEN:
             case SCORES_SCREEN:
             case CONTROLS_SCREEN:
             case OPTIONS_MENU:
@@ -500,6 +507,9 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case MAIN_MENU:
                 mainMenu.render(g);
+                break;
+            case LEVEL_SELECT_SCREEN:
+                levelSelectMenu.render(g);
                 break;
             case PLAY_SCREEN:
                 levelHandler.render(g);

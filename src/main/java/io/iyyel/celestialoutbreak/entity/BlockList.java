@@ -27,6 +27,7 @@ public final class BlockList {
     private final int width;
     private final int height;
     private final int spacing;
+    private final int hitpoints;
     private int blocksLeft;
 
     private Point pos;
@@ -42,13 +43,14 @@ public final class BlockList {
      * @param spacing        Spacing between @Block objects.
      * @param gameController The current game instance.
      */
-    public BlockList(int blockAmount, Point pos, int width, int height, int spacing, GameController gameController) {
+    public BlockList(int blockAmount, int hitpoints, Point pos, int width, int height, int spacing, GameController gameController) {
         this.pos = pos;
         this.width = width;
         this.height = height;
         this.spacing = spacing;
         this.blocksLeft = blockAmount;
         this.gameController = gameController;
+        this.hitpoints = hitpoints;
 
         /* Create the array and initialize the @Block objects. */
         blockList = new Block[blockAmount];
@@ -142,7 +144,7 @@ public final class BlockList {
 
         for (int i = 0; i < blockList.length; i++) {
             /* Instantiate @Block object. */
-            blockList[i] = new Block(new Point(pos.x, pos.y), width, height, utils.generatePastelColor(0.8F, 9000F));
+            blockList[i] = new Block(new Point(pos.x, pos.y), width, height, hitpoints, utils.generatePastelColor(0.8F, 9000F));
 
             /*
              * Adds spacing and extra width for the new block

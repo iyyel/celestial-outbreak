@@ -170,7 +170,14 @@ public final class Ball extends MobileEntity {
             for (int i = 0; i < blockList.getLength(); i++) {
                 if (blockList.getBlock(i) != null && blockList.getBlock(i).getBounds().intersects(getBounds())) {
                     velocity.y *= -1;
-                    blockList.destroyBlock(i);
+                    System.out.println("HP before: " + blockList.getBlock(i).getHitPoints());
+                    // block was hit
+                    blockList.getBlock(i).decHitPoints();
+                    System.out.println("HP after: " + blockList.getBlock(i).getHitPoints());
+
+                    if (blockList.getBlock(i).isDead()) {
+                        blockList.destroyBlock(i);
+                    }
 
                     soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
 

@@ -51,7 +51,7 @@ public final class TextHandler {
      * Important game strings.
      */
     public final String GAME_TITLE = "Celestial Outbreak";
-    public final String GAME_VERSION = "v0.13a";
+    public final String GAME_VERSION = "v0.1b";
     public final String AUTHOR_WEBSITE = "iyyel.io";
     public final String GITHUB_URL = "github.com/iyyel/celestialoutbreak";
 
@@ -321,6 +321,7 @@ public final class TextHandler {
     /* BlockList. */
     public final String PROP_BLOCKLIST_POS_X = "LEVEL_BLOCKLIST_X_POS";
     public final String PROP_BLOCKLIST_POS_Y = "LEVEL_BLOCKLIST_Y_POS";
+    public final String PROP_BLOCKLIST_BLOCK_HITPOINTS = "LEVEL_BLOCKLIST_BLOCK_HITPOINTS";
     public final String PROP_BLOCKLIST_BLOCK_AMOUNT = "LEVEL_BLOCKLIST_BLOCK_AMOUNT";
     public final String PROP_BLOCKLIST_BLOCK_WIDTH = "LEVEL_BLOCKLIST_BLOCK_WIDTH";
     public final String PROP_BLOCKLIST_BLOCK_HEIGHT = "LEVEL_BLOCKLIST_BLOCK_HEIGHT";
