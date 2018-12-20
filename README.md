@@ -22,7 +22,7 @@ Any ideas or suggestions? Do not hesitate to contact me here or on my e-mail i@i
 ![GameOptions](img/game_options.png)
 
 ## Level Selection
-![LevelSelect](img/level_select.png)
+![LevelSelect](img/select_level.png)
 
 ## Gameplay
 ![Gameplay](img/gameplay.gif)
