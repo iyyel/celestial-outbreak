@@ -1,7 +1,7 @@
 # Celestial Outbreak
 <p align="center">
 <a href="https://travis-ci.org/iyyel/celestialoutbreak"><img src="https://travis-ci.org/iyyel/celestialoutbreak.svg?branch=master"></a>
-<a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+<a href="./LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
 </p>
 Welcome to Celestial Outbreak. Celestial Outbreak is a open source Breakout-like, planet inspired video game, implemented in core Java with little to no use of third party libraries. Includes fully customizable levels and game configuration. The main purpose of this project was to create a stand-alone game with simple controls together with a great user experience, using core Java only.
 
@@ -33,7 +33,4 @@ Any ideas or suggestions? Do not hesitate to contact me here or on my e-mail i@i
 ## Gameplay
 <p align="center">
 ![Gameplay](img/gameplay.gif)
-</p> 
-
-## License 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+</p>
