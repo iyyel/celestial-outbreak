@@ -4,3 +4,6 @@ jdk:
   - oraclejdk11
   - openjdk10
   - openjdk11
+
+notifications:
+  email: false
