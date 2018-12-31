@@ -9,6 +9,7 @@ import io.iyyel.celestialoutbreak.menu.main_menu.*;
 import io.iyyel.celestialoutbreak.menu.options_menu.ConfigOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.options_menu.GameOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.options_menu.PlayerOptionsMenu;
+import io.iyyel.celestialoutbreak.menu.play.PauseMenu;
 import io.iyyel.celestialoutbreak.menu.play.SelectLevelMenu;
 import io.iyyel.celestialoutbreak.menu.play.PostLevelMenu;
 import io.iyyel.celestialoutbreak.menu.play.PreLevelMenu;

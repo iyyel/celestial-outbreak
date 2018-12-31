@@ -39,6 +39,7 @@ public final class Level {
     private String name;
     private String desc;
     private Color color;
+    private int playerLife;
 
     /*
      * Paddle options.
@@ -84,7 +85,7 @@ public final class Level {
     public void update() {
         paddle.update(inputHandler.isLeftPressed(), inputHandler.isRightPressed());
         ball.update(paddle, blockList);
-        gamePanel.updatePanel(name, blockList.getBlocksLeft());
+        gamePanel.update();
     }
 
     public void render(Graphics2D g) {
@@ -99,6 +100,7 @@ public final class Level {
         name = levelConfig.getLevelName();
         desc = levelConfig.getLevelDesc();
         color = levelConfig.getLevelColor();
+        playerLife = levelConfig.getPlayerLife();
 
         /* Paddle options. */
         paddlePos = levelConfig.getPaddlePos();
@@ -124,11 +126,16 @@ public final class Level {
         blockSpacing = levelConfig.getBlockSpacing();
     }
 
-    public boolean isFinished() {
-        if (blockList.getBlocksLeft() <= 0) {
-            return true;
-        }
-        return false;
+    public boolean isVictory() {
+        return blockList.getBlocksLeft() <= 0;
+    }
+
+    public boolean isLost() {
+        return playerLife <= 0;
+    }
+
+    public int getPlayerLife() {
+        return playerLife;
     }
 
     public String getName() {
@@ -145,6 +152,16 @@ public final class Level {
 
     public int getBlockAmount() {
         return blockAmount;
+    }
+
+    public int getBlocksLeft() {
+        return blockList.getBlocksLeft();
+    }
+
+    public void decPlayerLife() {
+        if (playerLife > 0) {
+            playerLife -= 1;
+        }
     }
 
 }

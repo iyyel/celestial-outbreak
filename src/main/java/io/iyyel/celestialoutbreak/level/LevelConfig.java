@@ -19,6 +19,7 @@ public final class LevelConfig {
     private String levelName;
     private String levelDesc;
     private Color levelColor;
+    private int playerLife;
 
     /*
      * Paddle options.
@@ -78,6 +79,7 @@ public final class LevelConfig {
         levelDesc = map.get(textHandler.PROP_LEVEL_DESC);
         int levelColorValue = Integer.decode(map.get(textHandler.PROP_LEVEL_COLOR_HEX));
         levelColor = new Color(levelColorValue);
+        playerLife = Integer.parseInt(map.get(textHandler.PROP_LEVEL_PLAYER_LIFE));
 
         /* Paddle options. */
         int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_PADDLE_POS_X_OFFSET));
@@ -125,6 +127,10 @@ public final class LevelConfig {
 
     public String getLevelDesc() {
         return levelDesc;
+    }
+
+    public int getPlayerLife() {
+        return playerLife;
     }
 
     public Color getLevelColor() {

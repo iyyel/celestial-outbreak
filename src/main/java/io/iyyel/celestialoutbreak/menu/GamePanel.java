@@ -2,6 +2,8 @@ package io.iyyel.celestialoutbreak.menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
+import io.iyyel.celestialoutbreak.handler.LevelHandler;
+import io.iyyel.celestialoutbreak.level.Level;
 
 import java.awt.*;
 
@@ -9,8 +11,9 @@ public final class GamePanel extends AbstractMenu {
 
     private final Font panelFont;
 
-    private String levelName;
-    private int blockAmountLeft;
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
+
+    private Level activeLevel;
 
     public GamePanel(GameController gameController) {
         super(gameController);
@@ -19,22 +22,17 @@ public final class GamePanel extends AbstractMenu {
 
     @Override
     public void update() {
-
+        activeLevel = levelHandler.getActiveLevel();
     }
 
     @Override
     public void render(Graphics2D g) {
         g.setColor(menuFontColor);
         g.setFont(panelFont);
-        drawGamePanel(g, levelName, blockAmountLeft);
+        drawGamePanel(g);
     }
 
-    public void updatePanel(String levelName, int blockAmountLeft) {
-        this.levelName = levelName;
-        this.blockAmountLeft = blockAmountLeft;
-    }
-
-    private void drawGamePanel(Graphics2D g, String levelName, int blockAmountLeft) {
+    private void drawGamePanel(Graphics2D g) {
         String selectedPlayer = "N/A";
 
         try {
@@ -43,11 +41,13 @@ public final class GamePanel extends AbstractMenu {
             e.printStackTrace();
         }
 
-        g.drawString("Planet: " + levelName, 5, 714);
-        g.drawString("Player: " + selectedPlayer, 200, 714);
-        g.drawString("Lives: N/A", gameController.getWidth() / 2 - 150, 714);
-        g.drawString("Score: N/A", gameController.getWidth() / 2 + 50, 714);
-        g.drawString("Blocks: " + Integer.toString(blockAmountLeft), gameController.getWidth() / 2 + 200, 714);
+        if (activeLevel != null) {
+            g.drawString("Planet: " + activeLevel.getName(), 5, 714);
+            g.drawString("Player: " + selectedPlayer, 200, 714);
+            g.drawString("Lives: " + activeLevel.getPlayerLife(), gameController.getWidth() / 2 - 150, 714);
+            g.drawString("Score: N/A", gameController.getWidth() / 2 + 50, 714);
+            g.drawString("Blocks: " + activeLevel.getBlocksLeft(), gameController.getWidth() / 2 + 200, 714);
+        }
     }
 
 }

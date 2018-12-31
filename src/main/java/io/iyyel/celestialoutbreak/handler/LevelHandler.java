@@ -43,16 +43,17 @@ public final class LevelHandler {
 
         levels[activeLevelIndex].update();
 
-        if (levels[activeLevelIndex].isFinished()) {
-            //startNextLevel();
-            // gameController.switchState(GameController.State.POST_LEVEL);
-            //if (optionsHandler.isVerboseLogEnabled()) {
-            //     fileHandler.writeLog(textHandler.vLevelFinishedMsg(getPrevLevel().getName()));
-            // }
+        if (levels[activeLevelIndex].isVictory()) {
             if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog("Finished " + levels[activeLevelIndex].getName() + " level!");
+                fileHandler.writeLog("Won " + levels[activeLevelIndex].getName() + " level!");
             }
+            gameController.switchState(GameController.State.POST_LEVEL);
+        }
 
+        if (levels[activeLevelIndex].isLost()) {
+            if (optionsHandler.isVerboseLogEnabled()) {
+                fileHandler.writeLog("Lost " + levels[activeLevelIndex].getName() + " level!");
+            }
             gameController.switchState(GameController.State.POST_LEVEL);
         }
     }

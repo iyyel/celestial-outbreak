@@ -302,6 +302,7 @@ public final class TextHandler {
     public final String PROP_LEVEL_NAME = "LEVEL_NAME";
     public final String PROP_LEVEL_DESC = "LEVEL_DESCRIPTION";
     public final String PROP_LEVEL_COLOR_HEX = "LEVEL_COLOR_HEX";
+    public final String PROP_LEVEL_PLAYER_LIFE = "LEVEL_PLAYER_LIFE";
 
     /* Paddle. */
     public final String PROP_PADDLE_POS_X_OFFSET = "LEVEL_PADDLE_POS_X_OFFSET";

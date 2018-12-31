@@ -37,6 +37,8 @@ public final class PreLevelMenu extends AbstractMenu {
         drawSubmenuTitle(activeLevel.getName(), g);
         drawCenterString(activeLevel.getDesc(), gameController.getHeight() / 2, g, msgFont);
 
+        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to start.", g);
+
         drawInfoPanel(g);
     }
 

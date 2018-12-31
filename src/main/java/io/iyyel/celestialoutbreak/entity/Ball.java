@@ -1,10 +1,7 @@
 package io.iyyel.celestialoutbreak.entity;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.handler.FileHandler;
-import io.iyyel.celestialoutbreak.handler.OptionsHandler;
-import io.iyyel.celestialoutbreak.handler.SoundHandler;
-import io.iyyel.celestialoutbreak.handler.TextHandler;
+import io.iyyel.celestialoutbreak.handler.*;
 
 import java.awt.*;
 import java.util.Random;
@@ -28,6 +25,7 @@ public final class Ball extends MobileEntity {
     private final TextHandler textHandler = TextHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
     private final GameController gameController;
 
     private final Random random = new Random();
@@ -40,6 +38,7 @@ public final class Ball extends MobileEntity {
     private int ballStaleTimer = BALL_STALE_TIMER_INITIAL;
     private int ballPosXOffset;
     private int ballPosYOffset;
+
 
     /**
      * Default constructor.
@@ -117,6 +116,7 @@ public final class Ball extends MobileEntity {
         if (pos.y > (gameController.getHeight() - height)) {
             if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
+                fileHandler.writeLog("Player lost a life! (Insert amount of life left here.)");
             }
 
             pos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
@@ -129,6 +129,9 @@ public final class Ball extends MobileEntity {
 
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET).play(false);
             ballStaleTimer = BALL_STALE_TIMER_INITIAL;
+
+            // player lost a life
+            levelHandler.getActiveLevel().decPlayerLife();
         }
     }
 
@@ -170,10 +173,9 @@ public final class Ball extends MobileEntity {
             for (int i = 0; i < blockList.getLength(); i++) {
                 if (blockList.getBlock(i) != null && blockList.getBlock(i).getBounds().intersects(getBounds())) {
                     velocity.y *= -1;
-                    System.out.println("HP before: " + blockList.getBlock(i).getHitPoints());
+
                     // block was hit
                     blockList.getBlock(i).decHitPoints();
-                    System.out.println("HP after: " + blockList.getBlock(i).getHitPoints());
 
                     if (blockList.getBlock(i).isDead()) {
                         blockList.destroyBlock(i);

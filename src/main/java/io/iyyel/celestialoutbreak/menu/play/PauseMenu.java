@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.menu.main_menu;
+package io.iyyel.celestialoutbreak.menu.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.menu.AbstractMenu;
@@ -42,6 +42,7 @@ public final class PauseMenu extends AbstractMenu {
         drawMenuTitle(g);
         drawSubmenuTitle(textHandler.TITLE_PAUSE_SCREEN, g);
         drawCenterString(textHandler.GAME_TITLE + " is paused.", 350, g, msgFont);
+        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_PAUSE + "' to resume or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to exit level.", g);
         drawInfoPanel(g);
     }
 

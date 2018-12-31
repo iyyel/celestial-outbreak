@@ -51,6 +51,7 @@ public class SelectLevelMenu extends AbstractMenu {
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
+            selected = 0;
             menuUseClip.play(false);
             gameController.switchState(GameController.State.MAIN);
         }
@@ -85,6 +86,8 @@ public class SelectLevelMenu extends AbstractMenu {
 
                 if (inputHandler.isOKPressed() && isInputAvailable()) {
                     resetInputTimer();
+                    selected = 0;
+
                     // Set current active level to i.
                     levelHandler.setActiveLevelIndex(i);
                     gameController.switchState(GameController.State.PRE_LEVEL);
