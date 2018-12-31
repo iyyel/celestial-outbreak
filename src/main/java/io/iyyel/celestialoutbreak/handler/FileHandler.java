@@ -229,11 +229,8 @@ public final class FileHandler {
      * not already exist at the destFilePath.
      */
     private void copyFile(String srcFilePath, String destFilePath) {
-        File srcFile = new File(srcFilePath);
+        InputStream srcIs = getClass().getResourceAsStream(srcFilePath);
         File destFile = new File(destFilePath);
-
-        System.out.println("src: " + srcFilePath);
-        System.out.println("dest: " + destFilePath);
 
         try {
             /*
@@ -242,8 +239,8 @@ public final class FileHandler {
              * user could have modified the file to their liking.
              */
             if (!destFile.exists()) {
-                FileUtils.copyFile(srcFile, destFile);
-                writeLog(textHandler.successCopiedFileMsg(srcFile.getPath(), destFile.getPath()));
+                FileUtils.copyInputStreamToFile(srcIs, destFile);
+                writeLog(textHandler.successCopiedFileMsg(srcFilePath, destFile.getPath()));
             }
         } catch (IOException e) {
             writeLog(textHandler.errorCopyingFileMsg(srcFilePath, destFilePath, ExceptionUtils.getStackTrace(e)));
