@@ -144,12 +144,12 @@ public final class TextHandler {
      * Options file information.
      */
     public final String OPTIONS_DIR_NAME = "options";
-    public final String OPTIONS_DIR_PATH = GAME_DIR_PATH + fs + OPTIONS_DIR_NAME;
-    public final String LOCAL_JAR_OPTIONS_DIR = LOCAL_JAR_CONFIG_DIR + fs_jar + OPTIONS_DIR_NAME;
+    public final String OPTIONS_DIR_CLIENT_PATH = GAME_DIR_PATH + fs + OPTIONS_DIR_NAME;
+    public final String OPTIONS_DIR_LOCAL_PATH = LOCAL_JAR_CONFIG_DIR + fs_jar + OPTIONS_DIR_NAME;
 
     public final String OPTIONS_CONFIG_FILE_NAME = "options.conf";
-    public final String OPTIONS_CONFIG_FILE_LOCAL_PATH = getClass().getResource(LOCAL_JAR_OPTIONS_DIR + fs_jar + OPTIONS_CONFIG_FILE_NAME).getPath();
-    public final String OPTIONS_CONFIG_FILE_CLIENT_PATH = OPTIONS_DIR_PATH + fs + OPTIONS_CONFIG_FILE_NAME;
+    public final String OPTIONS_CONFIG_FILE_LOCAL_PATH = getClass().getResource(OPTIONS_DIR_LOCAL_PATH + fs_jar + OPTIONS_CONFIG_FILE_NAME).getPath();
+    public final String OPTIONS_CONFIG_FILE_CLIENT_PATH = OPTIONS_DIR_CLIENT_PATH + fs + OPTIONS_CONFIG_FILE_NAME;
 
     /*
      * Player binary file information.

@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="celestialoutbreak_jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/celestialoutbreak_jar</output-path>
+    <root id="archive" name="celestialoutbreak.jar">
+      <element id="module-output" name="celestialoutbreak" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.4/commons-io-2.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

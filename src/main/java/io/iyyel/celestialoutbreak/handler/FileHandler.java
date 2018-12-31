@@ -56,7 +56,7 @@ public final class FileHandler {
      */
     private void createStandardDirs() {
         createDir(textHandler.LOG_DIR_PATH);
-        createDir(textHandler.OPTIONS_DIR_PATH);
+        createDir(textHandler.OPTIONS_DIR_CLIENT_PATH);
         createDir(textHandler.SOUND_DIR_PATH);
         createDir(textHandler.FONT_DIR_PATH);
         createDir(textHandler.LEVEL_DIR_PATH);
