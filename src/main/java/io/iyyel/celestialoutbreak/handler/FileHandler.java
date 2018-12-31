@@ -287,34 +287,43 @@ public final class FileHandler {
      * Remove comments from String line.
      */
     private String removeComments(String line) {
-        if (line.trim().length() == 0) {
+        if (line.trim().length() == 0 || line.trim().charAt(0) == '#') {
             return null;
         }
 
-        int nextWhitespace = -1;
-        for (int i = 0; i < line.length(); i++) {
-            if (Character.isWhitespace(line.charAt(i))) {
-                nextWhitespace = i;
+        String reversed = new StringBuilder(line).reverse().toString();
+
+        int commentIndex = reversed.indexOf('#');
+
+        if (commentIndex == 0) {
+            return null;
+        }
+
+        if (commentIndex == -1) {
+            return line;
+        }
+
+        reversed = reversed.substring(commentIndex + 1);
+
+        int firstAlphabeticIndex = -1;
+
+        for (int i = 0; i < reversed.length(); i++) {
+            char c = reversed.charAt(i);
+            if (!Character.isWhitespace(c)) {
+                firstAlphabeticIndex = i;
                 break;
             }
         }
 
-        int nextCommentIndex = line.indexOf('#');
-
-        if (nextCommentIndex == 0) {
-            return null;
+        if (firstAlphabeticIndex == -1) {
+            return new StringBuilder(reversed).reverse().toString();
         }
 
-        if (nextWhitespace == -1) {
-            return line;
-        }
+        reversed = reversed.substring(firstAlphabeticIndex);
 
-        if (line.length() >= nextWhitespace + 1 && nextCommentIndex > 0) {
-            line = line.substring(0, nextWhitespace);
-            return line;
-        } else {
-            return line;
-        }
+        line = new StringBuilder(reversed).reverse().toString();
+
+        return line;
     }
 
 }
