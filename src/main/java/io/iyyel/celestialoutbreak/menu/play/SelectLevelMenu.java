@@ -6,7 +6,7 @@ import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
-public class LevelSelectMenu extends AbstractMenu {
+public class SelectLevelMenu extends AbstractMenu {
 
     private final LevelHandler levelHandler = LevelHandler.getInstance();
 
@@ -19,7 +19,7 @@ public class LevelSelectMenu extends AbstractMenu {
     private int levelAmount = levelHandler.getLevelAmount();
     private int selected = 0;
 
-    public LevelSelectMenu(GameController gameController) {
+    public SelectLevelMenu(GameController gameController) {
         super(gameController);
         levelRects = new Rectangle[levelAmount];
         levelRectColors = new Color[levelAmount];
@@ -52,7 +52,7 @@ public class LevelSelectMenu extends AbstractMenu {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.MAIN_MENU);
+            gameController.switchState(GameController.State.MAIN);
         }
 
         if (inputHandler.isDownPressed() && (selected + 1) % 4 != 0 && (selected + 1) < levelAmount && isInputAvailable()) {
@@ -83,12 +83,13 @@ public class LevelSelectMenu extends AbstractMenu {
             if (selected == i) {
                 updateLevelColors(i);
 
-                if (inputHandler.isUsePressed() && isInputAvailable()) {
+                if (inputHandler.isOKPressed() && isInputAvailable()) {
                     resetInputTimer();
+                    // Set current active level to i.
                     levelHandler.setActiveLevelIndex(i);
-                    gameController.switchState(GameController.State.PLAY_SCREEN);
+                    gameController.switchState(GameController.State.PRE_LEVEL);
                 }
-
+                // TODO: If the user decides to go back from this screen, the activeLevel should perhaps be reset?
             } else {
                 updateLevelColors(i);
             }
@@ -120,7 +121,7 @@ public class LevelSelectMenu extends AbstractMenu {
             g.draw(levelRects[i]);
         }
 
-        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to play a level.", g);
+        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to play a level.", g);
         drawInfoPanel(g);
     }
 

@@ -46,7 +46,7 @@ public final class GameOptionsMenu extends AbstractMenu {
             resetInputTimer();
             selected = 0;
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.OPTIONS_MENU);
+            gameController.switchState(GameController.State.OPTIONS);
         }
 
         if (inputHandler.isDownPressed() && selected < options.length - 1 && isInputAvailable()) {

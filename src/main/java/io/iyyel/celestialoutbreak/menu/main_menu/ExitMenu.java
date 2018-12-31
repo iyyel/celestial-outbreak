@@ -24,10 +24,10 @@ public final class ExitMenu extends AbstractMenu {
             resetInputTimer();
             menuUseClip.play(false);
             if (gameController.getPrevState() != GameController.State.NONE &&
-                    gameController.getPrevState() == GameController.State.WELCOME_MENU) {
-                gameController.switchState(GameController.State.WELCOME_MENU);
+                    gameController.getPrevState() == GameController.State.WELCOME) {
+                gameController.switchState(GameController.State.WELCOME);
             } else {
-                gameController.switchState(GameController.State.MAIN_MENU);
+                gameController.switchState(GameController.State.MAIN);
             }
         }
 

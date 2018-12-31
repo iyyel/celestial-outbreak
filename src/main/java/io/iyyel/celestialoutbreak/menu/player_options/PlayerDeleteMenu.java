@@ -66,7 +66,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
             resetInputTimer();
             isFirstUpdate = true;
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.PLAYER_OPTIONS_MENU);
+            gameController.switchState(GameController.State.PLAYER_OPTIONS);
         }
 
         //

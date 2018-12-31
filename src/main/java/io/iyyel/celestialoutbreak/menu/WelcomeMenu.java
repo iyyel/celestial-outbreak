@@ -60,7 +60,7 @@ public final class WelcomeMenu extends AbstractMenu {
                             proceed();
                             break;
                         case 1:
-                            gameController.switchState(GameController.State.EXIT_SCREEN);
+                            gameController.switchState(GameController.State.EXIT);
                             break;
                         default:
                             break;
@@ -104,9 +104,9 @@ public final class WelcomeMenu extends AbstractMenu {
 
     private void proceed() {
         if (playerDAO.getPlayerList().isEmpty()) {
-            gameController.switchState(GameController.State.PLAYER_CREATE_SCREEN);
+            gameController.switchState(GameController.State.PLAYER_CREATE);
         } else {
-            gameController.switchState(GameController.State.MAIN_MENU);
+            gameController.switchState(GameController.State.MAIN);
         }
     }
 

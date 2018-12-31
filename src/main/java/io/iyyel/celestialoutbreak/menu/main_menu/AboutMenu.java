@@ -19,7 +19,7 @@ public final class AboutMenu extends AbstractMenu {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             menuUseClip.play(false);
-            gameController.switchState(State.MAIN_MENU);
+            gameController.switchState(State.MAIN);
         }
     }
 

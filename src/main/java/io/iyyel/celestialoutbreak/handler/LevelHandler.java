@@ -11,6 +11,7 @@ public final class LevelHandler {
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
+    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
 
     private int activeLevelIndex = 0;
     private Level[] levels;
@@ -44,11 +45,15 @@ public final class LevelHandler {
 
         if (levels[activeLevelIndex].isFinished()) {
             //startNextLevel();
-            // gameController.switchState(GameController.State.FINISHED_LEVEL_SCREEN);
+            // gameController.switchState(GameController.State.POST_LEVEL);
             //if (optionsHandler.isVerboseLogEnabled()) {
             //     fileHandler.writeLog(textHandler.vLevelFinishedMsg(getPrevLevel().getName()));
             // }
-            fileHandler.writeLog("Finished " + levels[activeLevelIndex].getName() + " level!");
+            if (optionsHandler.isVerboseLogEnabled()) {
+                fileHandler.writeLog("Finished " + levels[activeLevelIndex].getName() + " level!");
+            }
+
+            gameController.switchState(GameController.State.POST_LEVEL);
         }
     }
 

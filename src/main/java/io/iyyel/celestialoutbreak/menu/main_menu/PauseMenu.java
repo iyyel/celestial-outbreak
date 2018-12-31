@@ -25,14 +25,14 @@ public final class PauseMenu extends AbstractMenu {
             resetInputTimer();
             isFirstUpdate = true;
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.MAIN_MENU);
+            gameController.switchState(GameController.State.MAIN);
         }
 
         if (inputHandler.isPausePressed() && isInputAvailable()) {
             resetInputTimer();
             isFirstUpdate = true;
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.PLAY_SCREEN);
+            gameController.switchState(GameController.State.PLAY);
         }
     }
 

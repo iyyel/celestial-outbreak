@@ -181,19 +181,19 @@ public final class PlayerCreateMenu extends AbstractMenu {
     }
 
     private void exitMenu() {
-        if (playerDAO.getPlayerList().isEmpty() && gameController.getPrevState() == GameController.State.WELCOME_MENU) {
+        if (playerDAO.getPlayerList().isEmpty() && gameController.getPrevState() == GameController.State.WELCOME) {
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.WELCOME_MENU);
+            gameController.switchState(GameController.State.WELCOME);
         } else if (!playerDAO.getPlayerList().isEmpty()) {
             menuUseClip.play(false);
-            if (gameController.getPrevState() == GameController.State.NONE || gameController.getPrevState() == GameController.State.WELCOME_MENU) {
-                gameController.switchState(GameController.State.MAIN_MENU);
+            if (gameController.getPrevState() == GameController.State.NONE || gameController.getPrevState() == GameController.State.WELCOME) {
+                gameController.switchState(GameController.State.MAIN);
             } else {
                 gameController.switchState(gameController.getPrevState());
             }
         } else {
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.WELCOME_MENU);
+            gameController.switchState(GameController.State.WELCOME);
         }
     }
 

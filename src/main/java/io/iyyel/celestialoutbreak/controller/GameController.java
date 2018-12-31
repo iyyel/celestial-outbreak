@@ -9,9 +9,9 @@ import io.iyyel.celestialoutbreak.menu.main_menu.*;
 import io.iyyel.celestialoutbreak.menu.options_menu.ConfigOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.options_menu.GameOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.options_menu.PlayerOptionsMenu;
-import io.iyyel.celestialoutbreak.menu.play.FinishedLevelMenu;
-import io.iyyel.celestialoutbreak.menu.play.LevelSelectMenu;
-import io.iyyel.celestialoutbreak.menu.play.NewLevelMenu;
+import io.iyyel.celestialoutbreak.menu.play.SelectLevelMenu;
+import io.iyyel.celestialoutbreak.menu.play.PostLevelMenu;
+import io.iyyel.celestialoutbreak.menu.play.PreLevelMenu;
 import io.iyyel.celestialoutbreak.menu.player_options.PlayerCreateMenu;
 import io.iyyel.celestialoutbreak.menu.player_options.PlayerDeleteMenu;
 import io.iyyel.celestialoutbreak.menu.player_options.PlayerSelectMenu;
@@ -26,7 +26,7 @@ import java.net.URL;
 
 /*
  * This is the GameController class.
- * This is the canvas upon where the game is drawn and played.
+ * This is the canvas upon where the game is drawn and controlled.
  */
 public class GameController extends Canvas implements Runnable {
 
@@ -83,72 +83,73 @@ public class GameController extends Canvas implements Runnable {
      */
     private final WelcomeMenu welcomeMenu;
     private final MainMenu mainMenu;
-    private final LevelSelectMenu levelSelectMenu;
+    private final SelectLevelMenu selectLevelMenu;
+    private final PreLevelMenu preLevelMenu;
+    private final PostLevelMenu postLevelMenu;
     private final PauseMenu pauseMenu;
     private final ScoresMenu scoresMenu;
-    private final OptionsMenu settingsMenu;
+    private final ControlsMenu controlsMenu;
+    private final OptionsMenu optionsMenu;
     private final PlayerOptionsMenu playerOptionsMenu;
     private final PlayerSelectMenu playerSelectMenu;
-    private final PlayerCreateMenu playerNewMenu;
+    private final PlayerCreateMenu playerCreateMenu;
     private final PlayerDeleteMenu playerDeleteMenu;
     private final GameOptionsMenu gameOptionsMenu;
-    private final ConfigOptionsMenu configurationMenu;
-    private final ControlsMenu controlMenu;
+    private final ConfigOptionsMenu configOptionsMenu;
     private final AboutMenu aboutMenu;
     private final ExitMenu exitMenu;
-    private final NewLevelMenu newLevelMenu;
-    private final FinishedLevelMenu finishedLevelMenu;
+
     private Color menuColor;
 
     /*
      * NONE,
-     * WELCOME_MENU,
-     * MAIN_MENU,
-     *   PLAY_SCREEN,
-     *       LEVEL_SELECT_SCREEN,
-     *       PAUSE_SCREEN,
-     *       NEW_LEVEL_SCREEN,
-     *       FINISHED_LEVEL_SCREEN,
-     *   SCORES_SCREEN,
-     *   CONTROLS_SCREEN,
-     *   OPTIONS_MENU,
-     *       PLAYER_OPTIONS_MENU,
-     *           PLAYER_SELECT_SCREEN,
-     *           PLAYER_CREATE_SCREEN,
-     *           PLAYER_DELETE_SCREEN,
-     *       CONFIG_OPTIONS_SCREEN,
-     *   ABOUT_SCREEN,
-     *   EXIT_SCREEN,
-     *   ERROR_SCREEN
+     * WELCOME,
+     * MAIN,
+     *   PLAY,
+     *       SELECT_LEVEL,
+     *       PRE_LEVEL,
+     *       POST_LEVEL,
+     *       PAUSE,
+     *   SCORES,
+     *   CONTROLS,
+     *   OPTIONS,
+     *       PLAYER_OPTIONS,
+     *           PLAYER_SELECT,
+     *           PLAYER_CREATE,
+     *           PLAYER_DELETE,
+     *       CONFIG_OPTIONS,
+     *   ABOUT,
+     *   EXIT,
+     *   ERROR
      */
     public enum State {
         NONE,
-        WELCOME_MENU,
-        MAIN_MENU,
-        PLAY_SCREEN,
-        LEVEL_SELECT_SCREEN,
-        PAUSE_SCREEN,
-        NEW_LEVEL_SCREEN,
-        FINISHED_LEVEL_SCREEN,
-        SCORES_SCREEN,
-        CONTROLS_SCREEN,
-        OPTIONS_MENU,
-        PLAYER_OPTIONS_MENU,
-        PLAYER_SELECT_SCREEN,
-        PLAYER_CREATE_SCREEN,
-        PLAYER_DELETE_SCREEN,
-        GAME_OPTIONS_SCREEN,
-        CONFIG_OPTIONS_SCREEN,
-        ABOUT_SCREEN,
-        EXIT_SCREEN,
-        ERROR_SCREEN
+        WELCOME,
+        MAIN,
+        PLAY,
+        SELECT_LEVEL,
+        PRE_LEVEL,
+        POST_LEVEL,
+        PAUSE,
+        SCORES,
+        CONTROLS,
+        OPTIONS,
+        PLAYER_OPTIONS,
+        PLAYER_SELECT,
+        PLAYER_CREATE,
+        PLAYER_DELETE,
+        GAME_OPTIONS,
+        CONFIG_OPTIONS,
+        ABOUT,
+        EXIT,
+        ERROR
     }
 
     /*
      * Current state of the gameController.
      * Starts with showing the main menu state.
      */
-    private State state = State.MAIN_MENU;
+    private State state = State.MAIN;
     private State prevState = State.NONE;
 
     /*
@@ -192,23 +193,23 @@ public class GameController extends Canvas implements Runnable {
         screenRenderer = new ScreenRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, pixels);
 
         /* Create menu objects */
-        playerNewMenu = new PlayerCreateMenu(this);
         welcomeMenu = new WelcomeMenu(this);
         mainMenu = new MainMenu(this);
-        levelSelectMenu = new LevelSelectMenu(this);
+        selectLevelMenu = new SelectLevelMenu(this);
+        preLevelMenu = new PreLevelMenu(this);
+        postLevelMenu = new PostLevelMenu(this);
         pauseMenu = new PauseMenu(this);
         scoresMenu = new ScoresMenu(this);
-        settingsMenu = new OptionsMenu(this);
+        controlsMenu = new ControlsMenu(this);
+        optionsMenu = new OptionsMenu(this);
         playerOptionsMenu = new PlayerOptionsMenu(this);
         playerSelectMenu = new PlayerSelectMenu(this);
+        playerCreateMenu = new PlayerCreateMenu(this);
         playerDeleteMenu = new PlayerDeleteMenu(this);
         gameOptionsMenu = new GameOptionsMenu(this);
-        configurationMenu = new ConfigOptionsMenu(this);
-        controlMenu = new ControlsMenu(this);
+        configOptionsMenu = new ConfigOptionsMenu(this);
         aboutMenu = new AboutMenu(this);
         exitMenu = new ExitMenu(this);
-        newLevelMenu = new NewLevelMenu(this);
-        finishedLevelMenu = new FinishedLevelMenu(this);
         menuColor = utils.generatePastelColor(0.9F, 9000F);
 
         /* Add input handlers */
@@ -217,7 +218,7 @@ public class GameController extends Canvas implements Runnable {
 
         /* If no players exist, assume its first run */
         if (playerDAO.getPlayerList().isEmpty()) {
-            state = State.WELCOME_MENU;
+            state = State.WELCOME;
         }
 
         /* Initialize the JFrame and start the gameController loop */
@@ -225,9 +226,6 @@ public class GameController extends Canvas implements Runnable {
 
         /* Log that the game has been initialized */
         fileHandler.writeLog(textHandler.GAME_INIT_FINISHED);
-
-        /* TEST */
-        //utils.createDemoPlayers(playerDAO);
     }
 
     /*
@@ -292,80 +290,67 @@ public class GameController extends Canvas implements Runnable {
 
         /* Let the current gameController state decide what to update exactly. */
         switch (state) {
-            case WELCOME_MENU:
+            case WELCOME:
                 switchMenuColor();
                 welcomeMenu.update();
                 break;
-            case PLAYER_CREATE_SCREEN:
-                switchMenuColor();
-                playerNewMenu.update();
-                break;
-            case MAIN_MENU:
+            case MAIN:
                 switchMenuColor();
                 mainMenu.update();
                 break;
-            case PLAY_SCREEN:
-                levelHandler.update();
-                pauseMenu.decInputTimer();
-                if (inputHandler.isPausePressed() && pauseMenu.isInputAvailable()) {
-                    pauseMenu.resetInputTimer();
-                    soundHandler.pauseSoundClip(textHandler.SOUND_FILE_NAME_PLAY);
-                    switchState(State.PAUSE_SCREEN);
-                }
+            case SELECT_LEVEL:
+                selectLevelMenu.update();
                 break;
-            case LEVEL_SELECT_SCREEN:
-                levelSelectMenu.update();
+            case PRE_LEVEL:
+                preLevelMenu.update();
                 break;
-            case SCORES_SCREEN:
-                scoresMenu.update();
+            case POST_LEVEL:
+                postLevelMenu.update();
                 break;
-            case CONTROLS_SCREEN:
-                controlMenu.update();
-                break;
-            case OPTIONS_MENU:
-                settingsMenu.update();
-                break;
-            case PLAYER_OPTIONS_MENU:
-                playerOptionsMenu.update();
-                break;
-            case PLAYER_SELECT_SCREEN:
-                playerSelectMenu.update();
-                break;
-            case PLAYER_DELETE_SCREEN:
-                playerDeleteMenu.update();
-                break;
-            case GAME_OPTIONS_SCREEN:
-                gameOptionsMenu.update();
-                break;
-            case CONFIG_OPTIONS_SCREEN:
-                configurationMenu.update();
-                break;
-            case ABOUT_SCREEN:
-                aboutMenu.update();
-                break;
-            case EXIT_SCREEN:
-                exitMenu.update();
-                break;
-            case PAUSE_SCREEN:
+            case PAUSE:
                 pauseMenu.update();
                 break;
-            case NEW_LEVEL_SCREEN:
-                newLevelMenu.update();
-                newLevelMenu.updateActiveLevel(levelHandler.getActiveLevel());
+            case PLAY:
+                levelHandler.update();
+                pauseCheck();
                 break;
-            case FINISHED_LEVEL_SCREEN:
-                finishedLevelMenu.update();
+            case SCORES:
+                scoresMenu.update();
+                break;
+            case CONTROLS:
+                controlsMenu.update();
+                break;
+            case OPTIONS:
+                optionsMenu.update();
+                break;
+            case PLAYER_OPTIONS:
+                playerOptionsMenu.update();
+                break;
+            case PLAYER_SELECT:
+                playerSelectMenu.update();
+                break;
+            case PLAYER_CREATE:
+                switchMenuColor();
+                playerCreateMenu.update();
+                break;
+            case PLAYER_DELETE:
+                playerDeleteMenu.update();
+                break;
+            case GAME_OPTIONS:
+                gameOptionsMenu.update();
+                break;
+            case CONFIG_OPTIONS:
+                configOptionsMenu.update();
+                break;
+            case ABOUT:
+                aboutMenu.update();
+                break;
+            case EXIT:
+                exitMenu.update();
                 break;
             default:
                 break;
         }
-
-        // New stuff to do for the update function.
-        // Make sure that settings are always an actuality.
-        // e.g., make sure that sound gets disabled if it gets
-        // changed in settings, keep updating on the variable, etc.
-        // if it suddenly changes to false, stop it. If it suddenly changes to
-        // true, then start it, etc. Same goes with all of them.
     }
 
     /*
@@ -468,28 +453,26 @@ public class GameController extends Canvas implements Runnable {
 
     private void renderBgColor() {
         switch (state) {
-            case WELCOME_MENU:
-            case PLAYER_CREATE_SCREEN:
-            case MAIN_MENU:
-            case LEVEL_SELECT_SCREEN:
-            case SCORES_SCREEN:
-            case CONTROLS_SCREEN:
-            case OPTIONS_MENU:
-            case PLAYER_OPTIONS_MENU:
-            case PLAYER_SELECT_SCREEN:
-            case PLAYER_DELETE_SCREEN:
-            case GAME_OPTIONS_SCREEN:
-            case CONFIG_OPTIONS_SCREEN:
-            case ABOUT_SCREEN:
-            case EXIT_SCREEN:
+            case WELCOME:
+            case MAIN:
+            case SELECT_LEVEL:
+            case SCORES:
+            case CONTROLS:
+            case OPTIONS:
+            case PLAYER_OPTIONS:
+            case PLAYER_SELECT:
+            case PLAYER_CREATE:
+            case PLAYER_DELETE:
+            case GAME_OPTIONS:
+            case CONFIG_OPTIONS:
+            case ABOUT:
+            case EXIT:
                 screenRenderer.render(menuColor);
                 break;
-            case PLAY_SCREEN:
-            case PAUSE_SCREEN:
-            case NEW_LEVEL_SCREEN:
-                screenRenderer.render(levelHandler.getActiveLevel().getColor());
-                break;
-            case FINISHED_LEVEL_SCREEN:
+            case PLAY:
+            case PAUSE:
+            case PRE_LEVEL:
+            case POST_LEVEL:
                 screenRenderer.render(levelHandler.getActiveLevel().getColor());
                 break;
             default:
@@ -499,59 +482,59 @@ public class GameController extends Canvas implements Runnable {
 
     private void renderMenu(Graphics2D g) {
         switch (state) {
-            case WELCOME_MENU:
+            case WELCOME:
                 welcomeMenu.render(g);
                 break;
-            case PLAYER_CREATE_SCREEN:
-                playerNewMenu.render(g);
-                break;
-            case MAIN_MENU:
+            case MAIN:
                 mainMenu.render(g);
                 break;
-            case LEVEL_SELECT_SCREEN:
-                levelSelectMenu.render(g);
+            case SELECT_LEVEL:
+                selectLevelMenu.render(g);
                 break;
-            case PLAY_SCREEN:
-                levelHandler.render(g);
+            case PRE_LEVEL:
+                preLevelMenu.render(g);
                 break;
-            case SCORES_SCREEN:
-                scoresMenu.render(g);
+            case POST_LEVEL:
+                postLevelMenu.render(g);
                 break;
-            case CONTROLS_SCREEN:
-                controlMenu.render(g);
-                break;
-            case OPTIONS_MENU:
-                settingsMenu.render(g);
-                break;
-            case PLAYER_OPTIONS_MENU:
-                playerOptionsMenu.render(g);
-                break;
-            case PLAYER_SELECT_SCREEN:
-                playerSelectMenu.render(g);
-                break;
-            case PLAYER_DELETE_SCREEN:
-                playerDeleteMenu.render(g);
-                break;
-            case GAME_OPTIONS_SCREEN:
-                gameOptionsMenu.render(g);
-                break;
-            case CONFIG_OPTIONS_SCREEN:
-                configurationMenu.render(g);
-                break;
-            case ABOUT_SCREEN:
-                aboutMenu.render(g);
-                break;
-            case EXIT_SCREEN:
-                exitMenu.render(g);
-                break;
-            case PAUSE_SCREEN:
+            case PAUSE:
                 pauseMenu.render(g);
                 break;
-            case NEW_LEVEL_SCREEN:
-                newLevelMenu.render(g);
+            case PLAY:
+                levelHandler.render(g);
                 break;
-            case FINISHED_LEVEL_SCREEN:
-                finishedLevelMenu.render(g);
+            case SCORES:
+                scoresMenu.render(g);
+                break;
+            case CONTROLS:
+                controlsMenu.render(g);
+                break;
+            case OPTIONS:
+                optionsMenu.render(g);
+                break;
+            case PLAYER_OPTIONS:
+                playerOptionsMenu.render(g);
+                break;
+            case PLAYER_SELECT:
+                playerSelectMenu.render(g);
+                break;
+            case PLAYER_CREATE:
+                playerCreateMenu.render(g);
+                break;
+            case PLAYER_DELETE:
+                playerDeleteMenu.render(g);
+                break;
+            case GAME_OPTIONS:
+                gameOptionsMenu.render(g);
+                break;
+            case CONFIG_OPTIONS:
+                configOptionsMenu.render(g);
+                break;
+            case ABOUT:
+                aboutMenu.render(g);
+                break;
+            case EXIT:
+                exitMenu.render(g);
                 break;
             default:
                 break;
@@ -585,6 +568,15 @@ public class GameController extends Canvas implements Runnable {
 
         if (gameFrame != null) {
             gameFrame.setSize(size);
+        }
+    }
+
+    private void pauseCheck() {
+        pauseMenu.decInputTimer();
+        if (inputHandler.isPausePressed() && pauseMenu.isInputAvailable()) {
+            pauseMenu.resetInputTimer();
+            soundHandler.pauseSoundClip(textHandler.SOUND_FILE_NAME_PLAY);
+            switchState(State.PAUSE);
         }
     }
 

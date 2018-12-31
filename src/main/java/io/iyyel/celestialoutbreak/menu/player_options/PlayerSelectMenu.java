@@ -29,7 +29,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
             resetInputTimer();
             isFirstUpdate = true;
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.PLAYER_OPTIONS_MENU);
+            gameController.switchState(GameController.State.PLAYER_OPTIONS);
         }
 
         if (inputHandler.isDownPressed() && (selected + 1) % 5 != 0 && (selected + 1) < playerAmount && isInputAvailable()) {

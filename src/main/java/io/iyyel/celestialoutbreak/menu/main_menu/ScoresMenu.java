@@ -18,7 +18,7 @@ public final class ScoresMenu extends AbstractMenu {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.MAIN_MENU);
+            gameController.switchState(GameController.State.MAIN);
         }
     }
 

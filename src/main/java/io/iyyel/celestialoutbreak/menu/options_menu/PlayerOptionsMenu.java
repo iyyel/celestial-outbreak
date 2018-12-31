@@ -42,7 +42,7 @@ public final class PlayerOptionsMenu extends AbstractMenu {
             resetInputTimer();
             selected = 0;
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.OPTIONS_MENU);
+            gameController.switchState(GameController.State.OPTIONS);
         }
 
         if (inputHandler.isUpPressed() && selected > 0 && isInputAvailable()) {
@@ -67,13 +67,13 @@ public final class PlayerOptionsMenu extends AbstractMenu {
 
                     switch (i) {
                         case 0:
-                            gameController.switchState(GameController.State.PLAYER_SELECT_SCREEN);
+                            gameController.switchState(GameController.State.PLAYER_SELECT);
                             break;
                         case 1:
-                            gameController.switchState(GameController.State.PLAYER_CREATE_SCREEN);
+                            gameController.switchState(GameController.State.PLAYER_CREATE);
                             break;
                         case 2:
-                            gameController.switchState(GameController.State.PLAYER_DELETE_SCREEN);
+                            gameController.switchState(GameController.State.PLAYER_DELETE);
                             break;
                         default:
                             break;

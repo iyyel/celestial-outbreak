@@ -18,7 +18,7 @@ public final class ConfigOptionsMenu extends AbstractMenu {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.OPTIONS_MENU);
+            gameController.switchState(GameController.State.OPTIONS);
         }
     }
 

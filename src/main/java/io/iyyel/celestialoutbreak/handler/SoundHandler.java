@@ -120,25 +120,25 @@ public final class SoundHandler {
         String soundClipToPlay;
 
         switch (state) {
-            case WELCOME_MENU:
-            case MAIN_MENU:
-            case SCORES_SCREEN:
-            case CONTROLS_SCREEN:
-            case OPTIONS_MENU:
-            case PLAYER_OPTIONS_MENU:
-            case PLAYER_SELECT_SCREEN:
-            case PLAYER_CREATE_SCREEN:
-            case PLAYER_DELETE_SCREEN:
-            case GAME_OPTIONS_SCREEN:
-            case CONFIG_OPTIONS_SCREEN:
-            case ABOUT_SCREEN:
-            case EXIT_SCREEN:
+            case WELCOME:
+            case MAIN:
+            case SCORES:
+            case CONTROLS:
+            case OPTIONS:
+            case PLAYER_OPTIONS:
+            case PLAYER_SELECT:
+            case PLAYER_CREATE:
+            case PLAYER_DELETE:
+            case GAME_OPTIONS:
+            case CONFIG_OPTIONS:
+            case ABOUT:
+            case EXIT:
                 soundClipToPlay = textHandler.SOUND_FILE_NAME_MENU;
                 break;
-            case PLAY_SCREEN:
+            case PLAY:
                 soundClipToPlay = textHandler.SOUND_FILE_NAME_PLAY;
                 break;
-            case PAUSE_SCREEN:
+            case PAUSE:
                 soundClipToPlay = textHandler.SOUND_FILE_NAME_PAUSE;
                 break;
             default:

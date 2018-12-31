@@ -40,7 +40,7 @@ public final class OptionsMenu extends AbstractMenu {
             resetInputTimer();
             selected = 0;
             menuUseClip.play(false);
-            gameController.switchState(GameController.State.MAIN_MENU);
+            gameController.switchState(GameController.State.MAIN);
         }
 
         if (inputHandler.isDownPressed() && selected < options.length - 1 && isInputAvailable()) {
@@ -66,15 +66,15 @@ public final class OptionsMenu extends AbstractMenu {
                     switch (i) {
                         case 0:
                             // Player options
-                            gameController.switchState(GameController.State.PLAYER_OPTIONS_MENU);
+                            gameController.switchState(GameController.State.PLAYER_OPTIONS);
                             break;
                         case 1:
                             // Game options
-                            gameController.switchState(GameController.State.GAME_OPTIONS_SCREEN);
+                            gameController.switchState(GameController.State.GAME_OPTIONS);
                             break;
                         case 2:
                             // Configuration options
-                            gameController.switchState(GameController.State.CONFIG_OPTIONS_SCREEN);
+                            gameController.switchState(GameController.State.CONFIG_OPTIONS);
                             break;
                         default:
                             break;

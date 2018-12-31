@@ -62,22 +62,22 @@ public final class MainMenu extends AbstractMenu {
 
                     switch (i) {
                         case 0:
-                            gameController.switchState(GameController.State.LEVEL_SELECT_SCREEN);
+                            gameController.switchState(GameController.State.SELECT_LEVEL);
                             break;
                         case 1:
-                            gameController.switchState(GameController.State.SCORES_SCREEN);
+                            gameController.switchState(GameController.State.SCORES);
                             break;
                         case 2:
-                            gameController.switchState(GameController.State.CONTROLS_SCREEN);
+                            gameController.switchState(GameController.State.CONTROLS);
                             break;
                         case 3:
-                            gameController.switchState(GameController.State.OPTIONS_MENU);
+                            gameController.switchState(GameController.State.OPTIONS);
                             break;
                         case 4:
-                            gameController.switchState(GameController.State.ABOUT_SCREEN);
+                            gameController.switchState(GameController.State.ABOUT);
                             break;
                         case 5:
-                            gameController.switchState(GameController.State.EXIT_SCREEN);
+                            gameController.switchState(GameController.State.EXIT);
                             break;
                         default:
                             break;

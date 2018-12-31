@@ -232,6 +232,9 @@ public final class FileHandler {
         File srcFile = new File(srcFilePath);
         File destFile = new File(destFilePath);
 
+        System.out.println("src: " + srcFilePath);
+        System.out.println("dest: " + destFilePath);
+
         try {
             /*
              * Check to see whether the file already exists at the destination.
