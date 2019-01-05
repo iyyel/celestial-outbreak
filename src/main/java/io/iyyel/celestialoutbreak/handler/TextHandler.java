@@ -51,7 +51,7 @@ public final class TextHandler {
      * Important game strings.
      */
     public final String GAME_TITLE = "Celestial Outbreak";
-    public final String GAME_VERSION = "v0.1b";
+    public final String GAME_VERSION = "v0.2b";
     public final String AUTHOR_WEBSITE = "iyyel.io";
     public final String GITHUB_URL = "github.com/iyyel/celestialoutbreak";
 

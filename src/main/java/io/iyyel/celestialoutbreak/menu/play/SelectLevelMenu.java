@@ -124,7 +124,7 @@ public class SelectLevelMenu extends AbstractMenu {
             g.draw(levelRects[i]);
         }
 
-        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to play a level.", g);
+        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to play a level or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
         drawInfoPanel(g);
     }
 
