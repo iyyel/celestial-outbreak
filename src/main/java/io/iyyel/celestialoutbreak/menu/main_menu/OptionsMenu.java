@@ -1,30 +1,35 @@
 package io.iyyel.celestialoutbreak.menu.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
 public final class OptionsMenu extends AbstractMenu {
 
-    private final Rectangle playerRect, gameRect, configurationRect;
+    private final Rectangle playerRect, gameRect, configurationRect, reloadLevelsRect;
 
-    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GAME_OPTIONS_TEXT, textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
+
+    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GAME_OPTIONS_TEXT, textHandler.BTN_CONFIGURATION_OPTIONS_TEXT, "RELOAD LEVELS"};
     private Color[] rectColors;
 
-    private int selected = 0;
-    private int yBtnOffset = 33;
+    private String reloadLevelsStatusText = "";
 
-    int initialBtnYPos = 230;
-    int btnYInc = 75;
+    private int selected = 0;
 
     public OptionsMenu(GameController gameController) {
         super(gameController);
+
+        int initialBtnYPos = 230;
+        int btnYInc = 75;
 
         /* buttons */
         playerRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos, 390, 50);
         gameRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos + btnYInc, 390, 50);
         configurationRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos + btnYInc * 2, 390, 50);
+        reloadLevelsRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos + btnYInc * 3, 390, 50);
 
         rectColors = new Color[options.length];
 
@@ -38,6 +43,7 @@ public final class OptionsMenu extends AbstractMenu {
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
+            resetStatusText();
             selected = 0;
             menuUseClip.play(false);
             gameController.switchState(GameController.State.MAIN);
@@ -66,15 +72,23 @@ public final class OptionsMenu extends AbstractMenu {
                     switch (i) {
                         case 0:
                             // Player options
+                            resetStatusText();
                             gameController.switchState(GameController.State.PLAYER_OPTIONS);
                             break;
                         case 1:
                             // Game options
+                            resetStatusText();
                             gameController.switchState(GameController.State.GAME_OPTIONS);
                             break;
                         case 2:
                             // Configuration options
+                            resetStatusText();
                             gameController.switchState(GameController.State.CONFIG_OPTIONS);
+                            break;
+                        case 3:
+                            // Reload levels button
+                            levelHandler.loadLevels(gameController);
+                            reloadLevelsStatusText = "Levels reloaded successfully.";
                             break;
                         default:
                             break;
@@ -99,6 +113,7 @@ public final class OptionsMenu extends AbstractMenu {
 
         /* Player options button */
         g.setColor(menuFontColor);
+        int yBtnOffset = 33;
         drawCenterString(options[0], playerRect.y + yBtnOffset, g, inputBtnFont);
         g.setColor(rectColors[0]);
         g.draw(playerRect);
@@ -115,7 +130,20 @@ public final class OptionsMenu extends AbstractMenu {
         g.setColor(rectColors[2]);
         g.draw(configurationRect);
 
+        /* Reload levels options button */
+        g.setColor(menuFontColor);
+        drawCenterString(options[3], reloadLevelsRect.y + yBtnOffset, g, inputBtnFont);
+        g.setColor(rectColors[3]);
+        g.draw(reloadLevelsRect);
+
+        /* Reload levels status text */
+        drawMenuToolTip(reloadLevelsStatusText, g);
+
         drawInfoPanel(g);
+    }
+
+    private void resetStatusText() {
+        reloadLevelsStatusText = "";
     }
 
 }

@@ -12,6 +12,8 @@ public final class PostLevelMenu extends AbstractMenu {
 
     private final LevelHandler levelHandler = LevelHandler.getInstance();
 
+    private boolean isFirstUpdate = true;
+
     public PostLevelMenu(GameController gameController) {
         super(gameController);
     }
@@ -20,11 +22,16 @@ public final class PostLevelMenu extends AbstractMenu {
     public void update() {
         decInputTimer();
 
-        if (inputHandler.isOKPressed() && isInputAvailable()) {
-            resetInputTimer();
-            gameController.switchState(State.MAIN);
+        if (isFirstUpdate) {
+            isFirstUpdate = false;
+            levelHandler.resetActiveLevel();
         }
 
+        if (inputHandler.isOKPressed() && isInputAvailable()) {
+            resetInputTimer();
+            isFirstUpdate= true;
+            gameController.switchState(State.MAIN);
+        }
     }
 
     @Override
@@ -35,7 +42,17 @@ public final class PostLevelMenu extends AbstractMenu {
         drawCenterString(textHandler.GAME_TITLE, 100, g, titleFont);
 
         drawSubmenuTitle(activeLevel.getName(), g);
-        drawCenterString("Victory!", gameController.getHeight() / 2, g, msgFont);
+
+
+        if (levelHandler.getActiveLevel().isWon()) {
+            drawCenterString("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been beaten.", gameController.getHeight() / 2, g, msgFont);
+            drawCenterString("You reached a score of 1234.", gameController.getHeight() / 2 + 40, g, msgFont);
+        } else {
+            drawCenterString("You have lost. The " + levelHandler.getActiveLevel().getName() + " level shines in grace upon you.", gameController.getHeight() / 2, g, msgFont);
+            drawCenterString("You reached a score of 1234.", gameController.getHeight() / 2 + 40, g, msgFont);
+        }
+
+        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' for the main menu.", g);
 
         drawInfoPanel(g);
     }

@@ -32,10 +32,11 @@ public final class Ball extends MobileEntity {
     private Point velocity;
 
     private final int PADDLE_COLLISION_TIMER_INITIAL = 20;
-    private final int BALL_STALE_TIMER_INITIAL = 40;
+    private final int BALL_PAUSE_SCREEN_TIMER_INITIAL = 120;
+    private final int BALL_PAUSE_TIMER_INITIAL = 50;
 
     private int paddleCollisionTimer = 0;
-    private int ballStaleTimer = BALL_STALE_TIMER_INITIAL;
+    private int ballPauseTimer = BALL_PAUSE_TIMER_INITIAL;
     private int ballPosXOffset;
     private int ballPosYOffset;
 
@@ -74,11 +75,11 @@ public final class Ball extends MobileEntity {
      * @param blockList The current BlockList of the game.
      */
     public void update(Paddle paddle, BlockList blockList) {
-        if (ballStaleTimer == 0) {
+        if (ballPauseTimer == 0) {
             pos.x += velocity.x;
             pos.y += velocity.y;
         } else {
-            ballStaleTimer--;
+            ballPauseTimer--;
         }
 
         /* Check for collision. */
@@ -128,7 +129,7 @@ public final class Ball extends MobileEntity {
             velocity.y = speed;
 
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET).play(false);
-            ballStaleTimer = BALL_STALE_TIMER_INITIAL;
+            ballPauseTimer = BALL_PAUSE_TIMER_INITIAL;
 
             // player lost a life
             levelHandler.getActiveLevel().decPlayerLife();
@@ -215,6 +216,10 @@ public final class Ball extends MobileEntity {
     @Override
     public Rectangle getBounds() {
         return new Rectangle(pos.x, pos.y, width, height);
+    }
+
+    public void pauseBall() {
+        ballPauseTimer = BALL_PAUSE_SCREEN_TIMER_INITIAL;
     }
 
 }

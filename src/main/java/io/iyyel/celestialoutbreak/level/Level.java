@@ -126,7 +126,7 @@ public final class Level {
         blockSpacing = levelConfig.getBlockSpacing();
     }
 
-    public boolean isVictory() {
+    public boolean isWon() {
         return blockList.getBlocksLeft() <= 0;
     }
 
@@ -162,6 +162,14 @@ public final class Level {
         if (playerLife > 0) {
             playerLife -= 1;
         }
+    }
+
+    public void pauseBall() {
+        ball.pauseBall();
+    }
+
+    public void pausePaddle() {
+        paddle.pausePaddle();
     }
 
 }

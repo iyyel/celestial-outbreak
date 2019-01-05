@@ -188,7 +188,7 @@ public class GameController extends Canvas implements Runnable {
         initGameIcon();
 
         /* Initialize levelHandler */
-        levelHandler.initLevelHandler(this);
+        levelHandler.loadLevels(this);
 
         /* Create screenRenderer renderer */
         screenRenderer = new ScreenRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, pixels);
