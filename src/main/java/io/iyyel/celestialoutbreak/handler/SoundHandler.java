@@ -148,6 +148,14 @@ public final class SoundHandler {
         for (String key : soundClipMap.keySet()) {
             SoundClip soundClip = soundClipMap.get(key);
             if (soundClip.isActive && !key.equals(soundClipToPlay)) {
+
+                /*
+                 * Do not stop if the nav or use sounds are currently going.
+                 */
+                if (key.equals(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV) || key.equals(textHandler.SOUND_FILE_NAME_MENU_BTN_USE)) {
+                    break;
+                }
+
                 soundClip.stop();
             }
         }
