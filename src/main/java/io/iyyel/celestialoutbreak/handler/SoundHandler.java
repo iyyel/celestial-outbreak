@@ -153,7 +153,7 @@ public final class SoundHandler {
                  * Do not stop if the nav or use sounds are currently going.
                  */
                 if (key.equals(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV) || key.equals(textHandler.SOUND_FILE_NAME_MENU_BTN_USE)) {
-                    break;
+                    continue;
                 }
 
                 soundClip.stop();
