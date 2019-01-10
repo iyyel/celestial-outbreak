@@ -231,34 +231,62 @@ public final class TextHandler {
     public final String SOUND_DIR_PATH = GAME_DIR_PATH + fs + SOUND_DIR_NAME;
     public final String LOCAL_JAR_SOUND_DIR = LOCAL_JAR_CONFIG_DIR + fsJar + SOUND_DIR_NAME;
 
-    public final String SOUND_FILE_NAME_MENU = "menu.wav";               // final
-    public final String SOUND_FILE_NAME_PLAY = "play.wav";               // not sure
-    public final String SOUND_FILE_NAME_PAUSE = "pause.wav";             // not sure
+    public final String SOUND_FILE_NAME_MENU = "menu.wav";
+    public final String SOUND_FILE_NAME_PAUSE = "pause.wav";
     public final String SOUND_FILE_NAME_BALL_HIT = "ball_hit.wav";
     public final String SOUND_FILE_NAME_BALL_RESET = "ball_reset.wav";
+    public final String SOUND_FILE_NAME_BLOCK_DESTROYED = "block_destroyed.wav";
     public final String SOUND_FILE_NAME_MENU_BTN_NAV = "menu_nav.wav";
     public final String SOUND_FILE_NAME_MENU_BTN_USE = "menu_use.wav";
     public final String SOUND_FILE_NAME_BAD_ACTION = "bad_action.wav";
 
+    public final String SOUND_FILE_NAME_SUN_LEVEL = "sun_level.wav";
+    public final String SOUND_FILE_NAME_MOON_LEVEL = "moon_level.wav";
+    public final String SOUND_FILE_NAME_MARS_LEVEL = "mars_level.wav";
+    public final String SOUND_FILE_NAME_EARTH_LEVEL = "earth_level.wav";
+    public final String SOUND_FILE_NAME_NEPTUNE_LEVEL = "neptune_level.wav";
+    public final String SOUND_FILE_NAME_VENUS_LEVEL = "venus_level.wav";
+    public final String SOUND_FILE_NAME_JUPITER_LEVEL = "jupiter_level.wav";
+
     /* Local sound file paths. */
     public final String SOUND_FILE_LOCAL_PATH_MENU = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU;
-    public final String SOUND_FILE_LOCAL_PATH_PLAY = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_PLAY;
     public final String SOUND_FILE_LOCAL_PATH_PAUSE = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_PAUSE;
     public final String SOUND_FILE_LOCAL_PATH_BALL_HIT = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BALL_HIT;
     public final String SOUND_FILE_LOCAL_PATH_BALL_RESET = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BALL_RESET;
+    public final String SOUND_FILE_LOCAL_PATH_BLOCK_DESTROYED = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BLOCK_DESTROYED;
     public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU_BTN_NAV;
     public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_USE = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU_BTN_USE;
     public final String SOUND_FILE_LOCAL_PATH_BAD_ACTION = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BAD_ACTION;
 
+    public final String SOUND_FILE_LOCAL_PATH_SUN_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_SUN_LEVEL;
+    public final String SOUND_FILE_LOCAL_PATH_MOON_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MOON_LEVEL;
+    public final String SOUND_FILE_LOCAL_PATH_MARS_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MARS_LEVEL;
+    public final String SOUND_FILE_LOCAL_PATH_EARTH_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_EARTH_LEVEL;
+    public final String SOUND_FILE_LOCAL_PATH_NEPTUNE_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_NEPTUNE_LEVEL;
+    public final String SOUND_FILE_LOCAL_PATH_VENUS_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_VENUS_LEVEL;
+    public final String SOUND_FILE_LOCAL_PATH_JUPITER_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_JUPITER_LEVEL;
+
     /* Client sound file paths. */
     public final String SOUND_FILE_CLIENT_PATH_MENU = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU;
-    public final String SOUND_FILE_CLIENT_PATH_PLAY = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_PLAY;
     public final String SOUND_FILE_CLIENT_PATH_PAUSE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_PAUSE;
     public final String SOUND_FILE_CLIENT_PATH_BALL_HIT = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BALL_HIT;
     public final String SOUND_FILE_CLIENT_PATH_BALL_RESET = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BALL_RESET;
+    public final String SOUND_FILE_CLIENT_PATH_BLOCK_DESTROYED = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BLOCK_DESTROYED;
     public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_NAV;
     public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_USE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_USE;
     public final String SOUND_FILE_CLIENT_PATH_BAD_ACTION = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BAD_ACTION;
+
+    public final String SOUND_FILE_CLIENT_PATH_SUN_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_SUN_LEVEL;
+    public final String SOUND_FILE_CLIENT_PATH_MOON_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MOON_LEVEL;
+    public final String SOUND_FILE_CLIENT_PATH_MARS_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MARS_LEVEL;
+    public final String SOUND_FILE_CLIENT_PATH_EARTH_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_EARTH_LEVEL;
+    public final String SOUND_FILE_CLIENT_PATH_NEPTUNE_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_NEPTUNE_LEVEL;
+    public final String SOUND_FILE_CLIENT_PATH_VENUS_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_VENUS_LEVEL;
+    public final String SOUND_FILE_CLIENT_PATH_JUPITER_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_JUPITER_LEVEL;
+
+    public String getClientSoundFilePath(String fileName) {
+        return SOUND_DIR_PATH + fs + fileName;
+    }
 
     /*
      * README.txt file information.
@@ -490,8 +518,8 @@ public final class TextHandler {
         return "Ball collision with Paddle. Changed paddleCollisionTimer: " + paddleCollisionTimer;
     }
 
-    public final String vBallBlockListCollisionMsg(int blockListIndex) {
-        return "Ball collision with BlockList[" + blockListIndex + "]";
+    public final String vBallBlockListCollisionMsg(int blockListIndex, int hitPoints) {
+        return "Ball collision with BlockList[" + blockListIndex + "], HitPoints[" + hitPoints + "]";
     }
 
     private final DecimalFormat df = new DecimalFormat("000");

@@ -5,13 +5,17 @@ import io.iyyel.celestialoutbreak.entity.Ball;
 import io.iyyel.celestialoutbreak.entity.BlockList;
 import io.iyyel.celestialoutbreak.entity.Paddle;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
+import io.iyyel.celestialoutbreak.handler.SoundHandler;
+import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.menu.play.GamePanel;
 
 import java.awt.*;
 
 public final class Level {
 
+    private TextHandler textHandler = TextHandler.getInstance();
     private InputHandler inputHandler = InputHandler.getInstance();
+    private SoundHandler soundHandler = SoundHandler.getInstance();
 
     /*
      * Rendering objects
@@ -132,6 +136,9 @@ public final class Level {
         blockList = new BlockList(blockAmount, blockHitPoints, blockPosStart, blockWidth, blockHeight,
                 blockPosXSpacing, blockPosYSpacing, blockLum, blockSat, gameController);
         gamePanel = new GamePanel(gameController, levelOptions);
+
+        /* Add level audio to SoundHandler */
+        soundHandler.addSoundClip(soundFileName, textHandler.getClientSoundFilePath(soundFileName));
     }
 
     public boolean isWon() {
@@ -175,6 +182,18 @@ public final class Level {
     public void pause() {
         ball.pause();
         paddle.pause();
+    }
+
+    public void playSound() {
+        soundHandler.getSoundClip(soundFileName).play(true);
+    }
+
+    public void stopSound() {
+        soundHandler.getSoundClip(soundFileName).stop();
+    }
+
+    public void pauseSound() {
+        soundHandler.getSoundClip(soundFileName).pause();
     }
 
 }

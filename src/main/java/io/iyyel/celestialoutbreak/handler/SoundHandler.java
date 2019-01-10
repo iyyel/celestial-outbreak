@@ -22,10 +22,10 @@ public final class SoundHandler {
     private Map<String, SoundClip> soundClipMap = new HashMap<String, SoundClip>() {
         {
             put(textHandler.SOUND_FILE_NAME_MENU, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU));
-            put(textHandler.SOUND_FILE_NAME_PLAY, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_PLAY));
             put(textHandler.SOUND_FILE_NAME_PAUSE, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_PAUSE));
             put(textHandler.SOUND_FILE_NAME_BALL_HIT, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BALL_HIT));
             put(textHandler.SOUND_FILE_NAME_BALL_RESET, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET));
+            put(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BLOCK_DESTROYED));
             put(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV));
             put(textHandler.SOUND_FILE_NAME_MENU_BTN_USE, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_USE));
             put(textHandler.SOUND_FILE_NAME_BAD_ACTION, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BAD_ACTION));
@@ -72,6 +72,7 @@ public final class SoundHandler {
         public void stop() {
             isActive = false;
             clip.stop();
+            clip.flush();
             clip.setFramePosition(0);
         }
 
@@ -135,9 +136,6 @@ public final class SoundHandler {
             case EXIT:
                 soundClipToPlay = textHandler.SOUND_FILE_NAME_MENU;
                 break;
-            case PLAY:
-                soundClipToPlay = textHandler.SOUND_FILE_NAME_PLAY;
-                break;
             case PAUSE:
                 soundClipToPlay = textHandler.SOUND_FILE_NAME_PAUSE;
                 break;
@@ -154,6 +152,10 @@ public final class SoundHandler {
                  */
                 if (key.equals(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV) || key.equals(textHandler.SOUND_FILE_NAME_MENU_BTN_USE)) {
                     continue;
+                }
+
+                if (optionsHandler.isVerboseLogEnabled()) {
+                    fileHandler.writeLog("SoundClip '" + key + "' has been stopped.");
                 }
 
                 soundClip.stop();
@@ -180,24 +182,6 @@ public final class SoundHandler {
         }
     }
 
-    public void pauseAllSound() {
-        for (String key : soundClipMap.keySet()) {
-            SoundClip soundClip = soundClipMap.get(key);
-            if (soundClip.isActive) {
-                soundClip.pause();
-                if (optionsHandler.isVerboseLogEnabled()) {
-                    fileHandler.writeLog("SoundClip '" + key + "' has been paused.");
-                }
-            }
-        }
-    }
-
-    public void pauseSoundClip(String pKey) {
-        if (soundClipMap.containsKey(pKey)) {
-            soundClipMap.get(pKey).pause();
-        }
-    }
-
     public SoundClip getSoundClip(String clipKey) {
         return soundClipMap.get(clipKey);
     }
@@ -206,6 +190,10 @@ public final class SoundHandler {
         getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV).reduceClipDB(10);
         getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE).reduceClipDB(10);
         getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION).reduceClipDB(10);
+    }
+
+    public void addSoundClip(String fileName, String filePath) {
+        soundClipMap.put(fileName, new SoundClip(filePath));
     }
 
 }

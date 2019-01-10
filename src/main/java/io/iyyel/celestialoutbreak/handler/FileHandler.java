@@ -90,13 +90,21 @@ public final class FileHandler {
 
         /* Sound */
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU, textHandler.SOUND_FILE_CLIENT_PATH_MENU);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_PLAY, textHandler.SOUND_FILE_CLIENT_PATH_PLAY);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_PAUSE, textHandler.SOUND_FILE_CLIENT_PATH_PAUSE);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_HIT, textHandler.SOUND_FILE_CLIENT_PATH_BALL_HIT);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_RESET, textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BLOCK_DESTROYED, textHandler.SOUND_FILE_CLIENT_PATH_BLOCK_DESTROYED);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_USE, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_USE);
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BAD_ACTION, textHandler.SOUND_FILE_CLIENT_PATH_BAD_ACTION);
+
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_SUN_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_SUN_LEVEL);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MOON_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_MOON_LEVEL);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MARS_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_MARS_LEVEL);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_EARTH_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_EARTH_LEVEL);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_NEPTUNE_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_NEPTUNE_LEVEL);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_VENUS_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_VENUS_LEVEL);
+        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_JUPITER_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_JUPITER_LEVEL);
 
         /* README.txt */
         copyFile(textHandler.README_FILE_LOCAL_PATH, textHandler.README_FILE_CLIENT_PATH);

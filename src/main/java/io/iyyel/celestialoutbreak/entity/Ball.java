@@ -115,11 +115,6 @@ public final class Ball extends MobileEntity {
 
         /* Ball hit bottom y-axis. */
         if (pos.y > (gameController.getHeight() - height)) {
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
-                fileHandler.writeLog("Player lost a life! (Insert amount of life left here.)");
-            }
-
             pos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
 
             boolean isPositiveValue = random.nextBoolean();
@@ -133,6 +128,11 @@ public final class Ball extends MobileEntity {
 
             // player lost a life
             levelHandler.getActiveLevel().decPlayerLife();
+
+            if (optionsHandler.isVerboseLogEnabled()) {
+                fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
+                fileHandler.writeLog("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife());
+            }
         }
     }
 
@@ -179,13 +179,14 @@ public final class Ball extends MobileEntity {
                     blockList.getBlock(i).decHitPoints();
 
                     if (blockList.getBlock(i).isDead()) {
+                        soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
                         blockList.destroyBlock(i);
+                    } else {
+                        soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
                     }
 
-                    soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
-
                     if (optionsHandler.isVerboseLogEnabled()) {
-                        fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i));
+                        fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i, blockList.getBlock(i).getHitPoints()));
                     }
                 }
             }

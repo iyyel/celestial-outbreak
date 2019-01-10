@@ -22,6 +22,8 @@ public final class PreLevelMenu extends AbstractMenu {
 
         if (inputHandler.isOKPressed() && isInputAvailable()) {
             resetInputTimer();
+            soundHandler.stopAllSound();
+            levelHandler.getActiveLevel().playSound();
             gameController.switchState(State.PLAY);
         }
 

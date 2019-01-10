@@ -26,12 +26,13 @@ public final class PostLevelMenu extends AbstractMenu {
         if (isFirstUpdate) {
             isFirstUpdate = false;
             hasWon = levelHandler.getActiveLevel().isWon();
-            levelHandler.resetActiveLevel();
         }
 
         if (inputHandler.isOKPressed() && isInputAvailable()) {
             resetInputTimer();
-            isFirstUpdate= true;
+            isFirstUpdate = true;
+            levelHandler.getActiveLevel().stopSound();
+            levelHandler.resetActiveLevel();
             gameController.switchState(State.MAIN);
         }
     }
@@ -46,7 +47,7 @@ public final class PostLevelMenu extends AbstractMenu {
         drawSubmenuTitle(activeLevel.getName(), g);
 
         if (hasWon) {
-            drawCenterString("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been beaten.", gameController.getHeight() / 2, g, msgFont);
+            drawCenterString("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been obliterated.", gameController.getHeight() / 2, g, msgFont);
             drawCenterString("You reached a score of 1234.", gameController.getHeight() / 2 + 50, g, msgFont);
         } else {
             drawCenterString("You have lost. The " + levelHandler.getActiveLevel().getName() + " level shines in grace upon you.", gameController.getHeight() / 2, g, msgFont);

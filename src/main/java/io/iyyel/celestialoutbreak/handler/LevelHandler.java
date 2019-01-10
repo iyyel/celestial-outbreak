@@ -15,7 +15,7 @@ public final class LevelHandler {
 
     private int activeLevelIndex = 0;
     private Level[] levels;
-    private String[] levelSettingFileNames;
+    private String[] levelOptionsFileNames;
 
     private GameController gameController;
 
@@ -68,7 +68,7 @@ public final class LevelHandler {
 
         List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
         levels = new Level[levelConfigFileList.size()];
-        levelSettingFileNames = new String[levelConfigFileList.size()];
+        levelOptionsFileNames = new String[levelConfigFileList.size()];
 
         //TODO: Remove magic number here.
         if (levels.length > 16) {
@@ -78,14 +78,14 @@ public final class LevelHandler {
 
         for (int i = 0; i < levels.length; i++) {
             String settingsFileName = textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i);
-            levelSettingFileNames[i] = settingsFileName;
+            levelOptionsFileNames[i] = settingsFileName;
             levels[i] = new Level(settingsFileName, gameController);
         }
 
     }
 
     public void resetLevel(int index) {
-        levels[index] = new Level(levelSettingFileNames[index], gameController);
+        levels[index] = new Level(levelOptionsFileNames[index], gameController);
     }
 
     public void resetActiveLevel() {

@@ -46,7 +46,7 @@ public final class GamePanel extends AbstractMenu {
         }
 
         if (activeLevel != null) {
-            g.drawString("Planet: " + activeLevel.getName(), 5, 714);
+            g.drawString("Level: " + activeLevel.getName(), 5, 714);
             g.drawString("Player: " + selectedPlayer, 200, 714);
             g.drawString("Lives: " + activeLevel.getPlayerLife(), gameController.getWidth() / 2 - 150, 714);
             g.drawString("Score: N/A", gameController.getWidth() / 2 + 50, 714);
