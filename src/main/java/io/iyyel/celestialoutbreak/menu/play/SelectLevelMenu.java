@@ -110,18 +110,24 @@ public class SelectLevelMenu extends AbstractMenu {
 
         /* Render buttons  */
 
-        for (int i = 0; i < levelHandler.getLevelAmount(); i++) {
+        if (levelRects.length <= 0) {
             g.setFont(inputBtnFont);
-            g.setColor(levelNameColors[i]);
-            g.drawString(levelHandler.getLevel(i).getName(), levelRects[i].x + 5, levelRects[i].y + 32);
+            g.setColor(menuFontColor);
+            g.drawString("No levels were loaded. Please retry to reload.", 20, gameController.getHeight() / 2);
+        } else {
+            for (int i = 0; i < levelHandler.getLevelAmount(); i++) {
+                g.setFont(inputBtnFont);
+                g.setColor(levelNameColors[i]);
+                g.drawString(levelHandler.getLevel(i).getName(), levelRects[i].x + 5, levelRects[i].y + 32);
 
-            g.setFont(levelInfoFont);
-            g.setColor(menuBtnColor);
-            g.drawString("Blocks: " + levelHandler.getLevel(i).getBlockAmount(), levelRects[i].x + 5, levelRects[i].y + 55);
-            g.drawString("Score: 1234", levelRects[i].x + 5, levelRects[i].y + 75);
+                g.setFont(levelInfoFont);
+                g.setColor(menuBtnColor);
+                g.drawString("Blocks: " + levelHandler.getLevel(i).getBlockAmount(), levelRects[i].x + 5, levelRects[i].y + 55);
+                g.drawString("Score: 1234", levelRects[i].x + 5, levelRects[i].y + 75);
 
-            g.setColor(levelRectColors[i]);
-            g.draw(levelRects[i]);
+                g.setColor(levelRectColors[i]);
+                g.draw(levelRects[i]);
+            }
         }
 
         drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to play a level or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);

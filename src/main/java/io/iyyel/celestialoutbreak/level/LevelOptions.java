@@ -8,7 +8,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import java.awt.*;
 import java.util.Map;
 
-public final class LevelConfig {
+public final class LevelOptions {
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
@@ -18,28 +18,41 @@ public final class LevelConfig {
      */
     private String levelName;
     private String levelDesc;
+    private int levelPlayerLife;
+    private String levelSoundFileName;
     private Color levelColor;
-    private int playerLife;
 
     /*
      * Paddle options.
      */
     private Point paddlePos;
-    private int paddleWidth, paddleHeight, paddleSpeed;
+    private int paddleWidth;
+    private int paddleHeight;
+    private int paddleSpeed;
     private Color paddleColor;
 
     /*
      * Ball options.
      */
     private Point ballPos;
-    private int ballPosXOffset, ballPosYOffset, ballSize, ballSpeed;
+    private int ballPosXOffset;
+    private int ballPosYOffset;
+    private int ballSize;
+    private int ballSpeed;
     private Color ballColor;
 
     /*
      * BlockList options.
      */
-    private Point blockPos;
-    private int blockAmount, blockHP, blockWidth, blockHeight, blockSpacing;
+    private Point blockPosStart;
+    private int blockPosXSpacing;
+    private int blockPosYSpacing;
+    private int blockAmount;
+    private int blockHitPoints;
+    private int blockWidth;
+    private int blockHeight;
+    private float blockLum;
+    private float blockSat;
 
     /*
      * GamePanel options.
@@ -54,11 +67,11 @@ public final class LevelConfig {
     /*
      * Constructor.
      */
-    public LevelConfig(String fileName, GameController gameController) {
+    public LevelOptions(String fileName, GameController gameController) {
         this.gameController = gameController;
 
         try {
-            parseLevelSettings(fileName);
+            parseLevelOptions(fileName);
         } catch (Exception e) {
             /*
              * If the level options aren't able to be parsed correctly, any exception that will be
@@ -71,54 +84,52 @@ public final class LevelConfig {
         }
     }
 
-    private void parseLevelSettings(String fileName) {
+    private void parseLevelOptions(String fileName) {
         Map<String, String> map = fileHandler.readPropertiesFromFile(fileName);
 
-        /* Level options. */
+        /* Level options */
         levelName = map.get(textHandler.PROP_LEVEL_NAME);
         levelDesc = map.get(textHandler.PROP_LEVEL_DESC);
-        int levelColorValue = Integer.decode(map.get(textHandler.PROP_LEVEL_COLOR_HEX));
+        levelPlayerLife = Integer.parseInt(map.get(textHandler.PROP_LEVEL_PLAYER_LIFE));
+        levelSoundFileName = map.get(textHandler.PROP_LEVEL_SOUND_FILE_NAME);
+        int levelColorValue = Integer.decode(map.get(textHandler.PROP_LEVEL_COLOR));
         levelColor = new Color(levelColorValue);
-        playerLife = Integer.parseInt(map.get(textHandler.PROP_LEVEL_PLAYER_LIFE));
 
-        /* Paddle options. */
+        /* Paddle options */
         int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_PADDLE_POS_X_OFFSET));
         int paddlePosYOffset = Integer.parseInt(map.get(textHandler.PROP_PADDLE_POS_Y_OFFSET));
-
         paddlePos = new Point((gameController.getWidth() / 2) - paddlePosXOffset, gameController.getHeight() - paddlePosYOffset);
         paddleWidth = Integer.parseInt(map.get(textHandler.PROP_PADDLE_WIDTH));
         paddleHeight = Integer.parseInt(map.get(textHandler.PROP_PADDLE_HEIGHT));
         paddleSpeed = Integer.parseInt(map.get(textHandler.PROP_PADDLE_SPEED));
+        int paddleCol = Integer.decode(map.get(textHandler.PROP_PADDLE_COLOR));
+        paddleColor = new Color(paddleCol);
 
-        int paddleColorHex = Integer.decode(map.get(textHandler.PROP_PADDLE_COLOR_HEX));
-        paddleColor = new Color(paddleColorHex);
-
-        /* Ball Setup. */
+        /* Ball options */
         ballPosXOffset = Integer.parseInt(map.get(textHandler.PROP_BALL_POS_X_OFFSET));
         ballPosYOffset = Integer.parseInt(map.get(textHandler.PROP_BALL_POS_Y_OFFSET));
         ballPos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
-
         ballSize = Integer.parseInt(map.get(textHandler.PROP_BALL_SIZE));
         ballSpeed = Integer.parseInt(map.get(textHandler.PROP_BALL_SPEED));
-
-        int ballColorHex = Integer.decode(map.get(textHandler.PROP_BALL_COLOR_HEX));
+        int ballColorHex = Integer.decode(map.get(textHandler.PROP_BALL_COLOR));
         ballColor = new Color(ballColorHex);
 
-        /* BlockList options. */
-        blockAmount = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_AMOUNT));
-        blockHP = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_HITPOINTS));
+        /* Block options */
+        int blockPosXStart = Integer.parseInt(map.get(textHandler.PROP_BLOCK_POS_X_START));
+        int blockPosYStart = Integer.parseInt(map.get(textHandler.PROP_BLOCK_POS_Y_START));
+        blockPosStart = new Point(blockPosXStart, blockPosYStart);
+        blockPosXSpacing = Integer.parseInt(map.get(textHandler.PROP_BLOCK_POS_X_SPACING));
+        blockPosYSpacing = Integer.parseInt(map.get(textHandler.PROP_BLOCK_POS_Y_SPACING));
+        blockAmount = Integer.parseInt(map.get(textHandler.PROP_BLOCK_AMOUNT));
+        blockHitPoints = Integer.parseInt(map.get(textHandler.PROP_BLOCK_HITPOINTS));
+        blockWidth = Integer.parseInt(map.get(textHandler.PROP_BLOCK_WIDTH));
+        blockHeight = Integer.parseInt(map.get(textHandler.PROP_BLOCK_HEIGHT));
+        blockLum = Float.parseFloat(map.get(textHandler.PROP_BLOCK_LUMINANCE));
+        blockSat = Float.parseFloat(map.get(textHandler.PROP_BLOCK_SATURATION));
 
-        int blockListPosX = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_POS_X));
-        int blockListPosY = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_POS_Y));
-        blockPos = new Point(blockListPosX, blockListPosY);
-
-        blockWidth = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_WIDTH));
-        blockHeight = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_HEIGHT));
-        blockSpacing = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_SPACING));
-
-        /* GamePanel options. */
-        int gamePanelColorHex = Integer.decode(map.get(textHandler.PROP_GAME_PANEL_COLOR_HEX));
-        gamePanelColor = new Color(gamePanelColorHex);
+        /* GamePanel options */
+        int gamePanelColorInt = Integer.decode(map.get(textHandler.PROP_GAME_PANEL_COLOR));
+        gamePanelColor = new Color(gamePanelColorInt);
     }
 
     public String getLevelName() {
@@ -129,8 +140,12 @@ public final class LevelConfig {
         return levelDesc;
     }
 
-    public int getPlayerLife() {
-        return playerLife;
+    public int getLevelPlayerLife() {
+        return levelPlayerLife;
+    }
+
+    public String getLevelSoundFileName() {
+        return levelSoundFileName;
     }
 
     public Color getLevelColor() {
@@ -181,12 +196,24 @@ public final class LevelConfig {
         return ballColor;
     }
 
-    public Point getBlockPos() {
-        return blockPos;
+    public Point getBlockPosStart() {
+        return blockPosStart;
+    }
+
+    public int getBlockPosXSpacing() {
+        return blockPosXSpacing;
+    }
+
+    public int getBlockPosYSpacing() {
+        return blockPosYSpacing;
     }
 
     public int getBlockAmount() {
         return blockAmount;
+    }
+
+    public int getBlockHitPoints() {
+        return blockHitPoints;
     }
 
     public int getBlockWidth() {
@@ -197,12 +224,16 @@ public final class LevelConfig {
         return blockHeight;
     }
 
-    public int getBlockSpacing() {
-        return blockSpacing;
+    public float getBlockLum() {
+        return blockLum;
     }
 
-    public int getBlockHP() {
-        return blockHP;
+    public float getBlockSat() {
+        return blockSat;
+    }
+
+    public Color getGamePanelColor() {
+        return gamePanelColor;
     }
 
 }

@@ -70,6 +70,8 @@ public final class FileHandler {
      */
     private void copyConfigFiles() {
         /* Initial level configurations copied to client local options dir. */
+        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_SUN, textHandler.LEVEL_FILE_CLIENT_PATH_SUN);
+        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MOON, textHandler.LEVEL_FILE_CLIENT_PATH_MOON);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MARS, textHandler.LEVEL_FILE_CLIENT_PATH_MARS);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_EARTH, textHandler.LEVEL_FILE_CLIENT_PATH_EARTH);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_NEPTUNE, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);

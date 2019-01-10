@@ -35,8 +35,7 @@ public final class Utils {
     public Color generatePastelColor(final float luminance, final float sat) {
         final float hue = random.nextFloat();
         final float saturation = (random.nextInt(2000) + 1000) / sat;
-        final Color color = Color.getHSBColor(hue, saturation, luminance);
-        return color;
+        return Color.getHSBColor(hue, saturation, luminance);
     }
 
     public Font getGameFont() {

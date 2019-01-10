@@ -26,8 +26,12 @@ public final class BlockList {
 
     private final int width;
     private final int height;
-    private final int spacing;
-    private final int hitpoints;
+    private final int xSpacing;
+    private final int ySpacing;
+    private final int hitPoints;
+    private final float lum;
+    private final float sat;
+
     private int blocksLeft;
 
     private Point pos;
@@ -43,18 +47,22 @@ public final class BlockList {
      * @param spacing        Spacing between @Block objects.
      * @param gameController The current game instance.
      */
-    public BlockList(int blockAmount, int hitpoints, Point pos, int width, int height, int spacing, GameController gameController) {
+    public BlockList(int blockAmount, int hitPoints, Point pos, int width, int height, int xSpacing, int ySpacing,
+                     float lum, float sat, GameController gameController) {
         this.pos = pos;
         this.width = width;
         this.height = height;
-        this.spacing = spacing;
+        this.xSpacing = xSpacing;
+        this.ySpacing = ySpacing;
         this.blocksLeft = blockAmount;
         this.gameController = gameController;
-        this.hitpoints = hitpoints;
+        this.hitPoints = hitPoints;
+        this.lum = lum;
+        this.sat = sat;
 
         /* Create the array and initialize the @Block objects. */
         blockList = new Block[blockAmount];
-        initBlocks();
+        createBlocks();
     }
 
     /**
@@ -138,23 +146,22 @@ public final class BlockList {
      * <p>
      * Instantiates every @Block object, adds new spacing, etc.
      */
-    private void initBlocks() {
+    private void createBlocks() {
         int initialX = pos.x;
-        int initialY = pos.y;
 
         for (int i = 0; i < blockList.length; i++) {
             /* Instantiate @Block object. */
-            blockList[i] = new Block(new Point(pos.x, pos.y), width, height, hitpoints, utils.generatePastelColor(0.8F, 9000F));
+            blockList[i] = new Block(new Point(pos.x, pos.y), width, height, hitPoints, utils.generatePastelColor(lum, sat));
 
             /*
              * Adds spacing and extra width for the new block
              * object to be created.
              */
-            pos.x += width + spacing;
+            pos.x += width + xSpacing;
 
             /* Make sure to wrap around the screen. */
             if (pos.x + width >= gameController.getWidth()) {
-                pos.y += initialY;
+                pos.y += ySpacing;
                 pos.x = initialX;
             }
         }

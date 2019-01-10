@@ -16,7 +16,7 @@ import java.awt.*;
 public final class Paddle extends MobileEntity {
 
     private final int PADDLE_PAUSE_SCREEN_TIMER_INITIAL = 120;
-    private int paddlePauserTimer = 0;
+    private int paddlePauseTimer = 0;
 
     /**
      * Default constructor.
@@ -40,7 +40,7 @@ public final class Paddle extends MobileEntity {
      * @param right Move right, if true.
      */
     public void update(boolean left, boolean right) {
-        if (paddlePauserTimer == 0) {
+        if (paddlePauseTimer == 0) {
             if (left && pos.x > 0) {
                 pos.x -= speed;
             }
@@ -49,7 +49,7 @@ public final class Paddle extends MobileEntity {
                 pos.x += speed;
             }
         } else {
-            paddlePauserTimer--;
+            paddlePauseTimer--;
         }
     }
 
@@ -75,8 +75,8 @@ public final class Paddle extends MobileEntity {
         return new Rectangle(pos.x, pos.y, width, height);
     }
 
-    public void pausePaddle() {
-        paddlePauserTimer = PADDLE_PAUSE_SCREEN_TIMER_INITIAL;
+    public void pause() {
+        paddlePauseTimer = PADDLE_PAUSE_SCREEN_TIMER_INITIAL;
     }
 
 }

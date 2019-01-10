@@ -21,9 +21,7 @@ public final class PauseMenu extends AbstractMenu {
 
     @Override
     public void update() {
-        levelHandler.getActiveLevel().pauseBall();
-        levelHandler.getActiveLevel().pausePaddle();
-
+        levelHandler.getActiveLevel().pause();
         decInputTimer();
 
         if (isFirstUpdate) {

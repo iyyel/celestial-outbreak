@@ -198,6 +198,8 @@ public final class TextHandler {
     public final String LEVEL_CONFIG_FILE_CLIENT_PATH = LEVEL_DIR_PATH + fs + LEVEL_CONFIG_FILE_NAME;
 
     /* Standard level configuration file names. */
+    public final String LEVEL_FILE_NAME_SUN = "sun_level.conf";
+    public final String LEVEL_FILE_NAME_MOON = "moon_level.conf";
     public final String LEVEL_FILE_NAME_MARS = "mars_level.conf";
     public final String LEVEL_FILE_NAME_EARTH = "earth_level.conf";
     public final String LEVEL_FILE_NAME_NEPTUNE = "neptune_level.conf";
@@ -205,6 +207,8 @@ public final class TextHandler {
     public final String LEVEL_FILE_NAME_JUPITER = "jupiter_level.conf";
 
     /* Local level file paths. */
+    public final String LEVEL_FILE_LOCAL_PATH_SUN = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_SUN;
+    public final String LEVEL_FILE_LOCAL_PATH_MOON = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_MOON;
     public final String LEVEL_FILE_LOCAL_PATH_MARS = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_MARS;
     public final String LEVEL_FILE_LOCAL_PATH_EARTH = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_EARTH;
     public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_NEPTUNE;
@@ -212,6 +216,8 @@ public final class TextHandler {
     public final String LEVEL_FILE_LOCAL_PATH_JUPITER = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_JUPITER;
     ;
     /* Client level file paths. */
+    public final String LEVEL_FILE_CLIENT_PATH_SUN = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_SUN;
+    public final String LEVEL_FILE_CLIENT_PATH_MOON = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_MOON;
     public final String LEVEL_FILE_CLIENT_PATH_MARS = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_MARS;
     public final String LEVEL_FILE_CLIENT_PATH_EARTH = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_EARTH;
     public final String LEVEL_FILE_CLIENT_PATH_NEPTUNE = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_NEPTUNE;
@@ -301,8 +307,9 @@ public final class TextHandler {
      */
     public final String PROP_LEVEL_NAME = "LEVEL_NAME";
     public final String PROP_LEVEL_DESC = "LEVEL_DESCRIPTION";
-    public final String PROP_LEVEL_COLOR_HEX = "LEVEL_COLOR_HEX";
     public final String PROP_LEVEL_PLAYER_LIFE = "LEVEL_PLAYER_LIFE";
+    public final String PROP_LEVEL_SOUND_FILE_NAME = "LEVEL_SOUND_FILE_NAME";
+    public final String PROP_LEVEL_COLOR = "LEVEL_COLOR";
 
     /* Paddle. */
     public final String PROP_PADDLE_POS_X_OFFSET = "LEVEL_PADDLE_POS_X_OFFSET";
@@ -310,26 +317,29 @@ public final class TextHandler {
     public final String PROP_PADDLE_WIDTH = "LEVEL_PADDLE_WIDTH";
     public final String PROP_PADDLE_HEIGHT = "LEVEL_PADDLE_HEIGHT";
     public final String PROP_PADDLE_SPEED = "LEVEL_PADDLE_SPEED";
-    public final String PROP_PADDLE_COLOR_HEX = "LEVEL_PADDLE_COLOR_HEX";
+    public final String PROP_PADDLE_COLOR = "LEVEL_PADDLE_COLOR";
 
     /* Ball. */
     public final String PROP_BALL_POS_X_OFFSET = "LEVEL_BALL_POS_X_OFFSET";
     public final String PROP_BALL_POS_Y_OFFSET = "LEVEL_BALL_POS_Y_OFFSET";
     public final String PROP_BALL_SIZE = "LEVEL_BALL_SIZE";
     public final String PROP_BALL_SPEED = "LEVEL_BALL_SPEED";
-    public final String PROP_BALL_COLOR_HEX = "LEVEL_BALL_COLOR_HEX";
+    public final String PROP_BALL_COLOR = "LEVEL_BALL_COLOR";
 
     /* BlockList. */
-    public final String PROP_BLOCKLIST_POS_X = "LEVEL_BLOCKLIST_X_POS";
-    public final String PROP_BLOCKLIST_POS_Y = "LEVEL_BLOCKLIST_Y_POS";
-    public final String PROP_BLOCKLIST_BLOCK_HITPOINTS = "LEVEL_BLOCKLIST_BLOCK_HITPOINTS";
-    public final String PROP_BLOCKLIST_BLOCK_AMOUNT = "LEVEL_BLOCKLIST_BLOCK_AMOUNT";
-    public final String PROP_BLOCKLIST_BLOCK_WIDTH = "LEVEL_BLOCKLIST_BLOCK_WIDTH";
-    public final String PROP_BLOCKLIST_BLOCK_HEIGHT = "LEVEL_BLOCKLIST_BLOCK_HEIGHT";
-    public final String PROP_BLOCKLIST_BLOCK_SPACING = "LEVEL_BLOCKLIST_BLOCK_SPACING";
+    public final String PROP_BLOCK_POS_X_START = "LEVEL_BLOCK_POS_X_START";
+    public final String PROP_BLOCK_POS_Y_START = "LEVEL_BLOCK_POS_Y_START";
+    public final String PROP_BLOCK_POS_X_SPACING = "LEVEL_BLOCK_POS_X_SPACING";
+    public final String PROP_BLOCK_POS_Y_SPACING = "LEVEL_BLOCK_POS_Y_SPACING";
+    public final String PROP_BLOCK_AMOUNT = "LEVEL_BLOCK_AMOUNT";
+    public final String PROP_BLOCK_HITPOINTS = "LEVEL_BLOCK_HITPOINTS";
+    public final String PROP_BLOCK_WIDTH = "LEVEL_BLOCK_WIDTH";
+    public final String PROP_BLOCK_HEIGHT = "LEVEL_BLOCK_HEIGHT";
+    public final String PROP_BLOCK_LUMINANCE = "LEVEL_BLOCK_LUMINANCE";
+    public final String PROP_BLOCK_SATURATION = "LEVEL_BLOCK_SATURATION";
 
     /* GamePanel. */
-    public final String PROP_GAME_PANEL_COLOR_HEX = "LEVEL_GAME_PANEL_COLOR_HEX";
+    public final String PROP_GAME_PANEL_COLOR = "LEVEL_GAME_PANEL_COLOR";
 
     /*
      * Menu messages.

@@ -218,7 +218,7 @@ public final class Ball extends MobileEntity {
         return new Rectangle(pos.x, pos.y, width, height);
     }
 
-    public void pauseBall() {
+    public void pause() {
         ballPauseTimer = BALL_PAUSE_SCREEN_TIMER_INITIAL;
     }
 

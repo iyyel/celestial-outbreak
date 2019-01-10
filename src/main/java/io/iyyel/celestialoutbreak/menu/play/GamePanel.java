@@ -1,23 +1,27 @@
-package io.iyyel.celestialoutbreak.menu;
+package io.iyyel.celestialoutbreak.menu.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.level.Level;
+import io.iyyel.celestialoutbreak.level.LevelOptions;
+import io.iyyel.celestialoutbreak.menu.AbstractMenu;
 
 import java.awt.*;
 
 public final class GamePanel extends AbstractMenu {
 
     private final Font panelFont;
+    private final Color panelColor;
 
     private final LevelHandler levelHandler = LevelHandler.getInstance();
 
     private Level activeLevel;
 
-    public GamePanel(GameController gameController) {
+    public GamePanel(GameController gameController, LevelOptions levelOptions) {
         super(gameController);
         panelFont = utils.getPanelFont().deriveFont(16F);
+        panelColor = levelOptions.getGamePanelColor();
     }
 
     @Override
@@ -27,8 +31,8 @@ public final class GamePanel extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(menuFontColor);
         g.setFont(panelFont);
+        g.setColor(panelColor);
         drawGamePanel(g);
     }
 
@@ -47,6 +51,7 @@ public final class GamePanel extends AbstractMenu {
             g.drawString("Lives: " + activeLevel.getPlayerLife(), gameController.getWidth() / 2 - 150, 714);
             g.drawString("Score: N/A", gameController.getWidth() / 2 + 50, 714);
             g.drawString("Blocks: " + activeLevel.getBlocksLeft(), gameController.getWidth() / 2 + 200, 714);
+            g.drawString("Time: 0.0", gameController.getWidth() / 2 + 350, 714);
         }
     }
 
