@@ -12,9 +12,8 @@ public class SelectLevelMenu extends AbstractMenu {
 
     private Rectangle[] levelRects;
     private Color[] levelRectColors;
-    private Color[] levelNameColors;
 
-    private Font levelInfoFont = utils.getGameFont().deriveFont(15F);
+    private Font levelInfoFont = utils.getPanelFont().deriveFont(15F);
 
     private int levelAmount = levelHandler.getLevelAmount();
     private int selected = 0;
@@ -23,24 +22,22 @@ public class SelectLevelMenu extends AbstractMenu {
         super(gameController);
         levelRects = new Rectangle[levelAmount];
         levelRectColors = new Color[levelAmount];
-        levelNameColors = new Color[levelAmount];
 
-        int initialX = 130;
-        int initialY = 240;
+        int initialX = 50;
+        int initialY = 215;
         int x = initialX;
         int y = initialY;
-        int xInc = 260;
-        int yInc = 100;
+        int xInc = 300;
+        int yInc = 110;
 
         for (int i = 0; i < levelAmount; i++) {
             levelRectColors[i] = menuBtnColor;
-            levelNameColors[i] = levelHandler.getLevel(i).getColor();
 
             if (i % 4 == 0 && i != 0) {
                 x += xInc;
                 y = initialY;
             }
-            levelRects[i] = new Rectangle(x, y, 240, 80);
+            levelRects[i] = new Rectangle(x, y, 280, 90);
             y += yInc;
         }
     }
@@ -89,6 +86,7 @@ public class SelectLevelMenu extends AbstractMenu {
                     selected = 0;
 
                     // Set current active level to i.
+                    levelHandler.loadLevel(i);
                     levelHandler.setActiveLevelIndex(i);
                     gameController.switchState(GameController.State.PRE_LEVEL);
                 }
@@ -117,13 +115,20 @@ public class SelectLevelMenu extends AbstractMenu {
         } else {
             for (int i = 0; i < levelHandler.getLevelAmount(); i++) {
                 g.setFont(inputBtnFont);
-                g.setColor(levelNameColors[i]);
-                g.drawString(levelHandler.getLevel(i).getName(), levelRects[i].x + 5, levelRects[i].y + 32);
+                g.setColor(levelHandler.getLevelColors()[i]);
+                g.drawString(levelHandler.getLevelNames()[i], levelRects[i].x + 5, levelRects[i].y + 27);
 
                 g.setFont(levelInfoFont);
                 g.setColor(menuBtnColor);
-                g.drawString("Blocks: " + levelHandler.getLevel(i).getBlockAmount(), levelRects[i].x + 5, levelRects[i].y + 55);
-                g.drawString("Score: 1234", levelRects[i].x + 5, levelRects[i].y + 75);
+
+                String blockHitPoints = fixedLengthString("Blocks: " + levelHandler.getLevelBlockAmounts()[i] + "/" +
+                        levelHandler.getLevelHitPoints()[i], 15);
+                String life = fixedLengthString(" Life: " + levelHandler.getLevelPlayerLives()[i], 15);
+                g.drawString(blockHitPoints + life, levelRects[i].x + 5, levelRects[i].y + 55);
+
+                String score = fixedLengthString("Score:  " + "123456", 15);
+                String time = fixedLengthString(" Time: " + "01:02:03", 15);
+                g.drawString(score + time, levelRects[i].x + 5, levelRects[i].y + 75);
 
                 g.setColor(levelRectColors[i]);
                 g.draw(levelRects[i]);

@@ -17,6 +17,12 @@ public final class LevelHandler {
     private Level[] levels;
     private String[] levelOptionsFileNames;
 
+    private Color[] levelColors;
+    private String[] levelNames;
+    private int[] levelPlayerLives;
+    private int[] levelBlockAmounts;
+    private int[] levelHitPoints;
+
     private GameController gameController;
 
     private static LevelHandler instance;
@@ -63,7 +69,7 @@ public final class LevelHandler {
         levels[activeLevelIndex].render(g);
     }
 
-    public void loadLevels(GameController gameController) {
+    public void initLevels(GameController gameController) {
         this.gameController = gameController;
 
         List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
@@ -77,23 +83,54 @@ public final class LevelHandler {
         }
 
         for (int i = 0; i < levels.length; i++) {
-            String settingsFileName = textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i);
-            levelOptionsFileNames[i] = settingsFileName;
-            levels[i] = new Level(settingsFileName, gameController);
+            levelOptionsFileNames[i] = textHandler.LEVEL_DIR_PATH + File.separator + levelConfigFileList.get(i);
         }
 
+        levelColors = getLevelColorProperties();
+        levelNames = getLevelStringProperties(textHandler.PROP_LEVEL_NAME);
+        levelPlayerLives = getLevelIntProperties(textHandler.PROP_LEVEL_PLAYER_LIFE);
+        levelBlockAmounts = getLevelIntProperties(textHandler.PROP_BLOCK_AMOUNT);
+        levelHitPoints = getLevelIntProperties(textHandler.PROP_BLOCK_HITPOINTS);
     }
 
-    public void resetLevel(int index) {
+    public void loadLevel(int index) {
         levels[index] = new Level(levelOptionsFileNames[index], gameController);
     }
 
+    private String[] getLevelStringProperties(String pKey) {
+        String[] arr = new String[levels.length];
+        for (int i = 0; i < levels.length; i++) {
+            arr[i] = fileHandler.readPropertyFromFile(pKey, levelOptionsFileNames[i]);
+        }
+        return arr;
+    }
+
+    private Color[] getLevelColorProperties() {
+        Color[] colors = new Color[levels.length];
+        for (int i = 0; i < levels.length; i++) {
+            int levelColorInt = Integer.decode(fileHandler.readPropertyFromFile(textHandler.PROP_LEVEL_COLOR, levelOptionsFileNames[i]));
+            colors[i] = new Color(levelColorInt);
+        }
+        return colors;
+    }
+
+    private int[] getLevelIntProperties(String pKey) {
+        int[] arr = new int[levels.length];
+        for (int i = 0; i < levels.length; i++) {
+            arr[i] = Integer.parseInt(fileHandler.readPropertyFromFile(pKey, levelOptionsFileNames[i]));
+        }
+        return arr;
+    }
+
     public void resetActiveLevel() {
-        resetLevel(activeLevelIndex);
+        if (optionsHandler.isVerboseLogEnabled()) {
+            fileHandler.writeLog("Level[" + activeLevelIndex + "] has been reset.");
+        }
+        levels[activeLevelIndex] = null;
     }
 
     public Level getActiveLevel() {
-        return levels[activeLevelIndex];
+        return getLevel(activeLevelIndex);
     }
 
     public int getLevelAmount() {
@@ -106,6 +143,26 @@ public final class LevelHandler {
 
     public void setActiveLevelIndex(int index) {
         this.activeLevelIndex = index;
+    }
+
+    public Color[] getLevelColors() {
+        return levelColors;
+    }
+
+    public String[] getLevelNames() {
+        return levelNames;
+    }
+
+    public int[] getLevelPlayerLives() {
+        return levelPlayerLives;
+    }
+
+    public int[] getLevelHitPoints() {
+        return levelHitPoints;
+    }
+
+    public int[] getLevelBlockAmounts() {
+        return levelBlockAmounts;
     }
 
 }

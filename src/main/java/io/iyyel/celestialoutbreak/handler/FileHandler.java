@@ -283,6 +283,33 @@ public final class FileHandler {
         }
     }
 
+    public String readPropertyFromFile(String pKey, String filePath) {
+        Properties p = new Properties();
+        String value = "";
+
+        try (InputStream is = new FileInputStream(filePath)) {
+            p.load(is);
+
+            for (String key : p.stringPropertyNames()) {
+                if (!key.equals(pKey)) {
+                    continue;
+                }
+
+                value = p.getProperty(key);
+                value = removeComments(value);
+
+                if (value != null) {
+                    writeLog(textHandler.successReadPropertyMsg(pKey, value, filePath));
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return value;
+    }
+
     /*
      * Outputs the content of msg into the console
      * and writes it to the gameController's log file.

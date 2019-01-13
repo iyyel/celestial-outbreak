@@ -181,13 +181,18 @@ public final class Ball extends MobileEntity {
                     if (blockList.getBlock(i).isDead()) {
                         soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
                         blockList.destroyBlock(i);
+
+                        if (optionsHandler.isVerboseLogEnabled()) {
+                            fileHandler.writeLog("BlockList[" + i + "] has been destroyed.");
+                        }
                     } else {
                         soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
+
+                        if (optionsHandler.isVerboseLogEnabled()) {
+                            fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i, blockList.getBlock(i).getHitPoints()));
+                        }
                     }
 
-                    if (optionsHandler.isVerboseLogEnabled()) {
-                        fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i, blockList.getBlock(i).getHitPoints()));
-                    }
                 }
             }
         }

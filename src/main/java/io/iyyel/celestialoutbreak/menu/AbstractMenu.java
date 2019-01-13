@@ -130,4 +130,8 @@ public abstract class AbstractMenu {
         return inputTimer == 0;
     }
 
+    protected String fixedLengthString(String text, int length) {
+        return String.format("%-" + length + "." + length + "s", text);
+    }
+
 }

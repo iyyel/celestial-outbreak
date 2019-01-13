@@ -88,7 +88,7 @@ public final class OptionsMenu extends AbstractMenu {
                         case 3:
                             // Reload levels button
                             try {
-                                levelHandler.loadLevels(gameController);
+                                levelHandler.initLevels(gameController);
                             } catch (Exception e) {
                                 reloadLevelsStatusText = "Error trying to reload levels. See log for details. " + e.getMessage();
                             }
