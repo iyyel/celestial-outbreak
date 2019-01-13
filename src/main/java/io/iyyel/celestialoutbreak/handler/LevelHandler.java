@@ -69,7 +69,7 @@ public final class LevelHandler {
         levels[activeLevelIndex].render(g);
     }
 
-    public void initLevels(GameController gameController) {
+    public void initPreLevels(GameController gameController) {
         this.gameController = gameController;
 
         List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);

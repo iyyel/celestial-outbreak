@@ -1,12 +1,12 @@
-package io.iyyel.celestialoutbreak.menu.options_menu;
+package io.iyyel.celestialoutbreak.screen.options_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class GameOptionsMenu extends AbstractMenu {
+public final class GameOptionsScreen extends AbstractScreen {
 
     private final Rectangle isSoundEnabledRect, isGodModeEnabledRect, isFpsLockedEnabledRect, isAntiAliasingEnabledRect;
     private String[] options = {"Sound", "God Mode", "FPS Lock", "Anti-aliasing"};
@@ -17,7 +17,7 @@ public final class GameOptionsMenu extends AbstractMenu {
 
     private final FileHandler fileHandler = FileHandler.getInstance();
 
-    public GameOptionsMenu(GameController gameController) {
+    public GameOptionsScreen(GameController gameController) {
         super(gameController);
 
         int initialBtnYPos = 240;
@@ -133,39 +133,33 @@ public final class GameOptionsMenu extends AbstractMenu {
     @Override
     public void render(Graphics2D g) {
         /* Render game title */
-        drawMenuTitle(g);
-
-        /* Show submenu title */
-        drawSubmenuTitle(textHandler.TITLE_GAME_OPTIONS_SCREEN, g);
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_GAME_OPTIONS_SCREEN, g);
 
         /* Render buttons  */
         g.setFont(inputBtnFont);
 
         /* isSoundEnabled button */
-        g.setColor(playerNameColors[0]);
-        drawCenterString(options[0], isSoundEnabledRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        drawScreenCenterString(options[0], isSoundEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[0], g);
         g.setColor(rectColors[0]);
         g.draw(isSoundEnabledRect);
 
         /* isGodModeEnabled button */
-        g.setColor(playerNameColors[1]);
-        drawCenterString(options[1], isGodModeEnabledRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        drawScreenCenterString(options[1], isGodModeEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[1], g);
         g.setColor(rectColors[1]);
         g.draw(isGodModeEnabledRect);
 
         /* isFpsLockedEnabled button */
-        g.setColor(playerNameColors[2]);
-        drawCenterString(options[2], isFpsLockedEnabledRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        drawScreenCenterString(options[2], isFpsLockedEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[2], g);
         g.setColor(rectColors[2]);
         g.draw(isFpsLockedEnabledRect);
 
         /* isAntiAliasingEnabled button */
-        g.setColor(playerNameColors[3]);
-        drawCenterString(options[3], isAntiAliasingEnabledRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        drawScreenCenterString(options[3], isAntiAliasingEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[3], g);
         g.setColor(rectColors[3]);
         g.draw(isAntiAliasingEnabledRect);
 
-        drawInfoPanel(g);
+        drawScreenInfoPanel(g);
     }
 
     private void updateButtonColors() {

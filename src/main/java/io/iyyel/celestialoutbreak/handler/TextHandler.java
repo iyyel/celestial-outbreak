@@ -85,15 +85,17 @@ public final class TextHandler {
     /*
      * Menu title names.
      */
-    public final String TITLE_WELCOME_MENU = "WELCOME";
-    public final String TITLE_SCORES_MENU = "SCORES";
-    public final String TITLE_CONTROLS_MENU = "CONTROLS";
-    public final String TITLE_OPTIONS_MENU = "OPTIONS";
+    public final String TITLE_WELCOME_SCREEN = "WELCOME";
+    public final String TITLE_SCORES_SCREEN = "SCORES";
+    public final String TITLE_CONTROLS_SCREEN = "CONTROLS";
+    public final String TITLE_OPTIONS_SCREEN = "OPTIONS";
     public final String TITLE_ABOUT_SCREEN = "ABOUT";
     public final String TITLE_EXIT_SCREEN = "EXIT";
 
-    public final String TITLE_PLAYER_OPTIONS_MENU = "PLAYER OPTIONS";
-    public final String TITLE_CONFIGURATION_OPTIONS_MENU = "CONFIGURATION OPTIONS";
+    public final String TITLE_SELECT_LEVEL_SCREEN = "SELECT LEVEL";
+
+    public final String TITLE_PLAYER_OPTIONS_SCREEN = "PLAYER OPTIONS";
+    public final String TITLE_CONFIGURATION_OPTIONS_SCREEN = "CONFIGURATION OPTIONS";
 
     public final String TITLE_SELECT_PLAYER_SCREEN = "SELECT PLAYER";
     public final String TITLE_CREATE_PLAYER_SCREEN = "CREATE PLAYER";
@@ -407,8 +409,8 @@ public final class TextHandler {
     public final String aboutMenuMsg05 = GITHUB_URL + ".";
     public final String aboutMenuMsg06 = "The game plays like your typical Breakout game, with a few";
     public final String aboutMenuMsg07 = "additions such as power ups, custom levels and player scores.";
-    public final String aboutMenuMsg08 = "If any help is needed, please look at the " + TITLE_CONTROLS_MENU + " and";
-    public final String aboutMenuMsg09 = TITLE_CONFIGURATION_OPTIONS_MENU + " menus for more information.";
+    public final String aboutMenuMsg08 = "If any help is needed, please look at the " + TITLE_CONTROLS_SCREEN + " and";
+    public final String aboutMenuMsg09 = TITLE_CONFIGURATION_OPTIONS_SCREEN + " menus for more information.";
 
     /* EXIT_MENU messages. */
 
@@ -536,8 +538,14 @@ public final class TextHandler {
         return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
     }
 
-    public String getTimeString(long sec) {
+    public final String getTimeString(long sec) {
         return String.format("%02d:%02d", sec / 60, sec % 60);
     }
+
+    /* Welcome Screen text */
+    public final String WELCOME_SCREEN_TEXT = "What lies beyond the cosmos is inevitable";
+
+    public final String WELCOME_SCREEN_TOOLTIP_TEXT = "Press '" + BTN_CONTROL_FORWARD_OK + "' to confirm or '" +
+            BTN_CONTROL_BACK_CANCEL + "' to go back. Navigate with '" + BTN_CONTROL_MOV_NAV + "'.";
 
 }

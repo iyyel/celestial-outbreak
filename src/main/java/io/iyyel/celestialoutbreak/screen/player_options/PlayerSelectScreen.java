@@ -1,12 +1,12 @@
-package io.iyyel.celestialoutbreak.menu.player_options;
+package io.iyyel.celestialoutbreak.screen.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class PlayerSelectMenu extends AbstractMenu {
+public final class PlayerSelectScreen extends AbstractScreen {
 
     private Rectangle[] playerRects;
     private Color[] rectColors;
@@ -16,7 +16,7 @@ public final class PlayerSelectMenu extends AbstractMenu {
     private boolean isFirstUpdate = true;
     private int playerAmount = 0;
 
-    public PlayerSelectMenu(GameController gameController) {
+    public PlayerSelectScreen(GameController gameController) {
         super(gameController);
         playerRects = new Rectangle[0];
     }
@@ -24,6 +24,15 @@ public final class PlayerSelectMenu extends AbstractMenu {
     @Override
     public void update() {
         decInputTimer();
+
+        /*
+         * Do this ONCE everytime the user is on this screen.
+         */
+        if (isFirstUpdate) {
+            isFirstUpdate = false;
+            selected = 0;
+            updatePlayerData();
+        }
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
@@ -93,20 +102,9 @@ public final class PlayerSelectMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        /*
-         * Do this ONCE everytime the user is on this screen.
-         */
-        if (isFirstUpdate) {
-            isFirstUpdate = false;
-            selected = 0;
-            updatePlayerData();
-        }
-
         /* Render game title */
-        drawMenuTitle(g);
-
-        /* Show sub menu */
-        drawSubmenuTitle(textHandler.TITLE_SELECT_PLAYER_SCREEN, g);
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_SELECT_PLAYER_SCREEN, g);
 
         /* Render buttons  */
         g.setFont(inputBtnFont);
@@ -114,14 +112,12 @@ public final class PlayerSelectMenu extends AbstractMenu {
         for (int i = 0; i < playerAmount; i++) {
             g.setColor(playerNameColors[i]);
             g.drawString(playerDAO.getPlayerList().get(i), playerRects[i].x + 5, playerRects[i].y + 32);
-
             g.setColor(rectColors[i]);
-
             g.draw(playerRects[i]);
         }
 
-        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to select a player.", g);
-        drawInfoPanel(g);
+        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to select a player.", g);
+        drawScreenInfoPanel(g);
     }
 
     private void updatePlayerData() {

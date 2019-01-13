@@ -1,12 +1,12 @@
-package io.iyyel.celestialoutbreak.menu.play;
+package io.iyyel.celestialoutbreak.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class PauseMenu extends AbstractMenu {
+public final class PauseScreen extends AbstractScreen {
 
     private final LevelHandler levelHandler = LevelHandler.getInstance();
 
@@ -15,7 +15,7 @@ public final class PauseMenu extends AbstractMenu {
 
     private String pauseStatusText = "Exiting the level will result in lost progress.";
 
-    public PauseMenu(GameController gameController) {
+    public PauseScreen(GameController gameController) {
         super(gameController);
     }
 
@@ -61,13 +61,13 @@ public final class PauseMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(menuFontColor);
-        drawMenuTitle(g);
-        drawSubmenuTitle(textHandler.TITLE_PAUSE_SCREEN, g);
-        drawCenterString(textHandler.GAME_TITLE + " is paused.", 350, g, msgFont);
-        drawCenterString(pauseStatusText, 630, g, inputBtnFont);
-        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_PAUSE + "' to resume or '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to exit level.", g);
-        drawInfoPanel(g);
+        g.setColor(screenFontColor);
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_PAUSE_SCREEN, g);
+        drawScreenMessage(textHandler.GAME_TITLE + " is paused.", 0, g);
+        drawScreenCenterString(pauseStatusText, 630, inputBtnFont, g);
+        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_PAUSE + "' to resume or '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to exit level.", g);
+        drawScreenInfoPanel(g);
     }
 
     private void doFirstUpdate() {

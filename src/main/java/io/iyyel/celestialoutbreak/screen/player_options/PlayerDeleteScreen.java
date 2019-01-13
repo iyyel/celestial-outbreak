@@ -1,8 +1,8 @@
-package io.iyyel.celestialoutbreak.menu.player_options;
+package io.iyyel.celestialoutbreak.screen.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public final class PlayerDeleteMenu extends AbstractMenu {
+public final class PlayerDeleteScreen extends AbstractScreen {
 
     private Rectangle[] playerRects;
     private Color[] rectColors;
@@ -20,14 +20,14 @@ public final class PlayerDeleteMenu extends AbstractMenu {
     private String tooltipString = origToolTip;
 
     private int selected = 0;
-    private boolean isFirstUpdate = true;
+    private boolean isFirstRender = true;
     private int playerAmount = 0;
 
     private boolean isDeleting = false;
     private List<String> playerList;
     private boolean[] deleteMarkings;
 
-    public PlayerDeleteMenu(GameController gameController) {
+    public PlayerDeleteScreen(GameController gameController) {
         super(gameController);
         playerRects = new Rectangle[0];
     }
@@ -35,6 +35,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
     @Override
     public void update() {
         decInputTimer();
+
 
         if (inputHandler.isOKPressed() && isDeletions() && isInputAvailable() && !isDeleting) {
             resetInputTimer();
@@ -64,7 +65,7 @@ public final class PlayerDeleteMenu extends AbstractMenu {
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
-            isFirstUpdate = true;
+            isFirstRender = true;
             menuUseClip.play(false);
             gameController.switchState(GameController.State.PLAYER_OPTIONS);
         }
@@ -134,18 +135,17 @@ public final class PlayerDeleteMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
+
         /*
          * Do this ONCE everytime the user is on this screen.
          */
-        if (isFirstUpdate) {
-            doFirstUpdate();
+        if (isFirstRender) {
+            doFirstRender();
         }
 
         /* Render game title */
-        drawMenuTitle(g);
-
-        /* Show sub menu */
-        drawSubmenuTitle(textHandler.TITLE_DELETE_PLAYER_SCREEN, g);
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_DELETE_PLAYER_SCREEN, g);
 
         /* Render buttons  */
         g.setFont(inputBtnFont);
@@ -160,8 +160,8 @@ public final class PlayerDeleteMenu extends AbstractMenu {
             g.draw(playerRects[i]);
         }
 
-        drawMenuToolTip(tooltipString, g);
-        drawInfoPanel(g);
+        drawScreenToolTip(tooltipString, g);
+        drawScreenInfoPanel(g);
     }
 
     private void updatePlayerData() {
@@ -236,8 +236,8 @@ public final class PlayerDeleteMenu extends AbstractMenu {
         Arrays.fill(deleteMarkings, false);
     }
 
-    private void doFirstUpdate() {
-        isFirstUpdate = false;
+    private void doFirstRender() {
+        isFirstRender = false;
         selected = 0;
         updatePlayerData();
     }

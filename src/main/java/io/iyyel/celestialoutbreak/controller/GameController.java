@@ -4,18 +4,15 @@ import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.graphics.ScreenRenderer;
 import io.iyyel.celestialoutbreak.handler.*;
-import io.iyyel.celestialoutbreak.menu.WelcomeMenu;
-import io.iyyel.celestialoutbreak.menu.main_menu.*;
-import io.iyyel.celestialoutbreak.menu.options_menu.ConfigOptionsMenu;
-import io.iyyel.celestialoutbreak.menu.options_menu.GameOptionsMenu;
-import io.iyyel.celestialoutbreak.menu.options_menu.PlayerOptionsMenu;
-import io.iyyel.celestialoutbreak.menu.play.PauseMenu;
-import io.iyyel.celestialoutbreak.menu.play.PostLevelMenu;
-import io.iyyel.celestialoutbreak.menu.play.PreLevelMenu;
-import io.iyyel.celestialoutbreak.menu.play.SelectLevelMenu;
-import io.iyyel.celestialoutbreak.menu.player_options.PlayerCreateMenu;
-import io.iyyel.celestialoutbreak.menu.player_options.PlayerDeleteMenu;
-import io.iyyel.celestialoutbreak.menu.player_options.PlayerSelectMenu;
+import io.iyyel.celestialoutbreak.screen.play.*;
+import io.iyyel.celestialoutbreak.screen.welcome.WelcomeScreen;
+import io.iyyel.celestialoutbreak.screen.main_menu.*;
+import io.iyyel.celestialoutbreak.screen.options_menu.ConfigOptionsScreen;
+import io.iyyel.celestialoutbreak.screen.options_menu.GameOptionsScreen;
+import io.iyyel.celestialoutbreak.screen.options_menu.PlayerOptionsScreen;
+import io.iyyel.celestialoutbreak.screen.player_options.PlayerCreateScreen;
+import io.iyyel.celestialoutbreak.screen.player_options.PlayerDeleteScreen;
+import io.iyyel.celestialoutbreak.screen.player_options.PlayerSelectScreen;
 import io.iyyel.celestialoutbreak.utils.Utils;
 
 import javax.swing.*;
@@ -42,10 +39,10 @@ public class GameController extends Canvas implements Runnable {
     private final int SCREEN_UPDATE_RATE = 60;
 
     /*
-     * Timers to switch the mainMenu background color in a slower interval than 60 times a second.
+     * Timers to switch the mainMenuScreen background color in a slower interval than 60 times a second.
      */
-    private final int INITIAL_MENU_COLOR_TIMER_VALUE = SCREEN_UPDATE_RATE;
-    private int menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
+    private final int INITIAL_MAIN_MENU_SCREEN_COLOR_TIMER_VALUE = SCREEN_UPDATE_RATE;
+    private int mainMenuScreenColorTimer = INITIAL_MAIN_MENU_SCREEN_COLOR_TIMER_VALUE;
 
     /*
      * gameThread is the main thread of the application.
@@ -82,25 +79,26 @@ public class GameController extends Canvas implements Runnable {
     /*
      * Objects used for menu's.
      */
-    private final WelcomeMenu welcomeMenu;
-    private final MainMenu mainMenu;
-    private final SelectLevelMenu selectLevelMenu;
-    private final PreLevelMenu preLevelMenu;
-    private final PostLevelMenu postLevelMenu;
-    private final PauseMenu pauseMenu;
-    private final ScoresMenu scoresMenu;
-    private final ControlsMenu controlsMenu;
-    private final OptionsMenu optionsMenu;
-    private final PlayerOptionsMenu playerOptionsMenu;
-    private final PlayerSelectMenu playerSelectMenu;
-    private final PlayerCreateMenu playerCreateMenu;
-    private final PlayerDeleteMenu playerDeleteMenu;
-    private final GameOptionsMenu gameOptionsMenu;
-    private final ConfigOptionsMenu configOptionsMenu;
-    private final AboutMenu aboutMenu;
-    private final ExitMenu exitMenu;
+    private final WelcomeScreen welcomeScreen;
+    private final MainMenuScreen mainMenuScreen;
+    private final PlayScreen playScreen;
+    private final SelectLevelScreen selectLevelScreen;
+    private final PreLevelScreen preLevelScreen;
+    private final PostLevelScreen postLevelScreen;
+    private final PauseScreen pauseScreen;
+    private final ScoresScreen scoresScreen;
+    private final ControlsScreen controlsScreen;
+    private final OptionsScreen optionsScreen;
+    private final PlayerOptionsScreen playerOptionsScreen;
+    private final PlayerSelectScreen playerSelectScreen;
+    private final PlayerCreateScreen playerCreateScreen;
+    private final PlayerDeleteScreen playerDeleteScreen;
+    private final GameOptionsScreen gameOptionsScreen;
+    private final ConfigOptionsScreen configOptionsScreen;
+    private final AboutScreen aboutScreen;
+    private final ExitScreen exitScreen;
 
-    private Color menuColor;
+    private Color mainMenuScreenColor;
 
     /*
      * NONE,
@@ -167,14 +165,6 @@ public class GameController extends Canvas implements Runnable {
             }
         });
 
-        /* Load players */
-        try {
-            playerDAO.loadPlayerDTO();
-        } catch (IPlayerDAO.PlayerDAOException e) {
-            // Handle this.
-            e.printStackTrace();
-        }
-
         /* Create JFrame */
         gameFrame = new JFrame();
 
@@ -187,31 +177,40 @@ public class GameController extends Canvas implements Runnable {
         /* Initialize game icon. */
         initGameIcon();
 
+        /* Load players */
+        try {
+            playerDAO.loadPlayerDTO();
+        } catch (IPlayerDAO.PlayerDAOException e) {
+            // TODO: Handle this.
+            e.printStackTrace();
+        }
+
         /* Initialize levelHandler */
-        levelHandler.initLevels(this);
+        levelHandler.initPreLevels(this);
 
         /* Create screenRenderer renderer */
         screenRenderer = new ScreenRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, pixels);
 
         /* Create menu objects */
-        welcomeMenu = new WelcomeMenu(this);
-        mainMenu = new MainMenu(this);
-        selectLevelMenu = new SelectLevelMenu(this);
-        preLevelMenu = new PreLevelMenu(this);
-        postLevelMenu = new PostLevelMenu(this);
-        pauseMenu = new PauseMenu(this);
-        scoresMenu = new ScoresMenu(this);
-        controlsMenu = new ControlsMenu(this);
-        optionsMenu = new OptionsMenu(this);
-        playerOptionsMenu = new PlayerOptionsMenu(this);
-        playerSelectMenu = new PlayerSelectMenu(this);
-        playerCreateMenu = new PlayerCreateMenu(this);
-        playerDeleteMenu = new PlayerDeleteMenu(this);
-        gameOptionsMenu = new GameOptionsMenu(this);
-        configOptionsMenu = new ConfigOptionsMenu(this);
-        aboutMenu = new AboutMenu(this);
-        exitMenu = new ExitMenu(this);
-        menuColor = utils.generatePastelColor(0.9F, 9000F);
+        welcomeScreen = new WelcomeScreen(this);
+        mainMenuScreen = new MainMenuScreen(this);
+        playScreen = new PlayScreen(this);
+        selectLevelScreen = new SelectLevelScreen(this);
+        preLevelScreen = new PreLevelScreen(this);
+        postLevelScreen = new PostLevelScreen(this);
+        pauseScreen = new PauseScreen(this);
+        scoresScreen = new ScoresScreen(this);
+        controlsScreen = new ControlsScreen(this);
+        optionsScreen = new OptionsScreen(this);
+        playerOptionsScreen = new PlayerOptionsScreen(this);
+        playerSelectScreen = new PlayerSelectScreen(this);
+        playerCreateScreen = new PlayerCreateScreen(this);
+        playerDeleteScreen = new PlayerDeleteScreen(this);
+        gameOptionsScreen = new GameOptionsScreen(this);
+        configOptionsScreen = new ConfigOptionsScreen(this);
+        aboutScreen = new AboutScreen(this);
+        exitScreen = new ExitScreen(this);
+        mainMenuScreenColor = utils.generatePastelColor(0.9F, 9000F);
 
         /* Add input handlers */
         gameFrame.addKeyListener(inputHandler);
@@ -260,7 +259,8 @@ public class GameController extends Canvas implements Runnable {
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 if (optionsHandler.isVerboseLogEnabled()) {
-                    /* Is this correctly calculated? (ram) */
+                    /* TODO: Is this correctly calculated? (ram) */
+                    /* TODO: Create textHandler string for this. */
                     double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                     gameFrame.setTitle(textHandler.GAME_TITLE + " | Version: " + textHandler.GAME_VERSION +
                             " - " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
@@ -292,62 +292,60 @@ public class GameController extends Canvas implements Runnable {
         /* Let the current gameController state decide what to update exactly. */
         switch (state) {
             case WELCOME:
-                switchMenuColor();
-                welcomeMenu.update();
+                switchScreenColor();
+                welcomeScreen.update();
                 break;
             case MAIN:
-                switchMenuColor();
-                mainMenu.update();
+                switchScreenColor();
+                mainMenuScreen.update();
                 break;
             case SELECT_LEVEL:
-                selectLevelMenu.update();
+                selectLevelScreen.update();
                 break;
             case PRE_LEVEL:
-                preLevelMenu.update();
+                preLevelScreen.update();
                 break;
             case POST_LEVEL:
-                postLevelMenu.update();
+                postLevelScreen.update();
                 break;
             case PAUSE:
-                pauseMenu.update();
+                pauseScreen.update();
                 break;
             case PLAY:
-                levelHandler.update();
-                pauseCheck();
+                playScreen.update();
                 break;
             case SCORES:
-                scoresMenu.update();
+                scoresScreen.update();
                 break;
             case CONTROLS:
-                controlsMenu.update();
+                controlsScreen.update();
                 break;
             case OPTIONS:
-                optionsMenu.update();
+                optionsScreen.update();
                 break;
             case PLAYER_OPTIONS:
-                playerOptionsMenu.update();
+                playerOptionsScreen.update();
                 break;
             case PLAYER_SELECT:
-                playerSelectMenu.update();
+                playerSelectScreen.update();
                 break;
             case PLAYER_CREATE:
-                switchMenuColor();
-                playerCreateMenu.update();
+                playerCreateScreen.update();
                 break;
             case PLAYER_DELETE:
-                playerDeleteMenu.update();
+                playerDeleteScreen.update();
                 break;
             case GAME_OPTIONS:
-                gameOptionsMenu.update();
+                gameOptionsScreen.update();
                 break;
             case CONFIG_OPTIONS:
-                configOptionsMenu.update();
+                configOptionsScreen.update();
                 break;
             case ABOUT:
-                aboutMenu.update();
+                aboutScreen.update();
                 break;
             case EXIT:
-                exitMenu.update();
+                exitScreen.update();
                 break;
             default:
                 break;
@@ -371,7 +369,7 @@ public class GameController extends Canvas implements Runnable {
         screenRenderer.clear();
 
         /* Let the current gameController state decide whether to render a level's color or the menu's color. */
-        renderBgColor();
+        renderBackgroundColor();
 
         /* Get the graphics2D object from the buffer strategy. */
         Graphics2D g = (Graphics2D) bs.getDrawGraphics();
@@ -386,14 +384,14 @@ public class GameController extends Canvas implements Runnable {
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
         /* Make the current state of the gameController decide what to render. */
-        renderMenu(g);
+        renderScreen(g);
 
         /* Dispose the graphics and show the buffer to the screenRenderer. */
         g.dispose();
         bs.show();
     }
 
-    private void renderBgColor() {
+    private void renderBackgroundColor() {
         switch (state) {
             case WELCOME:
             case MAIN:
@@ -409,7 +407,7 @@ public class GameController extends Canvas implements Runnable {
             case CONFIG_OPTIONS:
             case ABOUT:
             case EXIT:
-                screenRenderer.render(menuColor);
+                screenRenderer.render(mainMenuScreenColor);
                 break;
             case PLAY:
             case PAUSE:
@@ -422,79 +420,65 @@ public class GameController extends Canvas implements Runnable {
         }
     }
 
-    private void renderMenu(Graphics2D g) {
+    private void renderScreen(Graphics2D g) {
         switch (state) {
             case WELCOME:
-                welcomeMenu.render(g);
+                welcomeScreen.render(g);
                 break;
             case MAIN:
-                mainMenu.render(g);
+                mainMenuScreen.render(g);
                 break;
             case SELECT_LEVEL:
-                selectLevelMenu.render(g);
+                selectLevelScreen.render(g);
                 break;
             case PRE_LEVEL:
-                preLevelMenu.render(g);
+                preLevelScreen.render(g);
                 break;
             case POST_LEVEL:
-                postLevelMenu.render(g);
+                postLevelScreen.render(g);
                 break;
             case PAUSE:
-                pauseMenu.render(g);
+                pauseScreen.render(g);
                 break;
             case PLAY:
-                levelHandler.render(g);
+                playScreen.render(g);
                 break;
             case SCORES:
-                scoresMenu.render(g);
+                scoresScreen.render(g);
                 break;
             case CONTROLS:
-                controlsMenu.render(g);
+                controlsScreen.render(g);
                 break;
             case OPTIONS:
-                optionsMenu.render(g);
+                optionsScreen.render(g);
                 break;
             case PLAYER_OPTIONS:
-                playerOptionsMenu.render(g);
+                playerOptionsScreen.render(g);
                 break;
             case PLAYER_SELECT:
-                playerSelectMenu.render(g);
+                playerSelectScreen.render(g);
                 break;
             case PLAYER_CREATE:
-                playerCreateMenu.render(g);
+                playerCreateScreen.render(g);
                 break;
             case PLAYER_DELETE:
-                playerDeleteMenu.render(g);
+                playerDeleteScreen.render(g);
                 break;
             case GAME_OPTIONS:
-                gameOptionsMenu.render(g);
+                gameOptionsScreen.render(g);
                 break;
             case CONFIG_OPTIONS:
-                configOptionsMenu.render(g);
+                configOptionsScreen.render(g);
                 break;
             case ABOUT:
-                aboutMenu.render(g);
+                aboutScreen.render(g);
                 break;
             case EXIT:
-                exitMenu.render(g);
+                exitScreen.render(g);
                 break;
             default:
                 break;
         }
-    }
-
-    /*
-     * Initialize options for the JFrame.
-     */
-    private void initFrame() {
-        gameFrame.setTitle(textHandler.GAME_TITLE);
-        gameFrame.setResizable(false);
-        gameFrame.setLocationRelativeTo(null);
-        gameFrame.add(this);
-        gameFrame.pack();
-        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        gameFrame.setVisible(true);
-        gameFrame.requestFocus();
     }
 
     private void initCanvas(Dimension size) {
@@ -517,25 +501,28 @@ public class GameController extends Canvas implements Runnable {
     }
 
     /*
-     * Continuously switch the MENU_CLIP background with a nice pastel color.
+     * Initialize options for the JFrame.
      */
-    private void switchMenuColor() {
-        if (menuColorTimer == 0) {
-            menuColor = utils.generatePastelColor(0.8F, 9000F);
-            menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
-        } else {
-            menuColorTimer--;
-        }
+    private void initFrame() {
+        gameFrame.setTitle(textHandler.GAME_TITLE);
+        gameFrame.setResizable(false);
+        gameFrame.setLocationRelativeTo(null);
+        gameFrame.add(this);
+        gameFrame.pack();
+        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        gameFrame.setVisible(true);
+        gameFrame.requestFocus();
     }
 
-    private void pauseCheck() {
-        pauseMenu.decInputTimer();
-        if (inputHandler.isPausePressed() && pauseMenu.isInputAvailable()) {
-            pauseMenu.resetInputTimer();
-            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE).play(false);
-            levelHandler.getActiveLevel().pauseSound();
-            utils.pauseTimer();
-            switchState(State.PAUSE);
+    /*
+     * Continuously switch the screen background with a nice pastel color.
+     */
+    private void switchScreenColor() {
+        if (mainMenuScreenColorTimer == 0) {
+            mainMenuScreenColor = utils.generatePastelColor(0.8F, 9000F);
+            mainMenuScreenColorTimer = INITIAL_MAIN_MENU_SCREEN_COLOR_TIMER_VALUE;
+        } else {
+            mainMenuScreenColorTimer--;
         }
     }
 

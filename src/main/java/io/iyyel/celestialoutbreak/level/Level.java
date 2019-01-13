@@ -7,7 +7,7 @@ import io.iyyel.celestialoutbreak.entity.Paddle;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.menu.play.GamePanel;
+import io.iyyel.celestialoutbreak.screen.play.GamePanel;
 
 import java.awt.*;
 

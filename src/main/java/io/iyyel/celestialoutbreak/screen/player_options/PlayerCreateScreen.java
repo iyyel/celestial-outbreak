@@ -1,12 +1,12 @@
-package io.iyyel.celestialoutbreak.menu.player_options;
+package io.iyyel.celestialoutbreak.screen.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class PlayerCreateMenu extends AbstractMenu {
+public final class PlayerCreateScreen extends AbstractScreen {
 
     private boolean isFirstUpdate = true;
     private boolean isAcceptMode = false;
@@ -15,7 +15,7 @@ public final class PlayerCreateMenu extends AbstractMenu {
     private final String INIT_STATUS_STRING = "Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to enter a player name or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.";
     private String statusString = INIT_STATUS_STRING;
 
-    public PlayerCreateMenu(GameController gameController) {
+    public PlayerCreateScreen(GameController gameController) {
         super(gameController);
     }
 
@@ -132,17 +132,16 @@ public final class PlayerCreateMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(menuFontColor);
-        drawMenuTitle(g);
-        drawSubmenuTitle(textHandler.TITLE_CREATE_PLAYER_SCREEN, g);
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_CREATE_PLAYER_SCREEN, g);
 
         if (inputHandler.isInputMode()) {
-            drawCenterString("Enter Player name:", 300, g, msgFont);
-            drawCenterString(inputHandler.getUserInput(), 350, g, inputBtnFont);
+            drawScreenMessage("Enter Player name:", 0, g);
+            drawScreenCenterString(inputHandler.getUserInput(), 400, inputBtnFont, g);
         }
 
-        drawMenuToolTip(statusString, g);
-        drawInfoPanel(g);
+        drawScreenToolTip(statusString, g);
+        drawScreenInfoPanel(g);
     }
 
     private void createPlayer(String name) {

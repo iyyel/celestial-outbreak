@@ -1,12 +1,12 @@
-package io.iyyel.celestialoutbreak.menu.main_menu;
+package io.iyyel.celestialoutbreak.screen.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class MainMenu extends AbstractMenu {
+public final class MainMenuScreen extends AbstractScreen {
 
     private final Rectangle playRect, scoreRect, controlsRect, optionsRect, aboutRect, exitRect;
 
@@ -16,7 +16,7 @@ public final class MainMenu extends AbstractMenu {
 
     private int selected = 0;
 
-    public MainMenu(GameController gameController) {
+    public MainMenuScreen(GameController gameController) {
         super(gameController);
 
         int initialBtnYPos = 230;
@@ -92,56 +92,57 @@ public final class MainMenu extends AbstractMenu {
     @Override
     public void render(Graphics2D g) {
         /* Render game title */
-        drawMenuTitle(g);
+        drawScreenTitle(g);
 
         /* Show player name */
         try {
-            if (playerDAO.getSelectedPlayer() != null)
-                drawSubmenuTitle("Welcome " + playerDAO.getSelectedPlayer(), g);
+            if (playerDAO.getSelectedPlayer() != null) {
+                drawScreenSubtitle("Welcome " + playerDAO.getSelectedPlayer(), g);
+            }
         } catch (IPlayerDAO.PlayerDAOException e) {
-            drawSubmenuTitle("Welcome", g);
+            drawScreenSubtitle("Welcome", g);
         }
 
         /* Render buttons  */
         g.setFont(inputBtnFont);
 
         /* Play button */
-        g.setColor(menuFontColor);
-        drawCenterString(options[0], playRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        g.setColor(screenFontColor);
+        drawScreenCenterString(options[0], playRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[0]);
         g.draw(playRect);
 
         /* Score button */
-        g.setColor(menuFontColor);
-        drawCenterString(options[1], scoreRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        g.setColor(screenFontColor);
+        drawScreenCenterString(options[1], scoreRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[1]);
         g.draw(scoreRect);
 
         /* Controls button */
-        g.setColor(menuFontColor);
-        drawCenterString(options[2], controlsRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        g.setColor(screenFontColor);
+        drawScreenCenterString(options[2], controlsRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[2]);
         g.draw(controlsRect);
 
         /* Settings button */
-        g.setColor(menuFontColor);
-        drawCenterString(options[3], optionsRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        g.setColor(screenFontColor);
+        drawScreenCenterString(options[3], optionsRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[3]);
         g.draw(optionsRect);
 
         /* About button */
-        g.setColor(menuFontColor);
-        drawCenterString(options[4], aboutRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        g.setColor(screenFontColor);
+        drawScreenCenterString(options[4], aboutRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[4]);
         g.draw(aboutRect);
 
         /* Exit button */
-        g.setColor(menuFontColor);
-        drawCenterString(options[5], exitRect.y + BTN_Y_OFFSET, g, inputBtnFont);
+        g.setColor(screenFontColor);
+        drawScreenCenterString(options[5], exitRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[5]);
         g.draw(exitRect);
 
-        drawInfoPanel(g);
+        drawScreenInfoPanel(g);
     }
 
 }

@@ -1,56 +1,37 @@
-package io.iyyel.celestialoutbreak.menu;
+package io.iyyel.celestialoutbreak.screen;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.handler.InputHandler;
-import io.iyyel.celestialoutbreak.handler.OptionsHandler;
-import io.iyyel.celestialoutbreak.handler.SoundHandler;
-import io.iyyel.celestialoutbreak.handler.TextHandler;
+import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.utils.Utils;
 
 import java.awt.*;
 
-public abstract class AbstractMenu {
+public abstract class AbstractScreen {
 
-    /*
-     * Singleton helpers
-     */
     protected final Utils utils = Utils.getInstance();
     protected final OptionsHandler optionsHandler = OptionsHandler.getInstance();
-    protected final IPlayerDAO playerDAO = PlayerDAO.getInstance();
-
     protected final TextHandler textHandler = TextHandler.getInstance();
     protected final InputHandler inputHandler = InputHandler.getInstance();
     protected final SoundHandler soundHandler = SoundHandler.getInstance();
+    protected final LevelHandler levelHandler = LevelHandler.getInstance();
+    protected final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
-    /*
-     * Useful audio clips
-     */
     protected final SoundHandler.SoundClip menuNavClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV);
     protected final SoundHandler.SoundClip menuUseClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE);
     protected final SoundHandler.SoundClip menuBadActionClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION);
 
-    /*
-     * Fonts
-     */
-    protected final Font titleFont = utils.getGameFont().deriveFont(52F);
+    private final Font titleFont = utils.getGameFont().deriveFont(52F);
+    private final Font subtitleFont = utils.getGameFont().deriveFont(36F);
+    private final Font screenTooltipFont = utils.getGameFont().deriveFont(18F);
+    private final Font infoPanelFont = utils.getGameFont().deriveFont(14F);
     protected final Font msgFont = utils.getGameFont().deriveFont(26F);
     protected final Font inputBtnFont = utils.getGameFont().deriveFont(20F);
-    protected final Font tooltipFont = utils.getGameFont().deriveFont(18F);
 
-    private final Font subTitleFont = utils.getGameFont().deriveFont(36F);
-    private final Font infoPanelFont = utils.getGameFont().deriveFont(14F);
-
-    /*
-     * InfoPanel rectangles
-     */
     private final Rectangle versionRect, authorRect;
 
-    /*
-     * Menu colors.
-     */
-    protected Color menuFontColor = optionsHandler.getMenuFontColor();
+    protected Color screenFontColor = optionsHandler.getMenuFontColor();
     protected Color menuBtnColor = optionsHandler.getMenuBtnColor();
     protected Color menuSelectedBtnColor = optionsHandler.getMenuBtnSelectedColor();
     protected Color menuBtnPlayerSelectedColor = optionsHandler.getMenuBtnPlayerSelectedColor();
@@ -61,18 +42,11 @@ public abstract class AbstractMenu {
 
     protected final int BTN_Y_OFFSET = 33;
 
-    /*
-     * GameController instance
-     */
     protected final GameController gameController;
 
-    /*
-     * Default constructor
-     */
-    public AbstractMenu(GameController gameController) {
+    public AbstractScreen(GameController gameController) {
         this.gameController = gameController;
 
-        /* Information rectangles */ //+20, -90
         authorRect = new Rectangle(gameController.getWidth() / 2 + 3, gameController.getHeight() - 22, 70, 18);
         versionRect = new Rectangle(gameController.getWidth() / 2 - 73, gameController.getHeight() - 22, 66, 18);
     }
@@ -81,56 +55,80 @@ public abstract class AbstractMenu {
 
     public abstract void render(Graphics2D g);
 
-    protected void drawCenterString(String msg, int y, Graphics2D g, Font font) {
-        FontMetrics metrics = g.getFontMetrics(font);
-        int x = (gameController.getWidth() - metrics.stringWidth(msg)) / 2;
+    protected void drawScreenCenterString(String text, int y, Font font, Graphics2D g) {
+        g.setColor(screenFontColor);
         g.setFont(font);
-        g.drawString(msg, x, y);
+        FontMetrics metrics = g.getFontMetrics(font);
+        int x = (gameController.getWidth() - metrics.stringWidth(text)) / 2;
+        g.drawString(text, x, y);
     }
 
-    protected void drawSubmenuTitle(String msg, Graphics2D g) {
-        drawCenterString(msg, gameController.getHeight() / 2 - 170, g, subTitleFont);
+    protected void drawScreenCenterString(String text, int y, Font font, Color color, Graphics2D g) {
+        g.setColor(color);
+        g.setFont(font);
+        FontMetrics metrics = g.getFontMetrics(font);
+        int x = (gameController.getWidth() - metrics.stringWidth(text)) / 2;
+        g.drawString(text, x, y);
     }
 
-    public final void drawInfoPanel(Graphics2D g) {
-        g.setColor(menuFontColor);
+    protected void drawScreenMessage(String text, int yOffset, Graphics2D g) {
+        drawScreenCenterString(text, getHalfHeight() + yOffset, msgFont, g);
+    }
+
+    protected void drawScreenInfoPanel(Graphics2D g) {
+        g.setColor(screenFontColor);
         g.setFont(infoPanelFont);
 
-        /* Render version number */
+        /* Version number */
         g.drawString(textHandler.GAME_VERSION, versionRect.x + 3, versionRect.y + 15);
         g.draw(versionRect);
 
-        /* Render email tag */
+        /* Email tag */
         g.drawString(textHandler.AUTHOR_WEBSITE, authorRect.x + 2, authorRect.y + 13);
         g.draw(authorRect);
     }
 
-    protected void drawMenuTitle(Graphics2D g) {
-        g.setColor(menuFontColor);
+    protected void drawScreenTitle(Graphics2D g) {
+        g.setColor(screenFontColor);
         g.setFont(titleFont);
-        drawCenterString(textHandler.GAME_TITLE, 100, g, titleFont);
+        drawScreenCenterString(textHandler.GAME_TITLE, 100, titleFont, g);
     }
 
-    protected void drawMenuToolTip(String msg, Graphics2D g) {
-        g.setColor(menuFontColor);
-        drawCenterString(msg, 665, g, tooltipFont);
+    protected void drawScreenSubtitle(String subtitle, Graphics2D g) {
+        g.setColor(screenFontColor);
+        g.setFont(subtitleFont);
+        drawScreenCenterString(subtitle, getHalfHeight() - 170, subtitleFont, g);
     }
 
-    public void resetInputTimer() {
+    protected void drawScreenToolTip(String tooltip, Graphics2D g) {
+        g.setColor(screenFontColor);
+        g.setFont(screenTooltipFont);
+        drawScreenCenterString(tooltip, 665, screenTooltipFont, g);
+    }
+
+    protected void resetInputTimer() {
         inputTimer = INIT_INPUT_TIMER;
     }
 
-    public void decInputTimer() {
+    protected void decInputTimer() {
         if (inputTimer > 0) {
             inputTimer--;
         }
     }
 
-    public boolean isInputAvailable() {
+    protected boolean isInputAvailable() {
         return inputTimer == 0;
     }
 
-    protected String fixedLengthString(String text, int length) {
+    protected int getHalfWidth() {
+        return gameController.getWidth() / 2;
+    }
+
+    protected int getHalfHeight() {
+        return gameController.getHeight() / 2;
+    }
+
+    protected String getFixedString(String text, int length) {
         return String.format("%-" + length + "." + length + "s", text);
     }
 

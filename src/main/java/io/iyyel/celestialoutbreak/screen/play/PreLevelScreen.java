@@ -1,18 +1,18 @@
-package io.iyyel.celestialoutbreak.menu.play;
+package io.iyyel.celestialoutbreak.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.controller.GameController.State;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.level.Level;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class PreLevelMenu extends AbstractMenu {
+public final class PreLevelScreen extends AbstractScreen {
 
     private final LevelHandler levelHandler = LevelHandler.getInstance();
 
-    public PreLevelMenu(GameController gameController) {
+    public PreLevelScreen(GameController gameController) {
         super(gameController);
     }
 
@@ -23,6 +23,7 @@ public final class PreLevelMenu extends AbstractMenu {
         if (inputHandler.isOKPressed() && isInputAvailable()) {
             resetInputTimer();
             soundHandler.stopAllSound();
+            menuUseClip.play(false);
             levelHandler.getActiveLevel().playSound();
             utils.startTimer();
             gameController.switchState(State.PLAY);
@@ -33,16 +34,11 @@ public final class PreLevelMenu extends AbstractMenu {
     @Override
     public void render(Graphics2D g) {
         Level activeLevel = levelHandler.getActiveLevel();
-
-        g.setColor(menuFontColor);
-        drawCenterString(textHandler.GAME_TITLE, 100, g, titleFont);
-
-        drawSubmenuTitle(activeLevel.getName(), g);
-        drawCenterString(activeLevel.getDesc(), gameController.getHeight() / 2, g, msgFont);
-
-        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to start.", g);
-
-        drawInfoPanel(g);
+        drawScreenTitle(g);
+        drawScreenSubtitle(activeLevel.getName(), g);
+        drawScreenMessage(activeLevel.getDesc(), 0, g);
+        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to start.", g);
+        drawScreenInfoPanel(g);
     }
 
 }

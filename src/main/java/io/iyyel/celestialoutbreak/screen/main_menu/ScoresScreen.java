@@ -1,13 +1,13 @@
-package io.iyyel.celestialoutbreak.menu.main_menu;
+package io.iyyel.celestialoutbreak.screen.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class ScoresMenu extends AbstractMenu {
+public final class ScoresScreen extends AbstractScreen {
 
-    public ScoresMenu(GameController gameController) {
+    public ScoresScreen(GameController gameController) {
         super(gameController);
     }
 
@@ -24,14 +24,9 @@ public final class ScoresMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(menuFontColor);
-        drawMenuTitle(g);
-
-        drawSubmenuTitle(textHandler.TITLE_SCORES_MENU, g);
-
-        g.setFont(msgFont);
-
-        drawInfoPanel(g);
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_SCORES_SCREEN, g);
+        drawScreenInfoPanel(g);
     }
 
 }

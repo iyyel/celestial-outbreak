@@ -1,41 +1,39 @@
-package io.iyyel.celestialoutbreak.menu;
+package io.iyyel.celestialoutbreak.screen.welcome;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class WelcomeMenu extends AbstractMenu {
+public final class WelcomeScreen extends AbstractScreen {
 
     private final Rectangle startRect, exitRect;
-    private final Font btnFont;
 
-    private String[] options = {textHandler.BTN_START_TEXT, textHandler.BTN_EXIT_TEXT};
+    private String[] btnText = {textHandler.BTN_START_TEXT, textHandler.BTN_EXIT_TEXT};
     private Color[] rectColors;
 
     private int selected = 0;
 
-    public WelcomeMenu(GameController gameController) {
+    public WelcomeScreen(GameController gameController) {
         super(gameController);
 
         int initialBtnYPos = 230;
         int btnYIncrement = 75;
 
-        startRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 3, 160, 50);
-        exitRect = new Rectangle(gameController.getWidth() / 2 - 80, initialBtnYPos + btnYIncrement * 4, 160, 50);
+        rectColors = new Color[btnText.length];
 
-        rectColors = new Color[options.length];
+        startRect = new Rectangle(getHalfWidth() - 80, initialBtnYPos + btnYIncrement * 3, 160, 50);
+        exitRect = new Rectangle(getHalfWidth() - 80, initialBtnYPos + btnYIncrement * 4, 160, 50);
 
         for (Color c : rectColors)
             c = menuBtnColor;
-
-        btnFont = utils.getGameFont().deriveFont(20F);
     }
 
     @Override
     public void update() {
         decInputTimer();
 
-        if (inputHandler.isDownPressed() && selected < options.length - 1 && isInputAvailable()) {
+        if (inputHandler.isDownPressed() && selected < btnText.length - 1 && isInputAvailable()) {
             resetInputTimer();
             selected++;
             menuNavClip.play(false);
@@ -47,7 +45,7 @@ public final class WelcomeMenu extends AbstractMenu {
             menuNavClip.play(false);
         }
 
-        for (int i = 0, n = options.length; i < n; i++) {
+        for (int i = 0, n = btnText.length; i < n; i++) {
             if (selected == i) {
                 rectColors[i] = menuSelectedBtnColor;
 
@@ -75,31 +73,26 @@ public final class WelcomeMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(menuFontColor);
-        drawMenuTitle(g);
-
-        drawSubmenuTitle(textHandler.TITLE_WELCOME_MENU, g);
-
-        drawCenterString("What lies beyond the cosmos is inevitable", 300, g, msgFont);
-
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_WELCOME_SCREEN, g);
+        drawScreenMessage(textHandler.WELCOME_SCREEN_TEXT, 0, g);
 
         /* Start button */
-        g.setColor(menuFontColor);
-        drawCenterString(options[0], startRect.y + BTN_Y_OFFSET, g, btnFont);
+        g.setColor(screenFontColor);
+        drawScreenCenterString(btnText[0], startRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[0]);
         g.draw(startRect);
 
         /* Exit button */
-        g.setColor(menuFontColor);
-        drawCenterString(options[1], exitRect.y + BTN_Y_OFFSET, g, btnFont);
+        g.setColor(screenFontColor);
+        drawScreenCenterString(btnText[1], exitRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[1]);
         g.draw(exitRect);
 
-        /* */
-        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to confirm or '" +
-                textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back. Navigate with '" + textHandler.BTN_CONTROL_MOV_NAV + "'", g);
+        /* Draw screen tooltip */
+        drawScreenToolTip(textHandler.WELCOME_SCREEN_TOOLTIP_TEXT, g);
 
-        drawInfoPanel(g);
+        drawScreenInfoPanel(g);
     }
 
     private void proceed() {

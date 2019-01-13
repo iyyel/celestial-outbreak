@@ -1,24 +1,21 @@
-package io.iyyel.celestialoutbreak.menu.play;
+package io.iyyel.celestialoutbreak.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.handler.LevelHandler;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public class SelectLevelMenu extends AbstractMenu {
-
-    private final LevelHandler levelHandler = LevelHandler.getInstance();
+public class SelectLevelScreen extends AbstractScreen {
 
     private Rectangle[] levelRects;
     private Color[] levelRectColors;
 
-    private Font levelInfoFont = utils.getPanelFont().deriveFont(15F);
+    private Font levelInfoFont = utils.getPanelFont().deriveFont(16F);
 
     private int levelAmount = levelHandler.getLevelAmount();
     private int selected = 0;
 
-    public SelectLevelMenu(GameController gameController) {
+    public SelectLevelScreen(GameController gameController) {
         super(gameController);
         levelRects = new Rectangle[levelAmount];
         levelRectColors = new Color[levelAmount];
@@ -83,6 +80,7 @@ public class SelectLevelMenu extends AbstractMenu {
 
                 if (inputHandler.isOKPressed() && isInputAvailable()) {
                     resetInputTimer();
+                    menuUseClip.play(false);
                     selected = 0;
 
                     // Set current active level to i.
@@ -100,18 +98,14 @@ public class SelectLevelMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        /* Render game title */
-        drawMenuTitle(g);
-
-        /* Show sub menu */
-        drawSubmenuTitle("SELECT LEVEL", g);
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_SELECT_LEVEL_SCREEN, g);
 
         /* Render buttons  */
-
         if (levelRects.length <= 0) {
             g.setFont(inputBtnFont);
-            g.setColor(menuFontColor);
-            g.drawString("No levels were loaded. Please retry to reload.", 20, gameController.getHeight() / 2);
+            g.setColor(screenFontColor);
+            g.drawString("No levels were loaded.", 20, gameController.getHeight() / 2);
         } else {
             for (int i = 0; i < levelHandler.getLevelAmount(); i++) {
                 g.setFont(inputBtnFont);
@@ -121,13 +115,13 @@ public class SelectLevelMenu extends AbstractMenu {
                 g.setFont(levelInfoFont);
                 g.setColor(menuBtnColor);
 
-                String blockHitPoints = fixedLengthString("Blocks: " + levelHandler.getLevelBlockAmounts()[i] + "/" +
+                String blockHitPoints = getFixedString("Blocks: " + levelHandler.getLevelBlockAmounts()[i] + "/" +
                         levelHandler.getLevelHitPoints()[i], 15);
-                String life = fixedLengthString(" Life: " + levelHandler.getLevelPlayerLives()[i], 15);
+                String life = getFixedString(" Life: " + levelHandler.getLevelPlayerLives()[i], 12);
                 g.drawString(blockHitPoints + life, levelRects[i].x + 5, levelRects[i].y + 55);
 
-                String score = fixedLengthString("Score:  " + "123456", 15);
-                String time = fixedLengthString(" Time: " + "01:02:03", 15);
+                String score = getFixedString("Score:  " + "123456", 15);
+                String time = getFixedString(" Time: " + "02:03", 12);
                 g.drawString(score + time, levelRects[i].x + 5, levelRects[i].y + 75);
 
                 g.setColor(levelRectColors[i]);
@@ -135,8 +129,8 @@ public class SelectLevelMenu extends AbstractMenu {
             }
         }
 
-        drawMenuToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to play a level or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
-        drawInfoPanel(g);
+        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to play a level or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
+        drawScreenInfoPanel(g);
     }
 
     private void updateLevelColors(int index) {

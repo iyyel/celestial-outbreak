@@ -1,13 +1,13 @@
-package io.iyyel.celestialoutbreak.menu.main_menu;
+package io.iyyel.celestialoutbreak.screen.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class ExitMenu extends AbstractMenu {
+public final class ExitScreen extends AbstractScreen {
 
-    public ExitMenu(GameController gameController) {
+    public ExitScreen(GameController gameController) {
         super(gameController);
     }
 
@@ -35,11 +35,11 @@ public final class ExitMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(menuFontColor);
-        drawMenuTitle(g);
-        drawSubmenuTitle(textHandler.TITLE_EXIT_SCREEN, g);
-        drawCenterString("Do you wish to exit " + textHandler.GAME_TITLE + "?", gameController.getHeight() / 2, g, msgFont);
-        drawInfoPanel(g);
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_EXIT_SCREEN, g);
+        drawScreenMessage("Do you wish to exit " + textHandler.GAME_TITLE + "?", 0, g);
+        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to confirm or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
+        drawScreenInfoPanel(g);
     }
 
 }

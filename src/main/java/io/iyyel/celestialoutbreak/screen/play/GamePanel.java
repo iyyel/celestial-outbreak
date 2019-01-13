@@ -1,15 +1,15 @@
-package io.iyyel.celestialoutbreak.menu.play;
+package io.iyyel.celestialoutbreak.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.level.Level;
 import io.iyyel.celestialoutbreak.level.LevelOptions;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class GamePanel extends AbstractMenu {
+public final class GamePanel extends AbstractScreen {
 
     private final Font panelFont;
     private final Color panelColor;

@@ -1,13 +1,13 @@
-package io.iyyel.celestialoutbreak.menu.main_menu;
+package io.iyyel.celestialoutbreak.screen.main_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class ControlsMenu extends AbstractMenu {
+public final class ControlsScreen extends AbstractScreen {
 
-    public ControlsMenu(GameController gameController) {
+    public ControlsScreen(GameController gameController) {
         super(gameController);
     }
 
@@ -24,18 +24,17 @@ public final class ControlsMenu extends AbstractMenu {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(menuFontColor);
-        drawMenuTitle(g);
-        g.setFont(msgFont);
+        drawScreenTitle(g);;
 
         int xPos = 135;
         int xPoxInc = 130;
         int yPos = -50;
         int yPosInc = 70;
 
-        drawSubmenuTitle(textHandler.TITLE_CONTROLS_MENU, g);
+        drawScreenSubtitle(textHandler.TITLE_CONTROLS_SCREEN, g);
 
         g.setFont(msgFont);
+
         g.drawString(textHandler.menuControlsMsg01, xPos, gameController.getHeight() / 2 + yPos);
         g.drawString(textHandler.menuControlsMsg02, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + yPos);
 
@@ -51,7 +50,7 @@ public final class ControlsMenu extends AbstractMenu {
         g.drawString(textHandler.menuControlsMsg09, xPos, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
         g.drawString(textHandler.menuControlsMsg10, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
 
-        drawInfoPanel(g);
+        drawScreenInfoPanel(g);
     }
 
 }

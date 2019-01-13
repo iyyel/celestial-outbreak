@@ -1,11 +1,11 @@
-package io.iyyel.celestialoutbreak.menu.options_menu;
+package io.iyyel.celestialoutbreak.screen.options_menu;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.menu.AbstractMenu;
+import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class PlayerOptionsMenu extends AbstractMenu {
+public final class PlayerOptionsScreen extends AbstractScreen {
 
     private final Rectangle selectRect, createRect, deleteRect;
     private final Font btnFont;
@@ -15,7 +15,7 @@ public final class PlayerOptionsMenu extends AbstractMenu {
 
     private int selected = 0;
 
-    public PlayerOptionsMenu(GameController gameController) {
+    public PlayerOptionsScreen(GameController gameController) {
         super(gameController);
 
         int initialBtnYPos = 230;
@@ -88,36 +88,34 @@ public final class PlayerOptionsMenu extends AbstractMenu {
     @Override
     public void render(Graphics2D g) {
         /* Render game title */
-        drawMenuTitle(g);
-
-        /* Show sub menu */
-        drawSubmenuTitle(textHandler.TITLE_PLAYER_OPTIONS_MENU, g);
+        drawScreenTitle(g);
+        drawScreenSubtitle(textHandler.TITLE_PLAYER_OPTIONS_SCREEN, g);
 
         /* Render buttons  */
         g.setFont(btnFont);
 
         /* Select button */
-        g.setColor(menuFontColor);
+        g.setColor(screenFontColor);
         g.setFont(btnFont);
-        drawCenterString(options[0], selectRect.y + BTN_Y_OFFSET, g, btnFont);
+        drawScreenCenterString(options[0], selectRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[0]);
         g.draw(selectRect);
 
         /* New button */
-        g.setColor(menuFontColor);
+        g.setColor(screenFontColor);
         g.setFont(btnFont);
-        drawCenterString(options[1], createRect.y + BTN_Y_OFFSET, g, btnFont);
+        drawScreenCenterString(options[1], createRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[1]);
         g.draw(createRect);
 
         /* Remove button */
-        g.setColor(menuFontColor);
+        g.setColor(screenFontColor);
         g.setFont(btnFont);
-        drawCenterString(options[2], deleteRect.y + BTN_Y_OFFSET, g, btnFont);
+        drawScreenCenterString(options[2], deleteRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[2]);
         g.draw(deleteRect);
 
-        drawInfoPanel(g);
+        drawScreenInfoPanel(g);
     }
 
 }
