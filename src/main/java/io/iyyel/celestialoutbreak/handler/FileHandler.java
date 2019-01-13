@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.handler;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.io.*;
 import java.nio.file.Files;

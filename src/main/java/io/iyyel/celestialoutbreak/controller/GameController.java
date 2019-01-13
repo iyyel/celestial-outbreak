@@ -10,9 +10,9 @@ import io.iyyel.celestialoutbreak.menu.options_menu.ConfigOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.options_menu.GameOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.options_menu.PlayerOptionsMenu;
 import io.iyyel.celestialoutbreak.menu.play.PauseMenu;
-import io.iyyel.celestialoutbreak.menu.play.SelectLevelMenu;
 import io.iyyel.celestialoutbreak.menu.play.PostLevelMenu;
 import io.iyyel.celestialoutbreak.menu.play.PreLevelMenu;
+import io.iyyel.celestialoutbreak.menu.play.SelectLevelMenu;
 import io.iyyel.celestialoutbreak.menu.player_options.PlayerCreateMenu;
 import io.iyyel.celestialoutbreak.menu.player_options.PlayerDeleteMenu;
 import io.iyyel.celestialoutbreak.menu.player_options.PlayerSelectMenu;
@@ -393,65 +393,6 @@ public class GameController extends Canvas implements Runnable {
         bs.show();
     }
 
-    /*
-     * Start method for the gameController thread/loop.
-     */
-    public synchronized void start() {
-        if (!isRunning) {
-            isRunning = true;
-            gameThread = new Thread(this, "GameController");
-            gameThread.start();
-        }
-    }
-
-    /*
-     * Stop method for the gameController thread/loop. Will exit the application.
-     */
-    public synchronized void stop() {
-        if (isRunning) {
-            isRunning = false;
-            fileHandler.writeLog(textHandler.GAME_TITLE + " shutting down.");
-            System.exit(0);
-        }
-    }
-
-    /*
-     * Initialize options for the JFrame.
-     */
-    private void initFrame() {
-        gameFrame.setTitle(textHandler.GAME_TITLE);
-        gameFrame.setResizable(false);
-        gameFrame.setLocationRelativeTo(null);
-        gameFrame.add(this);
-        gameFrame.pack();
-        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        gameFrame.setVisible(true);
-        gameFrame.requestFocus();
-    }
-
-    /*
-     * Change the current state of the gameController.
-     */
-    public void switchState(State state) {
-        if (state == null || state == State.NONE) {
-            return;
-        }
-        prevState = this.state;
-        this.state = state;
-    }
-
-    /*
-     * Continuously switch the MENU_CLIP background with a nice pastel color.
-     */
-    private void switchMenuColor() {
-        if (menuColorTimer == 0) {
-            menuColor = utils.generatePastelColor(0.8F, 9000F);
-            menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
-        } else {
-            menuColorTimer--;
-        }
-    }
-
     private void renderBgColor() {
         switch (state) {
             case WELCOME:
@@ -543,22 +484,17 @@ public class GameController extends Canvas implements Runnable {
     }
 
     /*
-     * Getters and setters
+     * Initialize options for the JFrame.
      */
-    public State getPrevState() {
-        return prevState;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    private void initGameIcon() {
-        /* Game Icon */
-        URL url = ClassLoader.getSystemResource("icon/app_icon_small.png");
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Image img = kit.createImage(url);
-        gameFrame.setIconImage(img);
+    private void initFrame() {
+        gameFrame.setTitle(textHandler.GAME_TITLE);
+        gameFrame.setResizable(false);
+        gameFrame.setLocationRelativeTo(null);
+        gameFrame.add(this);
+        gameFrame.pack();
+        gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        gameFrame.setVisible(true);
+        gameFrame.requestFocus();
     }
 
     private void initCanvas(Dimension size) {
@@ -572,6 +508,26 @@ public class GameController extends Canvas implements Runnable {
         }
     }
 
+    private void initGameIcon() {
+        /* Game Icon */
+        URL url = ClassLoader.getSystemResource("icon/app_icon_small.png");
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image img = kit.createImage(url);
+        gameFrame.setIconImage(img);
+    }
+
+    /*
+     * Continuously switch the MENU_CLIP background with a nice pastel color.
+     */
+    private void switchMenuColor() {
+        if (menuColorTimer == 0) {
+            menuColor = utils.generatePastelColor(0.8F, 9000F);
+            menuColorTimer = INITIAL_MENU_COLOR_TIMER_VALUE;
+        } else {
+            menuColorTimer--;
+        }
+    }
+
     private void pauseCheck() {
         pauseMenu.decInputTimer();
         if (inputHandler.isPausePressed() && pauseMenu.isInputAvailable()) {
@@ -580,6 +536,50 @@ public class GameController extends Canvas implements Runnable {
             levelHandler.getActiveLevel().pauseSound();
             switchState(State.PAUSE);
         }
+    }
+
+    /*
+     * Start method for the gameController thread/loop.
+     */
+    public synchronized void start() {
+        if (!isRunning) {
+            isRunning = true;
+            gameThread = new Thread(this, "GameController");
+            gameThread.start();
+        }
+    }
+
+    /*
+     * Stop method for the gameController thread/loop. Will exit the application.
+     */
+    public synchronized void stop() {
+        if (isRunning) {
+            isRunning = false;
+            fileHandler.writeLog(textHandler.GAME_TITLE + " shutting down.");
+            System.exit(0);
+        }
+    }
+
+    /*
+     * Change the current state of the gameController.
+     */
+    public void switchState(State state) {
+        if (state == null || state == State.NONE) {
+            return;
+        }
+        prevState = this.state;
+        this.state = state;
+    }
+
+    /*
+     * Getters and setters
+     */
+    public State getPrevState() {
+        return prevState;
+    }
+
+    public State getState() {
+        return state;
     }
 
 }

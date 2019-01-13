@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.handler;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import javax.sound.sampled.*;
 import java.io.File;
