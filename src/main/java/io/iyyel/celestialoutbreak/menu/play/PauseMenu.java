@@ -42,6 +42,8 @@ public final class PauseMenu extends AbstractMenu {
             pauseStatusText = "Exiting the level will result in lost progress.";
             levelHandler.resetActiveLevel();
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_PAUSE).stop();
+            utils.stopTimer();
+            utils.resetTimer();
             gameController.switchState(GameController.State.MAIN);
         }
 
@@ -52,6 +54,7 @@ public final class PauseMenu extends AbstractMenu {
             pauseStatusText = "Exiting the level will result in lost progress.";
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_PAUSE).stop();
             levelHandler.getActiveLevel().playSound();
+            utils.resumeTimer();
             gameController.switchState(GameController.State.PLAY);
         }
     }

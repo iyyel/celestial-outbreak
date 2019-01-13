@@ -51,7 +51,7 @@ public final class GamePanel extends AbstractMenu {
             g.drawString("Lives: " + activeLevel.getPlayerLife(), gameController.getWidth() / 2 - 150, 714);
             g.drawString("Score: N/A", gameController.getWidth() / 2 + 50, 714);
             g.drawString("Blocks: " + activeLevel.getBlocksLeft(), gameController.getWidth() / 2 + 200, 714);
-            g.drawString("Time: 0.0", gameController.getWidth() / 2 + 350, 714);
+            g.drawString("Time: " + textHandler.getTimeString(utils.getTimeElapsed()), gameController.getWidth() / 2 + 350, 714);
         }
     }
 

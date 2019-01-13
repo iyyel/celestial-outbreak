@@ -534,6 +534,7 @@ public class GameController extends Canvas implements Runnable {
             pauseMenu.resetInputTimer();
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE).play(false);
             levelHandler.getActiveLevel().pauseSound();
+            utils.pauseTimer();
             switchState(State.PAUSE);
         }
     }

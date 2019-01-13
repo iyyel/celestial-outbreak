@@ -519,7 +519,7 @@ public final class TextHandler {
     }
 
     public final String vBallBlockListCollisionMsg(int blockListIndex, int hitPoints) {
-        return "Ball collision with BlockList[" + blockListIndex + "], HitPoints[" + hitPoints + "]";
+        return "Ball collision with BlockList[" + blockListIndex + "], HitPoints=" + hitPoints;
     }
 
     private final DecimalFormat df = new DecimalFormat("000");
@@ -534,6 +534,10 @@ public final class TextHandler {
      */
     private final String getDateTime() {
         return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
+    }
+
+    public String getTimeString(long sec) {
+        return String.format("%02d:%02d", sec / 60, sec % 60);
     }
 
 }

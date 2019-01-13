@@ -2,19 +2,21 @@ package io.iyyel.celestialoutbreak.utils;
 
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
+import org.apache.commons.lang3.time.StopWatch;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public final class Utils {
 
-    private static Utils instance;
-
     private final TextHandler textHandler = TextHandler.getInstance();
-
     private final Random random = new Random();
+    private final StopWatch watch = new StopWatch();
+
+    private static Utils instance;
 
     private Utils() {
 
@@ -60,6 +62,44 @@ public final class Utils {
             e.printStackTrace();
         }
         return panelFont;
+    }
+
+    public void startTimer() {
+        if (!watch.isStarted()) {
+            watch.start();
+        }
+    }
+
+    public void stopTimer() {
+        if (!watch.isStopped()) {
+            watch.stop();
+        }
+    }
+
+    public void pauseTimer() {
+        if (!watch.isSuspended()) {
+            watch.suspend();
+        }
+    }
+
+    public void resumeTimer() {
+        if (watch.isSuspended()) {
+            watch.resume();
+        }
+    }
+
+    public void resetTimer() {
+        if (watch.isStopped()) {
+            watch.reset();
+        }
+    }
+
+    public boolean isTimerStarted() {
+        return watch.isStarted();
+    }
+
+    public long getTimeElapsed() {
+        return watch.getTime(TimeUnit.SECONDS);
     }
 
     public void createDemoPlayers(IPlayerDAO playerDAO) {
