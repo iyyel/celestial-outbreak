@@ -159,6 +159,8 @@ public final class GameOptionsScreen extends AbstractScreen {
         g.setColor(rectColors[3]);
         g.draw(isAntiAliasingEnabledRect);
 
+        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to toggle an option or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
+
         drawScreenInfoPanel(g);
     }
 

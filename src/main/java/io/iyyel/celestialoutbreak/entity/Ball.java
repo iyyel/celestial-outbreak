@@ -115,23 +115,28 @@ public final class Ball extends MobileEntity {
 
         /* Ball hit bottom y-axis. */
         if (pos.y > (gameController.getHeight() - height)) {
-            pos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
+            if (optionsHandler.isGodModeEnabled()) {
+                velocity.y = -speed;
+                soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
+            } else {
+                pos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
 
-            boolean isPositiveValue = random.nextBoolean();
-            int ballSpeedDecrement = random.nextInt(speed);
+                boolean isPositiveValue = random.nextBoolean();
+                int ballSpeedDecrement = random.nextInt(speed);
 
-            velocity.x = (isPositiveValue ? 1 : -1) * speed + (isPositiveValue ? -ballSpeedDecrement : ballSpeedDecrement);
-            velocity.y = speed;
+                velocity.x = (isPositiveValue ? 1 : -1) * speed + (isPositiveValue ? -ballSpeedDecrement : ballSpeedDecrement);
+                velocity.y = speed;
 
-            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET).play(false);
-            ballPauseTimer = BALL_PAUSE_TIMER_INITIAL;
+                soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET).play(false);
+                ballPauseTimer = BALL_PAUSE_TIMER_INITIAL;
 
-            // player lost a life
-            levelHandler.getActiveLevel().decPlayerLife();
+                // player lost a life
+                levelHandler.getActiveLevel().decPlayerLife();
 
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
-                fileHandler.writeLog("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife());
+                if (optionsHandler.isVerboseLogEnabled()) {
+                    fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
+                    fileHandler.writeLog("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife());
+                }
             }
         }
     }

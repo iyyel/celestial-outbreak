@@ -391,22 +391,21 @@ public final class TextHandler {
 
     /* OPTIONS messages. */
     public final String menuConfigMsg01 = "All of the configuration related files can be found in the";
-    public final String menuConfigMsg02 = GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME + " directory in the OS home directory.";
-    public final String menuConfigMsg03 = "General options can be found in the " + OPTIONS_CONFIG_FILE_NAME + " file";
-    public final String menuConfigMsg04 = "in the " + OPTIONS_DIR_NAME + " directory.";
+    public final String menuConfigMsg02 = "'" + GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME + "' directory in the OS home directory.";
+    public final String menuConfigMsg03 = "General options can be found in the '" + OPTIONS_CONFIG_FILE_NAME + "' file";
+    public final String menuConfigMsg04 = "in the '" + OPTIONS_DIR_NAME + "' directory.";
     public final String menuConfigMsg05 = "Level specific options can be found in the various level files";
-    public final String menuConfigMsg06 = "in the " + LEVEL_DIR_NAME + " directory, e.g. " + LEVEL_FILE_NAME_MARS + ".";
-    public final String menuConfigMsg07 = "Levels are played in order from the " + LEVEL_CONFIG_FILE_NAME + " file.";
-    public final String menuConfigMsg08 = "If creating custom levels, make sure to add them to this file.";
+    public final String menuConfigMsg06 = "in the '" + LEVEL_DIR_NAME + "' directory, e.g. '" + LEVEL_FILE_NAME_SUN + "'. If creating custom";
+    public final String menuConfigMsg08 = "levels, make sure to add them to the '" + LEVEL_CONFIG_FILE_NAME + "' file.";
     public final String menuConfigMsg09 = "If more information is needed, please visit";
-    public final String menuConfigMsg10 = GITHUB_URL + ".";
+    public final String menuConfigMsg10 = "'" + GITHUB_URL + "'.";
 
     /* ABOUT_MENU messages. */
     public final String aboutMenuMsg01 = GAME_TITLE + " is an open source, Breakout-like game with";
     public final String aboutMenuMsg02 = "focus on game customization.";
     public final String aboutMenuMsg03 = "The game is a software development side project and the";
     public final String aboutMenuMsg04 = "latest version of the game can be seen and downloaded at";
-    public final String aboutMenuMsg05 = GITHUB_URL + ".";
+    public final String aboutMenuMsg05 = "'" + GITHUB_URL + "'.";
     public final String aboutMenuMsg06 = "The game plays like your typical Breakout game, with a few";
     public final String aboutMenuMsg07 = "additions such as power ups, custom levels and player scores.";
     public final String aboutMenuMsg08 = "If any help is needed, please look at the " + TITLE_CONTROLS_SCREEN + " and";

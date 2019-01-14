@@ -25,6 +25,7 @@ public final class PostLevelScreen extends AbstractScreen {
 
         if (isFirstUpdate) {
             isFirstUpdate = false;
+            utils.stopTimer();
             hasWon = levelHandler.getActiveLevel().isWon();
         }
 
@@ -45,14 +46,16 @@ public final class PostLevelScreen extends AbstractScreen {
         drawScreenSubtitle(activeLevel.getName(), g);
 
         if (hasWon) {
-            drawScreenMessage("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been obliterated.", 0, g);
-            drawScreenMessage("You reached a score of 1234.", 50, g);
+            drawScreenMessage("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been defeated.", 0, g);
+            drawScreenMessage("You reached a total score of 1234.", 50, g);
+            drawScreenMessage("Time: " + textHandler.getTimeString(utils.getTimeElapsed()), 100, g);
         } else {
             drawScreenMessage("You have lost. The " + levelHandler.getActiveLevel().getName() + " level shines in grace upon you.", 0, g);
-            drawScreenMessage("You reached a score of 1234.", 50, g);
+            drawScreenMessage("You reached a total score of 1234.", 50, g);
+            drawScreenMessage("Time: " + textHandler.getTimeString(utils.getTimeElapsed()), 100, g);
         }
 
-        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to go to main menu.", g);
+        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to go to the main menu.", g);
         drawScreenInfoPanel(g);
     }
 

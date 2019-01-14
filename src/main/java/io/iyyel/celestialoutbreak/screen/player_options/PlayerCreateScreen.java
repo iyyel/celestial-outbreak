@@ -12,7 +12,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
     private boolean isAcceptMode = false;
     private boolean isPlayerCreated = false;
 
-    private final String INIT_STATUS_STRING = "Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to enter a player name or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.";
+    private final String INIT_STATUS_STRING = "Press '" + textHandler.BTN_CONTROL_USE+ "' to enter a player name or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.";
     private String statusString = INIT_STATUS_STRING;
 
     public PlayerCreateScreen(GameController gameController) {
@@ -56,7 +56,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
         //
 
         // Stage 1
-        if (inputHandler.isOKPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+        if (inputHandler.isUsePressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
             resetInputTimer();
             inputHandler.setInputMode(true);
             menuUseClip.play(false);

@@ -13,7 +13,7 @@ public final class PlayerSelectScreen extends AbstractScreen {
     private Color[] playerNameColors;
 
     private int selected = 0;
-    private boolean isFirstUpdate = true;
+    private boolean isFirstRender = true;
     private int playerAmount = 0;
 
     public PlayerSelectScreen(GameController gameController) {
@@ -25,18 +25,9 @@ public final class PlayerSelectScreen extends AbstractScreen {
     public void update() {
         decInputTimer();
 
-        /*
-         * Do this ONCE everytime the user is on this screen.
-         */
-        if (isFirstUpdate) {
-            isFirstUpdate = false;
-            selected = 0;
-            updatePlayerData();
-        }
-
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
-            isFirstUpdate = true;
+            isFirstRender = true;
             menuUseClip.play(false);
             gameController.switchState(GameController.State.PLAYER_OPTIONS);
         }
@@ -102,6 +93,16 @@ public final class PlayerSelectScreen extends AbstractScreen {
 
     @Override
     public void render(Graphics2D g) {
+
+        /*
+         * Do this ONCE everytime the user is on this screen.
+         */
+        if (isFirstRender) {
+            isFirstRender = false;
+            selected = 0;
+            updatePlayerData();
+        }
+
         /* Render game title */
         drawScreenTitle(g);
         drawScreenSubtitle(textHandler.TITLE_SELECT_PLAYER_SCREEN, g);

@@ -36,31 +36,43 @@ public final class PlayerDeleteScreen extends AbstractScreen {
     public void update() {
         decInputTimer();
 
-
-        if (inputHandler.isOKPressed() && isDeletions() && isInputAvailable() && !isDeleting) {
-            resetInputTimer();
-            tooltipString = "Are you sure you want to delete marked players?";
-            menuUseClip.play(false);
-            isDeleting = true;
+        if (inputHandler.isOKPressed() && isInputAvailable() && !isDeleting) {
+            if (isAnyMarkedPlayers()) {
+                resetInputTimer();
+                menuUseClip.play(false);
+                tooltipString = "Are you sure you want to delete marked players?";
+                menuUseClip.play(false);
+                isDeleting = true;
+            } else {
+                menuBadActionClip.play(false);
+            }
         }
 
-        if (inputHandler.isOKPressed() && isDeletions() && isInputAvailable() && isDeleting) {
-            resetInputTimer();
-            selected = 0;
-            tooltipString = origToolTip;
-            isDeleting = false;
-            menuUseClip.play(false);
-            deletePlayers();
-            updatePlayerData();
+        if (inputHandler.isOKPressed() && isInputAvailable() && isDeleting) {
+            if (isAnyMarkedPlayers()) {
+                resetInputTimer();
+                selected = 0;
+                tooltipString = origToolTip;
+                isDeleting = false;
+                menuUseClip.play(false);
+                deletePlayers();
+                updatePlayerData();
+            } else {
+                menuBadActionClip.play(false);
+            }
         }
 
-        if (inputHandler.isCancelPressed() && isDeletions() && isInputAvailable() && isDeleting) {
-            resetInputTimer();
-            selected = 0;
-            tooltipString = origToolTip;
-            isDeleting = false;
-            resetDeletions();
-            menuUseClip.play(false);
+        if (inputHandler.isCancelPressed() && isInputAvailable() && isDeleting) {
+            if (isAnyMarkedPlayers()) {
+                resetInputTimer();
+                selected = 0;
+                tooltipString = origToolTip;
+                menuUseClip.play(false);
+                isDeleting = false;
+                resetDeletions();
+            } else {
+                menuBadActionClip.play(false);
+            }
         }
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
@@ -223,7 +235,7 @@ public final class PlayerDeleteScreen extends AbstractScreen {
         }
     }
 
-    private boolean isDeletions() {
+    private boolean isAnyMarkedPlayers() {
         for (boolean isDeleted : deleteMarkings) {
             if (isDeleted) {
                 return true;
