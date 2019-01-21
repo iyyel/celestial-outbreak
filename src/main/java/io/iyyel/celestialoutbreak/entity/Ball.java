@@ -4,7 +4,6 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.*;
 
 import java.awt.*;
-import java.util.Random;
 
 /**
  * The Ball is a MobileEntity that the @Paddle is used
@@ -26,12 +25,13 @@ public final class Ball extends MobileEntity {
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
     private final LevelHandler levelHandler = LevelHandler.getInstance();
+    private final InputHandler inputHandler = InputHandler.getInstance();
     private final GameController gameController;
 
-    private final Random random = new Random();
     private Point velocity;
+    private boolean isStuck = false;
 
-    private final int PADDLE_COLLISION_TIMER_INITIAL = 20;
+    private final int PADDLE_COLLISION_TIMER_INITIAL = 30;
     private final int BALL_PAUSE_SCREEN_TIMER_INITIAL = 120;
     private final int BALL_PAUSE_TIMER_INITIAL = 50;
 
@@ -40,6 +40,8 @@ public final class Ball extends MobileEntity {
     private int ballPosXOffset;
     private int ballPosYOffset;
 
+    private SoundHandler.SoundClip ballHitClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT);
+    private SoundHandler.SoundClip ballResetClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET);
 
     /**
      * Default constructor.
@@ -75,11 +77,20 @@ public final class Ball extends MobileEntity {
      * @param blockList The current BlockList of the game.
      */
     public void update(Paddle paddle, BlockList blockList) {
-        if (ballPauseTimer == 0) {
+        if (ballPauseTimer == 0 && !isStuck) {
             pos.x += velocity.x;
             pos.y += velocity.y;
-        } else {
+        } else if (ballPauseTimer > 0 && !isStuck) {
             ballPauseTimer--;
+        } else if (isStuck) {
+            pos = new Point(paddle.pos.x + (paddle.width / 2) - (width / 2), paddle.pos.y - (height));
+
+
+            if (inputHandler.isUsePressed()) {
+                isStuck = false;
+                velocity.y = -speed;
+            }
+
         }
 
         /* Check for collision. */
@@ -92,7 +103,7 @@ public final class Ball extends MobileEntity {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisLeftMsg);
             }
             velocity.x = speed;
-            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
+            ballHitClip.play(false);
         }
 
         /* Ball hit right x-axis. */
@@ -101,7 +112,7 @@ public final class Ball extends MobileEntity {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisRightMsg);
             }
             velocity.x = -speed;
-            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
+            ballHitClip.play(false);
         }
 
         /* Ball hit top y-axis. */
@@ -110,35 +121,35 @@ public final class Ball extends MobileEntity {
                 fileHandler.writeLog(textHandler.vBallTouchedYAxisTopMsg);
             }
             velocity.y = speed;
-            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
+            ballHitClip.play(false);
         }
 
         /* Ball hit bottom y-axis. */
         if (pos.y > (gameController.getHeight() - height)) {
             if (optionsHandler.isGodModeEnabled()) {
                 velocity.y = -speed;
-                soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
+                ballHitClip.play(false);
             } else {
-                pos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
-
-                boolean isPositiveValue = random.nextBoolean();
-                int ballSpeedDecrement = random.nextInt(speed);
-
-                velocity.x = (isPositiveValue ? 1 : -1) * speed + (isPositiveValue ? -ballSpeedDecrement : ballSpeedDecrement);
-                velocity.y = speed;
-
-                soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET).play(false);
-                ballPauseTimer = BALL_PAUSE_TIMER_INITIAL;
+                isStuck = true;
 
                 // player lost a life
                 levelHandler.getActiveLevel().decPlayerLife();
+
+                pos = new Point(paddle.pos.x + (paddle.width / 2) - (width / 2), paddle.pos.y - (height));
+
+                velocity.x = 0;
+                velocity.y = 0;
+
+                ballResetClip.play(false);
 
                 if (optionsHandler.isVerboseLogEnabled()) {
                     fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
                     fileHandler.writeLog("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife());
                 }
+
             }
         }
+
     }
 
     /**
@@ -155,6 +166,7 @@ public final class Ball extends MobileEntity {
     private <T> void checkCollision(T t) {
         if (t instanceof Paddle && ((Paddle) t).getBounds().intersects(getBounds())) {
             if (paddleCollisionTimer == 0) {
+                // var relativeIntersectY = (paddle1Y+(PADDLEHEIGHT/2)) - intersectY;
                 velocity.y *= -1;
 
                 if (velocity.x < 0) {
