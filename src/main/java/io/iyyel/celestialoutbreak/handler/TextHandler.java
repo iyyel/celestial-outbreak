@@ -350,8 +350,6 @@ public final class TextHandler {
     public final String PROP_PADDLE_COLOR = "LEVEL_PADDLE_COLOR";
 
     /* Ball. */
-    public final String PROP_BALL_POS_X_OFFSET = "LEVEL_BALL_POS_X_OFFSET";
-    public final String PROP_BALL_POS_Y_OFFSET = "LEVEL_BALL_POS_Y_OFFSET";
     public final String PROP_BALL_SIZE = "LEVEL_BALL_SIZE";
     public final String PROP_BALL_SPEED = "LEVEL_BALL_SPEED";
     public final String PROP_BALL_COLOR = "LEVEL_BALL_COLOR";

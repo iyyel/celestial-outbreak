@@ -35,8 +35,6 @@ public final class LevelOptions {
      * Ball options.
      */
     private Point ballPos;
-    private int ballPosXOffset;
-    private int ballPosYOffset;
     private int ballSize;
     private int ballSpeed;
     private Color ballColor;
@@ -106,10 +104,8 @@ public final class LevelOptions {
         paddleColor = new Color(paddleCol);
 
         /* Ball options */
-        ballPosXOffset = Integer.parseInt(map.get(textHandler.PROP_BALL_POS_X_OFFSET));
-        ballPosYOffset = Integer.parseInt(map.get(textHandler.PROP_BALL_POS_Y_OFFSET));
-        ballPos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
         ballSize = Integer.parseInt(map.get(textHandler.PROP_BALL_SIZE));
+        ballPos = new Point(paddlePos.x + (paddleWidth / 2) - (ballSize / 2), paddlePos.y - (ballSize));
         ballSpeed = Integer.parseInt(map.get(textHandler.PROP_BALL_SPEED));
         int ballColorHex = Integer.decode(map.get(textHandler.PROP_BALL_COLOR));
         ballColor = new Color(ballColorHex);
@@ -174,14 +170,6 @@ public final class LevelOptions {
 
     public Point getBallPos() {
         return ballPos;
-    }
-
-    public int getBallPosXOffset() {
-        return ballPosXOffset;
-    }
-
-    public int getBallPosYOffset() {
-        return ballPosYOffset;
     }
 
     public int getBallSize() {

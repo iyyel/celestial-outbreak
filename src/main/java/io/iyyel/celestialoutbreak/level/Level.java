@@ -51,8 +51,6 @@ public final class Level {
      * Ball options
      */
     private Point ballPos;
-    private int ballPosXOffset;
-    private int ballPosYOffset;
     private int ballSize;
     private int ballSpeed;
     private Color ballColor;
@@ -113,8 +111,6 @@ public final class Level {
 
         /* Ball options */
         ballPos = levelOptions.getBallPos();
-        ballPosXOffset = levelOptions.getBallPosXOffset();
-        ballPosYOffset = levelOptions.getBallPosYOffset();
         ballSize = levelOptions.getBallSize();
         ballSpeed = levelOptions.getBallSpeed();
         ballColor = levelOptions.getBallColor();
@@ -132,7 +128,7 @@ public final class Level {
 
         /* Create objects after initializing the options */
         paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, gameController);
-        ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, ballPosXOffset, ballPosYOffset, gameController);
+        ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, gameController);
         blockList = new BlockList(blockAmount, blockHitPoints, blockPosStart, blockWidth, blockHeight,
                 blockPosXSpacing, blockPosYSpacing, blockLum, blockSat, gameController);
         gamePanel = new GamePanel(gameController, levelOptions);

@@ -29,16 +29,13 @@ public final class Ball extends MobileEntity {
     private final GameController gameController;
 
     private Point velocity;
-    private boolean isStuck = false;
+    private boolean isStuck = true;
 
     private final int PADDLE_COLLISION_TIMER_INITIAL = 30;
     private final int BALL_PAUSE_SCREEN_TIMER_INITIAL = 120;
-    private final int BALL_PAUSE_TIMER_INITIAL = 50;
 
     private int paddleCollisionTimer = 0;
-    private int ballPauseTimer = BALL_PAUSE_TIMER_INITIAL;
-    private int ballPosXOffset;
-    private int ballPosYOffset;
+    private int ballPauseTimer = 0;
 
     private SoundHandler.SoundClip ballHitClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT);
     private SoundHandler.SoundClip ballResetClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET);
@@ -51,18 +48,12 @@ public final class Ball extends MobileEntity {
      * @param height         Height of the Ball. (pixels)
      * @param color          Color of the Ball.
      * @param speed          Speed of the Ball.
-     * @param ballPosXOffset Ball x-axis offset.
-     * @param ballPosYOffset Ball y-axis offset.
      * @param gameController Current game instance.
      */
-    public Ball(Point pos, int width, int height, Color color, int speed,
-                int ballPosXOffset, int ballPosYOffset, GameController gameController) {
+    public Ball(Point pos, int width, int height, Color color, int speed, GameController gameController) {
         super(pos, width, height, color, speed, gameController);
-        this.ballPosXOffset = ballPosXOffset;
-        this.ballPosYOffset = ballPosYOffset;
         this.gameController = gameController;
-
-        velocity = new Point(speed, speed);
+        velocity = new Point(0, 0);
     }
 
     /**
@@ -84,7 +75,6 @@ public final class Ball extends MobileEntity {
             ballPauseTimer--;
         } else if (isStuck) {
             pos = new Point(paddle.pos.x + (paddle.width / 2) - (width / 2), paddle.pos.y - (height));
-
 
             if (inputHandler.isUsePressed()) {
                 isStuck = false;
@@ -166,7 +156,6 @@ public final class Ball extends MobileEntity {
     private <T> void checkCollision(T t) {
         if (t instanceof Paddle && ((Paddle) t).getBounds().intersects(getBounds())) {
             if (paddleCollisionTimer == 0) {
-                // var relativeIntersectY = (paddle1Y+(PADDLEHEIGHT/2)) - intersectY;
                 velocity.y *= -1;
 
                 if (velocity.x < 0) {
