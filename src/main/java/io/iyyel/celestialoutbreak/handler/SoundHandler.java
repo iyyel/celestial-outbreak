@@ -130,7 +130,7 @@ public final class SoundHandler {
             case PLAYER_SELECT:
             case PLAYER_CREATE:
             case PLAYER_DELETE:
-            case GAME_OPTIONS:
+            case GENERAL_OPTIONS:
             case CONFIG_OPTIONS:
             case ABOUT:
             case EXIT:

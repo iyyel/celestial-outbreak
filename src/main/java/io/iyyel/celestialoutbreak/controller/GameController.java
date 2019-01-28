@@ -5,9 +5,9 @@ import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.graphics.ScreenRenderer;
 import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.screen.main_menu.*;
-import io.iyyel.celestialoutbreak.screen.options_menu.ConfigOptionsScreen;
-import io.iyyel.celestialoutbreak.screen.options_menu.GameOptionsScreen;
-import io.iyyel.celestialoutbreak.screen.options_menu.PlayerOptionsScreen;
+import io.iyyel.celestialoutbreak.screen.options.ConfigOptionsScreen;
+import io.iyyel.celestialoutbreak.screen.options.GeneralOptionsScreen;
+import io.iyyel.celestialoutbreak.screen.options.PlayerOptionsScreen;
 import io.iyyel.celestialoutbreak.screen.play.*;
 import io.iyyel.celestialoutbreak.screen.player_options.PlayerCreateScreen;
 import io.iyyel.celestialoutbreak.screen.player_options.PlayerDeleteScreen;
@@ -93,7 +93,7 @@ public class GameController extends Canvas implements Runnable {
     private final PlayerSelectScreen playerSelectScreen;
     private final PlayerCreateScreen playerCreateScreen;
     private final PlayerDeleteScreen playerDeleteScreen;
-    private final GameOptionsScreen gameOptionsScreen;
+    private final GeneralOptionsScreen generalOptionsScreen;
     private final ConfigOptionsScreen configOptionsScreen;
     private final AboutScreen aboutScreen;
     private final ExitScreen exitScreen;
@@ -137,7 +137,7 @@ public class GameController extends Canvas implements Runnable {
         PLAYER_SELECT,
         PLAYER_CREATE,
         PLAYER_DELETE,
-        GAME_OPTIONS,
+        GENERAL_OPTIONS,
         CONFIG_OPTIONS,
         ABOUT,
         EXIT,
@@ -206,7 +206,7 @@ public class GameController extends Canvas implements Runnable {
         playerSelectScreen = new PlayerSelectScreen(this);
         playerCreateScreen = new PlayerCreateScreen(this);
         playerDeleteScreen = new PlayerDeleteScreen(this);
-        gameOptionsScreen = new GameOptionsScreen(this);
+        generalOptionsScreen = new GeneralOptionsScreen(this);
         configOptionsScreen = new ConfigOptionsScreen(this);
         aboutScreen = new AboutScreen(this);
         exitScreen = new ExitScreen(this);
@@ -335,8 +335,8 @@ public class GameController extends Canvas implements Runnable {
             case PLAYER_DELETE:
                 playerDeleteScreen.update();
                 break;
-            case GAME_OPTIONS:
-                gameOptionsScreen.update();
+            case GENERAL_OPTIONS:
+                generalOptionsScreen.update();
                 break;
             case CONFIG_OPTIONS:
                 configOptionsScreen.update();
@@ -403,7 +403,7 @@ public class GameController extends Canvas implements Runnable {
             case PLAYER_SELECT:
             case PLAYER_CREATE:
             case PLAYER_DELETE:
-            case GAME_OPTIONS:
+            case GENERAL_OPTIONS:
             case CONFIG_OPTIONS:
             case ABOUT:
             case EXIT:
@@ -464,8 +464,8 @@ public class GameController extends Canvas implements Runnable {
             case PLAYER_DELETE:
                 playerDeleteScreen.render(g);
                 break;
-            case GAME_OPTIONS:
-                gameOptionsScreen.render(g);
+            case GENERAL_OPTIONS:
+                generalOptionsScreen.render(g);
                 break;
             case CONFIG_OPTIONS:
                 configOptionsScreen.render(g);

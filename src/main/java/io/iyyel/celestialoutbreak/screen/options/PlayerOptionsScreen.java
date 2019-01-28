@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.screen.options_menu;
+package io.iyyel.celestialoutbreak.screen.options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.screen.AbstractScreen;
@@ -8,7 +8,6 @@ import java.awt.*;
 public final class PlayerOptionsScreen extends AbstractScreen {
 
     private final Rectangle selectRect, createRect, deleteRect;
-    private final Font btnFont;
 
     private String[] options = {textHandler.BTN_SELECT_PLAYER_TEXT, textHandler.BTN_CREATE_PLAYER_TEXT, textHandler.BTN_DELETE_DELETE_TEXT};
     private Color[] rectColors;
@@ -28,10 +27,10 @@ public final class PlayerOptionsScreen extends AbstractScreen {
 
         rectColors = new Color[options.length];
 
-        for (Color c : rectColors)
-            c = menuBtnColor;
+        for (int i = 0; i < rectColors.length; i++) {
+            rectColors[i] = menuBtnColor;
+        }
 
-        btnFont = utils.getGameFont().deriveFont(20F);
     }
 
     @Override
@@ -92,25 +91,25 @@ public final class PlayerOptionsScreen extends AbstractScreen {
         drawScreenSubtitle(textHandler.TITLE_PLAYER_OPTIONS_SCREEN, g);
 
         /* Render buttons  */
-        g.setFont(btnFont);
+        g.setFont(inputBtnFont);
 
         /* Select button */
         g.setColor(screenFontColor);
-        g.setFont(btnFont);
+        g.setFont(inputBtnFont);
         drawScreenCenterString(options[0], selectRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[0]);
         g.draw(selectRect);
 
         /* New button */
         g.setColor(screenFontColor);
-        g.setFont(btnFont);
+        g.setFont(inputBtnFont);
         drawScreenCenterString(options[1], createRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[1]);
         g.draw(createRect);
 
         /* Remove button */
         g.setColor(screenFontColor);
-        g.setFont(btnFont);
+        g.setFont(inputBtnFont);
         drawScreenCenterString(options[2], deleteRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[2]);
         g.draw(deleteRect);

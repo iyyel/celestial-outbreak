@@ -101,7 +101,7 @@ public final class TextHandler {
     public final String TITLE_CREATE_PLAYER_SCREEN = "CREATE PLAYER";
     public final String TITLE_DELETE_PLAYER_SCREEN = "DELETE PLAYER";
 
-    public final String TITLE_GAME_OPTIONS_SCREEN = "GAME OPTIONS";
+    public final String TITLE_GENERAL_OPTIONS_SCREEN = "GENERAL OPTIONS";
 
     public final String TITLE_PAUSE_SCREEN = "PAUSE";
 

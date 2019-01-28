@@ -25,8 +25,10 @@ public final class WelcomeScreen extends AbstractScreen {
         startRect = new Rectangle(getHalfWidth() - 80, initialBtnYPos + btnYIncrement * 3, 160, 50);
         exitRect = new Rectangle(getHalfWidth() - 80, initialBtnYPos + btnYIncrement * 4, 160, 50);
 
-        for (Color c : rectColors)
-            c = menuBtnColor;
+        for (int i = 0; i < rectColors.length; i++) {
+            rectColors[i] = menuBtnColor;
+        }
+
     }
 
     @Override

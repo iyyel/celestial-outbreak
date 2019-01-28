@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.screen.options_menu;
+package io.iyyel.celestialoutbreak.screen.options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.screen.AbstractScreen;

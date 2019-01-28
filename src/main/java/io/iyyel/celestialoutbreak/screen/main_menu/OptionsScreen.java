@@ -7,9 +7,10 @@ import java.awt.*;
 
 public final class OptionsScreen extends AbstractScreen {
 
-    private final Rectangle playerRect, gameRect, configurationRect;
+    private final Rectangle playerRect, gameRect, configurationRect, uninstallRect;
 
-    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GAME_OPTIONS_TEXT, textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
+    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GAME_OPTIONS_TEXT,
+            textHandler.BTN_CONFIGURATION_OPTIONS_TEXT, "UNINSTALL"};
     private Color[] rectColors;
 
     private int selected = 0;
@@ -21,14 +22,18 @@ public final class OptionsScreen extends AbstractScreen {
         int btnYInc = 75;
 
         /* buttons */
-        playerRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos, 390, 50);
-        gameRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos + btnYInc, 390, 50);
-        configurationRect = new Rectangle(gameController.getWidth() / 2 - 195, initialBtnYPos + btnYInc * 2, 390, 50);
+        playerRect = new Rectangle(getHalfWidth() - 195, initialBtnYPos, 390, 50);
+        gameRect = new Rectangle(getHalfWidth() - 195, initialBtnYPos + btnYInc, 390, 50);
+        configurationRect = new Rectangle(getHalfWidth() - 195, initialBtnYPos + btnYInc * 2, 390, 50);
+        uninstallRect = new Rectangle(getHalfWidth() - 195, initialBtnYPos + btnYInc * 3, 390, 50);
 
         rectColors = new Color[options.length];
 
-        for (Color c : rectColors)
-            c = menuBtnColor;
+        for (int i = 0; i < rectColors.length; i++) {
+            rectColors[i] = menuBtnColor;
+        }
+
+        rectColors[3] = optionsHandler.getMenuBtnPlayerDeletedColor();
     }
 
     @Override
@@ -69,7 +74,7 @@ public final class OptionsScreen extends AbstractScreen {
                             break;
                         case 1:
                             // Game options
-                            gameController.switchState(GameController.State.GAME_OPTIONS);
+                            gameController.switchState(GameController.State.GENERAL_OPTIONS);
                             break;
                         case 2:
                             // Configuration options
@@ -111,6 +116,12 @@ public final class OptionsScreen extends AbstractScreen {
         drawScreenCenterString(options[2], configurationRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[2]);
         g.draw(configurationRect);
+
+        /* Uninstall options button */
+        g.setColor(screenFontColor);
+        drawScreenCenterString(options[3], uninstallRect.y + BTN_Y_OFFSET, inputBtnFont, optionsHandler.getMenuBtnPlayerDeletedColor(), g);
+        g.setColor(rectColors[3]);
+        g.draw(uninstallRect);
 
         drawScreenInfoPanel(g);
     }

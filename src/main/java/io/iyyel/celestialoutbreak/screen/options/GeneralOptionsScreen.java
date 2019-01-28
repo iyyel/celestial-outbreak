@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.screen.options_menu;
+package io.iyyel.celestialoutbreak.screen.options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
@@ -6,7 +6,7 @@ import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
-public final class GameOptionsScreen extends AbstractScreen {
+public final class GeneralOptionsScreen extends AbstractScreen {
 
     private final Rectangle isSoundEnabledRect, isGodModeEnabledRect, isFpsLockedEnabledRect, isAntiAliasingEnabledRect;
     private String[] options = {"Sound", "God Mode", "FPS Lock", "Anti-aliasing"};
@@ -17,7 +17,7 @@ public final class GameOptionsScreen extends AbstractScreen {
 
     private final FileHandler fileHandler = FileHandler.getInstance();
 
-    public GameOptionsScreen(GameController gameController) {
+    public GeneralOptionsScreen(GameController gameController) {
         super(gameController);
 
         int initialBtnYPos = 240;
@@ -32,8 +32,9 @@ public final class GameOptionsScreen extends AbstractScreen {
         rectColors = new Color[options.length];
         playerNameColors = new Color[options.length];
 
-        for (Color c : rectColors)
-            c = menuBtnColor;
+        for (int i = 0; i < rectColors.length; i++) {
+            rectColors[i] = menuBtnColor;
+        }
     }
 
     @Override
@@ -134,7 +135,7 @@ public final class GameOptionsScreen extends AbstractScreen {
     public void render(Graphics2D g) {
         /* Render game title */
         drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_GAME_OPTIONS_SCREEN, g);
+        drawScreenSubtitle(textHandler.TITLE_GENERAL_OPTIONS_SCREEN, g);
 
         /* Render buttons  */
         g.setFont(inputBtnFont);

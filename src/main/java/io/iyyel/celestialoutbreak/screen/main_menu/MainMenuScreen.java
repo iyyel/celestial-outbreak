@@ -32,8 +32,9 @@ public final class MainMenuScreen extends AbstractScreen {
 
         rectColors = new Color[options.length];
 
-        for (Color c : rectColors)
-            c = menuSelectedBtnColor;
+        for (int i = 0; i < rectColors.length; i++) {
+            rectColors[i] = menuBtnColor;
+        }
     }
 
     @Override
