@@ -10,7 +10,7 @@ public final class OptionsScreen extends AbstractScreen {
     private final Rectangle playerRect, gameRect, configurationRect, uninstallRect;
 
     private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GAME_OPTIONS_TEXT,
-            textHandler.BTN_CONFIGURATION_OPTIONS_TEXT, "UNINSTALL"};
+            textHandler.BTN_CONFIGURATION_OPTIONS_TEXT, textHandler.BTN_UNINSTALL_TEXT};
     private Color[] rectColors;
 
     private int selected = 0;
@@ -80,6 +80,9 @@ public final class OptionsScreen extends AbstractScreen {
                             // Configuration options
                             gameController.switchState(GameController.State.CONFIG_OPTIONS);
                             break;
+                        case 3:
+                            // Uninstall button
+                            System.out.println("Uninstall pressed!");
                         default:
                             break;
                     }

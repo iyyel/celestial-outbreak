@@ -72,6 +72,7 @@ public final class TextHandler {
     public final String BTN_GAME_OPTIONS_TEXT = "GAME OPTIONS";
     public final String BTN_PLAYER_OPTIONS_TEXT = "PLAYER OPTIONS";
     public final String BTN_CONFIGURATION_OPTIONS_TEXT = "CONFIGURATION OPTIONS";
+    public final String BTN_UNINSTALL_TEXT = "UNINSTALL";
     public final String BTN_SELECT_PLAYER_TEXT = "SELECT PLAYER";
     public final String BTN_CREATE_PLAYER_TEXT = "CREATE PLAYER";
     public final String BTN_DELETE_DELETE_TEXT = "DELETE PLAYER";
