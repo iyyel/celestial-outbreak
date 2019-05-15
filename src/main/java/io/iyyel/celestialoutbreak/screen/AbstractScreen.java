@@ -29,13 +29,13 @@ public abstract class AbstractScreen {
     protected final Font msgFont = utils.getGameFont().deriveFont(26F);
     protected final Font inputBtnFont = utils.getGameFont().deriveFont(20F);
 
-    private final Rectangle versionRect, authorRect;
-
     protected Color screenFontColor = optionsHandler.getMenuFontColor();
     protected Color menuBtnColor = optionsHandler.getMenuBtnColor();
     protected Color menuSelectedBtnColor = optionsHandler.getMenuBtnSelectedColor();
     protected Color menuBtnPlayerSelectedColor = optionsHandler.getMenuBtnPlayerSelectedColor();
     protected Color menuBtnPlayerDeletedColor = optionsHandler.getMenuBtnPlayerDeletedColor();
+
+    private final Rectangle versionRect, authorRect;
 
     private final int INIT_INPUT_TIMER = 12;
     private int inputTimer = INIT_INPUT_TIMER;
@@ -57,14 +57,6 @@ public abstract class AbstractScreen {
 
     protected void drawScreenCenterString(String text, int y, Font font, Graphics2D g) {
         g.setColor(screenFontColor);
-        g.setFont(font);
-        FontMetrics metrics = g.getFontMetrics(font);
-        int x = (gameController.getWidth() - metrics.stringWidth(text)) / 2;
-        g.drawString(text, x, y);
-    }
-
-    protected void drawScreenCenterString(String text, int y, Font font, Color color, Graphics2D g) {
-        g.setColor(color);
         g.setFont(font);
         FontMetrics metrics = g.getFontMetrics(font);
         int x = (gameController.getWidth() - metrics.stringWidth(text)) / 2;

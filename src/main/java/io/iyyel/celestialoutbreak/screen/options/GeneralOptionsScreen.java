@@ -6,9 +6,10 @@ import io.iyyel.celestialoutbreak.screen.AbstractScreen;
 
 import java.awt.*;
 
+
 public final class GeneralOptionsScreen extends AbstractScreen {
 
-    private final Rectangle isSoundEnabledRect, isGodModeEnabledRect, isFpsLockedEnabledRect, isAntiAliasingEnabledRect;
+    //private final Button isSoundEnabledRect; //isGodModeEnabledRect, isFpsLockedEnabledRect, isAntiAliasingEnabledRect;
     private String[] options = {"Sound", "God Mode", "FPS Lock", "Anti-aliasing"};
 
     private Color[] rectColors;
@@ -20,14 +21,9 @@ public final class GeneralOptionsScreen extends AbstractScreen {
     public GeneralOptionsScreen(GameController gameController) {
         super(gameController);
 
+
         int initialBtnYPos = 240;
         int btnYIncrement = 80;
-
-        /* Option buttons */
-        isSoundEnabledRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos, 240, 50);
-        isGodModeEnabledRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYIncrement, 240, 50);
-        isFpsLockedEnabledRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYIncrement * 2, 240, 50);
-        isAntiAliasingEnabledRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYIncrement * 3, 240, 50);
 
         rectColors = new Color[options.length];
         playerNameColors = new Color[options.length];
@@ -35,6 +31,17 @@ public final class GeneralOptionsScreen extends AbstractScreen {
         for (int i = 0; i < rectColors.length; i++) {
             rectColors[i] = menuBtnColor;
         }
+
+        /* Option buttons */
+        //isSoundEnabledRect = new Button(new Point(gameController.getWidth() / 2 - 120, initialBtnYPos),
+        //        240, 50, new Point(120, 0), new Point(0, 0), options[0], rectColors[0], inputBtnFont);
+
+
+        //isSoundEnabledRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos, 240, 50);
+        //isGodModeEnabledRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYIncrement, 240, 50);
+        //isFpsLockedEnabledRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYIncrement * 2, 240, 50);
+        //isAntiAliasingEnabledRect = new Rectangle(gameController.getWidth() / 2 - 120, initialBtnYPos + btnYIncrement * 3, 240, 50);
+
     }
 
     @Override
@@ -138,27 +145,29 @@ public final class GeneralOptionsScreen extends AbstractScreen {
         drawScreenSubtitle(textHandler.TITLE_GENERAL_OPTIONS_SCREEN, g);
 
         /* Render buttons  */
-        g.setFont(inputBtnFont);
+        // g.setFont(inputBtnFont);
+
+        //isSoundEnabledRect.render(g);
 
         /* isSoundEnabled button */
-        drawScreenCenterString(options[0], isSoundEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[0], g);
-        g.setColor(rectColors[0]);
-        g.draw(isSoundEnabledRect);
+        //drawScreenCenterString(options[0], isSoundEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[0], g);
+        //g.setColor(rectColors[0]);
+        //g.draw(isSoundEnabledRect);
 
         /* isGodModeEnabled button */
-        drawScreenCenterString(options[1], isGodModeEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[1], g);
-        g.setColor(rectColors[1]);
-        g.draw(isGodModeEnabledRect);
+        // drawScreenCenterString(options[1], isGodModeEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[1], g);
+        // g.setColor(rectColors[1]);
+        //g.draw(isGodModeEnabledRect);
 
         /* isFpsLockedEnabled button */
-        drawScreenCenterString(options[2], isFpsLockedEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[2], g);
-        g.setColor(rectColors[2]);
-        g.draw(isFpsLockedEnabledRect);
+        // drawScreenCenterString(options[2], isFpsLockedEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[2], g);
+        //g.setColor(rectColors[2]);
+        // g.draw(isFpsLockedEnabledRect);
 
         /* isAntiAliasingEnabled button */
-        drawScreenCenterString(options[3], isAntiAliasingEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[3], g);
-        g.setColor(rectColors[3]);
-        g.draw(isAntiAliasingEnabledRect);
+        //  drawScreenCenterString(options[3], isAntiAliasingEnabledRect.y + BTN_Y_OFFSET, inputBtnFont, playerNameColors[3], g);
+        //  g.setColor(rectColors[3]);
+        //  g.draw(isAntiAliasingEnabledRect);
 
         drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to toggle an option or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
 

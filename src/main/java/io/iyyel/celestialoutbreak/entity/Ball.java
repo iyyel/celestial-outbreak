@@ -5,19 +5,6 @@ import io.iyyel.celestialoutbreak.handler.*;
 
 import java.awt.*;
 
-/**
- * The Ball is a MobileEntity that the @Paddle is used
- * to collide with. The Ball inherits from MobileEntity
- * because the Ball is going to move around the screen.
- * <p>
- * Ball is the entity that handles collisions. Since
- * we are talking about rather simple collision logic here,
- * this is doable. A better design could probably consist of a
- * collision controller or something like that.
- * <p>
- * Velocity is used to update the speed of the Ball, attempting
- * to give it a natural physical feel.
- */
 public final class Ball extends MobileEntity {
 
     private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
@@ -40,41 +27,25 @@ public final class Ball extends MobileEntity {
     private SoundHandler.SoundClip ballHitClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT);
     private SoundHandler.SoundClip ballResetClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET);
 
-    /**
-     * Default constructor.
-     *
-     * @param pos            Current position of the Ball. (x, y)
-     * @param width          Width of the Ball. (pixels)
-     * @param height         Height of the Ball. (pixels)
-     * @param color          Color of the Ball.
-     * @param speed          Speed of the Ball.
-     * @param gameController Current game instance.
-     */
-    public Ball(Point pos, int width, int height, Color color, int speed, GameController gameController) {
-        super(pos, width, height, color, speed, gameController);
+    private final Paddle paddle;
+    private final BlockList blockList;
+
+    public Ball(Point pos, int size, Color color, int speed, GameController gameController, Paddle paddle, BlockList blockList) {
+        super(pos, new Dimension(size, size), color, speed, gameController);
         this.gameController = gameController;
+        this.paddle = paddle;
+        this.blockList = blockList;
         velocity = new Point(0, 0);
     }
 
-    /**
-     * This is the update method of the Ball.
-     * It should be run roughly every 30, 60, 120 times a second.
-     * <p>
-     * The method checks for collision between the Blocks inside the BlockList
-     * and the Ball, as well as checking whether the Ball has gone out of the screen
-     * or not.
-     *
-     * @param paddle    The current Paddle of the game.
-     * @param blockList The current BlockList of the game.
-     */
-    public void update(Paddle paddle, BlockList blockList) {
+    public void update() {
         if (ballPauseTimer == 0 && !isStuck) {
             pos.x += velocity.x;
             pos.y += velocity.y;
         } else if (ballPauseTimer > 0 && !isStuck) {
             ballPauseTimer--;
         } else if (isStuck) {
-            pos = new Point(paddle.pos.x + (paddle.width / 2) - (width / 2), paddle.pos.y - (height));
+            pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
 
             if (inputHandler.isUsePressed()) {
                 isStuck = false;
@@ -97,7 +68,7 @@ public final class Ball extends MobileEntity {
         }
 
         /* Ball hit right x-axis. */
-        if (pos.x > (gameController.getWidth() - width)) {
+        if (pos.x > (gameController.getWidth() - dim.width)) {
             if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisRightMsg);
             }
@@ -115,7 +86,7 @@ public final class Ball extends MobileEntity {
         }
 
         /* Ball hit bottom y-axis. */
-        if (pos.y > (gameController.getHeight() - height)) {
+        if (pos.y > (gameController.getHeight() - dim.height)) {
             if (optionsHandler.isGodModeEnabled()) {
                 velocity.y = -speed;
                 ballHitClip.play(false);
@@ -125,7 +96,7 @@ public final class Ball extends MobileEntity {
                 // player lost a life
                 levelHandler.getActiveLevel().decPlayerLife();
 
-                pos = new Point(paddle.pos.x + (paddle.width / 2) - (width / 2), paddle.pos.y - (height));
+                pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
 
                 velocity.x = 0;
                 velocity.y = 0;
@@ -142,17 +113,6 @@ public final class Ball extends MobileEntity {
 
     }
 
-    /**
-     * This is a generic method used to check if the ball collides with t.
-     * t can either be a Paddle or a BlockList.
-     * <p>
-     * TODO: This can be cleaned up. Instead of using the actual BlockList, make it use
-     * TODO: each individual block. That would make more logical sense, perhaps.
-     * TODO: Perhaps find a better way to do this.
-     *
-     * @param t   Object to check collision with.
-     * @param <T> Generic type.
-     */
     private <T> void checkCollision(T t) {
         if (t instanceof Paddle && ((Paddle) t).getBounds().intersects(getBounds())) {
             if (paddleCollisionTimer == 0) {
@@ -204,30 +164,19 @@ public final class Ball extends MobileEntity {
         }
     }
 
-    /**
-     * Draws the Ball onto the screen.
-     *
-     * @param g Graphics object used to render this Entity.
-     */
     @Override
     public void render(Graphics2D g) {
         g.setColor(color);
-        g.fillOval(pos.x, pos.y, width, height);
+        g.fillOval(pos.x, pos.y, dim.width, dim.height);
 
         if (paddleCollisionTimer > 0) {
             paddleCollisionTimer--;
         }
     }
 
-    /**
-     * This is used to check if the Ball collides
-     * with the Block.
-     *
-     * @return Rectangle using the Ball's bounds.
-     */
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(pos.x, pos.y, width, height);
+        return new Rectangle(pos.x, pos.y, dim.width, dim.height);
     }
 
     public void pause() {

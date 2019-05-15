@@ -42,8 +42,7 @@ public final class Level {
      * Paddle options
      */
     private Point paddlePos;
-    private int paddleWidth;
-    private int paddleHeight;
+    private Dimension paddleDim;
     private int paddleSpeed;
     private Color paddleColor;
 
@@ -59,12 +58,10 @@ public final class Level {
      * Block options
      */
     private Point blockPosStart;
-    private int blockPosXSpacing;
-    private int blockPosYSpacing;
+    private Point blockPosSpacing;
     private int blockAmount;
     private int blockHitPoints;
-    private int blockWidth;
-    private int blockHeight;
+    private Dimension blockDim;
     private float blockLum;
     private float blockSat;
 
@@ -82,8 +79,8 @@ public final class Level {
     }
 
     public void update() {
-        paddle.update(inputHandler.isLeftPressed(), inputHandler.isRightPressed());
-        ball.update(paddle, blockList);
+        paddle.update();
+        ball.update();
         gamePanel.update();
     }
 
@@ -104,8 +101,7 @@ public final class Level {
 
         /* Paddle options */
         paddlePos = levelOptions.getPaddlePos();
-        paddleWidth = levelOptions.getPaddleWidth();
-        paddleHeight = levelOptions.getPaddleHeight();
+        paddleDim = levelOptions.getPaddleDim();
         paddleSpeed = levelOptions.getPaddleSpeed();
         paddleColor = levelOptions.getPaddleColor();
 
@@ -117,20 +113,17 @@ public final class Level {
 
         /* BlockList options */
         blockPosStart = levelOptions.getBlockPosStart();
-        blockPosXSpacing = levelOptions.getBlockPosXSpacing();
-        blockPosYSpacing = levelOptions.getBlockPosYSpacing();
+        blockPosSpacing = levelOptions.getBlockPosSpacing();
         blockAmount = levelOptions.getBlockAmount();
         blockHitPoints = levelOptions.getBlockHitPoints();
-        blockWidth = levelOptions.getBlockWidth();
-        blockHeight = levelOptions.getBlockHeight();
+        blockDim = levelOptions.getBlockDim();
         blockLum = levelOptions.getBlockLum();
         blockSat = levelOptions.getBlockSat();
 
         /* Create objects after initializing the options */
-        paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, gameController);
-        ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, gameController);
-        blockList = new BlockList(blockAmount, blockHitPoints, blockPosStart, blockWidth, blockHeight,
-                blockPosXSpacing, blockPosYSpacing, blockLum, blockSat, gameController);
+        paddle = new Paddle(paddlePos, paddleDim, paddleSpeed, paddleColor, gameController, inputHandler);
+        blockList = new BlockList(blockAmount, blockHitPoints, blockPosStart, blockDim, blockPosSpacing, blockLum, blockSat, gameController);
+        ball = new Ball(ballPos, ballSize, ballColor, ballSpeed, gameController, paddle, blockList);
         gamePanel = new GamePanel(gameController, levelOptions);
 
         /* Add level audio to SoundHandler */

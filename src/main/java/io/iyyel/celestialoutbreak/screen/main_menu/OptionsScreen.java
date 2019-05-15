@@ -7,10 +7,10 @@ import java.awt.*;
 
 public final class OptionsScreen extends AbstractScreen {
 
-    private final Rectangle playerRect, gameRect, configurationRect, uninstallRect;
+    private final Rectangle playerRect, gameRect, configurationRect;
 
     private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GAME_OPTIONS_TEXT,
-            textHandler.BTN_CONFIGURATION_OPTIONS_TEXT, textHandler.BTN_UNINSTALL_TEXT};
+            textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
     private Color[] rectColors;
 
     private int selected = 0;
@@ -25,7 +25,6 @@ public final class OptionsScreen extends AbstractScreen {
         playerRect = new Rectangle(getHalfWidth() - 195, initialBtnYPos, 390, 50);
         gameRect = new Rectangle(getHalfWidth() - 195, initialBtnYPos + btnYInc, 390, 50);
         configurationRect = new Rectangle(getHalfWidth() - 195, initialBtnYPos + btnYInc * 2, 390, 50);
-        uninstallRect = new Rectangle(getHalfWidth() - 195, initialBtnYPos + btnYInc * 3, 390, 50);
 
         rectColors = new Color[options.length];
 
@@ -33,7 +32,6 @@ public final class OptionsScreen extends AbstractScreen {
             rectColors[i] = menuBtnColor;
         }
 
-        rectColors[3] = optionsHandler.getMenuBtnPlayerDeletedColor();
     }
 
     @Override
@@ -80,9 +78,6 @@ public final class OptionsScreen extends AbstractScreen {
                             // Configuration options
                             gameController.switchState(GameController.State.CONFIG_OPTIONS);
                             break;
-                        case 3:
-                            // Uninstall button
-                            System.out.println("Uninstall pressed!");
                         default:
                             break;
                     }
@@ -119,12 +114,6 @@ public final class OptionsScreen extends AbstractScreen {
         drawScreenCenterString(options[2], configurationRect.y + BTN_Y_OFFSET, inputBtnFont, g);
         g.setColor(rectColors[2]);
         g.draw(configurationRect);
-
-        /* Uninstall options button */
-        g.setColor(screenFontColor);
-        drawScreenCenterString(options[3], uninstallRect.y + BTN_Y_OFFSET, inputBtnFont, optionsHandler.getMenuBtnPlayerDeletedColor(), g);
-        g.setColor(rectColors[3]);
-        g.draw(uninstallRect);
 
         drawScreenInfoPanel(g);
     }

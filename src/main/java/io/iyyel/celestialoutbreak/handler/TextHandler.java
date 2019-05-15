@@ -72,7 +72,6 @@ public final class TextHandler {
     public final String BTN_GAME_OPTIONS_TEXT = "GAME OPTIONS";
     public final String BTN_PLAYER_OPTIONS_TEXT = "PLAYER OPTIONS";
     public final String BTN_CONFIGURATION_OPTIONS_TEXT = "CONFIGURATION OPTIONS";
-    public final String BTN_UNINSTALL_TEXT = "UNINSTALL";
     public final String BTN_SELECT_PLAYER_TEXT = "SELECT PLAYER";
     public final String BTN_CREATE_PLAYER_TEXT = "CREATE PLAYER";
     public final String BTN_DELETE_DELETE_TEXT = "DELETE PLAYER";
@@ -540,7 +539,7 @@ public final class TextHandler {
         return String.format("%02d:%02d", sec / 60, sec % 60);
     }
 
-    /* Welcome Screen text */
+    /* Welcome AbstractScreen text */
     public final String WELCOME_SCREEN_TEXT = "What lies beyond the cosmos is inevitable";
 
     public final String WELCOME_SCREEN_TOOLTIP_TEXT = "Press '" + BTN_CONTROL_FORWARD_OK + "' to confirm or '" +
