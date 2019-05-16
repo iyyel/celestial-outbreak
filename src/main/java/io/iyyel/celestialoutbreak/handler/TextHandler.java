@@ -304,7 +304,7 @@ public final class TextHandler {
      */
 
     /*
-     * Utils properties.
+     * Util properties.
      */
     public final String PROP_VERBOSE_LOG_ENABLED = "VERBOSE_LOG_ENABLED";
     public final String PROP_SOUND_ENABLED = "SOUND_ENABLED";

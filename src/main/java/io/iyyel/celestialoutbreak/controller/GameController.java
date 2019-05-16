@@ -1,19 +1,19 @@
 package io.iyyel.celestialoutbreak.controller;
 
-import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
-import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
+import io.iyyel.celestialoutbreak.dal.dao.PlayerDAO;
+import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.graphics.ScreenRenderer;
 import io.iyyel.celestialoutbreak.handler.*;
-import io.iyyel.celestialoutbreak.screen.main_menu.*;
-import io.iyyel.celestialoutbreak.screen.options.ConfigOptionsScreen;
-import io.iyyel.celestialoutbreak.screen.options.GeneralOptionsScreen;
-import io.iyyel.celestialoutbreak.screen.options.PlayerOptionsScreen;
-import io.iyyel.celestialoutbreak.screen.play.*;
-import io.iyyel.celestialoutbreak.screen.player_options.PlayerCreateScreen;
-import io.iyyel.celestialoutbreak.screen.player_options.PlayerDeleteScreen;
-import io.iyyel.celestialoutbreak.screen.player_options.PlayerSelectScreen;
-import io.iyyel.celestialoutbreak.screen.welcome.WelcomeScreen;
-import io.iyyel.celestialoutbreak.utils.Utils;
+import io.iyyel.celestialoutbreak.ui.screen.main.*;
+import io.iyyel.celestialoutbreak.ui.screen.options.ConfigOptionsScreen;
+import io.iyyel.celestialoutbreak.ui.screen.options.GeneralOptionsScreen;
+import io.iyyel.celestialoutbreak.ui.screen.options.PlayerOptionsScreen;
+import io.iyyel.celestialoutbreak.ui.screen.play.*;
+import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerCreateScreen;
+import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerDeleteScreen;
+import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerSelectScreen;
+import io.iyyel.celestialoutbreak.ui.screen.welcome.WelcomeScreen;
+import io.iyyel.celestialoutbreak.util.Util;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +26,7 @@ import java.net.URL;
  * This is the GameController class.
  * This is the canvas upon where the game is drawn and controlled.
  */
-public class GameController extends Canvas implements Runnable {
+public final class GameController extends Canvas implements Runnable {
 
     /*
      * SCREEN_WIDTH and SCREEN_HEIGHT will be multiplied by
@@ -39,7 +39,7 @@ public class GameController extends Canvas implements Runnable {
     private final int SCREEN_UPDATE_RATE = 60;
 
     /*
-     * Timers to switch the mainMenuScreen background color in a slower interval than 60 times a second.
+     * Timers to switch the mainScreen background color in a slower interval than 60 times a second.
      */
     private final int INITIAL_MAIN_MENU_SCREEN_COLOR_TIMER_VALUE = SCREEN_UPDATE_RATE;
     private int mainMenuScreenColorTimer = INITIAL_MAIN_MENU_SCREEN_COLOR_TIMER_VALUE;
@@ -68,7 +68,7 @@ public class GameController extends Canvas implements Runnable {
      * Singleton objects.
      */
     private final TextHandler textHandler = TextHandler.getInstance();
-    private final Utils utils = Utils.getInstance();
+    private final Util util = Util.getInstance();
     private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final InputHandler inputHandler = InputHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
@@ -80,7 +80,7 @@ public class GameController extends Canvas implements Runnable {
      * Objects used for menu's.
      */
     private final WelcomeScreen welcomeScreen;
-    private final MainMenuScreen mainMenuScreen;
+    private final MainScreen mainScreen;
     private final PlayScreen playScreen;
     private final SelectLevelScreen selectLevelScreen;
     private final PreLevelScreen preLevelScreen;
@@ -193,7 +193,7 @@ public class GameController extends Canvas implements Runnable {
 
         /* Create menu objects */
         welcomeScreen = new WelcomeScreen(this);
-        mainMenuScreen = new MainMenuScreen(this);
+        mainScreen = new MainScreen(this);
         playScreen = new PlayScreen(this);
         selectLevelScreen = new SelectLevelScreen(this);
         preLevelScreen = new PreLevelScreen(this);
@@ -210,7 +210,7 @@ public class GameController extends Canvas implements Runnable {
         configOptionsScreen = new ConfigOptionsScreen(this);
         aboutScreen = new AboutScreen(this);
         exitScreen = new ExitScreen(this);
-        mainMenuScreenColor = utils.generatePastelColor(0.9F, 9000F);
+        mainMenuScreenColor = util.generatePastelColor(0.9F, 9000F);
 
         /* Add input handlers */
         gameFrame.addKeyListener(inputHandler);
@@ -297,7 +297,7 @@ public class GameController extends Canvas implements Runnable {
                 break;
             case MAIN:
                 switchScreenColor();
-                mainMenuScreen.update();
+                mainScreen.update();
                 break;
             case SELECT_LEVEL:
                 selectLevelScreen.update();
@@ -426,7 +426,7 @@ public class GameController extends Canvas implements Runnable {
                 welcomeScreen.render(g);
                 break;
             case MAIN:
-                mainMenuScreen.render(g);
+                mainScreen.render(g);
                 break;
             case SELECT_LEVEL:
                 selectLevelScreen.render(g);
@@ -519,7 +519,7 @@ public class GameController extends Canvas implements Runnable {
      */
     private void switchScreenColor() {
         if (mainMenuScreenColorTimer == 0) {
-            mainMenuScreenColor = utils.generatePastelColor(0.8F, 9000F);
+            mainMenuScreenColor = util.generatePastelColor(0.8F, 9000F);
             mainMenuScreenColorTimer = INITIAL_MAIN_MENU_SCREEN_COLOR_TIMER_VALUE;
         } else {
             mainMenuScreenColorTimer--;

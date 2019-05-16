@@ -1,13 +1,13 @@
 package io.iyyel.celestialoutbreak.level;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.entity.Ball;
-import io.iyyel.celestialoutbreak.entity.BlockList;
-import io.iyyel.celestialoutbreak.entity.Paddle;
+import io.iyyel.celestialoutbreak.ui.entity.Ball;
+import io.iyyel.celestialoutbreak.ui.entity.BlockList;
+import io.iyyel.celestialoutbreak.ui.entity.Paddle;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.screen.play.GamePanel;
+import io.iyyel.celestialoutbreak.ui.screen.play.GamePanel;
 
 import java.awt.*;
 
