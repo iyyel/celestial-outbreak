@@ -7,29 +7,29 @@ import java.io.*;
 import java.nio.file.Files;
 import java.util.*;
 
-public final class FileHandler {
+public final class PropertyHandler {
 
-    /* Singleton FileHandler instance. */
-    private static FileHandler instance;
+    /* Singleton PropertyHandler instance. */
+    private static PropertyHandler instance;
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
 
     /*
-     * Private constructor so that FileHandler
+     * Private constructor so that PropertyHandler
      * can't be instantiated outside.
      */
-    private FileHandler() {
+    private PropertyHandler() {
         initFileHandler();
     }
 
     /*
      * Static block to instantiate the
-     * Singleton FileHandler instance.
+     * Singleton PropertyHandler instance.
      */
     static {
         try {
-            instance = new FileHandler();
+            instance = new PropertyHandler();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +38,7 @@ public final class FileHandler {
     /*
      * Getter for the Singleton instance.
      */
-    public static synchronized FileHandler getInstance() {
+    public static synchronized PropertyHandler getInstance() {
         return instance;
     }
 
@@ -70,6 +70,16 @@ public final class FileHandler {
      * over to the client machine.
      */
     private void copyConfigFiles() {
+        /* Settings configuration file copied to client machine. */
+        copyFile(textHandler.OPTIONS_CONFIG_FILE_LOCAL_PATH, textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH);
+
+        /* Font */
+        copyFile(textHandler.GAME_FONT_FILE_LOCAL_PATH, textHandler.GAME_FONT_FILE_CLIENT_PATH);
+        copyFile(textHandler.PANEL_FONT_FILE_LOCAL_PATH, textHandler.PANEL_FONT_FILE_CLIENT_PATH);
+
+        /* Main level configuration file coped to client machine. */
+        copyFile(textHandler.LEVEL_CONFIG_FILE_LOCAL_PATH, textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
+
         /* Initial level configurations copied to client local options dir. */
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_SUN, textHandler.LEVEL_FILE_CLIENT_PATH_SUN);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MOON, textHandler.LEVEL_FILE_CLIENT_PATH_MOON);
@@ -78,16 +88,6 @@ public final class FileHandler {
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_NEPTUNE, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_VENUS, textHandler.LEVEL_FILE_CLIENT_PATH_VENUS);
         copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_JUPITER, textHandler.LEVEL_FILE_CLIENT_PATH_JUPITER);
-
-        /* Main level configuration file coped to client machine. */
-        copyFile(textHandler.LEVEL_CONFIG_FILE_LOCAL_PATH, textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
-
-        /* Settings configuration file copied to client machine. */
-        copyFile(textHandler.OPTIONS_CONFIG_FILE_LOCAL_PATH, textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH);
-
-        /* Font */
-        copyFile(textHandler.GAME_FONT_FILE_LOCAL_PATH, textHandler.GAME_FONT_FILE_CLIENT_PATH);
-        copyFile(textHandler.PANEL_FONT_FILE_LOCAL_PATH, textHandler.PANEL_FONT_FILE_CLIENT_PATH);
 
         /* Sound */
         copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU, textHandler.SOUND_FILE_CLIENT_PATH_MENU);
@@ -119,6 +119,7 @@ public final class FileHandler {
      */
     public Map<String, String> readPropertiesFromFile(String filePath) {
         Properties p = new Properties();
+
         Map<String, String> map = new HashMap<>();
         logHandler.log(textHandler.actionReadingPropertiesMsg(filePath), LogHandler.LogLevel.INFORMATION, false);
 
@@ -164,7 +165,7 @@ public final class FileHandler {
         int index = 0;
 
         if (lines == null) {
-            logHandler.log("FAILED TO WRITE PROPERTY TO FILE: " + filePath, LogHandler.LogLevel.FAILURE, false);
+            logHandler.log("FAILED TO WRITE PROPERTY TO FILE: " + filePath, LogHandler.LogLevel.FAIL, false);
             return;
         }
 
@@ -226,7 +227,7 @@ public final class FileHandler {
                 if (result) {
                     logHandler.log(textHandler.successCreatedDirMsg(dirPath), LogHandler.LogLevel.INFORMATION, false);
                 } else {
-                    logHandler.log(textHandler.errorCreatingDirMsg(dirPath), LogHandler.LogLevel.FAILURE, false);
+                    logHandler.log(textHandler.errorCreatingDirMsg(dirPath), LogHandler.LogLevel.FAIL, false);
                 }
             } catch (SecurityException e) {
                 logHandler.log(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)), LogHandler.LogLevel.ERROR, false);

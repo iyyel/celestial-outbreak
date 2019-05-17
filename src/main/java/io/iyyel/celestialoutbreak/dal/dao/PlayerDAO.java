@@ -43,7 +43,7 @@ public final class PlayerDAO implements IPlayerDAO {
             ois.close();
             logHandler.log("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFORMATION, true);
         } catch (FileNotFoundException e) {
-            logHandler.log("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.FAILURE, true);
+            logHandler.log("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.FAIL, true);
             createNewPlayerBinFile();
         } catch (IOException | ClassNotFoundException e) {
             throw new PlayerDAOException("Failed to load PlayerDTO: " + e.getMessage());
