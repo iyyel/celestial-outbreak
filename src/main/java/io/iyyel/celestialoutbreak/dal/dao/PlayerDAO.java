@@ -2,10 +2,9 @@ package io.iyyel.celestialoutbreak.dal.dao;
 
 import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.dal.dto.PlayerDTO;
-import io.iyyel.celestialoutbreak.handler.FileHandler;
+import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.handler.OptionsHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.util.Util;
 
 import java.io.*;
 import java.util.List;
@@ -14,9 +13,8 @@ public final class PlayerDAO implements IPlayerDAO {
 
     private PlayerDTO playerDTO;
 
-    private final Util util = Util.getInstance();
     private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
-    private final FileHandler fileHandler = FileHandler.getInstance();
+    private final LogHandler logHandler = LogHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
 
     private static IPlayerDAO instance;
@@ -43,15 +41,9 @@ public final class PlayerDAO implements IPlayerDAO {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             playerDTO = (PlayerDTO) ois.readObject();
             ois.close();
-
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
-            }
+            logHandler.log("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFORMATION, true);
         } catch (FileNotFoundException e) {
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
-            }
-
+            logHandler.log("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.FAILURE, true);
             createNewPlayerBinFile();
         } catch (IOException | ClassNotFoundException e) {
             throw new PlayerDAOException("Failed to load PlayerDTO: " + e.getMessage());
@@ -64,10 +56,7 @@ public final class PlayerDAO implements IPlayerDAO {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             oos.writeObject(playerDTO);
             oos.close();
-
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'");
-            }
+            logHandler.log("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'", LogHandler.LogLevel.INFORMATION, true);
         } catch (IOException e) {
             throw new PlayerDAOException("Failed to save PlayerDTO: " + e.getMessage());
         }
@@ -140,10 +129,7 @@ public final class PlayerDAO implements IPlayerDAO {
     }
 
     private void createNewPlayerBinFile() throws PlayerDAOException {
-        if (optionsHandler.isVerboseLogEnabled()) {
-            fileHandler.writeLog("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'");
-        }
-
+        logHandler.log("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFORMATION, true);
         playerDTO = new PlayerDTO();
         savePlayerDTO();
     }

@@ -138,8 +138,8 @@ public final class TextHandler {
     public final String LOG_SEPARATOR = "########################################################################" +
             "#########################################################################";
 
-    public final String logMsgPrefix() {
-        return "[LOG " + dateFormat.format(new Date()) + "]: ";
+    public final String logMsgPrefix(LogHandler.LogLevel logLevel) {
+        return "[" + dateFormat.format(new Date()) + " " + logLevel.toString() + "]: ";
     }
 
     /*
@@ -306,20 +306,20 @@ public final class TextHandler {
     /*
      * Util properties.
      */
-    public final String PROP_VERBOSE_LOG_ENABLED = "VERBOSE_LOG_ENABLED";
-    public final String PROP_SOUND_ENABLED = "SOUND_ENABLED";
-    public final String PROP_GOD_MODE_ENABLED = "GOD_MODE_ENABLED";
-    public final String PROP_FPS_LOCK_ENABLED = "FPS_LOCK_ENABLED";
-    public final String PROP_ANTI_ALIASING_ENABLED = "ANTI_ALIASING_ENABLED";
+    public final String PROP_KEY_VERBOSE_LOG_ENABLED = "VERBOSE_LOG_ENABLED";
+    public final String PROP_KEY_SOUND_ENABLED = "SOUND_ENABLED";
+    public final String PROP_KEY_GOD_MODE_ENABLED = "GOD_MODE_ENABLED";
+    public final String PROP_KEY_FPS_LOCK_ENABLED = "FPS_LOCK_ENABLED";
+    public final String PROP_KEY_ANTI_ALIASING_ENABLED = "ANTI_ALIASING_ENABLED";
 
     /*
      * Menu color properties.
      */
-    public final String PROP_MENU_FONT_COLOR_HEX = "MENU_FONT_COLOR_HEX";
-    public final String PROP_MENU_BTN_COLOR_HEX = "MENU_BTN_COLOR_HEX";
-    public final String PROP_MENU_BTN_SELECTED_COLOR_HEX = "MENU_BTN_SELECTED_COLOR_HEX";
-    public final String PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX = "MENU_BTN_PLAYER_DELETED_COLOR_HEX";
-    public final String PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX = "MENU_BTN_PLAYER_SELECTED_COLOR_HEX";
+    public final String PROP_KEY_MENU_FONT_COLOR_HEX = "MENU_FONT_COLOR_HEX";
+    public final String PROP_KEY_MENU_BTN_COLOR_HEX = "MENU_BTN_COLOR_HEX";
+    public final String PROP_KEY_MENU_BTN_SELECTED_COLOR_HEX = "MENU_BTN_SELECTED_COLOR_HEX";
+    public final String PROP_KEY_MENU_BTN_PLAYER_DELETED_COLOR_HEX = "MENU_BTN_PLAYER_DELETED_COLOR_HEX";
+    public final String PROP_KEY_MENU_BTN_PLAYER_SELECTED_COLOR_HEX = "MENU_BTN_PLAYER_SELECTED_COLOR_HEX";
 
     public String getMenuColorLogString(String pKey, Color color) {
         return pKey + ": (" + color.getRed() + ", " + color.getGreen() + ", " + color.getBlue() + ")";
@@ -335,39 +335,39 @@ public final class TextHandler {
     /*
      * Level properties.
      */
-    public final String PROP_LEVEL_NAME = "LEVEL_NAME";
-    public final String PROP_LEVEL_DESC = "LEVEL_DESCRIPTION";
-    public final String PROP_LEVEL_PLAYER_LIFE = "LEVEL_PLAYER_LIFE";
-    public final String PROP_LEVEL_SOUND_FILE_NAME = "LEVEL_SOUND_FILE_NAME";
-    public final String PROP_LEVEL_COLOR = "LEVEL_COLOR";
+    public final String PROP_KEY_LEVEL_NAME = "LEVEL_NAME";
+    public final String PROP_KEY_LEVEL_DESC = "LEVEL_DESCRIPTION";
+    public final String PROP_KEY_LEVEL_PLAYER_LIFE = "LEVEL_PLAYER_LIFE";
+    public final String PROP_KEY_LEVEL_SOUND_FILE_NAME = "LEVEL_SOUND_FILE_NAME";
+    public final String PROP_KEY_LEVEL_COLOR = "LEVEL_COLOR";
 
     /* Paddle. */
-    public final String PROP_PADDLE_POS_X_OFFSET = "LEVEL_PADDLE_POS_X_OFFSET";
-    public final String PROP_PADDLE_POS_Y_OFFSET = "LEVEL_PADDLE_POS_Y_OFFSET";
-    public final String PROP_PADDLE_WIDTH = "LEVEL_PADDLE_WIDTH";
-    public final String PROP_PADDLE_HEIGHT = "LEVEL_PADDLE_HEIGHT";
-    public final String PROP_PADDLE_SPEED = "LEVEL_PADDLE_SPEED";
-    public final String PROP_PADDLE_COLOR = "LEVEL_PADDLE_COLOR";
+    public final String PROP_KEY_PADDLE_POS_X_OFFSET = "LEVEL_PADDLE_POS_X_OFFSET";
+    public final String PROP_KEY_PADDLE_POS_Y_OFFSET = "LEVEL_PADDLE_POS_Y_OFFSET";
+    public final String PROP_KEY_PADDLE_WIDTH = "LEVEL_PADDLE_WIDTH";
+    public final String PROP_KEY_PADDLE_HEIGHT = "LEVEL_PADDLE_HEIGHT";
+    public final String PROP_KEY_PADDLE_SPEED = "LEVEL_PADDLE_SPEED";
+    public final String PROP_KEY_PADDLE_COLOR = "LEVEL_PADDLE_COLOR";
 
     /* Ball. */
-    public final String PROP_BALL_SIZE = "LEVEL_BALL_SIZE";
-    public final String PROP_BALL_SPEED = "LEVEL_BALL_SPEED";
-    public final String PROP_BALL_COLOR = "LEVEL_BALL_COLOR";
+    public final String PROP_KEY_BALL_SIZE = "LEVEL_BALL_SIZE";
+    public final String PROP_KEY_BALL_SPEED = "LEVEL_BALL_SPEED";
+    public final String PROP_KEY_BALL_COLOR = "LEVEL_BALL_COLOR";
 
     /* BlockList. */
-    public final String PROP_BLOCK_POS_X_START = "LEVEL_BLOCK_POS_X_START";
-    public final String PROP_BLOCK_POS_Y_START = "LEVEL_BLOCK_POS_Y_START";
-    public final String PROP_BLOCK_POS_X_SPACING = "LEVEL_BLOCK_POS_X_SPACING";
-    public final String PROP_BLOCK_POS_Y_SPACING = "LEVEL_BLOCK_POS_Y_SPACING";
-    public final String PROP_BLOCK_AMOUNT = "LEVEL_BLOCK_AMOUNT";
-    public final String PROP_BLOCK_HITPOINTS = "LEVEL_BLOCK_HITPOINTS";
-    public final String PROP_BLOCK_WIDTH = "LEVEL_BLOCK_WIDTH";
-    public final String PROP_BLOCK_HEIGHT = "LEVEL_BLOCK_HEIGHT";
-    public final String PROP_BLOCK_LUMINANCE = "LEVEL_BLOCK_LUMINANCE";
-    public final String PROP_BLOCK_SATURATION = "LEVEL_BLOCK_SATURATION";
+    public final String PROP_KEY_BLOCK_POS_X_START = "LEVEL_BLOCK_POS_X_START";
+    public final String PROP_KEY_BLOCK_POS_Y_START = "LEVEL_BLOCK_POS_Y_START";
+    public final String PROP_KEY_BLOCK_POS_X_SPACING = "LEVEL_BLOCK_POS_X_SPACING";
+    public final String PROP_KEY_BLOCK_POS_Y_SPACING = "LEVEL_BLOCK_POS_Y_SPACING";
+    public final String PROP_KEY_BLOCK_AMOUNT = "LEVEL_BLOCK_AMOUNT";
+    public final String PROP_KEY_BLOCK_HITPOINTS = "LEVEL_BLOCK_HITPOINTS";
+    public final String PROP_KEY_BLOCK_WIDTH = "LEVEL_BLOCK_WIDTH";
+    public final String PROP_KEY_BLOCK_HEIGHT = "LEVEL_BLOCK_HEIGHT";
+    public final String PROP_KEY_BLOCK_LUMINANCE = "LEVEL_BLOCK_LUMINANCE";
+    public final String PROP_KEY_BLOCK_SATURATION = "LEVEL_BLOCK_SATURATION";
 
     /* GamePanel. */
-    public final String PROP_GAME_PANEL_COLOR = "LEVEL_GAME_PANEL_COLOR";
+    public final String PROP_KEY_GAME_PANEL_COLOR = "LEVEL_GAME_PANEL_COLOR";
 
     /*
      * Menu messages.
@@ -457,30 +457,29 @@ public final class TextHandler {
     /*
      * Error messages.
      */
-    private final String ERR_PREFIX = "[ERROR] ";
 
     public final String errorCreatingDirMsg(String dirPath) {
-        return ERR_PREFIX + "Failed to create directory '" + dirPath + "'";
+        return "Failed to create directory '" + dirPath + "'";
     }
 
     public final String errorCreatingDirMsg(String dirPath, String errMsg) {
-        return ERR_PREFIX + "Failed to create directory '" + dirPath + "' cause '" + errMsg + "'";
+        return "Failed to create directory '" + dirPath + "' cause '" + errMsg + "'";
     }
 
     public final String errorWritingToFileMsg(String filePath, String errMsg) {
-        return ERR_PREFIX + "Failed writing to '" + filePath + "' cause '" + errMsg + "'";
+        return "Failed writing to '" + filePath + "' cause '" + errMsg + "'";
     }
 
     public final String errorCopyingFileMsg(String srcFilePath, String destFilePath, String errMsg) {
-        return ERR_PREFIX + "Failed to copy '" + srcFilePath + "' to '" + destFilePath + "' cause '" + errMsg + "'";
+        return "Failed to copy '" + srcFilePath + "' to '" + destFilePath + "' cause '" + errMsg + "'";
     }
 
     public final String errorParsingPropertiesMsg(String filePath, String errMsg) {
-        return ERR_PREFIX + "Failed parsing properties from file '" + filePath + "' cause '" + errMsg + "'";
+        return "Failed parsing properties from file '" + filePath + "' cause '" + errMsg + "'";
     }
 
     public final String errorCreatingAudioClipMsg(String filePath, String errMsg) {
-        return ERR_PREFIX + "Failed to create AudioClip from '" + filePath + "' cause '" + errMsg + "'";
+        return "Failed to create AudioClip from '" + filePath + "' cause '" + errMsg + "'";
     }
 
     /*

@@ -74,6 +74,7 @@ public final class GameController extends Canvas implements Runnable {
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
     private final LevelHandler levelHandler = LevelHandler.getInstance();
+    private final LogHandler logHandler = LogHandler.getInstance();
     private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
     /*
@@ -225,7 +226,7 @@ public final class GameController extends Canvas implements Runnable {
         initFrame();
 
         /* Log that the game has been initialized */
-        fileHandler.writeLog(textHandler.GAME_INIT_FINISHED);
+        logHandler.log(textHandler.GAME_INIT_FINISHED, LogHandler.LogLevel.INFORMATION, false);
     }
 
     /*
@@ -264,7 +265,7 @@ public final class GameController extends Canvas implements Runnable {
                     double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                     gameFrame.setTitle(textHandler.GAME_TITLE + " | Version: " + textHandler.GAME_VERSION +
                             " - " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
-                    fileHandler.writeLog(textHandler.vPerformanceMsg(frames, updates, allocatedRam));
+                    logHandler.log(textHandler.vPerformanceMsg(frames, updates, allocatedRam), LogHandler.LogLevel.INFORMATION, true);
                 } else {
                     gameFrame.setTitle(textHandler.GAME_TITLE);
                 }
@@ -543,7 +544,7 @@ public final class GameController extends Canvas implements Runnable {
     public synchronized void stop() {
         if (isRunning) {
             isRunning = false;
-            fileHandler.writeLog(textHandler.GAME_TITLE + " shutting down.");
+            logHandler.log(textHandler.GAME_TITLE + " shutting down.", LogHandler.LogLevel.INFORMATION,false);
             System.exit(0);
         }
     }

@@ -10,7 +10,7 @@ public final class Ball extends AbstractMobileEntity {
     private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
-    private final FileHandler fileHandler = FileHandler.getInstance();
+    private final LogHandler logHandler = LogHandler.getInstance();
     private final LevelHandler levelHandler = LevelHandler.getInstance();
     private final InputHandler inputHandler = InputHandler.getInstance();
     private final GameController gameController;
@@ -60,27 +60,21 @@ public final class Ball extends AbstractMobileEntity {
 
         /* Ball hit left x-axis. */
         if (pos.x < 0) {
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog(textHandler.vBallTouchedXAxisLeftMsg);
-            }
+            logHandler.log(textHandler.vBallTouchedXAxisLeftMsg, LogHandler.LogLevel.INFORMATION, true);
             velocity.x = speed;
             ballHitClip.play(false);
         }
 
         /* Ball hit right x-axis. */
         if (pos.x > (gameController.getWidth() - dim.width)) {
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog(textHandler.vBallTouchedXAxisRightMsg);
-            }
+            logHandler.log(textHandler.vBallTouchedXAxisRightMsg, LogHandler.LogLevel.INFORMATION, true);
             velocity.x = -speed;
             ballHitClip.play(false);
         }
 
         /* Ball hit top y-axis. */
         if (pos.y < 0) {
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog(textHandler.vBallTouchedYAxisTopMsg);
-            }
+            logHandler.log(textHandler.vBallTouchedYAxisTopMsg, LogHandler.LogLevel.INFORMATION, true);
             velocity.y = speed;
             ballHitClip.play(false);
         }
@@ -103,11 +97,8 @@ public final class Ball extends AbstractMobileEntity {
 
                 ballResetClip.play(false);
 
-                if (optionsHandler.isVerboseLogEnabled()) {
-                    fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
-                    fileHandler.writeLog("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife());
-                }
-
+                logHandler.log(textHandler.vBallTouchedYAxisBottomMsg, LogHandler.LogLevel.INFORMATION, true);
+                logHandler.log("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife(), LogHandler.LogLevel.INFORMATION, true);
             }
         }
 
@@ -127,10 +118,7 @@ public final class Ball extends AbstractMobileEntity {
                 paddleCollisionTimer = PADDLE_COLLISION_TIMER_INITIAL;
 
                 soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
-
-                if (optionsHandler.isVerboseLogEnabled()) {
-                    fileHandler.writeLog(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
-                }
+                logHandler.log(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer), LogHandler.LogLevel.INFORMATION, true);
             }
         } else if (t instanceof BlockList) {
 
@@ -147,16 +135,10 @@ public final class Ball extends AbstractMobileEntity {
                     if (blockList.getBlock(i).isDead()) {
                         soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
                         blockList.destroyBlock(i);
-
-                        if (optionsHandler.isVerboseLogEnabled()) {
-                            fileHandler.writeLog("BlockList[" + i + "] has been destroyed.");
-                        }
+                        logHandler.log("BlockList[" + i + "] has been destroyed.", LogHandler.LogLevel.INFORMATION, true);
                     } else {
                         soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
-
-                        if (optionsHandler.isVerboseLogEnabled()) {
-                            fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i, blockList.getBlock(i).getHitPoints()));
-                        }
+                        logHandler.log(textHandler.vBallBlockListCollisionMsg(i, blockList.getBlock(i).getHitPoints()), LogHandler.LogLevel.INFORMATION, true);
                     }
 
                 }

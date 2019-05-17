@@ -2,6 +2,7 @@ package io.iyyel.celestialoutbreak.level;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
+import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
@@ -12,6 +13,7 @@ public final class LevelOptions {
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
+    private final LogHandler logHandler = LogHandler.getInstance();
 
     /*
      * Level options.
@@ -74,7 +76,7 @@ public final class LevelOptions {
              * gameController will be stopped, since invalid level options has been found which might cause
              * the application to be in an inconsistent state.
              */
-            fileHandler.writeLog(textHandler.errorParsingPropertiesMsg(fileName, ExceptionUtils.getStackTrace(e)));
+            logHandler.log(textHandler.errorParsingPropertiesMsg(fileName, ExceptionUtils.getStackTrace(e)), LogHandler.LogLevel.ERROR, false);
             gameController.stop();
         }
     }
@@ -83,48 +85,48 @@ public final class LevelOptions {
         Map<String, String> map = fileHandler.readPropertiesFromFile(fileName);
 
         /* Level options */
-        levelName = map.get(textHandler.PROP_LEVEL_NAME);
-        levelDesc = map.get(textHandler.PROP_LEVEL_DESC);
-        levelPlayerLife = Integer.parseInt(map.get(textHandler.PROP_LEVEL_PLAYER_LIFE));
-        levelSoundFileName = map.get(textHandler.PROP_LEVEL_SOUND_FILE_NAME);
-        int levelColorValue = Integer.decode(map.get(textHandler.PROP_LEVEL_COLOR));
+        levelName = map.get(textHandler.PROP_KEY_LEVEL_NAME);
+        levelDesc = map.get(textHandler.PROP_KEY_LEVEL_DESC);
+        levelPlayerLife = Integer.parseInt(map.get(textHandler.PROP_KEY_LEVEL_PLAYER_LIFE));
+        levelSoundFileName = map.get(textHandler.PROP_KEY_LEVEL_SOUND_FILE_NAME);
+        int levelColorValue = Integer.decode(map.get(textHandler.PROP_KEY_LEVEL_COLOR));
         levelColor = new Color(levelColorValue);
 
         /* Paddle options */
-        int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_PADDLE_POS_X_OFFSET));
-        int paddlePosYOffset = Integer.parseInt(map.get(textHandler.PROP_PADDLE_POS_Y_OFFSET));
+        int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_X_OFFSET));
+        int paddlePosYOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_Y_OFFSET));
         paddlePos = new Point((gameController.getWidth() / 2) - paddlePosXOffset, gameController.getHeight() - paddlePosYOffset);
-        int paddleWidth = Integer.parseInt(map.get(textHandler.PROP_PADDLE_WIDTH));
-        int paddleHeight = Integer.parseInt(map.get(textHandler.PROP_PADDLE_HEIGHT));
+        int paddleWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_WIDTH));
+        int paddleHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_HEIGHT));
         paddleDim = new Dimension(paddleWidth, paddleHeight);
-        paddleSpeed = Integer.parseInt(map.get(textHandler.PROP_PADDLE_SPEED));
-        int paddleCol = Integer.decode(map.get(textHandler.PROP_PADDLE_COLOR));
+        paddleSpeed = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_SPEED));
+        int paddleCol = Integer.decode(map.get(textHandler.PROP_KEY_PADDLE_COLOR));
         paddleColor = new Color(paddleCol);
 
         /* Ball options */
-        ballSize = Integer.parseInt(map.get(textHandler.PROP_BALL_SIZE));
+        ballSize = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_SIZE));
         ballPos = new Point(paddlePos.x + (paddleWidth / 2) - (ballSize / 2), paddlePos.y - (ballSize));
-        ballSpeed = Integer.parseInt(map.get(textHandler.PROP_BALL_SPEED));
-        int ballColorHex = Integer.decode(map.get(textHandler.PROP_BALL_COLOR));
+        ballSpeed = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_SPEED));
+        int ballColorHex = Integer.decode(map.get(textHandler.PROP_KEY_BALL_COLOR));
         ballColor = new Color(ballColorHex);
 
         /* Block options */
-        int blockPosXStart = Integer.parseInt(map.get(textHandler.PROP_BLOCK_POS_X_START));
-        int blockPosYStart = Integer.parseInt(map.get(textHandler.PROP_BLOCK_POS_Y_START));
+        int blockPosXStart = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_POS_X_START));
+        int blockPosYStart = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_POS_Y_START));
         blockPosStart = new Point(blockPosXStart, blockPosYStart);
-        int blockPosXSpacing = Integer.parseInt(map.get(textHandler.PROP_BLOCK_POS_X_SPACING));
-        int blockPosYSpacing = Integer.parseInt(map.get(textHandler.PROP_BLOCK_POS_Y_SPACING));
+        int blockPosXSpacing = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_POS_X_SPACING));
+        int blockPosYSpacing = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_POS_Y_SPACING));
         blockPosSpacing = new Point(blockPosXSpacing, blockPosYSpacing);
-        blockAmount = Integer.parseInt(map.get(textHandler.PROP_BLOCK_AMOUNT));
-        blockHitPoints = Integer.parseInt(map.get(textHandler.PROP_BLOCK_HITPOINTS));
-        int blockWidth = Integer.parseInt(map.get(textHandler.PROP_BLOCK_WIDTH));
-        int blockHeight = Integer.parseInt(map.get(textHandler.PROP_BLOCK_HEIGHT));
+        blockAmount = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_AMOUNT));
+        blockHitPoints = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_HITPOINTS));
+        int blockWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_WIDTH));
+        int blockHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_HEIGHT));
         blockDim = new Dimension(blockWidth, blockHeight);
-        blockLum = Float.parseFloat(map.get(textHandler.PROP_BLOCK_LUMINANCE));
-        blockSat = Float.parseFloat(map.get(textHandler.PROP_BLOCK_SATURATION));
+        blockLum = Float.parseFloat(map.get(textHandler.PROP_KEY_BLOCK_LUMINANCE));
+        blockSat = Float.parseFloat(map.get(textHandler.PROP_KEY_BLOCK_SATURATION));
 
         /* GamePanel options */
-        int gamePanelColorInt = Integer.decode(map.get(textHandler.PROP_GAME_PANEL_COLOR));
+        int gamePanelColorInt = Integer.decode(map.get(textHandler.PROP_KEY_GAME_PANEL_COLOR));
         gamePanelColor = new Color(gamePanelColorInt);
     }
 

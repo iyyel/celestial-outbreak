@@ -13,7 +13,7 @@ public final class SoundHandler {
 
     private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
-    private final FileHandler fileHandler = FileHandler.getInstance();
+    private final LogHandler logHandler = LogHandler.getInstance();
 
     private GameController.State currentStateBackup = GameController.State.NONE;
 
@@ -44,7 +44,7 @@ public final class SoundHandler {
                 clip = AudioSystem.getClip();
                 clip.open(AudioSystem.getAudioInputStream(new File(filePath)));
             } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-                fileHandler.writeLog(textHandler.errorCreatingAudioClipMsg(filePath, ExceptionUtils.getStackTrace(e)));
+                logHandler.log(textHandler.errorCreatingAudioClipMsg(filePath, ExceptionUtils.getStackTrace(e)), LogHandler.LogLevel.ERROR, false);
             }
         }
 
@@ -154,9 +154,7 @@ public final class SoundHandler {
                     continue;
                 }
 
-                if (optionsHandler.isVerboseLogEnabled()) {
-                    fileHandler.writeLog("SoundClip '" + key + "' has been stopped.");
-                }
+                logHandler.log("SoundClip '" + key + "' has been stopped.", LogHandler.LogLevel.INFORMATION, true);
 
                 soundClip.stop();
             }
@@ -175,9 +173,7 @@ public final class SoundHandler {
             SoundClip soundClip = soundClipMap.get(key);
             if (soundClip.isActive) {
                 soundClip.stop();
-                if (optionsHandler.isVerboseLogEnabled()) {
-                    fileHandler.writeLog("SoundClip '" + key + "' has been stopped.");
-                }
+                logHandler.log("SoundClip '" + key + "' has been stopped.", LogHandler.LogLevel.INFORMATION, true);
             }
         }
     }

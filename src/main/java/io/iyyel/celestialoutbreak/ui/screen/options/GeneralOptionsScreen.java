@@ -2,6 +2,7 @@ package io.iyyel.celestialoutbreak.ui.screen.options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
+import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
@@ -17,6 +18,7 @@ public final class GeneralOptionsScreen extends AbstractScreen {
     private int selected = 0;
 
     private final FileHandler fileHandler = FileHandler.getInstance();
+    private final LogHandler logHandler = LogHandler.getInstance();
 
     public GeneralOptionsScreen(GameController gameController) {
         super(gameController);
@@ -41,11 +43,11 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                 new Dimension(240, 50), options[1], inputBtnFont,
                 screenFontColor, rectColors[1], new Point(120, 0), new Point(0, -6), gameController);
 
-        isFpsLockedEnabledRect =  new Button(new Point(gameController.getWidth() / 2, initialBtnYPos + btnYIncrement * 2),
+        isFpsLockedEnabledRect = new Button(new Point(gameController.getWidth() / 2, initialBtnYPos + btnYIncrement * 2),
                 new Dimension(240, 50), options[2], inputBtnFont,
                 screenFontColor, rectColors[2], new Point(120, 0), new Point(0, -6), gameController);
 
-        isAntiAliasingEnabledRect =  new Button(new Point(gameController.getWidth() / 2, initialBtnYPos + btnYIncrement * 3),
+        isAntiAliasingEnabledRect = new Button(new Point(gameController.getWidth() / 2, initialBtnYPos + btnYIncrement * 3),
                 new Dimension(240, 50), options[3], inputBtnFont,
                 screenFontColor, rectColors[3], new Point(120, 0), new Point(0, -6), gameController);
     }
@@ -86,52 +88,52 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                     switch (i) {
                         case 0:
                             String pValue = String.valueOf(!optionsHandler.isSoundEnabled());
-                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_SOUND_ENABLED, pValue);
-                            optionsHandler.reloadProperty(textHandler.PROP_SOUND_ENABLED, pValue);
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_SOUND_ENABLED, pValue);
+                            optionsHandler.reloadProperty(textHandler.PROP_KEY_SOUND_ENABLED, pValue);
                             soundHandler.playStateSound(gameController.getState(), gameController.getPrevState(), true, true);
-                            if (optionsHandler.isVerboseLogEnabled()) {
-                                if (optionsHandler.isSoundEnabled()) {
-                                    fileHandler.writeLog("Sound has been enabled.");
-                                } else {
-                                    fileHandler.writeLog("Sound has been disabled.");
-                                }
+
+                            if (optionsHandler.isSoundEnabled()) {
+                                logHandler.log("Sound has been enabled.", LogHandler.LogLevel.INFORMATION, true);
+                            } else {
+                                logHandler.log("Sound has been disabled.", LogHandler.LogLevel.INFORMATION, true);
                             }
+
                             break;
                         case 1:
                             pValue = String.valueOf(!optionsHandler.isGodModeEnabled());
-                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_GOD_MODE_ENABLED, pValue);
-                            optionsHandler.reloadProperty(textHandler.PROP_GOD_MODE_ENABLED, pValue);
-                            if (optionsHandler.isVerboseLogEnabled()) {
-                                if (optionsHandler.isGodModeEnabled()) {
-                                    fileHandler.writeLog("God Mode has been enabled.");
-                                } else {
-                                    fileHandler.writeLog("God Mode has been disabled.");
-                                }
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_GOD_MODE_ENABLED, pValue);
+                            optionsHandler.reloadProperty(textHandler.PROP_KEY_GOD_MODE_ENABLED, pValue);
+
+                            if (optionsHandler.isGodModeEnabled()) {
+                                logHandler.log("God Mode has been enabled.", LogHandler.LogLevel.INFORMATION, true);
+                            } else {
+                                logHandler.log("God Mode has been disabled.", LogHandler.LogLevel.INFORMATION, true);
                             }
+
                             break;
                         case 2:
                             pValue = String.valueOf(!optionsHandler.isFpsLockEnabled());
-                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_FPS_LOCK_ENABLED, pValue);
-                            optionsHandler.reloadProperty(textHandler.PROP_FPS_LOCK_ENABLED, pValue);
-                            if (optionsHandler.isVerboseLogEnabled()) {
-                                if (optionsHandler.isFpsLockEnabled()) {
-                                    fileHandler.writeLog("FPS Lock has been enabled.");
-                                } else {
-                                    fileHandler.writeLog("FPS Lock has been disabled.");
-                                }
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_FPS_LOCK_ENABLED, pValue);
+                            optionsHandler.reloadProperty(textHandler.PROP_KEY_FPS_LOCK_ENABLED, pValue);
+
+                            if (optionsHandler.isFpsLockEnabled()) {
+                                logHandler.log("FPS Lock has been enabled.", LogHandler.LogLevel.INFORMATION, true);
+                            } else {
+                                logHandler.log("FPS Lock has been disabled.", LogHandler.LogLevel.INFORMATION, true);
                             }
+
                             break;
                         case 3:
                             pValue = String.valueOf(!optionsHandler.isAntiAliasingEnabled());
-                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_ANTI_ALIASING_ENABLED, pValue);
-                            optionsHandler.reloadProperty(textHandler.PROP_ANTI_ALIASING_ENABLED, pValue);
-                            if (optionsHandler.isVerboseLogEnabled()) {
-                                if (optionsHandler.isAntiAliasingEnabled()) {
-                                    fileHandler.writeLog("Anti-aliasing has been enabled.");
-                                } else {
-                                    fileHandler.writeLog("Anti-aliasing has been disabled.");
-                                }
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_ANTI_ALIASING_ENABLED, pValue);
+                            optionsHandler.reloadProperty(textHandler.PROP_KEY_ANTI_ALIASING_ENABLED, pValue);
+
+                            if (optionsHandler.isAntiAliasingEnabled()) {
+                                logHandler.log("Anti-aliasing has been enabled.", LogHandler.LogLevel.INFORMATION, true);
+                            } else {
+                                logHandler.log("Anti-aliasing has been disabled.", LogHandler.LogLevel.INFORMATION, true);
                             }
+
                             break;
                         default:
                             break;

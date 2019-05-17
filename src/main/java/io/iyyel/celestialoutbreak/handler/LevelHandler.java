@@ -10,8 +10,8 @@ import java.util.List;
 public final class LevelHandler {
 
     private final TextHandler textHandler = TextHandler.getInstance();
+    private final LogHandler logHandler = LogHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
-    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
 
     private int activeLevelIndex = 0;
     private Level[] levels;
@@ -51,16 +51,12 @@ public final class LevelHandler {
         levels[activeLevelIndex].update();
 
         if (levels[activeLevelIndex].isWon()) {
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog("Won " + levels[activeLevelIndex].getName() + " level!");
-            }
+            logHandler.log("Won " + levels[activeLevelIndex].getName() + " level!", LogHandler.LogLevel.INFORMATION, true);
             gameController.switchState(GameController.State.POST_LEVEL);
         }
 
         if (levels[activeLevelIndex].isLost()) {
-            if (optionsHandler.isVerboseLogEnabled()) {
-                fileHandler.writeLog("Lost " + levels[activeLevelIndex].getName() + " level!");
-            }
+            logHandler.log("Lost " + levels[activeLevelIndex].getName() + " level!", LogHandler.LogLevel.INFORMATION, true);
             gameController.switchState(GameController.State.POST_LEVEL);
         }
     }
@@ -78,7 +74,7 @@ public final class LevelHandler {
 
         //TODO: Remove magic number here.
         if (levels.length > 16) {
-            fileHandler.writeLog("Maximum levels exceeded: 16 - shutting down. (MAKE THIS SHOW A POPUP!)");
+            logHandler.log("Maximum levels exceeded: 16 - shutting down. (MAKE THIS SHOW A POPUP!)", LogHandler.LogLevel.ERROR, false);
             gameController.stop();
         }
 
@@ -87,10 +83,10 @@ public final class LevelHandler {
         }
 
         levelColors = getLevelColorProperties();
-        levelNames = getLevelStringProperties(textHandler.PROP_LEVEL_NAME);
-        levelPlayerLives = getLevelIntProperties(textHandler.PROP_LEVEL_PLAYER_LIFE);
-        levelBlockAmounts = getLevelIntProperties(textHandler.PROP_BLOCK_AMOUNT);
-        levelHitPoints = getLevelIntProperties(textHandler.PROP_BLOCK_HITPOINTS);
+        levelNames = getLevelStringProperties(textHandler.PROP_KEY_LEVEL_NAME);
+        levelPlayerLives = getLevelIntProperties(textHandler.PROP_KEY_LEVEL_PLAYER_LIFE);
+        levelBlockAmounts = getLevelIntProperties(textHandler.PROP_KEY_BLOCK_AMOUNT);
+        levelHitPoints = getLevelIntProperties(textHandler.PROP_KEY_BLOCK_HITPOINTS);
     }
 
     public void loadLevel(int index) {
@@ -108,7 +104,7 @@ public final class LevelHandler {
     private Color[] getLevelColorProperties() {
         Color[] colors = new Color[levels.length];
         for (int i = 0; i < levels.length; i++) {
-            int levelColorInt = Integer.decode(fileHandler.readPropertyFromFile(textHandler.PROP_LEVEL_COLOR, levelOptionsFileNames[i]));
+            int levelColorInt = Integer.decode(fileHandler.readPropertyFromFile(textHandler.PROP_KEY_LEVEL_COLOR, levelOptionsFileNames[i]));
             colors[i] = new Color(levelColorInt);
         }
         return colors;
@@ -123,9 +119,7 @@ public final class LevelHandler {
     }
 
     public void resetActiveLevel() {
-        if (optionsHandler.isVerboseLogEnabled()) {
-            fileHandler.writeLog("Level[" + activeLevelIndex + "] has been reset.");
-        }
+        logHandler.log("Level[" + activeLevelIndex + "] has been reset.", LogHandler.LogLevel.INFORMATION, true);
         levels[activeLevelIndex] = null;
     }
 
