@@ -93,9 +93,9 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                             soundHandler.playStateSound(gameController.getState(), gameController.getPrevState(), true, true);
 
                             if (optionsHandler.isSoundEnabled()) {
-                                logHandler.log("Sound has been enabled.", LogHandler.LogLevel.INFORMATION, true);
+                                logHandler.log("Sound has been enabled.", LogHandler.LogLevel.INFO, true);
                             } else {
-                                logHandler.log("Sound has been disabled.", LogHandler.LogLevel.INFORMATION, true);
+                                logHandler.log("Sound has been disabled.", LogHandler.LogLevel.INFO, true);
                             }
 
                             break;
@@ -105,9 +105,9 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                             optionsHandler.reloadProperty(textHandler.PROP_KEY_GOD_MODE_ENABLED, pValue);
 
                             if (optionsHandler.isGodModeEnabled()) {
-                                logHandler.log("God Mode has been enabled.", LogHandler.LogLevel.INFORMATION, true);
+                                logHandler.log("God Mode has been enabled.", LogHandler.LogLevel.INFO, true);
                             } else {
-                                logHandler.log("God Mode has been disabled.", LogHandler.LogLevel.INFORMATION, true);
+                                logHandler.log("God Mode has been disabled.", LogHandler.LogLevel.INFO, true);
                             }
 
                             break;
@@ -117,9 +117,9 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                             optionsHandler.reloadProperty(textHandler.PROP_KEY_FPS_LOCK_ENABLED, pValue);
 
                             if (optionsHandler.isFpsLockEnabled()) {
-                                logHandler.log("FPS Lock has been enabled.", LogHandler.LogLevel.INFORMATION, true);
+                                logHandler.log("FPS Lock has been enabled.", LogHandler.LogLevel.INFO, true);
                             } else {
-                                logHandler.log("FPS Lock has been disabled.", LogHandler.LogLevel.INFORMATION, true);
+                                logHandler.log("FPS Lock has been disabled.", LogHandler.LogLevel.INFO, true);
                             }
 
                             break;
@@ -129,9 +129,9 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                             optionsHandler.reloadProperty(textHandler.PROP_KEY_ANTI_ALIASING_ENABLED, pValue);
 
                             if (optionsHandler.isAntiAliasingEnabled()) {
-                                logHandler.log("Anti-aliasing has been enabled.", LogHandler.LogLevel.INFORMATION, true);
+                                logHandler.log("Anti-aliasing has been enabled.", LogHandler.LogLevel.INFO, true);
                             } else {
-                                logHandler.log("Anti-aliasing has been disabled.", LogHandler.LogLevel.INFORMATION, true);
+                                logHandler.log("Anti-aliasing has been disabled.", LogHandler.LogLevel.INFO, true);
                             }
 
                             break;

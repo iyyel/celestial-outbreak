@@ -115,13 +115,13 @@ public class SelectLevelScreen extends AbstractScreen {
                 g.setFont(levelInfoFont);
                 g.setColor(menuBtnColor);
 
-                String blockHitPoints = getFixedString("Blocks: " + levelHandler.getLevelBlockAmounts()[i] + "/" +
+                String blockHitPoints = textHandler.getFixedString("Blocks: " + levelHandler.getLevelBlockAmounts()[i] + "/" +
                         levelHandler.getLevelHitPoints()[i], 15);
-                String life = getFixedString(" Life: " + levelHandler.getLevelPlayerLives()[i], 12);
+                String life = textHandler.getFixedString(" Life: " + levelHandler.getLevelPlayerLives()[i], 12);
                 g.drawString(blockHitPoints + life, levelRects[i].x + 5, levelRects[i].y + 55);
 
-                String score = getFixedString("Score:  " + "123456", 15);
-                String time = getFixedString(" Time: " + "02:03", 12);
+                String score = textHandler.getFixedString("Score:  " + "123456", 15);
+                String time = textHandler.getFixedString(" Time: " + "02:03", 12);
                 g.drawString(score + time, levelRects[i].x + 5, levelRects[i].y + 75);
 
                 g.setColor(levelRectColors[i]);

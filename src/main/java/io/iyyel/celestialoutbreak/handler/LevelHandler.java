@@ -51,12 +51,12 @@ public final class LevelHandler {
         levels[activeLevelIndex].update();
 
         if (levels[activeLevelIndex].isWon()) {
-            logHandler.log("Won " + levels[activeLevelIndex].getName() + " level!", LogHandler.LogLevel.INFORMATION, true);
+            logHandler.log("Won " + levels[activeLevelIndex].getName() + " level!", LogHandler.LogLevel.INFO, true);
             gameController.switchState(GameController.State.POST_LEVEL);
         }
 
         if (levels[activeLevelIndex].isLost()) {
-            logHandler.log("Lost " + levels[activeLevelIndex].getName() + " level!", LogHandler.LogLevel.INFORMATION, true);
+            logHandler.log("Lost " + levels[activeLevelIndex].getName() + " level!", LogHandler.LogLevel.INFO, true);
             gameController.switchState(GameController.State.POST_LEVEL);
         }
     }
@@ -119,7 +119,7 @@ public final class LevelHandler {
     }
 
     public void resetActiveLevel() {
-        logHandler.log("Level[" + activeLevelIndex + "] has been reset.", LogHandler.LogLevel.INFORMATION, true);
+        logHandler.log("Level[" + activeLevelIndex + "] has been reset.", LogHandler.LogLevel.INFO, true);
         levels[activeLevelIndex] = null;
     }
 

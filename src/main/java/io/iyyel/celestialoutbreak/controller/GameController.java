@@ -226,7 +226,7 @@ public final class GameController extends Canvas implements Runnable {
         initFrame();
 
         /* Log that the game has been initialized */
-        logHandler.log(textHandler.GAME_INIT_FINISHED, LogHandler.LogLevel.INFORMATION, false);
+        logHandler.log(textHandler.GAME_INIT_FINISHED, LogHandler.LogLevel.INFO, false);
     }
 
     /*
@@ -265,7 +265,7 @@ public final class GameController extends Canvas implements Runnable {
                     double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                     gameFrame.setTitle(textHandler.GAME_TITLE + " | Version: " + textHandler.GAME_VERSION +
                             " - " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
-                    logHandler.log(textHandler.vPerformanceMsg(frames, updates, allocatedRam), LogHandler.LogLevel.INFORMATION, true);
+                    logHandler.log(textHandler.vPerformanceMsg(frames, updates, allocatedRam), LogHandler.LogLevel.INFO, true);
                 } else {
                     gameFrame.setTitle(textHandler.GAME_TITLE);
                 }
@@ -373,7 +373,15 @@ public final class GameController extends Canvas implements Runnable {
         renderBackgroundColor();
 
         /* Get the graphics2D object from the buffer strategy. */
-        Graphics2D g = (Graphics2D) bs.getDrawGraphics();
+        Graphics2D g = null;
+
+        try {
+            g = (Graphics2D) bs.getDrawGraphics();
+        } catch (IllegalStateException e) {
+            logHandler.log("You dragged the screen to another monitor, didn't you?", LogHandler.LogLevel.ERROR, false);
+            e.printStackTrace();
+            stop();
+        }
 
         /* Enable some sweet antialiasing to make the graphics look smoother. */
         if (optionsHandler.isAntiAliasingEnabled()) {
@@ -544,7 +552,7 @@ public final class GameController extends Canvas implements Runnable {
     public synchronized void stop() {
         if (isRunning) {
             isRunning = false;
-            logHandler.log(textHandler.GAME_TITLE + " shutting down.", LogHandler.LogLevel.INFORMATION,false);
+            logHandler.log(textHandler.GAME_TITLE + " shutting down.", LogHandler.LogLevel.INFO,false);
             System.exit(0);
         }
     }

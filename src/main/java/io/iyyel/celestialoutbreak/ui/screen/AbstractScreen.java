@@ -120,8 +120,4 @@ public abstract class AbstractScreen {
         return gameController.getHeight() / 2;
     }
 
-    protected String getFixedString(String text, int length) {
-        return String.format("%-" + length + "." + length + "s", text);
-    }
-
 }

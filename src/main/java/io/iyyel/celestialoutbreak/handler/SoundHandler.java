@@ -154,7 +154,7 @@ public final class SoundHandler {
                     continue;
                 }
 
-                logHandler.log("SoundClip '" + key + "' has been stopped.", LogHandler.LogLevel.INFORMATION, true);
+                logHandler.log("SoundClip '" + key + "' has been stopped.", LogHandler.LogLevel.INFO, true);
 
                 soundClip.stop();
             }
@@ -173,7 +173,7 @@ public final class SoundHandler {
             SoundClip soundClip = soundClipMap.get(key);
             if (soundClip.isActive) {
                 soundClip.stop();
-                logHandler.log("SoundClip '" + key + "' has been stopped.", LogHandler.LogLevel.INFORMATION, true);
+                logHandler.log("SoundClip '" + key + "' has been stopped.", LogHandler.LogLevel.INFO, true);
             }
         }
     }

@@ -139,7 +139,8 @@ public final class TextHandler {
             "#########################################################################";
 
     public final String logMsgPrefix(LogHandler.LogLevel logLevel) {
-        return "[" + dateFormat.format(new Date()) + " " + logLevel.toString() + "]: ";
+        int length = LogHandler.LogLevel.ERROR.toString().length();
+        return "[" + dateFormat.format(new Date()) + " " + getFixedString(logLevel.toString(), length) + "]: ";
     }
 
     /*
@@ -538,10 +539,13 @@ public final class TextHandler {
         return String.format("%02d:%02d", sec / 60, sec % 60);
     }
 
+    public String getFixedString(String text, int length) {
+        return String.format("%-" + length + "." + length + "s", text);
+    }
+
     /* Welcome AbstractScreen text */
     public final String WELCOME_SCREEN_TEXT = "What lies beyond the cosmos is inevitable";
 
     public final String WELCOME_SCREEN_TOOLTIP_TEXT = "Press '" + BTN_CONTROL_FORWARD_OK + "' to confirm or '" +
             BTN_CONTROL_BACK_CANCEL + "' to go back. Navigate with '" + BTN_CONTROL_MOV_NAV + "'.";
-
 }

@@ -9,19 +9,19 @@ public final class LogHandler {
 
     private final TextHandler textHandler = TextHandler.getInstance();
 
-    private static LogHandler instance;
-
     private boolean isVerboseLogEnabled;
+
+    private static LogHandler instance;
 
     public enum LogLevel {
         ERROR,
         FAIL,
-        INFORMATION
+        INFO
     }
 
     private LogHandler() {
         createLogDir();
-        isVerboseLogEnabled = readIsVerboseLogEnabled();
+        isVerboseLogEnabled = readIsVerboseLogEnabledProp();
     }
 
     static {
@@ -38,7 +38,7 @@ public final class LogHandler {
 
 
     public void log(String msg, LogLevel logLevel, boolean isVerboseLog) {
-        if (this.isVerboseLogEnabled != isVerboseLog) {
+        if (isVerboseLog && !isVerboseLogEnabled) {
             return;
         }
 
@@ -64,7 +64,7 @@ public final class LogHandler {
                 try (PrintWriter out = new PrintWriter(filePath)) {
                     out.print(msg + "\r\n");
                 }
-                log(textHandler.successCreatedFileMsg(filePath), LogHandler.LogLevel.INFORMATION, false);
+                log(textHandler.successCreatedFileMsg(filePath), LogHandler.LogLevel.INFO, false);
             }
         } catch (IOException e) {
             log(textHandler.errorWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)), LogHandler.LogLevel.ERROR, false);
@@ -78,7 +78,7 @@ public final class LogHandler {
             try {
                 boolean result = dir.mkdirs();
                 if (result) {
-                    log(textHandler.successCreatedDirMsg(dirPath), LogHandler.LogLevel.INFORMATION, false);
+                    log(textHandler.successCreatedDirMsg(dirPath), LogHandler.LogLevel.INFO, false);
                 } else {
                     log(textHandler.errorCreatingDirMsg(dirPath), LogHandler.LogLevel.FAIL, false);
                 }
@@ -88,18 +88,18 @@ public final class LogHandler {
         }
     }
 
-    private boolean readIsVerboseLogEnabled() {
+    private boolean readIsVerboseLogEnabledProp() {
         String filePathClient = textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH;
         String filePathLocal = getClass().getResource(textHandler.OPTIONS_CONFIG_FILE_LOCAL_PATH).getPath();
         String pKey = textHandler.PROP_KEY_VERBOSE_LOG_ENABLED;
 
         try {
-            isVerboseLogEnabled = readProperty(pKey, filePathClient);
+            return readProperty(pKey, filePathClient);
         } catch (IOException e) {
             try {
-                isVerboseLogEnabled = readProperty(pKey, filePathLocal);
+                return readProperty(pKey, filePathLocal);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                log("Exception reading IsVerboseLogEnabled: " + ExceptionUtils.getStackTrace(e), LogLevel.ERROR, false);
             }
         }
 
@@ -119,10 +119,10 @@ public final class LogHandler {
                 }
 
                 value = p.getProperty(key);
-                value = removeComments(value);
+                value = removePropertyComments(value);
 
                 if (value != null) {
-                    log(textHandler.successReadPropertyMsg(pKey, value, filePath), LogHandler.LogLevel.INFORMATION, false);
+                    log(textHandler.successReadPropertyMsg(pKey, value, filePath), LogHandler.LogLevel.INFO, false);
                 }
             }
 
@@ -133,11 +133,7 @@ public final class LogHandler {
         return Boolean.valueOf(value);
     }
 
-
-    /*
-     * Remove comments from String line.
-     */
-    private String removeComments(String line) {
+    private String removePropertyComments(String line) {
         if (line.trim().length() == 0 || line.trim().charAt(0) == '#') {
             return null;
         }
@@ -178,17 +174,3 @@ public final class LogHandler {
     }
 
 }
-
-/*
-
-Find IsVerboseLogEnabled.
-1. Findes options.config på klient siden?
-	1.1 Ja
-		1.1.1 Læs IsVerboseLogEnabled fra klient siden.
-        1.2 Nej
-		1.2.1 Læs IsVerboseLogEnabled fra lokal siden.
-
- // log(textHandler.LOG_SEPARATOR, LogHandler.LogLevel.INFORMATION, false);
-    // log(textHandler.GAME_INIT_STARTED, LogHandler.LogLevel.INFORMATION, false);
-
- */

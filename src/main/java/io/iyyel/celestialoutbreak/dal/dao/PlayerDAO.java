@@ -41,7 +41,7 @@ public final class PlayerDAO implements IPlayerDAO {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             playerDTO = (PlayerDTO) ois.readObject();
             ois.close();
-            logHandler.log("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFORMATION, true);
+            logHandler.log("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFO, true);
         } catch (FileNotFoundException e) {
             logHandler.log("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.FAIL, true);
             createNewPlayerBinFile();
@@ -56,7 +56,7 @@ public final class PlayerDAO implements IPlayerDAO {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             oos.writeObject(playerDTO);
             oos.close();
-            logHandler.log("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'", LogHandler.LogLevel.INFORMATION, true);
+            logHandler.log("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'", LogHandler.LogLevel.INFO, true);
         } catch (IOException e) {
             throw new PlayerDAOException("Failed to save PlayerDTO: " + e.getMessage());
         }
@@ -129,7 +129,7 @@ public final class PlayerDAO implements IPlayerDAO {
     }
 
     private void createNewPlayerBinFile() throws PlayerDAOException {
-        logHandler.log("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFORMATION, true);
+        logHandler.log("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFO, true);
         playerDTO = new PlayerDTO();
         savePlayerDTO();
     }

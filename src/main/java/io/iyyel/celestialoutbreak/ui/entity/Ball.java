@@ -60,21 +60,21 @@ public final class Ball extends AbstractMobileEntity {
 
         /* Ball hit left x-axis. */
         if (pos.x < 0) {
-            logHandler.log(textHandler.vBallTouchedXAxisLeftMsg, LogHandler.LogLevel.INFORMATION, true);
+            logHandler.log(textHandler.vBallTouchedXAxisLeftMsg, LogHandler.LogLevel.INFO, true);
             velocity.x = speed;
             ballHitClip.play(false);
         }
 
         /* Ball hit right x-axis. */
         if (pos.x > (gameController.getWidth() - dim.width)) {
-            logHandler.log(textHandler.vBallTouchedXAxisRightMsg, LogHandler.LogLevel.INFORMATION, true);
+            logHandler.log(textHandler.vBallTouchedXAxisRightMsg, LogHandler.LogLevel.INFO, true);
             velocity.x = -speed;
             ballHitClip.play(false);
         }
 
         /* Ball hit top y-axis. */
         if (pos.y < 0) {
-            logHandler.log(textHandler.vBallTouchedYAxisTopMsg, LogHandler.LogLevel.INFORMATION, true);
+            logHandler.log(textHandler.vBallTouchedYAxisTopMsg, LogHandler.LogLevel.INFO, true);
             velocity.y = speed;
             ballHitClip.play(false);
         }
@@ -97,8 +97,8 @@ public final class Ball extends AbstractMobileEntity {
 
                 ballResetClip.play(false);
 
-                logHandler.log(textHandler.vBallTouchedYAxisBottomMsg, LogHandler.LogLevel.INFORMATION, true);
-                logHandler.log("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife(), LogHandler.LogLevel.INFORMATION, true);
+                logHandler.log(textHandler.vBallTouchedYAxisBottomMsg, LogHandler.LogLevel.INFO, true);
+                logHandler.log("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife(), LogHandler.LogLevel.INFO, true);
             }
         }
 
@@ -118,7 +118,7 @@ public final class Ball extends AbstractMobileEntity {
                 paddleCollisionTimer = PADDLE_COLLISION_TIMER_INITIAL;
 
                 soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
-                logHandler.log(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer), LogHandler.LogLevel.INFORMATION, true);
+                logHandler.log(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer), LogHandler.LogLevel.INFO, true);
             }
         } else if (t instanceof BlockList) {
 
@@ -135,10 +135,10 @@ public final class Ball extends AbstractMobileEntity {
                     if (blockList.getBlock(i).isDead()) {
                         soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
                         blockList.destroyBlock(i);
-                        logHandler.log("BlockList[" + i + "] has been destroyed.", LogHandler.LogLevel.INFORMATION, true);
+                        logHandler.log("BlockList[" + i + "] has been destroyed.", LogHandler.LogLevel.INFO, true);
                     } else {
                         soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
-                        logHandler.log(textHandler.vBallBlockListCollisionMsg(i, blockList.getBlock(i).getHitPoints()), LogHandler.LogLevel.INFORMATION, true);
+                        logHandler.log(textHandler.vBallBlockListCollisionMsg(i, blockList.getBlock(i).getHitPoints()), LogHandler.LogLevel.INFO, true);
                     }
 
                 }
