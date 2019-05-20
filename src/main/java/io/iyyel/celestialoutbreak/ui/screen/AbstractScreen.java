@@ -98,6 +98,11 @@ public abstract class AbstractScreen {
         drawScreenCenterString(tooltip, 665, screenTooltipFont, g);
     }
 
+    protected void drawScreenTitles(String subtitle, Graphics2D g) {
+        drawScreenTitle(g);
+        drawScreenSubtitle(subtitle, g);
+    }
+
     protected void resetInputTimer() {
         inputTimer = INIT_INPUT_TIMER;
     }

@@ -10,7 +10,7 @@ public final class OptionsHandler {
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
-    private final PropertyHandler propertyHandler = PropertyHandler.getInstance();
+    private final FileHandler fileHandler = FileHandler.getInstance();
 
     /* Property Game Options map */
     private final Map<String, Boolean> gamePropMap = new HashMap<String, Boolean>() {
@@ -51,7 +51,7 @@ public final class OptionsHandler {
     }
 
     private void initGameOptions() {
-        Map<String, String> pMap = propertyHandler.readPropertiesFromFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH);
+        Map<String, String> pMap = fileHandler.readPropertiesFromFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH);
         loadGameOptions(pMap);
         loadColorOptions(pMap);
     }

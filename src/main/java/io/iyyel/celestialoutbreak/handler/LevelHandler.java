@@ -11,7 +11,7 @@ public final class LevelHandler {
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
-    private final PropertyHandler propertyHandler = PropertyHandler.getInstance();
+    private final FileHandler fileHandler = FileHandler.getInstance();
 
     private int activeLevelIndex = 0;
     private Level[] levels;
@@ -68,7 +68,7 @@ public final class LevelHandler {
     public void initPreLevels(GameController gameController) {
         this.gameController = gameController;
 
-        List<String> levelConfigFileList = propertyHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
+        List<String> levelConfigFileList = fileHandler.readLinesFromFile(textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
         levels = new Level[levelConfigFileList.size()];
         levelOptionsFileNames = new String[levelConfigFileList.size()];
 
@@ -96,7 +96,7 @@ public final class LevelHandler {
     private String[] getLevelStringProperties(String pKey) {
         String[] arr = new String[levels.length];
         for (int i = 0; i < levels.length; i++) {
-            arr[i] = propertyHandler.readPropertyFromFile(pKey, levelOptionsFileNames[i]);
+            arr[i] = fileHandler.readPropertyFromFile(pKey, levelOptionsFileNames[i]);
         }
         return arr;
     }
@@ -104,7 +104,7 @@ public final class LevelHandler {
     private Color[] getLevelColorProperties() {
         Color[] colors = new Color[levels.length];
         for (int i = 0; i < levels.length; i++) {
-            int levelColorInt = Integer.decode(propertyHandler.readPropertyFromFile(textHandler.PROP_KEY_LEVEL_COLOR, levelOptionsFileNames[i]));
+            int levelColorInt = Integer.decode(fileHandler.readPropertyFromFile(textHandler.PROP_KEY_LEVEL_COLOR, levelOptionsFileNames[i]));
             colors[i] = new Color(levelColorInt);
         }
         return colors;
@@ -113,7 +113,7 @@ public final class LevelHandler {
     private int[] getLevelIntProperties(String pKey) {
         int[] arr = new int[levels.length];
         for (int i = 0; i < levels.length; i++) {
-            arr[i] = Integer.parseInt(propertyHandler.readPropertyFromFile(pKey, levelOptionsFileNames[i]));
+            arr[i] = Integer.parseInt(fileHandler.readPropertyFromFile(pKey, levelOptionsFileNames[i]));
         }
         return arr;
     }

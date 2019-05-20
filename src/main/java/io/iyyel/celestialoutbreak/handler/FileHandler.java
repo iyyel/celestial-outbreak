@@ -6,30 +6,30 @@ import java.io.*;
 import java.nio.file.Files;
 import java.util.*;
 
-public final class PropertyHandler {
+public final class FileHandler {
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
     private final FileUtil fileUtil = FileUtil.getInstance();
 
-    /* Singleton PropertyHandler instance. */
-    private static PropertyHandler instance;
+    /* Singleton FileHandler instance. */
+    private static FileHandler instance;
 
     /*
-     * Private constructor so that PropertyHandler
+     * Private constructor so that FileHandler
      * can't be instantiated outside.
      */
-    private PropertyHandler() {
+    private FileHandler() {
         initFileHandler();
     }
 
     /*
      * Static block to instantiate the
-     * Singleton PropertyHandler instance.
+     * Singleton FileHandler instance.
      */
     static {
         try {
-            instance = new PropertyHandler();
+            instance = new FileHandler();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +38,7 @@ public final class PropertyHandler {
     /*
      * Getter for the Singleton instance.
      */
-    public static synchronized PropertyHandler getInstance() {
+    public static synchronized FileHandler getInstance() {
         return instance;
     }
 
@@ -128,7 +128,7 @@ public final class PropertyHandler {
 
             for (String key : p.stringPropertyNames()) {
                 String value = p.getProperty(key);
-                value = removePropertyComments(value);
+                value = value = fileUtil.removeCommentFromLine(value, '#');
                 if (value != null) {
                     map.put(key, value);
                     logHandler.log(textHandler.successReadPropertyMsg(key, value, filePath), LogHandler.LogLevel.INFO, false);
@@ -200,7 +200,7 @@ public final class PropertyHandler {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = br.readLine()) != null) {
-                line = removePropertyComments(line);
+                line = fileUtil.removeCommentFromLine(line, '#');
                 if (line != null) {
                     lineList.add(line);
                     logHandler.log(textHandler.successReadLineMsg(line, filePath), LogHandler.LogLevel.INFO, false);
@@ -227,7 +227,7 @@ public final class PropertyHandler {
                 }
 
                 value = p.getProperty(key);
-                value = removePropertyComments(value);
+                value = fileUtil.removeCommentFromLine(value, '#');
 
                 if (value != null) {
                     logHandler.log(textHandler.successReadPropertyMsg(pKey, value, filePath), LogHandler.LogLevel.INFO, false);
@@ -239,46 +239,6 @@ public final class PropertyHandler {
         }
 
         return value;
-    }
-
-    private String removePropertyComments(String line) {
-        if (line.trim().length() == 0 || line.trim().charAt(0) == '#') {
-            return null;
-        }
-
-        String reversed = new StringBuilder(line).reverse().toString();
-
-        int commentIndex = reversed.indexOf('#');
-
-        if (commentIndex == 0) {
-            return null;
-        }
-
-        if (commentIndex == -1) {
-            return line;
-        }
-
-        reversed = reversed.substring(commentIndex + 1);
-
-        int firstAlphabeticIndex = -1;
-
-        for (int i = 0; i < reversed.length(); i++) {
-            char c = reversed.charAt(i);
-            if (!Character.isWhitespace(c)) {
-                firstAlphabeticIndex = i;
-                break;
-            }
-        }
-
-        if (firstAlphabeticIndex == -1) {
-            return new StringBuilder(reversed).reverse().toString();
-        }
-
-        reversed = reversed.substring(firstAlphabeticIndex);
-
-        line = new StringBuilder(reversed).reverse().toString();
-
-        return line;
     }
 
 }

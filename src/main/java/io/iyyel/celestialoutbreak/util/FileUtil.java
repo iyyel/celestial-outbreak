@@ -67,4 +67,44 @@ public final class FileUtil {
         }
     }
 
+    public String removeCommentFromLine(String line, char commentChar) {
+        if (line.trim().length() == 0 || line.trim().charAt(0) == commentChar) {
+            return null;
+        }
+
+        String reversed = new StringBuilder(line).reverse().toString();
+
+        int commentIndex = reversed.indexOf('#');
+
+        if (commentIndex == 0) {
+            return null;
+        }
+
+        if (commentIndex == -1) {
+            return line;
+        }
+
+        reversed = reversed.substring(commentIndex + 1);
+
+        int firstAlphabeticIndex = -1;
+
+        for (int i = 0; i < reversed.length(); i++) {
+            char c = reversed.charAt(i);
+            if (!Character.isWhitespace(c)) {
+                firstAlphabeticIndex = i;
+                break;
+            }
+        }
+
+        if (firstAlphabeticIndex == -1) {
+            return new StringBuilder(reversed).reverse().toString();
+        }
+
+        reversed = reversed.substring(firstAlphabeticIndex);
+
+        line = new StringBuilder(reversed).reverse().toString();
+
+        return line;
+    }
+
 }

@@ -5,12 +5,16 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 public abstract class AbstractNavigationScreen extends AbstractScreen {
 
     private final NavigationStyle navStyle;
+    private final int btnAmount;
+    private final int btnWrapAmount;
 
     private int selected = 0;
 
-    public AbstractNavigationScreen(GameController gameController, NavigationStyle navStyle) {
+    public AbstractNavigationScreen(NavigationStyle navStyle, int btnAmount, int btnWrapAmount, GameController gameController) {
         super(gameController);
         this.navStyle = navStyle;
+        this.btnAmount = btnAmount;
+        this.btnWrapAmount = btnWrapAmount;
     }
 
     protected final void navigateUp() {
@@ -24,11 +28,9 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
             selected++;
             menuNavClip.play(false);
         }
-
     }
 
     protected final void navigateLeft() {
-
         if (navStyle != NavigationStyle.VERTICAL_HORIZONTAL) {
             return;
         }
@@ -38,11 +40,9 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
             selected -= 5;
             menuNavClip.play(false);
         }
-
     }
 
     protected final void navigateRight() {
-
         if (navStyle != NavigationStyle.VERTICAL_HORIZONTAL) {
             return;
         }
@@ -52,7 +52,6 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
             selected += 5;
             menuNavClip.play(false);
         }
-
     }
 
     protected final void navigateForward() {

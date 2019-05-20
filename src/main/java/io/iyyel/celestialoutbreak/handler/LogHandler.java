@@ -119,7 +119,7 @@ public final class LogHandler {
                 }
 
                 value = p.getProperty(key);
-                value = removePropertyComments(value);
+                value = removePropertyComment(value, '#');
 
                 if (value != null) {
                     log(textHandler.successReadPropertyMsg(pKey, value, filePath), LogHandler.LogLevel.INFO, false);
@@ -133,8 +133,8 @@ public final class LogHandler {
         return Boolean.valueOf(value);
     }
 
-    private String removePropertyComments(String line) {
-        if (line.trim().length() == 0 || line.trim().charAt(0) == '#') {
+    private String removePropertyComment(String line, char commentChar) {
+        if (line.trim().length() == 0 || line.trim().charAt(0) == commentChar) {
             return null;
         }
 

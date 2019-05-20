@@ -72,7 +72,6 @@ public final class GameController extends Canvas implements Runnable {
     private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final InputHandler inputHandler = InputHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
-    private final PropertyHandler propertyHandler = PropertyHandler.getInstance();
     private final LevelHandler levelHandler = LevelHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
     private final IPlayerDAO playerDAO = PlayerDAO.getInstance();

@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.handler.PropertyHandler;
+import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
@@ -17,7 +17,7 @@ public final class GeneralOptionsScreen extends AbstractScreen {
     private Color[] playerNameColors;
     private int selected = 0;
 
-    private final PropertyHandler propertyHandler = PropertyHandler.getInstance();
+    private final FileHandler fileHandler = FileHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
 
     public GeneralOptionsScreen(GameController gameController) {
@@ -88,7 +88,7 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                     switch (i) {
                         case 0:
                             String pValue = String.valueOf(!optionsHandler.isSoundEnabled());
-                            propertyHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_SOUND_ENABLED, pValue);
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_SOUND_ENABLED, pValue);
                             optionsHandler.reloadProperty(textHandler.PROP_KEY_SOUND_ENABLED, pValue);
                             soundHandler.playStateSound(gameController.getState(), gameController.getPrevState(), true, true);
 
@@ -101,7 +101,7 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                             break;
                         case 1:
                             pValue = String.valueOf(!optionsHandler.isGodModeEnabled());
-                            propertyHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_GOD_MODE_ENABLED, pValue);
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_GOD_MODE_ENABLED, pValue);
                             optionsHandler.reloadProperty(textHandler.PROP_KEY_GOD_MODE_ENABLED, pValue);
 
                             if (optionsHandler.isGodModeEnabled()) {
@@ -113,7 +113,7 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                             break;
                         case 2:
                             pValue = String.valueOf(!optionsHandler.isFpsLockEnabled());
-                            propertyHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_FPS_LOCK_ENABLED, pValue);
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_FPS_LOCK_ENABLED, pValue);
                             optionsHandler.reloadProperty(textHandler.PROP_KEY_FPS_LOCK_ENABLED, pValue);
 
                             if (optionsHandler.isFpsLockEnabled()) {
@@ -125,7 +125,7 @@ public final class GeneralOptionsScreen extends AbstractScreen {
                             break;
                         case 3:
                             pValue = String.valueOf(!optionsHandler.isAntiAliasingEnabled());
-                            propertyHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_ANTI_ALIASING_ENABLED, pValue);
+                            fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_ANTI_ALIASING_ENABLED, pValue);
                             optionsHandler.reloadProperty(textHandler.PROP_KEY_ANTI_ALIASING_ENABLED, pValue);
 
                             if (optionsHandler.isAntiAliasingEnabled()) {
@@ -148,9 +148,7 @@ public final class GeneralOptionsScreen extends AbstractScreen {
 
     @Override
     public void render(Graphics2D g) {
-        /* Render game title */
-        drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_GENERAL_OPTIONS_SCREEN, g);
+        drawScreenTitles(textHandler.TITLE_GENERAL_OPTIONS_SCREEN, g);
 
         isSoundEnabledRect.setColor(rectColors[0]);
         isSoundEnabledRect.setFontColor(playerNameColors[0]);

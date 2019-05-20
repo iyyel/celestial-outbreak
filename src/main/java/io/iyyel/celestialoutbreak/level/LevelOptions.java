@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.level;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.handler.PropertyHandler;
+import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -12,7 +12,7 @@ import java.util.Map;
 public final class LevelOptions {
 
     private final TextHandler textHandler = TextHandler.getInstance();
-    private final PropertyHandler propertyHandler = PropertyHandler.getInstance();
+    private final FileHandler fileHandler = FileHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
 
     /*
@@ -82,7 +82,7 @@ public final class LevelOptions {
     }
 
     private void parseLevelOptions(String fileName) {
-        Map<String, String> map = propertyHandler.readPropertiesFromFile(fileName);
+        Map<String, String> map = fileHandler.readPropertiesFromFile(fileName);
 
         /* Level options */
         levelName = map.get(textHandler.PROP_KEY_LEVEL_NAME);

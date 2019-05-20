@@ -1,5 +1,5 @@
 package io.iyyel.celestialoutbreak.handler.contract;
 
-public interface IPropertyHandler {
+public interface IFileHandler {
 
 }
