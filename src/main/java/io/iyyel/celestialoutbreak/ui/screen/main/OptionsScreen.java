@@ -9,7 +9,7 @@ public final class OptionsScreen extends AbstractScreen {
 
     private final Rectangle playerRect, gameRect, configurationRect;
 
-    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GAME_OPTIONS_TEXT,
+    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GENERAL_OPTIONS_TEXT,
             textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
     private Color[] rectColors;
 

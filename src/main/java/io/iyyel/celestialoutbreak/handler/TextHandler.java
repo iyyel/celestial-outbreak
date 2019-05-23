@@ -69,7 +69,7 @@ public final class TextHandler {
     public final String BTN_CONTROLS_TEXT = "CONTROLS";
     public final String BTN_ABOUT_TEXT = "ABOUT";
     public final String BTN_EXIT_TEXT = "EXIT";
-    public final String BTN_GAME_OPTIONS_TEXT = "GAME OPTIONS";
+    public final String BTN_GENERAL_OPTIONS_TEXT = "GENERAL OPTIONS";
     public final String BTN_PLAYER_OPTIONS_TEXT = "PLAYER OPTIONS";
     public final String BTN_CONFIGURATION_OPTIONS_TEXT = "CONFIGURATION OPTIONS";
     public final String BTN_SELECT_PLAYER_TEXT = "SELECT PLAYER";

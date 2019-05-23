@@ -4,6 +4,7 @@ import io.iyyel.celestialoutbreak.dal.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.graphics.ScreenRenderer;
 import io.iyyel.celestialoutbreak.handler.*;
+import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.main.*;
 import io.iyyel.celestialoutbreak.ui.screen.options.ConfigOptionsScreen;
 import io.iyyel.celestialoutbreak.ui.screen.options.GeneralOptionsScreen;
@@ -206,7 +207,7 @@ public final class GameController extends Canvas implements Runnable {
         playerSelectScreen = new PlayerSelectScreen(this);
         playerCreateScreen = new PlayerCreateScreen(this);
         playerDeleteScreen = new PlayerDeleteScreen(this);
-        generalOptionsScreen = new GeneralOptionsScreen(this);
+        generalOptionsScreen = new GeneralOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL_HORIZONTAL, 4,this);
         configOptionsScreen = new ConfigOptionsScreen(this);
         aboutScreen = new AboutScreen(this);
         exitScreen = new ExitScreen(this);

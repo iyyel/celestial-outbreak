@@ -4,11 +4,13 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.dal.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.*;
+import io.iyyel.celestialoutbreak.ui.contract.IRenderable;
+import io.iyyel.celestialoutbreak.ui.contract.IUpdatable;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 
-public abstract class AbstractScreen {
+public abstract class AbstractScreen implements IRenderable, IUpdatable {
 
     protected final Util util = Util.getInstance();
     protected final OptionsHandler optionsHandler = OptionsHandler.getInstance();
@@ -42,6 +44,9 @@ public abstract class AbstractScreen {
 
     protected final int BTN_Y_OFFSET = 33;
 
+    protected final int initialBtnYPos = 230;
+    protected final int btnYIncrement = 75;
+
     protected final GameController gameController;
 
     public AbstractScreen(GameController gameController) {
@@ -50,10 +55,6 @@ public abstract class AbstractScreen {
         authorRect = new Rectangle(gameController.getWidth() / 2 + 3, gameController.getHeight() - 22, 70, 18);
         versionRect = new Rectangle(gameController.getWidth() / 2 - 73, gameController.getHeight() - 22, 66, 18);
     }
-
-    public abstract void update();
-
-    public abstract void render(Graphics2D g);
 
     protected void drawScreenCenterString(String text, int y, Font font, Graphics2D g) {
         g.setColor(screenFontColor);
