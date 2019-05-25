@@ -85,6 +85,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
     protected void navigateBackward(GameController.State state) {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
+            selected = 0;
             menuUseClip.play(false);
             gameController.switchState(state);
         }
@@ -104,6 +105,17 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
     public enum NavStyle {
         VERTICAL,
         VERTICAL_HORIZONTAL
+    }
+
+    protected boolean isButtonUsed(int index) {
+        boolean isUsed = inputHandler.isUsePressed() && isInputAvailable() && selected == index
+                && selected < btnAmount && selected >= 0;
+
+        if (isUsed) {
+            resetInputTimer();
+        }
+
+        return isUsed;
     }
 
 }
