@@ -1,118 +1,67 @@
 package io.iyyel.celestialoutbreak.ui.screen.options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
+import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
+import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
 import java.awt.*;
 
-public final class PlayerOptionsScreen extends AbstractScreen {
 
-    private final Rectangle selectRect, createRect, deleteRect;
+public final class PlayerOptionsScreen extends AbstractNavigationScreen {
 
-    private String[] options = {textHandler.BTN_SELECT_PLAYER_TEXT, textHandler.BTN_CREATE_PLAYER_TEXT, textHandler.BTN_DELETE_DELETE_TEXT};
-    private Color[] rectColors;
+    private final Button[] buttons;
 
-    private int selected = 0;
+    private final String[] options = {textHandler.BTN_SELECT_PLAYER_TEXT, textHandler.BTN_CREATE_PLAYER_TEXT, textHandler.BTN_DELETE_DELETE_TEXT};
 
-    public PlayerOptionsScreen(GameController gameController) {
-        super(gameController);
+    public PlayerOptionsScreen(NavStyle navStyle, int btnAmount, GameController gameController) {
+        super(navStyle, btnAmount, gameController);
+        buttons = new Button[btnAmount];
 
-        int initialBtnYPos = 230;
-        int btnYIncrement = 75;
-
-        /* Menu buttons */
-        selectRect = new Rectangle(gameController.getWidth() / 2 - 135, initialBtnYPos, 270, 50);
-        createRect = new Rectangle(gameController.getWidth() / 2 - 135, initialBtnYPos + btnYIncrement, 270, 50);
-        deleteRect = new Rectangle(gameController.getWidth() / 2 - 135, initialBtnYPos + btnYIncrement * 2, 270, 50);
-
-        rectColors = new Color[options.length];
-
-        for (int i = 0; i < rectColors.length; i++) {
-            rectColors[i] = menuBtnColor;
+        for (int i = 0; i < btnAmount; i++) {
+            buttons[i] = new Button(new Point(gameController.getWidth() / 2, initialBtnYPos + btnYIncrement * i),
+                    new Dimension(270, 50), options[i], inputBtnFont,
+                    screenFontColor, menuBtnColor, new Point(135, 0), new Point(0, -6), gameController);
         }
-
     }
 
     @Override
-    public void update() {
-        decInputTimer();
-
-        if (inputHandler.isCancelPressed() && isInputAvailable()) {
-            resetInputTimer();
-            selected = 0;
-            menuUseClip.play(false);
-            gameController.switchState(GameController.State.OPTIONS);
-        }
-
-        if (inputHandler.isUpPressed() && selected > 0 && isInputAvailable()) {
-            resetInputTimer();
-            selected--;
-            menuNavClip.play(false);
-        }
-
-        if (inputHandler.isDownPressed() && selected < options.length - 1 && isInputAvailable()) {
-            resetInputTimer();
-            selected++;
-            menuNavClip.play(false);
-        }
-
-        for (int i = 0, n = options.length; i < n; i++) {
-            if (selected == i) {
-                rectColors[i] = menuSelectedBtnColor;
-
-                if (inputHandler.isOKPressed() && isInputAvailable()) {
-                    resetInputTimer();
-                    menuUseClip.play(false);
-
-                    switch (i) {
-                        case 0:
-                            gameController.switchState(GameController.State.PLAYER_SELECT);
-                            break;
-                        case 1:
-                            gameController.switchState(GameController.State.PLAYER_CREATE);
-                            break;
-                        case 2:
-                            gameController.switchState(GameController.State.PLAYER_DELETE);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            } else {
-                rectColors[i] = menuBtnColor;
+    protected void updateButtonUse(int index) {
+        if (isButtonUsed(index)) {
+            switch (index) {
+                case 0:
+                    gameController.switchState(GameController.State.PLAYER_SELECT);
+                    break;
+                case 1:
+                    gameController.switchState(GameController.State.PLAYER_CREATE);
+                    break;
+                case 2:
+                    gameController.switchState(GameController.State.PLAYER_DELETE);
+                    break;
+                default:
+                    break;
             }
         }
     }
 
     @Override
+    public void update() {
+        decInputTimer();
+        updateNavUp();
+        updateNavDown();
+        updateNavLeft();
+        updateNavRight();
+        updateButtonUse(selected);
+        updateSelectedButtonColor(buttons);
+        updateNavCancel(GameController.State.OPTIONS);
+    }
+
+    @Override
     public void render(Graphics2D g) {
-        /* Render game title */
-        drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_PLAYER_OPTIONS_SCREEN, g);
+        drawScreenTitles(textHandler.TITLE_PLAYER_OPTIONS_SCREEN, g);
 
-        /* Render buttons  */
-        g.setFont(inputBtnFont);
-
-        /* Select button */
-        g.setColor(screenFontColor);
-        g.setFont(inputBtnFont);
-        drawScreenCenterString(options[0], selectRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[0]);
-        g.draw(selectRect);
-
-        /* New button */
-        g.setColor(screenFontColor);
-        g.setFont(inputBtnFont);
-        drawScreenCenterString(options[1], createRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[1]);
-        g.draw(createRect);
-
-        /* Remove button */
-        g.setColor(screenFontColor);
-        g.setFont(inputBtnFont);
-        drawScreenCenterString(options[2], deleteRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[2]);
-        g.draw(deleteRect);
+        for (Button button : buttons) {
+            button.render(g);
+        }
 
         drawScreenInfoPanel(g);
     }

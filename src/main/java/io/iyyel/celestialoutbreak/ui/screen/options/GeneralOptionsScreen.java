@@ -13,7 +13,8 @@ public final class GeneralOptionsScreen extends AbstractNavigationScreen {
 
     private final Button[] buttons;
 
-    private final String[] options = {"Sound", "God Mode", "FPS Lock", "Anti-aliasing"};
+    private final String[] options = {textHandler.BTN_SOUND_TEXT, textHandler.BTN_GOD_MODE_TEXT,
+            textHandler.BTN_FPS_LOCK_TEXT, textHandler.BTN_ANTI_ALIASING_TEXT};
 
     private final Color[] textOptionColor;
 
@@ -36,10 +37,13 @@ public final class GeneralOptionsScreen extends AbstractNavigationScreen {
     public void update() {
         decInputTimer();
         updateButtonColors();
-        updateNavigation();
+        updateNavUp();
+        updateNavDown();
+        updateNavLeft();
+        updateNavRight();
+        updateButtonUse(selected);
         updateSelectedButtonColor(buttons);
-        navigateBackward(GameController.State.OPTIONS);
-        triggerButton(selected);
+        updateNavCancel(GameController.State.OPTIONS);
     }
 
     @Override
@@ -56,7 +60,7 @@ public final class GeneralOptionsScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void triggerButton(int index) {
+    protected void updateButtonUse(int index) {
         if (isButtonUsed(index)) {
             switch (index) {
                 case 0:

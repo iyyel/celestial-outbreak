@@ -76,6 +76,11 @@ public final class TextHandler {
     public final String BTN_CREATE_PLAYER_TEXT = "CREATE PLAYER";
     public final String BTN_DELETE_DELETE_TEXT = "DELETE PLAYER";
 
+    public final String BTN_SOUND_TEXT = "Sound";
+    public final String BTN_GOD_MODE_TEXT = "God Mode";
+    public final String BTN_FPS_LOCK_TEXT = "FPS Lock";
+    public final String BTN_ANTI_ALIASING_TEXT = "Anti-aliasing";
+
     public final String BTN_CONTROL_MOV_NAV = "WASD/Arrow keys";
     public final String BTN_CONTROL_FORWARD_OK = "z";
     public final String BTN_CONTROL_BACK_CANCEL = "x";

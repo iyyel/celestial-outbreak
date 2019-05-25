@@ -11,6 +11,11 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
 
     protected int selected = 0;
 
+    public enum NavStyle {
+        VERTICAL,
+        VERTICAL_HORIZONTAL
+    }
+
     public AbstractNavigationScreen(NavStyle navStyle, int btnAmount, int btnWrapAmount, GameController gameController) {
         super(gameController);
         this.navStyle = navStyle;
@@ -25,16 +30,9 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         this.btnWrapAmount = btnAmount;
     }
 
-    protected abstract void triggerButton(int index);
+    protected abstract void updateButtonUse(int index);
 
-    protected final void updateNavigation() {
-        navigateUp();
-        navigateDown();
-        navigateLeft();
-        navigateRight();
-    }
-
-    protected final void navigateUp() {
+    protected final void updateNavUp() {
         if (inputHandler.isUpPressed() && selected % btnWrapAmount != 0 && isInputAvailable()) {
             resetInputTimer();
             selected--;
@@ -42,7 +40,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         }
     }
 
-    protected final void navigateDown() {
+    protected final void updateNavDown() {
         if (inputHandler.isDownPressed() && (selected + 1) % btnWrapAmount != 0 && (selected + 1) < btnAmount && isInputAvailable()) {
             resetInputTimer();
             selected++;
@@ -50,7 +48,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         }
     }
 
-    protected final void navigateLeft() {
+    protected final void updateNavLeft() {
         if (navStyle != NavStyle.VERTICAL_HORIZONTAL) {
             return;
         }
@@ -62,7 +60,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         }
     }
 
-    protected final void navigateRight() {
+    protected final void updateNavRight() {
         if (navStyle != NavStyle.VERTICAL_HORIZONTAL) {
             return;
         }
@@ -74,7 +72,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         }
     }
 
-    protected void navigateForward(GameController.State state) {
+    protected void updateNavOK(GameController.State state) {
         if (inputHandler.isOKPressed() && isInputAvailable()) {
             resetInputTimer();
             menuUseClip.play(false);
@@ -82,7 +80,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         }
     }
 
-    protected void navigateBackward(GameController.State state) {
+    protected void updateNavCancel(GameController.State state) {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             selected = 0;
@@ -100,11 +98,6 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
                 btn.setColor(menuBtnColor);
             }
         }
-    }
-
-    public enum NavStyle {
-        VERTICAL,
-        VERTICAL_HORIZONTAL
     }
 
     protected boolean isButtonUsed(int index) {

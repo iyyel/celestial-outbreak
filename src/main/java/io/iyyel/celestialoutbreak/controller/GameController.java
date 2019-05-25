@@ -203,11 +203,11 @@ public final class GameController extends Canvas implements Runnable {
         scoresScreen = new ScoresScreen(this);
         controlsScreen = new ControlsScreen(this);
         optionsScreen = new OptionsScreen(this);
-        playerOptionsScreen = new PlayerOptionsScreen(this);
+        playerOptionsScreen = new PlayerOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
         playerSelectScreen = new PlayerSelectScreen(this);
         playerCreateScreen = new PlayerCreateScreen(this);
         playerDeleteScreen = new PlayerDeleteScreen(this);
-        generalOptionsScreen = new GeneralOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL_HORIZONTAL, 4,this);
+        generalOptionsScreen = new GeneralOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 4, this);
         configOptionsScreen = new ConfigOptionsScreen(this);
         aboutScreen = new AboutScreen(this);
         exitScreen = new ExitScreen(this);
@@ -552,7 +552,7 @@ public final class GameController extends Canvas implements Runnable {
     public synchronized void stop() {
         if (isRunning) {
             isRunning = false;
-            logHandler.log(textHandler.GAME_TITLE + " shutting down.", LogHandler.LogLevel.INFO,false);
+            logHandler.log(textHandler.GAME_TITLE + " shutting down.", LogHandler.LogLevel.INFO, false);
             System.exit(0);
         }
     }
