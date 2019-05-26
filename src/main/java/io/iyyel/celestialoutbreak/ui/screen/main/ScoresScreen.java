@@ -13,19 +13,13 @@ public final class ScoresScreen extends AbstractScreen {
 
     @Override
     public void update() {
-        decInputTimer();
-
-        if (inputHandler.isCancelPressed() && isInputAvailable()) {
-            resetInputTimer();
-            menuUseClip.play(false);
-            gameController.switchState(GameController.State.MAIN);
-        }
+        super.update();
+        updateNavCancel(GameController.State.MAIN);
     }
 
     @Override
     public void render(Graphics2D g) {
-        drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_SCORES_SCREEN, g);
+        drawScreenTitles(textHandler.TITLE_SCORES_SCREEN, g);
         drawScreenInfoPanel(g);
     }
 

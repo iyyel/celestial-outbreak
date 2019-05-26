@@ -7,31 +7,24 @@ import java.awt.*;
 
 public final class ConfigOptionsScreen extends AbstractScreen {
 
+    int xPos = 80;
+    int yPos = 260;
+    int yPosInc = 35;
+    int yPosSepInc = 70;
+
     public ConfigOptionsScreen(GameController gameController) {
         super(gameController);
     }
 
     @Override
     public void update() {
-        decInputTimer();
-
-        if (inputHandler.isCancelPressed() && isInputAvailable()) {
-            resetInputTimer();
-            menuUseClip.play(false);
-            gameController.switchState(GameController.State.OPTIONS);
-        }
+        super.update();
+        updateNavCancel(GameController.State.OPTIONS);
     }
 
     @Override
     public void render(Graphics2D g) {
-        drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_CONFIGURATION_OPTIONS_SCREEN, g);
-
-        int xPos = 80;
-        int yPos = 260;
-        int yPosInc = 35;
-        int yPosSepInc = 70;
-
+        drawScreenTitles(textHandler.TITLE_CONFIGURATION_OPTIONS_SCREEN, g);
         g.setFont(msgFont);
 
         g.drawString(textHandler.menuConfigMsg01, xPos, yPos);

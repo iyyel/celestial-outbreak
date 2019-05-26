@@ -45,7 +45,7 @@ public final class PlayerOptionsScreen extends AbstractNavigationScreen {
 
     @Override
     public void update() {
-        decInputTimer();
+        super.update();
         updateNavUp();
         updateNavDown();
         updateNavLeft();
@@ -58,11 +58,7 @@ public final class PlayerOptionsScreen extends AbstractNavigationScreen {
     @Override
     public void render(Graphics2D g) {
         drawScreenTitles(textHandler.TITLE_PLAYER_OPTIONS_SCREEN, g);
-
-        for (Button button : buttons) {
-            button.render(g);
-        }
-
+        renderButtons(buttons, g);
         drawScreenInfoPanel(g);
     }
 

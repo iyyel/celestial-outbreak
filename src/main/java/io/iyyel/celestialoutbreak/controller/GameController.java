@@ -202,7 +202,7 @@ public final class GameController extends Canvas implements Runnable {
         pauseScreen = new PauseScreen(this);
         scoresScreen = new ScoresScreen(this);
         controlsScreen = new ControlsScreen(this);
-        optionsScreen = new OptionsScreen(this);
+        optionsScreen = new OptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
         playerOptionsScreen = new PlayerOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
         playerSelectScreen = new PlayerSelectScreen(this);
         playerCreateScreen = new PlayerCreateScreen(this);

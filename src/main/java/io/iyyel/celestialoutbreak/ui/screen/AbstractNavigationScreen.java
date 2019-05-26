@@ -72,20 +72,12 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         }
     }
 
-    protected void updateNavOK(GameController.State state) {
-        if (inputHandler.isOKPressed() && isInputAvailable()) {
-            resetInputTimer();
-            menuUseClip.play(false);
-            gameController.switchState(state);
-        }
-    }
-
+    @Override
     protected void updateNavCancel(GameController.State state) {
+        super.updateNavCancel(state);
+
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
-            resetInputTimer();
             selected = 0;
-            menuUseClip.play(false);
-            gameController.switchState(state);
         }
     }
 

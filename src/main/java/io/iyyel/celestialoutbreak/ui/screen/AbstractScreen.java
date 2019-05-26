@@ -6,9 +6,11 @@ import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.ui.contract.IRenderable;
 import io.iyyel.celestialoutbreak.ui.contract.IUpdatable;
+import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
+
 
 public abstract class AbstractScreen implements IRenderable, IUpdatable {
 
@@ -99,6 +101,27 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
         drawScreenCenterString(tooltip, 665, screenTooltipFont, g);
     }
 
+    protected void updateNavOK(GameController.State state) {
+        if (inputHandler.isOKPressed() && isInputAvailable()) {
+            resetInputTimer();
+            menuUseClip.play(false);
+            gameController.switchState(state);
+        }
+    }
+
+    protected void updateNavCancel(GameController.State state) {
+        if (inputHandler.isCancelPressed() && isInputAvailable()) {
+            resetInputTimer();
+            menuUseClip.play(false);
+            gameController.switchState(state);
+        }
+    }
+
+    @Override
+    public void update() {
+        decInputTimer();
+    }
+
     protected void drawScreenTitles(String subtitle, Graphics2D g) {
         drawScreenTitle(g);
         drawScreenSubtitle(subtitle, g);
@@ -111,6 +134,12 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
     protected void decInputTimer() {
         if (inputTimer > 0) {
             inputTimer--;
+        }
+    }
+
+    public void renderButtons(Button[] buttons, Graphics2D g) {
+        for (Button button : buttons) {
+            button.render(g);
         }
     }
 

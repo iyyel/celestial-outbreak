@@ -35,7 +35,7 @@ public final class GeneralOptionsScreen extends AbstractNavigationScreen {
 
     @Override
     public void update() {
-        decInputTimer();
+        super.update();
         updateButtonColors();
         updateNavUp();
         updateNavDown();
