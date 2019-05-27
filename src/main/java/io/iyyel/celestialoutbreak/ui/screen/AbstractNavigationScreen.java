@@ -9,7 +9,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
     private final int btnAmount;
     private final int btnWrapAmount;
 
-    protected int selected = 0;
+    protected int selectedIndex = 0;
 
     public enum NavStyle {
         VERTICAL,
@@ -30,20 +30,22 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         this.btnWrapAmount = btnAmount;
     }
 
-    protected abstract void updateButtonUse(int index);
+    protected abstract void updateNavUse(int index);
+
+    protected abstract void updateNavOK(int index);
 
     protected final void updateNavUp() {
-        if (inputHandler.isUpPressed() && selected % btnWrapAmount != 0 && isInputAvailable()) {
+        if (inputHandler.isUpPressed() && selectedIndex % btnWrapAmount != 0 && isInputAvailable()) {
             resetInputTimer();
-            selected--;
+            selectedIndex--;
             menuNavClip.play(false);
         }
     }
 
     protected final void updateNavDown() {
-        if (inputHandler.isDownPressed() && (selected + 1) % btnWrapAmount != 0 && (selected + 1) < btnAmount && isInputAvailable()) {
+        if (inputHandler.isDownPressed() && (selectedIndex + 1) % btnWrapAmount != 0 && (selectedIndex + 1) < btnAmount && isInputAvailable()) {
             resetInputTimer();
-            selected++;
+            selectedIndex++;
             menuNavClip.play(false);
         }
     }
@@ -53,9 +55,9 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
             return;
         }
 
-        if (inputHandler.isLeftPressed() && selected > (btnWrapAmount - 1) && isInputAvailable()) {
+        if (inputHandler.isLeftPressed() && selectedIndex > (btnWrapAmount - 1) && isInputAvailable()) {
             resetInputTimer();
-            selected -= btnWrapAmount;
+            selectedIndex -= btnWrapAmount;
             menuNavClip.play(false);
         }
     }
@@ -65,26 +67,26 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
             return;
         }
 
-        if (inputHandler.isRightPressed() && selected < btnAmount && (selected + btnWrapAmount) < btnAmount && isInputAvailable()) {
+        if (inputHandler.isRightPressed() && selectedIndex < btnAmount && (selectedIndex + btnWrapAmount) < btnAmount && isInputAvailable()) {
             resetInputTimer();
-            selected += btnWrapAmount;
+            selectedIndex += btnWrapAmount;
             menuNavClip.play(false);
         }
     }
 
     @Override
     protected void updateNavCancel(GameController.State state) {
-        super.updateNavCancel(state);
-
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
-            selected = 0;
+            selectedIndex = 0;
         }
+
+        super.updateNavCancel(state);
     }
 
     protected void updateSelectedButtonColor(Button[] buttons) {
         for (int i = 0; i < buttons.length; i++) {
             Button btn = buttons[i];
-            if (selected == i) {
+            if (selectedIndex == i) {
                 btn.setColor(menuSelectedBtnColor);
             } else {
                 btn.setColor(menuBtnColor);
@@ -93,14 +95,25 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
     }
 
     protected boolean isButtonUsed(int index) {
-        boolean isUsed = inputHandler.isUsePressed() && isInputAvailable() && selected == index
-                && selected < btnAmount && selected >= 0;
+        boolean isUsed = inputHandler.isUsePressed() && isInputAvailable() && selectedIndex == index
+                && selectedIndex < btnAmount && selectedIndex >= 0;
 
         if (isUsed) {
             resetInputTimer();
         }
 
         return isUsed;
+    }
+
+    protected boolean isButtonOK(int index) {
+        boolean isOK = inputHandler.isOKPressed() && isInputAvailable() && selectedIndex == index
+                && selectedIndex < btnAmount && selectedIndex >= 0;
+
+        if (isOK) {
+            resetInputTimer();
+        }
+
+        return isOK;
     }
 
 }

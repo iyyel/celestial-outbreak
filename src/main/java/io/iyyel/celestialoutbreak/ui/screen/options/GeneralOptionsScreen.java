@@ -8,7 +8,6 @@ import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
 import java.awt.*;
 
-
 public final class GeneralOptionsScreen extends AbstractNavigationScreen {
 
     private final Button[] buttons;
@@ -41,7 +40,7 @@ public final class GeneralOptionsScreen extends AbstractNavigationScreen {
         updateNavDown();
         updateNavLeft();
         updateNavRight();
-        updateButtonUse(selected);
+        updateNavUse(selectedIndex);
         updateSelectedButtonColor(buttons);
         updateNavCancel(GameController.State.OPTIONS);
     }
@@ -60,7 +59,7 @@ public final class GeneralOptionsScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void updateButtonUse(int index) {
+    protected void updateNavUse(int index) {
         if (isButtonUsed(index)) {
             switch (index) {
                 case 0:
@@ -116,6 +115,11 @@ public final class GeneralOptionsScreen extends AbstractNavigationScreen {
                     break;
             }
         }
+    }
+
+    @Override
+    protected void updateNavOK(int index) {
+
     }
 
     private void updateButtonColors() {

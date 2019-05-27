@@ -101,11 +101,10 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
         drawScreenCenterString(tooltip, 665, screenTooltipFont, g);
     }
 
-    protected void updateNavOK(GameController.State state) {
+    protected void updateNavOK() {
         if (inputHandler.isOKPressed() && isInputAvailable()) {
             resetInputTimer();
             menuUseClip.play(false);
-            gameController.switchState(state);
         }
     }
 

@@ -25,19 +25,22 @@ public final class OptionsScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void updateButtonUse(int index) {
-        if (isButtonUsed(index)) {
+    protected void updateNavUse(int index) {
+
+    }
+
+    @Override
+    protected void updateNavOK(int index) {
+        if (isButtonOK(index)) {
+            super.updateNavOK();
             switch (index) {
                 case 0:
-                    // Player options
                     gameController.switchState(GameController.State.PLAYER_OPTIONS);
                     break;
                 case 1:
-                    // Game options
                     gameController.switchState(GameController.State.GENERAL_OPTIONS);
                     break;
                 case 2:
-                    // Configuration options
                     gameController.switchState(GameController.State.CONFIG_OPTIONS);
                     break;
                 default:
@@ -52,7 +55,7 @@ public final class OptionsScreen extends AbstractNavigationScreen {
         updateNavCancel(GameController.State.MAIN);
         updateNavUp();
         updateNavDown();
-        updateButtonUse(selected);
+        updateNavOK(selectedIndex);
         updateSelectedButtonColor(buttons);
     }
 

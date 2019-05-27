@@ -113,7 +113,7 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public String getSelectedPlayer() throws PlayerDAOException {
         if (playerDTO.getSelectedPlayer() == null) {
-            throw new PlayerDAOException("No player is selected!");
+            throw new PlayerDAOException("No player is selectedIndex!");
         }
         return playerDTO.getSelectedPlayer();
     }
