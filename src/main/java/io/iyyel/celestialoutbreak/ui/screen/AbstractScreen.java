@@ -54,8 +54,8 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
     public AbstractScreen(GameController gameController) {
         this.gameController = gameController;
 
-        authorRect = new Rectangle(gameController.getWidth() / 2 + 3, gameController.getHeight() - 22, 70, 18);
-        versionRect = new Rectangle(gameController.getWidth() / 2 - 73, gameController.getHeight() - 22, 66, 18);
+        authorRect = new Rectangle(getHalfWidth() + 3, gameController.getHeight() - 22, 70, 18);
+        versionRect = new Rectangle(getHalfWidth() - 73, gameController.getHeight() - 22, 66, 18);
     }
 
     protected void drawScreenCenterString(String text, int y, Font font, Graphics2D g) {
@@ -68,6 +68,10 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
 
     protected void drawScreenMessage(String text, int yOffset, Graphics2D g) {
         drawScreenCenterString(text, getHalfHeight() + yOffset, msgFont, g);
+    }
+
+    protected void drawScreenMessage(String text, Graphics2D g) {
+        drawScreenCenterString(text, getHalfHeight(), msgFont, g);
     }
 
     protected void drawScreenInfoPanel(Graphics2D g) {

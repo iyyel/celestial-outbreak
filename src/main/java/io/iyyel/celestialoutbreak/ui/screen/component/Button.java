@@ -26,7 +26,7 @@ public final class Button extends AbstractComponent {
     public void render(Graphics2D g) {
         g.setColor(fontColor);
         g.setFont(font);
-        drawScreenCenterString(text, textPos.y, font, g);
+        g.drawString(text, textPos.x, textPos.y);
         g.setColor(color);
         g.draw(rect);
     }

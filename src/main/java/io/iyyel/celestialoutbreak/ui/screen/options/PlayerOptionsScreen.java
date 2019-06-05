@@ -26,7 +26,12 @@ public final class PlayerOptionsScreen extends AbstractNavigationScreen {
 
     @Override
     protected void updateNavUse(int index) {
-        if (isButtonUsed(index)) {
+
+    }
+
+    @Override
+    protected void updateNavOK(int index) {
+        if (isButtonOK(index)) {
             switch (index) {
                 case 0:
                     gameController.switchState(GameController.State.PLAYER_SELECT);
@@ -44,18 +49,13 @@ public final class PlayerOptionsScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void updateNavOK(int index) {
-
-    }
-
-    @Override
     public void update() {
         super.update();
         updateNavUp();
         updateNavDown();
         updateNavLeft();
         updateNavRight();
-        updateNavUse(selectedIndex);
+        updateNavOK(selectedIndex);
         updateSelectedButtonColor(buttons);
         updateNavCancel(GameController.State.OPTIONS);
     }

@@ -5,9 +5,9 @@ import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
 public abstract class AbstractNavigationScreen extends AbstractScreen {
 
-    private final NavStyle navStyle;
-    private final int btnAmount;
-    private final int btnWrapAmount;
+    protected final NavStyle navStyle;
+    protected final int btnAmount;
+    protected final int btnWrapAmount;
 
     protected int selectedIndex = 0;
 

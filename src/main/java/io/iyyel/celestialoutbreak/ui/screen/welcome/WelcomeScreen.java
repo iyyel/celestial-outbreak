@@ -1,103 +1,70 @@
 package io.iyyel.celestialoutbreak.ui.screen.welcome;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
+import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
+import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
 import java.awt.*;
 
-public final class WelcomeScreen extends AbstractScreen {
+public final class WelcomeScreen extends AbstractNavigationScreen {
 
-    private final Rectangle startRect, exitRect;
+    private final Button[] buttons;
+    private final String[] options = {textHandler.BTN_START_TEXT, textHandler.BTN_EXIT_TEXT};
+    private final int Y_MULTIPLIER = 3;
 
-    private String[] btnText = {textHandler.BTN_START_TEXT, textHandler.BTN_EXIT_TEXT};
-    private Color[] rectColors;
+    public WelcomeScreen(NavStyle navStyle, int btnAmount, GameController gameController) {
+        super(navStyle, btnAmount, gameController);
+        buttons = new io.iyyel.celestialoutbreak.ui.screen.component.Button[btnAmount];
 
-    private int selected = 0;
-
-    public WelcomeScreen(GameController gameController) {
-        super(gameController);
-
-        int initialBtnYPos = 230;
-        int btnYIncrement = 75;
-
-        rectColors = new Color[btnText.length];
-
-        startRect = new Rectangle(getHalfWidth() - 80, initialBtnYPos + btnYIncrement * 3, 160, 50);
-        exitRect = new Rectangle(getHalfWidth() - 80, initialBtnYPos + btnYIncrement * 4, 160, 50);
-
-        for (int i = 0; i < rectColors.length; i++) {
-            rectColors[i] = menuBtnColor;
+        for (int i = 0; i < btnAmount; i++) {
+            buttons[i] = new Button(new Point(getHalfWidth(), initialBtnYPos + btnYIncrement * (i + Y_MULTIPLIER)),
+                    new Dimension(160, 50), options[i], inputBtnFont,
+                    screenFontColor, menuBtnColor, new Point(80, 0), new Point(0, -6), gameController);
         }
-
     }
 
     @Override
     public void update() {
-        decInputTimer();
+        super.update();
+        updateNavUp();
+        updateNavDown();
+        updateNavOK(selectedIndex);
+        updateSelectedButtonColor(buttons);
+        updateNavCancel(GameController.State.OPTIONS);
+    }
 
-        if (inputHandler.isDownPressed() && selected < btnText.length - 1 && isInputAvailable()) {
-            resetInputTimer();
-            selected++;
-            menuNavClip.play(false);
-        }
+    @Override
+    protected void updateNavUse(int index) {
 
-        if (inputHandler.isUpPressed() && selected > 0 && isInputAvailable()) {
-            resetInputTimer();
-            selected--;
-            menuNavClip.play(false);
-        }
+    }
 
-        for (int i = 0, n = btnText.length; i < n; i++) {
-            if (selected == i) {
-                rectColors[i] = menuSelectedBtnColor;
-
-                if (inputHandler.isOKPressed() && isInputAvailable()) {
-                    resetInputTimer();
-                    menuUseClip.play(false);
-
-                    switch (i) {
-                        case 0:
-                            proceed();
-                            break;
-                        case 1:
-                            gameController.switchState(GameController.State.EXIT);
-                            break;
-                        default:
-                            break;
-                    }
-
-                }
-            } else {
-                rectColors[i] = menuBtnColor;
+    @Override
+    protected void updateNavOK(int index) {
+        if (isButtonOK(index)) {
+            super.updateNavOK();
+            switch (index) {
+                case 0:
+                    doProceed();
+                    break;
+                case 1:
+                    gameController.switchState(GameController.State.EXIT);
+                    break;
+                default:
+                    break;
             }
         }
     }
 
     @Override
     public void render(Graphics2D g) {
-        drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_WELCOME_SCREEN, g);
-        drawScreenMessage(textHandler.WELCOME_SCREEN_TEXT, 0, g);
-
-        /* Start button */
-        g.setColor(screenFontColor);
-        drawScreenCenterString(btnText[0], startRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[0]);
-        g.draw(startRect);
-
-        /* Exit button */
-        g.setColor(screenFontColor);
-        drawScreenCenterString(btnText[1], exitRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[1]);
-        g.draw(exitRect);
-
-        /* Draw screen tooltip */
+        drawScreenTitles(textHandler.TITLE_WELCOME_SCREEN, g);
+        drawScreenMessage(textHandler.WELCOME_SCREEN_TEXT, g);
+        renderButtons(buttons, g);
         drawScreenToolTip(textHandler.WELCOME_SCREEN_TOOLTIP_TEXT, g);
-
         drawScreenInfoPanel(g);
     }
 
-    private void proceed() {
+    private void doProceed() {
         if (playerDAO.getPlayerList().isEmpty()) {
             gameController.switchState(GameController.State.PLAYER_CREATE);
         } else {
