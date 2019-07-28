@@ -18,7 +18,7 @@ public final class WelcomeScreen extends AbstractNavigationScreen {
 
         for (int i = 0; i < btnAmount; i++) {
             buttons[i] = new Button(new Point(getHalfWidth(), initialBtnYPos + btnYIncrement * (i + Y_MULTIPLIER)),
-                    new Dimension(160, 50), options[i], inputBtnFont,
+                    new Dimension(160, 50), options[i], true, inputBtnFont,
                     screenFontColor, menuBtnColor, new Point(80, 0), new Point(0, -6), gameController);
         }
     }

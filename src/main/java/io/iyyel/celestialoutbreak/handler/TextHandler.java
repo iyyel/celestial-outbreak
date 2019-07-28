@@ -9,7 +9,7 @@ import java.util.Date;
 public final class TextHandler {
 
     /* Log date format. */
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     /* Singleton TextHandler instance. */
     private static TextHandler instance;
@@ -137,15 +137,16 @@ public final class TextHandler {
     public final String LOG_DIR_NAME = "log";
     public final String LOG_DIR_PATH = GAME_DIR_PATH + fs + LOG_DIR_NAME;
 
-    public final String LOG_FILE_NAME = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_log.txt";
+    public final String LOG_FILE_NAME = GAME_TITLE.toLowerCase().replaceAll("\\s+", "")
+            + "-" + new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "_log.txt";
     public final String LOG_FILE_PATH = LOG_DIR_PATH + fs + LOG_FILE_NAME;
 
     public final String LOG_SEPARATOR = "########################################################################" +
             "#########################################################################";
 
     public final String logMsgPrefix(LogHandler.LogLevel logLevel) {
-        int length = LogHandler.LogLevel.ERROR.toString().length();
-        return "[" + dateFormat.format(new Date()) + " " + getFixedString(logLevel.toString(), length) + "]: ";
+        int length = LogHandler.LogLevel.ERROR.toString().length() + 3;
+        return "[" + dateFormat.format(new Date()) + " " + getFixedString("(" + logLevel.toString() + ")", length) + "]: ";
     }
 
     /*

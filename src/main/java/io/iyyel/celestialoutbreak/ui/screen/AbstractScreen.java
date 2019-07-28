@@ -135,15 +135,13 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
     }
 
     protected void decInputTimer() {
-        if (inputTimer > 0) {
+        if (inputTimer > 0)
             inputTimer--;
-        }
     }
 
     public void renderButtons(Button[] buttons, Graphics2D g) {
-        for (Button button : buttons) {
+        for (Button button : buttons)
             button.render(g);
-        }
     }
 
     protected boolean isInputAvailable() {

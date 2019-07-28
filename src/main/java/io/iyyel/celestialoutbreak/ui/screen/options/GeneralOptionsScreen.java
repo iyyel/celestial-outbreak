@@ -27,7 +27,7 @@ public final class GeneralOptionsScreen extends AbstractNavigationScreen {
 
         for (int i = 0; i < btnAmount; i++) {
             buttons[i] = new Button(new Point(gameController.getWidth() / 2, initialBtnYPos + btnYIncrement * i),
-                    new Dimension(240, 50), options[i], inputBtnFont,
+                    new Dimension(240, 50), options[i], true,  inputBtnFont,
                     screenFontColor, menuBtnColor, new Point(120, 0), new Point(0, -6), gameController);
         }
     }
@@ -50,7 +50,7 @@ public final class GeneralOptionsScreen extends AbstractNavigationScreen {
         drawScreenTitles(textHandler.TITLE_GENERAL_OPTIONS_SCREEN, g);
 
         for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setFontColor(textOptionColor[i]);
+            buttons[i].setTextColor(textOptionColor[i]);
             buttons[i].render(g);
         }
 

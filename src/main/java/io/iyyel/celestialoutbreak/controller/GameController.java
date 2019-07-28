@@ -264,7 +264,7 @@ public final class GameController extends Canvas implements Runnable {
                     /* TODO: Is this correctly calculated? (ram) */
                     /* TODO: Create textHandler string for this. */
                     double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
-                    gameFrame.setTitle(textHandler.GAME_TITLE + " | Version: " + textHandler.GAME_VERSION +
+                    gameFrame.setTitle(textHandler.GAME_TITLE + " | " + textHandler.GAME_VERSION +
                             " - " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
                     logHandler.log(textHandler.vPerformanceMsg(frames, updates, allocatedRam), LogHandler.LogLevel.INFO, true);
                 } else {

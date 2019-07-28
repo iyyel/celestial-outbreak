@@ -8,6 +8,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
     protected final NavStyle navStyle;
     protected final int btnAmount;
     protected final int btnWrapAmount;
+    protected boolean isFirstRender = true;
 
     protected int selectedIndex = 0;
 
@@ -78,6 +79,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
     protected void updateNavCancel(GameController.State state) {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             selectedIndex = 0;
+            isFirstRender = true;
         }
 
         super.updateNavCancel(state);
@@ -87,9 +89,9 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         for (int i = 0; i < buttons.length; i++) {
             Button btn = buttons[i];
             if (selectedIndex == i) {
-                btn.setColor(menuSelectedBtnColor);
+                btn.setBgColor(menuSelectedBtnColor);
             } else {
-                btn.setColor(menuBtnColor);
+                btn.setBgColor(menuBtnColor);
             }
         }
     }

@@ -7,16 +7,15 @@ import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
 import java.awt.*;
 
-
 public final class PlayerSelectScreen extends AbstractNavigationScreen {
 
     private Button[] buttons;
     private Color[] playerNameColors;
 
-    private boolean isFirstRender = true;
     private int playerAmount = 0;
 
-    public PlayerSelectScreen(NavStyle navStyle, int btnAmount, int btnWrapAmount, GameController gameController) {
+    public PlayerSelectScreen(NavStyle navStyle, int btnAmount,
+                              int btnWrapAmount, GameController gameController) {
         super(navStyle, btnAmount, btnWrapAmount, gameController);
     }
 
@@ -51,19 +50,18 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
     @Override
     public void updateNavCancel(GameController.State state) {
         super.updateNavCancel(state);
-        this.isFirstRender = true;
     }
 
     @Override
     public void update() {
         super.update();
-        decInputTimer();
         updateNavUp();
         updateNavDown();
         updateNavLeft();
         updateNavRight();
         updateNavOK(selectedIndex);
         updateNavCancel(gameController.getPrevState());
+        updateNavUse(selectedIndex);
         updatePlayerColors(selectedIndex);
         updateSelectedButtonColor(buttons);
     }
@@ -71,7 +69,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
     @Override
     public void render(Graphics2D g) {
         /*
-         * Do this ONCE everytime the user is on this screen.
+         * Do this ONCE every time the user is on this screen.
          */
         if (isFirstRender) {
             isFirstRender = false;
@@ -98,8 +96,8 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
         buttons = new Button[playerAmount];
         playerNameColors = new Color[playerAmount];
 
-        int initialX = 150;
-        int initialY = 240;
+        int initialX = 240;
+        int initialY = 230;
         int x = initialX;
         int y = initialY;
         int xInc = 200;
@@ -111,8 +109,10 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
                 y = initialY;
             }
 
-            buttons[i] = new Button(new Point(x, y), new Dimension(150, 50), playerDAO.getPlayerList().get(i), inputBtnFont,
-                    screenFontColor, menuBtnColor, new Point(75, 0), new Point(5, 26), gameController);
+            String player = playerDAO.getPlayerList().get(i);
+            buttons[i] = new Button(new Point(x, y), new Dimension(150, 50),
+                    player, false, inputBtnFont, screenFontColor, menuBtnColor,
+                    new Point(75, 0), new Point(70, -5), gameController);
 
             y += yInc;
         }
@@ -125,10 +125,10 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
 
             if (player.equals(selectedPlayer)) {
                 playerNameColors[index] = menuBtnPlayerSelectedColor;
-                buttons[index].setFontColor(playerNameColors[index]);
+                buttons[index].setTextColor(playerNameColors[index]);
             } else {
                 playerNameColors[index] = menuBtnColor;
-                buttons[index].setFontColor(playerNameColors[index]);
+                buttons[index].setTextColor(playerNameColors[index]);
             }
         } catch (IPlayerDAO.PlayerDAOException e) {
             e.printStackTrace();
