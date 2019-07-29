@@ -11,7 +11,6 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
 
     private Button[] buttons;
     private Color[] playerNameColors;
-
     private int playerAmount = 0;
 
     public PlayerSelectScreen(NavStyle navStyle, int btnAmount,
@@ -48,7 +47,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    public void updateNavCancel(GameController.State state) {
+    protected void updateNavCancel(GameController.State state) {
         super.updateNavCancel(state);
     }
 
@@ -62,7 +61,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
         updateNavOK(selectedIndex);
         updateNavCancel(gameController.getPrevState());
         updateNavUse(selectedIndex);
-        updatePlayerColors(selectedIndex);
+        updatePlayerColors();
         updateSelectedButtonColor(buttons);
     }
 
@@ -118,20 +117,22 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
         }
     }
 
-    private void updatePlayerColors(int index) {
-        try {
-            String player = playerDAO.getPlayerList().get(index);
-            String selectedPlayer = playerDAO.getSelectedPlayer();
+    private void updatePlayerColors() {
+        for (int i = 0; i < playerAmount; i++) {
+            try {
+                String player = playerDAO.getPlayerList().get(i);
+                String selectedPlayer = playerDAO.getSelectedPlayer();
 
-            if (player.equals(selectedPlayer)) {
-                playerNameColors[index] = menuBtnPlayerSelectedColor;
-                buttons[index].setTextColor(playerNameColors[index]);
-            } else {
-                playerNameColors[index] = menuBtnColor;
-                buttons[index].setTextColor(playerNameColors[index]);
+                if (player.equals(selectedPlayer)) {
+                    playerNameColors[i] = menuBtnPlayerSelectedColor;
+                    buttons[i].setTextColor(playerNameColors[i]);
+                } else {
+                    playerNameColors[i] = menuBtnColor;
+                    buttons[i].setTextColor(playerNameColors[i]);
+                }
+            } catch (IPlayerDAO.PlayerDAOException e) {
+                e.printStackTrace();
             }
-        } catch (IPlayerDAO.PlayerDAOException e) {
-            e.printStackTrace();
         }
     }
 

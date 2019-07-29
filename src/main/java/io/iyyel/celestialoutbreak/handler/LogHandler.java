@@ -14,9 +14,9 @@ public final class LogHandler {
     private static LogHandler instance;
 
     public enum LogLevel {
-        ERROR,
+        INFO,
         FAIL,
-        INFO
+        ERROR
     }
 
     private LogHandler() {
@@ -119,7 +119,7 @@ public final class LogHandler {
                 }
 
                 value = p.getProperty(key);
-                value = removePropertyComment(value, '#');
+                value = removePropertyComment(value);
 
                 if (value != null) {
                     log(textHandler.successReadPropertyMsg(pKey, value, filePath), LogHandler.LogLevel.INFO, false);
@@ -130,11 +130,11 @@ public final class LogHandler {
             throw new IOException(e);
         }
 
-        return Boolean.valueOf(value);
+        return Boolean.parseBoolean(value);
     }
 
-    private String removePropertyComment(String line, char commentChar) {
-        if (line.trim().length() == 0 || line.trim().charAt(0) == commentChar) {
+    private String removePropertyComment(String line) {
+        if (line.trim().length() == 0 || line.trim().charAt(0) == '#') {
             return null;
         }
 

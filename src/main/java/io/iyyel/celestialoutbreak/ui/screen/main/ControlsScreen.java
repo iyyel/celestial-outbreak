@@ -24,7 +24,7 @@ public final class ControlsScreen extends AbstractScreen {
 
     @Override
     public void render(Graphics2D g) {
-        drawScreenTitle(g);;
+        drawScreenTitle(g);
 
         int xPos = 135;
         int xPoxInc = 130;

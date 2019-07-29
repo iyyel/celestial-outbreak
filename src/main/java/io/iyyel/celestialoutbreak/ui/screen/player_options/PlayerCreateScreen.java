@@ -12,7 +12,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
     private boolean isAcceptMode = false;
     private boolean isPlayerCreated = false;
 
-    private final String INIT_STATUS_STRING = "Press '" + textHandler.BTN_CONTROL_USE+ "' to enter a player name or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.";
+    private final String INIT_STATUS_STRING = "Press '" + textHandler.BTN_CONTROL_USE + "' to enter a player name or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.";
     private String statusString = INIT_STATUS_STRING;
 
     public PlayerCreateScreen(GameController gameController) {
@@ -69,14 +69,10 @@ public final class PlayerCreateScreen extends AbstractScreen {
             String name = inputHandler.getUserInput();
 
             if (name.length() >= 3 && name.length() <= 8) {
-                try {
-                    if (playerDAO.isPlayer(name)) {
-                        statusString = "Player already exists.";
-                        menuBadActionClip.play(false);
-                        return;
-                    }
-                } catch (IPlayerDAO.PlayerDAOException e) {
-                    e.printStackTrace();
+                if (playerDAO.isPlayer(name)) {
+                    statusString = "Player already exists.";
+                    menuBadActionClip.play(false);
+                    return;
                 }
 
                 isAcceptMode = true;

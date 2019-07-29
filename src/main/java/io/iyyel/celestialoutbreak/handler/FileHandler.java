@@ -128,7 +128,7 @@ public final class FileHandler {
 
             for (String key : p.stringPropertyNames()) {
                 String value = p.getProperty(key);
-                value = value = fileUtil.removeCommentFromLine(value, '#');
+                value = fileUtil.removeCommentFromLine(value);
                 if (value != null) {
                     map.put(key, value);
                     logHandler.log(textHandler.successReadPropertyMsg(key, value, filePath), LogHandler.LogLevel.INFO, false);
@@ -200,7 +200,7 @@ public final class FileHandler {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = br.readLine()) != null) {
-                line = fileUtil.removeCommentFromLine(line, '#');
+                line = fileUtil.removeCommentFromLine(line);
                 if (line != null) {
                     lineList.add(line);
                     logHandler.log(textHandler.successReadLineMsg(line, filePath), LogHandler.LogLevel.INFO, false);
@@ -227,7 +227,7 @@ public final class FileHandler {
                 }
 
                 value = p.getProperty(key);
-                value = fileUtil.removeCommentFromLine(value, '#');
+                value = fileUtil.removeCommentFromLine(value);
 
                 if (value != null) {
                     logHandler.log(textHandler.successReadPropertyMsg(pKey, value, filePath), LogHandler.LogLevel.INFO, false);

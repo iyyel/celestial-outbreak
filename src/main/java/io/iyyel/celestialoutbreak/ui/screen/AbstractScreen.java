@@ -11,7 +11,6 @@ import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 
-
 public abstract class AbstractScreen implements IRenderable, IUpdatable {
 
     protected final Util util = Util.getInstance();
@@ -44,8 +43,6 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
     private final int INIT_INPUT_TIMER = 12;
     private int inputTimer = INIT_INPUT_TIMER;
 
-    protected final int BTN_Y_OFFSET = 33;
-
     protected final int initialBtnYPos = 230;
     protected final int btnYIncrement = 75;
 
@@ -53,7 +50,6 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
 
     public AbstractScreen(GameController gameController) {
         this.gameController = gameController;
-
         authorRect = new Rectangle(getHalfWidth() + 3, gameController.getHeight() - 22, 70, 18);
         versionRect = new Rectangle(getHalfWidth() - 73, gameController.getHeight() - 22, 66, 18);
     }
@@ -139,7 +135,7 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
             inputTimer--;
     }
 
-    public void renderButtons(Button[] buttons, Graphics2D g) {
+    protected void renderButtons(Button[] buttons, Graphics2D g) {
         for (Button button : buttons)
             button.render(g);
     }
@@ -152,7 +148,7 @@ public abstract class AbstractScreen implements IRenderable, IUpdatable {
         return gameController.getWidth() / 2;
     }
 
-    protected int getHalfHeight() {
+    private int getHalfHeight() {
         return gameController.getHeight() / 2;
     }
 

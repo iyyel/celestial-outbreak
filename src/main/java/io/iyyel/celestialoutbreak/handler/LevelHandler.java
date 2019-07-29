@@ -131,7 +131,7 @@ public final class LevelHandler {
         return levels.length;
     }
 
-    public Level getLevel(int index) {
+    private Level getLevel(int index) {
         return levels[index];
     }
 

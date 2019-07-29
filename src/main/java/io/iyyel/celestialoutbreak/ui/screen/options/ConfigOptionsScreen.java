@@ -7,11 +7,6 @@ import java.awt.*;
 
 public final class ConfigOptionsScreen extends AbstractScreen {
 
-    int xPos = 80;
-    int yPos = 260;
-    int yPosInc = 35;
-    int yPosSepInc = 70;
-
     public ConfigOptionsScreen(GameController gameController) {
         super(gameController);
     }
@@ -24,6 +19,11 @@ public final class ConfigOptionsScreen extends AbstractScreen {
 
     @Override
     public void render(Graphics2D g) {
+        int xPos = 80;
+        int yPos = 260;
+        int yPosInc = 35;
+        int yPosSepInc = 70;
+
         drawScreenTitles(textHandler.TITLE_CONFIGURATION_OPTIONS_SCREEN, g);
         g.setFont(msgFont);
 

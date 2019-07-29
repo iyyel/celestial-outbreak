@@ -23,13 +23,13 @@ public final class AboutScreen extends AbstractScreen {
         }
     }
 
-    int xPos = 80;
-    int yPos = 260;
-    int yPosInc = 35;
-    int yPosSepInc = 70;
-
     @Override
     public void render(Graphics2D g) {
+        int xPos = 80;
+        int yPos = 260;
+        int yPosInc = 35;
+        int yPosSepInc = 70;
+
         g.setColor(screenFontColor);
         drawScreenTitle(g);
 

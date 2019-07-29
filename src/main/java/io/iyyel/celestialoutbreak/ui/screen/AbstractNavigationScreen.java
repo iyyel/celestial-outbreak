@@ -5,9 +5,9 @@ import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
 public abstract class AbstractNavigationScreen extends AbstractScreen {
 
-    protected final NavStyle navStyle;
-    protected final int btnAmount;
-    protected final int btnWrapAmount;
+    private final NavStyle navStyle;
+    private final int btnAmount;
+    private final int btnWrapAmount;
     protected boolean isFirstRender = true;
 
     protected int selectedIndex = 0;
@@ -17,14 +17,16 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         VERTICAL_HORIZONTAL
     }
 
-    public AbstractNavigationScreen(NavStyle navStyle, int btnAmount, int btnWrapAmount, GameController gameController) {
+    public AbstractNavigationScreen(NavStyle navStyle, int btnAmount,
+                                    int btnWrapAmount, GameController gameController) {
         super(gameController);
         this.navStyle = navStyle;
         this.btnAmount = btnAmount;
         this.btnWrapAmount = btnWrapAmount;
     }
 
-    public AbstractNavigationScreen(NavStyle navStyle, int btnAmount, GameController gameController) {
+    public AbstractNavigationScreen(NavStyle navStyle, int btnAmount,
+                                    GameController gameController) {
         super(gameController);
         this.navStyle = navStyle;
         this.btnAmount = btnAmount;

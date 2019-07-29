@@ -194,7 +194,7 @@ public final class GameController extends Canvas implements Runnable {
 
         /* Create menu objects */
         welcomeScreen = new WelcomeScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 2, this);
-        mainScreen = new MainScreen(this);
+        mainScreen = new MainScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 6, this);
         playScreen = new PlayScreen(this);
         selectLevelScreen = new SelectLevelScreen(this);
         preLevelScreen = new PreLevelScreen(this);
@@ -207,7 +207,8 @@ public final class GameController extends Canvas implements Runnable {
         playerSelectScreen = new PlayerSelectScreen(AbstractNavigationScreen.NavStyle.VERTICAL_HORIZONTAL,
                 playerDAO.getPlayerList().size(), 5, this);
         playerCreateScreen = new PlayerCreateScreen(this);
-        playerDeleteScreen = new PlayerDeleteScreen(this);
+        playerDeleteScreen = new PlayerDeleteScreen(AbstractNavigationScreen.NavStyle.VERTICAL_HORIZONTAL,
+                playerDAO.getPlayerList().size(), 5, this);
         generalOptionsScreen = new GeneralOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 4, this);
         configOptionsScreen = new ConfigOptionsScreen(this);
         aboutScreen = new AboutScreen(this);

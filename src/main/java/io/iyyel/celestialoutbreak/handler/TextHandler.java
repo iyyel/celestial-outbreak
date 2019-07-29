@@ -223,7 +223,7 @@ public final class TextHandler {
     public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_NEPTUNE;
     public final String LEVEL_FILE_LOCAL_PATH_VENUS = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_VENUS;
     public final String LEVEL_FILE_LOCAL_PATH_JUPITER = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_JUPITER;
-    ;
+
     /* Client level file paths. */
     public final String LEVEL_FILE_CLIENT_PATH_SUN = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_SUN;
     public final String LEVEL_FILE_CLIENT_PATH_MOON = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_MOON;
@@ -537,7 +537,7 @@ public final class TextHandler {
     /*
      * Private helper methods.
      */
-    private final String getDateTime() {
+    private String getDateTime() {
         return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
     }
 

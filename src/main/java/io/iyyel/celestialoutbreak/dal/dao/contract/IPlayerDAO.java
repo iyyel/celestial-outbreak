@@ -10,7 +10,7 @@ public interface IPlayerDAO {
     void addPlayer(String name) throws PlayerDAOException;
     void removePlayer(String name) throws PlayerDAOException;
     void selectPlayer(String name) throws PlayerDAOException;
-    boolean isPlayer(String name) throws PlayerDAOException;
+    boolean isPlayer(String name);
     List<String> getPlayerList();
     String getSelectedPlayer() throws PlayerDAOException;
 

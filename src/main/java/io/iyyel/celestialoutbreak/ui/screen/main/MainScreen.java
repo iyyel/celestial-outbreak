@@ -2,147 +2,84 @@ package io.iyyel.celestialoutbreak.ui.screen.main;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
-import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
+import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
+import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
 import java.awt.*;
 
-public final class MainScreen extends AbstractScreen {
-
-    private final Rectangle playRect, scoreRect, controlsRect, optionsRect, aboutRect, exitRect;
+public final class MainScreen extends AbstractNavigationScreen {
 
     private String[] options = {textHandler.BTN_PLAY_TEXT, textHandler.BTN_SCORES_TEXT, textHandler.BTN_CONTROLS_TEXT,
             textHandler.BTN_OPTIONS_TEXT, textHandler.BTN_ABOUT_TEXT, textHandler.BTN_EXIT_TEXT};
-    private Color[] rectColors;
 
-    private int selected = 0;
+    private final Button[] buttons;
 
-    public MainScreen(GameController gameController) {
-        super(gameController);
+    public MainScreen(NavStyle navStyle, int btnAmount, GameController gameController) {
+        super(navStyle, btnAmount, gameController);
+        buttons = new Button[btnAmount];
 
-        int initialBtnYPos = 230;
-        int btnYIncrement = 75;
+        for (int i = 0; i < btnAmount; i++) {
+            buttons[i] = new Button(new Point(getHalfWidth() - 90, initialBtnYPos + btnYIncrement * i),
+                    new Dimension(180, 50), options[i], true, inputBtnFont,
+                    screenFontColor, menuBtnColor, new Point(0, 0), new Point(0, -6), gameController);
+        }
+    }
 
-        /* Menu buttons */
-        playRect = new Rectangle(gameController.getWidth() / 2 - 90, initialBtnYPos, 180, 50);
-        scoreRect = new Rectangle(gameController.getWidth() / 2 - 90, initialBtnYPos + btnYIncrement, 180, 50);
-        controlsRect = new Rectangle(gameController.getWidth() / 2 - 90, initialBtnYPos + btnYIncrement * 2, 180, 50);
-        optionsRect = new Rectangle(gameController.getWidth() / 2 - 90, initialBtnYPos + btnYIncrement * 3, 180, 50);
-        aboutRect = new Rectangle(gameController.getWidth() / 2 - 90, initialBtnYPos + btnYIncrement * 4, 180, 50);
-        exitRect = new Rectangle(gameController.getWidth() / 2 - 90, initialBtnYPos + btnYIncrement * 5, 180, 50);
+    @Override
+    protected void updateNavUse(int index) {
 
-        rectColors = new Color[options.length];
+    }
 
-        for (int i = 0; i < rectColors.length; i++) {
-            rectColors[i] = menuBtnColor;
+    @Override
+    protected void updateNavOK(int index) {
+        if (isButtonOK(index)) {
+            super.updateNavOK();
+            switch (index) {
+                case 0:
+                    gameController.switchState(GameController.State.SELECT_LEVEL);
+                    break;
+                case 1:
+                    gameController.switchState(GameController.State.SCORES);
+                    break;
+                case 2:
+                    gameController.switchState(GameController.State.CONTROLS);
+                    break;
+                case 3:
+                    gameController.switchState(GameController.State.OPTIONS);
+                    break;
+                case 4:
+                    gameController.switchState(GameController.State.ABOUT);
+                    break;
+                case 5:
+                    gameController.switchState(GameController.State.EXIT);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     @Override
     public void update() {
-        decInputTimer();
-
-        if (inputHandler.isDownPressed() && selected < options.length - 1 && isInputAvailable()) {
-            resetInputTimer();
-            selected++;
-            menuNavClip.play(false);
-        }
-
-        if (inputHandler.isUpPressed() && selected > 0 && isInputAvailable()) {
-            resetInputTimer();
-            selected--;
-            menuNavClip.play(false);
-        }
-
-        for (int i = 0, n = options.length; i < n; i++) {
-            if (selected == i) {
-                rectColors[i] = menuSelectedBtnColor;
-
-                if (inputHandler.isOKPressed() && isInputAvailable()) {
-                    resetInputTimer();
-                    menuUseClip.play(false);
-
-                    switch (i) {
-                        case 0:
-                            gameController.switchState(GameController.State.SELECT_LEVEL);
-                            break;
-                        case 1:
-                            gameController.switchState(GameController.State.SCORES);
-                            break;
-                        case 2:
-                            gameController.switchState(GameController.State.CONTROLS);
-                            break;
-                        case 3:
-                            gameController.switchState(GameController.State.OPTIONS);
-                            break;
-                        case 4:
-                            gameController.switchState(GameController.State.ABOUT);
-                            break;
-                        case 5:
-                            gameController.switchState(GameController.State.EXIT);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            } else {
-                rectColors[i] = menuBtnColor;
-            }
-        }
+        super.update();
+        updateNavUp();
+        updateNavDown();
+        updateNavOK(selectedIndex);
+        updateSelectedButtonColor(buttons);
     }
 
     @Override
     public void render(Graphics2D g) {
-        /* Render game title */
-        drawScreenTitle(g);
-
-        /* Show player name */
         try {
-            if (playerDAO.getSelectedPlayer() != null) {
-                drawScreenSubtitle("Welcome " + playerDAO.getSelectedPlayer(), g);
-            }
+            if (playerDAO.getSelectedPlayer() != null)
+                drawScreenTitles("Welcome " + playerDAO.getSelectedPlayer(), g);
+            else
+                drawScreenTitles("Welcome", g);
         } catch (IPlayerDAO.PlayerDAOException e) {
             drawScreenSubtitle("Welcome", g);
         }
 
-        /* Render buttons  */
-        g.setFont(inputBtnFont);
-
-        /* Play button */
-        g.setColor(screenFontColor);
-        drawScreenCenterString(options[0], playRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[0]);
-        g.draw(playRect);
-
-        /* Score button */
-        g.setColor(screenFontColor);
-        drawScreenCenterString(options[1], scoreRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[1]);
-        g.draw(scoreRect);
-
-        /* Controls button */
-        g.setColor(screenFontColor);
-        drawScreenCenterString(options[2], controlsRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[2]);
-        g.draw(controlsRect);
-
-        /* Settings button */
-        g.setColor(screenFontColor);
-        drawScreenCenterString(options[3], optionsRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[3]);
-        g.draw(optionsRect);
-
-        /* About button */
-        g.setColor(screenFontColor);
-        drawScreenCenterString(options[4], aboutRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[4]);
-        g.draw(aboutRect);
-
-        /* Exit button */
-        g.setColor(screenFontColor);
-        drawScreenCenterString(options[5], exitRect.y + BTN_Y_OFFSET, inputBtnFont, g);
-        g.setColor(rectColors[5]);
-        g.draw(exitRect);
-
+        renderButtons(buttons, g);
         drawScreenInfoPanel(g);
     }
 

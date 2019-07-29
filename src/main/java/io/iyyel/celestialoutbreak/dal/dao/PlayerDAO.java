@@ -101,7 +101,7 @@ public final class PlayerDAO implements IPlayerDAO {
     }
 
     @Override
-    public boolean isPlayer(String name) throws PlayerDAOException {
+    public boolean isPlayer(String name) {
         return playerDTO.getPlayerList().stream().anyMatch(name::equalsIgnoreCase);
     }
 

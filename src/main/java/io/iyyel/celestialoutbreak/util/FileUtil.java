@@ -67,8 +67,8 @@ public final class FileUtil {
         }
     }
 
-    public String removeCommentFromLine(String line, char commentChar) {
-        if (line.trim().length() == 0 || line.trim().charAt(0) == commentChar) {
+    public String removeCommentFromLine(String line) {
+        if (line.trim().length() == 0 || line.trim().charAt(0) == '#') {
             return null;
         }
 
