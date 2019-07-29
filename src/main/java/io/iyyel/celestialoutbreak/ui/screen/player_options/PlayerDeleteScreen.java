@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
@@ -27,7 +27,6 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
         super(navStyle, btnAmount, btnWrapAmount, gameController);
     }
 
-    @Override
     protected void updateNavUse(int index) {
         if (isButtonUsed(index)) {
             String selectedPlayer = playerList.get(index);

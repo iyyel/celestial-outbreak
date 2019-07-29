@@ -1,8 +1,8 @@
 package io.iyyel.celestialoutbreak.ui.screen;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.dal.dao.PlayerDAO;
-import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.ui.contract.IRenderable;
 import io.iyyel.celestialoutbreak.ui.contract.IUpdatable;

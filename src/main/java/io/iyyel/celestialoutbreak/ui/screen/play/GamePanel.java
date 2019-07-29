@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.level.Level;
 import io.iyyel.celestialoutbreak.level.LevelOptions;

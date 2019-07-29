@@ -54,9 +54,8 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
     }
 
     protected final void updateNavLeft() {
-        if (navStyle != NavStyle.VERTICAL_HORIZONTAL) {
+        if (navStyle != NavStyle.VERTICAL_HORIZONTAL)
             return;
-        }
 
         if (inputHandler.isLeftPressed() && selectedIndex > (btnWrapAmount - 1) && isInputAvailable()) {
             resetInputTimer();
@@ -66,9 +65,8 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
     }
 
     protected final void updateNavRight() {
-        if (navStyle != NavStyle.VERTICAL_HORIZONTAL) {
+        if (navStyle != NavStyle.VERTICAL_HORIZONTAL)
             return;
-        }
 
         if (inputHandler.isRightPressed() && selectedIndex < btnAmount && (selectedIndex + btnWrapAmount) < btnAmount && isInputAvailable()) {
             resetInputTimer();
@@ -90,11 +88,10 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
     protected void updateSelectedButtonColor(Button[] buttons) {
         for (int i = 0; i < buttons.length; i++) {
             Button btn = buttons[i];
-            if (selectedIndex == i) {
+            if (selectedIndex == i)
                 btn.setBgColor(menuSelectedBtnColor);
-            } else {
+            else
                 btn.setBgColor(menuBtnColor);
-            }
         }
     }
 
@@ -102,9 +99,8 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         boolean isUsed = inputHandler.isUsePressed() && isInputAvailable() && selectedIndex == index
                 && selectedIndex < btnAmount && selectedIndex >= 0;
 
-        if (isUsed) {
+        if (isUsed)
             resetInputTimer();
-        }
 
         return isUsed;
     }
@@ -113,9 +109,8 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         boolean isOK = inputHandler.isOKPressed() && isInputAvailable() && selectedIndex == index
                 && selectedIndex < btnAmount && selectedIndex >= 0;
 
-        if (isOK) {
+        if (isOK)
             resetInputTimer();
-        }
 
         return isOK;
     }

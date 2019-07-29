@@ -98,8 +98,7 @@ public class SelectLevelScreen extends AbstractScreen {
 
     @Override
     public void render(Graphics2D g) {
-        drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_SELECT_LEVEL_SCREEN, g);
+        drawScreenTitles(textHandler.TITLE_SELECT_LEVEL_SCREEN, g);
 
         /* Render buttons  */
         if (levelRects.length <= 0) {

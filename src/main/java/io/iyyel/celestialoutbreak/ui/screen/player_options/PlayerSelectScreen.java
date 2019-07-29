@@ -1,7 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.dal.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 

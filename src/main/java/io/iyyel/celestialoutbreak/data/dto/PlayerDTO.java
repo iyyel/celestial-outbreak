@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.dal.dto;
+package io.iyyel.celestialoutbreak.data.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;

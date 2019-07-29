@@ -1,4 +1,4 @@
-package io.iyyel.celestialoutbreak.dal.dao.contract;
+package io.iyyel.celestialoutbreak.data.dao.contract;
 
 import java.util.List;
 

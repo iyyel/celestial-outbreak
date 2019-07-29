@@ -163,9 +163,8 @@ public final class Level {
     }
 
     public void decPlayerLife() {
-        if (playerLife > 0) {
+        if (playerLife > 0)
             playerLife -= 1;
-        }
     }
 
     public void pause() {
