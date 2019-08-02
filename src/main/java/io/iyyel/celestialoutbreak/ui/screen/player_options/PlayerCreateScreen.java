@@ -159,7 +159,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
 
         isPlayerCreated = true;
 
-        if (playerDAO.getPlayerList().size() == 1) {
+        if (playerDAO.getPlayers().size() == 1) {
             try {
                 playerDAO.selectPlayer(name);
             } catch (IPlayerDAO.PlayerDAOException e) {
@@ -176,10 +176,10 @@ public final class PlayerCreateScreen extends AbstractScreen {
     }
 
     private void exitMenu() {
-        if (playerDAO.getPlayerList().isEmpty() && gameController.getPrevState() == GameController.State.WELCOME) {
+        if (playerDAO.getPlayers().isEmpty() && gameController.getPrevState() == GameController.State.WELCOME) {
             menuUseClip.play(false);
             gameController.switchState(GameController.State.WELCOME);
-        } else if (!playerDAO.getPlayerList().isEmpty()) {
+        } else if (!playerDAO.getPlayers().isEmpty()) {
             menuUseClip.play(false);
             if (gameController.getPrevState() == GameController.State.NONE || gameController.getPrevState() == GameController.State.WELCOME) {
                 gameController.switchState(GameController.State.MAIN);

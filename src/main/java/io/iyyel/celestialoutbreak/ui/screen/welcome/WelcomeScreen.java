@@ -65,7 +65,7 @@ public final class WelcomeScreen extends AbstractNavigationScreen {
     }
 
     private void doProceed() {
-        if (playerDAO.getPlayerList().isEmpty()) {
+        if (playerDAO.getPlayers().isEmpty()) {
             gameController.switchState(GameController.State.PLAYER_CREATE);
         } else {
             gameController.switchState(GameController.State.MAIN);

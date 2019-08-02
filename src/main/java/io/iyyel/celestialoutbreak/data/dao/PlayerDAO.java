@@ -3,7 +3,6 @@ package io.iyyel.celestialoutbreak.data.dao;
 import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dto.PlayerDTO;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
-import io.iyyel.celestialoutbreak.handler.OptionsHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 
 import java.io.*;
@@ -13,7 +12,6 @@ public final class PlayerDAO implements IPlayerDAO {
 
     private PlayerDTO playerDTO;
 
-    private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
 
@@ -46,6 +44,7 @@ public final class PlayerDAO implements IPlayerDAO {
             logHandler.log("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.FAIL, true);
             createNewPlayerBinFile();
         } catch (IOException | ClassNotFoundException e) {
+            logHandler.log("Exception: " + e.getMessage(), LogHandler.LogLevel.ERROR, false);
             throw new PlayerDAOException("Failed to load PlayerDTO: " + e.getMessage());
         }
     }
@@ -58,74 +57,79 @@ public final class PlayerDAO implements IPlayerDAO {
             oos.close();
             logHandler.log("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'", LogHandler.LogLevel.INFO, true);
         } catch (IOException e) {
+            logHandler.log("Exception: " + e.getMessage(), LogHandler.LogLevel.ERROR, false);
             throw new PlayerDAOException("Failed to save PlayerDTO: " + e.getMessage());
         }
     }
 
     @Override
-    public void addPlayer(String name) throws PlayerDAOException {
-        if (!checkNameMaxBounds(name)) {
-            throw new PlayerDAOMaxNameException("'" + name + "' is too long!");
+    public void addPlayer(String player) throws PlayerDAOException {
+        if (!checkPlayerMaxBounds(player)) {
+            throw new PlayerDAOMaxNameException("'" + player + "' is too long!");
         }
 
-        if (!checkNameMinBounds(name)) {
-            throw new PlayerDAOMinNameException("'" + name + "' is too small!");
+        if (!checkPlayerMinBounds(player)) {
+            throw new PlayerDAOMinNameException("'" + player + "' is too small!");
         }
 
-        if (isPlayer(name)) {
-            throw new PlayerDAOException("'" + name + "' is an existing player!");
+        if (isPlayer(player)) {
+            throw new PlayerDAOException("'" + player + "' is an existing player!");
         }
 
         // TODO: Remove magic number here.
-        if (playerDTO.getPlayerList().size() >= 25) {
+        if (playerDTO.getPlayerCount() >= 25) {
+            logHandler.log("Player limit reached!", LogHandler.LogLevel.FAIL, false);
             throw new PlayerDAOLimitException("Player limit reached!");
         }
 
-        playerDTO.getPlayerList().add(name);
+        playerDTO.addPlayer(player);
     }
 
     @Override
-    public void removePlayer(String name) throws PlayerDAOException {
-        if (!isPlayer(name)) {
-            throw new PlayerDAOException("'" + name + "' is not an existing player!");
+    public void removePlayer(String player) throws PlayerDAOException {
+        if (!isPlayer(player)) {
+            logHandler.log("'" + player + "' is not an existing player!", LogHandler.LogLevel.FAIL, false);
+            throw new PlayerDAOException("'" + player + "' is not an existing player!");
         }
-        playerDTO.getPlayerList().remove(name);
+        playerDTO.removePlayer(player);
     }
 
     @Override
-    public void selectPlayer(String name) throws PlayerDAOException {
-        if (!isPlayer(name)) {
-            throw new PlayerDAOException("'" + name + "' is not an existing player!");
+    public void selectPlayer(String player) throws PlayerDAOException {
+        if (!isPlayer(player)) {
+            logHandler.log("'" + player + "' is not an existing player!", LogHandler.LogLevel.FAIL, false);
+            throw new PlayerDAOException("'" + player + "' is not an existing player!");
         }
-        playerDTO.setSelectedPlayer(name);
+        playerDTO.setSelectedPlayer(player);
     }
 
     @Override
-    public boolean isPlayer(String name) {
-        return playerDTO.getPlayerList().stream().anyMatch(name::equalsIgnoreCase);
+    public boolean isPlayer(String player) {
+        return playerDTO.getPlayers().stream().anyMatch(player::equalsIgnoreCase);
     }
 
     @Override
-    public List<String> getPlayerList() {
-        return playerDTO.getPlayerList();
+    public List<String> getPlayers() {
+        return playerDTO.getPlayers();
     }
 
     @Override
     public String getSelectedPlayer() throws PlayerDAOException {
         if (playerDTO.getSelectedPlayer() == null) {
+            logHandler.log("No player is selectedIndex!", LogHandler.LogLevel.FAIL, false);
             throw new PlayerDAOException("No player is selectedIndex!");
         }
         return playerDTO.getSelectedPlayer();
     }
 
-    private boolean checkNameMinBounds(String name) {
+    private boolean checkPlayerMinBounds(String player) {
         // TODO: Remove magic number here.
-        return name.length() >= 3;
+        return player.length() >= 3;
     }
 
-    private boolean checkNameMaxBounds(String name) {
+    private boolean checkPlayerMaxBounds(String player) {
         // TODO: Remove magic number here.
-        return name.length() <= 8;
+        return player.length() <= 8;
     }
 
     private void createNewPlayerBinFile() throws PlayerDAOException {

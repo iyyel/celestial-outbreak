@@ -205,10 +205,10 @@ public final class GameController extends Canvas implements Runnable {
         optionsScreen = new OptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
         playerOptionsScreen = new PlayerOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
         playerSelectScreen = new PlayerSelectScreen(AbstractNavigationScreen.NavStyle.VERTICAL_HORIZONTAL,
-                playerDAO.getPlayerList().size(), 5, this);
+                playerDAO.getPlayers().size(), 5, this);
         playerCreateScreen = new PlayerCreateScreen(this);
         playerDeleteScreen = new PlayerDeleteScreen(AbstractNavigationScreen.NavStyle.VERTICAL_HORIZONTAL,
-                playerDAO.getPlayerList().size(), 5, this);
+                playerDAO.getPlayers().size(), 5, this);
         generalOptionsScreen = new GeneralOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 4, this);
         configOptionsScreen = new ConfigOptionsScreen(this);
         aboutScreen = new AboutScreen(this);
@@ -220,7 +220,7 @@ public final class GameController extends Canvas implements Runnable {
         addKeyListener(inputHandler);
 
         /* If no players exist, assume its first run */
-        if (playerDAO.getPlayerList().isEmpty())
+        if (playerDAO.getPlayers().isEmpty())
             state = State.WELCOME;
 
         /* Initialize the JFrame and start the gameController loop */

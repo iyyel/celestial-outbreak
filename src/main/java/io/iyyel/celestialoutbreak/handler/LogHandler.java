@@ -36,15 +36,23 @@ public final class LogHandler {
         return instance;
     }
 
-
-    public void log(String msg, LogLevel logLevel, boolean isVerboseLog) {
+    public void log(String msg, String function, LogLevel logLevel, boolean isVerboseLog) {
         if (isVerboseLog && !isVerboseLogEnabled) {
             return;
         }
 
-        msg = textHandler.logMsgPrefix(logLevel) + msg;
+        String functionInfo = "";
+
+        if (function != null)
+            functionInfo = " Function: " + function + " ";
+
+        msg = textHandler.logMsgPrefix(logLevel) + functionInfo + msg;
         System.out.println(msg);
         writeToLogFile(msg);
+    }
+
+    public void log(String msg, LogLevel logLevel, boolean isVerboseLog) {
+        log(msg, "", logLevel, isVerboseLog);
     }
 
     private void writeToLogFile(String msg) {

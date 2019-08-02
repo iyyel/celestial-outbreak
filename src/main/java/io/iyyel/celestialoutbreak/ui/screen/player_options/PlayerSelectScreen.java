@@ -21,7 +21,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
     @Override
     protected void updateNavUse(int index) {
         if (isButtonUsed(index)) {
-            String selectedPlayer = playerDAO.getPlayerList().get(index);
+            String selectedPlayer = playerDAO.getPlayers().get(index);
 
             try {
                 if (!selectedPlayer.equalsIgnoreCase(playerDAO.getSelectedPlayer())) {
@@ -89,7 +89,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
             e.printStackTrace();
         }
 
-        playerAmount = playerDAO.getPlayerList().size();
+        playerAmount = playerDAO.getPlayers().size();
 
         // Update rectangles
         buttons = new Button[playerAmount];
@@ -108,7 +108,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
                 y = initialY;
             }
 
-            String player = playerDAO.getPlayerList().get(i);
+            String player = playerDAO.getPlayers().get(i);
             buttons[i] = new Button(new Point(x, y), new Dimension(150, 50),
                     player, false, inputBtnFont, screenFontColor, menuBtnColor,
                     new Point(75, 0), new Point(70, -5), gameController);
@@ -120,7 +120,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
     private void updatePlayerColors() {
         for (int i = 0; i < playerAmount; i++) {
             try {
-                String player = playerDAO.getPlayerList().get(i);
+                String player = playerDAO.getPlayers().get(i);
                 String selectedPlayer = playerDAO.getSelectedPlayer();
 
                 if (player.equals(selectedPlayer)) {

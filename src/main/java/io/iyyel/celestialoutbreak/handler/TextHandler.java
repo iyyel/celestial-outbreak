@@ -163,19 +163,19 @@ public final class TextHandler {
     /*
      * Player binary file information.
      */
-    public final String PLAYER_DIR_NAME = "player";
+    public final String PLAYER_DIR_NAME = "players";
     public final String PLAYER_DIR_PATH = GAME_DIR_PATH + fs + PLAYER_DIR_NAME;
 
-    public final String PLAYER_BIN_FILE_NAME = "player.bin";
+    public final String PLAYER_BIN_FILE_NAME = "players.bin";
     public final String PLAYER_BIN_FILE_CLIENT_PATH = PLAYER_DIR_PATH + fs + PLAYER_BIN_FILE_NAME;
 
     /*
      * Score binary file information.
      */
-    public final String SCORE_DIR_NAME = "score";
+    public final String SCORE_DIR_NAME = "scores";
     public final String SCORE_DIR_PATH = GAME_DIR_PATH + fs + SCORE_DIR_NAME;
 
-    public final String SCORE_BIN_FILE_NAME = "score.bin";
+    public final String SCORE_BIN_FILE_NAME = "scores.bin";
     public final String SCORE_BIN_FILE_CLIENT_PATH = SCORE_DIR_PATH + fs + SCORE_BIN_FILE_NAME;
 
     /*

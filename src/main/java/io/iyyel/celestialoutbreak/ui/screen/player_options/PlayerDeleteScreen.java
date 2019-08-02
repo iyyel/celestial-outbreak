@@ -148,7 +148,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
             e.printStackTrace();
         }
 
-        playerList = new ArrayList<>(playerDAO.getPlayerList());
+        playerList = new ArrayList<>(playerDAO.getPlayers());
         playerAmount = playerList.size();
 
         // default value = false
@@ -170,7 +170,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
                 x += xInc;
                 y = initialY;
             }
-            String player = playerDAO.getPlayerList().get(i);
+            String player = playerDAO.getPlayers().get(i);
             buttons[i] = new Button(new Point(x, y), new Dimension(150, 50),
                     player, false, inputBtnFont, screenFontColor, menuBtnColor,
                     new Point(75, 0), new Point(70, -5), gameController);
