@@ -1,6 +1,8 @@
 package io.iyyel.celestialoutbreak.handler;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.data.dao.HighScoreDAO;
+import io.iyyel.celestialoutbreak.data.dao.contract.IHighScoreDAO;
 import io.iyyel.celestialoutbreak.level.Level;
 
 import java.awt.*;
@@ -12,6 +14,7 @@ public final class LevelHandler {
     private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
+    private final IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
 
     private int activeLevelIndex = 0;
     private Level[] levels;
@@ -52,6 +55,9 @@ public final class LevelHandler {
 
         if (levels[activeLevelIndex].isWon()) {
             logHandler.log("Won " + levels[activeLevelIndex].getName() + " level!", LogHandler.LogLevel.INFO, true);
+
+
+
             gameController.switchState(GameController.State.POST_LEVEL);
         }
 

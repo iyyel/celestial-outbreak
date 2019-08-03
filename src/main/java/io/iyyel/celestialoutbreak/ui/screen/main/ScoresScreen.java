@@ -1,7 +1,9 @@
 package io.iyyel.celestialoutbreak.ui.screen.main;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.HighScoreDAO;
+import io.iyyel.celestialoutbreak.data.dao.contract.IHighScoreDAO;
+import io.iyyel.celestialoutbreak.data.dto.HighScoreDTO;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 
 import java.awt.*;
@@ -10,8 +12,11 @@ public final class ScoresScreen extends AbstractScreen {
 
     private Rectangle[] levelRects;
     private Color[] levelRectColors;
+    private boolean isFirstRender = true;
 
     private Font levelInfoFont = util.getPanelFont().deriveFont(16F);
+
+    private final static IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
 
     private int levelAmount = levelHandler.getLevelAmount();
 
@@ -37,6 +42,7 @@ public final class ScoresScreen extends AbstractScreen {
             levelRects[i] = new Rectangle(x, y, 280, 90);
             y += yInc;
         }
+
     }
 
     @Override
@@ -46,6 +52,7 @@ public final class ScoresScreen extends AbstractScreen {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             menuUseClip.play(false);
+            isFirstRender = true;
             gameController.switchState(GameController.State.MAIN);
         }
 
@@ -56,13 +63,22 @@ public final class ScoresScreen extends AbstractScreen {
         drawScreenTitle(g);
         drawScreenSubtitle(textHandler.TITLE_SCORES_SCREEN, g);
 
+        if (isFirstRender) {
+            isFirstRender = false;
+            try {
+                highScoreDAO.loadHighScoreList();
+            } catch (IHighScoreDAO.HighScoreDAOException e) {
+                e.printStackTrace();
+            }
+        }
+
         /* Render buttons  */
         if (levelRects.length <= 0) {
             g.setFont(inputBtnFont);
             g.setColor(screenFontColor);
             g.drawString("No levels were loaded.", 20, gameController.getHeight() / 2);
         } else {
-            for (int i = 0; i < levelHandler.getLevelAmount(); i++) {
+            for (int i = 0; i < levelAmount; i++) {
                 g.setFont(inputBtnFont);
                 g.setColor(levelHandler.getLevelColors()[i]);
                 g.drawString(levelHandler.getLevelNames()[i], levelRects[i].x + 5, levelRects[i].y + 27);
@@ -70,16 +86,24 @@ public final class ScoresScreen extends AbstractScreen {
                 g.setFont(levelInfoFont);
                 g.setColor(menuBtnColor);
 
-                String blockHitPoints = null;
+                HighScoreDTO highScoreDTO = null;
                 try {
-                    blockHitPoints = textHandler.getFixedString("Player: " + playerDAO.getSelectedPlayer(), 15);
-                } catch (IPlayerDAO.PlayerDAOException e) {
+                    highScoreDTO = highScoreDAO.getHighScore(levelHandler.getLevelNames()[i]);
+                } catch (IHighScoreDAO.HighScoreDAOException e) {
                     e.printStackTrace();
                 }
-                g.drawString(blockHitPoints, levelRects[i].x + 5, levelRects[i].y + 55);
 
-                String score = textHandler.getFixedString("Score:  " + "123456", 15);
-                String time = textHandler.getFixedString(" Time: " + "02:03", 12);
+                String player = textHandler.getFixedString("Player: N/A", 15);
+                String score = textHandler.getFixedString("Score:  N/A", 15);
+                String time = textHandler.getFixedString(" Time: N/A", 12);
+
+                if (highScoreDTO != null) {
+                    player = textHandler.getFixedString("Player: " + highScoreDTO.getPlayer(), 15);
+                    score = textHandler.getFixedString("Score:  " + highScoreDTO.getScore(), 15);
+                    time = textHandler.getFixedString(" Time: " + highScoreDTO.getTime(), 12);
+                }
+
+                g.drawString(player, levelRects[i].x + 5, levelRects[i].y + 55);
                 g.drawString(score + time, levelRects[i].x + 5, levelRects[i].y + 75);
 
                 g.setColor(levelRectColors[i]);
