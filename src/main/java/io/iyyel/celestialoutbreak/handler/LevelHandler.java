@@ -4,6 +4,7 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.HighScoreDAO;
 import io.iyyel.celestialoutbreak.data.dao.contract.IHighScoreDAO;
 import io.iyyel.celestialoutbreak.level.Level;
+import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 import java.io.File;
@@ -15,6 +16,7 @@ public final class LevelHandler {
     private final LogHandler logHandler = LogHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
     private final IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
+    private final Util util = Util.getInstance();
 
     private int activeLevelIndex = 0;
     private Level[] levels;
@@ -25,6 +27,8 @@ public final class LevelHandler {
     private int[] levelPlayerLives;
     private int[] levelBlockAmounts;
     private int[] levelHitPoints;
+
+    private long currentScore = 0;
 
     private GameController gameController;
 
@@ -52,17 +56,15 @@ public final class LevelHandler {
         }
 
         levels[activeLevelIndex].update();
+        calculateScore();
 
         if (levels[activeLevelIndex].isWon()) {
-            logHandler.log("Won " + levels[activeLevelIndex].getName() + " level!", LogHandler.LogLevel.INFO, true);
-
-
-
+            logHandler.log("Won " + getActiveLevel().getName() + " level!", LogHandler.LogLevel.INFO, true);
             gameController.switchState(GameController.State.POST_LEVEL);
         }
 
         if (levels[activeLevelIndex].isLost()) {
-            logHandler.log("Lost " + levels[activeLevelIndex].getName() + " level!", LogHandler.LogLevel.INFO, true);
+            logHandler.log("Lost " + getActiveLevel().getName() + " level!", LogHandler.LogLevel.INFO, true);
             gameController.switchState(GameController.State.POST_LEVEL);
         }
     }
@@ -118,14 +120,21 @@ public final class LevelHandler {
 
     private int[] getLevelIntProperties(String pKey) {
         int[] arr = new int[levels.length];
-        for (int i = 0; i < levels.length; i++) {
+        for (int i = 0; i < levels.length; i++)
             arr[i] = Integer.parseInt(fileHandler.readPropertyFromFile(pKey, levelOptionsFileNames[i]));
-        }
         return arr;
+    }
+
+    private void calculateScore() {
+        currentScore = ((getActiveLevel().getBlockList().getTotalHitPoints() -
+                getActiveLevel().getBlockList().getTotalHitPointsLeft()) * 10) - (Math.abs(util.getTimeElapsed() / getActiveLevel().getBlockHitPoints()));
+        if (currentScore <= 0)
+            currentScore = 0;
     }
 
     public void resetActiveLevel() {
         logHandler.log("Level[" + activeLevelIndex + "] has been reset.", LogHandler.LogLevel.INFO, true);
+        currentScore = 0;
         levels[activeLevelIndex] = null;
     }
 
@@ -163,6 +172,10 @@ public final class LevelHandler {
 
     public int[] getLevelBlockAmounts() {
         return levelBlockAmounts;
+    }
+
+    public long getCurrentScore() {
+        return currentScore;
     }
 
 }

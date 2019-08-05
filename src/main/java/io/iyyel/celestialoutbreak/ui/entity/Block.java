@@ -28,9 +28,8 @@ public final class Block extends AbstractEntity {
     }
 
     public void decHitPoints() {
-        if (hitpoints > 0) {
+        if (hitpoints > 0)
             hitpoints -= 1;
-        }
     }
 
     public boolean isDead() {

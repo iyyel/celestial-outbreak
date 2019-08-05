@@ -48,10 +48,10 @@ public final class GamePanel extends AbstractScreen {
         if (activeLevel != null) {
             g.drawString("Level: " + activeLevel.getName(), 5, 714);
             g.drawString("Player: " + selectedPlayer, 200, 714);
-            g.drawString("Lives: " + activeLevel.getPlayerLife(), gameController.getWidth() / 2 - 150, 714);
-            g.drawString("Score: N/A", gameController.getWidth() / 2 + 50, 714);
-            g.drawString("Blocks: " + activeLevel.getBlocksLeft(), gameController.getWidth() / 2 + 200, 714);
-            g.drawString("Time: " + textHandler.getTimeString(util.getTimeElapsed()), gameController.getWidth() / 2 + 350, 714);
+            g.drawString("Lives: " + activeLevel.getPlayerLife(), getHalfWidth() - 150, 714);
+            g.drawString("Score: " + levelHandler.getCurrentScore(), getHalfWidth() + 50, 714);
+            g.drawString("Blocks: " + activeLevel.getBlockList().getBlocksLeft(), getHalfWidth() + 200, 714);
+            g.drawString("Time: " + textHandler.getTimeString(util.getTimeElapsed()), getHalfWidth() + 350, 714);
         }
     }
 

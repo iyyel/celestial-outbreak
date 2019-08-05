@@ -16,10 +16,12 @@ public final class BlockList implements IRenderable {
     private final Dimension dim;
     private final Point blockPosSpacing;
     private final int hitPoints;
+    private final int blockAmount;
     private final float lum;
     private final float sat;
 
     private int blocksLeft;
+    private int totalHitPointsLeft;
 
     private Point pos;
     private Block[] blockList;
@@ -32,6 +34,8 @@ public final class BlockList implements IRenderable {
         this.blocksLeft = blockAmount;
         this.gameController = gameController;
         this.hitPoints = hitPoints;
+        this.blockAmount = blockAmount;
+        this.totalHitPointsLeft = getTotalHitPoints();
         this.lum = lum;
         this.sat = sat;
 
@@ -49,11 +53,9 @@ public final class BlockList implements IRenderable {
         }
 
         /* Render the blocks if they exist, i.e. if they aren't equal to null. */
-        for (Block block : blockList) {
-            if (block != null) {
+        for (Block block : blockList)
+            if (block != null)
                 block.render(g);
-            }
-        }
 
         /* Enables antialiasing when blocks have been rendered. */
         if (optionsHandler.isAntiAliasingEnabled()) {
@@ -75,8 +77,26 @@ public final class BlockList implements IRenderable {
         return blockList.length;
     }
 
+    public int getBlockAmount() {
+        return blockAmount;
+    }
+
     public int getBlocksLeft() {
         return blocksLeft;
+    }
+
+    public int getTotalHitPoints() {
+        System.out.println("totalHitPoints: " + hitPoints * blockAmount);
+        return hitPoints * blockAmount;
+    }
+
+    public int getTotalHitPointsLeft() {
+        System.out.println("totalHitPointsLeft: " + totalHitPointsLeft);
+        return totalHitPointsLeft;
+    }
+
+    public void decTotalHitPoints() {
+        totalHitPointsLeft--;
     }
 
     private void createBlocks() {

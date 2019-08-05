@@ -131,6 +131,7 @@ public final class Ball extends AbstractMobileEntity {
 
                     // block was hit
                     blockList.getBlock(i).decHitPoints();
+                    blockList.decTotalHitPoints();
 
                     if (blockList.getBlock(i).isDead()) {
                         soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);

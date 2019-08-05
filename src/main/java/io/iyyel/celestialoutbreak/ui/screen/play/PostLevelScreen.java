@@ -34,7 +34,7 @@ public final class PostLevelScreen extends AbstractScreen {
             isFirstUpdate = true;
             levelHandler.getActiveLevel().stopSound();
             levelHandler.resetActiveLevel();
-            gameController.switchState(State.MAIN);
+            gameController.switchState(State.SELECT_LEVEL);
         }
     }
 
@@ -47,11 +47,11 @@ public final class PostLevelScreen extends AbstractScreen {
 
         if (hasWon) {
             drawScreenMessage("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been defeated.", 0, g);
-            drawScreenMessage("You reached a total score of 1234.", 50, g);
+            drawScreenMessage("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
             drawScreenMessage("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
         } else {
             drawScreenMessage("You have lost. The " + levelHandler.getActiveLevel().getName() + " level shines in grace upon you.", 0, g);
-            drawScreenMessage("You reached a total score of 1234.", 50, g);
+            drawScreenMessage("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
             drawScreenMessage("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
         }
 

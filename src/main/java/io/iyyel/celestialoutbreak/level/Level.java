@@ -8,14 +8,16 @@ import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.ui.screen.play.GamePanel;
+import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 
 public final class Level {
 
-    private TextHandler textHandler = TextHandler.getInstance();
-    private InputHandler inputHandler = InputHandler.getInstance();
-    private SoundHandler soundHandler = SoundHandler.getInstance();
+    private final TextHandler textHandler = TextHandler.getInstance();
+    private final InputHandler inputHandler = InputHandler.getInstance();
+    private final SoundHandler soundHandler = SoundHandler.getInstance();
+    private final Util util = Util.getInstance();
 
     /*
      * Rendering objects
@@ -154,12 +156,8 @@ public final class Level {
         return color;
     }
 
-    public int getBlockAmount() {
-        return blockAmount;
-    }
-
-    public int getBlocksLeft() {
-        return blockList.getBlocksLeft();
+    public BlockList getBlockList() {
+        return blockList;
     }
 
     public void decPlayerLife() {
@@ -170,6 +168,10 @@ public final class Level {
     public void pause() {
         ball.pause();
         paddle.pause();
+    }
+
+    public int getBlockHitPoints() {
+        return blockHitPoints;
     }
 
     public void playSound() {
