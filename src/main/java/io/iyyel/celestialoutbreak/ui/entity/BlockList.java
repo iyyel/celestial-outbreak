@@ -15,7 +15,7 @@ public final class BlockList implements IRenderable {
 
     private final Dimension dim;
     private final Point blockPosSpacing;
-    private final int hitPoints;
+    private final int blockHitPoints;
     private final int blockAmount;
     private final float lum;
     private final float sat;
@@ -26,14 +26,14 @@ public final class BlockList implements IRenderable {
     private Point pos;
     private Block[] blockList;
 
-    public BlockList(int blockAmount, int hitPoints, Point pos, Dimension dim, Point blockPosSpacing,
+    public BlockList(int blockAmount, int blockHitPoints, Point pos, Dimension dim, Point blockPosSpacing,
                      float lum, float sat, GameController gameController) {
         this.pos = pos;
         this.dim = dim;
         this.blockPosSpacing = blockPosSpacing;
         this.blocksLeft = blockAmount;
         this.gameController = gameController;
-        this.hitPoints = hitPoints;
+        this.blockHitPoints = blockHitPoints;
         this.blockAmount = blockAmount;
         this.totalHitPointsLeft = getTotalHitPoints();
         this.lum = lum;
@@ -85,13 +85,16 @@ public final class BlockList implements IRenderable {
         return blocksLeft;
     }
 
+    public int getBlockHitPoints() {
+        return blockHitPoints;
+    }
+
     public int getTotalHitPoints() {
-        System.out.println("totalHitPoints: " + hitPoints * blockAmount);
-        return hitPoints * blockAmount;
+        return blockHitPoints * blockAmount;
     }
 
     public int getTotalHitPointsLeft() {
-        System.out.println("totalHitPointsLeft: " + totalHitPointsLeft);
+
         return totalHitPointsLeft;
     }
 
@@ -104,7 +107,7 @@ public final class BlockList implements IRenderable {
 
         for (int i = 0; i < blockList.length; i++) {
             /* Instantiate @Block object. */
-            blockList[i] = new Block(new Point(pos), dim, hitPoints, util.generatePastelColor(lum, sat));
+            blockList[i] = new Block(new Point(pos), dim, blockHitPoints, util.generatePastelColor(lum, sat));
 
             /*
              * Adds spacing and extra width for the new block

@@ -52,7 +52,7 @@ public final class LogHandler {
     }
 
     public void log(String msg, LogLevel logLevel, boolean isVerboseLog) {
-        log(msg, "", logLevel, isVerboseLog);
+        log(msg, null, logLevel, isVerboseLog);
     }
 
     private void writeToLogFile(String msg) {

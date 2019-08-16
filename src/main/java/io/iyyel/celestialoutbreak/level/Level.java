@@ -37,6 +37,7 @@ public final class Level {
     private String name;
     private String desc;
     private int playerLife;
+    private int playerLifeInit;
     private String soundFileName;
     private Color color;
 
@@ -98,6 +99,7 @@ public final class Level {
         name = levelOptions.getLevelName();
         desc = levelOptions.getLevelDesc();
         playerLife = levelOptions.getLevelPlayerLife();
+        playerLifeInit = playerLife;
         soundFileName = levelOptions.getLevelSoundFileName();
         color = levelOptions.getLevelColor();
 
@@ -142,6 +144,10 @@ public final class Level {
 
     public int getPlayerLife() {
         return playerLife;
+    }
+
+    public int getPlayerLifeInit() {
+        return playerLifeInit;
     }
 
     public String getName() {

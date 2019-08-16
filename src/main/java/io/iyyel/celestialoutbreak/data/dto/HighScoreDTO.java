@@ -6,10 +6,10 @@ public final class HighScoreDTO implements Serializable {
 
     private String player;
     private String levelName;
-    private int score;
-    private int time;
+    private long score;
+    private long time;
 
-    public HighScoreDTO(String player, String levelName, int score, int time) {
+    public HighScoreDTO(String player, String levelName, long score, long time) {
         this.player = player;
         this.levelName = levelName;
         this.score = score;
@@ -24,11 +24,11 @@ public final class HighScoreDTO implements Serializable {
         return levelName;
     }
 
-    public int getScore() {
+    public long getScore() {
         return score;
     }
 
-    public int getTime() {
+    public long getTime() {
         return time;
     }
 
