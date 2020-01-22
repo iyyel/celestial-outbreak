@@ -48,6 +48,8 @@ Any ideas or suggestions? Do not hesitate to contact me here or on my e-mail i@i
 
 # Installing
 
+To install Celestial Outbreak, you can either download a [release](https://github.com/iyyel/celestialoutbreak/releases) version or clone this repository and compile it into a jar file.
+
 # Previews
 
 ### Main Menu
