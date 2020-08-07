@@ -1,6 +1,5 @@
 package io.iyyel.celestialoutbreak.entity;
 
-import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.OptionsHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
@@ -10,17 +9,15 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * The Ball is a MobileEntity that the @Paddle is used
+ * The Ball is a MobileEntity that the Paddle is used
  * to collide with. The Ball inherits from MobileEntity
  * because the Ball is going to move around the screen.
  * <p>
  * Ball is the entity that handles collisions. Since
  * we are talking about rather simple collision logic here,
- * this is doable. A better design could probably consist of a
- * collision controller or something like that.
+ * this is doable.
  * <p>
- * Velocity is used to update the speed of the Ball, attempting
- * to give it a natural physical feel.
+ * Velocity is used to update the speed of the Ball.
  */
 public final class Ball extends MobileEntity {
 
@@ -28,37 +25,38 @@ public final class Ball extends MobileEntity {
     private final TextHandler textHandler = TextHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
-    private final GameController gameController;
 
     private final Random random = new Random();
-    private Point velocity;
+    private final Point velocity;
 
     private final int PADDLE_COLLISION_TIMER_INITIAL = 20;
     private final int BALL_STALE_TIMER_INITIAL = 40;
 
     private int paddleCollisionTimer = 0;
     private int ballStaleTimer = BALL_STALE_TIMER_INITIAL;
-    private int ballPosXOffset;
-    private int ballPosYOffset;
+    private final int posXOffset;
+    private final int posYOffset;
+    private final int screenWidth;
+    private final int screenHeight;
 
     /**
      * Default constructor.
      *
-     * @param pos            Current position of the Ball. (x, y)
-     * @param width          Width of the Ball. (pixels)
-     * @param height         Height of the Ball. (pixels)
-     * @param color          Color of the Ball.
-     * @param speed          Speed of the Ball.
-     * @param ballPosXOffset Ball x-axis offset.
-     * @param ballPosYOffset Ball y-axis offset.
-     * @param gameController Current game instance.
+     * @param pos        Current position of the Ball. (x, y)
+     * @param width      Width of the Ball. (pixels)
+     * @param height     Height of the Ball. (pixels)
+     * @param color      Color of the Ball.
+     * @param speed      Speed of the Ball.
+     * @param posXOffset Ball x-axis offset.
+     * @param posYOffset Ball y-axis offset.
      */
-    public Ball(Point pos, int width, int height, Color color, int speed,
-                int ballPosXOffset, int ballPosYOffset, GameController gameController) {
-        super(pos, width, height, color, speed, gameController);
-        this.ballPosXOffset = ballPosXOffset;
-        this.ballPosYOffset = ballPosYOffset;
-        this.gameController = gameController;
+    public Ball(Point pos, int width, int height, Color color, int speed, int posXOffset, int posYOffset,
+                int screenWidth, int screenHeight) {
+        super(pos, width, height, color, speed);
+        this.posXOffset = posXOffset;
+        this.posYOffset = posYOffset;
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
 
         velocity = new Point(speed, speed);
     }
@@ -83,8 +81,8 @@ public final class Ball extends MobileEntity {
         }
 
         /* Check for collision. */
-        checkCollision(paddle);
-        checkCollision(blockList);
+        checkPaddleCollision(paddle);
+        checkBlockCollision(blockList);
 
         /* Ball hit left x-axis. */
         if (pos.x < 0) {
@@ -96,7 +94,7 @@ public final class Ball extends MobileEntity {
         }
 
         /* Ball hit right x-axis. */
-        if (pos.x > (gameController.getWidth() - width)) {
+        if (pos.x > (screenWidth - width)) {
             if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedXAxisRightMsg);
             }
@@ -114,12 +112,12 @@ public final class Ball extends MobileEntity {
         }
 
         /* Ball hit bottom y-axis. */
-        if (pos.y > (gameController.getHeight() - height)) {
+        if (pos.y > (screenHeight - height)) {
             if (optionsHandler.isVerboseLogEnabled()) {
                 fileHandler.writeLog(textHandler.vBallTouchedYAxisBottomMsg);
             }
 
-            pos = new Point((gameController.getWidth() / 2) - ballPosXOffset, (gameController.getHeight() / 2) - ballPosYOffset);
+            pos = new Point((screenWidth / 2) - posXOffset, (screenHeight / 2) - posYOffset);
 
             boolean isPositiveValue = random.nextBoolean();
             int ballSpeedDecrement = random.nextInt(speed);
@@ -133,18 +131,14 @@ public final class Ball extends MobileEntity {
     }
 
     /**
-     * This is a generic method used to check if the ball collides with t.
-     * t can either be a Paddle or a BlockList.
+     * This method is used to check if the Ball has had
+     * a collision with the paddle.
      * <p>
-     * TODO: This can be cleaned up. Instead of using the actual BlockList, make it use
-     * TODO: each individual block. That would make more logical sense, perhaps.
-     * TODO: Perhaps find a better way to do this.
      *
-     * @param t   Object to check collision with.
-     * @param <T> Generic type.
+     * @param paddle The paddle to check for collision with the ball.
      */
-    private <T> void checkCollision(T t) {
-        if (t instanceof Paddle && ((Paddle) t).getBounds().intersects(getBounds())) {
+    private void checkPaddleCollision(Paddle paddle) {
+        if (paddle.getBounds().intersects(getBounds())) {
             if (paddleCollisionTimer == 0) {
                 velocity.y *= -1;
 
@@ -162,28 +156,32 @@ public final class Ball extends MobileEntity {
                     fileHandler.writeLog(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer));
                 }
             }
-        } else if (t instanceof BlockList) {
+        }
+    }
 
-            /* Cast t to a BlockList. */
-            BlockList blockList = ((BlockList) t);
+    /**
+     * This method is used to check if the Ball has had
+     * a collision with a block.
+     * <p>
+     *
+     * @param blockList The list of blocks to check for collisions.
+     */
+    private void checkBlockCollision(BlockList blockList) {
+        for (int i = 0; i < blockList.getLength(); i++) {
+            if (blockList.getBlock(i) != null && blockList.getBlock(i).getBounds().intersects(getBounds())) {
+                velocity.y *= -1;
 
-            for (int i = 0; i < blockList.getLength(); i++) {
-                if (blockList.getBlock(i) != null && blockList.getBlock(i).getBounds().intersects(getBounds())) {
-                    velocity.y *= -1;
-                    System.out.println("HP before: " + blockList.getBlock(i).getHitPoints());
-                    // block was hit
-                    blockList.getBlock(i).decHitPoints();
-                    System.out.println("HP after: " + blockList.getBlock(i).getHitPoints());
+                // block was hit
+                blockList.getBlock(i).hit();
 
-                    if (blockList.getBlock(i).isDead()) {
-                        blockList.destroyBlock(i);
-                    }
+                if (blockList.getBlock(i).isDead()) {
+                    blockList.removeBlock(i);
+                }
 
-                    soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
+                soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
 
-                    if (optionsHandler.isVerboseLogEnabled()) {
-                        fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i));
-                    }
+                if (optionsHandler.isVerboseLogEnabled()) {
+                    fileHandler.writeLog(textHandler.vBallBlockListCollisionMsg(i));
                 }
             }
         }
@@ -202,17 +200,6 @@ public final class Ball extends MobileEntity {
         if (paddleCollisionTimer > 0) {
             paddleCollisionTimer--;
         }
-    }
-
-    /**
-     * This is used to check if the Ball collides
-     * with the Block.
-     *
-     * @return Rectangle using the Ball's bounds.
-     */
-    @Override
-    public Rectangle getBounds() {
-        return new Rectangle(pos.x, pos.y, width, height);
     }
 
 }

@@ -4,8 +4,8 @@ import java.awt.*;
 
 /**
  * The Block is a specific Entity that can be drawn onto the screen.
- * It's a going to be drawn as an Rectangle, of which the player can hit
- * with the ball for it to disappear and get points.
+ * It's going to be drawn as an Rectangle, of which the player can hit
+ * with the Ball for it to disappear and get points and maybe a powerup.
  * The Block should be an immobile object, so therefore only extends Entity.
  * <p>
  * The Block is not going to be directly used, but used in another object called a
@@ -13,7 +13,7 @@ import java.awt.*;
  */
 public final class Block extends Entity {
 
-    private int hitpoints;
+    private int health;
 
     /**
      * Default constructor.
@@ -23,13 +23,13 @@ public final class Block extends Entity {
      * @param height Height of the Block.
      * @param color  Color of the Block.
      */
-    public Block(Point pos, int width, int height, int hitpoints, Color color) {
+    public Block(Point pos, int width, int height, Color color, int health) {
         super(pos, width, height, color);
-        this.hitpoints = hitpoints;
+        this.health = health;
     }
 
     /**
-     * Draws the @Block onto the screen.
+     * Draws the Block onto the screen.
      *
      * @param g Graphics object used to render this Entity.
      */
@@ -40,28 +40,21 @@ public final class Block extends Entity {
     }
 
     /**
-     * This is used to check if the Ball collides
-     * with the Block.
-     *
-     * @return Rectangle using the Block's bounds.
+     * This method decreases the health of the Block
+     * by one. For example, it if was hit by the ball.
      */
-    @Override
-    public Rectangle getBounds() {
-        return new Rectangle(pos.x, pos.y, width, height);
-    }
-
-    public void decHitPoints() {
-        if (hitpoints > 0) {
-            hitpoints -= 1;
+    public void hit() {
+        if (health > 0) {
+            health -= 1;
         }
     }
 
+    /**
+     * This method is used to check whether the Block
+     * is "dead", i.e. when its health is at 0.
+     */
     public boolean isDead() {
-        return hitpoints == 0;
-    }
-
-    public int getHitPoints() {
-        return hitpoints;
+        return health == 0;
     }
 
 }

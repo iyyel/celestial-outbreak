@@ -5,10 +5,7 @@ import java.awt.*;
 /**
  * An Entity is defined as an object that can be seen on the screen.
  * Therefore an entity has a position, a width and height and a colour
- * assigned to it.
- * <p>
- * An Entity is immobile.
- * See @MobileEntity for more information on movable entities.
+ * assigned to it. It can not move around the screen.
  */
 public abstract class Entity {
 
@@ -43,10 +40,12 @@ public abstract class Entity {
 
     /**
      * This method returns the bounds, as in the Rectangle
-     * that this Entity forms onto the screen. This is used
-     * for collision detection.
+     * that this Entity forms onto the screen. This is mainly
+     * used for collision detection.
      *
      * @return Rectangle with Entity bounds.
      */
-    public abstract Rectangle getBounds();
+    protected Rectangle getBounds() {
+        return new Rectangle(pos.x, pos.y, width, height);
+    }
 }

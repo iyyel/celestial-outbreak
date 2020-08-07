@@ -38,7 +38,7 @@ public final class LevelConfig {
      * BlockList options.
      */
     private Point blockPos;
-    private int blockAmount, blockHP, blockWidth, blockHeight, blockSpacing;
+    private int blockAmount, blockHealth, blockWidth, blockHeight, blockSpacing;
 
     /*
      * GamePanel options.
@@ -104,7 +104,7 @@ public final class LevelConfig {
 
         /* BlockList options. */
         blockAmount = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_AMOUNT));
-        blockHP = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_HITPOINTS));
+        blockHealth = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_BLOCK_HITPOINTS));
 
         int blockListPosX = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_POS_X));
         int blockListPosY = Integer.parseInt(map.get(textHandler.PROP_BLOCKLIST_POS_Y));
@@ -195,8 +195,8 @@ public final class LevelConfig {
         return blockSpacing;
     }
 
-    public int getBlockHP() {
-        return blockHP;
+    public int getBlockHealth() {
+        return blockHealth;
     }
 
 }

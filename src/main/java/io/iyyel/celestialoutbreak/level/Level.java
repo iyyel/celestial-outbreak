@@ -58,7 +58,7 @@ public final class Level {
      * BlockList options.
      */
     private Point blockPos;
-    private int blockAmount, blockHP, blockWidth, blockHeight, blockSpacing;
+    private int blockAmount, blockHealth, blockWidth, blockHeight, blockSpacing;
 
     /*
      * GamePanel options.
@@ -75,9 +75,11 @@ public final class Level {
         initSettings();
 
         /* Create objects after initializing the options. */
-        paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleSpeed, paddleColor, gameController);
-        ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, ballPosXOffset, ballPosYOffset, gameController);
-        blockList = new BlockList(blockAmount, blockHP, blockPos, blockWidth, blockHeight, blockSpacing, gameController);
+        paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleColor, paddleSpeed, gameController.getWidth());
+        ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, ballPosXOffset, ballPosYOffset,
+                gameController.getWidth(), gameController.getHeight());
+        blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, blockHealth,
+                gameController.getWidth());
         gamePanel = new GamePanel(gameController);
     }
 
@@ -118,7 +120,7 @@ public final class Level {
         /* BlockList options. */
         blockPos = levelConfig.getBlockPos();
         blockAmount = levelConfig.getBlockAmount();
-        blockHP = levelConfig.getBlockHP();
+        blockHealth = levelConfig.getBlockHealth();
         blockWidth = levelConfig.getBlockWidth();
         blockHeight = levelConfig.getBlockHeight();
         blockSpacing = levelConfig.getBlockSpacing();
