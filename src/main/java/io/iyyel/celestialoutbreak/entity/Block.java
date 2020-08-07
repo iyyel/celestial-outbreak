@@ -28,6 +28,11 @@ public final class Block extends Entity {
         this.health = health;
     }
 
+    @Override
+    public void update(Object... arguments) {
+
+    }
+
     /**
      * Draws the Block onto the screen.
      *
