@@ -145,8 +145,7 @@ public final class TextHandler {
             "#########################################################################";
 
     public final String logMsgPrefix(LogHandler.LogLevel logLevel) {
-        int length = LogHandler.LogLevel.ERROR.toString().length() + 3;
-        return "[" + dateFormat.format(new Date()) + " " + getFixedString("(" + logLevel.toString() + ")", length) + "]: ";
+        return "[" + dateFormat.format(new Date()) + "]: ";
     }
 
     /*
@@ -198,7 +197,7 @@ public final class TextHandler {
     /*
      * Level file information.
      */
-    public final String LEVEL_DIR_NAME = "level";
+    public final String LEVEL_DIR_NAME = "levels";
     public final String LEVEL_DIR_PATH = GAME_DIR_PATH + fs + LEVEL_DIR_NAME;
     public final String LOCAL_JAR_LEVEL_DIR = LOCAL_JAR_CONFIG_DIR + fsJar + LEVEL_DIR_NAME;
 
@@ -375,7 +374,8 @@ public final class TextHandler {
     public final String PROP_KEY_BLOCK_SATURATION = "LEVEL_BLOCK_SATURATION";
 
     /* GamePanel. */
-    public final String PROP_KEY_GAME_PANEL_COLOR = "LEVEL_GAME_PANEL_COLOR";
+    public final String PROP_KEY_GAME_PANEL_TITLE_COLOR = "LEVEL_GAME_PANEL_TITLE_COLOR";
+    public final String PROP_KEY_GAME_PANEL_VALUE_COLOR = "LEVEL_GAME_PANEL_VALUE_COLOR";
 
     /*
      * Menu messages.
@@ -396,25 +396,25 @@ public final class TextHandler {
     public final String menuControlsMsg10 = BTN_CONTROL_PAUSE;
 
     /* OPTIONS messages. */
-    public final String menuConfigMsg01 = "All of the configuration related files can be found in the";
-    public final String menuConfigMsg02 = "'" + GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME + "' directory in the OS home directory.";
-    public final String menuConfigMsg03 = "General options can be found in the '" + OPTIONS_CONFIG_FILE_NAME + "' file";
-    public final String menuConfigMsg04 = "in the '" + OPTIONS_DIR_NAME + "' directory.";
+    public final String menuConfigMsg01 = "All of the customization related files can be found in the following";
+    public final String menuConfigMsg02 = "directory: " + GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME;
+    public final String menuConfigMsg03 = "General options can be found in the " + OPTIONS_CONFIG_FILE_NAME + " file";
+    public final String menuConfigMsg04 = "inside the " + OPTIONS_DIR_NAME + " directory.";
     public final String menuConfigMsg05 = "Level specific options can be found in the various level files";
-    public final String menuConfigMsg06 = "in the '" + LEVEL_DIR_NAME + "' directory, e.g. '" + LEVEL_FILE_NAME_SUN + "'. If creating custom";
-    public final String menuConfigMsg08 = "levels, make sure to add them to the '" + LEVEL_CONFIG_FILE_NAME + "' file.";
+    public final String menuConfigMsg06 = "in the " + LEVEL_DIR_NAME + " directory, e.g. " + LEVEL_FILE_NAME_SUN + ". If creating custom";
+    public final String menuConfigMsg08 = "levels, make sure to add them to the " + LEVEL_CONFIG_FILE_NAME + " file.";
     public final String menuConfigMsg09 = "If more information is needed, please visit";
-    public final String menuConfigMsg10 = "'" + GITHUB_URL + "'.";
+    public final String menuConfigMsg10 = GITHUB_URL;
 
     /* ABOUT_MENU messages. */
-    public final String aboutMenuMsg01 = GAME_TITLE + " is an open source, Breakout-like game with";
-    public final String aboutMenuMsg02 = "focus on game customization.";
-    public final String aboutMenuMsg03 = "The game is a software development side project and the";
-    public final String aboutMenuMsg04 = "latest version of the game can be seen and downloaded at";
-    public final String aboutMenuMsg05 = "'" + GITHUB_URL + "'.";
-    public final String aboutMenuMsg06 = "The game plays like your typical Breakout game, with a few";
-    public final String aboutMenuMsg07 = "additions such as power ups, custom levels and player scores.";
-    public final String aboutMenuMsg08 = "If any help is needed, please look at the " + TITLE_CONTROLS_SCREEN + " and";
+    public final String aboutMenuMsg01 = GAME_TITLE + " is an open-source, space-themed, Breakout-like";
+    public final String aboutMenuMsg02 = "sandbox 2D video game with focus on game customization.";
+    public final String aboutMenuMsg03 = "The game plays like your typical Breakout game, with a few additions";
+    public final String aboutMenuMsg04 = "such as power ups and a full customizable experience.";
+    public final String aboutMenuMsg05 = "Players are advised to create new levels and share them with others.";
+    public final String aboutMenuMsg06 = "The latest version of the game can be found at the following URL:";
+    public final String aboutMenuMsg07 = GITHUB_URL;
+    public final String aboutMenuMsg08 = "If any help is needed, take a look at the " + TITLE_CONTROLS_SCREEN + " and";
     public final String aboutMenuMsg09 = TITLE_CONFIGURATION_OPTIONS_SCREEN + " menus for more information.";
 
     /* EXIT_MENU messages. */

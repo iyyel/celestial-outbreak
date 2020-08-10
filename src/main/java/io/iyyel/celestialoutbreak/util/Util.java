@@ -1,6 +1,6 @@
 package io.iyyel.celestialoutbreak.util;
 
-import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import org.apache.commons.lang3.time.StopWatch;
 

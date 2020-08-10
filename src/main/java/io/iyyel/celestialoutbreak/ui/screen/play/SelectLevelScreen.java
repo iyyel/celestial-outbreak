@@ -1,6 +1,10 @@
 package io.iyyel.celestialoutbreak.ui.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.data.dao.HighScoreDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IHighScoreDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dto.HighScoreDTO;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 
@@ -9,6 +13,7 @@ import java.awt.*;
 public class SelectLevelScreen extends AbstractScreen {
 
     private final LevelHandler levelHandler = LevelHandler.getInstance();
+    private final IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
 
     private Rectangle[] levelRects;
     private Color[] levelRectColors;
@@ -39,6 +44,12 @@ public class SelectLevelScreen extends AbstractScreen {
             }
             levelRects[i] = new Rectangle(x, y, 280, 90);
             y += yInc;
+        }
+
+        try {
+            highScoreDAO.loadHighScoreList();
+        } catch (IHighScoreDAO.HighScoreDAOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -117,13 +128,35 @@ public class SelectLevelScreen extends AbstractScreen {
                 g.setFont(levelInfoFont);
                 g.setColor(menuBtnColor);
 
-                String blockHitPoints = textHandler.getFixedString("Blocks: " + levelHandler.getLevelBlockAmounts()[i] + "/" +
+                String selectedPlayer = null;
+
+                try {
+                    selectedPlayer = playerDAO.getSelectedPlayer();
+                } catch (IPlayerDAO.PlayerDAOException e) {
+                    e.printStackTrace();
+                }
+
+                HighScoreDTO scoreDTO;
+                String scoreTmp = "0";
+                long timeTmp = 0;
+
+                try {
+                    scoreDTO = highScoreDAO.getHighScore(selectedPlayer, levelHandler.getLevelNames()[i]);
+                    if (scoreDTO != null) {
+                        scoreTmp = scoreDTO.getScore() + "";
+                        timeTmp = scoreDTO.getTime();
+                    }
+                } catch (IHighScoreDAO.HighScoreDAOException e) {
+                    e.printStackTrace();
+                }
+
+                String blockHealth = textHandler.getFixedString("Blocks: " + levelHandler.getLevelBlockAmounts()[i] + "/" +
                         levelHandler.getLevelHitPoints()[i], 15);
                 String life = textHandler.getFixedString(" Life: " + levelHandler.getLevelPlayerLives()[i], 12);
-                g.drawString(blockHitPoints + life, levelRects[i].x + 5, levelRects[i].y + 55);
+                g.drawString(blockHealth + life, levelRects[i].x + 5, levelRects[i].y + 55);
 
-                String score = textHandler.getFixedString("Score:  " + "123456", 15);
-                String time = textHandler.getFixedString(" Time: " + "02:03", 12);
+                String score = textHandler.getFixedString("Score:  " + scoreTmp, 15);
+                String time = textHandler.getFixedString(" Time: " + textHandler.getTimeString(timeTmp), 12);
                 g.drawString(score + time, levelRects[i].x + 5, levelRects[i].y + 75);
 
                 g.setColor(levelRectColors[i]);

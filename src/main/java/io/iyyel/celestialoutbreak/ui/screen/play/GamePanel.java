@@ -2,7 +2,7 @@ package io.iyyel.celestialoutbreak.ui.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
-import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.level.Level;
 import io.iyyel.celestialoutbreak.level.LevelOptions;
@@ -15,7 +15,8 @@ public final class GamePanel extends AbstractScreen {
     private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
     private final Font panelFont;
-    private final Color panelColor;
+    private final Color titleColor;
+    private final Color valueColor;
 
     private final LevelHandler levelHandler = LevelHandler.getInstance();
 
@@ -24,7 +25,8 @@ public final class GamePanel extends AbstractScreen {
     public GamePanel(GameController gameController, LevelOptions levelOptions) {
         super(gameController);
         panelFont = util.getPanelFont().deriveFont(16F);
-        panelColor = levelOptions.getGamePanelColor();
+        titleColor = levelOptions.getGamePanelTitleColor();
+        valueColor = levelOptions.getGamePanelValueColor();
     }
 
     @Override
@@ -35,7 +37,6 @@ public final class GamePanel extends AbstractScreen {
     @Override
     public void render(Graphics2D g) {
         g.setFont(panelFont);
-        g.setColor(panelColor);
         drawGamePanel(g);
     }
 
@@ -49,12 +50,35 @@ public final class GamePanel extends AbstractScreen {
         }
 
         if (activeLevel != null) {
-            g.drawString("Level: " + activeLevel.getName(), 5, 714);
-            g.drawString("Player: " + selectedPlayer, 200, 714);
-            g.drawString("Lives: " + activeLevel.getPlayerLife(), getHalfWidth() - 150, 714);
-            g.drawString("Score: " + levelHandler.getCurrentScore(), getHalfWidth() + 50, 714);
-            g.drawString("Blocks: " + activeLevel.getBlockList().getBlocksLeft(), getHalfWidth() + 200, 714);
-            g.drawString("Time: " + textHandler.getTimeString(util.getTimeElapsed()), getHalfWidth() + 350, 714);
+            g.setColor(titleColor);
+            g.drawString("Level: ", getHalfWidth() - 440, 714);
+            g.setColor(valueColor);
+            g.drawString(activeLevel.getName(), getHalfWidth() - 370, 714);
+
+            g.setColor(titleColor);
+            g.drawString("Player: ", getHalfWidth() - 280, 714);
+            g.setColor(valueColor);
+            g.drawString(selectedPlayer, getHalfWidth() - 200, 714);
+
+            g.setColor(titleColor);
+            g.drawString("Lives: ", getHalfWidth() - 110, 714);
+            g.setColor(valueColor);
+            g.drawString(activeLevel.getPlayerLife() + "", getHalfWidth() - 40, 714);
+
+            g.setColor(titleColor);
+            g.drawString("Score: ", getHalfWidth() + 20, 714);
+            g.setColor(valueColor);
+            g.drawString(levelHandler.getCurrentScore() + "", getHalfWidth() + 90, 714);
+
+            g.setColor(titleColor);
+            g.drawString("Blocks: ", getHalfWidth() + 160, 714);
+            g.setColor(valueColor);
+            g.drawString(activeLevel.getBlockList().getBlocksLeft() + "", getHalfWidth() + 240, 714);
+
+            g.setColor(titleColor);
+            g.drawString("Time: ", getHalfWidth() + 310, 714);
+            g.setColor(valueColor);
+            g.drawString(textHandler.getTimeString(util.getTimeElapsed()), getHalfWidth() + 370, 714);
         }
     }
 

@@ -4,8 +4,8 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.controller.GameController.State;
 import io.iyyel.celestialoutbreak.data.dao.HighScoreDAO;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
-import io.iyyel.celestialoutbreak.data.dao.contract.IHighScoreDAO;
-import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IHighScoreDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dto.HighScoreDTO;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
@@ -51,21 +51,25 @@ public final class PostLevelScreen extends AbstractScreen {
             isHighScore = false;
             util.stopTimer();
             hasWon = levelHandler.getActiveLevel().isWon();
+
             try {
                 highScoreDAO.loadHighScoreList();
             } catch (IHighScoreDAO.HighScoreDAOException e) {
                 e.printStackTrace();
             }
-            try {
-                highScoreDTO = new HighScoreDTO(playerDAO.getSelectedPlayer(), activeLevel.getName(), levelHandler.getCurrentScore(), util.getTimeElapsed());
-                isHighScore = highScoreDAO.isHighScore(highScoreDTO);
-                if (isHighScore) {
-                    highScoreDAO.addHighScore(highScoreDTO);
-                    highScoreDAO.saveHighScoreList();
+
+            if (hasWon) {
+                try {
+                    highScoreDTO = new HighScoreDTO(playerDAO.getSelectedPlayer(), activeLevel.getName(), levelHandler.getCurrentScore(), util.getTimeElapsed());
+                    isHighScore = highScoreDAO.isHighScore(highScoreDTO);
+                    if (isHighScore) {
+                        highScoreDAO.addHighScore(highScoreDTO);
+                        highScoreDAO.saveHighScoreList();
+                    }
+                } catch (IPlayerDAO.PlayerDAOException | IHighScoreDAO.HighScoreDAOException e) {
+                    e.printStackTrace();
+                    logHandler.log(e.getMessage(), "PostLevelScreen: render", LogHandler.LogLevel.ERROR, false);
                 }
-            } catch (IPlayerDAO.PlayerDAOException | IHighScoreDAO.HighScoreDAOException e) {
-                e.printStackTrace();
-                logHandler.log(e.getMessage(), "PostLevelScreen: render", LogHandler.LogLevel.ERROR, false);
             }
         }
 

@@ -2,7 +2,7 @@ package io.iyyel.celestialoutbreak.handler;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.HighScoreDAO;
-import io.iyyel.celestialoutbreak.data.dao.contract.IHighScoreDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IHighScoreDAO;
 import io.iyyel.celestialoutbreak.level.Level;
 import io.iyyel.celestialoutbreak.util.Util;
 

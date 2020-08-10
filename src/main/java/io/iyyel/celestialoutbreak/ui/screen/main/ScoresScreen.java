@@ -2,7 +2,7 @@ package io.iyyel.celestialoutbreak.ui.screen.main;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.HighScoreDAO;
-import io.iyyel.celestialoutbreak.data.dao.contract.IHighScoreDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IHighScoreDAO;
 import io.iyyel.celestialoutbreak.data.dto.HighScoreDTO;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
@@ -95,14 +95,14 @@ public final class ScoresScreen extends AbstractScreen {
                     e.printStackTrace();
                 }
 
-                String player = textHandler.getFixedString("Player: N/A", 15);
-                String score = textHandler.getFixedString("Score:  N/A", 15);
-                String time = textHandler.getFixedString(" Time: N/A", 12);
+                String player = textHandler.getFixedString("Player: ?", 15);
+                String score = textHandler.getFixedString("Score:  0", 15);
+                String time = textHandler.getFixedString(" Time: 0", 12);
 
                 if (highScoreDTO != null) {
                     player = textHandler.getFixedString("Player: " + highScoreDTO.getPlayer(), 15);
                     score = textHandler.getFixedString("Score:  " + highScoreDTO.getScore(), 15);
-                    time = textHandler.getFixedString(" Time: " + highScoreDTO.getTime(), 12);
+                    time = textHandler.getFixedString(" Time: " + textHandler.getTimeString(highScoreDTO.getTime()), 12);
                 }
 
                 g.drawString(player, levelRects[i].x + 5, levelRects[i].y + 55);

@@ -2,7 +2,7 @@ package io.iyyel.celestialoutbreak.ui.screen;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
-import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.OptionsHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
@@ -31,7 +31,7 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
     private final Font subtitleFont = util.getGameFont().deriveFont(36F);
     private final Font tooltipFont = util.getGameFont().deriveFont(18F);
     private final Font infoPanelFont = util.getGameFont().deriveFont(14F);
-    protected final Font msgFont = util.getGameFont().deriveFont(26F);
+    protected final Font msgFont = util.getPanelFont().deriveFont(26F);
     protected final Font inputBtnFont = util.getGameFont().deriveFont(20F);
 
     protected Color screenFontColor = optionsHandler.getMenuFontColor();

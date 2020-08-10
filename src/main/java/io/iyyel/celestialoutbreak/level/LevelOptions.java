@@ -54,7 +54,8 @@ public final class LevelOptions {
     /*
      * GamePanel options.
      */
-    private Color gamePanelColor;
+    private Color gamePanelTitleColor;
+    private Color gamePanelValueColor;
 
     /*
      * Required objects.
@@ -128,8 +129,10 @@ public final class LevelOptions {
         blockSat = Float.parseFloat(map.get(textHandler.PROP_KEY_BLOCK_SATURATION));
 
         /* GamePanel options */
-        int gamePanelColorInt = Integer.decode(map.get(textHandler.PROP_KEY_GAME_PANEL_COLOR));
-        gamePanelColor = new Color(gamePanelColorInt);
+        int gamePanelTitleColorInt = Integer.decode(map.get(textHandler.PROP_KEY_GAME_PANEL_TITLE_COLOR));
+        int gamePanelValueColorInt = Integer.decode(map.get(textHandler.PROP_KEY_GAME_PANEL_VALUE_COLOR));
+        gamePanelTitleColor = new Color(gamePanelTitleColorInt);
+        gamePanelValueColor = new Color(gamePanelValueColorInt);
     }
 
     public String getLevelName() {
@@ -212,8 +215,12 @@ public final class LevelOptions {
         return blockSat;
     }
 
-    public Color getGamePanelColor() {
-        return gamePanelColor;
+    public Color getGamePanelTitleColor() {
+        return gamePanelTitleColor;
+    }
+
+    public Color getGamePanelValueColor() {
+        return gamePanelValueColor;
     }
 
 }

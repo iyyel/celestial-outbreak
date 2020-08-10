@@ -23,25 +23,26 @@
  - [License](#License)
 
 # Introduction
-
 Celestial Outbreak is an open-source, space-themed, Breakout-like sandbox video game implemented in core Java with little to no use of third party libraries. It includes fully customizable levels and game configuration. The main purpose of this project was to create a stand-alone game with simple controls together with a great user experience using core Java only.
 
-DISCLAIMER: This project has been in the works for a long time, and the code quality will therefore vary a lot.
 
 # Status
 Currently in development.
+
+DISCLAIMER: This project has been in the works for a long time, and the code quality will therefore vary a lot.
+
 
 # Release
 Version 0.2 Beta has been released.
 
 First iteration of the scoring system has now been implemented.
 
-# Installing
 
+# Installing
 To install Celestial Outbreak, you can either download a [release](https://github.com/iyyel/celestialoutbreak/releases) version or clone this repository and compile it into a jar file.
 
-# Previews
 
+# Previews
 ### Main Menu
 ![Main Menu](img/welcome_screen.png)
 
@@ -53,6 +54,7 @@ To install Celestial Outbreak, you can either download a [release](https://githu
 
 ### Gameplay
 ![Gameplay](img/gameplay.gif)
+
 
 # License
 

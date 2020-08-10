@@ -41,12 +41,24 @@ public final class LogHandler {
             return;
         }
 
-        String functionInfo = "";
+        String msgInfo = "Message: N/A";
+        if (msg != null) {
+            msgInfo = "Message: " + msg;
+        }
 
-        if (function != null)
-            functionInfo = " Function: " + function + " ";
+        String functionInfo = "Function: N/A";
+        if (function != null) {
+            functionInfo = " Function: " + function;
+        }
+        functionInfo += ", ";
 
-        msg = textHandler.logMsgPrefix(logLevel) + functionInfo + msg;
+        String logLevelInfo = "Level: N/A";
+        if (logLevel != null) {
+            logLevelInfo = "Level: " + logLevel.toString();
+        }
+        logLevelInfo += ", ";
+
+        msg = textHandler.logMsgPrefix(logLevel) + logLevelInfo + functionInfo + msgInfo;
         System.out.println(msg);
         writeToLogFile(msg);
     }

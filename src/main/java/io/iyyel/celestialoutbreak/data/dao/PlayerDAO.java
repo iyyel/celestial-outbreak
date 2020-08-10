@@ -1,6 +1,6 @@
 package io.iyyel.celestialoutbreak.data.dao;
 
-import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dto.PlayerDTO;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;

@@ -1,6 +1,6 @@
 package io.iyyel.celestialoutbreak.data.dao;
 
-import io.iyyel.celestialoutbreak.data.dao.contract.IHighScoreDAO;
+import io.iyyel.celestialoutbreak.data.dao.interfaces.IHighScoreDAO;
 import io.iyyel.celestialoutbreak.data.dto.HighScoreDTO;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
@@ -8,7 +8,6 @@ import io.iyyel.celestialoutbreak.handler.TextHandler;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public final class HighScoreDAO implements IHighScoreDAO {
 
@@ -53,8 +52,9 @@ public final class HighScoreDAO implements IHighScoreDAO {
 
     @Override
     public void saveHighScoreList() throws HighScoreDAOException {
-        if (highScoreDTOList == null)
+        if (highScoreDTOList == null) {
             throw new HighScoreDAOException("Please load first.");
+        }
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.SCORE_BIN_FILE_CLIENT_PATH));
             oos.writeObject(highScoreDTOList);
@@ -68,60 +68,90 @@ public final class HighScoreDAO implements IHighScoreDAO {
 
     @Override
     public boolean isHighScore(HighScoreDTO dto) throws HighScoreDAOException {
-        if (highScoreDTOList == null)
+        if (highScoreDTOList == null) {
             throw new HighScoreDAOException("Please load first.");
+        }
 
         HighScoreDTO currentHighScore = getHighScore(dto.getLevelName());
 
-        if (currentHighScore == null)
+        if (currentHighScore == null) {
             return true;
-        else
+        } else {
             return dto.getScore() > currentHighScore.getScore();
+        }
     }
 
     @Override
     public HighScoreDTO getHighScore(String player, String levelName) throws HighScoreDAOException {
-        if (highScoreDTOList == null)
+        if (highScoreDTOList == null) {
             throw new HighScoreDAOException("Please load first.");
-        Optional<HighScoreDTO> match = highScoreDTOList.stream().filter(highScoreDTO -> highScoreDTO.getPlayer()
-                .equals(player) && highScoreDTO.getLevelName().equals(levelName)).findFirst();
-        return match.orElse(null);
+        }
+
+        HighScoreDTO finalDto = null;
+
+        for (HighScoreDTO dto : highScoreDTOList) {
+            if (dto.getLevelName().equals(levelName) && dto.getPlayer().equals(player)) {
+                if (finalDto == null) {
+                    finalDto = dto;
+                } else if (dto.getScore() > finalDto.getScore()) {
+                    finalDto = dto;
+                }
+            }
+        }
+
+        return finalDto;
     }
 
     @Override
     public HighScoreDTO getHighScore(String levelName) throws HighScoreDAOException {
-        if (highScoreDTOList == null)
+        if (highScoreDTOList == null) {
             throw new HighScoreDAOException("Please load first.");
-        Optional<HighScoreDTO> match = highScoreDTOList.stream().filter(highScoreDTO ->
-                highScoreDTO.getLevelName().equals(levelName)).findFirst();
-        return match.orElse(null);
+        }
+
+        HighScoreDTO finalDto = null;
+
+        for (HighScoreDTO dto : highScoreDTOList) {
+            if (dto.getLevelName().equals(levelName)) {
+                if (finalDto == null) {
+                    finalDto = dto;
+                } else if (dto.getScore() > finalDto.getScore()) {
+                    finalDto = dto;
+                }
+            }
+        }
+
+        return finalDto;
     }
 
     @Override
     public void addHighScore(HighScoreDTO dto) throws HighScoreDAOException {
-        if (highScoreDTOList == null)
+        if (highScoreDTOList == null) {
             throw new HighScoreDAOException("Please load first.");
+        }
         highScoreDTOList.add(dto);
     }
 
     @Override
     public void removeScore(HighScoreDTO dto) throws HighScoreDAOException {
-        if (highScoreDTOList == null)
+        if (highScoreDTOList == null) {
             throw new HighScoreDAOException("Please load first.");
+        }
         highScoreDTOList.remove(dto);
     }
 
     @Override
     public void removeScore(int index) throws HighScoreDAOException {
-        if (highScoreDTOList == null)
+        if (highScoreDTOList == null) {
             throw new HighScoreDAOException("Please load first.");
+        }
         highScoreDTOList.remove(index);
     }
 
     @Override
     public List<HighScoreDTO> getScores() throws HighScoreDAOException {
-        if (highScoreDTOList == null)
+        if (highScoreDTOList == null) {
             throw new HighScoreDAOException("Please load first.");
+        }
         return highScoreDTOList;
     }
 
