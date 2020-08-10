@@ -1,7 +1,6 @@
 package io.iyyel.celestialoutbreak.handler;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.exception.ExceptionUtils;
+import io.iyyel.celestialoutbreak.util.FileUtil;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -9,10 +8,12 @@ import java.util.*;
 
 public final class FileHandler {
 
+    private final TextHandler textHandler = TextHandler.getInstance();
+    private final LogHandler logHandler = LogHandler.getInstance();
+    private final FileUtil fileUtil = FileUtil.getInstance();
+
     /* Singleton FileHandler instance. */
     private static FileHandler instance;
-
-    private final TextHandler textHandler = TextHandler.getInstance();
 
     /*
      * Private constructor so that FileHandler
@@ -55,13 +56,13 @@ public final class FileHandler {
      * Create the standard gameController directories.
      */
     private void createStandardDirs() {
-        createDir(textHandler.LOG_DIR_PATH);
-        createDir(textHandler.OPTIONS_DIR_PATH);
-        createDir(textHandler.SOUND_DIR_PATH);
-        createDir(textHandler.FONT_DIR_PATH);
-        createDir(textHandler.LEVEL_DIR_PATH);
-        createDir(textHandler.PLAYER_DIR_PATH);
-        createDir(textHandler.SCORE_DIR_PATH);
+        fileUtil.createDir(textHandler.LOG_DIR_PATH);
+        fileUtil.createDir(textHandler.OPTIONS_DIR_CLIENT_PATH);
+        fileUtil.createDir(textHandler.SOUND_DIR_PATH);
+        fileUtil.createDir(textHandler.FONT_DIR_PATH);
+        fileUtil.createDir(textHandler.LEVEL_DIR_PATH);
+        fileUtil.createDir(textHandler.PLAYER_DIR_PATH);
+        fileUtil.createDir(textHandler.SCORE_DIR_PATH);
     }
 
     /*
@@ -69,35 +70,45 @@ public final class FileHandler {
      * over to the client machine.
      */
     private void copyConfigFiles() {
-        /* Initial level configurations copied to client local options dir. */
-        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MARS, textHandler.LEVEL_FILE_CLIENT_PATH_MARS);
-        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_EARTH, textHandler.LEVEL_FILE_CLIENT_PATH_EARTH);
-        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_NEPTUNE, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);
-        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_VENUS, textHandler.LEVEL_FILE_CLIENT_PATH_VENUS);
-        copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_JUPITER, textHandler.LEVEL_FILE_CLIENT_PATH_JUPITER);
-
-        /* Main level configuration file coped to client machine. */
-        copyFile(textHandler.LEVEL_CONFIG_FILE_LOCAL_PATH, textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
-
         /* Settings configuration file copied to client machine. */
-        copyFile(textHandler.OPTIONS_CONFIG_FILE_LOCAL_PATH, textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH);
+        fileUtil.copyFile(textHandler.OPTIONS_CONFIG_FILE_LOCAL_PATH, textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH);
 
         /* Font */
-        copyFile(textHandler.GAME_FONT_FILE_LOCAL_PATH, textHandler.GAME_FONT_FILE_CLIENT_PATH);
-        copyFile(textHandler.PANEL_FONT_FILE_LOCAL_PATH, textHandler.PANEL_FONT_FILE_CLIENT_PATH);
+        fileUtil.copyFile(textHandler.GAME_FONT_FILE_LOCAL_PATH, textHandler.GAME_FONT_FILE_CLIENT_PATH);
+        fileUtil.copyFile(textHandler.PANEL_FONT_FILE_LOCAL_PATH, textHandler.PANEL_FONT_FILE_CLIENT_PATH);
+
+        /* Main level configuration file coped to client machine. */
+        fileUtil.copyFile(textHandler.LEVEL_CONFIG_FILE_LOCAL_PATH, textHandler.LEVEL_CONFIG_FILE_CLIENT_PATH);
+
+        /* Initial level configurations copied to client local options dir. */
+        fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_SUN, textHandler.LEVEL_FILE_CLIENT_PATH_SUN);
+        fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MOON, textHandler.LEVEL_FILE_CLIENT_PATH_MOON);
+        fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_MARS, textHandler.LEVEL_FILE_CLIENT_PATH_MARS);
+        fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_EARTH, textHandler.LEVEL_FILE_CLIENT_PATH_EARTH);
+        fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_NEPTUNE, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);
+        fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_VENUS, textHandler.LEVEL_FILE_CLIENT_PATH_VENUS);
+        fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_JUPITER, textHandler.LEVEL_FILE_CLIENT_PATH_JUPITER);
 
         /* Sound */
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU, textHandler.SOUND_FILE_CLIENT_PATH_MENU);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_PLAY, textHandler.SOUND_FILE_CLIENT_PATH_PLAY);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_PAUSE, textHandler.SOUND_FILE_CLIENT_PATH_PAUSE);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_HIT, textHandler.SOUND_FILE_CLIENT_PATH_BALL_HIT);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_RESET, textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_USE, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_USE);
-        copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BAD_ACTION, textHandler.SOUND_FILE_CLIENT_PATH_BAD_ACTION);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU, textHandler.SOUND_FILE_CLIENT_PATH_MENU);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_PAUSE, textHandler.SOUND_FILE_CLIENT_PATH_PAUSE);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_HIT, textHandler.SOUND_FILE_CLIENT_PATH_BALL_HIT);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_RESET, textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BLOCK_DESTROYED, textHandler.SOUND_FILE_CLIENT_PATH_BLOCK_DESTROYED);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_USE, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_USE);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BAD_ACTION, textHandler.SOUND_FILE_CLIENT_PATH_BAD_ACTION);
+
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_SUN_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_SUN_LEVEL);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MOON_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_MOON_LEVEL);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MARS_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_MARS_LEVEL);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_EARTH_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_EARTH_LEVEL);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_NEPTUNE_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_NEPTUNE_LEVEL);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_VENUS_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_VENUS_LEVEL);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_JUPITER_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_JUPITER_LEVEL);
 
         /* README.txt */
-        copyFile(textHandler.README_FILE_LOCAL_PATH, textHandler.README_FILE_CLIENT_PATH);
+        fileUtil.copyFile(textHandler.README_FILE_LOCAL_PATH, textHandler.README_FILE_CLIENT_PATH);
     }
 
     /*
@@ -108,22 +119,23 @@ public final class FileHandler {
      */
     public Map<String, String> readPropertiesFromFile(String filePath) {
         Properties p = new Properties();
+
         Map<String, String> map = new HashMap<>();
-        writeLog(textHandler.actionReadingPropertiesMsg(filePath));
+        logHandler.log(textHandler.actionReadingPropertiesMsg(filePath), LogHandler.LogLevel.INFO, false);
 
         try (InputStream is = new FileInputStream(filePath)) {
             p.load(is);
 
             for (String key : p.stringPropertyNames()) {
                 String value = p.getProperty(key);
-                value = removeComments(value);
+                value = fileUtil.removeCommentFromLine(value);
                 if (value != null) {
                     map.put(key, value);
-                    writeLog(textHandler.successReadPropertyMsg(key, value, filePath));
+                    logHandler.log(textHandler.successReadPropertyMsg(key, value, filePath), LogHandler.LogLevel.INFO, false);
                 }
             }
 
-            writeLog(textHandler.finishReadPropertiesMsg(filePath));
+            logHandler.log(textHandler.finishReadPropertiesMsg(filePath), LogHandler.LogLevel.INFO, false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -153,7 +165,7 @@ public final class FileHandler {
         int index = 0;
 
         if (lines == null) {
-            writeLog("FAILED TO WRITE PROPERTY TO FILE: " + filePath);
+            logHandler.log("FAILED TO WRITE PROPERTY TO FILE: " + filePath, LogHandler.LogLevel.FAIL, false);
             return;
         }
 
@@ -182,19 +194,19 @@ public final class FileHandler {
      */
     public List<String> readLinesFromFile(String filePath) {
         List<String> lineList = new ArrayList<>();
-        writeLog(textHandler.actionReadingLinesMsg(filePath));
+        logHandler.log(textHandler.actionReadingLinesMsg(filePath), LogHandler.LogLevel.INFO, false);
 
         try (FileInputStream fis = new FileInputStream(new File(filePath))) {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = br.readLine()) != null) {
-                line = removeComments(line);
+                line = fileUtil.removeCommentFromLine(line);
                 if (line != null) {
                     lineList.add(line);
-                    writeLog(textHandler.successReadLineMsg(line, filePath));
+                    logHandler.log(textHandler.successReadLineMsg(line, filePath), LogHandler.LogLevel.INFO, false);
                 }
             }
-            writeLog(textHandler.finishReadLinesMsg(filePath));
+            logHandler.log(textHandler.finishReadLinesMsg(filePath), LogHandler.LogLevel.INFO, false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -202,119 +214,31 @@ public final class FileHandler {
         return lineList;
     }
 
-    /*
-     * Creates the directory given by dirPath
-     * if it does not already exist.
-     * If it does exist, nothing happens.
-     */
-    private void createDir(String dirPath) {
-        File dir = new File(dirPath);
-        if (!dir.exists()) {
-            try {
-                boolean result = dir.mkdirs();
-                if (result) {
-                    writeLog(textHandler.successCreatedDirMsg(dirPath));
-                } else {
-                    writeLog(textHandler.errorCreatingDirMsg(dirPath));
+    public String readPropertyFromFile(String pKey, String filePath) {
+        Properties p = new Properties();
+        String value = "";
+
+        try (InputStream is = new FileInputStream(filePath)) {
+            p.load(is);
+
+            for (String key : p.stringPropertyNames()) {
+                if (!key.equals(pKey)) {
+                    continue;
                 }
-            } catch (SecurityException e) {
-                writeLog(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)));
-            }
-        }
-    }
 
-    /*
-     * Copies the file at srcFilePath to
-     * the path at destFilePath, if it does
-     * not already exist at the destFilePath.
-     */
-    private void copyFile(String srcFilePath, String destFilePath) {
-        File srcFile = new File(srcFilePath);
-        File destFile = new File(destFilePath);
+                value = p.getProperty(key);
+                value = fileUtil.removeCommentFromLine(value);
 
-        try {
-            /*
-             * Check to see whether the file already exists at the destination.
-             * If it does, we do not want to overwrite it, since the
-             * user could have modified the file to their liking.
-             */
-            if (!destFile.exists()) {
-                FileUtils.copyFile(srcFile, destFile);
-                writeLog(textHandler.successCopiedFileMsg(srcFile.getPath(), destFile.getPath()));
+                if (value != null) {
+                    logHandler.log(textHandler.successReadPropertyMsg(pKey, value, filePath), LogHandler.LogLevel.INFO, false);
+                }
             }
+
         } catch (IOException e) {
-            writeLog(textHandler.errorCopyingFileMsg(srcFilePath, destFilePath, ExceptionUtils.getStackTrace(e)));
-        }
-    }
-
-    /*
-     * Writes the content of msg into the
-     * file given by filePath.
-     * Creates the file anyway if it doesn't
-     * already exist.
-     */
-    public void writeToFile(String msg, String filePath) {
-        File file = new File(filePath);
-        if (file.isDirectory()) return;
-
-        try {
-            if (file.exists()) {
-                try (PrintWriter out = new PrintWriter(new FileOutputStream(file, true))) {
-                    out.append(msg).append("\r\n");
-                }
-            } else {
-                try (PrintWriter out = new PrintWriter(filePath)) {
-                    out.print(msg + "\r\n");
-                }
-                writeLog(textHandler.successCreatedFileMsg(filePath));
-            }
-        } catch (IOException e) {
-            writeLog(textHandler.errorWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)));
-        }
-    }
-
-    /*
-     * Outputs the content of msg into the console
-     * and writes it to the gameController's log file.
-     */
-    public void writeLog(String msg) {
-        msg = textHandler.logMsgPrefix() + msg;
-        System.out.println(msg);
-        writeToFile(msg, textHandler.LOG_FILE_PATH);
-    }
-
-    /*
-     * Remove comments from String line.
-     */
-    private String removeComments(String line) {
-        if (line.trim().length() == 0) {
-            return null;
+            e.printStackTrace();
         }
 
-        int nextWhitespace = -1;
-        for (int i = 0; i < line.length(); i++) {
-            if (Character.isWhitespace(line.charAt(i))) {
-                nextWhitespace = i;
-                break;
-            }
-        }
-
-        int nextCommentIndex = line.indexOf('#');
-
-        if (nextCommentIndex == 0) {
-            return null;
-        }
-
-        if (nextWhitespace == -1) {
-            return line;
-        }
-
-        if (line.length() >= nextWhitespace + 1 && nextCommentIndex > 0) {
-            line = line.substring(0, nextWhitespace);
-            return line;
-        } else {
-            return line;
-        }
+        return value;
     }
 
 }

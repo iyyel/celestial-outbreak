@@ -1,136 +1,153 @@
 package io.iyyel.celestialoutbreak.level;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.entity.Ball;
-import io.iyyel.celestialoutbreak.entity.BlockList;
-import io.iyyel.celestialoutbreak.entity.Paddle;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
-import io.iyyel.celestialoutbreak.menu.GamePanel;
+import io.iyyel.celestialoutbreak.handler.SoundHandler;
+import io.iyyel.celestialoutbreak.handler.TextHandler;
+import io.iyyel.celestialoutbreak.ui.entity.Ball;
+import io.iyyel.celestialoutbreak.ui.entity.BlockField;
+import io.iyyel.celestialoutbreak.ui.entity.Paddle;
+import io.iyyel.celestialoutbreak.ui.screen.play.GamePanel;
+import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 
 public final class Level {
 
+    private final TextHandler textHandler = TextHandler.getInstance();
+    private final InputHandler inputHandler = InputHandler.getInstance();
+    private final SoundHandler soundHandler = SoundHandler.getInstance();
+    private final Util util = Util.getInstance();
+
     /*
-     * Rendering objects.
+     * Rendering objects
      */
     private Paddle paddle;
     private Ball ball;
-    public BlockList blockList;
+    private BlockField blockField;
 
     /*
-     * GameController object.
+     * Settings for the level
      */
-    private GameController gameController;
+    private LevelOptions levelOptions;
 
     /*
-     * Settings for the level.
-     */
-    private LevelConfig levelConfig;
-
-    /*
-     * Handlers for the level.
-     */
-    private InputHandler inputHandler = InputHandler.getInstance();
-
-    /*
-     * Level options.
+     * Level options
      */
     private String name;
     private String desc;
+    private int playerLife;
+    private int playerLifeInit;
+    private String soundFileName;
     private Color color;
 
     /*
-     * Paddle options.
+     * Paddle options
      */
     private Point paddlePos;
-    private int paddleWidth, paddleHeight, paddleSpeed;
+    private Dimension paddleDim;
+    private int paddleSpeed;
     private Color paddleColor;
 
     /*
-     * Ball options.
+     * Ball options
      */
     private Point ballPos;
-    private int ballPosXOffset, ballPosYOffset, ballSize, ballSpeed;
+    private Dimension ballDim;
+    private int ballSpeed;
     private Color ballColor;
 
     /*
-     * BlockList options.
+     * Block options
      */
-    private Point blockPos;
-    private int blockAmount, blockHealth, blockWidth, blockHeight, blockSpacing;
+    private Point blockPosStart;
+    private Point blockPosSpacing;
+    private int blockAmount;
+    private int blockHealth;
+    private Dimension blockDim;
+    private float blockLum;
+    private float blockSat;
 
     /*
-     * GamePanel options.
+     * GamePanel options
      */
     private GamePanel gamePanel;
 
     /*
-     * Constructor.
+     * Constructor
      */
-    public Level(String settingsFileName, GameController gameController) {
-        this.gameController = gameController;
-
-        levelConfig = new LevelConfig(settingsFileName, gameController);
-        initSettings();
-
-        /* Create objects after initializing the options. */
-        paddle = new Paddle(paddlePos, paddleWidth, paddleHeight, paddleColor, paddleSpeed, gameController.getWidth());
-        ball = new Ball(ballPos, ballSize, ballSize, ballColor, ballSpeed, ballPosXOffset, ballPosYOffset,
-                gameController.getWidth(), gameController.getHeight());
-        blockList = new BlockList(blockAmount, blockPos, blockWidth, blockHeight, blockSpacing, blockHealth,
-                gameController.getWidth());
-        gamePanel = new GamePanel(gameController);
+    public Level(String optionsFileName, GameController gameController) {
+        levelOptions = new LevelOptions(optionsFileName, gameController);
+        initLevel(gameController);
     }
 
     public void update() {
-        paddle.update(inputHandler.isLeftPressed(), inputHandler.isRightPressed());
-        ball.update(paddle, blockList);
-        gamePanel.updatePanel(name, blockList.getBlocksLeft());
+        paddle.update();
+        ball.update();
+        gamePanel.update();
     }
 
     public void render(Graphics2D g) {
         paddle.render(g);
         ball.render(g);
-        blockList.render(g);
+        blockField.render(g);
         gamePanel.render(g);
     }
 
-    private void initSettings() {
-        /* Level options. */
-        name = levelConfig.getLevelName();
-        desc = levelConfig.getLevelDesc();
-        color = levelConfig.getLevelColor();
+    private void initLevel(GameController gameController) {
+        /* Level options */
+        name = levelOptions.getLevelName();
+        desc = levelOptions.getLevelDesc();
+        playerLife = levelOptions.getLevelPlayerLife();
+        playerLifeInit = playerLife;
+        soundFileName = levelOptions.getLevelSoundFileName();
+        color = levelOptions.getLevelColor();
 
-        /* Paddle options. */
-        paddlePos = levelConfig.getPaddlePos();
-        paddleWidth = levelConfig.getPaddleWidth();
-        paddleHeight = levelConfig.getPaddleHeight();
-        paddleSpeed = levelConfig.getPaddleSpeed();
-        paddleColor = levelConfig.getPaddleColor();
+        /* Paddle options */
+        paddlePos = levelOptions.getPaddlePos();
+        paddleDim = levelOptions.getPaddleDim();
+        paddleSpeed = levelOptions.getPaddleSpeed();
+        paddleColor = levelOptions.getPaddleColor();
 
-        /* Ball options. */
-        ballPos = levelConfig.getBallPos();
-        ballPosXOffset = levelConfig.getBallPosXOffset();
-        ballPosYOffset = levelConfig.getBallPosYOffset();
-        ballSize = levelConfig.getBallSize();
-        ballSpeed = levelConfig.getBallSpeed();
-        ballColor = levelConfig.getBallColor();
+        /* Ball options */
+        ballPos = levelOptions.getBallPos();
+        ballDim = levelOptions.getBallDim();
+        ballSpeed = levelOptions.getBallSpeed();
+        ballColor = levelOptions.getBallColor();
 
-        /* BlockList options. */
-        blockPos = levelConfig.getBlockPos();
-        blockAmount = levelConfig.getBlockAmount();
-        blockHealth = levelConfig.getBlockHealth();
-        blockWidth = levelConfig.getBlockWidth();
-        blockHeight = levelConfig.getBlockHeight();
-        blockSpacing = levelConfig.getBlockSpacing();
+        /* BlockList options */
+        blockPosStart = levelOptions.getBlockPosStart();
+        blockPosSpacing = levelOptions.getBlockPosSpacing();
+        blockAmount = levelOptions.getBlockAmount();
+        blockHealth = levelOptions.getBlockHitPoints();
+        blockDim = levelOptions.getBlockDim();
+        blockLum = levelOptions.getBlockLum();
+        blockSat = levelOptions.getBlockSat();
+
+        /* Create objects after initializing the options */
+        paddle = new Paddle(paddlePos, paddleDim, paddleColor, paddleSpeed, gameController.getWidth());
+        blockField = new BlockField(blockAmount, blockHealth, blockPosStart, blockDim, blockPosSpacing, blockLum, blockSat, gameController.getWidth());
+        ball = new Ball(ballPos, ballDim, ballColor, ballSpeed, paddle, blockField, gameController.getWidth(), gameController.getHeight());
+        gamePanel = new GamePanel(gameController, levelOptions);
+
+        /* Add level audio to SoundHandler */
+        soundHandler.addSoundClip(soundFileName, textHandler.getClientSoundFilePath(soundFileName));
     }
 
-    public boolean isFinished() {
-        if (blockList.getBlocksLeft() <= 0) {
-            return true;
-        }
-        return false;
+    public boolean isWon() {
+        return blockField.getBlocksLeft() <= 0;
+    }
+
+    public boolean isLost() {
+        return playerLife <= 0;
+    }
+
+    public int getPlayerLife() {
+        return playerLife;
+    }
+
+    public int getPlayerLifeInit() {
+        return playerLifeInit;
     }
 
     public String getName() {
@@ -145,8 +162,35 @@ public final class Level {
         return color;
     }
 
-    public int getBlockAmount() {
-        return blockAmount;
+    public BlockField getBlockList() {
+        return blockField;
+    }
+
+    public void decPlayerLife() {
+        if (playerLife > 0) {
+            playerLife -= 1;
+        }
+    }
+
+    public void pause() {
+        ball.stopUpdate(120);
+        paddle.stopUpdate(120);
+    }
+
+    public int getBlockHealth() {
+        return blockHealth;
+    }
+
+    public void playSound() {
+        soundHandler.getSoundClip(soundFileName).play(true);
+    }
+
+    public void stopSound() {
+        soundHandler.getSoundClip(soundFileName).stop();
+    }
+
+    public void pauseSound() {
+        soundHandler.getSoundClip(soundFileName).pause();
     }
 
 }

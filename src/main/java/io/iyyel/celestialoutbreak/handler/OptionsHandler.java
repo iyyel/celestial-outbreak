@@ -9,27 +9,28 @@ public final class OptionsHandler {
     private static OptionsHandler instance;
 
     private final TextHandler textHandler = TextHandler.getInstance();
+    private final LogHandler logHandler = LogHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
 
     /* Property Game Options map */
     private final Map<String, Boolean> gamePropMap = new HashMap<String, Boolean>() {
         {
-            put(textHandler.PROP_VERBOSE_LOG_ENABLED, false);
-            put(textHandler.PROP_SOUND_ENABLED, false);
-            put(textHandler.PROP_GOD_MODE_ENABLED, false);
-            put(textHandler.PROP_FPS_LOCK_ENABLED, false);
-            put(textHandler.PROP_ANTI_ALIASING_ENABLED, false);
+            put(textHandler.PROP_KEY_VERBOSE_LOG_ENABLED, false);
+            put(textHandler.PROP_KEY_SOUND_ENABLED, false);
+            put(textHandler.PROP_KEY_GOD_MODE_ENABLED, false);
+            put(textHandler.PROP_KEY_FPS_LOCK_ENABLED, false);
+            put(textHandler.PROP_KEY_ANTI_ALIASING_ENABLED, false);
         }
     };
 
     /* MenuColor Property map */
     private final Map<String, Color> menuColorPropMap = new HashMap<String, Color>() {
         {
-            put(textHandler.PROP_MENU_FONT_COLOR_HEX, Color.BLACK);
-            put(textHandler.PROP_MENU_BTN_COLOR_HEX, Color.BLACK);
-            put(textHandler.PROP_MENU_BTN_SELECTED_COLOR_HEX, Color.BLACK);
-            put(textHandler.PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX, Color.BLACK);
-            put(textHandler.PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX, Color.BLACK);
+            put(textHandler.PROP_KEY_MENU_FONT_COLOR_HEX, Color.BLACK);
+            put(textHandler.PROP_KEY_MENU_BTN_COLOR_HEX, Color.BLACK);
+            put(textHandler.PROP_KEY_MENU_BTN_SELECTED_COLOR_HEX, Color.BLACK);
+            put(textHandler.PROP_KEY_MENU_BTN_PLAYER_SELECTED_COLOR_HEX, Color.BLACK);
+            put(textHandler.PROP_KEY_MENU_BTN_PLAYER_DELETED_COLOR_HEX, Color.BLACK);
         }
     };
 
@@ -61,7 +62,7 @@ public final class OptionsHandler {
             boolean pValue = parseGameOptionProperty(pMap, pKey);
             gamePropMap.put(pKey, pValue);
             // Log
-            fileHandler.writeLog(textHandler.getGamePropertyLogString(pValue, pKey));
+            logHandler.log(textHandler.getGamePropertyLogString(pValue, pKey), LogHandler.LogLevel.INFO, false);
         }
     }
 
@@ -71,7 +72,7 @@ public final class OptionsHandler {
             Color color = parseMenuColorProperty(pMap, pKey);
             menuColorPropMap.put(pKey, color);
             // Log
-            fileHandler.writeLog(textHandler.getMenuColorLogString(pKey, color));
+            logHandler.log(textHandler.getMenuColorLogString(pKey, color), LogHandler.LogLevel.INFO, false);
         }
     }
 
@@ -88,43 +89,43 @@ public final class OptionsHandler {
     }
 
     public boolean isVerboseLogEnabled() {
-        return gamePropMap.get(textHandler.PROP_VERBOSE_LOG_ENABLED);
+        return gamePropMap.get(textHandler.PROP_KEY_VERBOSE_LOG_ENABLED);
     }
 
     public boolean isSoundEnabled() {
-        return gamePropMap.get(textHandler.PROP_SOUND_ENABLED);
+        return gamePropMap.get(textHandler.PROP_KEY_SOUND_ENABLED);
     }
 
     public boolean isGodModeEnabled() {
-        return gamePropMap.get(textHandler.PROP_GOD_MODE_ENABLED);
+        return gamePropMap.get(textHandler.PROP_KEY_GOD_MODE_ENABLED);
     }
 
     public boolean isFpsLockEnabled() {
-        return gamePropMap.get(textHandler.PROP_FPS_LOCK_ENABLED);
+        return gamePropMap.get(textHandler.PROP_KEY_FPS_LOCK_ENABLED);
     }
 
     public boolean isAntiAliasingEnabled() {
-        return gamePropMap.get(textHandler.PROP_ANTI_ALIASING_ENABLED);
+        return gamePropMap.get(textHandler.PROP_KEY_ANTI_ALIASING_ENABLED);
     }
 
     public Color getMenuFontColor() {
-        return menuColorPropMap.get(textHandler.PROP_MENU_FONT_COLOR_HEX);
+        return menuColorPropMap.get(textHandler.PROP_KEY_MENU_FONT_COLOR_HEX);
     }
 
     public Color getMenuBtnColor() {
-        return menuColorPropMap.get(textHandler.PROP_MENU_BTN_COLOR_HEX);
+        return menuColorPropMap.get(textHandler.PROP_KEY_MENU_BTN_COLOR_HEX);
     }
 
     public Color getMenuBtnSelectedColor() {
-        return menuColorPropMap.get(textHandler.PROP_MENU_BTN_SELECTED_COLOR_HEX);
+        return menuColorPropMap.get(textHandler.PROP_KEY_MENU_BTN_SELECTED_COLOR_HEX);
     }
 
     public Color getMenuBtnPlayerSelectedColor() {
-        return menuColorPropMap.get(textHandler.PROP_MENU_BTN_PLAYER_SELECTED_COLOR_HEX);
+        return menuColorPropMap.get(textHandler.PROP_KEY_MENU_BTN_PLAYER_SELECTED_COLOR_HEX);
     }
 
     public Color getMenuBtnPlayerDeletedColor() {
-        return menuColorPropMap.get(textHandler.PROP_MENU_BTN_PLAYER_DELETED_COLOR_HEX);
+        return menuColorPropMap.get(textHandler.PROP_KEY_MENU_BTN_PLAYER_DELETED_COLOR_HEX);
     }
 
 }

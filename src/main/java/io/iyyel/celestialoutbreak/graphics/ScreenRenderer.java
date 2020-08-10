@@ -8,7 +8,7 @@ public final class ScreenRenderer {
     private final int WIDTH;
     private final int HEIGHT;
 
-    public int[] pixels;
+    private int[] pixels;
 
     public ScreenRenderer(int width, int height, int[] pixels) {
         this.WIDTH = width;
@@ -17,11 +17,9 @@ public final class ScreenRenderer {
     }
 
     public void render(Color color) {
-        for (int y = 0; y < HEIGHT; y++) {
-            for (int x = 0; x < WIDTH; x++) {
+        for (int y = 0; y < HEIGHT; y++)
+            for (int x = 0; x < WIDTH; x++)
                 pixels[x + y * WIDTH] = color.getRGB();
-            }
-        }
     }
 
     public void clear() {

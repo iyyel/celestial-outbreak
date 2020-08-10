@@ -14,8 +14,28 @@ public final class PlayerDTO implements Serializable {
         selectedPlayer = null;
     }
 
-    public List<String> getPlayerList() {
+    public void addPlayer(String player) {
+        playerList.add(player);
+    }
+
+    public void removePlayer(String player) {
+        playerList.remove(player);
+    }
+
+    public void removePlayer(int index) {
+        playerList.remove(index);
+    }
+
+    public String getPlayer(int index) {
+        return playerList.get(index);
+    }
+
+    public List<String> getPlayers() {
         return playerList;
+    }
+
+    public int getPlayerCount() {
+        return playerList.size();
     }
 
     public String getSelectedPlayer() {

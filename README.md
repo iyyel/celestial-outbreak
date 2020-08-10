@@ -6,7 +6,7 @@
 \____/  \___||_| \___||___/ \__||_| \__,_||_| \___/   \__,_| \__||_.__/ |_|    \___| \__,_||_|\_\
 
   ▓▓▓▓▓▓▓▓▓▓
- ░▓ about  ▓ 2D video game written in Java
+ ░▓ about  ▓ 2D game written in Java
  ░▓ author ▓ iyyel <i@iyyel.io>
  ░▓ code   ▓ https://github.com/iyyel/celestialoutbreak
  ░▓ mirror ▓ https://git.iyyel.io/iyyel/celestialoutbreak
@@ -14,37 +14,27 @@
  ░░░░░░░░░░
 ```
 
-<p align="center">
-<a href="https://travis-ci.org/iyyel/celestialoutbreak"><img src="https://travis-ci.org/iyyel/celestialoutbreak.svg?branch=master"></a>
-<a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-</p>
-
 ## Table of Contents
  - [Introduction](#Introduction)
  - [Status](#Status)
  - [Release](#Release)
  - [Installing](#Installing)
- - [Previews](#My-setup)
+ - [Previews](#Previews)
  - [License](#License)
 
 # Introduction
 
 Celestial Outbreak is an open-source, space-themed, Breakout-like sandbox video game implemented in core Java with little to no use of third party libraries. It includes fully customizable levels and game configuration. The main purpose of this project was to create a stand-alone game with simple controls together with a great user experience using core Java only.
 
+DISCLAIMER: This project has been in the works for a long time, and the code quality will therefore vary a lot.
+
 # Status
 Currently in development.
 
 # Release
-Version 0.1 Beta has been released.
+Version 0.2 Beta has been released.
 
-The state of the game has been updated to Beta, since one is now fully able to navigate around and play the game. The menu navigation system has been finished and polished, so focus has changed to the actual gameplay.
-
-* The user is now able to select which level they want to play through a menu screen.
-* Menu navigation system is finished.
-* In-game options has been added.
-* A lot of other small things, bug fixes, changes, etc.
-
-Any ideas or suggestions? Do not hesitate to contact me here or on my e-mail i@iyyel.io.
+First iteration of the scoring system has now been implemented.
 
 # Installing
 
