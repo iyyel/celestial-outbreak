@@ -1,12 +1,12 @@
 package io.iyyel.celestialoutbreak.level;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.ui.entity.Ball;
-import io.iyyel.celestialoutbreak.ui.entity.BlockList;
-import io.iyyel.celestialoutbreak.ui.entity.Paddle;
 import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
+import io.iyyel.celestialoutbreak.ui.entity.Ball;
+import io.iyyel.celestialoutbreak.ui.entity.BlockField;
+import io.iyyel.celestialoutbreak.ui.entity.Paddle;
 import io.iyyel.celestialoutbreak.ui.screen.play.GamePanel;
 import io.iyyel.celestialoutbreak.util.Util;
 
@@ -24,7 +24,7 @@ public final class Level {
      */
     private Paddle paddle;
     private Ball ball;
-    private BlockList blockList;
+    private BlockField blockField;
 
     /*
      * Settings for the level
@@ -53,7 +53,7 @@ public final class Level {
      * Ball options
      */
     private Point ballPos;
-    private int ballSize;
+    private Dimension ballDim;
     private int ballSpeed;
     private Color ballColor;
 
@@ -63,7 +63,7 @@ public final class Level {
     private Point blockPosStart;
     private Point blockPosSpacing;
     private int blockAmount;
-    private int blockHitPoints;
+    private int blockHealth;
     private Dimension blockDim;
     private float blockLum;
     private float blockSat;
@@ -90,7 +90,7 @@ public final class Level {
     public void render(Graphics2D g) {
         paddle.render(g);
         ball.render(g);
-        blockList.render(g);
+        blockField.render(g);
         gamePanel.render(g);
     }
 
@@ -111,7 +111,7 @@ public final class Level {
 
         /* Ball options */
         ballPos = levelOptions.getBallPos();
-        ballSize = levelOptions.getBallSize();
+        ballDim = levelOptions.getBallDim();
         ballSpeed = levelOptions.getBallSpeed();
         ballColor = levelOptions.getBallColor();
 
@@ -119,15 +119,15 @@ public final class Level {
         blockPosStart = levelOptions.getBlockPosStart();
         blockPosSpacing = levelOptions.getBlockPosSpacing();
         blockAmount = levelOptions.getBlockAmount();
-        blockHitPoints = levelOptions.getBlockHitPoints();
+        blockHealth = levelOptions.getBlockHitPoints();
         blockDim = levelOptions.getBlockDim();
         blockLum = levelOptions.getBlockLum();
         blockSat = levelOptions.getBlockSat();
 
         /* Create objects after initializing the options */
-        paddle = new Paddle(paddlePos, paddleDim, paddleSpeed, paddleColor, gameController, inputHandler);
-        blockList = new BlockList(blockAmount, blockHitPoints, blockPosStart, blockDim, blockPosSpacing, blockLum, blockSat, gameController);
-        ball = new Ball(ballPos, ballSize, ballColor, ballSpeed, gameController, paddle, blockList);
+        paddle = new Paddle(paddlePos, paddleDim, paddleColor, paddleSpeed, gameController.getWidth());
+        blockField = new BlockField(blockAmount, blockHealth, blockPosStart, blockDim, blockPosSpacing, blockLum, blockSat, gameController.getWidth());
+        ball = new Ball(ballPos, ballDim, ballColor, ballSpeed, paddle, blockField, gameController.getWidth(), gameController.getHeight());
         gamePanel = new GamePanel(gameController, levelOptions);
 
         /* Add level audio to SoundHandler */
@@ -135,7 +135,7 @@ public final class Level {
     }
 
     public boolean isWon() {
-        return blockList.getBlocksLeft() <= 0;
+        return blockField.getBlocksLeft() <= 0;
     }
 
     public boolean isLost() {
@@ -162,22 +162,23 @@ public final class Level {
         return color;
     }
 
-    public BlockList getBlockList() {
-        return blockList;
+    public BlockField getBlockList() {
+        return blockField;
     }
 
     public void decPlayerLife() {
-        if (playerLife > 0)
+        if (playerLife > 0) {
             playerLife -= 1;
+        }
     }
 
     public void pause() {
-        ball.pause();
-        paddle.pause();
+        ball.stopUpdate(120);
+        paddle.stopUpdate(120);
     }
 
-    public int getBlockHitPoints() {
-        return blockHitPoints;
+    public int getBlockHealth() {
+        return blockHealth;
     }
 
     public void playSound() {

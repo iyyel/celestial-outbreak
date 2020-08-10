@@ -36,7 +36,7 @@ public final class LevelOptions {
      * Ball options.
      */
     private Point ballPos;
-    private int ballSize;
+    private Dimension ballDim;
     private int ballSpeed;
     private Color ballColor;
 
@@ -104,8 +104,10 @@ public final class LevelOptions {
         paddleColor = new Color(paddleCol);
 
         /* Ball options */
-        ballSize = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_SIZE));
-        ballPos = new Point(paddlePos.x + (paddleWidth / 2) - (ballSize / 2), paddlePos.y - (ballSize));
+        int ballWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_WIDTH));
+        int ballHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_HEIGHT));
+        ballDim = new Dimension(ballWidth, ballHeight);
+        ballPos = new Point(paddlePos.x + (paddleWidth / 2) - (ballWidth / 2), paddlePos.y - (ballHeight));
         ballSpeed = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_SPEED));
         int ballColorHex = Integer.decode(map.get(textHandler.PROP_KEY_BALL_COLOR));
         ballColor = new Color(ballColorHex);
@@ -118,7 +120,7 @@ public final class LevelOptions {
         int blockPosYSpacing = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_POS_Y_SPACING));
         blockPosSpacing = new Point(blockPosXSpacing, blockPosYSpacing);
         blockAmount = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_AMOUNT));
-        blockHitPoints = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_HITPOINTS));
+        blockHitPoints = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_HEALTH));
         int blockWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_WIDTH));
         int blockHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_HEIGHT));
         blockDim = new Dimension(blockWidth, blockHeight);
@@ -170,8 +172,8 @@ public final class LevelOptions {
         return ballPos;
     }
 
-    public int getBallSize() {
-        return ballSize;
+    public Dimension getBallDim() {
+        return ballDim;
     }
 
     public int getBallSpeed() {

@@ -24,14 +24,14 @@ public final class ControlsScreen extends AbstractScreen {
 
     @Override
     public void render(Graphics2D g) {
-        drawScreenTitle(g);
+        drawTitle(g);
 
         int xPos = 135;
         int xPoxInc = 130;
         int yPos = -50;
         int yPosInc = 70;
 
-        drawScreenSubtitle(textHandler.TITLE_CONTROLS_SCREEN, g);
+        drawSubtitle(textHandler.TITLE_CONTROLS_SCREEN, g);
 
         g.setFont(msgFont);
 
@@ -50,7 +50,7 @@ public final class ControlsScreen extends AbstractScreen {
         g.drawString(textHandler.menuControlsMsg09, xPos, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
         g.drawString(textHandler.menuControlsMsg10, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
 
-        drawScreenInfoPanel(g);
+        drawInfoPanel(g);
     }
 
 }

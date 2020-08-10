@@ -18,9 +18,9 @@ public final class OptionsScreen extends AbstractNavigationScreen {
         buttons = new Button[btnAmount];
 
         for (int i = 0; i < btnAmount; i++) {
-            buttons[i] = new Button(new Point(gameController.getWidth() / 2, initialBtnYPos + btnYIncrement * i),
+            buttons[i] = new Button(new Point(getHalfWidth(), initialBtnYPos + btnYIncrement * i),
                     new Dimension(390, 50), options[i], true, inputBtnFont,
-                    screenFontColor, menuBtnColor, new Point(195, 0), new Point(0, -6), gameController);
+                    screenFontColor, menuBtnColor, new Point(195, 0), new Point(0, -6), screenWidth, screenHeight);
         }
     }
 
@@ -63,7 +63,7 @@ public final class OptionsScreen extends AbstractNavigationScreen {
     public void render(Graphics2D g) {
         drawScreenTitles(textHandler.TITLE_OPTIONS_SCREEN, g);
         renderButtons(buttons, g);
-        drawScreenInfoPanel(g);
+        drawInfoPanel(g);
     }
 
 }

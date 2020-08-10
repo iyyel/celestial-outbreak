@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 
@@ -71,7 +72,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
             if (name.length() >= 3 && name.length() <= 8) {
                 if (playerDAO.isPlayer(name)) {
                     statusString = "Player already exists.";
-                    menuBadActionClip.play(false);
+                    menuBadClip.play(false);
                     return;
                 }
 
@@ -81,10 +82,10 @@ public final class PlayerCreateScreen extends AbstractScreen {
                 statusString = "Create player '" + name + "'? Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to confirm or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.";
             } else if (name.length() < 3) {
                 statusString = "Name is too small.";
-                menuBadActionClip.play(false);
+                menuBadClip.play(false);
             } else {
                 statusString = "Name is too long.";
-                menuBadActionClip.play(false);
+                menuBadClip.play(false);
             }
         }
 
@@ -128,16 +129,16 @@ public final class PlayerCreateScreen extends AbstractScreen {
 
     @Override
     public void render(Graphics2D g) {
-        drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_CREATE_PLAYER_SCREEN, g);
+        drawTitle(g);
+        drawSubtitle(textHandler.TITLE_CREATE_PLAYER_SCREEN, g);
 
         if (inputHandler.isInputMode()) {
-            drawScreenMessage("Enter Player name:", 0, g);
-            drawScreenCenterString(inputHandler.getUserInput(), 400, inputBtnFont, g);
+            drawCenteredText("Enter Player name:", 0, g);
+            drawCenteredText(inputHandler.getUserInput(), 400, inputBtnFont, g);
         }
 
-        drawScreenToolTip(statusString, g);
-        drawScreenInfoPanel(g);
+        drawToolTip(statusString, g);
+        drawInfoPanel(g);
     }
 
     private void createPlayer(String name) {

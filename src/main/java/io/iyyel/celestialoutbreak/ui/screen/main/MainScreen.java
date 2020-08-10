@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.main;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
@@ -8,6 +9,8 @@ import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 import java.awt.*;
 
 public final class MainScreen extends AbstractNavigationScreen {
+
+    private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
     private String[] options = {textHandler.BTN_PLAY_TEXT, textHandler.BTN_SCORES_TEXT, textHandler.BTN_CONTROLS_TEXT,
             textHandler.BTN_OPTIONS_TEXT, textHandler.BTN_ABOUT_TEXT, textHandler.BTN_EXIT_TEXT};
@@ -21,7 +24,7 @@ public final class MainScreen extends AbstractNavigationScreen {
         for (int i = 0; i < btnAmount; i++) {
             buttons[i] = new Button(new Point(getHalfWidth() - 90, initialBtnYPos + btnYIncrement * i),
                     new Dimension(180, 50), options[i], true, inputBtnFont,
-                    screenFontColor, menuBtnColor, new Point(0, 0), new Point(0, -6), gameController);
+                    screenFontColor, menuBtnColor, new Point(0, 0), new Point(0, -6), screenWidth, screenHeight);
         }
     }
 
@@ -71,16 +74,17 @@ public final class MainScreen extends AbstractNavigationScreen {
     @Override
     public void render(Graphics2D g) {
         try {
-            if (playerDAO.getSelectedPlayer() != null)
+            if (playerDAO.getSelectedPlayer() != null) {
                 drawScreenTitles("Welcome " + playerDAO.getSelectedPlayer(), g);
-            else
+            } else {
                 drawScreenTitles("Welcome", g);
+            }
         } catch (IPlayerDAO.PlayerDAOException e) {
-            drawScreenSubtitle("Welcome", g);
+            drawSubtitle("Welcome", g);
         }
 
         renderButtons(buttons, g);
-        drawScreenInfoPanel(g);
+        drawInfoPanel(g);
     }
 
 }

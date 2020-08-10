@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
@@ -32,7 +33,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
             String selectedPlayer = playerList.get(index);
             try {
                 if (selectedPlayer.equals(playerDAO.getSelectedPlayer())) {
-                    menuBadActionClip.play(false);
+                    menuBadClip.play(false);
                 } else {
                     menuUseClip.play(false);
                     // invert
@@ -57,7 +58,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
                     deletePlayers();
                     updatePlayerData();
                 } else {
-                    menuBadActionClip.play(false);
+                    menuBadClip.play(false);
                 }
             } else {
                 if (isAnyMarkedPlayers()) {
@@ -67,7 +68,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
                     menuUseClip.play(false);
                     isDeleting = true;
                 } else {
-                    menuBadActionClip.play(false);
+                    menuBadClip.play(false);
                 }
             }
         }
@@ -103,8 +104,8 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
 
         renderButtons(buttons, g);
 
-        drawScreenToolTip(tooltipString, g);
-        drawScreenInfoPanel(g);
+        drawToolTip(tooltipString, g);
+        drawInfoPanel(g);
     }
 
 
@@ -128,11 +129,11 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
                 String selectedPlayer = playerDAO.getSelectedPlayer();
 
                 if (deleteMarkings[i]) {
-                    buttons[i].setTextColor(menuBtnPlayerDeletedColor);
+                    buttons[i].setFgColor(menuBtnPlayerDeletedColor);
                 } else if (player.equals(selectedPlayer)) {
-                    buttons[i].setTextColor(menuBtnPlayerSelectedColor);
+                    buttons[i].setFgColor(menuBtnPlayerSelectedColor);
                 } else {
-                    buttons[i].setTextColor(menuBtnColor);
+                    buttons[i].setFgColor(menuBtnColor);
                 }
 
             } catch (IPlayerDAO.PlayerDAOException e) {
@@ -173,7 +174,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
             String player = playerDAO.getPlayers().get(i);
             buttons[i] = new Button(new Point(x, y), new Dimension(150, 50),
                     player, false, inputBtnFont, screenFontColor, menuBtnColor,
-                    new Point(75, 0), new Point(70, -5), gameController);
+                    new Point(75, 0), new Point(70, -5), screenWidth, screenHeight);
             y += yInc;
         }
     }

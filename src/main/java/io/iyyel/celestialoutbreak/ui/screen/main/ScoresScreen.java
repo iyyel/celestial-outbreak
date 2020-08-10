@@ -4,6 +4,7 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.HighScoreDAO;
 import io.iyyel.celestialoutbreak.data.dao.contract.IHighScoreDAO;
 import io.iyyel.celestialoutbreak.data.dto.HighScoreDTO;
+import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 
 import java.awt.*;
@@ -17,6 +18,7 @@ public final class ScoresScreen extends AbstractScreen {
     private Font levelInfoFont = util.getPanelFont().deriveFont(16F);
 
     private final static IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
 
     private int levelAmount = levelHandler.getLevelAmount();
 
@@ -60,8 +62,8 @@ public final class ScoresScreen extends AbstractScreen {
 
     @Override
     public void render(Graphics2D g) {
-        drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_SCORES_SCREEN, g);
+        drawTitle(g);
+        drawSubtitle(textHandler.TITLE_SCORES_SCREEN, g);
 
         if (isFirstRender) {
             isFirstRender = false;
@@ -111,7 +113,7 @@ public final class ScoresScreen extends AbstractScreen {
             }
         }
 
-        drawScreenInfoPanel(g);
+        drawInfoPanel(g);
     }
 
 }

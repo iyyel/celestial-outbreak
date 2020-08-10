@@ -31,9 +31,9 @@ public final class AboutScreen extends AbstractScreen {
         int yPosSepInc = 70;
 
         g.setColor(screenFontColor);
-        drawScreenTitle(g);
+        drawTitle(g);
 
-        drawScreenSubtitle(textHandler.TITLE_ABOUT_SCREEN, g);
+        drawSubtitle(textHandler.TITLE_ABOUT_SCREEN, g);
 
         g.setFont(msgFont);
 
@@ -50,7 +50,7 @@ public final class AboutScreen extends AbstractScreen {
         g.drawString(textHandler.aboutMenuMsg08, xPos, yPos + yPosSepInc * 3 + yPosInc * 4);
         g.drawString(textHandler.aboutMenuMsg09, xPos, yPos + yPosSepInc * 3 + yPosInc * 5);
 
-        drawScreenInfoPanel(g);
+        drawInfoPanel(g);
     }
 
 }

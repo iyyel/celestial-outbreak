@@ -40,7 +40,7 @@ public final class ConfigOptionsScreen extends AbstractScreen {
         g.drawString(textHandler.menuConfigMsg09, xPos, yPos + yPosSepInc * 3 + yPosInc * 4);
         g.drawString(textHandler.menuConfigMsg10, xPos, yPos + yPosSepInc * 3 + yPosInc * 5);
 
-        drawScreenInfoPanel(g);
+        drawInfoPanel(g);
     }
 
 }

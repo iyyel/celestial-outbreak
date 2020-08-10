@@ -62,12 +62,12 @@ public final class PauseScreen extends AbstractScreen {
     @Override
     public void render(Graphics2D g) {
         g.setColor(screenFontColor);
-        drawScreenTitle(g);
-        drawScreenSubtitle(textHandler.TITLE_PAUSE_SCREEN, g);
-        drawScreenMessage(textHandler.GAME_TITLE + " is paused.", 0, g);
-        drawScreenCenterString(pauseStatusText, 630, inputBtnFont, g);
-        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_PAUSE + "' to resume or '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to exit level.", g);
-        drawScreenInfoPanel(g);
+        drawTitle(g);
+        drawSubtitle(textHandler.TITLE_PAUSE_SCREEN, g);
+        drawCenteredText(textHandler.GAME_TITLE + " is paused.", 0, g);
+        drawCenteredText(pauseStatusText, 630, inputBtnFont, g);
+        drawToolTip("Press '" + textHandler.BTN_CONTROL_PAUSE + "' to resume or '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to exit level.", g);
+        drawInfoPanel(g);
     }
 
     private void doFirstUpdate() {

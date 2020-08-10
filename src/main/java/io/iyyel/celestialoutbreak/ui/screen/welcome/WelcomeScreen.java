@@ -1,12 +1,16 @@
 package io.iyyel.celestialoutbreak.ui.screen.welcome;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
+import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
 import java.awt.*;
 
 public final class WelcomeScreen extends AbstractNavigationScreen {
+
+    private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
     private final Button[] buttons;
     private final String[] options = {textHandler.BTN_START_TEXT, textHandler.BTN_EXIT_TEXT};
@@ -19,7 +23,7 @@ public final class WelcomeScreen extends AbstractNavigationScreen {
         for (int i = 0; i < btnAmount; i++) {
             buttons[i] = new Button(new Point(getHalfWidth(), initialBtnYPos + btnYIncrement * (i + Y_MULTIPLIER)),
                     new Dimension(160, 50), options[i], true, inputBtnFont,
-                    screenFontColor, menuBtnColor, new Point(80, 0), new Point(0, -6), gameController);
+                    screenFontColor, menuBtnColor, new Point(80, 0), new Point(0, -6), screenWidth, screenHeight);
         }
     }
 
@@ -58,10 +62,10 @@ public final class WelcomeScreen extends AbstractNavigationScreen {
     @Override
     public void render(Graphics2D g) {
         drawScreenTitles(textHandler.TITLE_WELCOME_SCREEN, g);
-        drawScreenMessage(textHandler.WELCOME_SCREEN_TEXT, g);
+        drawCenteredText(textHandler.WELCOME_SCREEN_TEXT, g);
         renderButtons(buttons, g);
-        drawScreenToolTip(textHandler.WELCOME_SCREEN_TOOLTIP_TEXT, g);
-        drawScreenInfoPanel(g);
+        drawToolTip(textHandler.WELCOME_SCREEN_TOOLTIP_TEXT, g);
+        drawInfoPanel(g);
     }
 
     private void doProceed() {

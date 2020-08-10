@@ -1,11 +1,14 @@
 package io.iyyel.celestialoutbreak.ui.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 
 import java.awt.*;
 
 public class SelectLevelScreen extends AbstractScreen {
+
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
 
     private Rectangle[] levelRects;
     private Color[] levelRectColors;
@@ -128,8 +131,8 @@ public class SelectLevelScreen extends AbstractScreen {
             }
         }
 
-        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to play a level or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
-        drawScreenInfoPanel(g);
+        drawToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to play a level or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
+        drawInfoPanel(g);
     }
 
     private void updateLevelColors(int index) {

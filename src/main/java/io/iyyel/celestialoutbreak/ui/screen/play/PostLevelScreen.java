@@ -69,27 +69,27 @@ public final class PostLevelScreen extends AbstractScreen {
             }
         }
 
-        drawScreenTitle(g);
-        drawScreenSubtitle(activeLevel.getName(), g);
+        drawTitle(g);
+        drawSubtitle(activeLevel.getName(), g);
 
         if (hasWon) {
             if (isHighScore) {
-                drawScreenMessage("»»»»»»»» NEW HIGH SCORE! ««««««««", -50, g);
-                drawScreenMessage("You reached a new high score of " + levelHandler.getCurrentScore() + ".", 50, g);
+                drawCenteredText("»»»»»»»» NEW HIGH SCORE! ««««««««", -50, g);
+                drawCenteredText("You reached a new high score of " + levelHandler.getCurrentScore() + ".", 50, g);
             } else {
-                drawScreenMessage("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
+                drawCenteredText("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
             }
 
-            drawScreenMessage("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been defeated.", 0, g);
-            drawScreenMessage("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
+            drawCenteredText("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been defeated.", 0, g);
+            drawCenteredText("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
         } else {
-            drawScreenMessage("You have lost. The " + levelHandler.getActiveLevel().getName() + " level shines in grace upon you.", 0, g);
-            drawScreenMessage("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
-            drawScreenMessage("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
+            drawCenteredText("You have lost. The " + levelHandler.getActiveLevel().getName() + " level shines in grace upon you.", 0, g);
+            drawCenteredText("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
+            drawCenteredText("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
         }
 
-        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to go to the main menu.", g);
-        drawScreenInfoPanel(g);
+        drawToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to go to the main menu.", g);
+        drawInfoPanel(g);
     }
 
 }

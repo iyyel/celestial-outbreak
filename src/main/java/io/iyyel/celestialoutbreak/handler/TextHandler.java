@@ -122,7 +122,7 @@ public final class TextHandler {
     /*
      * Client local gameController directory.
      */
-    public final String GAME_TOP_DIR_NAME = "." + AUTHOR_WEBSITE;
+    public final String GAME_TOP_DIR_NAME = ".config" + fs + AUTHOR_WEBSITE;
     public final String GAME_DIR_NAME = GAME_TITLE.toLowerCase().replaceAll("\\s+", "");
     public final String GAME_DIR_PATH = USER_HOME + fs + GAME_TOP_DIR_NAME + fs + GAME_DIR_NAME;
 
@@ -357,17 +357,18 @@ public final class TextHandler {
     public final String PROP_KEY_PADDLE_COLOR = "LEVEL_PADDLE_COLOR";
 
     /* Ball. */
-    public final String PROP_KEY_BALL_SIZE = "LEVEL_BALL_SIZE";
+    public final String PROP_KEY_BALL_WIDTH = "LEVEL_BALL_WIDTH";
+    public final String PROP_KEY_BALL_HEIGHT = "LEVEL_BALL_HEIGHT";
     public final String PROP_KEY_BALL_SPEED = "LEVEL_BALL_SPEED";
     public final String PROP_KEY_BALL_COLOR = "LEVEL_BALL_COLOR";
 
-    /* BlockList. */
+    /* BlockField. */
     public final String PROP_KEY_BLOCK_POS_X_START = "LEVEL_BLOCK_POS_X_START";
     public final String PROP_KEY_BLOCK_POS_Y_START = "LEVEL_BLOCK_POS_Y_START";
     public final String PROP_KEY_BLOCK_POS_X_SPACING = "LEVEL_BLOCK_POS_X_SPACING";
     public final String PROP_KEY_BLOCK_POS_Y_SPACING = "LEVEL_BLOCK_POS_Y_SPACING";
     public final String PROP_KEY_BLOCK_AMOUNT = "LEVEL_BLOCK_AMOUNT";
-    public final String PROP_KEY_BLOCK_HITPOINTS = "LEVEL_BLOCK_HITPOINTS";
+    public final String PROP_KEY_BLOCK_HEALTH = "LEVEL_BLOCK_HEALTH";
     public final String PROP_KEY_BLOCK_WIDTH = "LEVEL_BLOCK_WIDTH";
     public final String PROP_KEY_BLOCK_HEIGHT = "LEVEL_BLOCK_HEIGHT";
     public final String PROP_KEY_BLOCK_LUMINANCE = "LEVEL_BLOCK_LUMINANCE";
@@ -523,8 +524,8 @@ public final class TextHandler {
         return "Ball collision with Paddle. Changed paddleCollisionTimer: " + paddleCollisionTimer;
     }
 
-    public final String vBallBlockListCollisionMsg(int blockListIndex, int hitPoints) {
-        return "Ball collision with BlockList[" + blockListIndex + "], HitPoints=" + hitPoints;
+    public final String vBallBlockFieldCollisionMsg(int blockIndex, int blockHealth) {
+        return "Ball collision with BlockField[" + blockIndex + "], Health=" + blockHealth;
     }
 
     private final DecimalFormat df = new DecimalFormat("000");

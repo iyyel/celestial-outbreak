@@ -94,7 +94,7 @@ public final class LevelHandler {
         levelNames = getLevelStringProperties(textHandler.PROP_KEY_LEVEL_NAME);
         levelPlayerLives = getLevelIntProperties(textHandler.PROP_KEY_LEVEL_PLAYER_LIFE);
         levelBlockAmounts = getLevelIntProperties(textHandler.PROP_KEY_BLOCK_AMOUNT);
-        levelHitPoints = getLevelIntProperties(textHandler.PROP_KEY_BLOCK_HITPOINTS);
+        levelHitPoints = getLevelIntProperties(textHandler.PROP_KEY_BLOCK_HEALTH);
     }
 
     public void loadLevel(int index) {
@@ -126,9 +126,9 @@ public final class LevelHandler {
     }
 
     private void calculateScore() {
-        long blockHitPointsPunish = (getActiveLevel().getBlockList().getTotalHitPoints() - getActiveLevel().getBlockList().getTotalHitPointsLeft()) * 10;
-        long timePunish = Math.abs(util.getTimeElapsed() / getActiveLevel().getBlockHitPoints());
-        long lostLifePunish = (getActiveLevel().getPlayerLifeInit() - getActiveLevel().getPlayerLife()) * getActiveLevel().getBlockList().getBlockHitPoints() * 10;
+        long blockHitPointsPunish = (getActiveLevel().getBlockList().getTotalHealth() - getActiveLevel().getBlockList().getTotalHealthLeft()) * 10;
+        long timePunish = Math.abs(util.getTimeElapsed() / getActiveLevel().getBlockHealth());
+        long lostLifePunish = (getActiveLevel().getPlayerLifeInit() - getActiveLevel().getPlayerLife()) * getActiveLevel().getBlockList().getHealth() * 10;
         currentScore = blockHitPointsPunish - timePunish - lostLifePunish;
     }
 

@@ -1,11 +1,14 @@
 package io.iyyel.celestialoutbreak.ui.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 
 import java.awt.*;
 
 public class PlayScreen extends AbstractScreen {
+
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
 
     public PlayScreen(GameController gameController) {
         super(gameController);

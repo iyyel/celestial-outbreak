@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.player_options;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
@@ -33,7 +34,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
                         e.printStackTrace();
                     }
                 } else {
-                    menuBadActionClip.play(false);
+                    menuBadClip.play(false);
                 }
             } catch (IPlayerDAO.PlayerDAOException e) {
                 e.printStackTrace();
@@ -77,8 +78,8 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
 
         drawScreenTitles(textHandler.TITLE_SELECT_PLAYER_SCREEN, g);
         renderButtons(buttons, g);
-        drawScreenToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to select a player.", g);
-        drawScreenInfoPanel(g);
+        drawToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to select a player.", g);
+        drawInfoPanel(g);
     }
 
     private void updatePlayerData() {
@@ -111,7 +112,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
             String player = playerDAO.getPlayers().get(i);
             buttons[i] = new Button(new Point(x, y), new Dimension(150, 50),
                     player, false, inputBtnFont, screenFontColor, menuBtnColor,
-                    new Point(75, 0), new Point(70, -5), gameController);
+                    new Point(75, 0), new Point(70, -5), screenWidth, screenHeight);
 
             y += yInc;
         }
@@ -125,10 +126,10 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
 
                 if (player.equals(selectedPlayer)) {
                     playerNameColors[i] = menuBtnPlayerSelectedColor;
-                    buttons[i].setTextColor(playerNameColors[i]);
+                    buttons[i].setFgColor(playerNameColors[i]);
                 } else {
                     playerNameColors[i] = menuBtnColor;
-                    buttons[i].setTextColor(playerNameColors[i]);
+                    buttons[i].setFgColor(playerNameColors[i]);
                 }
             } catch (IPlayerDAO.PlayerDAOException e) {
                 e.printStackTrace();

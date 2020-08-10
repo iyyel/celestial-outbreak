@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.play;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.contract.IPlayerDAO;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.level.Level;
@@ -10,6 +11,8 @@ import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 import java.awt.*;
 
 public final class GamePanel extends AbstractScreen {
+
+    private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
     private final Font panelFont;
     private final Color panelColor;
