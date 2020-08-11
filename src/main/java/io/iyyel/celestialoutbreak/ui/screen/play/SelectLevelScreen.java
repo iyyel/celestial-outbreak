@@ -6,6 +6,7 @@ import io.iyyel.celestialoutbreak.data.dao.interfaces.IHighScoreDAO;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.data.dto.HighScoreDTO;
 import io.iyyel.celestialoutbreak.handler.LevelHandler;
+import io.iyyel.celestialoutbreak.handler.PowerUpHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 
 import java.awt.*;
@@ -14,6 +15,7 @@ public class SelectLevelScreen extends AbstractScreen {
 
     private final LevelHandler levelHandler = LevelHandler.getInstance();
     private final IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
+    private final PowerUpHandler powerUpHandler = PowerUpHandler.getInstance();
 
     private Rectangle[] levelRects;
     private Color[] levelRectColors;
@@ -98,6 +100,7 @@ public class SelectLevelScreen extends AbstractScreen {
                     selected = 0;
 
                     // Set current active level to i.
+                    powerUpHandler.clear();
                     levelHandler.loadLevel(i);
                     levelHandler.setActiveLevelIndex(i);
                     gameController.switchState(GameController.State.PRE_LEVEL);

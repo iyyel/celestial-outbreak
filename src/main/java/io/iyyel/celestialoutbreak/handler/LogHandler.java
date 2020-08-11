@@ -110,20 +110,14 @@ public final class LogHandler {
 
     private boolean readIsVerboseLogEnabledProp() {
         String filePathClient = textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH;
-        String filePathLocal = getClass().getResource(textHandler.OPTIONS_CONFIG_FILE_LOCAL_PATH).getPath();
         String pKey = textHandler.PROP_KEY_VERBOSE_LOG_ENABLED;
 
         try {
             return readProperty(pKey, filePathClient);
         } catch (IOException e) {
-            try {
-                return readProperty(pKey, filePathLocal);
-            } catch (IOException ex) {
-                log("Exception reading IsVerboseLogEnabled: " + ExceptionUtils.getStackTrace(e), LogLevel.ERROR, false);
-            }
+            log("Exception reading IsVerboseLogEnabled. Setting to false: " + ExceptionUtils.getStackTrace(e), LogLevel.ERROR, false);
+            return false;
         }
-
-        return false;
     }
 
     private boolean readProperty(String pKey, String filePath) throws IOException {

@@ -1,8 +1,6 @@
 package io.iyyel.celestialoutbreak.handler;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.data.dao.HighScoreDAO;
-import io.iyyel.celestialoutbreak.data.dao.interfaces.IHighScoreDAO;
 import io.iyyel.celestialoutbreak.level.Level;
 import io.iyyel.celestialoutbreak.util.Util;
 
@@ -15,7 +13,7 @@ public final class LevelHandler {
     private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
-    private final IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
+    private final PowerUpHandler powerUpHandler = PowerUpHandler.getInstance();
     private final Util util = Util.getInstance();
 
     private int activeLevelIndex = 0;

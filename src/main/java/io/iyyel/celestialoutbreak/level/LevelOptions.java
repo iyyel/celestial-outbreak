@@ -25,6 +25,15 @@ public final class LevelOptions {
     private Color levelColor;
 
     /*
+     * Power up options.
+     */
+    private Dimension powerUpDim;
+    private int powerUpSpeed;
+    private int powerUpChance;
+    private float powerUpLum;
+    private float powerUpSat;
+
+    /*
      * Paddle options.
      */
     private Point paddlePos;
@@ -93,6 +102,15 @@ public final class LevelOptions {
         int levelColorValue = Integer.decode(map.get(textHandler.PROP_KEY_LEVEL_COLOR));
         levelColor = new Color(levelColorValue);
 
+        /* Power up options */
+        int powerUpWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_WIDTH));
+        int powerUpHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_HEIGHT));
+        powerUpDim = new Dimension(powerUpWidth, powerUpHeight);
+        powerUpSpeed = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_SPEED));
+        powerUpChance = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_CHANCE));
+        powerUpLum = Float.parseFloat(map.get(textHandler.PROP_KEY_POWERUP_LUMINANCE));
+        powerUpSat = Float.parseFloat(map.get(textHandler.PROP_KEY_POWERUP_SATURATION));
+
         /* Paddle options */
         int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_X_OFFSET));
         int paddlePosYOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_Y_OFFSET));
@@ -153,6 +171,26 @@ public final class LevelOptions {
 
     public Color getLevelColor() {
         return levelColor;
+    }
+
+    public Dimension getPowerUpDim() {
+        return powerUpDim;
+    }
+
+    public int getPowerUpSpeed() {
+        return powerUpSpeed;
+    }
+
+    public int getPowerUpChance() {
+        return powerUpChance;
+    }
+
+    public float getPowerUpLum() {
+        return powerUpLum;
+    }
+
+    public float getPowerUpSat() {
+        return powerUpSat;
     }
 
     public Point getPaddlePos() {

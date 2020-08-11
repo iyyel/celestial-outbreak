@@ -220,8 +220,9 @@ public final class GameController extends Canvas implements Runnable {
         addKeyListener(inputHandler);
 
         /* If no players exist, assume its first run */
-        if (playerDAO.getPlayers().isEmpty())
+        if (playerDAO.getPlayers().isEmpty()) {
             state = State.WELCOME;
+        }
 
         /* Initialize the JFrame and start the gameController loop */
         initFrame();
@@ -284,10 +285,11 @@ public final class GameController extends Canvas implements Runnable {
         inputHandler.update();
 
         /* Play sound based on current state if sound is enabled */
-        if (optionsHandler.isSoundEnabled())
+        if (optionsHandler.isSoundEnabled()) {
             soundHandler.playStateSound(state, prevState, true, false);
-        else /* If not, stop all sound immediately */
+        } else { /* If not, stop all sound immediately */
             soundHandler.stopAllSound();
+        }
 
         /* Let the current gameController state decide what to update exactly. */
         switch (state) {

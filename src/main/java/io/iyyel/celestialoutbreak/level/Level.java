@@ -1,7 +1,6 @@
 package io.iyyel.celestialoutbreak.level;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
-import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.ui.entity.Ball;
@@ -15,7 +14,6 @@ import java.awt.*;
 public final class Level {
 
     private final TextHandler textHandler = TextHandler.getInstance();
-    private final InputHandler inputHandler = InputHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
     private final Util util = Util.getInstance();
 
@@ -40,6 +38,15 @@ public final class Level {
     private int playerLifeInit;
     private String soundFileName;
     private Color color;
+
+    /*
+     * Power up options.
+     */
+    private Dimension powerUpDim;
+    private int powerUpSpeed;
+    private int powerUpChance;
+    private float powerUpLum;
+    private float powerUpSat;
 
     /*
      * Paddle options
@@ -103,6 +110,13 @@ public final class Level {
         soundFileName = levelOptions.getLevelSoundFileName();
         color = levelOptions.getLevelColor();
 
+        /* Power up options */
+        powerUpDim = levelOptions.getPowerUpDim();
+        powerUpSpeed = levelOptions.getPowerUpSpeed();
+        powerUpChance = levelOptions.getPowerUpChance();
+        powerUpLum = levelOptions.getPowerUpLum();
+        powerUpSat = levelOptions.getPowerUpSat();
+
         /* Paddle options */
         paddlePos = levelOptions.getPaddlePos();
         paddleDim = levelOptions.getPaddleDim();
@@ -132,6 +146,22 @@ public final class Level {
 
         /* Add level audio to SoundHandler */
         soundHandler.addSoundClip(soundFileName, textHandler.getClientSoundFilePath(soundFileName));
+    }
+
+    public Dimension getPowerUpDim() {
+        return powerUpDim;
+    }
+
+    public int getPowerUpSpeed() {
+        return powerUpSpeed;
+    }
+
+    public int getPowerUpChance() {
+        return powerUpChance;
+    }
+
+    public Color getPowerUpColor() {
+        return util.generatePastelColor(powerUpLum, powerUpSat);
     }
 
     public boolean isWon() {

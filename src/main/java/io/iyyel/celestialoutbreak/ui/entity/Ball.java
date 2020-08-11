@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.entity;
 
 import io.iyyel.celestialoutbreak.handler.*;
+import io.iyyel.celestialoutbreak.level.Level;
 
 import java.awt.*;
 
@@ -12,6 +13,7 @@ public final class Ball extends AbstractMobileEntity {
     private final LogHandler logHandler = LogHandler.getInstance();
     private final LevelHandler levelHandler = LevelHandler.getInstance();
     private final InputHandler inputHandler = InputHandler.getInstance();
+    private final PowerUpHandler powerUpHandler = PowerUpHandler.getInstance();
 
     private final Point velocity;
     private boolean isStuck = true;
@@ -164,6 +166,10 @@ public final class Ball extends AbstractMobileEntity {
                 blockField.hit(i);
 
                 if (blockField.get(i).isDead()) {
+
+                    /* spawn powerup by chance */
+                    spawnPowerUp(blockField.get(i), levelHandler.getActiveLevel());
+
                     soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
                     blockField.remove(i);
                     logHandler.log("BlockField[" + i + "] has been destroyed.", LogHandler.LogLevel.INFO, true);
@@ -173,6 +179,17 @@ public final class Ball extends AbstractMobileEntity {
                 }
             }
         }
+    }
+
+    private void spawnPowerUp(Block block, Level level) {
+        Point powerUpPos = new Point(block.pos.x + (block.dim.width / 2) - (level.getPowerUpDim().width / 2), block.pos.y);
+
+        PowerUp powerUp = new PowerUp(powerUpPos,
+                level.getPowerUpDim(),
+                level.getPowerUpColor(),
+                level.getPowerUpSpeed(), screenHeight, paddle);
+
+        powerUpHandler.spawnPowerUp(powerUp);
     }
 
 }

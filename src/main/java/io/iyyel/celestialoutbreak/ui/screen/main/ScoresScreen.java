@@ -100,7 +100,7 @@ public final class ScoresScreen extends AbstractScreen {
                 String time = textHandler.getFixedString(" Time: 0", 12);
 
                 if (highScoreDTO != null) {
-                    player = textHandler.getFixedString("Player: " + highScoreDTO.getPlayer(), 15);
+                    player = textHandler.getFixedString("Player: " + highScoreDTO.getPlayer(), 16);
                     score = textHandler.getFixedString("Score:  " + highScoreDTO.getScore(), 15);
                     time = textHandler.getFixedString(" Time: " + textHandler.getTimeString(highScoreDTO.getTime()), 12);
                 }

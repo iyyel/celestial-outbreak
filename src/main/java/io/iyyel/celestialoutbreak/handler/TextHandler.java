@@ -347,6 +347,14 @@ public final class TextHandler {
     public final String PROP_KEY_LEVEL_SOUND_FILE_NAME = "LEVEL_SOUND_FILE_NAME";
     public final String PROP_KEY_LEVEL_COLOR = "LEVEL_COLOR";
 
+    /* Power up. */
+    public final String PROP_KEY_POWERUP_WIDTH = "LEVEL_POWERUP_WIDTH";
+    public final String PROP_KEY_POWERUP_HEIGHT = "LEVEL_POWERUP_HEIGHT";
+    public final String PROP_KEY_POWERUP_SPEED = "LEVEL_POWERUP_SPEED";
+    public final String PROP_KEY_POWERUP_CHANCE = "LEVEL_POWERUP_CHANCE";
+    public final String PROP_KEY_POWERUP_LUMINANCE = "LEVEL_POWERUP_LUMINANCE";
+    public final String PROP_KEY_POWERUP_SATURATION = "LEVEL_POWERUP_SATURATION";
+
     /* Paddle. */
     public final String PROP_KEY_PADDLE_POS_X_OFFSET = "LEVEL_PADDLE_POS_X_OFFSET";
     public final String PROP_KEY_PADDLE_POS_Y_OFFSET = "LEVEL_PADDLE_POS_Y_OFFSET";
