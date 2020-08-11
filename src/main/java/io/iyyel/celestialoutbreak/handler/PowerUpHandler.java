@@ -10,6 +10,8 @@ public final class PowerUpHandler {
 
     private static PowerUpHandler instance;
 
+    private final LogHandler logHandler = LogHandler.getInstance();
+
     private final List<PowerUp> powerUps = new ArrayList<>();
 
     private PowerUpHandler() {
@@ -64,7 +66,8 @@ public final class PowerUpHandler {
 
         for (int i = 0; i < powerUps.size(); i++) {
             if (powerUps.get(i).collidesWithPaddle()) {
-                System.out.println("Powerup collided with Paddle! Removed.");
+                powerUps.get(i).applyPowerUp();
+                logHandler.log("Power up collided with Paddle!", "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
                 collisions[i] = true;
             }
         }
@@ -81,7 +84,7 @@ public final class PowerUpHandler {
 
         for (int i = 0; i < powerUps.size(); i++) {
             if (powerUps.get(i).hasReachedBottom()) {
-                System.out.println("Powerup reached bottom! Removed.");
+                logHandler.log("Power up reached bottom!", "checkBottomCollision", LogHandler.LogLevel.INFO, true);
                 collisions[i] = true;
             }
         }

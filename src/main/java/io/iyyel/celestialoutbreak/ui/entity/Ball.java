@@ -4,6 +4,7 @@ import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.level.Level;
 
 import java.awt.*;
+import java.util.Random;
 
 public final class Ball extends AbstractMobileEntity {
 
@@ -168,7 +169,11 @@ public final class Ball extends AbstractMobileEntity {
                 if (blockField.get(i).isDead()) {
 
                     /* spawn powerup by chance */
-                    spawnPowerUp(blockField.get(i), levelHandler.getActiveLevel());
+                    boolean spawn = new Random().nextInt(100) < levelHandler.getActiveLevel().getPowerUpChance();
+                    if (spawn) {
+                        spawnPowerUp(blockField.get(i), levelHandler.getActiveLevel());
+                        logHandler.log("Power up spawned!", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
+                    }
 
                     soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
                     blockField.remove(i);

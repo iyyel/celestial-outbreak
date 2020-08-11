@@ -42,4 +42,8 @@ public final class Paddle extends AbstractMobileEntity {
         g.fillRect(pos.x, pos.y, dim.width, dim.height);
     }
 
+    public void applyPowerUp(PowerUp powerUp) {
+        System.out.println("PowerUp applied!");
+    }
+
 }

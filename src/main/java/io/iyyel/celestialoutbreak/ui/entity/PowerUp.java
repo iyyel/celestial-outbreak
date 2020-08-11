@@ -34,6 +34,10 @@ public final class PowerUp extends AbstractMobileEntity {
         g.fillOval(pos.x, pos.y, dim.width, dim.height);
     }
 
+    public void applyPowerUp() {
+        paddle.applyPowerUp(this);
+    }
+
     public boolean hasReachedBottom() {
         /* PowerUp hit bottom y-axis. */
         return pos.y > (screenHeight - dim.height);
