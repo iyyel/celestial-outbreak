@@ -4,6 +4,9 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
+import io.iyyel.celestialoutbreak.ui.entity.Ball;
+import io.iyyel.celestialoutbreak.ui.entity.Block;
+import io.iyyel.celestialoutbreak.ui.entity.PowerUp;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.awt.*;
@@ -30,8 +33,9 @@ public final class LevelOptions {
     private Dimension powerUpDim;
     private int powerUpSpeed;
     private int powerUpChance;
-    private float powerUpLum;
-    private float powerUpSat;
+    private PowerUp.Style powerUpStyle;
+    private long powerUpMinDuration;
+    private long powerUpMaxDuration;
 
     /*
      * Paddle options.
@@ -47,16 +51,18 @@ public final class LevelOptions {
     private Point ballPos;
     private Dimension ballDim;
     private int ballSpeed;
+    private Ball.Style ballStyle;
     private Color ballColor;
 
     /*
-     * BlockList options.
+     * BlockField options.
      */
     private Point blockPosStart;
     private Point blockPosSpacing;
     private int blockAmount;
     private int blockHitPoints;
     private Dimension blockDim;
+    private Block.Style blockStyle;
     private float blockLum;
     private float blockSat;
 
@@ -108,8 +114,10 @@ public final class LevelOptions {
         powerUpDim = new Dimension(powerUpWidth, powerUpHeight);
         powerUpSpeed = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_SPEED));
         powerUpChance = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_CHANCE));
-        powerUpLum = Float.parseFloat(map.get(textHandler.PROP_KEY_POWERUP_LUMINANCE));
-        powerUpSat = Float.parseFloat(map.get(textHandler.PROP_KEY_POWERUP_SATURATION));
+        String powerUpStyleStr = map.get(textHandler.PROP_KEY_POWERUP_STYLE);
+        powerUpStyle = PowerUp.Style.valueOf(powerUpStyleStr);
+        powerUpMinDuration = Long.parseLong(map.get(textHandler.PROP_KEY_POWERUP_MIN_DURATION));
+        powerUpMaxDuration = Long.parseLong(map.get(textHandler.PROP_KEY_POWERUP_MAX_DURATION));
 
         /* Paddle options */
         int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_X_OFFSET));
@@ -128,6 +136,8 @@ public final class LevelOptions {
         ballDim = new Dimension(ballWidth, ballHeight);
         ballPos = new Point(paddlePos.x + (paddleWidth / 2) - (ballWidth / 2), paddlePos.y - (ballHeight));
         ballSpeed = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_SPEED));
+        String ballStyleStr = map.get(textHandler.PROP_KEY_BALL_STYLE);
+        ballStyle = Ball.Style.valueOf(ballStyleStr);
         int ballColorHex = Integer.decode(map.get(textHandler.PROP_KEY_BALL_COLOR));
         ballColor = new Color(ballColorHex);
 
@@ -142,6 +152,8 @@ public final class LevelOptions {
         blockHitPoints = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_HEALTH));
         int blockWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_WIDTH));
         int blockHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_HEIGHT));
+        String blockStyleStr = map.get(textHandler.PROP_KEY_BLOCK_STYLE);
+        blockStyle = Block.Style.valueOf(blockStyleStr);
         blockDim = new Dimension(blockWidth, blockHeight);
         blockLum = Float.parseFloat(map.get(textHandler.PROP_KEY_BLOCK_LUMINANCE));
         blockSat = Float.parseFloat(map.get(textHandler.PROP_KEY_BLOCK_SATURATION));
@@ -185,12 +197,12 @@ public final class LevelOptions {
         return powerUpChance;
     }
 
-    public float getPowerUpLum() {
-        return powerUpLum;
+    public long getPowerUpMinDuration() {
+        return powerUpMinDuration;
     }
 
-    public float getPowerUpSat() {
-        return powerUpSat;
+    public long getPowerUpMaxDuration() {
+        return powerUpMaxDuration;
     }
 
     public Point getPaddlePos() {
@@ -259,6 +271,18 @@ public final class LevelOptions {
 
     public Color getGamePanelValueColor() {
         return gamePanelValueColor;
+    }
+
+    public PowerUp.Style getPowerUpStyle() {
+        return powerUpStyle;
+    }
+
+    public Ball.Style getBallStyle() {
+        return ballStyle;
+    }
+
+    public Block.Style getBlockStyle() {
+        return blockStyle;
     }
 
 }

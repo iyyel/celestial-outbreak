@@ -12,7 +12,7 @@ public final class GameOptions extends AbstractNavigationScreen {
 
     private final Button[] buttons;
 
-    private final String[] options = {textHandler.BTN_SOUND_TEXT, textHandler.BTN_POWER_UP_TEXT, textHandler.BTN_GOD_MODE_TEXT};
+    private final String[] options = {textHandler.BTN_SOUND_TEXT, textHandler.BTN_POWERUP_TEXT, textHandler.BTN_GOD_MODE_TEXT};
 
     private final Color[] textOptionColor;
 
@@ -76,8 +76,8 @@ public final class GameOptions extends AbstractNavigationScreen {
                     break;
                 case 1:
                     pValue = String.valueOf(!optionsHandler.isPowerUpEnabled());
-                    fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_POWER_UP_ENABLED, pValue);
-                    optionsHandler.reloadProperty(textHandler.PROP_KEY_POWER_UP_ENABLED, pValue);
+                    fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_POWERUP_ENABLED, pValue);
+                    optionsHandler.reloadProperty(textHandler.PROP_KEY_POWERUP_ENABLED, pValue);
                     if (optionsHandler.isVerboseLogEnabled()) {
                         if (optionsHandler.isPowerUpEnabled()) {
                             logHandler.log("Power ups have been enabled.", LogHandler.LogLevel.INFO, false);

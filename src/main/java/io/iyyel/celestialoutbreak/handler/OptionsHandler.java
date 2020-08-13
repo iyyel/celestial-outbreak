@@ -20,7 +20,7 @@ public final class OptionsHandler {
             put(textHandler.PROP_KEY_GOD_MODE_ENABLED, false);
             put(textHandler.PROP_KEY_FPS_LOCK_ENABLED, false);
             put(textHandler.PROP_KEY_ANTI_ALIASING_ENABLED, false);
-            put(textHandler.PROP_KEY_POWER_UP_ENABLED, false);
+            put(textHandler.PROP_KEY_POWERUP_ENABLED, false);
         }
     };
 
@@ -110,7 +110,7 @@ public final class OptionsHandler {
     }
 
     public boolean isPowerUpEnabled() {
-        return gamePropMap.get(textHandler.PROP_KEY_POWER_UP_ENABLED);
+        return gamePropMap.get(textHandler.PROP_KEY_POWERUP_ENABLED);
     }
 
     public Color getMenuFontColor() {

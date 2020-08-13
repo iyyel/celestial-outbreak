@@ -73,6 +73,7 @@ public final class Paddle extends AbstractMobileEntity {
             long delta = util.getTimeElapsed() - effect.getStartTime();
             if (delta > effect.getDuration()) {
                 effect.deactivate();
+                this.pos = new Point(pos.x + (dim.width / 2), pos.y);
                 this.dim = origDim;
                 this.color = origColor;
                 this.speed = origSpeed;

@@ -73,7 +73,7 @@ public final class GamePanel extends AbstractScreen {
             g.setColor(titleColor);
             g.drawString("Blocks: ", getHalfWidth() + 160, 714);
             g.setColor(valueColor);
-            g.drawString(activeLevel.getBlockList().getBlocksLeft() + "", getHalfWidth() + 240, 714);
+            g.drawString(activeLevel.getBlockField().getBlocksLeft() + "", getHalfWidth() + 240, 714);
 
             g.setColor(titleColor);
             g.drawString("Time: ", getHalfWidth() + 310, 714);

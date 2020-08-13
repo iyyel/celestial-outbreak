@@ -3,9 +3,7 @@ package io.iyyel.celestialoutbreak.level;
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.ui.entity.Ball;
-import io.iyyel.celestialoutbreak.ui.entity.BlockField;
-import io.iyyel.celestialoutbreak.ui.entity.Paddle;
+import io.iyyel.celestialoutbreak.ui.entity.*;
 import io.iyyel.celestialoutbreak.ui.screen.play.GamePanel;
 import io.iyyel.celestialoutbreak.util.Util;
 
@@ -45,8 +43,9 @@ public final class Level {
     private Dimension powerUpDim;
     private int powerUpSpeed;
     private int powerUpChance;
-    private float powerUpLum;
-    private float powerUpSat;
+    private PowerUp.Style powerUpStyle;
+    private long powerUpMinDuration;
+    private long powerUpMaxDuration;
 
     /*
      * Paddle options
@@ -62,6 +61,7 @@ public final class Level {
     private Point ballPos;
     private Dimension ballDim;
     private int ballSpeed;
+    private Ball.Style ballStyle;
     private Color ballColor;
 
     /*
@@ -72,6 +72,7 @@ public final class Level {
     private int blockAmount;
     private int blockHealth;
     private Dimension blockDim;
+    private Block.Style blockStyle;
     private float blockLum;
     private float blockSat;
 
@@ -114,8 +115,9 @@ public final class Level {
         powerUpDim = levelOptions.getPowerUpDim();
         powerUpSpeed = levelOptions.getPowerUpSpeed();
         powerUpChance = levelOptions.getPowerUpChance();
-        powerUpLum = levelOptions.getPowerUpLum();
-        powerUpSat = levelOptions.getPowerUpSat();
+        powerUpStyle = levelOptions.getPowerUpStyle();
+        powerUpMinDuration = levelOptions.getPowerUpMinDuration();
+        powerUpMaxDuration = levelOptions.getPowerUpMaxDuration();
 
         /* Paddle options */
         paddlePos = levelOptions.getPaddlePos();
@@ -127,21 +129,23 @@ public final class Level {
         ballPos = levelOptions.getBallPos();
         ballDim = levelOptions.getBallDim();
         ballSpeed = levelOptions.getBallSpeed();
+        ballStyle = levelOptions.getBallStyle();
         ballColor = levelOptions.getBallColor();
 
-        /* BlockList options */
+        /* BlockField options */
         blockPosStart = levelOptions.getBlockPosStart();
         blockPosSpacing = levelOptions.getBlockPosSpacing();
         blockAmount = levelOptions.getBlockAmount();
         blockHealth = levelOptions.getBlockHitPoints();
         blockDim = levelOptions.getBlockDim();
+        blockStyle = levelOptions.getBlockStyle();
         blockLum = levelOptions.getBlockLum();
         blockSat = levelOptions.getBlockSat();
 
         /* Create objects after initializing the options */
         paddle = new Paddle(paddlePos, paddleDim, paddleColor, paddleSpeed, gameController.getWidth());
-        blockField = new BlockField(blockAmount, blockHealth, blockPosStart, blockDim, blockPosSpacing, blockLum, blockSat, gameController.getWidth());
-        ball = new Ball(ballPos, ballDim, ballColor, ballSpeed, paddle, blockField, gameController.getWidth(), gameController.getHeight());
+        blockField = new BlockField(blockAmount, blockHealth, blockPosStart, blockDim, blockPosSpacing, blockStyle, blockLum, blockSat, gameController.getWidth());
+        ball = new Ball(ballPos, ballDim, ballColor, ballSpeed, ballStyle, paddle, blockField, gameController.getWidth(), gameController.getHeight());
         gamePanel = new GamePanel(gameController, levelOptions);
 
         /* Add level audio to SoundHandler */
@@ -160,8 +164,16 @@ public final class Level {
         return powerUpChance;
     }
 
-    public Color getPowerUpColor() {
-        return util.generatePastelColor(powerUpLum, powerUpSat);
+    public long getPowerUpMinDuration() {
+        return powerUpMinDuration;
+    }
+
+    public long getPowerUpMaxDuration() {
+        return powerUpMaxDuration;
+    }
+
+    public PowerUp.Style getPowerUpStyle() {
+        return powerUpStyle;
     }
 
     public boolean isWon() {
@@ -192,7 +204,7 @@ public final class Level {
         return color;
     }
 
-    public BlockField getBlockList() {
+    public BlockField getBlockField() {
         return blockField;
     }
 

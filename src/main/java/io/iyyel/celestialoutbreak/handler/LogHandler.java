@@ -115,7 +115,8 @@ public final class LogHandler {
         try {
             return readProperty(pKey, filePathClient);
         } catch (IOException e) {
-            log("Exception reading IsVerboseLogEnabled. Setting to false: " + ExceptionUtils.getStackTrace(e), LogLevel.ERROR, false);
+            /* Dirty hack to fix exception :) */
+            log("Failed to read isVerboseLog property. Returning false as default.", LogLevel.FAIL, false);
             return false;
         }
     }

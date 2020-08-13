@@ -29,6 +29,8 @@ public final class Ball extends AbstractMobileEntity {
     private final SoundHandler.SoundClip ballHitClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT);
     private final SoundHandler.SoundClip ballResetClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET);
 
+    private Ball.Style style;
+
     private final Paddle paddle;
     private final BlockField blockField;
 
@@ -41,9 +43,15 @@ public final class Ball extends AbstractMobileEntity {
     private final Color origColor;
     private final int origSpeed;
 
-    public Ball(Point pos, Dimension dim, Color color, int speed, Paddle paddle, BlockField blockField,
-                int screenWidth, int screenHeight) {
+    public enum Style {
+        CIRCLE,
+        SQUARE
+    }
+
+    public Ball(Point pos, Dimension dim, Color color, int speed, Style style, Paddle paddle,
+                BlockField blockField, int screenWidth, int screenHeight) {
         super(pos, dim, color, speed);
+        this.style = style;
         this.paddle = paddle;
         this.blockField = blockField;
         this.screenWidth = screenWidth;
@@ -78,7 +86,11 @@ public final class Ball extends AbstractMobileEntity {
         }
 
         g.setColor(color);
-        g.fillOval(pos.x, pos.y, dim.width, dim.height);
+        if (style.equals(Ball.Style.SQUARE)) {
+            g.fillRect(pos.x, pos.y, dim.width, dim.height);
+        } else if (style.equals(Ball.Style.CIRCLE)) {
+            g.fillOval(pos.x, pos.y, dim.width, dim.height);
+        }
 
         if (paddleCollisionTimer > 0) {
             paddleCollisionTimer--;
@@ -206,8 +218,9 @@ public final class Ball extends AbstractMobileEntity {
 
         PowerUp powerUp = new PowerUp(powerUpPos,
                 level.getPowerUpDim(),
-                level.getPowerUpColor(),
-                level.getPowerUpSpeed(), screenHeight, paddle, this);
+                level.getBlockField().getLatestBlockColor(),
+                level.getPowerUpSpeed(),
+                level.getPowerUpStyle(), screenHeight, paddle, this);
 
         powerUpHandler.spawnPowerUp(powerUp);
     }
@@ -222,6 +235,7 @@ public final class Ball extends AbstractMobileEntity {
         this.dim = effect.getDim();
         this.color = effect.getColor();
         this.speed = effect.getSpeed();
+        updateVelocity(speed);
     }
 
     private void updateEffect() {
@@ -229,11 +243,26 @@ public final class Ball extends AbstractMobileEntity {
             long delta = util.getTimeElapsed() - effect.getStartTime();
             if (delta > effect.getDuration()) {
                 effect.deactivate();
+                this.pos = new Point(pos.x + (dim.width / 2), pos.y + (dim.height / 2));
                 this.dim = origDim;
                 this.color = origColor;
                 this.speed = origSpeed;
+                updateVelocity(speed);
                 effect = null;
             }
+        }
+    }
+
+    private void updateVelocity(int speed) {
+        if (velocity.x < 0) {
+            velocity.x = -speed;
+        } else {
+            velocity.x = speed;
+        }
+        if (velocity.y < 0) {
+            velocity.y = -speed;
+        } else {
+            velocity.y = speed;
         }
     }
 

@@ -3,8 +3,6 @@ package io.iyyel.celestialoutbreak.handler;
 import io.iyyel.celestialoutbreak.ui.entity.PowerUp;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public final class PowerUpHandler {
 
@@ -12,7 +10,7 @@ public final class PowerUpHandler {
 
     private final LogHandler logHandler = LogHandler.getInstance();
 
-    private final List<PowerUp> powerUps = new ArrayList<>();
+    private PowerUp[] powerUpArray = new PowerUp[10];
 
     private PowerUpHandler() {
 
@@ -31,12 +29,10 @@ public final class PowerUpHandler {
     }
 
     public void update() {
-        if (powerUps.isEmpty()) {
-            return;
-        }
-
-        for (PowerUp up : powerUps) {
-            up.update();
+        for (PowerUp up : powerUpArray) {
+            if (up != null) {
+                up.update();
+            }
         }
 
         checkPaddleCollision();
@@ -44,54 +40,45 @@ public final class PowerUpHandler {
     }
 
     public void render(Graphics2D g) {
-        if (powerUps.isEmpty()) {
-            return;
-        }
-
-        for (PowerUp up : powerUps) {
-            up.render(g);
+        for (PowerUp up : powerUpArray) {
+            if (up != null) {
+                up.render(g);
+            }
         }
     }
 
     public void spawnPowerUp(PowerUp powerUp) {
-        powerUps.add(powerUp);
-    }
-
-    public void clear() {
-        powerUps.clear();
-    }
-
-    private void checkPaddleCollision() {
-        boolean[] collisions = new boolean[powerUps.size()];
-
-        for (int i = 0; i < powerUps.size(); i++) {
-            if (powerUps.get(i).collidesWithPaddle()) {
-                powerUps.get(i).applyEffect();
-                logHandler.log("Power up collided with Paddle!", "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
-                collisions[i] = true;
+        for (int i = 0; i < powerUpArray.length; i++) {
+            if (powerUpArray[i] == null) {
+                powerUpArray[i] = powerUp;
+                return;
             }
         }
 
-        for (int i = 0; i < collisions.length; i++) {
-            if (collisions[i]) {
-                powerUps.remove(i);
+        PowerUp[] newPowerUpArray = new PowerUp[powerUpArray.length * 2];
+        System.arraycopy(powerUpArray, 0, newPowerUpArray, 0, powerUpArray.length);
+        powerUpArray = newPowerUpArray;
+    }
+
+    public void clear() {
+        powerUpArray = new PowerUp[10];
+    }
+
+    private void checkPaddleCollision() {
+        for (int i = 0; i < powerUpArray.length; i++) {
+            if (powerUpArray[i] != null && powerUpArray[i].collidesWithPaddle()) {
+                powerUpArray[i].applyEffect();
+                logHandler.log("Power up collided with Paddle!", "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
+                powerUpArray[i] = null;
             }
         }
     }
 
     private void checkBottomCollision() {
-        boolean[] collisions = new boolean[powerUps.size()];
-
-        for (int i = 0; i < powerUps.size(); i++) {
-            if (powerUps.get(i).hasReachedBottom()) {
+        for (int i = 0; i < powerUpArray.length; i++) {
+            if (powerUpArray[i] != null && powerUpArray[i].hasReachedBottom()) {
                 logHandler.log("Power up reached bottom!", "checkBottomCollision", LogHandler.LogLevel.INFO, true);
-                collisions[i] = true;
-            }
-        }
-
-        for (int i = 0; i < collisions.length; i++) {
-            if (collisions[i]) {
-                powerUps.remove(i);
+                powerUpArray[i] = null;
             }
         }
     }

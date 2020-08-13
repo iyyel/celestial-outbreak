@@ -5,10 +5,17 @@ import java.awt.*;
 public final class Block extends AbstractEntity {
 
     private int health;
+    private Style style;
 
-    public Block(Point pos, Dimension dim, Color color, int health) {
+    public enum Style {
+        CIRCLE,
+        SQUARE
+    }
+
+    public Block(Point pos, Dimension dim, Color color, int health, Style style) {
         super(pos, dim, color);
         this.health = health;
+        this.style = style;
     }
 
     @Override
@@ -27,7 +34,11 @@ public final class Block extends AbstractEntity {
         }
 
         g.setColor(color);
-        g.fillRect(pos.x, pos.y, dim.width, dim.height);
+        if (style.equals(Style.SQUARE)) {
+            g.fillRect(pos.x, pos.y, dim.width, dim.height);
+        } else if (style.equals(Style.CIRCLE)) {
+            g.fillOval(pos.x, pos.y, dim.width, dim.height);
+        }
     }
 
     public void hit() {

@@ -1,24 +1,32 @@
 package io.iyyel.celestialoutbreak.ui.entity;
 
+import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
 import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
 import io.iyyel.celestialoutbreak.ui.entity.effects.PaddleEffect;
-import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 import java.util.Random;
 
 public final class PowerUp extends AbstractMobileEntity {
 
-    private final Util util = Util.getInstance();
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
 
+    private PowerUp.Style style;
     private final int screenHeight;
     private final Paddle paddle;
     private final Ball ball;
     private final Effect effect;
 
-    public PowerUp(Point pos, Dimension dim, Color color, int speed, int screenHeight, Paddle paddle, Ball ball) {
+    public enum Style {
+        CIRCLE,
+        SQUARE
+    }
+
+    public PowerUp(Point pos, Dimension dim, Color color, int speed, PowerUp.Style style,
+                   int screenHeight, Paddle paddle, Ball ball) {
         super(pos, dim, color, speed);
+        this.style = style;
         this.screenHeight = screenHeight;
         this.paddle = paddle;
         this.ball = ball;
@@ -43,7 +51,11 @@ public final class PowerUp extends AbstractMobileEntity {
         }
 
         g.setColor(color);
-        g.fillOval(pos.x, pos.y, dim.width, dim.height);
+        if (style.equals(PowerUp.Style.SQUARE)) {
+            g.fillRect(pos.x, pos.y, dim.width, dim.height);
+        } else if (style.equals(PowerUp.Style.CIRCLE)) {
+            g.fillOval(pos.x, pos.y, dim.width, dim.height);
+        }
     }
 
     public boolean hasReachedBottom() {
@@ -65,25 +77,40 @@ public final class PowerUp extends AbstractMobileEntity {
 
     private Effect genEffect() {
         Random r = new Random();
-        int effectDuration = r.nextInt(10) + 5;
+        int effectDuration = r.nextInt((int) levelHandler.getActiveLevel().getPowerUpMaxDuration()) +
+                (int) levelHandler.getActiveLevel().getPowerUpMinDuration();
         boolean isPaddleEffect = r.nextInt(100) < 50;
         Effect e;
 
         /* make a Paddle effect */
         if (isPaddleEffect) {
             int paddleWidth = r.nextInt(480) + 20;
-            int paddleHeight = r.nextInt(50);
+            int paddleHeight = r.nextInt(20);
             Dimension paddleDim = new Dimension(paddleWidth, paddleHeight);
-            Color paddleColor = util.generatePastelColor((float) r.nextInt(6000) + 1000, (float) r.nextInt(6000) + 1000);
-            int paddleSpeed = r.nextInt(10);
+            Color paddleColor = this.color;
+
+            int paddleSpeed;
+            if (r.nextInt(100) < 5) {
+                paddleSpeed = r.nextInt(29) + 1;
+            } else {
+                paddleSpeed = r.nextInt(9) + 1;
+            }
+
             e = new PaddleEffect(effectDuration, paddleDim, paddleColor, paddleSpeed);
         } else {
             /* make a Ball effect */
             int ballWidth = r.nextInt(180) + 20;
             int ballHeight = r.nextInt(180) + 20;
             Dimension ballDim = new Dimension(ballWidth, ballHeight);
-            Color ballColor = util.generatePastelColor((float) r.nextInt(6000) + 1000, (float) r.nextInt(6000) + 1000);
-            int ballSpeed = r.nextInt(10);
+            Color ballColor = this.color;
+
+            int ballSpeed;
+            if (r.nextInt(100) < 5) {
+                ballSpeed = r.nextInt(29) + 1;
+            } else {
+                ballSpeed = r.nextInt(9) + 1;
+            }
+
             e = new BallEffect(effectDuration, ballDim, ballColor, ballSpeed);
         }
 

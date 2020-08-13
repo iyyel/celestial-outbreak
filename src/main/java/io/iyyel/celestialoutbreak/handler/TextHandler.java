@@ -81,7 +81,7 @@ public final class TextHandler {
     public final String BTN_GOD_MODE_TEXT = "God Mode";
     public final String BTN_FPS_LOCK_TEXT = "FPS Lock";
     public final String BTN_ANTI_ALIASING_TEXT = "Anti-aliasing";
-    public final String BTN_POWER_UP_TEXT = "Power Ups";
+    public final String BTN_POWERUP_TEXT = "Power Ups";
 
     public final String BTN_CONTROL_MOV_NAV = "WASD/Arrow keys";
     public final String BTN_CONTROL_FORWARD_OK = "z";
@@ -320,7 +320,7 @@ public final class TextHandler {
     public final String PROP_KEY_GOD_MODE_ENABLED = "GOD_MODE_ENABLED";
     public final String PROP_KEY_FPS_LOCK_ENABLED = "FPS_LOCK_ENABLED";
     public final String PROP_KEY_ANTI_ALIASING_ENABLED = "ANTI_ALIASING_ENABLED";
-    public final String PROP_KEY_POWER_UP_ENABLED = "POWER_UP_ENABLED";
+    public final String PROP_KEY_POWERUP_ENABLED = "POWERUP_ENABLED";
 
     /*
      * Menu color properties.
@@ -356,8 +356,9 @@ public final class TextHandler {
     public final String PROP_KEY_POWERUP_HEIGHT = "LEVEL_POWERUP_HEIGHT";
     public final String PROP_KEY_POWERUP_SPEED = "LEVEL_POWERUP_SPEED";
     public final String PROP_KEY_POWERUP_CHANCE = "LEVEL_POWERUP_CHANCE";
-    public final String PROP_KEY_POWERUP_LUMINANCE = "LEVEL_POWERUP_LUMINANCE";
-    public final String PROP_KEY_POWERUP_SATURATION = "LEVEL_POWERUP_SATURATION";
+    public final String PROP_KEY_POWERUP_STYLE = "LEVEL_POWERUP_STYLE";
+    public final String PROP_KEY_POWERUP_MIN_DURATION = "LEVEL_POWERUP_MIN_DURATION";
+    public final String PROP_KEY_POWERUP_MAX_DURATION = "LEVEL_POWERUP_MAX_DURATION";
 
     /* Paddle. */
     public final String PROP_KEY_PADDLE_POS_X_OFFSET = "LEVEL_PADDLE_POS_X_OFFSET";
@@ -371,6 +372,7 @@ public final class TextHandler {
     public final String PROP_KEY_BALL_WIDTH = "LEVEL_BALL_WIDTH";
     public final String PROP_KEY_BALL_HEIGHT = "LEVEL_BALL_HEIGHT";
     public final String PROP_KEY_BALL_SPEED = "LEVEL_BALL_SPEED";
+    public final String PROP_KEY_BALL_STYLE = "LEVEL_BALL_STYLE";
     public final String PROP_KEY_BALL_COLOR = "LEVEL_BALL_COLOR";
 
     /* BlockField. */
@@ -382,6 +384,7 @@ public final class TextHandler {
     public final String PROP_KEY_BLOCK_HEALTH = "LEVEL_BLOCK_HEALTH";
     public final String PROP_KEY_BLOCK_WIDTH = "LEVEL_BLOCK_WIDTH";
     public final String PROP_KEY_BLOCK_HEIGHT = "LEVEL_BLOCK_HEIGHT";
+    public final String PROP_KEY_BLOCK_STYLE = "LEVEL_BLOCK_STYLE";
     public final String PROP_KEY_BLOCK_LUMINANCE = "LEVEL_BLOCK_LUMINANCE";
     public final String PROP_KEY_BLOCK_SATURATION = "LEVEL_BLOCK_SATURATION";
 

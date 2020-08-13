@@ -118,16 +118,20 @@ public final class LevelHandler {
 
     private int[] getLevelIntProperties(String pKey) {
         int[] arr = new int[levels.length];
-        for (int i = 0; i < levels.length; i++)
+        for (int i = 0; i < levels.length; i++) {
             arr[i] = Integer.parseInt(fileHandler.readPropertyFromFile(pKey, levelOptionsFileNames[i]));
+        }
         return arr;
     }
 
     private void calculateScore() {
-        long blockHitPointsPunish = (getActiveLevel().getBlockList().getTotalHealth() - getActiveLevel().getBlockList().getTotalHealthLeft()) * 10;
+        long blockHitPointsPunish = (getActiveLevel().getBlockField().getTotalHealth() - getActiveLevel().getBlockField().getTotalHealthLeft()) * 10;
         long timePunish = Math.abs(util.getTimeElapsed() / getActiveLevel().getBlockHealth());
-        long lostLifePunish = (getActiveLevel().getPlayerLifeInit() - getActiveLevel().getPlayerLife()) * getActiveLevel().getBlockList().getHealth() * 10;
+        long lostLifePunish = (getActiveLevel().getPlayerLifeInit() - getActiveLevel().getPlayerLife()) * getActiveLevel().getBlockField().getHealth() * 10;
         currentScore = blockHitPointsPunish - timePunish - lostLifePunish;
+        if (currentScore < 0) {
+            currentScore = 0;
+        }
     }
 
     public void resetActiveLevel() {
