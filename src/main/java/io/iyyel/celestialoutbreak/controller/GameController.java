@@ -7,7 +7,8 @@ import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.main.*;
 import io.iyyel.celestialoutbreak.ui.screen.options.ConfigOptionsScreen;
-import io.iyyel.celestialoutbreak.ui.screen.options.GeneralOptionsScreen;
+import io.iyyel.celestialoutbreak.ui.screen.options.GameOptions;
+import io.iyyel.celestialoutbreak.ui.screen.options.GraphicsOptions;
 import io.iyyel.celestialoutbreak.ui.screen.options.PlayerOptionsScreen;
 import io.iyyel.celestialoutbreak.ui.screen.play.*;
 import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerCreateScreen;
@@ -94,7 +95,8 @@ public final class GameController extends Canvas implements Runnable {
     private final PlayerSelectScreen playerSelectScreen;
     private final PlayerCreateScreen playerCreateScreen;
     private final PlayerDeleteScreen playerDeleteScreen;
-    private final GeneralOptionsScreen generalOptionsScreen;
+    private final GameOptions gameOptions;
+    private final GraphicsOptions graphicsOptions;
     private final ConfigOptionsScreen configOptionsScreen;
     private final AboutScreen aboutScreen;
     private final ExitScreen exitScreen;
@@ -138,7 +140,8 @@ public final class GameController extends Canvas implements Runnable {
         PLAYER_SELECT,
         PLAYER_CREATE,
         PLAYER_DELETE,
-        GENERAL_OPTIONS,
+        GAME_OPTIONS,
+        GRAPHICS_OPTIONS,
         CONFIG_OPTIONS,
         ABOUT,
         EXIT,
@@ -202,14 +205,15 @@ public final class GameController extends Canvas implements Runnable {
         pauseScreen = new PauseScreen(this);
         scoresScreen = new ScoresScreen(this);
         controlsScreen = new ControlsScreen(this);
-        optionsScreen = new OptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
+        optionsScreen = new OptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 4, this);
         playerOptionsScreen = new PlayerOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
         playerSelectScreen = new PlayerSelectScreen(AbstractNavigationScreen.NavStyle.VERTICAL_HORIZONTAL,
                 playerDAO.getPlayers().size(), 5, this);
         playerCreateScreen = new PlayerCreateScreen(this);
         playerDeleteScreen = new PlayerDeleteScreen(AbstractNavigationScreen.NavStyle.VERTICAL_HORIZONTAL,
                 playerDAO.getPlayers().size(), 5, this);
-        generalOptionsScreen = new GeneralOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 4, this);
+        gameOptions = new GameOptions(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
+        graphicsOptions = new GraphicsOptions(AbstractNavigationScreen.NavStyle.VERTICAL, 2, this);
         configOptionsScreen = new ConfigOptionsScreen(this);
         aboutScreen = new AboutScreen(this);
         exitScreen = new ExitScreen(this);
@@ -337,8 +341,11 @@ public final class GameController extends Canvas implements Runnable {
             case PLAYER_DELETE:
                 playerDeleteScreen.update();
                 break;
-            case GENERAL_OPTIONS:
-                generalOptionsScreen.update();
+            case GAME_OPTIONS:
+                gameOptions.update();
+                break;
+            case GRAPHICS_OPTIONS:
+                graphicsOptions.update();
                 break;
             case CONFIG_OPTIONS:
                 configOptionsScreen.update();
@@ -413,7 +420,8 @@ public final class GameController extends Canvas implements Runnable {
             case PLAYER_SELECT:
             case PLAYER_CREATE:
             case PLAYER_DELETE:
-            case GENERAL_OPTIONS:
+            case GAME_OPTIONS:
+            case GRAPHICS_OPTIONS:
             case CONFIG_OPTIONS:
             case ABOUT:
             case EXIT:
@@ -474,8 +482,11 @@ public final class GameController extends Canvas implements Runnable {
             case PLAYER_DELETE:
                 playerDeleteScreen.render(g);
                 break;
-            case GENERAL_OPTIONS:
-                generalOptionsScreen.render(g);
+            case GAME_OPTIONS:
+                gameOptions.render(g);
+                break;
+            case GRAPHICS_OPTIONS:
+                graphicsOptions.render(g);
                 break;
             case CONFIG_OPTIONS:
                 configOptionsScreen.render(g);
@@ -496,8 +507,9 @@ public final class GameController extends Canvas implements Runnable {
         setMinimumSize(size);
         setMaximumSize(size);
         setSize(size);
-        if (gameFrame != null)
+        if (gameFrame != null) {
             gameFrame.setSize(size);
+        }
     }
 
     private void initGameIcon() {
@@ -560,8 +572,9 @@ public final class GameController extends Canvas implements Runnable {
      * Change the current state of the gameController.
      */
     public void switchState(State state) {
-        if (state == null || state == State.NONE)
+        if (state == null || state == State.NONE) {
             return;
+        }
         prevState = this.state;
         this.state = state;
     }

@@ -69,7 +69,8 @@ public final class TextHandler {
     public final String BTN_CONTROLS_TEXT = "CONTROLS";
     public final String BTN_ABOUT_TEXT = "ABOUT";
     public final String BTN_EXIT_TEXT = "EXIT";
-    public final String BTN_GENERAL_OPTIONS_TEXT = "GENERAL OPTIONS";
+    public final String BTN_GAME_OPTIONS_TEXT = "GAME OPTIONS";
+    public final String BTN_GRAPHICS_OPTIONS_TEXT = "GRAPHICS OPTIONS";
     public final String BTN_PLAYER_OPTIONS_TEXT = "PLAYER OPTIONS";
     public final String BTN_CONFIGURATION_OPTIONS_TEXT = "CONFIGURATION OPTIONS";
     public final String BTN_SELECT_PLAYER_TEXT = "SELECT PLAYER";
@@ -80,6 +81,7 @@ public final class TextHandler {
     public final String BTN_GOD_MODE_TEXT = "God Mode";
     public final String BTN_FPS_LOCK_TEXT = "FPS Lock";
     public final String BTN_ANTI_ALIASING_TEXT = "Anti-aliasing";
+    public final String BTN_POWER_UP_TEXT = "Power Ups";
 
     public final String BTN_CONTROL_MOV_NAV = "WASD/Arrow keys";
     public final String BTN_CONTROL_FORWARD_OK = "z";
@@ -106,7 +108,8 @@ public final class TextHandler {
     public final String TITLE_CREATE_PLAYER_SCREEN = "CREATE PLAYER";
     public final String TITLE_DELETE_PLAYER_SCREEN = "DELETE PLAYER";
 
-    public final String TITLE_GENERAL_OPTIONS_SCREEN = "GENERAL OPTIONS";
+    public final String TITLE_GAME_OPTIONS_SCREEN = "GAME OPTIONS";
+    public final String TITLE_GRAPHICS_OPTIONS_SCREEN = "GRAPHICS OPTIONS";
 
     public final String TITLE_PAUSE_SCREEN = "PAUSE";
 
@@ -317,6 +320,7 @@ public final class TextHandler {
     public final String PROP_KEY_GOD_MODE_ENABLED = "GOD_MODE_ENABLED";
     public final String PROP_KEY_FPS_LOCK_ENABLED = "FPS_LOCK_ENABLED";
     public final String PROP_KEY_ANTI_ALIASING_ENABLED = "ANTI_ALIASING_ENABLED";
+    public final String PROP_KEY_POWER_UP_ENABLED = "POWER_UP_ENABLED";
 
     /*
      * Menu color properties.

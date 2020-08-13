@@ -8,8 +8,8 @@ import java.awt.*;
 
 public final class OptionsScreen extends AbstractNavigationScreen {
 
-    private String[] options = {textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_GENERAL_OPTIONS_TEXT,
-            textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
+    private String[] options = {textHandler.BTN_GAME_OPTIONS_TEXT, textHandler.BTN_GRAPHICS_OPTIONS_TEXT,
+            textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
 
     private final Button[] buttons;
 
@@ -35,14 +35,16 @@ public final class OptionsScreen extends AbstractNavigationScreen {
             super.updateNavOK();
             switch (index) {
                 case 0:
-                    gameController.switchState(GameController.State.PLAYER_OPTIONS);
+                    gameController.switchState(GameController.State.GAME_OPTIONS);
                     break;
                 case 1:
-                    gameController.switchState(GameController.State.GENERAL_OPTIONS);
+                    gameController.switchState(GameController.State.GRAPHICS_OPTIONS);
                     break;
                 case 2:
-                    gameController.switchState(GameController.State.CONFIG_OPTIONS);
+                    gameController.switchState(GameController.State.PLAYER_OPTIONS);
                     break;
+                case 3:
+                    gameController.switchState(GameController.State.CONFIG_OPTIONS);
                 default:
                     break;
             }

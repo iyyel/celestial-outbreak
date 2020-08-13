@@ -66,7 +66,7 @@ public final class PowerUpHandler {
 
         for (int i = 0; i < powerUps.size(); i++) {
             if (powerUps.get(i).collidesWithPaddle()) {
-                powerUps.get(i).applyPowerUp();
+                powerUps.get(i).applyEffect();
                 logHandler.log("Power up collided with Paddle!", "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
                 collisions[i] = true;
             }

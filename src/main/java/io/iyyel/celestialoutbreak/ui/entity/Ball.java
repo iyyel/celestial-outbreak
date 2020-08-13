@@ -2,12 +2,15 @@ package io.iyyel.celestialoutbreak.ui.entity;
 
 import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.level.Level;
+import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
+import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 import java.util.Random;
 
 public final class Ball extends AbstractMobileEntity {
 
+    private final Util util = Util.getInstance();
     private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
@@ -32,6 +35,12 @@ public final class Ball extends AbstractMobileEntity {
     private final int screenWidth;
     private final int screenHeight;
 
+    private BallEffect effect;
+
+    private final Dimension origDim;
+    private final Color origColor;
+    private final int origSpeed;
+
     public Ball(Point pos, Dimension dim, Color color, int speed, Paddle paddle, BlockField blockField,
                 int screenWidth, int screenHeight) {
         super(pos, dim, color, speed);
@@ -39,6 +48,9 @@ public final class Ball extends AbstractMobileEntity {
         this.blockField = blockField;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
+        this.origDim = super.dim;
+        this.origColor = super.color;
+        this.origSpeed = super.speed;
         velocity = new Point(0, 0);
     }
 
@@ -55,6 +67,8 @@ public final class Ball extends AbstractMobileEntity {
         checkRightCollision();
         checkTopCollision();
         checkBottomCollision();
+
+        updateEffect();
     }
 
     @Override
@@ -167,12 +181,13 @@ public final class Ball extends AbstractMobileEntity {
                 blockField.hit(i);
 
                 if (blockField.get(i).isDead()) {
-
-                    /* spawn powerup by chance */
-                    boolean spawn = new Random().nextInt(100) < levelHandler.getActiveLevel().getPowerUpChance();
-                    if (spawn) {
-                        spawnPowerUp(blockField.get(i), levelHandler.getActiveLevel());
-                        logHandler.log("Power up spawned!", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
+                    /* spawn powerup by chance if enabled */
+                    if (optionsHandler.isPowerUpEnabled()) {
+                        boolean spawn = new Random().nextInt(100) < levelHandler.getActiveLevel().getPowerUpChance();
+                        if (spawn) {
+                            spawnPowerUp(blockField.get(i), levelHandler.getActiveLevel());
+                            logHandler.log("Power up spawned!", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
+                        }
                     }
 
                     soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
@@ -192,9 +207,34 @@ public final class Ball extends AbstractMobileEntity {
         PowerUp powerUp = new PowerUp(powerUpPos,
                 level.getPowerUpDim(),
                 level.getPowerUpColor(),
-                level.getPowerUpSpeed(), screenHeight, paddle);
+                level.getPowerUpSpeed(), screenHeight, paddle, this);
 
         powerUpHandler.spawnPowerUp(powerUp);
+    }
+
+    public void applyEffect(BallEffect effect) {
+        if (effect != null && effect.isActive()) {
+            return;
+        }
+
+        this.effect = effect;
+        this.effect.activate();
+        this.dim = effect.getDim();
+        this.color = effect.getColor();
+        this.speed = effect.getSpeed();
+    }
+
+    private void updateEffect() {
+        if (effect != null && effect.isActive()) {
+            long delta = util.getTimeElapsed() - effect.getStartTime();
+            if (delta > effect.getDuration()) {
+                effect.deactivate();
+                this.dim = origDim;
+                this.color = origColor;
+                this.speed = origSpeed;
+                effect = null;
+            }
+        }
     }
 
 }
