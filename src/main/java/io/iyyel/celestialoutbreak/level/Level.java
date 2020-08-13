@@ -44,8 +44,6 @@ public final class Level {
     private int powerUpSpeed;
     private int powerUpChance;
     private PowerUp.Style powerUpStyle;
-    private long powerUpMinDuration;
-    private long powerUpMaxDuration;
 
     /*
      * Paddle options
@@ -116,8 +114,6 @@ public final class Level {
         powerUpSpeed = levelOptions.getPowerUpSpeed();
         powerUpChance = levelOptions.getPowerUpChance();
         powerUpStyle = levelOptions.getPowerUpStyle();
-        powerUpMinDuration = levelOptions.getPowerUpMinDuration();
-        powerUpMaxDuration = levelOptions.getPowerUpMaxDuration();
 
         /* Paddle options */
         paddlePos = levelOptions.getPaddlePos();
@@ -162,14 +158,6 @@ public final class Level {
 
     public int getPowerUpChance() {
         return powerUpChance;
-    }
-
-    public long getPowerUpMinDuration() {
-        return powerUpMinDuration;
-    }
-
-    public long getPowerUpMaxDuration() {
-        return powerUpMaxDuration;
     }
 
     public PowerUp.Style getPowerUpStyle() {

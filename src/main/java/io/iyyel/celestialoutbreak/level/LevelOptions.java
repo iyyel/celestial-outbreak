@@ -34,8 +34,6 @@ public final class LevelOptions {
     private int powerUpSpeed;
     private int powerUpChance;
     private PowerUp.Style powerUpStyle;
-    private long powerUpMinDuration;
-    private long powerUpMaxDuration;
 
     /*
      * Paddle options.
@@ -116,8 +114,6 @@ public final class LevelOptions {
         powerUpChance = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_CHANCE));
         String powerUpStyleStr = map.get(textHandler.PROP_KEY_POWERUP_STYLE);
         powerUpStyle = PowerUp.Style.valueOf(powerUpStyleStr);
-        powerUpMinDuration = Long.parseLong(map.get(textHandler.PROP_KEY_POWERUP_MIN_DURATION));
-        powerUpMaxDuration = Long.parseLong(map.get(textHandler.PROP_KEY_POWERUP_MAX_DURATION));
 
         /* Paddle options */
         int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_X_OFFSET));
@@ -195,14 +191,6 @@ public final class LevelOptions {
 
     public int getPowerUpChance() {
         return powerUpChance;
-    }
-
-    public long getPowerUpMinDuration() {
-        return powerUpMinDuration;
-    }
-
-    public long getPowerUpMaxDuration() {
-        return powerUpMaxDuration;
     }
 
     public Point getPaddlePos() {

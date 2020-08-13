@@ -77,8 +77,7 @@ public final class PowerUp extends AbstractMobileEntity {
 
     private Effect genEffect() {
         Random r = new Random();
-        int effectDuration = r.nextInt((int) levelHandler.getActiveLevel().getPowerUpMaxDuration()) +
-                (int) levelHandler.getActiveLevel().getPowerUpMinDuration();
+        int effectDuration = 5;
         boolean isPaddleEffect = r.nextInt(100) < 50;
         Effect e;
 
