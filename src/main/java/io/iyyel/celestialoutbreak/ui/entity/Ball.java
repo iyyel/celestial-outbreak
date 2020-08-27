@@ -220,7 +220,7 @@ public final class Ball extends AbstractMobileEntity {
                 level.getPowerUpDim(),
                 level.getBlockField().getLatestBlockColor(),
                 level.getPowerUpSpeed(),
-                level.getPowerUpStyle(), screenHeight, paddle, this);
+                level.getPowerUpStyle(), screenHeight, paddle, this, level.getRandomEffect());
 
         powerUpHandler.spawnPowerUp(powerUp);
     }

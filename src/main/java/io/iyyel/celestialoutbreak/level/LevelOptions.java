@@ -7,6 +7,9 @@ import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.ui.entity.Ball;
 import io.iyyel.celestialoutbreak.ui.entity.Block;
 import io.iyyel.celestialoutbreak.ui.entity.PowerUp;
+import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
+import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
+import io.iyyel.celestialoutbreak.ui.entity.effects.PaddleEffect;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.awt.*;
@@ -34,6 +37,11 @@ public final class LevelOptions {
     private int powerUpSpeed;
     private int powerUpChance;
     private PowerUp.Style powerUpStyle;
+
+    /*
+     * Power up effects.
+     */
+    private Effect[] effects;
 
     /*
      * Paddle options.
@@ -115,6 +123,37 @@ public final class LevelOptions {
         String powerUpStyleStr = map.get(textHandler.PROP_KEY_POWERUP_STYLE);
         powerUpStyle = PowerUp.Style.valueOf(powerUpStyleStr);
 
+        int powerUpAmount = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_AMOUNT));
+        effects = new Effect[powerUpAmount];
+
+        for (int i = 0; i < powerUpAmount; i++) {
+            String pKeyType = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_TYPE, i);
+            String effectType = fileHandler.readPropertyFromFile(pKeyType, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);
+
+            String pKeyDuration = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_DURATION, i);
+            int effectDuration = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyDuration, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE));
+
+            String pKeyWidth = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_WIDTH, i);
+            int effectWidth = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyWidth, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE));
+
+            String pKeyHeight = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_HEIGHT, i);
+            int effectHeight = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyHeight, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE));
+
+            Dimension effectDim = new Dimension(effectWidth, effectHeight);
+
+            String pKeyColor = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_COLOR, i);
+            Color effectColor = new Color(Integer.decode(fileHandler.readPropertyFromFile(pKeyColor, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE)));
+
+            String pKeySpeed = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_SPEED, i);
+            int effectSpeed = Integer.parseInt(fileHandler.readPropertyFromFile(pKeySpeed, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE));
+
+            if (effectType.equals("Paddle")) {
+                effects[i] = new PaddleEffect(effectDuration, effectDim, effectColor, effectSpeed);
+            } else {
+                effects[i] = new BallEffect(effectDuration, effectDim, effectColor, effectSpeed);
+            }
+        }
+
         /* Paddle options */
         int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_X_OFFSET));
         int paddlePosYOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_Y_OFFSET));
@@ -191,6 +230,10 @@ public final class LevelOptions {
 
     public int getPowerUpChance() {
         return powerUpChance;
+    }
+
+    public Effect[] getEffects() {
+        return effects;
     }
 
     public Point getPaddlePos() {

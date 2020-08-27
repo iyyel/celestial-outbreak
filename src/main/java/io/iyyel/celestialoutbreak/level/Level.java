@@ -4,16 +4,17 @@ import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.ui.entity.*;
+import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
 import io.iyyel.celestialoutbreak.ui.screen.play.GamePanel;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
+import java.util.Random;
 
 public final class Level {
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
-    private final Util util = Util.getInstance();
 
     /*
      * Rendering objects
@@ -44,6 +45,11 @@ public final class Level {
     private int powerUpSpeed;
     private int powerUpChance;
     private PowerUp.Style powerUpStyle;
+
+    /*
+     * Power up effects.
+     */
+    private Effect[] effects;
 
     /*
      * Paddle options
@@ -114,6 +120,9 @@ public final class Level {
         powerUpSpeed = levelOptions.getPowerUpSpeed();
         powerUpChance = levelOptions.getPowerUpChance();
         powerUpStyle = levelOptions.getPowerUpStyle();
+
+        /* Effects */
+        effects = levelOptions.getEffects();
 
         /* Paddle options */
         paddlePos = levelOptions.getPaddlePos();
@@ -221,6 +230,11 @@ public final class Level {
 
     public void pauseSound() {
         soundHandler.getSoundClip(soundFileName).pause();
+    }
+
+    public Effect getRandomEffect() {
+        int index = new Random().nextInt(effects.length);
+        return effects[index];
     }
 
 }

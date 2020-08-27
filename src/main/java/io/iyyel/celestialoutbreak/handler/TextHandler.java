@@ -51,7 +51,7 @@ public final class TextHandler {
      * Important game strings.
      */
     public final String GAME_TITLE = "Celestial Outbreak";
-    public final String GAME_VERSION = "v0.2b";
+    public final String GAME_VERSION = "v1.00";
     public final String AUTHOR_WEBSITE = "iyyel.io";
     public final String GITHUB_URL = "github.com/iyyel/celestialoutbreak";
 
@@ -359,12 +359,17 @@ public final class TextHandler {
     public final String PROP_KEY_POWERUP_STYLE = "LEVEL_POWERUP_STYLE";
 
     /* Power up effect. */
+    public final String PROP_KEY_POWERUP_AMOUNT = "LEVEL_POWERUP_AMOUNT";
     public final String PROP_KEY_POWERUP_EFFECT_TYPE = "LEVEL_POWERUP_EFFECT_TYPE";
     public final String PROP_KEY_POWERUP_EFFECT_DURATION = "LEVEL_POWERUP_EFFECT_DURATION";
     public final String PROP_KEY_POWERUP_EFFECT_WIDTH = "LEVEL_POWERUP_EFFECT_WIDTH";
     public final String PROP_KEY_POWERUP_EFFECT_HEIGHT = "LEVEL_POWERUP_EFFECT_HEIGHT";
     public final String PROP_KEY_POWERUP_EFFECT_COLOR = "LEVEL_POWERUP_EFFECT_COLOR";
     public final String PROP_KEY_POWERUP_EFFECT_SPEED = "LEVEL_POWERUP_EFFECT_SPEED";
+
+    public String powerUpPropNumbered(String pKey, int num) {
+        return pKey.substring(0, 13) + "_" + num + "_" + pKey.substring(14);
+    }
 
     /* Paddle. */
     public final String PROP_KEY_PADDLE_POS_X_OFFSET = "LEVEL_PADDLE_POS_X_OFFSET";
