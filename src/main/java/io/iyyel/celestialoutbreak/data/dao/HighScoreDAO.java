@@ -16,7 +16,7 @@ public final class HighScoreDAO implements IHighScoreDAO {
 
     private List<HighScoreDTO> highScoreDTOList = null;
 
-    private static IHighScoreDAO instance;
+    private static final IHighScoreDAO instance;
 
     private HighScoreDAO() {
 

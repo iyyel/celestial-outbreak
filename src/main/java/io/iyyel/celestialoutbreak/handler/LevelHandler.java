@@ -30,7 +30,7 @@ public final class LevelHandler {
 
     private GameController gameController;
 
-    private static LevelHandler instance;
+    private static final LevelHandler instance;
 
     static {
         try {
@@ -79,9 +79,10 @@ public final class LevelHandler {
         levelOptionsFileNames = new String[levelConfigFileList.size()];
 
         //TODO: Remove magic number here.
-        if (levels.length > 16) {
-            logHandler.log("Maximum levels exceeded: 16 - shutting down. (MAKE THIS SHOW A POPUP!)", LogHandler.LogLevel.ERROR, false);
+        if (levels.length > 11) {
+            logHandler.log("Maximum levels exceeded: 11 - shutting down. (MAKE THIS SHOW A POPUP!)", LogHandler.LogLevel.ERROR, false);
             gameController.stop();
+            return;
         }
 
         for (int i = 0; i < levels.length; i++) {

@@ -14,7 +14,7 @@ public final class FileUtil {
     private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
 
-    private static FileUtil instance;
+    private static final FileUtil instance;
 
     private FileUtil() {
 

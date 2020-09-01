@@ -6,7 +6,7 @@ import java.util.List;
 
 public final class PlayerDTO implements Serializable {
 
-    private List<String> playerList;
+    private final List<String> playerList;
     private String selectedPlayer;
 
     public PlayerDTO() {

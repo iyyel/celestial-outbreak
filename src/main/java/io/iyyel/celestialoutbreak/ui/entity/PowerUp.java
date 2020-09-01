@@ -8,7 +8,7 @@ import java.awt.*;
 
 public final class PowerUp extends AbstractMobileEntity {
 
-    private PowerUp.Style style;
+    private final PowerUp.Style style;
     private final int screenHeight;
     private final Paddle paddle;
     private final Ball ball;

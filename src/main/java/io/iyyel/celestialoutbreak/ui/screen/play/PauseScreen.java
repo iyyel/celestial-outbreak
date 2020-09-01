@@ -66,7 +66,7 @@ public final class PauseScreen extends AbstractScreen {
         drawSubtitle(textHandler.TITLE_PAUSE_SCREEN, g);
         drawCenteredText(textHandler.GAME_TITLE + " is paused.", 0, g);
         drawCenteredText(pauseStatusText, 630, inputBtnFont, g);
-        drawToolTip("Press '" + textHandler.BTN_CONTROL_PAUSE + "' to resume or '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to exit level.", g);
+        drawToolTip("Press " + textHandler.BTN_CONTROL_PAUSE + " to resume or " + textHandler.BTN_CONTROL_FORWARD_OK + " to exit level.", g);
         drawInfoPanel(g);
     }
 

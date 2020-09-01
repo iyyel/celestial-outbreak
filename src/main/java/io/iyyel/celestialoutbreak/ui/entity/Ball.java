@@ -29,7 +29,7 @@ public final class Ball extends AbstractMobileEntity {
     private final SoundHandler.SoundClip ballHitClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT);
     private final SoundHandler.SoundClip ballResetClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET);
 
-    private Ball.Style style;
+    private final Ball.Style style;
 
     private final Paddle paddle;
     private final BlockField blockField;

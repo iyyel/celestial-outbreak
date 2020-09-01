@@ -11,16 +11,16 @@ import java.awt.*;
 
 public final class ScoresScreen extends AbstractScreen {
 
-    private Rectangle[] levelRects;
-    private Color[] levelRectColors;
+    private final Rectangle[] levelRects;
+    private final Color[] levelRectColors;
     private boolean isFirstRender = true;
 
-    private Font levelInfoFont = util.getPanelFont().deriveFont(16F);
+    private final Font levelInfoFont = util.getGameFont().deriveFont(15F);
 
     private final static IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
     private final LevelHandler levelHandler = LevelHandler.getInstance();
 
-    private int levelAmount = levelHandler.getLevelAmount();
+    private final int levelAmount = levelHandler.getLevelAmount();
 
     public ScoresScreen(GameController gameController) {
         super(gameController);
@@ -31,7 +31,7 @@ public final class ScoresScreen extends AbstractScreen {
         int initialY = 215;
         int x = initialX;
         int y = initialY;
-        int xInc = 300;
+        int xInc = 400;
         int yInc = 110;
 
         for (int i = 0; i < levelAmount; i++) {
@@ -41,7 +41,7 @@ public final class ScoresScreen extends AbstractScreen {
                 x += xInc;
                 y = initialY;
             }
-            levelRects[i] = new Rectangle(x, y, 280, 90);
+            levelRects[i] = new Rectangle(x, y, 380, 90);
             y += yInc;
         }
 
@@ -95,7 +95,7 @@ public final class ScoresScreen extends AbstractScreen {
                     e.printStackTrace();
                 }
 
-                String player = textHandler.getFixedString("Player: ?", 15);
+                String player = textHandler.getFixedString("Player: None", 15);
                 String score = textHandler.getFixedString("Score:  0", 15);
                 String time = textHandler.getFixedString(" Time: 0", 12);
 
@@ -105,8 +105,9 @@ public final class ScoresScreen extends AbstractScreen {
                     time = textHandler.getFixedString(" Time: " + textHandler.getTimeString(highScoreDTO.getTime()), 12);
                 }
 
-                g.drawString(player, levelRects[i].x + 5, levelRects[i].y + 55);
-                g.drawString(score + time, levelRects[i].x + 5, levelRects[i].y + 75);
+                g.drawString(player, levelRects[i].x + 5, levelRects[i].y + 60);
+                g.drawString(score, levelRects[i].x + 5, levelRects[i].y + 80);
+                g.drawString(time, levelRects[i].x + 210, levelRects[i].y + 80);
 
                 g.setColor(levelRectColors[i]);
                 g.draw(levelRects[i]);

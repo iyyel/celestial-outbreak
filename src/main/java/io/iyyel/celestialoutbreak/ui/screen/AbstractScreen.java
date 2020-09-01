@@ -31,14 +31,14 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
     private final Font subtitleFont = util.getGameFont().deriveFont(36F);
     private final Font tooltipFont = util.getGameFont().deriveFont(18F);
     private final Font infoPanelFont = util.getGameFont().deriveFont(14F);
-    protected final Font msgFont = util.getPanelFont().deriveFont(26F);
+    protected final Font msgFont = util.getGameFont().deriveFont(26F);
     protected final Font inputBtnFont = util.getGameFont().deriveFont(20F);
 
-    protected Color screenFontColor = optionsHandler.getMenuFontColor();
-    protected Color menuBtnColor = optionsHandler.getMenuBtnColor();
-    protected Color menuSelectedBtnColor = optionsHandler.getMenuBtnSelectedColor();
-    protected Color menuBtnPlayerSelectedColor = optionsHandler.getMenuBtnPlayerSelectedColor();
-    protected Color menuBtnPlayerDeletedColor = optionsHandler.getMenuBtnPlayerDeletedColor();
+    protected final Color screenFontColor = optionsHandler.getMenuFontColor();
+    protected final Color menuBtnColor = optionsHandler.getMenuBtnColor();
+    protected final Color menuSelectedBtnColor = optionsHandler.getMenuBtnSelectedColor();
+    protected final Color menuBtnPlayerSelectedColor = optionsHandler.getMenuBtnPlayerSelectedColor();
+    protected final Color menuBtnPlayerDeletedColor = optionsHandler.getMenuBtnPlayerDeletedColor();
 
     private final Rectangle versionRect, authorRect;
 
@@ -60,8 +60,8 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
         this.gameController = gameController;
         this.screenWidth = gameController.getWidth();
         this.screenHeight = gameController.getHeight();
-        authorRect = new Rectangle(getHalfWidth() + 3, screenHeight - 22, 70, 18);
-        versionRect = new Rectangle(getHalfWidth() - 73, screenHeight - 22, 66, 18);
+        authorRect = new Rectangle(getHalfWidth() - 5, screenHeight - 22, 70, 18);
+        versionRect = new Rectangle(getHalfWidth() - 65, screenHeight - 22, 55, 18);
     }
 
     @Override

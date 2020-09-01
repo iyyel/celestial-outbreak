@@ -125,11 +125,10 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
 
                 if (player.equals(selectedPlayer)) {
                     playerNameColors[i] = menuBtnPlayerSelectedColor;
-                    buttons[i].setFgColor(playerNameColors[i]);
                 } else {
                     playerNameColors[i] = menuBtnColor;
-                    buttons[i].setFgColor(playerNameColors[i]);
                 }
+                buttons[i].setFgColor(playerNameColors[i]);
             } catch (IPlayerDAO.PlayerDAOException e) {
                 e.printStackTrace();
             }

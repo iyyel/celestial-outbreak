@@ -17,12 +17,12 @@ public class SelectLevelScreen extends AbstractScreen {
     private final IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
     private final PowerUpHandler powerUpHandler = PowerUpHandler.getInstance();
 
-    private Rectangle[] levelRects;
-    private Color[] levelRectColors;
+    private final Rectangle[] levelRects;
+    private final Color[] levelRectColors;
 
-    private Font levelInfoFont = util.getPanelFont().deriveFont(16F);
+    private final Font levelInfoFont = util.getGameFont().deriveFont(15F);
 
-    private int levelAmount = levelHandler.getLevelAmount();
+    private final int levelAmount = levelHandler.getLevelAmount();
     private int selected = 0;
 
     public SelectLevelScreen(GameController gameController) {
@@ -34,7 +34,7 @@ public class SelectLevelScreen extends AbstractScreen {
         int initialY = 215;
         int x = initialX;
         int y = initialY;
-        int xInc = 300;
+        int xInc = 400;
         int yInc = 110;
 
         for (int i = 0; i < levelAmount; i++) {
@@ -44,7 +44,7 @@ public class SelectLevelScreen extends AbstractScreen {
                 x += xInc;
                 y = initialY;
             }
-            levelRects[i] = new Rectangle(x, y, 280, 90);
+            levelRects[i] = new Rectangle(x, y, 380, 90);
             y += yInc;
         }
 
@@ -155,19 +155,20 @@ public class SelectLevelScreen extends AbstractScreen {
 
                 String blockHealth = textHandler.getFixedString("Blocks: " + levelHandler.getLevelBlockAmounts()[i] + "/" +
                         levelHandler.getLevelHitPoints()[i], 15);
-                String life = textHandler.getFixedString(" Life: " + levelHandler.getLevelPlayerLives()[i], 12);
-                g.drawString(blockHealth + life, levelRects[i].x + 5, levelRects[i].y + 55);
+                String playerLife = textHandler.getFixedString(" Life:  " + levelHandler.getLevelPlayerLives()[i], 12);
+                g.drawString(blockHealth, levelRects[i].x + 5, levelRects[i].y + 60);
+                g.drawString(playerLife, levelRects[i].x + 210, levelRects[i].y + 60);
 
                 String score = textHandler.getFixedString("Score:  " + scoreTmp, 15);
                 String time = textHandler.getFixedString(" Time: " + textHandler.getTimeString(timeTmp), 12);
-                g.drawString(score + time, levelRects[i].x + 5, levelRects[i].y + 75);
+                g.drawString(score, levelRects[i].x + 5, levelRects[i].y + 80);
+                g.drawString(time, levelRects[i].x + 210, levelRects[i].y + 80);
 
                 g.setColor(levelRectColors[i]);
                 g.draw(levelRects[i]);
             }
         }
 
-        drawToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to play a level or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
         drawInfoPanel(g);
     }
 

@@ -53,7 +53,6 @@ public final class GraphicsOptions extends AbstractNavigationScreen {
             buttons[i].render(g);
         }
 
-        drawToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to toggle an option or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
         drawInfoPanel(g);
     }
 

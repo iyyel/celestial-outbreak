@@ -8,7 +8,7 @@ import java.awt.*;
 
 public final class OptionsScreen extends AbstractNavigationScreen {
 
-    private String[] options = {textHandler.BTN_GAME_OPTIONS_TEXT, textHandler.BTN_GRAPHICS_OPTIONS_TEXT,
+    private final String[] options = {textHandler.BTN_GAME_OPTIONS_TEXT, textHandler.BTN_GRAPHICS_OPTIONS_TEXT,
             textHandler.BTN_PLAYER_OPTIONS_TEXT, textHandler.BTN_CONFIGURATION_OPTIONS_TEXT};
 
     private final Button[] buttons;

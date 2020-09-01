@@ -17,9 +17,9 @@ public final class SoundHandler {
 
     private GameController.State currentStateBackup = GameController.State.NONE;
 
-    private static SoundHandler instance;
+    private static final SoundHandler instance;
 
-    private Map<String, SoundClip> soundClipMap = new HashMap<String, SoundClip>() {
+    private final Map<String, SoundClip> soundClipMap = new HashMap<String, SoundClip>() {
         {
             put(textHandler.SOUND_FILE_NAME_MENU, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU));
             put(textHandler.SOUND_FILE_NAME_PAUSE, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_PAUSE));

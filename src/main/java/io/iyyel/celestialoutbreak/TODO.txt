@@ -3,3 +3,12 @@
 3. Sounds for new high score, sounds for level completion.
 4. Testing and bugs.
 5. Fix the places where the font is weird.
+6. Make sure all music is the same sort of genre. (i.e, 8-bit, 16-bits, third.)
+7. Sometimes after making a new player, the navigation system is weird in player options.
+8. Make ball physics better.
+9. Make collisions better, etc.
+10. Better names for z and x. OK/FORWARD/CONFIRM?????
+11. Level squares need to be bigger to fix font problem.
+12. MAX 12 LEVELS!
+13. Alle firkanter skal starte på samme x og y værdi, f.eks i level select og score select, osv.
+14. Take pics and make a video of the game when its done, for your website as well as github.

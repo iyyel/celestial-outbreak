@@ -6,7 +6,7 @@ import java.util.Map;
 
 public final class OptionsHandler {
 
-    private static OptionsHandler instance;
+    private static final OptionsHandler instance;
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();

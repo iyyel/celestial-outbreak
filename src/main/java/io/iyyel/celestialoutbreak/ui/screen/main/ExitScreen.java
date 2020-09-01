@@ -38,7 +38,6 @@ public final class ExitScreen extends AbstractScreen {
         drawTitle(g);
         drawSubtitle(textHandler.TITLE_EXIT_SCREEN, g);
         drawCenteredText("Do you wish to exit " + textHandler.GAME_TITLE + "?", 0, g);
-        drawToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to confirm or '" + textHandler.BTN_CONTROL_BACK_CANCEL + "' to go back.", g);
         drawInfoPanel(g);
     }
 

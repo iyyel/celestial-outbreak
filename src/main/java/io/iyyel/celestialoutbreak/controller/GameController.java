@@ -58,7 +58,7 @@ public final class GameController extends Canvas implements Runnable {
      * pixels[] is the extracted pixels from the image.
      */
     private final BufferedImage image = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT, BufferedImage.TYPE_INT_RGB);
-    private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+    private final int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
     /*
      * JFrame and screenRenderer renderer objects.
@@ -391,6 +391,11 @@ public final class GameController extends Canvas implements Runnable {
             stop();
         }
 
+        if (g == null) {
+            // log incident here
+            stop();
+        }
+
         /* Enable some sweet antialiasing to make the graphics look smoother. */
         if (optionsHandler.isAntiAliasingEnabled()) {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -563,9 +568,9 @@ public final class GameController extends Canvas implements Runnable {
     public synchronized void stop() {
         if (isRunning) {
             isRunning = false;
-            logHandler.log(textHandler.GAME_TITLE + " shutting down.", LogHandler.LogLevel.INFO, false);
-            System.exit(0);
         }
+        logHandler.log(textHandler.GAME_TITLE + " shutting down.", LogHandler.LogLevel.INFO, false);
+        System.exit(0);
     }
 
     /*

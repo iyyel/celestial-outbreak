@@ -12,7 +12,7 @@ public final class MainScreen extends AbstractNavigationScreen {
 
     private final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
-    private String[] options = {textHandler.BTN_PLAY_TEXT, textHandler.BTN_SCORES_TEXT, textHandler.BTN_CONTROLS_TEXT,
+    private final String[] options = {textHandler.BTN_PLAY_TEXT, textHandler.BTN_SCORES_TEXT, textHandler.BTN_CONTROLS_TEXT,
             textHandler.BTN_OPTIONS_TEXT, textHandler.BTN_ABOUT_TEXT, textHandler.BTN_EXIT_TEXT};
 
     private final Button[] buttons;

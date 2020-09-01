@@ -8,9 +8,9 @@ import java.awt.event.KeyListener;
  */
 public final class InputHandler implements KeyListener {
 
-    private static InputHandler instance;
+    private static final InputHandler instance;
 
-    private boolean[] keys = new boolean[1000];
+    private final boolean[] keys = new boolean[1000];
 
     private boolean isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
     private boolean isUsePressed, isPausePressed, isOKPressed, isCancelPressed;

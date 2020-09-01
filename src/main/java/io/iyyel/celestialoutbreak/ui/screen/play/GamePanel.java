@@ -24,7 +24,7 @@ public final class GamePanel extends AbstractScreen {
 
     public GamePanel(GameController gameController, LevelOptions levelOptions) {
         super(gameController);
-        panelFont = util.getPanelFont().deriveFont(16F);
+        panelFont = util.getGameFont().deriveFont(16F);
         titleColor = levelOptions.getGamePanelTitleColor();
         valueColor = levelOptions.getGamePanelValueColor();
     }
@@ -50,35 +50,75 @@ public final class GamePanel extends AbstractScreen {
         }
 
         if (activeLevel != null) {
-            g.setColor(titleColor);
-            g.drawString("Level: ", getHalfWidth() - 440, 714);
-            g.setColor(valueColor);
-            g.drawString(activeLevel.getName(), getHalfWidth() - 370, 714);
+            // 10 pixels per letter has to be moved.
+            int pos = 100;
 
+            String levelLabel = "Level: ";
+            String levelValue = activeLevel.getName();
             g.setColor(titleColor);
-            g.drawString("Player: ", getHalfWidth() - 280, 714);
+            g.drawString(levelLabel, pos, 714);
             g.setColor(valueColor);
-            g.drawString(selectedPlayer, getHalfWidth() - 200, 714);
+            pos += levelLabel.length() * 10;
+            g.drawString(levelValue, pos, 714);
+            pos += 13 * 10; // 13 char level names
 
-            g.setColor(titleColor);
-            g.drawString("Lives: ", getHalfWidth() - 110, 714);
-            g.setColor(valueColor);
-            g.drawString(activeLevel.getPlayerLife() + "", getHalfWidth() - 40, 714);
+            // spacing
+            pos += 50;
 
+            String playerLabel = "Player: ";
             g.setColor(titleColor);
-            g.drawString("Score: ", getHalfWidth() + 20, 714);
+            g.drawString(playerLabel, pos, 714);
             g.setColor(valueColor);
-            g.drawString(levelHandler.getCurrentScore() + "", getHalfWidth() + 90, 714);
+            pos += playerLabel.length() * 10;
+            g.drawString(selectedPlayer, pos, 714);
+            pos += 7 * 10; // 7 char player names
 
-            g.setColor(titleColor);
-            g.drawString("Blocks: ", getHalfWidth() + 160, 714);
-            g.setColor(valueColor);
-            g.drawString(activeLevel.getBlockField().getBlocksLeft() + "", getHalfWidth() + 240, 714);
+            // spacing
+            pos += 50;
 
+            String livesLabel = "Lives: ";
+            String livesValue = activeLevel.getPlayerLife() + "";
             g.setColor(titleColor);
-            g.drawString("Time: ", getHalfWidth() + 310, 714);
+            g.drawString(livesLabel, pos, 714);
             g.setColor(valueColor);
-            g.drawString(textHandler.getTimeString(util.getTimeElapsed()), getHalfWidth() + 370, 714);
+            pos += livesLabel.length() * 10;
+            g.drawString(livesValue, pos, 714);
+            pos += 4 * 10; // 4 char life count
+
+            // spacing
+            pos += 50;
+
+            String scoreLabel = "Score: ";
+            String scoreValue = levelHandler.getCurrentScore() + "";
+            g.setColor(titleColor);
+            g.drawString(scoreLabel, pos, 714);
+            pos += scoreLabel.length() * 10;
+            g.setColor(valueColor);
+            g.drawString(scoreValue, pos, 714);
+            pos += 7 * 10; // 7 char for score.
+
+            // spacing
+            pos += 50;
+
+            String blockLabel = "Blocks: ";
+            String blockValue = activeLevel.getBlockField().getBlocksLeft() + "";
+            g.setColor(titleColor);
+            g.drawString(blockLabel, pos, 714);
+            g.setColor(valueColor);
+            pos += blockLabel.length() * 10;
+            g.drawString(blockValue, pos, 714);
+            pos += 4 * 10; // 4 chars for blocks
+
+            // spacing
+            pos += 50;
+
+            String timeLabel = "Time: ";
+            String timeValue = textHandler.getTimeString(util.getTimeElapsed());
+            g.setColor(titleColor);
+            g.drawString(timeLabel, pos, 714);
+            g.setColor(valueColor);
+            pos += timeLabel.length() * 10;
+            g.drawString(timeValue, pos, 714);
         }
     }
 

@@ -38,7 +38,6 @@ public final class PreLevelScreen extends AbstractScreen {
         drawTitle(g);
         drawSubtitle(activeLevel.getName(), g);
         drawCenteredText(activeLevel.getDesc(), 0, g);
-        drawToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to start.", g);
         drawInfoPanel(g);
     }
 

@@ -16,7 +16,7 @@ public final class Util {
     private final Random random = new Random();
     private final StopWatch watch = new StopWatch();
 
-    private static Util instance;
+    private static final Util instance;
 
     private Util() {
 
@@ -50,18 +50,6 @@ public final class Util {
             e.printStackTrace();
         }
         return gameFont;
-    }
-
-    public Font getPanelFont() {
-        Font panelFont = null;
-        try {
-            panelFont = Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.PANEL_FONT_FILE_CLIENT_PATH));
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(textHandler.PANEL_FONT_FILE_CLIENT_PATH)));
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
-        return panelFont;
     }
 
     public void startTimer() {

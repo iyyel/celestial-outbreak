@@ -5,7 +5,7 @@ import java.awt.*;
 public final class Block extends AbstractEntity {
 
     private int health;
-    private Style style;
+    private final Style style;
 
     public enum Style {
         CIRCLE,
@@ -16,15 +16,6 @@ public final class Block extends AbstractEntity {
         super(pos, dim, color);
         this.health = health;
         this.style = style;
-    }
-
-    @Override
-    public void update() {
-        super.update();
-
-        // if (isUpdateStopped()) {
-        //     return;
-        // }
     }
 
     @Override

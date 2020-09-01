@@ -192,11 +192,6 @@ public final class TextHandler {
     public final String GAME_FONT_FILE_LOCAL_PATH = LOCAL_JAR_FONT_DIR + fsJar + GAME_FONT_FILE_NAME;
     public final String GAME_FONT_FILE_CLIENT_PATH = FONT_DIR_PATH + fs + GAME_FONT_FILE_NAME;
 
-    /* panelFont */
-    public final String PANEL_FONT_FILE_NAME = "courier.ttf";
-    public final String PANEL_FONT_FILE_LOCAL_PATH = LOCAL_JAR_FONT_DIR + fsJar + PANEL_FONT_FILE_NAME;
-    public final String PANEL_FONT_FILE_CLIENT_PATH = FONT_DIR_PATH + fs + PANEL_FONT_FILE_NAME;
-
     /*
      * Level file information.
      */
@@ -216,6 +211,7 @@ public final class TextHandler {
     public final String LEVEL_FILE_NAME_NEPTUNE = "neptune_level.conf";
     public final String LEVEL_FILE_NAME_VENUS = "venus_level.conf";
     public final String LEVEL_FILE_NAME_JUPITER = "jupiter_level.conf";
+    public final String LEVEL_FILE_NAME_BLACKHOLE = "blackhole_level.conf";
 
     /* Local level file paths. */
     public final String LEVEL_FILE_LOCAL_PATH_SUN = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_SUN;
@@ -225,6 +221,7 @@ public final class TextHandler {
     public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_NEPTUNE;
     public final String LEVEL_FILE_LOCAL_PATH_VENUS = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_VENUS;
     public final String LEVEL_FILE_LOCAL_PATH_JUPITER = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_JUPITER;
+    public final String LEVEL_FILE_LOCAL_PATH_BLACKHOLE = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_BLACKHOLE;
 
     /* Client level file paths. */
     public final String LEVEL_FILE_CLIENT_PATH_SUN = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_SUN;
@@ -234,6 +231,7 @@ public final class TextHandler {
     public final String LEVEL_FILE_CLIENT_PATH_NEPTUNE = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_NEPTUNE;
     public final String LEVEL_FILE_CLIENT_PATH_VENUS = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_VENUS;
     public final String LEVEL_FILE_CLIENT_PATH_JUPITER = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_JUPITER;
+    public final String LEVEL_FILE_CLIENT_PATH_BLACKHOLE = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_BLACKHOLE;
 
     /*
      * Sound file information.
@@ -258,6 +256,7 @@ public final class TextHandler {
     public final String SOUND_FILE_NAME_NEPTUNE_LEVEL = "neptune_level.wav";
     public final String SOUND_FILE_NAME_VENUS_LEVEL = "venus_level.wav";
     public final String SOUND_FILE_NAME_JUPITER_LEVEL = "jupiter_level.wav";
+    public final String SOUND_FILE_NAME_BLACKHOLE_LEVEL = "blackhole_level.wav";
 
     /* Local sound file paths. */
     public final String SOUND_FILE_LOCAL_PATH_MENU = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU;
@@ -276,6 +275,7 @@ public final class TextHandler {
     public final String SOUND_FILE_LOCAL_PATH_NEPTUNE_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_NEPTUNE_LEVEL;
     public final String SOUND_FILE_LOCAL_PATH_VENUS_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_VENUS_LEVEL;
     public final String SOUND_FILE_LOCAL_PATH_JUPITER_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_JUPITER_LEVEL;
+    public final String SOUND_FILE_LOCAL_PATH_BLACKHOLE_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BLACKHOLE_LEVEL;
 
     /* Client sound file paths. */
     public final String SOUND_FILE_CLIENT_PATH_MENU = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU;
@@ -294,6 +294,7 @@ public final class TextHandler {
     public final String SOUND_FILE_CLIENT_PATH_NEPTUNE_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_NEPTUNE_LEVEL;
     public final String SOUND_FILE_CLIENT_PATH_VENUS_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_VENUS_LEVEL;
     public final String SOUND_FILE_CLIENT_PATH_JUPITER_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_JUPITER_LEVEL;
+    public final String SOUND_FILE_CLIENT_PATH_BLACKHOLE_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BLACKHOLE_LEVEL;
 
     public String getClientSoundFilePath(String fileName) {
         return SOUND_DIR_PATH + fs + fileName;
@@ -579,6 +580,6 @@ public final class TextHandler {
     /* Welcome AbstractScreen text */
     public final String WELCOME_SCREEN_TEXT = "What lies beyond the cosmos is inevitable";
 
-    public final String WELCOME_SCREEN_TOOLTIP_TEXT = "Press '" + BTN_CONTROL_FORWARD_OK + "' to confirm or '" +
-            BTN_CONTROL_BACK_CANCEL + "' to go back. Navigate with '" + BTN_CONTROL_MOV_NAV + "'.";
+    public final String WELCOME_SCREEN_TOOLTIP_TEXT = "Press " + BTN_CONTROL_FORWARD_OK + " to confirm or " +
+            BTN_CONTROL_BACK_CANCEL + " to go back. Navigate with " + BTN_CONTROL_MOV_NAV + ".";
 }

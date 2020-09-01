@@ -9,9 +9,9 @@ public final class LogHandler {
 
     private final TextHandler textHandler = TextHandler.getInstance();
 
-    private boolean isVerboseLogEnabled;
+    private final boolean isVerboseLogEnabled;
 
-    private static LogHandler instance;
+    private static final LogHandler instance;
 
     public enum LogLevel {
         INFO,

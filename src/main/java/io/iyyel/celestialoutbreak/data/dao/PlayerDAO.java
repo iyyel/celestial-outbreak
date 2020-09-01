@@ -15,7 +15,7 @@ public final class PlayerDAO implements IPlayerDAO {
     private final LogHandler logHandler = LogHandler.getInstance();
     private final TextHandler textHandler = TextHandler.getInstance();
 
-    private static IPlayerDAO instance;
+    private static final IPlayerDAO instance;
 
     private PlayerDAO() {
 

@@ -6,7 +6,6 @@ import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.ui.entity.*;
 import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
 import io.iyyel.celestialoutbreak.ui.screen.play.GamePanel;
-import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 import java.util.Random;
@@ -26,7 +25,7 @@ public final class Level {
     /*
      * Settings for the level
      */
-    private LevelOptions levelOptions;
+    private final LevelOptions levelOptions;
 
     /*
      * Level options

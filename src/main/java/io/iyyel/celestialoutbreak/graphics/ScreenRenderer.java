@@ -8,7 +8,7 @@ public final class ScreenRenderer {
     private final int WIDTH;
     private final int HEIGHT;
 
-    private int[] pixels;
+    private final int[] pixels;
 
     public ScreenRenderer(int width, int height, int[] pixels) {
         this.WIDTH = width;

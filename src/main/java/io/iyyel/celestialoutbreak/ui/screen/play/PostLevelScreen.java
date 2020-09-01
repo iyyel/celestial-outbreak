@@ -85,12 +85,11 @@ public final class PostLevelScreen extends AbstractScreen {
             }
 
             drawCenteredText("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been defeated.", 0, g);
-            drawCenteredText("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
         } else {
             drawCenteredText("You have lost. The " + levelHandler.getActiveLevel().getName() + " level shines in grace upon you.", 0, g);
             drawCenteredText("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
-            drawCenteredText("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
         }
+        drawCenteredText("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
 
         drawToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to go to the main menu.", g);
         drawInfoPanel(g);

@@ -6,7 +6,7 @@ import java.awt.*;
 
 public final class PowerUpHandler {
 
-    private static PowerUpHandler instance;
+    private static final PowerUpHandler instance;
 
     private final LogHandler logHandler = LogHandler.getInstance();
 
