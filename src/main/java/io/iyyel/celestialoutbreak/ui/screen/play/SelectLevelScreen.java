@@ -25,26 +25,28 @@ public class SelectLevelScreen extends AbstractScreen {
     private final int levelAmount = levelHandler.getLevelAmount();
     private int selected = 0;
 
+    private final int buttonWrap = 3;
+
     public SelectLevelScreen(GameController gameController) {
         super(gameController);
         levelRects = new Rectangle[levelAmount];
         levelRectColors = new Color[levelAmount];
 
-        int initialX = 50;
-        int initialY = 215;
+        int initialX = 105;
+        int initialY = 230;
         int x = initialX;
         int y = initialY;
-        int xInc = 400;
-        int yInc = 110;
+        int xInc = 275;
+        int yInc = 155;
 
         for (int i = 0; i < levelAmount; i++) {
             levelRectColors[i] = menuBtnColor;
 
-            if (i % 4 == 0 && i != 0) {
+            if (i % buttonWrap == 0 && i != 0) {
                 x += xInc;
                 y = initialY;
             }
-            levelRects[i] = new Rectangle(x, y, 380, 90);
+            levelRects[i] = new Rectangle(x, y, 250, 130);
             y += yInc;
         }
 
@@ -66,27 +68,27 @@ public class SelectLevelScreen extends AbstractScreen {
             gameController.switchState(GameController.State.MAIN);
         }
 
-        if (inputHandler.isDownPressed() && (selected + 1) % 4 != 0 && (selected + 1) < levelAmount && isInputAvailable()) {
+        if (inputHandler.isDownPressed() && (selected + 1) % buttonWrap != 0 && (selected + 1) < levelAmount && isInputAvailable()) {
             resetInputTimer();
             selected++;
             menuNavClip.play(false);
         }
 
-        if (inputHandler.isUpPressed() && selected % 4 != 0 && isInputAvailable()) {
+        if (inputHandler.isUpPressed() && selected % buttonWrap != 0 && isInputAvailable()) {
             resetInputTimer();
             selected--;
             menuNavClip.play(false);
         }
 
-        if (inputHandler.isLeftPressed() && selected > 3 && isInputAvailable()) {
+        if (inputHandler.isLeftPressed() && selected > buttonWrap - 1 && isInputAvailable()) {
             resetInputTimer();
-            selected -= 4;
+            selected -= buttonWrap;
             menuNavClip.play(false);
         }
 
-        if (inputHandler.isRightPressed() && selected < 16 && (selected + 4) < levelAmount && isInputAvailable()) {
+        if (inputHandler.isRightPressed() && selected < 16 && (selected + buttonWrap) < levelAmount && isInputAvailable()) {
             resetInputTimer();
-            selected += 4;
+            selected += buttonWrap;
             menuNavClip.play(false);
         }
 
@@ -155,14 +157,14 @@ public class SelectLevelScreen extends AbstractScreen {
 
                 String blockHealth = textHandler.getFixedString("Blocks: " + levelHandler.getLevelBlockAmounts()[i] + "/" +
                         levelHandler.getLevelHitPoints()[i], 15);
-                String playerLife = textHandler.getFixedString(" Life:  " + levelHandler.getLevelPlayerLives()[i], 12);
-                g.drawString(blockHealth, levelRects[i].x + 5, levelRects[i].y + 60);
-                g.drawString(playerLife, levelRects[i].x + 210, levelRects[i].y + 60);
+                String playerLife = textHandler.getFixedString("Life: " + levelHandler.getLevelPlayerLives()[i], 12);
+                String score = textHandler.getFixedString("Your Score: " + scoreTmp, 20);
+                String time = textHandler.getFixedString("Your Time: " + textHandler.getTimeString(timeTmp), 17);
 
-                String score = textHandler.getFixedString("Score:  " + scoreTmp, 15);
-                String time = textHandler.getFixedString(" Time: " + textHandler.getTimeString(timeTmp), 12);
-                g.drawString(score, levelRects[i].x + 5, levelRects[i].y + 80);
-                g.drawString(time, levelRects[i].x + 210, levelRects[i].y + 80);
+                g.drawString(blockHealth, levelRects[i].x + 5, levelRects[i].y + 60);
+                g.drawString(playerLife, levelRects[i].x + 5, levelRects[i].y + 80);
+                g.drawString(score, levelRects[i].x + 5, levelRects[i].y + 100);
+                g.drawString(time, levelRects[i].x + 5, levelRects[i].y + 120);
 
                 g.setColor(levelRectColors[i]);
                 g.draw(levelRects[i]);

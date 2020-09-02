@@ -77,7 +77,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
 
         drawScreenTitles(textHandler.TITLE_SELECT_PLAYER_SCREEN, g);
         renderButtons(buttons, g);
-        drawToolTip("Press '" + textHandler.BTN_CONTROL_USE + "' to select a player.", g);
+        drawToolTip("Press '" + textHandler.BTN_CONTROL_AUX + "' to select a player.", g);
         drawInfoPanel(g);
     }
 
@@ -90,6 +90,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
         }
 
         playerAmount = playerDAO.getPlayers().size();
+        setNewButtonAmount(playerAmount);
 
         // Update rectangles
         buttons = new Button[playerAmount];

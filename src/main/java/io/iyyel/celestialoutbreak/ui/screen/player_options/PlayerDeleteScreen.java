@@ -16,7 +16,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
     private int playerAmount = 0;
     private List<String> playerList;
 
-    private final String origToolTip = "Press '" + textHandler.BTN_CONTROL_USE + "' to mark a player for deletion. Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to delete marked players.";
+    private final String origToolTip = "Press " + textHandler.BTN_CONTROL_AUX + " to mark a player for deletion. Press " + textHandler.BTN_CONTROL_OK + " to delete marked players.";
     private String tooltipString = origToolTip;
 
     private boolean isDeleting = false;
@@ -150,6 +150,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
 
         playerList = new ArrayList<>(playerDAO.getPlayers());
         playerAmount = playerList.size();
+        setNewButtonAmount(playerAmount);
 
         // default value = false
         deleteMarkings = new boolean[playerAmount];

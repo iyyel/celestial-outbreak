@@ -13,7 +13,6 @@ public final class LevelHandler {
     private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
-    private final PowerUpHandler powerUpHandler = PowerUpHandler.getInstance();
     private final Util util = Util.getInstance();
 
     private int activeLevelIndex = 0;
@@ -79,8 +78,8 @@ public final class LevelHandler {
         levelOptionsFileNames = new String[levelConfigFileList.size()];
 
         //TODO: Remove magic number here.
-        if (levels.length > 11) {
-            logHandler.log("Maximum levels exceeded: 11 - shutting down. (MAKE THIS SHOW A POPUP!)", LogHandler.LogLevel.ERROR, false);
+        if (levels.length > 12) {
+            logHandler.log("Maximum levels exceeded: 12 - shutting down. (MAKE THIS SHOW A POPUP!)", LogHandler.LogLevel.ERROR, false);
             gameController.stop();
             return;
         }

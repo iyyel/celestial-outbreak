@@ -14,7 +14,7 @@ import io.iyyel.celestialoutbreak.ui.screen.play.*;
 import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerCreateScreen;
 import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerDeleteScreen;
 import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerSelectScreen;
-import io.iyyel.celestialoutbreak.ui.screen.welcome.WelcomeScreen;
+import io.iyyel.celestialoutbreak.ui.screen.WelcomeScreen;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import javax.swing.*;
@@ -88,7 +88,7 @@ public final class GameController extends Canvas implements Runnable {
     private final PreLevelScreen preLevelScreen;
     private final PostLevelScreen postLevelScreen;
     private final PauseScreen pauseScreen;
-    private final ScoresScreen scoresScreen;
+    private final HighScoresScreen highScoresScreen;
     private final ControlsScreen controlsScreen;
     private final OptionsScreen optionsScreen;
     private final PlayerOptionsScreen playerOptionsScreen;
@@ -203,7 +203,7 @@ public final class GameController extends Canvas implements Runnable {
         preLevelScreen = new PreLevelScreen(this);
         postLevelScreen = new PostLevelScreen(this);
         pauseScreen = new PauseScreen(this);
-        scoresScreen = new ScoresScreen(this);
+        highScoresScreen = new HighScoresScreen(this);
         controlsScreen = new ControlsScreen(this);
         optionsScreen = new OptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 4, this);
         playerOptionsScreen = new PlayerOptionsScreen(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
@@ -321,7 +321,7 @@ public final class GameController extends Canvas implements Runnable {
                 playScreen.update();
                 break;
             case SCORES:
-                scoresScreen.update();
+                highScoresScreen.update();
                 break;
             case CONTROLS:
                 controlsScreen.update();
@@ -467,7 +467,7 @@ public final class GameController extends Canvas implements Runnable {
                 playScreen.render(g);
                 break;
             case SCORES:
-                scoresScreen.render(g);
+                highScoresScreen.render(g);
                 break;
             case CONTROLS:
                 controlsScreen.render(g);

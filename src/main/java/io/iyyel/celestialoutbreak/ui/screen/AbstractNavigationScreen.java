@@ -6,7 +6,7 @@ import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 public abstract class AbstractNavigationScreen extends AbstractScreen {
 
     private final NavStyle navStyle;
-    private final int btnAmount;
+    private int btnAmount;
     private final int btnWrapAmount;
     protected boolean isFirstRender = true;
 
@@ -118,6 +118,10 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         }
 
         return isOK;
+    }
+
+    protected void setNewButtonAmount(int btnAmount) {
+        this.btnAmount = btnAmount;
     }
 
 }

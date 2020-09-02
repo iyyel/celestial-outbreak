@@ -64,7 +64,7 @@ public final class TextHandler {
      */
     public final String BTN_START_TEXT = "START";
     public final String BTN_PLAY_TEXT = "PLAY";
-    public final String BTN_SCORES_TEXT = "SCORES";
+    public final String BTN_HIGH_SCORES_TEXT = "HIGH SCORES";
     public final String BTN_OPTIONS_TEXT = "OPTIONS";
     public final String BTN_CONTROLS_TEXT = "CONTROLS";
     public final String BTN_ABOUT_TEXT = "ABOUT";
@@ -84,16 +84,16 @@ public final class TextHandler {
     public final String BTN_POWERUP_TEXT = "Power Ups";
 
     public final String BTN_CONTROL_MOV_NAV = "WASD/Arrow keys";
-    public final String BTN_CONTROL_FORWARD_OK = "z";
-    public final String BTN_CONTROL_BACK_CANCEL = "x";
-    public final String BTN_CONTROL_USE = "Space";
+    public final String BTN_CONTROL_OK = "z";
+    public final String BTN_CONTROL_CANCEL = "x";
+    public final String BTN_CONTROL_AUX = "Space";
     public final String BTN_CONTROL_PAUSE = "p";
 
     /*
      * Menu title names.
      */
     public final String TITLE_WELCOME_SCREEN = "WELCOME";
-    public final String TITLE_SCORES_SCREEN = "SCORES";
+    public final String TITLE_HIGH_SCORES_SCREEN = "HIGH SCORES";
     public final String TITLE_CONTROLS_SCREEN = "CONTROLS";
     public final String TITLE_OPTIONS_SCREEN = "OPTIONS";
     public final String TITLE_ABOUT_SCREEN = "ABOUT";
@@ -211,6 +211,7 @@ public final class TextHandler {
     public final String LEVEL_FILE_NAME_NEPTUNE = "neptune_level.conf";
     public final String LEVEL_FILE_NAME_VENUS = "venus_level.conf";
     public final String LEVEL_FILE_NAME_JUPITER = "jupiter_level.conf";
+    public final String LEVEL_FILE_NAME_SATURN = "saturn_level.conf";
     public final String LEVEL_FILE_NAME_BLACKHOLE = "blackhole_level.conf";
 
     /* Local level file paths. */
@@ -221,6 +222,7 @@ public final class TextHandler {
     public final String LEVEL_FILE_LOCAL_PATH_NEPTUNE = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_NEPTUNE;
     public final String LEVEL_FILE_LOCAL_PATH_VENUS = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_VENUS;
     public final String LEVEL_FILE_LOCAL_PATH_JUPITER = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_JUPITER;
+    public final String LEVEL_FILE_LOCAL_PATH_SATURN = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_SATURN;
     public final String LEVEL_FILE_LOCAL_PATH_BLACKHOLE = LOCAL_JAR_LEVEL_DIR + fsJar + LEVEL_FILE_NAME_BLACKHOLE;
 
     /* Client level file paths. */
@@ -231,6 +233,7 @@ public final class TextHandler {
     public final String LEVEL_FILE_CLIENT_PATH_NEPTUNE = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_NEPTUNE;
     public final String LEVEL_FILE_CLIENT_PATH_VENUS = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_VENUS;
     public final String LEVEL_FILE_CLIENT_PATH_JUPITER = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_JUPITER;
+    public final String LEVEL_FILE_CLIENT_PATH_SATURN = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_SATURN;
     public final String LEVEL_FILE_CLIENT_PATH_BLACKHOLE = LEVEL_DIR_PATH + fs + LEVEL_FILE_NAME_BLACKHOLE;
 
     /*
@@ -256,6 +259,7 @@ public final class TextHandler {
     public final String SOUND_FILE_NAME_NEPTUNE_LEVEL = "neptune_level.wav";
     public final String SOUND_FILE_NAME_VENUS_LEVEL = "venus_level.wav";
     public final String SOUND_FILE_NAME_JUPITER_LEVEL = "jupiter_level.wav";
+    public final String SOUND_FILE_NAME_SATURN_LEVEL = "saturn_level.wav";
     public final String SOUND_FILE_NAME_BLACKHOLE_LEVEL = "blackhole_level.wav";
 
     /* Local sound file paths. */
@@ -275,6 +279,7 @@ public final class TextHandler {
     public final String SOUND_FILE_LOCAL_PATH_NEPTUNE_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_NEPTUNE_LEVEL;
     public final String SOUND_FILE_LOCAL_PATH_VENUS_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_VENUS_LEVEL;
     public final String SOUND_FILE_LOCAL_PATH_JUPITER_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_JUPITER_LEVEL;
+    public final String SOUND_FILE_LOCAL_PATH_SATURN_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_SATURN_LEVEL;
     public final String SOUND_FILE_LOCAL_PATH_BLACKHOLE_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BLACKHOLE_LEVEL;
 
     /* Client sound file paths. */
@@ -294,6 +299,7 @@ public final class TextHandler {
     public final String SOUND_FILE_CLIENT_PATH_NEPTUNE_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_NEPTUNE_LEVEL;
     public final String SOUND_FILE_CLIENT_PATH_VENUS_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_VENUS_LEVEL;
     public final String SOUND_FILE_CLIENT_PATH_JUPITER_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_JUPITER_LEVEL;
+    public final String SOUND_FILE_CLIENT_PATH_SATURN_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_SATURN_LEVEL;
     public final String SOUND_FILE_CLIENT_PATH_BLACKHOLE_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BLACKHOLE_LEVEL;
 
     public String getClientSoundFilePath(String fileName) {
@@ -413,12 +419,12 @@ public final class TextHandler {
     /* CONTROLS_MENU messages. */
     public final String menuControlsMsg01 = "Movement/Navigation:";
     public final String menuControlsMsg02 = BTN_CONTROL_MOV_NAV;
-    public final String menuControlsMsg03 = "Forward/OK:";
-    public final String menuControlsMsg04 = BTN_CONTROL_FORWARD_OK;
-    public final String menuControlsMsg05 = "Back/Cancel:";
-    public final String menuControlsMsg06 = BTN_CONTROL_BACK_CANCEL;
-    public final String menuControlsMsg07 = "Use:";
-    public final String menuControlsMsg08 = BTN_CONTROL_USE;
+    public final String menuControlsMsg03 = "Ok/Forward:";
+    public final String menuControlsMsg04 = BTN_CONTROL_OK;
+    public final String menuControlsMsg05 = "Cancel/Back:";
+    public final String menuControlsMsg06 = BTN_CONTROL_CANCEL;
+    public final String menuControlsMsg07 = "Auxiliary/Free ball:";
+    public final String menuControlsMsg08 = BTN_CONTROL_AUX;
     public final String menuControlsMsg09 = "Pause:";
     public final String menuControlsMsg10 = BTN_CONTROL_PAUSE;
 
@@ -580,6 +586,6 @@ public final class TextHandler {
     /* Welcome AbstractScreen text */
     public final String WELCOME_SCREEN_TEXT = "What lies beyond the cosmos is inevitable";
 
-    public final String WELCOME_SCREEN_TOOLTIP_TEXT = "Press " + BTN_CONTROL_FORWARD_OK + " to confirm or " +
-            BTN_CONTROL_BACK_CANCEL + " to go back. Navigate with " + BTN_CONTROL_MOV_NAV + ".";
+    public final String WELCOME_SCREEN_TOOLTIP_TEXT = "Press " + BTN_CONTROL_OK + " to go to the selected screen or " +
+            BTN_CONTROL_CANCEL + " to go back. Navigate with " + BTN_CONTROL_MOV_NAV + ".";
 }

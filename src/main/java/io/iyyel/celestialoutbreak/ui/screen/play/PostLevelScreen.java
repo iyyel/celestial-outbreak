@@ -91,7 +91,7 @@ public final class PostLevelScreen extends AbstractScreen {
         }
         drawCenteredText("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
 
-        drawToolTip("Press '" + textHandler.BTN_CONTROL_FORWARD_OK + "' to go to the main menu.", g);
+        drawToolTip("Press '" + textHandler.BTN_CONTROL_OK + "' to go to the main menu.", g);
         drawInfoPanel(g);
     }
 

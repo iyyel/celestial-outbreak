@@ -87,6 +87,7 @@ public final class FileHandler {
         fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_NEPTUNE, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);
         fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_VENUS, textHandler.LEVEL_FILE_CLIENT_PATH_VENUS);
         fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_JUPITER, textHandler.LEVEL_FILE_CLIENT_PATH_JUPITER);
+        fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_SATURN, textHandler.LEVEL_FILE_CLIENT_PATH_SATURN);
         fileUtil.copyFile(textHandler.LEVEL_FILE_LOCAL_PATH_BLACKHOLE, textHandler.LEVEL_FILE_CLIENT_PATH_BLACKHOLE);
 
         /* Sound */
@@ -106,6 +107,7 @@ public final class FileHandler {
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_NEPTUNE_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_NEPTUNE_LEVEL);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_VENUS_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_VENUS_LEVEL);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_JUPITER_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_JUPITER_LEVEL);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_SATURN_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_SATURN_LEVEL);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BLACKHOLE_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_BLACKHOLE_LEVEL);
 
         /* README.txt */
