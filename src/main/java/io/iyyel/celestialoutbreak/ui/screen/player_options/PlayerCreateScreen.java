@@ -56,7 +56,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
         //
 
         // Stage 1
-        if (inputHandler.isUsePressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+        if (inputHandler.isAuxPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
             resetInputTimer();
             inputHandler.setInputMode(true);
             menuUseClip.play(false);
@@ -64,7 +64,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
         }
 
         // Stage 2
-        if (inputHandler.isUsePressed() && inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
+        if (inputHandler.isAuxPressed() && inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
             resetInputTimer();
             String name = inputHandler.getUserInput();
 

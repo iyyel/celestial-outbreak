@@ -28,7 +28,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
     }
 
     protected void updateNavUse(int index) {
-        if (isButtonUsed(index)) {
+        if (isAuxPressed(index)) {
             String selectedPlayer = playerList.get(index);
             try {
                 if (selectedPlayer.equals(playerDAO.getSelectedPlayer())) {
@@ -46,7 +46,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
 
     @Override
     protected void updateNavOK(int index) {
-        if (isButtonOK(index)) {
+        if (isOKPressed(index)) {
             if (isDeleting) {
                 if (isAnyMarkedPlayers()) {
                     resetInputTimer();

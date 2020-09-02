@@ -39,12 +39,12 @@ public final class PlayerDAO implements IPlayerDAO {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             playerDTO = (PlayerDTO) ois.readObject();
             ois.close();
-            logHandler.log("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFO, true);
+            logHandler.log("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", "loadPlayerDTO", LogHandler.LogLevel.INFO, true);
         } catch (FileNotFoundException e) {
-            logHandler.log("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.FAIL, true);
+            logHandler.log("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", "loadPlayerDTO", LogHandler.LogLevel.FAIL, true);
             createNewPlayerBinFile();
         } catch (IOException | ClassNotFoundException e) {
-            logHandler.log("Exception: " + e.getMessage(), LogHandler.LogLevel.ERROR, false);
+            logHandler.log("Exception: " + e.getMessage(), "loadPlayerDTO", LogHandler.LogLevel.ERROR, false);
             throw new PlayerDAOException("Failed to load PlayerDTO: " + e.getMessage());
         }
     }
@@ -55,9 +55,9 @@ public final class PlayerDAO implements IPlayerDAO {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             oos.writeObject(playerDTO);
             oos.close();
-            logHandler.log("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'", LogHandler.LogLevel.INFO, true);
+            logHandler.log("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'", "savePlayerDTO", LogHandler.LogLevel.INFO, true);
         } catch (IOException e) {
-            logHandler.log("Exception: " + e.getMessage(), LogHandler.LogLevel.ERROR, false);
+            logHandler.log("Exception: " + e.getMessage(), "savePlayerDTO", LogHandler.LogLevel.ERROR, false);
             throw new PlayerDAOException("Failed to save PlayerDTO: " + e.getMessage());
         }
     }
@@ -78,7 +78,7 @@ public final class PlayerDAO implements IPlayerDAO {
 
         // TODO: Remove magic number here.
         if (playerDTO.getPlayerCount() >= 25) {
-            logHandler.log("Player limit reached!", LogHandler.LogLevel.FAIL, false);
+            logHandler.log("Player limit reached!", "addPlayer", LogHandler.LogLevel.FAIL, false);
             throw new PlayerDAOLimitException("Player limit reached!");
         }
 
@@ -88,7 +88,7 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public void removePlayer(String player) throws PlayerDAOException {
         if (!isPlayer(player)) {
-            logHandler.log("'" + player + "' is not an existing player!", LogHandler.LogLevel.FAIL, false);
+            logHandler.log("'" + player + "' is not an existing player!", "removePlayer", LogHandler.LogLevel.FAIL, false);
             throw new PlayerDAOException("'" + player + "' is not an existing player!");
         }
         playerDTO.removePlayer(player);
@@ -97,7 +97,7 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public void selectPlayer(String player) throws PlayerDAOException {
         if (!isPlayer(player)) {
-            logHandler.log("'" + player + "' is not an existing player!", LogHandler.LogLevel.FAIL, false);
+            logHandler.log("'" + player + "' is not an existing player!", "selectPlayer", LogHandler.LogLevel.FAIL, false);
             throw new PlayerDAOException("'" + player + "' is not an existing player!");
         }
         playerDTO.setSelectedPlayer(player);
@@ -116,7 +116,7 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public String getSelectedPlayer() throws PlayerDAOException {
         if (playerDTO.getSelectedPlayer() == null) {
-            logHandler.log("No player is selectedIndex!", LogHandler.LogLevel.FAIL, false);
+            logHandler.log("No player is selectedIndex!", "getSelectedPlayer", LogHandler.LogLevel.FAIL, false);
             throw new PlayerDAOException("No player is selectedIndex!");
         }
         return playerDTO.getSelectedPlayer();
@@ -133,7 +133,7 @@ public final class PlayerDAO implements IPlayerDAO {
     }
 
     private void createNewPlayerBinFile() throws PlayerDAOException {
-        logHandler.log("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFO, true);
+        logHandler.log("Creating empty binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'","createNewPlayerBinFile", LogHandler.LogLevel.INFO, true);
         playerDTO = new PlayerDTO();
         savePlayerDTO();
     }

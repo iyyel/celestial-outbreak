@@ -5,6 +5,7 @@ import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
 import io.iyyel.celestialoutbreak.graphics.ScreenRenderer;
 import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
+import io.iyyel.celestialoutbreak.ui.screen.WelcomeScreen;
 import io.iyyel.celestialoutbreak.ui.screen.main.*;
 import io.iyyel.celestialoutbreak.ui.screen.options.ConfigOptionsScreen;
 import io.iyyel.celestialoutbreak.ui.screen.options.GameOptions;
@@ -14,7 +15,6 @@ import io.iyyel.celestialoutbreak.ui.screen.play.*;
 import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerCreateScreen;
 import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerDeleteScreen;
 import io.iyyel.celestialoutbreak.ui.screen.player_options.PlayerSelectScreen;
-import io.iyyel.celestialoutbreak.ui.screen.WelcomeScreen;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import javax.swing.*;
@@ -232,7 +232,7 @@ public final class GameController extends Canvas implements Runnable {
         initFrame();
 
         /* Log that the game has been initialized */
-        logHandler.log(textHandler.GAME_INIT_FINISHED, LogHandler.LogLevel.INFO, false);
+        logHandler.log(textHandler.GAME_INIT_FINISHED, "GameController", LogHandler.LogLevel.INFO, false);
     }
 
     /*
@@ -266,12 +266,9 @@ public final class GameController extends Canvas implements Runnable {
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 if (optionsHandler.isVerboseLogEnabled()) {
-                    /* TODO: Is this correctly calculated? (ram) */
-                    /* TODO: Create textHandler string for this. */
-                    double allocatedRam = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024.0 * 1024.0);
                     gameFrame.setTitle(textHandler.GAME_TITLE + " | " + textHandler.GAME_VERSION +
-                            " - " + textHandler.vPerformanceMsg(frames, updates, allocatedRam));
-                    logHandler.log(textHandler.vPerformanceMsg(frames, updates, allocatedRam), LogHandler.LogLevel.INFO, true);
+                            " - " + textHandler.vPerformanceMsg(frames, updates));
+                    logHandler.log(textHandler.vPerformanceMsg(frames, updates), "run", LogHandler.LogLevel.INFO, true);
                 } else {
                     gameFrame.setTitle(textHandler.GAME_TITLE);
                 }
@@ -386,7 +383,7 @@ public final class GameController extends Canvas implements Runnable {
         try {
             g = (Graphics2D) bs.getDrawGraphics();
         } catch (IllegalStateException e) {
-            logHandler.log("You dragged the screen to another monitor, didn't you?", LogHandler.LogLevel.ERROR, false);
+            logHandler.log("You dragged the screen to another monitor, didn't you? This doesn't work. :(", "render", LogHandler.LogLevel.ERROR, false);
             e.printStackTrace();
             stop();
         }
@@ -569,7 +566,7 @@ public final class GameController extends Canvas implements Runnable {
         if (isRunning) {
             isRunning = false;
         }
-        logHandler.log(textHandler.GAME_TITLE + " shutting down.", LogHandler.LogLevel.INFO, false);
+        logHandler.log(textHandler.GAME_TITLE + " shutting down.", "stop", LogHandler.LogLevel.INFO, false);
         System.exit(0);
     }
 

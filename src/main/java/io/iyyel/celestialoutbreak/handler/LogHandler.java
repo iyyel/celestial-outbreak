@@ -63,10 +63,6 @@ public final class LogHandler {
         writeToLogFile(msg);
     }
 
-    public void log(String msg, LogLevel logLevel, boolean isVerboseLog) {
-        log(msg, null, logLevel, isVerboseLog);
-    }
-
     private void writeToLogFile(String msg) {
         String filePath = textHandler.LOG_FILE_PATH;
         File file = new File(filePath);
@@ -84,10 +80,10 @@ public final class LogHandler {
                 try (PrintWriter out = new PrintWriter(filePath)) {
                     out.print(msg + "\r\n");
                 }
-                log(textHandler.successCreatedFileMsg(filePath), LogHandler.LogLevel.INFO, false);
+                log(textHandler.successCreatedFileMsg(filePath), "writeToLogFile", LogHandler.LogLevel.INFO, false);
             }
         } catch (IOException e) {
-            log(textHandler.errorWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)), LogHandler.LogLevel.ERROR, false);
+            log(textHandler.errorWritingToFileMsg(filePath, ExceptionUtils.getStackTrace(e)), "writeToLogFile",  LogHandler.LogLevel.ERROR, false);
         }
     }
 
@@ -98,12 +94,12 @@ public final class LogHandler {
             try {
                 boolean result = dir.mkdirs();
                 if (result) {
-                    log(textHandler.successCreatedDirMsg(dirPath), LogHandler.LogLevel.INFO, false);
+                    log(textHandler.successCreatedDirMsg(dirPath), "createLogDir", LogHandler.LogLevel.INFO, false);
                 } else {
-                    log(textHandler.errorCreatingDirMsg(dirPath), LogHandler.LogLevel.FAIL, false);
+                    log(textHandler.errorCreatingDirMsg(dirPath), "createLogDir", LogHandler.LogLevel.FAIL, false);
                 }
             } catch (SecurityException e) {
-                log(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)), LogHandler.LogLevel.ERROR, false);
+                log(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)), "createLogDir", LogHandler.LogLevel.ERROR, false);
             }
         }
     }
@@ -116,7 +112,7 @@ public final class LogHandler {
             return readProperty(pKey, filePathClient);
         } catch (IOException e) {
             /* Dirty hack to fix exception :) */
-            log("Failed to read isVerboseLog property. Returning false as default.", LogLevel.FAIL, false);
+            log("Failed to read isVerboseLog property. Returning false as default.", "readIsVerboseLogEnabledProp", LogLevel.FAIL, false);
             return false;
         }
     }
@@ -137,7 +133,7 @@ public final class LogHandler {
                 value = removePropertyComment(value);
 
                 if (value != null) {
-                    log(textHandler.successReadPropertyMsg(pKey, value, filePath), LogHandler.LogLevel.INFO, false);
+                    log(textHandler.successReadPropertyMsg(pKey, value, filePath), "readProperty", LogHandler.LogLevel.INFO, false);
                 }
             }
 

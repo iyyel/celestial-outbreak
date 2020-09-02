@@ -20,7 +20,7 @@ public final class PlayerOptionsScreen extends AbstractNavigationScreen {
         for (int i = 0; i < btnAmount; i++) {
             buttons[i] = new Button(new Point(gameController.getWidth() / 2, initialBtnYPos + btnYIncrement * i),
                     new Dimension(270, 50), options[i], true, inputBtnFont,
-                    screenFontColor, menuBtnColor, new Point(135, 0), new Point(0, -6), screenWidth, screenHeight);
+                    screenFontColor, menuBtnColor, new Point(135, 0), new Point(0, -8), screenWidth, screenHeight);
         }
     }
 
@@ -31,7 +31,7 @@ public final class PlayerOptionsScreen extends AbstractNavigationScreen {
 
     @Override
     protected void updateNavOK(int index) {
-        if (isButtonOK(index)) {
+        if (isOKPressed(index)) {
             switch (index) {
                 case 0:
                     gameController.switchState(GameController.State.PLAYER_SELECT);

@@ -25,10 +25,10 @@ public final class AboutScreen extends AbstractScreen {
 
     @Override
     public void render(Graphics2D g) {
-        int xPos = 80;
-        int yPos = 260;
+        int xPos = 100;
+        int yPos = 250;
         int yPosInc = 35;
-        int yPosSepInc = 70;
+        int yPosSepInc = 55;
 
         g.setColor(screenFontColor);
         drawTitle(g);
@@ -39,16 +39,18 @@ public final class AboutScreen extends AbstractScreen {
 
         g.drawString(textHandler.aboutMenuMsg01, xPos, yPos);
         g.drawString(textHandler.aboutMenuMsg02, xPos, yPos + yPosInc);
+        g.drawString(textHandler.aboutMenuMsg03, xPos, yPos + yPosInc * 2);
 
-        g.drawString(textHandler.aboutMenuMsg03, xPos, yPos + yPosSepInc + yPosInc);
         g.drawString(textHandler.aboutMenuMsg04, xPos, yPos + yPosSepInc + yPosInc * 2);
         g.drawString(textHandler.aboutMenuMsg05, xPos, yPos + yPosSepInc + yPosInc * 3);
+        g.drawString(textHandler.aboutMenuMsg06, xPos, yPos + yPosSepInc + yPosInc * 4);
+        g.drawString(textHandler.aboutMenuMsg07, xPos, yPos + yPosSepInc + yPosInc * 5);
 
-        g.drawString(textHandler.aboutMenuMsg06, xPos, yPos + yPosSepInc * 2 + yPosInc * 3);
-        g.drawString(textHandler.aboutMenuMsg07, xPos, yPos + yPosSepInc * 2 + yPosInc * 4);
+        g.drawString(textHandler.aboutMenuMsg08, xPos, yPos + yPosSepInc * 2 + yPosInc * 5);
+        g.drawString(textHandler.aboutMenuMsg09, xPos, yPos + yPosSepInc * 2 + yPosInc * 6);
 
-        g.drawString(textHandler.aboutMenuMsg08, xPos, yPos + yPosSepInc * 3 + yPosInc * 4);
-        g.drawString(textHandler.aboutMenuMsg09, xPos, yPos + yPosSepInc * 3 + yPosInc * 5);
+        g.drawString(textHandler.aboutMenuMsg10, xPos, yPos + yPosSepInc * 3 + yPosInc * 6);
+        g.drawString(textHandler.aboutMenuMsg11, xPos, yPos + yPosSepInc * 3 + yPosInc * 7);
 
         drawInfoPanel(g);
     }

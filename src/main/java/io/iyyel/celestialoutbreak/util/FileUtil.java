@@ -38,12 +38,12 @@ public final class FileUtil {
             try {
                 boolean result = dir.mkdirs();
                 if (result) {
-                    logHandler.log(textHandler.successCreatedDirMsg(dirPath), LogHandler.LogLevel.INFO, false);
+                    logHandler.log(textHandler.successCreatedDirMsg(dirPath), "createDir", LogHandler.LogLevel.INFO, false);
                 } else {
-                    logHandler.log(textHandler.errorCreatingDirMsg(dirPath), LogHandler.LogLevel.FAIL, false);
+                    logHandler.log(textHandler.errorCreatingDirMsg(dirPath), "createDir", LogHandler.LogLevel.FAIL, false);
                 }
             } catch (SecurityException e) {
-                logHandler.log(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)), LogHandler.LogLevel.ERROR, false);
+                logHandler.log(textHandler.errorCreatingDirMsg(dirPath, ExceptionUtils.getStackTrace(e)), "createDir", LogHandler.LogLevel.ERROR, false);
             }
         }
     }
@@ -60,10 +60,10 @@ public final class FileUtil {
              */
             if (!destFile.exists()) {
                 FileUtils.copyInputStreamToFile(srcIs, destFile);
-                logHandler.log(textHandler.successCopiedFileMsg(srcFilePath, destFile.getPath()), LogHandler.LogLevel.INFO, false);
+                logHandler.log(textHandler.successCopiedFileMsg(srcFilePath, destFile.getPath()), "copyFile", LogHandler.LogLevel.INFO, false);
             }
         } catch (IOException e) {
-            logHandler.log(textHandler.errorCopyingFileMsg(srcFilePath, destFilePath, ExceptionUtils.getStackTrace(e)), LogHandler.LogLevel.ERROR, false);
+            logHandler.log(textHandler.errorCopyingFileMsg(srcFilePath, destFilePath, ExceptionUtils.getStackTrace(e)), "copyFile", LogHandler.LogLevel.ERROR, false);
         }
     }
 

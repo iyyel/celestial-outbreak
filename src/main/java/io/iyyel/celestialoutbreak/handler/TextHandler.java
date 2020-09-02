@@ -249,8 +249,10 @@ public final class TextHandler {
     public final String SOUND_FILE_NAME_BALL_RESET = "ball_reset.wav";
     public final String SOUND_FILE_NAME_BLOCK_DESTROYED = "block_destroyed.wav";
     public final String SOUND_FILE_NAME_MENU_BTN_NAV = "menu_nav.wav";
-    public final String SOUND_FILE_NAME_MENU_BTN_USE = "menu_use.wav";
+    public final String SOUND_FILE_NAME_MENU_BTN_AUX = "menu_aux.wav";
     public final String SOUND_FILE_NAME_BAD_ACTION = "bad_action.wav";
+    public final String SOUND_FILE_NAME_POWERUP_HIT = "powerup_hit.wav";
+    public final String SOUND_FILE_NAME_MENU_TOGGLE_OPTION = "menu_toggle_option.wav";
 
     public final String SOUND_FILE_NAME_SUN_LEVEL = "sun_level.wav";
     public final String SOUND_FILE_NAME_MOON_LEVEL = "moon_level.wav";
@@ -269,8 +271,10 @@ public final class TextHandler {
     public final String SOUND_FILE_LOCAL_PATH_BALL_RESET = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BALL_RESET;
     public final String SOUND_FILE_LOCAL_PATH_BLOCK_DESTROYED = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BLOCK_DESTROYED;
     public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU_BTN_NAV;
-    public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_USE = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU_BTN_USE;
+    public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_AUX = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU_BTN_AUX;
     public final String SOUND_FILE_LOCAL_PATH_BAD_ACTION = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BAD_ACTION;
+    public final String SOUND_FILE_LOCAL_PATH_POWERUP_HIT = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_POWERUP_HIT;
+    public final String SOUND_FILE_LOCAL_PATH_MENU_TOGGLE_OPTION = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU_TOGGLE_OPTION;
 
     public final String SOUND_FILE_LOCAL_PATH_SUN_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_SUN_LEVEL;
     public final String SOUND_FILE_LOCAL_PATH_MOON_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MOON_LEVEL;
@@ -289,8 +293,10 @@ public final class TextHandler {
     public final String SOUND_FILE_CLIENT_PATH_BALL_RESET = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BALL_RESET;
     public final String SOUND_FILE_CLIENT_PATH_BLOCK_DESTROYED = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BLOCK_DESTROYED;
     public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_NAV;
-    public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_USE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_USE;
+    public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_AUX = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_AUX;
     public final String SOUND_FILE_CLIENT_PATH_BAD_ACTION = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BAD_ACTION;
+    public final String SOUND_FILE_CLIENT_PATH_POWERUP_HIT = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_POWERUP_HIT;
+    public final String SOUND_FILE_CLIENT_PATH_MENU_TOGGLE_OPTION = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_TOGGLE_OPTION;
 
     public final String SOUND_FILE_CLIENT_PATH_SUN_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_SUN_LEVEL;
     public final String SOUND_FILE_CLIENT_PATH_MOON_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MOON_LEVEL;
@@ -440,15 +446,17 @@ public final class TextHandler {
     public final String menuConfigMsg10 = GITHUB_URL;
 
     /* ABOUT_MENU messages. */
-    public final String aboutMenuMsg01 = GAME_TITLE + " is an open-source, space-themed, Breakout-like";
-    public final String aboutMenuMsg02 = "sandbox 2D video game with focus on game customization.";
-    public final String aboutMenuMsg03 = "The game plays like your typical Breakout game, with a few additions";
-    public final String aboutMenuMsg04 = "such as power ups and a full customizable experience.";
-    public final String aboutMenuMsg05 = "Players are advised to create new levels and share them with others.";
-    public final String aboutMenuMsg06 = "The latest version of the game can be found at the following URL:";
-    public final String aboutMenuMsg07 = GITHUB_URL;
-    public final String aboutMenuMsg08 = "If any help is needed, take a look at the " + TITLE_CONTROLS_SCREEN + " and";
-    public final String aboutMenuMsg09 = TITLE_CONFIGURATION_OPTIONS_SCREEN + " menus for more information.";
+    public final String aboutMenuMsg01 = GAME_TITLE + " is an open-source, space-themed,";
+    public final String aboutMenuMsg02 = "Breakout-like sandbox 2D game with focus on a customizable";
+    public final String aboutMenuMsg03 = "and replayable experience.";
+    public final String aboutMenuMsg04 = "The game plays like your typical Breakout game, with a few";
+    public final String aboutMenuMsg05 = "additions such as power ups and a fully customizable";
+    public final String aboutMenuMsg06 = "environment. Players are advised to create new levels ";
+    public final String aboutMenuMsg07 = "and share them with others.";
+    public final String aboutMenuMsg08 = "The latest version of the game can be found at the";
+    public final String aboutMenuMsg09 = "following URL: " + GITHUB_URL;
+    public final String aboutMenuMsg10 = "If any help is needed, take a look at the " + TITLE_CONTROLS_SCREEN + " and";
+    public final String aboutMenuMsg11 = TITLE_CONFIGURATION_OPTIONS_SCREEN + " menus for more information.";
 
     /* EXIT_MENU messages. */
 
@@ -564,8 +572,8 @@ public final class TextHandler {
     private final DecimalFormat df = new DecimalFormat("000");
 
     /* Application. */
-    public final String vPerformanceMsg(int frames, int updates, double allocatedRam) {
-        return "UPS: " + updates + " - FPS: " + frames + " - RAM: " + df.format(allocatedRam) + "MB";
+    public final String vPerformanceMsg(int frames, int updates) {
+        return "UPS: " + updates + " - FPS: " + frames;
     }
 
     /*

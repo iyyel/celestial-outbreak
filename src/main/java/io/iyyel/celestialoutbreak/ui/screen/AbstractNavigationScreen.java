@@ -98,8 +98,8 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         }
     }
 
-    protected boolean isButtonUsed(int index) {
-        boolean isUsed = inputHandler.isUsePressed() && isInputAvailable() && selectedIndex == index
+    protected boolean isAuxPressed(int index) {
+        boolean isUsed = inputHandler.isAuxPressed() && isInputAvailable() && selectedIndex == index
                 && selectedIndex < btnAmount && selectedIndex >= 0;
 
         if (isUsed) {
@@ -109,7 +109,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         return isUsed;
     }
 
-    protected boolean isButtonOK(int index) {
+    protected boolean isOKPressed(int index) {
         boolean isOK = inputHandler.isOKPressed() && isInputAvailable() && selectedIndex == index
                 && selectedIndex < btnAmount && selectedIndex >= 0;
 

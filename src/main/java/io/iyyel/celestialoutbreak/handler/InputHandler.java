@@ -13,7 +13,7 @@ public final class InputHandler implements KeyListener {
     private final boolean[] keys = new boolean[1000];
 
     private boolean isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
-    private boolean isUsePressed, isPausePressed, isOKPressed, isCancelPressed;
+    private boolean isAuxPressed, isPausePressed, isOKPressed, isCancelPressed;
 
     private boolean isInputMode = true;
     private String userInput = "";
@@ -42,7 +42,7 @@ public final class InputHandler implements KeyListener {
 
         isOKPressed = keys[KeyEvent.VK_Z];
         isCancelPressed = keys[KeyEvent.VK_X];
-        isUsePressed = keys[KeyEvent.VK_SPACE];
+        isAuxPressed = keys[KeyEvent.VK_SPACE];
         isPausePressed = keys[KeyEvent.VK_P];
     }
 
@@ -81,8 +81,8 @@ public final class InputHandler implements KeyListener {
         return isRightPressed;
     }
 
-    public boolean isUsePressed() {
-        return isUsePressed;
+    public boolean isAuxPressed() {
+        return isAuxPressed;
     }
 
     public boolean isPausePressed() {

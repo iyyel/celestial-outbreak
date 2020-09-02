@@ -26,8 +26,8 @@ public final class ControlsScreen extends AbstractScreen {
     public void render(Graphics2D g) {
         drawTitle(g);
 
-        int xPos = 135;
-        int xPoxInc = 130;
+        int xPos = 105;
+        int xPoxInc = 200;
         int yPos = -50;
         int yPosInc = 70;
 
@@ -35,20 +35,20 @@ public final class ControlsScreen extends AbstractScreen {
 
         g.setFont(msgFont);
 
-        g.drawString(textHandler.menuControlsMsg01, xPos, gameController.getHeight() / 2 + yPos);
-        g.drawString(textHandler.menuControlsMsg02, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + yPos);
+        g.drawString(textHandler.menuControlsMsg01, xPos, getHalfHeight() + yPos);
+        g.drawString(textHandler.menuControlsMsg02, getHalfWidth() + xPoxInc, getHalfHeight() + yPos);
 
-        g.drawString(textHandler.menuControlsMsg03, xPos, gameController.getHeight() / 2 + (yPos + yPosInc));
-        g.drawString(textHandler.menuControlsMsg04, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + (yPos + yPosInc));
+        g.drawString(textHandler.menuControlsMsg03, xPos, getHalfHeight() + (yPos + yPosInc));
+        g.drawString(textHandler.menuControlsMsg04, getHalfWidth() + xPoxInc, getHalfHeight() + (yPos + yPosInc));
 
-        g.drawString(textHandler.menuControlsMsg05, xPos, gameController.getHeight() / 2 + (yPos + yPosInc * 2));
-        g.drawString(textHandler.menuControlsMsg06, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + (yPos + yPosInc * 2));
+        g.drawString(textHandler.menuControlsMsg05, xPos, getHalfHeight()+ (yPos + yPosInc * 2));
+        g.drawString(textHandler.menuControlsMsg06, getHalfWidth() + xPoxInc, getHalfHeight() + (yPos + yPosInc * 2));
 
-        g.drawString(textHandler.menuControlsMsg07, xPos, gameController.getHeight() / 2 + (yPos + yPosInc * 3));
-        g.drawString(textHandler.menuControlsMsg08, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + (yPos + yPosInc * 3));
+        g.drawString(textHandler.menuControlsMsg07, xPos, getHalfHeight() + (yPos + yPosInc * 3));
+        g.drawString(textHandler.menuControlsMsg08, getHalfWidth() + xPoxInc, getHalfHeight() + (yPos + yPosInc * 3));
 
-        g.drawString(textHandler.menuControlsMsg09, xPos, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
-        g.drawString(textHandler.menuControlsMsg10, gameController.getWidth() / 2 + xPoxInc, gameController.getHeight() / 2 + (yPos + yPosInc * 4));
+        g.drawString(textHandler.menuControlsMsg09, xPos, getHalfHeight() + (yPos + yPosInc * 4));
+        g.drawString(textHandler.menuControlsMsg10, getHalfWidth() + xPoxInc, getHalfHeight()+ (yPos + yPosInc * 4));
 
         drawInfoPanel(g);
     }

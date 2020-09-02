@@ -98,7 +98,7 @@ public final class LevelOptions {
              * gameController will be stopped, since invalid level options has been found which might cause
              * the application to be in an inconsistent state.
              */
-            logHandler.log(textHandler.errorParsingPropertiesMsg(fileName, ExceptionUtils.getStackTrace(e)), LogHandler.LogLevel.ERROR, false);
+            logHandler.log(textHandler.errorParsingPropertiesMsg(fileName, ExceptionUtils.getStackTrace(e)), "LevelOptions", LogHandler.LogLevel.ERROR, false);
             gameController.stop();
         }
     }

@@ -8,7 +8,11 @@ public final class PowerUpHandler {
 
     private static final PowerUpHandler instance;
 
+    private final TextHandler textHandler = TextHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
+    private final SoundHandler soundHandler = SoundHandler.getInstance();
+
+    private final SoundHandler.SoundClip powerUpHit = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_POWERUP_HIT);
 
     private PowerUp[] powerUpArray = new PowerUp[10];
 
@@ -67,6 +71,7 @@ public final class PowerUpHandler {
     private void checkPaddleCollision() {
         for (int i = 0; i < powerUpArray.length; i++) {
             if (powerUpArray[i] != null && powerUpArray[i].collidesWithPaddle()) {
+                powerUpHit.play(false);
                 powerUpArray[i].applyEffect();
                 logHandler.log("Power up collided with Paddle!", "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
                 powerUpArray[i] = null;

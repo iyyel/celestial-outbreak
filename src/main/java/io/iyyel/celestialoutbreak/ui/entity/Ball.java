@@ -103,7 +103,7 @@ public final class Ball extends AbstractMobileEntity {
             pos.y += velocity.y;
         } else if (isStuck) {
             pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
-            if (inputHandler.isUsePressed()) {
+            if (inputHandler.isAuxPressed()) {
                 isStuck = false;
                 velocity.y = -speed;
             }
@@ -113,7 +113,7 @@ public final class Ball extends AbstractMobileEntity {
     private void checkLeftCollision() {
         /* Ball hit left x-axis. */
         if (pos.x < 0) {
-            logHandler.log(textHandler.vBallTouchedXAxisLeftMsg, LogHandler.LogLevel.INFO, true);
+            logHandler.log(textHandler.vBallTouchedXAxisLeftMsg, "checkLeftCollision", LogHandler.LogLevel.INFO, true);
             velocity.x = speed;
             ballHitClip.play(false);
         }
@@ -122,7 +122,7 @@ public final class Ball extends AbstractMobileEntity {
     private void checkRightCollision() {
         /* Ball hit right x-axis. */
         if (pos.x > (screenWidth - dim.width)) {
-            logHandler.log(textHandler.vBallTouchedXAxisRightMsg, LogHandler.LogLevel.INFO, true);
+            logHandler.log(textHandler.vBallTouchedXAxisRightMsg, "checkRightCollision", LogHandler.LogLevel.INFO, true);
             velocity.x = -speed;
             ballHitClip.play(false);
         }
@@ -131,7 +131,7 @@ public final class Ball extends AbstractMobileEntity {
     private void checkTopCollision() {
         /* Ball hit top y-axis. */
         if (pos.y < 0) {
-            logHandler.log(textHandler.vBallTouchedYAxisTopMsg, LogHandler.LogLevel.INFO, true);
+            logHandler.log(textHandler.vBallTouchedYAxisTopMsg, "checkTopCollision", LogHandler.LogLevel.INFO, true);
             velocity.y = speed;
             ballHitClip.play(false);
         }
@@ -156,8 +156,8 @@ public final class Ball extends AbstractMobileEntity {
 
                 ballResetClip.play(false);
 
-                logHandler.log(textHandler.vBallTouchedYAxisBottomMsg, LogHandler.LogLevel.INFO, true);
-                logHandler.log("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife(), LogHandler.LogLevel.INFO, true);
+                logHandler.log(textHandler.vBallTouchedYAxisBottomMsg, "checkBottomCollision", LogHandler.LogLevel.INFO, true);
+                logHandler.log("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife(), "checkBottomCollision", LogHandler.LogLevel.INFO, true);
             }
         }
     }
@@ -178,7 +178,7 @@ public final class Ball extends AbstractMobileEntity {
                 soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
 
                 if (optionsHandler.isVerboseLogEnabled()) {
-                    logHandler.log(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer), LogHandler.LogLevel.INFO, true);
+                    logHandler.log(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer), "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
                 }
             }
         }
@@ -204,10 +204,10 @@ public final class Ball extends AbstractMobileEntity {
 
                     soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
                     blockField.remove(i);
-                    logHandler.log("BlockField[" + i + "] has been destroyed.", LogHandler.LogLevel.INFO, true);
+                    logHandler.log("BlockField[" + i + "] has been destroyed.", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
                 } else {
                     soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
-                    logHandler.log(textHandler.vBallBlockFieldCollisionMsg(i, blockField.get(i).getHealth()), LogHandler.LogLevel.INFO, true);
+                    logHandler.log(textHandler.vBallBlockFieldCollisionMsg(i, blockField.get(i).getHealth()), "checkBlockCollision", LogHandler.LogLevel.INFO, true);
                 }
             }
         }

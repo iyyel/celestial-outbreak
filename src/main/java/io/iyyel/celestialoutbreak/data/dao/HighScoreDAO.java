@@ -40,12 +40,12 @@ public final class HighScoreDAO implements IHighScoreDAO {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.SCORE_BIN_FILE_CLIENT_PATH));
             highScoreDTOList = (List<HighScoreDTO>) ois.readObject();
             ois.close();
-            logHandler.log("Successfully read binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFO, true);
+            logHandler.log("Successfully read binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "'", "loadHighScoreList", LogHandler.LogLevel.INFO, true);
         } catch (FileNotFoundException e) {
-            logHandler.log("Failed to read binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "'", LogHandler.LogLevel.FAIL, true);
+            logHandler.log("Failed to read binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "'", "loadHighScoreList", LogHandler.LogLevel.FAIL, true);
             createNewScoreBinFile();
         } catch (IOException | ClassNotFoundException e) {
-            logHandler.log("Exception: " + e.getMessage(), LogHandler.LogLevel.ERROR, false);
+            logHandler.log("Exception: " + e.getMessage(), "loadHighScoreList", LogHandler.LogLevel.ERROR, false);
             throw new HighScoreDAOException("Failed to load ScoreDTO list: " + e.getMessage());
         }
     }
@@ -59,9 +59,9 @@ public final class HighScoreDAO implements IHighScoreDAO {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.SCORE_BIN_FILE_CLIENT_PATH));
             oos.writeObject(highScoreDTOList);
             oos.close();
-            logHandler.log("Successfully saved binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "' at '" + textHandler.SCORE_BIN_FILE_CLIENT_PATH + "'", LogHandler.LogLevel.INFO, true);
+            logHandler.log("Successfully saved binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "' at '" + textHandler.SCORE_BIN_FILE_CLIENT_PATH + "'","saveHighScoreList", LogHandler.LogLevel.INFO, true);
         } catch (IOException e) {
-            logHandler.log("Exception: " + e.getMessage(), LogHandler.LogLevel.ERROR, false);
+            logHandler.log("Exception: " + e.getMessage(), "saveHighScoreList", LogHandler.LogLevel.ERROR, false);
             throw new HighScoreDAOException("Failed to save ScoreDTO list: " + e.getMessage());
         }
     }
@@ -156,7 +156,7 @@ public final class HighScoreDAO implements IHighScoreDAO {
     }
 
     private void createNewScoreBinFile() throws HighScoreDAOException {
-        logHandler.log("Creating empty binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "'", LogHandler.LogLevel.INFO, true);
+        logHandler.log("Creating empty binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "'", "createNewScoreBinFile", LogHandler.LogLevel.INFO, true);
         highScoreDTOList = new ArrayList<>();
         saveHighScoreList();
     }

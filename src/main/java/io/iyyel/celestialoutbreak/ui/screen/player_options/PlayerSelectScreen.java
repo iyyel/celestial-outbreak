@@ -20,7 +20,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
 
     @Override
     protected void updateNavUse(int index) {
-        if (isButtonUsed(index)) {
+        if (isAuxPressed(index)) {
             String selectedPlayer = playerDAO.getPlayers().get(index);
 
             try {

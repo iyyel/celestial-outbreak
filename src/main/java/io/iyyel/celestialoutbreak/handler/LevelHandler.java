@@ -56,12 +56,12 @@ public final class LevelHandler {
         calculateScore();
 
         if (levels[activeLevelIndex].isWon()) {
-            logHandler.log("Won " + getActiveLevel().getName() + " level!", LogHandler.LogLevel.INFO, true);
+            logHandler.log("Won " + getActiveLevel().getName() + " level!", "update", LogHandler.LogLevel.INFO, true);
             gameController.switchState(GameController.State.POST_LEVEL);
         }
 
         if (levels[activeLevelIndex].isLost()) {
-            logHandler.log("Lost " + getActiveLevel().getName() + " level!", LogHandler.LogLevel.INFO, true);
+            logHandler.log("Lost " + getActiveLevel().getName() + " level!", "update", LogHandler.LogLevel.INFO, true);
             gameController.switchState(GameController.State.POST_LEVEL);
         }
     }
@@ -79,7 +79,7 @@ public final class LevelHandler {
 
         //TODO: Remove magic number here.
         if (levels.length > 12) {
-            logHandler.log("Maximum levels exceeded: 12 - shutting down. (MAKE THIS SHOW A POPUP!)", LogHandler.LogLevel.ERROR, false);
+            logHandler.log("Maximum levels exceeded: 12 - shutting down.", "initPreLevels", LogHandler.LogLevel.ERROR, false);
             gameController.stop();
             return;
         }
@@ -135,7 +135,7 @@ public final class LevelHandler {
     }
 
     public void resetActiveLevel() {
-        logHandler.log("Level[" + activeLevelIndex + "] has been reset.", LogHandler.LogLevel.INFO, true);
+        logHandler.log("Level[" + activeLevelIndex + "] has been reset.", "resetActiveLevel", LogHandler.LogLevel.INFO, true);
         currentScore = 0;
         levels[activeLevelIndex] = null;
     }

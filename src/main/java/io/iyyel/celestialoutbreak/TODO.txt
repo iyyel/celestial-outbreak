@@ -1,12 +1,17 @@
 1. Make nice powerups for all levels. 3 for paddle, 3 for ball as default.
 2. Power up sounds, when spawned and when applied.
 3. Sounds for new high score, sounds for level completion.
-6. Make sure all music is the same sort of genre. (i.e, 8-bit, 16-bits, third.)
-7. Sometimes after making a new player, the navigation system is weird in player options.
-8. Make ball physics better.
-9. Make collisions better, etc.
-10. Better names for z and x. OK/FORWARD/CONFIRM?????
-12. MAX 12 LEVELS!
-13. Alle firkanter skal starte på samme x og y værdi, f.eks i level select og score select, osv.
-14. Take pics and make a video of the game when its done, for your website as well as github.
-15. The remaining screens should also make use of the new abstract classes.
+4. Make sure all music is the same sort of genre. (i.e, 8-bit, 16-bits, third.)
+5. Sometimes after making a new player, the navigation system is weird in player options.
+6. Make ball physics better.
+7. Make collisions better, etc.
+8. Better names for z and x. OK/FORWARD/CONFIRM?????
+9. MAX 12 LEVELS!
+10. Alle firkanter skal starte på samme x og y værdi, f.eks i level select og score select, osv.
+11. Take pics and make a video of the game when its done, for your website as well as github.
+12. The remaining screens should also make use of the new abstract classes.
+13. Better icon.
+14. The first time you're making a new player, some text is at the screen. It quickly flashes away. Let's try to get rid of this small "flash".
+15. If you disable sound and then enable sound again, sound does not start again before you exit the current menu.
+16. Options activate/deactivate sound.
+17. Make powerups able to have customizable sounds. For example, a good powerup can have a good sound, a bad powerup can have a bad sound.

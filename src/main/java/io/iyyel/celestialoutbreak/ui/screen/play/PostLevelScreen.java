@@ -60,9 +60,10 @@ public final class PostLevelScreen extends AbstractScreen {
 
             if (hasWon) {
                 try {
-                    highScoreDTO = new HighScoreDTO(playerDAO.getSelectedPlayer(), activeLevel.getName(), levelHandler.getCurrentScore(), util.getTimeElapsed());
+                    highScoreDTO = new HighScoreDTO(playerDAO.getSelectedPlayer(), activeLevel.getName(),
+                            levelHandler.getCurrentScore(), util.getTimeElapsed(), optionsHandler.isPowerUpEnabled());
                     isHighScore = highScoreDAO.isHighScore(highScoreDTO);
-                    if (isHighScore) {
+                    if (isHighScore && !optionsHandler.isGodModeEnabled()) {
                         highScoreDAO.addHighScore(highScoreDTO);
                         highScoreDAO.saveHighScoreList();
                     }
@@ -83,7 +84,6 @@ public final class PostLevelScreen extends AbstractScreen {
             } else {
                 drawCenteredText("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
             }
-
             drawCenteredText("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been defeated.", 0, g);
         } else {
             drawCenteredText("You have lost. The " + levelHandler.getActiveLevel().getName() + " level shines in grace upon you.", 0, g);
@@ -91,7 +91,10 @@ public final class PostLevelScreen extends AbstractScreen {
         }
         drawCenteredText("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
 
-        drawToolTip("Press '" + textHandler.BTN_CONTROL_OK + "' to go to the main menu.", g);
+        if (optionsHandler.isGodModeEnabled()) {
+            drawCenteredText("God Mode scores are not recorded.", 150, g);
+        }
+
         drawInfoPanel(g);
     }
 

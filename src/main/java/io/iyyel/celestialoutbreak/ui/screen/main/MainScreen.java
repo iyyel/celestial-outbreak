@@ -22,9 +22,9 @@ public final class MainScreen extends AbstractNavigationScreen {
         buttons = new Button[btnAmount];
 
         for (int i = 0; i < btnAmount; i++) {
-            buttons[i] = new Button(new Point(getHalfWidth() - 100, initialBtnYPos + btnYIncrement * i),
-                    new Dimension(200, 50), options[i], true, inputBtnFont,
-                    screenFontColor, menuBtnColor, new Point(0, 0), new Point(0, -6), screenWidth, screenHeight);
+            buttons[i] = new Button(new Point(getHalfWidth(), initialBtnYPos + btnYIncrement * i),
+                    new Dimension(210, 50), options[i], true, inputBtnFont,
+                    screenFontColor, menuBtnColor, new Point(105, 0), new Point(0, -8), screenWidth, screenHeight);
         }
     }
 
@@ -35,7 +35,7 @@ public final class MainScreen extends AbstractNavigationScreen {
 
     @Override
     protected void updateNavOK(int index) {
-        if (isButtonOK(index)) {
+        if (isOKPressed(index)) {
             super.updateNavOK();
             switch (index) {
                 case 0:

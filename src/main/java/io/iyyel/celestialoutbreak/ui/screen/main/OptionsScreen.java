@@ -19,8 +19,8 @@ public final class OptionsScreen extends AbstractNavigationScreen {
 
         for (int i = 0; i < btnAmount; i++) {
             buttons[i] = new Button(new Point(getHalfWidth(), initialBtnYPos + btnYIncrement * i),
-                    new Dimension(390, 50), options[i], true, inputBtnFont,
-                    screenFontColor, menuBtnColor, new Point(195, 0), new Point(0, -6), screenWidth, screenHeight);
+                    new Dimension(380, 50), options[i], true, inputBtnFont,
+                    screenFontColor, menuBtnColor, new Point(190, 0), new Point(0, -8), screenWidth, screenHeight);
         }
     }
 
@@ -31,7 +31,7 @@ public final class OptionsScreen extends AbstractNavigationScreen {
 
     @Override
     protected void updateNavOK(int index) {
-        if (isButtonOK(index)) {
+        if (isOKPressed(index)) {
             super.updateNavOK();
             switch (index) {
                 case 0:

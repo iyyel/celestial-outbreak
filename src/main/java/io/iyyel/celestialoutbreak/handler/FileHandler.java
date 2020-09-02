@@ -97,8 +97,10 @@ public final class FileHandler {
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BALL_RESET, textHandler.SOUND_FILE_CLIENT_PATH_BALL_RESET);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BLOCK_DESTROYED, textHandler.SOUND_FILE_CLIENT_PATH_BLOCK_DESTROYED);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV);
-        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_USE, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_USE);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_AUX, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_AUX);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BAD_ACTION, textHandler.SOUND_FILE_CLIENT_PATH_BAD_ACTION);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_POWERUP_HIT, textHandler.SOUND_FILE_CLIENT_PATH_POWERUP_HIT);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_TOGGLE_OPTION, textHandler.SOUND_FILE_CLIENT_PATH_MENU_TOGGLE_OPTION);
 
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_SUN_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_SUN_LEVEL);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MOON_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_MOON_LEVEL);
@@ -124,7 +126,7 @@ public final class FileHandler {
         Properties p = new Properties();
 
         Map<String, String> map = new HashMap<>();
-        logHandler.log(textHandler.actionReadingPropertiesMsg(filePath), LogHandler.LogLevel.INFO, false);
+        logHandler.log(textHandler.actionReadingPropertiesMsg(filePath), "readPropertiesFromFile", LogHandler.LogLevel.INFO, false);
 
         try (InputStream is = new FileInputStream(filePath)) {
             p.load(is);
@@ -134,11 +136,11 @@ public final class FileHandler {
                 value = fileUtil.removeCommentFromLine(value);
                 if (value != null) {
                     map.put(key, value);
-                    logHandler.log(textHandler.successReadPropertyMsg(key, value, filePath), LogHandler.LogLevel.INFO, false);
+                    logHandler.log(textHandler.successReadPropertyMsg(key, value, filePath), "readPropertiesFromFile", LogHandler.LogLevel.INFO, false);
                 }
             }
 
-            logHandler.log(textHandler.finishReadPropertiesMsg(filePath), LogHandler.LogLevel.INFO, false);
+            logHandler.log(textHandler.finishReadPropertiesMsg(filePath), "readPropertiesFromFile", LogHandler.LogLevel.INFO, false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -168,7 +170,7 @@ public final class FileHandler {
         int index = 0;
 
         if (lines == null) {
-            logHandler.log("FAILED TO WRITE PROPERTY TO FILE: " + filePath, LogHandler.LogLevel.FAIL, false);
+            logHandler.log("Failed to write property to file: " + filePath, "writePropertyToFile", LogHandler.LogLevel.FAIL, false);
             return;
         }
 
@@ -197,7 +199,7 @@ public final class FileHandler {
      */
     public List<String> readLinesFromFile(String filePath) {
         List<String> lineList = new ArrayList<>();
-        logHandler.log(textHandler.actionReadingLinesMsg(filePath), LogHandler.LogLevel.INFO, false);
+        logHandler.log(textHandler.actionReadingLinesMsg(filePath), "readLinesFromFile", LogHandler.LogLevel.INFO, false);
 
         try (FileInputStream fis = new FileInputStream(new File(filePath))) {
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -206,10 +208,10 @@ public final class FileHandler {
                 line = fileUtil.removeCommentFromLine(line);
                 if (line != null) {
                     lineList.add(line);
-                    logHandler.log(textHandler.successReadLineMsg(line, filePath), LogHandler.LogLevel.INFO, false);
+                    logHandler.log(textHandler.successReadLineMsg(line, filePath), "readLinesFromFile", LogHandler.LogLevel.INFO, false);
                 }
             }
-            logHandler.log(textHandler.finishReadLinesMsg(filePath), LogHandler.LogLevel.INFO, false);
+            logHandler.log(textHandler.finishReadLinesMsg(filePath), "readLinesFromFile", LogHandler.LogLevel.INFO, false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -233,7 +235,7 @@ public final class FileHandler {
                 value = fileUtil.removeCommentFromLine(value);
 
                 if (value != null) {
-                    logHandler.log(textHandler.successReadPropertyMsg(pKey, value, filePath), LogHandler.LogLevel.INFO, false);
+                    logHandler.log(textHandler.successReadPropertyMsg(pKey, value, filePath), "readPropertyFromFile", LogHandler.LogLevel.INFO, false);
                 }
             }
 

@@ -3,7 +3,6 @@ package io.iyyel.celestialoutbreak.ui.screen;
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.data.dao.PlayerDAO;
 import io.iyyel.celestialoutbreak.data.dao.interfaces.IPlayerDAO;
-import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
 import java.awt.*;
@@ -23,7 +22,7 @@ public final class WelcomeScreen extends AbstractNavigationScreen {
         for (int i = 0; i < btnAmount; i++) {
             buttons[i] = new Button(new Point(getHalfWidth(), initialBtnYPos + btnYIncrement * (i + Y_MULTIPLIER)),
                     new Dimension(160, 50), options[i], true, inputBtnFont,
-                    screenFontColor, menuBtnColor, new Point(80, 0), new Point(0, -6), screenWidth, screenHeight);
+                    screenFontColor, menuBtnColor, new Point(80, 0), new Point(0, -8), screenWidth, screenHeight);
         }
     }
 
@@ -43,7 +42,7 @@ public final class WelcomeScreen extends AbstractNavigationScreen {
 
     @Override
     protected void updateNavOK(int index) {
-        if (isButtonOK(index)) {
+        if (isOKPressed(index)) {
             super.updateNavOK();
             switch (index) {
                 case 0:

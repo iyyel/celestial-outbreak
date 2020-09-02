@@ -63,7 +63,7 @@ public final class OptionsHandler {
             boolean pValue = parseGameOptionProperty(pMap, pKey);
             gamePropMap.put(pKey, pValue);
             // Log
-            logHandler.log(textHandler.getGamePropertyLogString(pValue, pKey), LogHandler.LogLevel.INFO, false);
+            logHandler.log(textHandler.getGamePropertyLogString(pValue, pKey), "loadGameOptions", LogHandler.LogLevel.INFO, false);
         }
     }
 
@@ -73,7 +73,7 @@ public final class OptionsHandler {
             Color color = parseMenuColorProperty(pMap, pKey);
             menuColorPropMap.put(pKey, color);
             // Log
-            logHandler.log(textHandler.getMenuColorLogString(pKey, color), LogHandler.LogLevel.INFO, false);
+            logHandler.log(textHandler.getMenuColorLogString(pKey, color), "loadColorOptions", LogHandler.LogLevel.INFO, false);
         }
     }
 

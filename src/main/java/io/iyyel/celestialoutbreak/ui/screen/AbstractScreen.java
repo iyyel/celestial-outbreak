@@ -24,7 +24,7 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
     protected final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
     protected final SoundHandler.SoundClip menuNavClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV);
-    protected final SoundHandler.SoundClip menuUseClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_USE);
+    protected final SoundHandler.SoundClip menuUseClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_AUX);
     protected final SoundHandler.SoundClip menuBadClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION);
 
     private final Font titleFont = util.getGameFont().deriveFont(52F);
@@ -188,7 +188,7 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
         return screenWidth / 2;
     }
 
-    private int getHalfHeight() {
+    protected int getHalfHeight() {
         return screenHeight / 2;
     }
 

@@ -3,6 +3,7 @@ package io.iyyel.celestialoutbreak.ui.screen.options;
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
+import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
@@ -19,6 +20,8 @@ public final class GraphicsOptions extends AbstractNavigationScreen {
     private final FileHandler fileHandler = FileHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
 
+    private final SoundHandler.SoundClip optionToggle = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_TOGGLE_OPTION);
+
     public GraphicsOptions(NavStyle navStyle, int btnAmount, GameController gameController) {
         super(navStyle, btnAmount, gameController);
         buttons = new Button[btnAmount];
@@ -27,7 +30,7 @@ public final class GraphicsOptions extends AbstractNavigationScreen {
         for (int i = 0; i < btnAmount; i++) {
             buttons[i] = new Button(new Point(getHalfWidth(), initialBtnYPos + btnYIncrement * i),
                     new Dimension(240, 50), options[i], true, inputBtnFont,
-                    screenFontColor, menuBtnColor, new Point(120, 0), new Point(0, -6), screenWidth, screenHeight);
+                    screenFontColor, menuBtnColor, new Point(120, 0), new Point(0, -8), screenWidth, screenHeight);
         }
     }
 
@@ -58,7 +61,8 @@ public final class GraphicsOptions extends AbstractNavigationScreen {
 
     @Override
     protected void updateNavUse(int index) {
-        if (isButtonUsed(index)) {
+        if (isAuxPressed(index)) {
+            optionToggle.play(false);
             switch (index) {
                 case 0:
                     String pValue = String.valueOf(!optionsHandler.isFpsLockEnabled());
@@ -66,9 +70,9 @@ public final class GraphicsOptions extends AbstractNavigationScreen {
                     optionsHandler.reloadProperty(textHandler.PROP_KEY_FPS_LOCK_ENABLED, pValue);
                     if (optionsHandler.isVerboseLogEnabled()) {
                         if (optionsHandler.isFpsLockEnabled()) {
-                            logHandler.log("FPS Lock has been enabled.", LogHandler.LogLevel.INFO, false);
+                            logHandler.log("FPS Lock has been enabled.", "updateNavUse", LogHandler.LogLevel.INFO, false);
                         } else {
-                            logHandler.log("FPS Lock has been disabled.", LogHandler.LogLevel.INFO, false);
+                            logHandler.log("FPS Lock has been disabled.", "updateNavUse", LogHandler.LogLevel.INFO, false);
                         }
                     }
                     break;
@@ -78,9 +82,9 @@ public final class GraphicsOptions extends AbstractNavigationScreen {
                     optionsHandler.reloadProperty(textHandler.PROP_KEY_ANTI_ALIASING_ENABLED, pValue);
                     if (optionsHandler.isVerboseLogEnabled()) {
                         if (optionsHandler.isAntiAliasingEnabled()) {
-                            logHandler.log("Anti-aliasing has been enabled.", LogHandler.LogLevel.INFO, false);
+                            logHandler.log("Anti-aliasing has been enabled.", "updateNavUse", LogHandler.LogLevel.INFO, false);
                         } else {
-                            logHandler.log("Anti-aliasing has been disabled.", LogHandler.LogLevel.INFO, false);
+                            logHandler.log("Anti-aliasing has been disabled.", "updateNavUse", LogHandler.LogLevel.INFO, false);
                         }
                     }
                     break;
