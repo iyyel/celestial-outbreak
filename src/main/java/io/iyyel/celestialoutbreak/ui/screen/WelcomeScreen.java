@@ -36,7 +36,7 @@ public final class WelcomeScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void updateNavUse(int index) {
+    protected void updateNavAux(int index) {
 
     }
 

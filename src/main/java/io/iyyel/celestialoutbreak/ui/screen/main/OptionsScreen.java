@@ -25,7 +25,7 @@ public final class OptionsScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void updateNavUse(int index) {
+    protected void updateNavAux(int index) {
 
     }
 
@@ -33,6 +33,7 @@ public final class OptionsScreen extends AbstractNavigationScreen {
     protected void updateNavOK(int index) {
         if (isOKPressed(index)) {
             super.updateNavOK();
+            menuNavClip.play(false);
             switch (index) {
                 case 0:
                     gameController.switchState(GameController.State.GAME_OPTIONS);

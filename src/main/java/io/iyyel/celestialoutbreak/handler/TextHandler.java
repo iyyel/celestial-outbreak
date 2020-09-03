@@ -248,11 +248,9 @@ public final class TextHandler {
     public final String SOUND_FILE_NAME_BALL_HIT = "ball_hit.wav";
     public final String SOUND_FILE_NAME_BALL_RESET = "ball_reset.wav";
     public final String SOUND_FILE_NAME_BLOCK_DESTROYED = "block_destroyed.wav";
-    public final String SOUND_FILE_NAME_MENU_BTN_NAV = "menu_nav.wav";
-    public final String SOUND_FILE_NAME_MENU_BTN_AUX = "menu_aux.wav";
+    public final String SOUND_FILE_NAME_MENU_BTN_NAV = "menu_key_nav.wav";
+    public final String SOUND_FILE_NAME_MENU_BTN_AUX = "menu_key_aux.wav";
     public final String SOUND_FILE_NAME_BAD_ACTION = "bad_action.wav";
-    public final String SOUND_FILE_NAME_POWERUP_HIT = "powerup_hit.wav";
-    public final String SOUND_FILE_NAME_MENU_TOGGLE_OPTION = "menu_toggle_option.wav";
 
     public final String SOUND_FILE_NAME_SUN_LEVEL = "sun_level.wav";
     public final String SOUND_FILE_NAME_MOON_LEVEL = "moon_level.wav";
@@ -264,6 +262,9 @@ public final class TextHandler {
     public final String SOUND_FILE_NAME_SATURN_LEVEL = "saturn_level.wav";
     public final String SOUND_FILE_NAME_BLACKHOLE_LEVEL = "blackhole_level.wav";
 
+    public final String SOUND_FILE_NAME_POWERUP_SPAWN = "powerup_spawn.wav";
+    public final String SOUND_FILE_NAME_POWERUP_COLLIDE = "powerup_collide.wav";
+
     /* Local sound file paths. */
     public final String SOUND_FILE_LOCAL_PATH_MENU = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU;
     public final String SOUND_FILE_LOCAL_PATH_PAUSE = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_PAUSE;
@@ -273,8 +274,6 @@ public final class TextHandler {
     public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_NAV = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU_BTN_NAV;
     public final String SOUND_FILE_LOCAL_PATH_MENU_BTN_AUX = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU_BTN_AUX;
     public final String SOUND_FILE_LOCAL_PATH_BAD_ACTION = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BAD_ACTION;
-    public final String SOUND_FILE_LOCAL_PATH_POWERUP_HIT = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_POWERUP_HIT;
-    public final String SOUND_FILE_LOCAL_PATH_MENU_TOGGLE_OPTION = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU_TOGGLE_OPTION;
 
     public final String SOUND_FILE_LOCAL_PATH_SUN_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_SUN_LEVEL;
     public final String SOUND_FILE_LOCAL_PATH_MOON_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MOON_LEVEL;
@@ -286,6 +285,9 @@ public final class TextHandler {
     public final String SOUND_FILE_LOCAL_PATH_SATURN_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_SATURN_LEVEL;
     public final String SOUND_FILE_LOCAL_PATH_BLACKHOLE_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BLACKHOLE_LEVEL;
 
+    public final String SOUND_FILE_LOCAL_PATH_POWERUP_SPAWN = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_POWERUP_SPAWN;
+    public final String SOUND_FILE_LOCAL_PATH_POWERUP_COLLIDE = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_POWERUP_COLLIDE;
+
     /* Client sound file paths. */
     public final String SOUND_FILE_CLIENT_PATH_MENU = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU;
     public final String SOUND_FILE_CLIENT_PATH_PAUSE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_PAUSE;
@@ -295,8 +297,6 @@ public final class TextHandler {
     public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_NAV;
     public final String SOUND_FILE_CLIENT_PATH_MENU_BTN_AUX = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_BTN_AUX;
     public final String SOUND_FILE_CLIENT_PATH_BAD_ACTION = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BAD_ACTION;
-    public final String SOUND_FILE_CLIENT_PATH_POWERUP_HIT = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_POWERUP_HIT;
-    public final String SOUND_FILE_CLIENT_PATH_MENU_TOGGLE_OPTION = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU_TOGGLE_OPTION;
 
     public final String SOUND_FILE_CLIENT_PATH_SUN_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_SUN_LEVEL;
     public final String SOUND_FILE_CLIENT_PATH_MOON_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MOON_LEVEL;
@@ -307,6 +307,9 @@ public final class TextHandler {
     public final String SOUND_FILE_CLIENT_PATH_JUPITER_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_JUPITER_LEVEL;
     public final String SOUND_FILE_CLIENT_PATH_SATURN_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_SATURN_LEVEL;
     public final String SOUND_FILE_CLIENT_PATH_BLACKHOLE_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BLACKHOLE_LEVEL;
+
+    public final String SOUND_FILE_CLIENT_PATH_POWERUP_SPAWN = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_POWERUP_SPAWN;
+    public final String SOUND_FILE_CLIENT_PATH_POWERUP_COLLIDE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_POWERUP_COLLIDE;
 
     public String getClientSoundFilePath(String fileName) {
         return SOUND_DIR_PATH + fs + fileName;
@@ -379,6 +382,8 @@ public final class TextHandler {
     public final String PROP_KEY_POWERUP_EFFECT_HEIGHT = "LEVEL_POWERUP_EFFECT_HEIGHT";
     public final String PROP_KEY_POWERUP_EFFECT_COLOR = "LEVEL_POWERUP_EFFECT_COLOR";
     public final String PROP_KEY_POWERUP_EFFECT_SPEED = "LEVEL_POWERUP_EFFECT_SPEED";
+    public final String PROP_KEY_POWERUP_SPAWN_SOUND_FILE_NAME = "LEVEL_POWERUP_SPAWN_SOUND_FILE_NAME";
+    public final String PROP_KEY_POWERUP_COLLIDE_SOUND_FILE_NAME = "LEVEL_POWERUP_COLLIDE_SOUND_FILE_NAME";
 
     public String powerUpPropNumbered(String pKey, int num) {
         return pKey.substring(0, 13) + "_" + num + "_" + pKey.substring(14);

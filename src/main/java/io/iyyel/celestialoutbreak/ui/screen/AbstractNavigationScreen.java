@@ -33,7 +33,7 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
         this.btnWrapAmount = btnAmount;
     }
 
-    protected abstract void updateNavUse(int index);
+    protected abstract void updateNavAux(int index);
 
     protected abstract void updateNavOK(int index);
 
@@ -83,7 +83,6 @@ public abstract class AbstractNavigationScreen extends AbstractScreen {
             selectedIndex = 0;
             isFirstRender = true;
         }
-
         super.updateNavCancel(state);
     }
 

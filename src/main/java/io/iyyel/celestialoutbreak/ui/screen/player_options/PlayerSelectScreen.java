@@ -19,13 +19,13 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void updateNavUse(int index) {
+    protected void updateNavAux(int index) {
         if (isAuxPressed(index)) {
             String selectedPlayer = playerDAO.getPlayers().get(index);
 
             try {
                 if (!selectedPlayer.equalsIgnoreCase(playerDAO.getSelectedPlayer())) {
-                    menuUseClip.play(false);
+                    menuAuxClip.play(false);
                     playerDAO.selectPlayer(selectedPlayer);
                     try {
                         playerDAO.savePlayerDTO();
@@ -60,7 +60,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
         updateNavRight();
         updateNavOK(selectedIndex);
         updateNavCancel(gameController.getPrevState());
-        updateNavUse(selectedIndex);
+        updateNavAux(selectedIndex);
         updatePlayerColors();
         updateSelectedButtonColor(buttons);
     }
@@ -77,7 +77,7 @@ public final class PlayerSelectScreen extends AbstractNavigationScreen {
 
         drawScreenTitles(textHandler.TITLE_SELECT_PLAYER_SCREEN, g);
         renderButtons(buttons, g);
-        drawToolTip("Press '" + textHandler.BTN_CONTROL_AUX + "' to select a player.", g);
+        drawToolTip("Press " + textHandler.BTN_CONTROL_AUX + " to select a player.", g);
         drawInfoPanel(g);
     }
 

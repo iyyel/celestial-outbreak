@@ -27,14 +27,14 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
         super(navStyle, btnAmount, btnWrapAmount, gameController);
     }
 
-    protected void updateNavUse(int index) {
+    protected void updateNavAux(int index) {
         if (isAuxPressed(index)) {
             String selectedPlayer = playerList.get(index);
             try {
                 if (selectedPlayer.equals(playerDAO.getSelectedPlayer())) {
                     menuBadClip.play(false);
                 } else {
-                    menuUseClip.play(false);
+                    menuAuxClip.play(false);
                     // invert
                     deleteMarkings[index] = !deleteMarkings[index];
                 }
@@ -53,7 +53,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
                     selectedIndex = 0;
                     tooltipString = origToolTip;
                     isDeleting = false;
-                    menuUseClip.play(false);
+                    menuNavClip.play(false);
                     deletePlayers();
                     updatePlayerData();
                 } else {
@@ -62,9 +62,8 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
             } else {
                 if (isAnyMarkedPlayers()) {
                     resetInputTimer();
-                    menuUseClip.play(false);
+                    menuNavClip.play(false);
                     tooltipString = "Are you sure you want to delete marked players?";
-                    menuUseClip.play(false);
                     isDeleting = true;
                 } else {
                     menuBadClip.play(false);
@@ -82,7 +81,7 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
         updateNavRight();
         updateNavOK(selectedIndex);
         updateNavCancel(gameController.getPrevState());
-        updateNavUse(selectedIndex);
+        updateNavAux(selectedIndex);
         updatePlayerColors();
         updateSelectedButtonColor(buttons);
     }
@@ -93,6 +92,9 @@ public final class PlayerDeleteScreen extends AbstractNavigationScreen {
             isFirstRender = false;
             selectedIndex = 0;
             updatePlayerData();
+            tooltipString = origToolTip;
+            isDeleting = false;
+            resetDeletions();
         }
 
         /* Render game title */

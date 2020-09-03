@@ -8,11 +8,14 @@ public final class PaddleEffect extends Effect {
     private final Color color;
     private final int speed;
 
-    public PaddleEffect(int duration, Dimension dim, Color color, int speed) {
+    public PaddleEffect(int duration, Dimension dim, Color color, int speed,
+                        String spawnSoundFileName, String collideSoundFileName) {
         super(duration);
         this.dim = dim;
         this.color = color;
         this.speed = speed;
+        this.spawnSoundFileName = spawnSoundFileName;
+        this.collideSoundFileName = collideSoundFileName;
     }
 
     public Dimension getDim() {

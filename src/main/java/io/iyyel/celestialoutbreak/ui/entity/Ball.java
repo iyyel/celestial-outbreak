@@ -3,6 +3,7 @@ package io.iyyel.celestialoutbreak.ui.entity;
 import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.level.Level;
 import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
+import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
@@ -222,6 +223,7 @@ public final class Ball extends AbstractMobileEntity {
                 level.getPowerUpSpeed(),
                 level.getPowerUpStyle(), screenHeight, paddle, this, level.getRandomEffect());
 
+        powerUp.playSpawnClip();
         powerUpHandler.spawnPowerUp(powerUp);
     }
 

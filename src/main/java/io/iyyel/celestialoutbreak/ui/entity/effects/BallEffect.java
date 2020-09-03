@@ -8,11 +8,14 @@ public final class BallEffect extends Effect {
     private final Color color;
     private final int speed;
 
-    public BallEffect(int duration, Dimension dim, Color color, int speed) {
+    public BallEffect(int duration, Dimension dim, Color color, int speed,
+                      String spawnSoundFileName, String collideSoundFileName) {
         super(duration);
         this.dim = dim;
         this.color = color;
         this.speed = speed;
+        this.spawnSoundFileName = spawnSoundFileName;
+        this.collideSoundFileName = collideSoundFileName;
     }
 
     public Dimension getDim() {

@@ -30,7 +30,7 @@ public class PlayScreen extends AbstractScreen {
 
         if (inputHandler.isPausePressed() && isInputAvailable()) {
             resetInputTimer();
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             levelHandler.getActiveLevel().pauseSound();
             util.pauseTimer();
             gameController.switchState(GameController.State.PAUSE);

@@ -59,7 +59,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
         if (inputHandler.isAuxPressed() && !inputHandler.isInputMode() && !isAcceptMode && !isPlayerCreated && isInputAvailable()) {
             resetInputTimer();
             inputHandler.setInputMode(true);
-            menuUseClip.play(false);
+            menuAuxClip.play(false);
             statusString = "Enter a player name. Press " + textHandler.BTN_CONTROL_AUX + " when done.";
         }
 
@@ -77,7 +77,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
 
                 isAcceptMode = true;
                 inputHandler.setInputMode(false);
-                menuUseClip.play(false);
+                menuAuxClip.play(false);
                 statusString = "Create player " + name + "? Press " + textHandler.BTN_CONTROL_OK + " to confirm or " + textHandler.BTN_CONTROL_CANCEL + " to go back.";
             } else if (name.length() < 3) {
                 statusString = "Name is too small.";
@@ -93,6 +93,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
             String name = inputHandler.getUserInput();
             isAcceptMode = false;
             inputHandler.setInputMode(false);
+            menuNavClip.play(false);
             createPlayer(name);
 
             if (isPlayerCreated) {
@@ -112,6 +113,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
             isAcceptMode = false;
             isFirstUpdate = true;
             inputHandler.setInputMode(false);
+            menuNavClip.play(false);
             exitMenu();
         }
 
@@ -120,7 +122,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
             inputHandler.setUserInput("");
             isAcceptMode = false;
             inputHandler.setInputMode(false);
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             statusString = INIT_STATUS_STRING;
         }
 
@@ -177,17 +179,14 @@ public final class PlayerCreateScreen extends AbstractScreen {
 
     private void exitMenu() {
         if (playerDAO.getPlayers().isEmpty() && gameController.getPrevState() == GameController.State.WELCOME) {
-            menuUseClip.play(false);
             gameController.switchState(GameController.State.WELCOME);
         } else if (!playerDAO.getPlayers().isEmpty()) {
-            menuUseClip.play(false);
             if (gameController.getPrevState() == GameController.State.NONE || gameController.getPrevState() == GameController.State.WELCOME) {
                 gameController.switchState(GameController.State.MAIN);
             } else {
                 gameController.switchState(gameController.getPrevState());
             }
         } else {
-            menuUseClip.play(false);
             gameController.switchState(GameController.State.WELCOME);
         }
     }

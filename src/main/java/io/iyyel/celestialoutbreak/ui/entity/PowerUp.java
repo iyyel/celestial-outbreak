@@ -1,5 +1,6 @@
 package io.iyyel.celestialoutbreak.ui.entity;
 
+import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
 import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
 import io.iyyel.celestialoutbreak.ui.entity.effects.PaddleEffect;
@@ -8,11 +9,16 @@ import java.awt.*;
 
 public final class PowerUp extends AbstractMobileEntity {
 
+    private final SoundHandler soundHandler = SoundHandler.getInstance();
+
     private final PowerUp.Style style;
     private final int screenHeight;
     private final Paddle paddle;
     private final Ball ball;
     private final Effect effect;
+
+    private final SoundHandler.SoundClip spawnClip;
+    private final SoundHandler.SoundClip collideClip;
 
     public enum Style {
         CIRCLE,
@@ -27,6 +33,8 @@ public final class PowerUp extends AbstractMobileEntity {
         this.paddle = paddle;
         this.ball = ball;
         this.effect = effect;
+        spawnClip = soundHandler.getSoundClip(effect.getSpawnSoundFileName());
+        collideClip = soundHandler.getSoundClip(effect.getCollideSoundFileName());
     }
 
     @Override
@@ -69,6 +77,14 @@ public final class PowerUp extends AbstractMobileEntity {
         } else if (effect instanceof BallEffect) {
             ball.applyEffect((BallEffect) effect);
         }
+    }
+
+    public void playSpawnClip() {
+        spawnClip.play(false);
+    }
+
+    public void playCollideClip() {
+        collideClip.play(false);
     }
 
 }

@@ -31,14 +31,14 @@ public final class PauseScreen extends AbstractScreen {
         if (inputHandler.isOKPressed() && isInputAvailable() && !isExiting) {
             resetInputTimer();
             isExiting = true;
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             pauseStatusText = "Are you sure you want to exit the level?";
         }
 
         if (inputHandler.isOKPressed() && isInputAvailable() && isExiting) {
             resetInputTimer();
             isFirstUpdate = true;
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             pauseStatusText = "Exiting the level will result in lost progress.";
             levelHandler.resetActiveLevel();
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_PAUSE).stop();
@@ -50,7 +50,7 @@ public final class PauseScreen extends AbstractScreen {
         if (inputHandler.isPausePressed() && isInputAvailable()) {
             resetInputTimer();
             isFirstUpdate = true;
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             pauseStatusText = "Exiting the level will result in lost progress.";
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_PAUSE).stop();
             levelHandler.getActiveLevel().playSound();

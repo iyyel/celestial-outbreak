@@ -25,13 +25,14 @@ public final class PlayerOptionsScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void updateNavUse(int index) {
+    protected void updateNavAux(int index) {
 
     }
 
     @Override
     protected void updateNavOK(int index) {
         if (isOKPressed(index)) {
+            menuNavClip.play(false);
             switch (index) {
                 case 0:
                     gameController.switchState(GameController.State.PLAYER_SELECT);

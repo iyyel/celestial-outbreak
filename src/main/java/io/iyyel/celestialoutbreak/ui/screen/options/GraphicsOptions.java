@@ -20,8 +20,6 @@ public final class GraphicsOptions extends AbstractNavigationScreen {
     private final FileHandler fileHandler = FileHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
 
-    private final SoundHandler.SoundClip optionToggle = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_TOGGLE_OPTION);
-
     public GraphicsOptions(NavStyle navStyle, int btnAmount, GameController gameController) {
         super(navStyle, btnAmount, gameController);
         buttons = new Button[btnAmount];
@@ -42,7 +40,7 @@ public final class GraphicsOptions extends AbstractNavigationScreen {
         updateNavDown();
         updateNavLeft();
         updateNavRight();
-        updateNavUse(selectedIndex);
+        updateNavAux(selectedIndex);
         updateSelectedButtonColor(buttons);
         updateNavCancel(GameController.State.OPTIONS);
     }
@@ -60,9 +58,9 @@ public final class GraphicsOptions extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void updateNavUse(int index) {
+    protected void updateNavAux(int index) {
         if (isAuxPressed(index)) {
-            optionToggle.play(false);
+            menuAuxClip.play(false);
             switch (index) {
                 case 0:
                     String pValue = String.valueOf(!optionsHandler.isFpsLockEnabled());

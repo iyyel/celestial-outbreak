@@ -24,7 +24,7 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
     protected final IPlayerDAO playerDAO = PlayerDAO.getInstance();
 
     protected final SoundHandler.SoundClip menuNavClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV);
-    protected final SoundHandler.SoundClip menuUseClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_AUX);
+    protected final SoundHandler.SoundClip menuAuxClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_MENU_BTN_AUX);
     protected final SoundHandler.SoundClip menuBadClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BAD_ACTION);
 
     private final Font titleFont = util.getGameFont().deriveFont(52F);
@@ -80,14 +80,13 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
     protected void updateNavOK() {
         if (inputHandler.isOKPressed() && isInputAvailable()) {
             resetInputTimer();
-            menuUseClip.play(false);
         }
     }
 
     protected void updateNavCancel(GameController.State state) {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             gameController.switchState(state);
         }
     }

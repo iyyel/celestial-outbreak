@@ -15,3 +15,4 @@
 15. If you disable sound and then enable sound again, sound does not start again before you exit the current menu.
 16. Options activate/deactivate sound.
 17. Make powerups able to have customizable sounds. For example, a good powerup can have a good sound, a bad powerup can have a bad sound.
+18. Powerup spawn/collide sounds not working.

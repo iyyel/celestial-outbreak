@@ -29,7 +29,7 @@ public final class MainScreen extends AbstractNavigationScreen {
     }
 
     @Override
-    protected void updateNavUse(int index) {
+    protected void updateNavAux(int index) {
 
     }
 
@@ -37,6 +37,7 @@ public final class MainScreen extends AbstractNavigationScreen {
     protected void updateNavOK(int index) {
         if (isOKPressed(index)) {
             super.updateNavOK();
+            menuNavClip.play(false);
             switch (index) {
                 case 0:
                     gameController.switchState(GameController.State.SELECT_LEVEL);

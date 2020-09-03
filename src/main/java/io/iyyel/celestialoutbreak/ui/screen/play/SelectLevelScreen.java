@@ -64,7 +64,7 @@ public class SelectLevelScreen extends AbstractScreen {
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
             selected = 0;
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             gameController.switchState(GameController.State.MAIN);
         }
 
@@ -98,7 +98,7 @@ public class SelectLevelScreen extends AbstractScreen {
 
                 if (inputHandler.isOKPressed() && isInputAvailable()) {
                     resetInputTimer();
-                    menuUseClip.play(false);
+                    menuNavClip.play(false);
                     selected = 0;
 
                     // Set current active level to i.

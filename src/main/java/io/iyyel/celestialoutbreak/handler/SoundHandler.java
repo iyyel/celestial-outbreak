@@ -29,8 +29,6 @@ public final class SoundHandler {
             put(textHandler.SOUND_FILE_NAME_MENU_BTN_NAV, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_NAV));
             put(textHandler.SOUND_FILE_NAME_MENU_BTN_AUX, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_AUX));
             put(textHandler.SOUND_FILE_NAME_BAD_ACTION, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_BAD_ACTION));
-            put(textHandler.SOUND_FILE_NAME_POWERUP_HIT, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_POWERUP_HIT));
-            put(textHandler.SOUND_FILE_NAME_MENU_TOGGLE_OPTION, new SoundClip(textHandler.SOUND_FILE_CLIENT_PATH_MENU_TOGGLE_OPTION));
         }
     };
 

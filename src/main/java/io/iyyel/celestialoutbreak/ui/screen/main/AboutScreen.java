@@ -18,7 +18,7 @@ public final class AboutScreen extends AbstractScreen {
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             gameController.switchState(State.MAIN);
         }
     }

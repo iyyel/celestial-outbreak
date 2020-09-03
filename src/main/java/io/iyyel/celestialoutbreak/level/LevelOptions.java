@@ -3,6 +3,7 @@ package io.iyyel.celestialoutbreak.level;
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
+import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.ui.entity.Ball;
 import io.iyyel.celestialoutbreak.ui.entity.Block;
@@ -20,6 +21,7 @@ public final class LevelOptions {
     private final TextHandler textHandler = TextHandler.getInstance();
     private final FileHandler fileHandler = FileHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
+    private final SoundHandler soundHandler = SoundHandler.getInstance();
 
     /*
      * Level options.
@@ -128,29 +130,39 @@ public final class LevelOptions {
 
         for (int i = 0; i < powerUpAmount; i++) {
             String pKeyType = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_TYPE, i);
-            String effectType = fileHandler.readPropertyFromFile(pKeyType, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE);
+            String effectType = fileHandler.readPropertyFromFile(pKeyType, fileName);
 
             String pKeyDuration = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_DURATION, i);
-            int effectDuration = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyDuration, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE));
+            int effectDuration = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyDuration, fileName));
 
             String pKeyWidth = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_WIDTH, i);
-            int effectWidth = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyWidth, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE));
+            int effectWidth = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyWidth, fileName));
 
             String pKeyHeight = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_HEIGHT, i);
-            int effectHeight = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyHeight, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE));
+            int effectHeight = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyHeight, fileName));
 
             Dimension effectDim = new Dimension(effectWidth, effectHeight);
 
             String pKeyColor = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_COLOR, i);
-            Color effectColor = new Color(Integer.decode(fileHandler.readPropertyFromFile(pKeyColor, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE)));
+            Color effectColor = new Color(Integer.decode(fileHandler.readPropertyFromFile(pKeyColor, fileName)));
 
             String pKeySpeed = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_SPEED, i);
-            int effectSpeed = Integer.parseInt(fileHandler.readPropertyFromFile(pKeySpeed, textHandler.LEVEL_FILE_CLIENT_PATH_NEPTUNE));
+            int effectSpeed = Integer.parseInt(fileHandler.readPropertyFromFile(pKeySpeed, fileName));
+
+            String pEffectSpawnSound = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_SPAWN_SOUND_FILE_NAME, i);
+            String effectSpawnSound = fileHandler.readPropertyFromFile(pEffectSpawnSound, fileName);
+            soundHandler.addSoundClip(effectSpawnSound, textHandler.getClientSoundFilePath(effectSpawnSound));
+
+            String pEffectCollideSound = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_COLLIDE_SOUND_FILE_NAME, i);
+            String effectCollideSound = fileHandler.readPropertyFromFile(pEffectCollideSound, fileName);
+            soundHandler.addSoundClip(effectCollideSound, textHandler.getClientSoundFilePath(effectCollideSound));
 
             if (effectType.equals("Paddle")) {
-                effects[i] = new PaddleEffect(effectDuration, effectDim, effectColor, effectSpeed);
+                effects[i] = new PaddleEffect(effectDuration, effectDim,
+                        effectColor, effectSpeed, effectSpawnSound, effectCollideSound);
             } else {
-                effects[i] = new BallEffect(effectDuration, effectDim, effectColor, effectSpeed);
+                effects[i] = new BallEffect(effectDuration, effectDim,
+                        effectColor, effectSpeed, effectSpawnSound, effectCollideSound);
             }
         }
 

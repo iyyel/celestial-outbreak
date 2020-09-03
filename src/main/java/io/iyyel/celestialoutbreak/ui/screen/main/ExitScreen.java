@@ -17,12 +17,13 @@ public final class ExitScreen extends AbstractScreen {
 
         if (inputHandler.isOKPressed() && isInputAvailable()) {
             resetInputTimer();
+            menuNavClip.play(false);
             gameController.stop();
         }
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             if (gameController.getPrevState() != GameController.State.NONE &&
                     gameController.getPrevState() == GameController.State.WELCOME) {
                 gameController.switchState(GameController.State.WELCOME);

@@ -10,6 +10,8 @@ public abstract class Effect {
     protected final int duration;
     protected boolean active = false;
     protected long startTime = 0;
+    protected String spawnSoundFileName;
+    protected String collideSoundFileName;
 
     public Effect(int duration) {
         this.duration = duration;
@@ -35,6 +37,14 @@ public abstract class Effect {
 
     public long getStartTime() {
         return startTime;
+    }
+
+    public String getSpawnSoundFileName() {
+        return spawnSoundFileName;
+    }
+
+    public String getCollideSoundFileName() {
+        return collideSoundFileName;
     }
 
 }

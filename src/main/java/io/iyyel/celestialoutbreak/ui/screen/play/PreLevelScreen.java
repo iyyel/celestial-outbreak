@@ -23,7 +23,7 @@ public final class PreLevelScreen extends AbstractScreen {
         if (inputHandler.isOKPressed() && isInputAvailable()) {
             resetInputTimer();
             soundHandler.stopAllSound();
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             levelHandler.getActiveLevel().playSound();
             util.resetTimer();
             util.startTimer();

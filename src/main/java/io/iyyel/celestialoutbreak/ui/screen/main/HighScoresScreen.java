@@ -55,7 +55,7 @@ public final class HighScoresScreen extends AbstractScreen {
 
         if (inputHandler.isCancelPressed() && isInputAvailable()) {
             resetInputTimer();
-            menuUseClip.play(false);
+            menuNavClip.play(false);
             isFirstRender = true;
             gameController.switchState(GameController.State.MAIN);
         }
