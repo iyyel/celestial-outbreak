@@ -44,6 +44,7 @@ public final class WelcomeScreen extends AbstractNavigationScreen {
     protected void updateNavOK(int index) {
         if (isOKPressed(index)) {
             super.updateNavOK();
+            menuNavClip.play(false);
             switch (index) {
                 case 0:
                     doProceed();

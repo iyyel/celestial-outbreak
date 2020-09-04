@@ -75,9 +75,11 @@ public final class GamePanel extends AbstractScreen {
 
             // spacing
             pos += 50;
-
             String livesLabel = "Lives: ";
             String livesValue = activeLevel.getPlayerLife() + "";
+            if (optionsHandler.isGodModeEnabled()) {
+                livesValue = "GOD";
+            }
             g.setColor(titleColor);
             g.drawString(livesLabel, pos, 714);
             g.setColor(valueColor);

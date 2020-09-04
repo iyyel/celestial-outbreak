@@ -100,7 +100,8 @@ public final class FileHandler {
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MENU_BTN_AUX, textHandler.SOUND_FILE_CLIENT_PATH_MENU_BTN_AUX);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_BAD_ACTION, textHandler.SOUND_FILE_CLIENT_PATH_BAD_ACTION);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_POWERUP_SPAWN, textHandler.SOUND_FILE_CLIENT_PATH_POWERUP_SPAWN);
-        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_POWERUP_COLLIDE, textHandler.SOUND_FILE_CLIENT_PATH_POWERUP_COLLIDE);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_POWERUP_GOOD_COLLIDE, textHandler.SOUND_FILE_CLIENT_PATH_POWERUP_GOOD_COLLIDE);
+        fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_POWERUP_BAD_COLLIDE, textHandler.SOUND_FILE_CLIENT_PATH_POWERUP_BAD_COLLIDE);
 
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_SUN_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_SUN_LEVEL);
         fileUtil.copyFile(textHandler.SOUND_FILE_LOCAL_PATH_MOON_LEVEL, textHandler.SOUND_FILE_CLIENT_PATH_MOON_LEVEL);

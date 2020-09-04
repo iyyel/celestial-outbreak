@@ -161,6 +161,10 @@ public class SelectLevelScreen extends AbstractScreen {
                 String score = textHandler.getFixedString("Your Score: " + scoreTmp, 20);
                 String time = textHandler.getFixedString("Your Time: " + textHandler.getTimeString(timeTmp), 17);
 
+                if (optionsHandler.isGodModeEnabled()) {
+                    playerLife = "Life: GOD";
+                }
+
                 g.drawString(blockHealth, levelRects[i].x + 5, levelRects[i].y + 60);
                 g.drawString(playerLife, levelRects[i].x + 5, levelRects[i].y + 80);
                 g.drawString(score, levelRects[i].x + 5, levelRects[i].y + 100);

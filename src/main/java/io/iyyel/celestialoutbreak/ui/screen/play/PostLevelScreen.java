@@ -84,16 +84,17 @@ public final class PostLevelScreen extends AbstractScreen {
             } else {
                 drawCenteredText("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
             }
-            drawCenteredText("You are victorious! The " + levelHandler.getActiveLevel().getName() + " level has been defeated.", 0, g);
+            drawCenteredText("You are victorious! " + levelHandler.getActiveLevel().getName() + " has been defeated.", 0, g);
+
+            if (optionsHandler.isGodModeEnabled()) {
+                drawCenteredText("God Mode scores are not recorded.", 150, g);
+            }
         } else {
-            drawCenteredText("You have lost. The " + levelHandler.getActiveLevel().getName() + " level shines in grace upon you.", 0, g);
+            drawCenteredText("You have lost. " + levelHandler.getActiveLevel().getName() + " shines in grace upon you.", 0, g);
             drawCenteredText("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
         }
         drawCenteredText("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
 
-        if (optionsHandler.isGodModeEnabled()) {
-            drawCenteredText("God Mode scores are not recorded.", 150, g);
-        }
 
         drawInfoPanel(g);
     }

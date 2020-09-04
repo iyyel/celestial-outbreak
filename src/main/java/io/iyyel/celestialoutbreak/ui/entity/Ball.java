@@ -3,7 +3,6 @@ package io.iyyel.celestialoutbreak.ui.entity;
 import io.iyyel.celestialoutbreak.handler.*;
 import io.iyyel.celestialoutbreak.level.Level;
 import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
-import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
@@ -141,25 +140,22 @@ public final class Ball extends AbstractMobileEntity {
     private void checkBottomCollision() {
         /* Ball hit bottom y-axis. */
         if (pos.y > (screenHeight - dim.height)) {
-            if (optionsHandler.isGodModeEnabled()) {
-                velocity.y = -speed;
-                ballHitClip.play(false);
-            } else {
-                isStuck = true;
+            isStuck = true;
 
-                // player lost a life
+            // player lost a life
+            if (!optionsHandler.isGodModeEnabled()) {
                 levelHandler.getActiveLevel().decPlayerLife();
-
-                pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
-
-                velocity.x = 0;
-                velocity.y = 0;
-
-                ballResetClip.play(false);
-
-                logHandler.log(textHandler.vBallTouchedYAxisBottomMsg, "checkBottomCollision", LogHandler.LogLevel.INFO, true);
-                logHandler.log("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife(), "checkBottomCollision", LogHandler.LogLevel.INFO, true);
             }
+
+            pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
+
+            velocity.x = 0;
+            velocity.y = 0;
+
+            ballResetClip.play(false);
+
+            logHandler.log(textHandler.vBallTouchedYAxisBottomMsg, "checkBottomCollision", LogHandler.LogLevel.INFO, true);
+            logHandler.log("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife(), "checkBottomCollision", LogHandler.LogLevel.INFO, true);
         }
     }
 

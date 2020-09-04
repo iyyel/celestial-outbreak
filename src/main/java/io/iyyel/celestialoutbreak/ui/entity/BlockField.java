@@ -56,10 +56,12 @@ public final class BlockField {
     }
 
     public void render(Graphics2D g) {
-        /* Disable anti-aliasing for blocks due to performance reasons. */
+        /* Disable anti-aliasing for blocks due to performance reasons. If circle blocks, let it be enabled. */
         if (optionsHandler.isAntiAliasingEnabled()) {
-            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
-            g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
+            if (style.equals(Block.Style.SQUARE)) {
+                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+                g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
+            }
         }
 
         /* Render the blocks if they exist, i.e. if they aren't equal to null. */
@@ -71,8 +73,10 @@ public final class BlockField {
 
         /* Re-enables anti-aliasing when blocks have been rendered. */
         if (optionsHandler.isAntiAliasingEnabled()) {
-            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            if (style.equals(Block.Style.SQUARE)) {
+                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            }
         }
     }
 

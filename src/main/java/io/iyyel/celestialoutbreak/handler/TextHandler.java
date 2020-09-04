@@ -263,7 +263,8 @@ public final class TextHandler {
     public final String SOUND_FILE_NAME_BLACKHOLE_LEVEL = "blackhole_level.wav";
 
     public final String SOUND_FILE_NAME_POWERUP_SPAWN = "powerup_spawn.wav";
-    public final String SOUND_FILE_NAME_POWERUP_COLLIDE = "powerup_collide.wav";
+    public final String SOUND_FILE_NAME_POWERUP_GOOD_COLLIDE = "powerup_good_collide.wav";
+    public final String SOUND_FILE_NAME_POWERUP_BAD_COLLIDE = "powerup_bad_collide.wav";
 
     /* Local sound file paths. */
     public final String SOUND_FILE_LOCAL_PATH_MENU = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_MENU;
@@ -286,7 +287,8 @@ public final class TextHandler {
     public final String SOUND_FILE_LOCAL_PATH_BLACKHOLE_LEVEL = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_BLACKHOLE_LEVEL;
 
     public final String SOUND_FILE_LOCAL_PATH_POWERUP_SPAWN = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_POWERUP_SPAWN;
-    public final String SOUND_FILE_LOCAL_PATH_POWERUP_COLLIDE = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_POWERUP_COLLIDE;
+    public final String SOUND_FILE_LOCAL_PATH_POWERUP_GOOD_COLLIDE = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_POWERUP_GOOD_COLLIDE;
+    public final String SOUND_FILE_LOCAL_PATH_POWERUP_BAD_COLLIDE = LOCAL_JAR_SOUND_DIR + fsJar + SOUND_FILE_NAME_POWERUP_BAD_COLLIDE;
 
     /* Client sound file paths. */
     public final String SOUND_FILE_CLIENT_PATH_MENU = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_MENU;
@@ -309,7 +311,8 @@ public final class TextHandler {
     public final String SOUND_FILE_CLIENT_PATH_BLACKHOLE_LEVEL = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_BLACKHOLE_LEVEL;
 
     public final String SOUND_FILE_CLIENT_PATH_POWERUP_SPAWN = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_POWERUP_SPAWN;
-    public final String SOUND_FILE_CLIENT_PATH_POWERUP_COLLIDE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_POWERUP_COLLIDE;
+    public final String SOUND_FILE_CLIENT_PATH_POWERUP_GOOD_COLLIDE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_POWERUP_GOOD_COLLIDE;
+    public final String SOUND_FILE_CLIENT_PATH_POWERUP_BAD_COLLIDE = SOUND_DIR_PATH + fs + SOUND_FILE_NAME_POWERUP_BAD_COLLIDE;
 
     public String getClientSoundFilePath(String fileName) {
         return SOUND_DIR_PATH + fs + fileName;

@@ -13,6 +13,6 @@
 13. Better icon.
 14. The first time you're making a new player, some text is at the screen. It quickly flashes away. Let's try to get rid of this small "flash".
 15. If you disable sound and then enable sound again, sound does not start again before you exit the current menu.
-16. Options activate/deactivate sound.
-17. Make powerups able to have customizable sounds. For example, a good powerup can have a good sound, a bad powerup can have a bad sound.
-18. Powerup spawn/collide sounds not working.
+16. Sometimes the ball will go out a different way after it has had a ball powerup.
+17. Sometimes a power up will have no visible effect on the Earth level. Is this only the earth level, or also more levels?
+18. Earth, Blackhole are designed done.
