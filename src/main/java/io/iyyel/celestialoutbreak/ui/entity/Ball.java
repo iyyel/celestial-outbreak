@@ -66,6 +66,7 @@ public final class Ball extends AbstractMobileEntity {
     public void update() {
         super.update();
         checkForStuck();
+        paddle.setBallHeight(dim.height);
 
         /* Check for collision. */
         checkPaddleCollision(paddle);
@@ -103,6 +104,7 @@ public final class Ball extends AbstractMobileEntity {
             pos.y += velocity.y;
         } else if (isStuck) {
             pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
+
             if (inputHandler.isAuxPressed()) {
                 isStuck = false;
                 velocity.y = -speed;
@@ -139,7 +141,8 @@ public final class Ball extends AbstractMobileEntity {
 
     private void checkBottomCollision() {
         /* Ball hit bottom y-axis. */
-        if (pos.y > (screenHeight - dim.height)) {
+        /* -35 because of Game Panel */
+        if (pos.y > (screenHeight - 35)) {
             isStuck = true;
 
             // player lost a life

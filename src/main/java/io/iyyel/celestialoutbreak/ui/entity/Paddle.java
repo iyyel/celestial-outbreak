@@ -16,15 +16,18 @@ public final class Paddle extends AbstractMobileEntity {
     private final int origSpeed;
 
     private final int screenWidth;
+    private final int screenHeight;
+    private int ballHeight;
 
     private PaddleEffect effect;
 
-    public Paddle(Point pos, Dimension dim, Color color, int speed, int screenWidth) {
+    public Paddle(Point pos, Dimension dim, Color color, int speed, int screenWidth, int screenHeight) {
         super(pos, dim, color, speed);
         this.origDim = super.dim;
         this.origColor = super.color;
         this.origSpeed = super.speed;
         this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
     }
 
     @Override
@@ -41,6 +44,15 @@ public final class Paddle extends AbstractMobileEntity {
 
         if (inputHandler.isRightPressed() && pos.x <= screenWidth - dim.width) {
             pos.x += speed;
+        }
+
+        if (inputHandler.isUpPressed() && pos.y - ballHeight > 0) {
+            pos.y -= speed;
+        }
+
+        /* Paddle can't go underneath the game panel, hence -35 pixels. */
+        if (inputHandler.isDownPressed() && pos.y <= screenHeight - 35) {
+            pos.y += speed;
         }
 
         updateEffect();
@@ -80,6 +92,10 @@ public final class Paddle extends AbstractMobileEntity {
                 effect = null;
             }
         }
+    }
+
+    public void setBallHeight(int ballHeight) {
+        this.ballHeight = ballHeight;
     }
 
 }

@@ -14,5 +14,13 @@
 14. The first time you're making a new player, some text is at the screen. It quickly flashes away. Let's try to get rid of this small "flash".
 15. If you disable sound and then enable sound again, sound does not start again before you exit the current menu.
 16. Sometimes the ball will go out a different way after it has had a ball powerup.
-17. Sometimes a power up will have no visible effect on the Earth level. Is this only the earth level, or also more levels?
-18. Earth, Blackhole are designed done.
+17. Sometimes a power up will have no visible effect on the Earth level. This happens to all levels, it seems.
+18. Blackhole, Earth, Jupiter, Mars (check again) powerups are done
+19. Add powerup log messages.
+20. Bugs when the ball hits the baddle backwards.
+
+
+1. If Ball is stuck to Paddle, ball is not able to break blocks.
+2. If Ball is stuck to Paddle, Ball is not able to move through blocks.
+3. Paddle is not able to move through blocks.
+2. If paddle with the ball on the paddle is trying to go to the top of the screen, don't make the ball able to go out of the screen.
