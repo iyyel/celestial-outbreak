@@ -8,7 +8,7 @@ import io.iyyel.celestialoutbreak.util.Util;
 import java.awt.*;
 import java.util.Random;
 
-public final class Ball extends AbstractMobileEntity {
+public final class Ball extends AbstractMovableEntity {
 
     private final Util util = Util.getInstance();
     private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
@@ -57,16 +57,14 @@ public final class Ball extends AbstractMobileEntity {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
         this.origDim = super.dim;
-        this.origColor = super.color;
+        this.origColor = super.col;
         this.origSpeed = super.speed;
         velocity = new Point(0, 0);
     }
 
     @Override
     public void update() {
-        super.update();
-        checkForStuck();
-        paddle.setBallHeight(dim.height);
+        move();
 
         /* Check for collision. */
         checkPaddleCollision(paddle);
@@ -82,11 +80,8 @@ public final class Ball extends AbstractMobileEntity {
 
     @Override
     public void render(Graphics2D g) {
-        if (isRenderStopped()) {
-            return;
-        }
+        g.setColor(col);
 
-        g.setColor(color);
         if (style.equals(Ball.Style.SQUARE)) {
             g.fillRect(pos.x, pos.y, dim.width, dim.height);
         } else if (style.equals(Ball.Style.CIRCLE)) {
@@ -98,11 +93,11 @@ public final class Ball extends AbstractMobileEntity {
         }
     }
 
-    private void checkForStuck() {
-        if (!isUpdateStopped() && !isStuck) {
+    private void move() {
+        if (!isStuck) {
             pos.x += velocity.x;
             pos.y += velocity.y;
-        } else if (isStuck) {
+        } else {
             pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
 
             if (inputHandler.isAuxPressed()) {
@@ -117,7 +112,9 @@ public final class Ball extends AbstractMobileEntity {
         if (pos.x < 0) {
             logHandler.log(textHandler.vBallTouchedXAxisLeftMsg, "checkLeftCollision", LogHandler.LogLevel.INFO, true);
             velocity.x = speed;
-            ballHitClip.play(false);
+            if (!isStuck) {
+                ballHitClip.play(false);
+            }
         }
     }
 
@@ -126,7 +123,9 @@ public final class Ball extends AbstractMobileEntity {
         if (pos.x > (screenWidth - dim.width)) {
             logHandler.log(textHandler.vBallTouchedXAxisRightMsg, "checkRightCollision", LogHandler.LogLevel.INFO, true);
             velocity.x = -speed;
-            ballHitClip.play(false);
+            if (!isStuck) {
+                ballHitClip.play(false);
+            }
         }
     }
 
@@ -135,7 +134,9 @@ public final class Ball extends AbstractMobileEntity {
         if (pos.y < 0) {
             logHandler.log(textHandler.vBallTouchedYAxisTopMsg, "checkTopCollision", LogHandler.LogLevel.INFO, true);
             velocity.y = speed;
-            ballHitClip.play(false);
+            if (!isStuck) {
+                ballHitClip.play(false);
+            }
         }
     }
 
@@ -163,53 +164,64 @@ public final class Ball extends AbstractMobileEntity {
     }
 
     private void checkPaddleCollision(Paddle paddle) {
-        if (paddle.getBounds().intersects(getBounds())) {
-            if (paddleCollisionTimer == 0) {
-                velocity.y *= -1;
-
-                if (velocity.x < 0) {
-                    velocity.x = -speed;
-                } else {
-                    velocity.x = speed;
-                }
-
-                paddleCollisionTimer = PADDLE_COLLISION_TIMER_INITIAL;
-
-                soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
-
-                if (optionsHandler.isVerboseLogEnabled()) {
-                    logHandler.log(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer), "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
-                }
-            }
+        if (!paddle.intersects(this)) {
+            return;
         }
+
+        if (paddleCollisionTimer != 0) {
+            return;
+        }
+
+        velocity.y *= -1;
+
+        if (velocity.x < 0) {
+            velocity.x = -speed;
+        } else {
+            velocity.x = speed;
+        }
+
+        paddleCollisionTimer = PADDLE_COLLISION_TIMER_INITIAL;
+
+        ballHitClip.play(false);
+
+        if (optionsHandler.isVerboseLogEnabled()) {
+            logHandler.log(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer), "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
+        }
+
     }
 
     private void checkBlockCollision(BlockField blockField) {
-        for (int i = 0; i < blockField.getLength(); i++) {
-            if (blockField.get(i) != null && blockField.get(i).getBounds().intersects(getBounds())) {
-                velocity.y *= -1;
+        int blockIndex = blockField.checkForEntityIntersection(this);
 
-                // block was hit
-                blockField.hit(i);
+        /* No collision was found */
+        if (blockIndex == -1) {
+            return;
+        }
 
-                if (blockField.get(i).isDead()) {
-                    /* spawn powerup by chance if enabled */
-                    if (optionsHandler.isPowerUpEnabled()) {
-                        boolean spawn = new Random().nextInt(100) < levelHandler.getActiveLevel().getPowerUpChance();
-                        if (spawn) {
-                            spawnPowerUp(blockField.get(i), levelHandler.getActiveLevel());
-                            logHandler.log("Power up spawned!", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
-                        }
-                    }
+        /* If the ball is stuck and is colliding with a block */
+        if (isStuck) {
+            return;
+        }
 
-                    soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
-                    blockField.remove(i);
-                    logHandler.log("BlockField[" + i + "] has been destroyed.", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
-                } else {
-                    soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
-                    logHandler.log(textHandler.vBallBlockFieldCollisionMsg(i, blockField.get(i).getHealth()), "checkBlockCollision", LogHandler.LogLevel.INFO, true);
-                }
+        velocity.y *= -1;
+
+        // block was hit
+        blockField.hit(blockIndex);
+
+        if (blockField.get(blockIndex).isDead()) {
+            /* spawn powerup by chance */
+            boolean spawn = new Random().nextInt(100) < levelHandler.getActiveLevel().getPowerUpChance();
+            if (spawn) {
+                spawnPowerUp(blockField.get(blockIndex), levelHandler.getActiveLevel());
+                logHandler.log("Power up spawned!", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
             }
+
+            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
+            blockField.remove(blockIndex);
+            logHandler.log("BlockField[" + blockIndex + "] has been destroyed.", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
+        } else {
+            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
+            logHandler.log(textHandler.vBallBlockFieldCollisionMsg(blockIndex, blockField.get(blockIndex).getHitPoints()), "checkBlockCollision", LogHandler.LogLevel.INFO, true);
         }
     }
 
@@ -234,7 +246,7 @@ public final class Ball extends AbstractMobileEntity {
         this.effect = effect;
         this.effect.activate();
         this.dim = effect.getDim();
-        this.color = effect.getColor();
+        this.col = effect.getColor();
         this.speed = effect.getSpeed();
         updateVelocity(speed);
     }
@@ -246,7 +258,7 @@ public final class Ball extends AbstractMobileEntity {
                 effect.deactivate();
                 this.pos = new Point(pos.x + (dim.width / 2), pos.y + (dim.height / 2));
                 this.dim = origDim;
-                this.color = origColor;
+                this.col = origColor;
                 this.speed = origSpeed;
                 updateVelocity(speed);
                 effect = null;

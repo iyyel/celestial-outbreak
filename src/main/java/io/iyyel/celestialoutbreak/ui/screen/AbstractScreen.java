@@ -7,14 +7,14 @@ import io.iyyel.celestialoutbreak.handler.InputHandler;
 import io.iyyel.celestialoutbreak.handler.OptionsHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.ui.interfaces.IRenderable;
-import io.iyyel.celestialoutbreak.ui.interfaces.IUpdatable;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityUpdatable;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 
-public abstract class AbstractScreen implements IUpdatable, IRenderable {
+public abstract class AbstractScreen implements IEntityUpdatable, IEntityRenderable {
 
     protected final Util util = Util.getInstance();
     protected final OptionsHandler optionsHandler = OptionsHandler.getInstance();
@@ -53,9 +53,6 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
     protected final int screenWidth;
     protected final int screenHeight;
 
-    private int blockUpdateUpdates = 0;
-    private int blockRenderUpdates = 0;
-
     public AbstractScreen(GameController gameController) {
         this.gameController = gameController;
         this.screenWidth = gameController.getWidth();
@@ -67,14 +64,6 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
     @Override
     public void update() {
         decInputTimer();
-
-        if (isUpdateStopped()) {
-            blockUpdateUpdates--;
-        }
-
-        if (isRenderStopped()) {
-            blockRenderUpdates--;
-        }
     }
 
     protected void updateNavOK() {
@@ -89,26 +78,6 @@ public abstract class AbstractScreen implements IUpdatable, IRenderable {
             menuNavClip.play(false);
             gameController.switchState(state);
         }
-    }
-
-    @Override
-    public void stopUpdate(int updates) {
-        this.blockUpdateUpdates = updates;
-    }
-
-    @Override
-    public void stopRender(int updates) {
-        this.blockRenderUpdates = updates;
-    }
-
-    @Override
-    public boolean isUpdateStopped() {
-        return blockUpdateUpdates != 0;
-    }
-
-    @Override
-    public boolean isRenderStopped() {
-        return blockRenderUpdates != 0;
     }
 
     protected void drawCenteredText(String text, int y, Font font, Graphics2D g) {

@@ -1,57 +1,90 @@
 package io.iyyel.celestialoutbreak.ui.entity;
 
-import io.iyyel.celestialoutbreak.ui.interfaces.IRenderable;
-import io.iyyel.celestialoutbreak.ui.interfaces.IUpdatable;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityCollidable;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityUpdatable;
 
 import java.awt.*;
 
-public abstract class AbstractEntity implements IUpdatable, IRenderable {
+public abstract class AbstractEntity implements IEntityUpdatable, IEntityRenderable, IEntityCollidable<AbstractEntity> {
 
-    protected Point pos;
-    protected Dimension dim;
-    protected Color color;
+    protected enum Shape {
+        RECTANGLE,
+        ROUND_RECTANGLE,
+        OVAL
+    }
 
-    private int blockUpdateUpdates = 0;
-    private int blockRenderUpdates = 0;
+    protected final Point pos;
+    protected final Dimension dim;
+    protected final Shape shape;
+    protected Color col;
 
-    public AbstractEntity(Point pos, Dimension dim, Color color) {
+    private boolean updateStopped;
+    private boolean renderStopped;
+
+    public AbstractEntity(Point pos, Dimension dim, Shape shape, Color col) {
         this.pos = pos;
         this.dim = dim;
-        this.color = color;
+        this.shape = shape;
+        this.col = col;
     }
 
     @Override
-    public void update() {
-        if (isUpdateStopped()) {
-            blockUpdateUpdates--;
-        }
-
-        if (isRenderStopped()) {
-            blockRenderUpdates--;
-        }
+    public void stopUpdate() {
+        updateStopped = true;
     }
 
     @Override
-    public void stopUpdate(int updates) {
-        this.blockUpdateUpdates = updates;
-    }
-
-    @Override
-    public void stopRender(int updates) {
-        this.blockRenderUpdates = updates;
+    public void resumeUpdate() {
+        updateStopped = false;
     }
 
     @Override
     public boolean isUpdateStopped() {
-        return blockUpdateUpdates != 0;
+        return updateStopped;
+    }
+
+    @Override
+    public void render(Graphics2D g) {
+        if (isRenderStopped()) {
+            return;
+        }
+
+        g.setColor(col);
+        switch (shape) {
+            case RECTANGLE:
+                g.fillRect(pos.x, pos.y, dim.width, dim.height);
+                break;
+            case ROUND_RECTANGLE:
+                g.fillRoundRect(pos.x, pos.y, dim.width, dim.height, 50, 50);
+                break;
+            case OVAL:
+                g.fillOval(pos.x, pos.y, dim.width, dim.height);
+                break;
+        }
+    }
+
+    @Override
+    public void stopRender() {
+        renderStopped = true;
+    }
+
+    @Override
+    public void resumeRender() {
+        renderStopped = false;
     }
 
     @Override
     public boolean isRenderStopped() {
-        return blockRenderUpdates != 0;
+        return renderStopped;
     }
 
-    protected Rectangle getBounds() {
+    @Override
+    public boolean isColliding(AbstractEntity ent) {
+        return getBounds().intersects(ent.getBounds());
+    }
+
+    private Rectangle getBounds() {
         return new Rectangle(pos.x, pos.y, dim.width, dim.height);
     }
 

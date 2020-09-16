@@ -7,7 +7,7 @@ import io.iyyel.celestialoutbreak.ui.entity.effects.PaddleEffect;
 
 import java.awt.*;
 
-public final class PowerUp extends AbstractMobileEntity {
+public final class PowerUp extends AbstractMovableEntity {
 
     private final SoundHandler soundHandler = SoundHandler.getInstance();
 
@@ -39,22 +39,12 @@ public final class PowerUp extends AbstractMobileEntity {
 
     @Override
     public void update() {
-        super.update();
-
-        if (isUpdateStopped()) {
-            return;
-        }
-
         pos.y += speed;
     }
 
     @Override
     public void render(Graphics2D g) {
-        if (isRenderStopped()) {
-            return;
-        }
-
-        g.setColor(color);
+        g.setColor(col);
         if (style.equals(PowerUp.Style.SQUARE)) {
             g.fillRect(pos.x, pos.y, dim.width, dim.height);
         } else if (style.equals(PowerUp.Style.CIRCLE)) {
@@ -68,7 +58,7 @@ public final class PowerUp extends AbstractMobileEntity {
     }
 
     public boolean collidesWithPaddle() {
-        return paddle.getBounds().intersects(getBounds());
+        return paddle.intersects(this);
     }
 
     public void applyEffect() {

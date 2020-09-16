@@ -212,7 +212,7 @@ public final class GameController extends Canvas implements Runnable {
         playerCreateScreen = new PlayerCreateScreen(this);
         playerDeleteScreen = new PlayerDeleteScreen(AbstractNavigationScreen.NavStyle.VERTICAL_HORIZONTAL,
                 playerDAO.getPlayers().size(), 5, this);
-        gameOptions = new GameOptions(AbstractNavigationScreen.NavStyle.VERTICAL, 3, this);
+        gameOptions = new GameOptions(AbstractNavigationScreen.NavStyle.VERTICAL, 2, this);
         graphicsOptions = new GraphicsOptions(AbstractNavigationScreen.NavStyle.VERTICAL, 2, this);
         configOptionsScreen = new ConfigOptionsScreen(this);
         aboutScreen = new AboutScreen(this);

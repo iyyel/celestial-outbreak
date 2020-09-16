@@ -20,10 +20,6 @@ public class PlayScreen extends AbstractScreen {
     public void update() {
         super.update();
 
-        if (isUpdateStopped()) {
-            return;
-        }
-
         levelHandler.update();
         powerUpHandler.update();
         decInputTimer();

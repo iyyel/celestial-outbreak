@@ -1,49 +1,38 @@
 package io.iyyel.celestialoutbreak.ui.entity;
 
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityMortal;
+
 import java.awt.*;
 
-public final class Block extends AbstractEntity {
+public final class Block extends AbstractMovableEntity implements IEntityMortal {
 
-    private int health;
-    private final Style style;
+    private int hitPoints;
 
-    public enum Style {
-        CIRCLE,
-        SQUARE
-    }
-
-    public Block(Point pos, Dimension dim, Color color, int health, Style style) {
-        super(pos, dim, color);
-        this.health = health;
-        this.style = style;
+    public Block(Point pos, Dimension dim, Shape shape, Color col, int speed, int hitPoints) {
+        super(pos, dim, shape, col, speed);
+        this.hitPoints = hitPoints;
     }
 
     @Override
-    public void render(Graphics2D g) {
-        if (isRenderStopped()) {
-            return;
-        }
+    public void update() {
 
-        g.setColor(color);
-        if (style.equals(Style.SQUARE)) {
-            g.fillRect(pos.x, pos.y, dim.width, dim.height);
-        } else if (style.equals(Style.CIRCLE)) {
-            g.fillOval(pos.x, pos.y, dim.width, dim.height);
-        }
     }
 
+    @Override
     public void hit() {
-        if (health > 0) {
-            health -= 1;
+        if (hitPoints > 0) {
+            hitPoints--;
         }
     }
 
-    public boolean isDead() {
-        return health == 0;
+    @Override
+    public boolean isAlive() {
+        return hitPoints > 0;
     }
 
-    public int getHealth() {
-        return health;
+    @Override
+    public int getHitPoints() {
+        return hitPoints;
     }
 
 }

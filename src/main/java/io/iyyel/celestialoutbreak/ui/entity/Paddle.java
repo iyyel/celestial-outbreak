@@ -6,7 +6,7 @@ import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 
-public final class Paddle extends AbstractMobileEntity {
+public final class Paddle extends AbstractMovableEntity {
 
     private final Util util = Util.getInstance();
     private final InputHandler inputHandler = InputHandler.getInstance();
@@ -15,16 +15,18 @@ public final class Paddle extends AbstractMobileEntity {
     private final Color origColor;
     private final int origSpeed;
 
+    private final BlockField blockField;
     private final int screenWidth;
     private final int screenHeight;
-    private int ballHeight;
 
     private PaddleEffect effect;
 
-    public Paddle(Point pos, Dimension dim, Color color, int speed, int screenWidth, int screenHeight) {
+    public Paddle(Point pos, Dimension dim, Color color, int speed,
+                  BlockField blockField, int screenWidth, int screenHeight) {
         super(pos, dim, color, speed);
+        this.blockField = blockField;
         this.origDim = super.dim;
-        this.origColor = super.color;
+        this.origColor = super.col;
         this.origSpeed = super.speed;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
@@ -32,27 +34,28 @@ public final class Paddle extends AbstractMobileEntity {
 
     @Override
     public void update() {
-        super.update();
-
-        if (isUpdateStopped()) {
-            return;
-        }
-
         if (inputHandler.isLeftPressed() && pos.x > 0) {
-            pos.x -= speed;
+            move(Direction.LEFT);
         }
 
         if (inputHandler.isRightPressed() && pos.x <= screenWidth - dim.width) {
-            pos.x += speed;
+            move(Direction.RIGHT);
         }
 
-        if (inputHandler.isUpPressed() && pos.y - ballHeight > 0) {
-            pos.y -= speed;
+        if (inputHandler.isUpPressed() && pos.y > 0) {
+            move(Direction.UP);
         }
 
         /* Paddle can't go underneath the game panel, hence -35 pixels. */
         if (inputHandler.isDownPressed() && pos.y <= screenHeight - 35) {
-            pos.y += speed;
+            move(Direction.DOWN);
+        }
+
+        int blockIndex = blockField.checkForEntityIntersection(this);
+
+        if (blockIndex != -1) {
+            Block block = blockField.get(blockIndex);
+            handleIntersection(block);
         }
 
         updateEffect();
@@ -60,12 +63,9 @@ public final class Paddle extends AbstractMobileEntity {
 
     @Override
     public void render(Graphics2D g) {
-        if (isRenderStopped()) {
-            return;
-        }
-
-        g.setColor(color);
+        g.setColor(col);
         g.fillRect(pos.x, pos.y, dim.width, dim.height);
+        g.setColor(col);
     }
 
     public void applyEffect(PaddleEffect effect) {
@@ -76,7 +76,7 @@ public final class Paddle extends AbstractMobileEntity {
         this.effect = effect;
         this.effect.activate();
         this.dim = effect.getDim();
-        this.color = effect.getColor();
+        this.col = effect.getColor();
         this.speed = effect.getSpeed();
     }
 
@@ -87,15 +87,11 @@ public final class Paddle extends AbstractMobileEntity {
                 effect.deactivate();
                 this.pos = new Point(pos.x + (dim.width / 2), pos.y);
                 this.dim = origDim;
-                this.color = origColor;
+                this.col = origColor;
                 this.speed = origSpeed;
                 effect = null;
             }
         }
-    }
-
-    public void setBallHeight(int ballHeight) {
-        this.ballHeight = ballHeight;
     }
 
 }

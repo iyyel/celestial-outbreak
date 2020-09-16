@@ -100,23 +100,16 @@ public final class HighScoresScreen extends AbstractScreen {
                 String player = textHandler.getFixedString("Player: ", 15);
                 String score = textHandler.getFixedString("High Score: 0", 20);
                 String time = textHandler.getFixedString("Time: 00:00", 12);
-                String powerup = textHandler.getFixedString("Power Ups: ", 13);
 
                 if (highScoreDTO != null) {
                     player = textHandler.getFixedString("Player: " + highScoreDTO.getPlayer(), 16);
                     score = textHandler.getFixedString("High Score:  " + highScoreDTO.getScore(), 20);
                     time = textHandler.getFixedString("Time: " + textHandler.getTimeString(highScoreDTO.getTime()), 12);
-                    String powerUpEnabled = "No";
-                    if (highScoreDTO.getPowerUpEnabled()) {
-                        powerUpEnabled = "Yes";
-                    }
-                    powerup = textHandler.getFixedString("Power Ups: " + powerUpEnabled, 13);
                 }
 
-                g.drawString(player, levelRects[i].x + 5, levelRects[i].y + 60);
-                g.drawString(powerup, levelRects[i].x + 5, levelRects[i].y + 80);
-                g.drawString(score, levelRects[i].x + 5, levelRects[i].y + 100);
-                g.drawString(time, levelRects[i].x + 5, levelRects[i].y + 120);
+                g.drawString(player, levelRects[i].x + 5, levelRects[i].y + 70);
+                g.drawString(score, levelRects[i].x + 5, levelRects[i].y + 90);
+                g.drawString(time, levelRects[i].x + 5, levelRects[i].y + 110);
 
                 g.setColor(levelRectColors[i]);
                 g.draw(levelRects[i]);

@@ -147,8 +147,8 @@ public final class Level {
         blockSat = levelOptions.getBlockSat();
 
         /* Create objects after initializing the options */
-        paddle = new Paddle(paddlePos, paddleDim, paddleColor, paddleSpeed, gameController.getWidth(), gameController.getHeight());
         blockField = new BlockField(blockAmount, blockHealth, blockPosStart, blockDim, blockPosSpacing, blockStyle, blockLum, blockSat, gameController.getWidth());
+        paddle = new Paddle(paddlePos, paddleDim, paddleColor, paddleSpeed, blockField, gameController.getWidth(), gameController.getHeight());
         ball = new Ball(ballPos, ballDim, ballColor, ballSpeed, ballStyle, paddle, blockField, gameController.getWidth(), gameController.getHeight());
         gamePanel = new GamePanel(gameController, levelOptions);
 
@@ -211,8 +211,8 @@ public final class Level {
     }
 
     public void pause() {
-        ball.stopUpdate(120);
-        paddle.stopUpdate(120);
+        //ball.stopUpdate(120);
+        //paddle.stopUpdate(120);
     }
 
     public int getBlockHealth() {

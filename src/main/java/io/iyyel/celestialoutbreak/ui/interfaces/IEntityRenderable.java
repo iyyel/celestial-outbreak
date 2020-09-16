@@ -2,8 +2,9 @@ package io.iyyel.celestialoutbreak.ui.interfaces;
 
 import java.awt.*;
 
-public interface IRenderable {
+public interface IEntityRenderable {
     void render(Graphics2D g);
-    void stopRender(int updates);
+    void stopRender();
+    void resumeRender();
     boolean isRenderStopped();
 }

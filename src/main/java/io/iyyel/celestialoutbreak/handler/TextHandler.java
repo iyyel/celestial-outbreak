@@ -81,7 +81,6 @@ public final class TextHandler {
     public final String BTN_GOD_MODE_TEXT = "God Mode";
     public final String BTN_FPS_LOCK_TEXT = "FPS Lock";
     public final String BTN_ANTI_ALIASING_TEXT = "Anti-aliasing";
-    public final String BTN_POWERUP_TEXT = "Power Ups";
 
     public final String BTN_CONTROL_MOV_NAV = "WASD/Arrow keys";
     public final String BTN_CONTROL_OK = "z";
@@ -339,7 +338,6 @@ public final class TextHandler {
     public final String PROP_KEY_GOD_MODE_ENABLED = "GOD_MODE_ENABLED";
     public final String PROP_KEY_FPS_LOCK_ENABLED = "FPS_LOCK_ENABLED";
     public final String PROP_KEY_ANTI_ALIASING_ENABLED = "ANTI_ALIASING_ENABLED";
-    public final String PROP_KEY_POWERUP_ENABLED = "POWERUP_ENABLED";
 
     /*
      * Menu color properties.

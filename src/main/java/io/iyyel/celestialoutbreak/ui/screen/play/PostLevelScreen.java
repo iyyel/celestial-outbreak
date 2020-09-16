@@ -61,7 +61,7 @@ public final class PostLevelScreen extends AbstractScreen {
             if (hasWon) {
                 try {
                     highScoreDTO = new HighScoreDTO(playerDAO.getSelectedPlayer(), activeLevel.getName(),
-                            levelHandler.getCurrentScore(), util.getTimeElapsed(), optionsHandler.isPowerUpEnabled());
+                            levelHandler.getCurrentScore(), util.getTimeElapsed());
                     isHighScore = highScoreDAO.isHighScore(highScoreDTO);
                     if (isHighScore && !optionsHandler.isGodModeEnabled()) {
                         highScoreDAO.addHighScore(highScoreDTO);

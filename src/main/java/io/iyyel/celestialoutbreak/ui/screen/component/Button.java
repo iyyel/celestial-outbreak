@@ -28,10 +28,6 @@ public final class Button extends AbstractComponent {
 
     @Override
     public void render(Graphics2D g) {
-        if (isRenderStopped()) {
-            return;
-        }
-
         g.setColor(fgColor);
         g.setFont(font);
         drawText(g);

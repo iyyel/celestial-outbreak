@@ -1,7 +1,8 @@
 package io.iyyel.celestialoutbreak.ui.interfaces;
 
-public interface IUpdatable {
+public interface IEntityUpdatable {
     void update();
-    void stopUpdate(int updates);
+    void stopUpdate();
+    void resumeUpdate();
     boolean isUpdateStopped();
 }

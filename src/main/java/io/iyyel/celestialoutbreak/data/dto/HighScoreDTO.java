@@ -8,14 +8,12 @@ public final class HighScoreDTO implements Serializable {
     private final String levelName;
     private final long score;
     private final long time;
-    private boolean powerUpEnabled;
 
-    public HighScoreDTO(String player, String levelName, long score, long time, boolean powerUpEnabled) {
+    public HighScoreDTO(String player, String levelName, long score, long time) {
         this.player = player;
         this.levelName = levelName;
         this.score = score;
         this.time = time;
-        this.powerUpEnabled = powerUpEnabled;
     }
 
     public String getPlayer() {
@@ -32,10 +30,6 @@ public final class HighScoreDTO implements Serializable {
 
     public long getTime() {
         return time;
-    }
-
-    public boolean getPowerUpEnabled() {
-        return powerUpEnabled;
     }
 
 }

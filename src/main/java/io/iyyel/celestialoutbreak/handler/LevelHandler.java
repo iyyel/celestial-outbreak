@@ -127,7 +127,7 @@ public final class LevelHandler {
     private void calculateScore() {
         long blockHitPointsPunish = (getActiveLevel().getBlockField().getTotalHealth() - getActiveLevel().getBlockField().getTotalHealthLeft()) * 10;
         long timePunish = Math.abs(util.getTimeElapsed() / getActiveLevel().getBlockHealth());
-        long lostLifePunish = (getActiveLevel().getPlayerLifeInit() - getActiveLevel().getPlayerLife()) * getActiveLevel().getBlockField().getHealth() * 10;
+        long lostLifePunish = (getActiveLevel().getPlayerLifeInit() - getActiveLevel().getPlayerLife()) * getActiveLevel().getBlockField().getHitPoints() * 10;
         currentScore = blockHitPointsPunish - timePunish - lostLifePunish;
         if (currentScore < 0) {
             currentScore = 0;
