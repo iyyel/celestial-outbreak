@@ -1,22 +1,21 @@
 package io.iyyel.celestialoutbreak.ui.entity;
 
-import io.iyyel.celestialoutbreak.ui.interfaces.IEntityCollidable;
 import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable;
 import io.iyyel.celestialoutbreak.ui.interfaces.IEntityUpdatable;
 
 import java.awt.*;
 
-public abstract class AbstractEntity implements IEntityUpdatable, IEntityRenderable, IEntityCollidable<AbstractEntity> {
+public abstract class AbstractEntity implements IEntityUpdatable, IEntityRenderable {
 
-    protected enum Shape {
+    public enum Shape {
         RECTANGLE,
         ROUND_RECTANGLE,
         OVAL
     }
 
-    protected final Point pos;
-    protected final Dimension dim;
-    protected final Shape shape;
+    protected Point pos;
+    protected Dimension dim;
+    protected Shape shape;
     protected Color col;
 
     private boolean updateStopped;
@@ -79,7 +78,6 @@ public abstract class AbstractEntity implements IEntityUpdatable, IEntityRendera
         return renderStopped;
     }
 
-    @Override
     public boolean isColliding(AbstractEntity ent) {
         return getBounds().intersects(ent.getBounds());
     }

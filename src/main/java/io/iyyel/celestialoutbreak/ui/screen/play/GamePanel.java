@@ -103,7 +103,7 @@ public final class GamePanel extends AbstractScreen {
             pos += 50;
 
             String blockLabel = "Blocks: ";
-            String blockValue = activeLevel.getBlockField().getBlocksLeft() + "";
+            String blockValue = activeLevel.getBlockField().getTotalBlocksLeft() + "";
             g.setColor(titleColor);
             g.drawString(blockLabel, pos, 714);
             g.setColor(valueColor);

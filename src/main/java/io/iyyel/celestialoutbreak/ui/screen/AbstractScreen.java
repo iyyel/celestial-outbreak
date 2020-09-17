@@ -53,6 +53,9 @@ public abstract class AbstractScreen implements IEntityUpdatable, IEntityRendera
     protected final int screenWidth;
     protected final int screenHeight;
 
+    private boolean updateStopped;
+    private boolean renderStopped;
+
     public AbstractScreen(GameController gameController) {
         this.gameController = gameController;
         this.screenWidth = gameController.getWidth();
@@ -64,6 +67,36 @@ public abstract class AbstractScreen implements IEntityUpdatable, IEntityRendera
     @Override
     public void update() {
         decInputTimer();
+    }
+
+    @Override
+    public void stopUpdate() {
+        updateStopped = true;
+    }
+
+    @Override
+    public void resumeUpdate() {
+        updateStopped = false;
+    }
+
+    @Override
+    public boolean isUpdateStopped() {
+        return updateStopped;
+    }
+
+    @Override
+    public void stopRender() {
+        renderStopped = true;
+    }
+
+    @Override
+    public void resumeRender() {
+        renderStopped = false;
+    }
+
+    @Override
+    public boolean isRenderStopped() {
+        return renderStopped;
     }
 
     protected void updateNavOK() {

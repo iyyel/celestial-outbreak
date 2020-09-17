@@ -6,7 +6,6 @@ import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
-import java.util.Random;
 
 public final class Ball extends AbstractMovableEntity {
 
@@ -29,8 +28,6 @@ public final class Ball extends AbstractMovableEntity {
     private final SoundHandler.SoundClip ballHitClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT);
     private final SoundHandler.SoundClip ballResetClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET);
 
-    private final Ball.Style style;
-
     private final Paddle paddle;
     private final BlockField blockField;
 
@@ -40,25 +37,23 @@ public final class Ball extends AbstractMovableEntity {
     private BallEffect effect;
 
     private final Dimension origDim;
-    private final Color origColor;
+    private final Shape origShape;
+    private final Color origCol;
     private final int origSpeed;
 
-    public enum Style {
-        CIRCLE,
-        SQUARE
-    }
-
-    public Ball(Point pos, Dimension dim, Color color, int speed, Style style, Paddle paddle,
-                BlockField blockField, int screenWidth, int screenHeight) {
-        super(pos, dim, color, speed);
-        this.style = style;
-        this.paddle = paddle;
-        this.blockField = blockField;
+    public Ball(Point pos, Dimension dim, Shape shape, Color col, int speed, int screenWidth,
+                int screenHeight, Paddle paddle, BlockField blockField) {
+        super(pos, dim, shape, col, speed);
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
-        this.origDim = super.dim;
-        this.origColor = super.col;
-        this.origSpeed = super.speed;
+        this.paddle = paddle;
+        this.blockField = blockField;
+
+        this.origDim = dim;
+        this.origShape = shape;
+        this.origCol = col;
+        this.origSpeed = speed;
+
         velocity = new Point(0, 0);
     }
 
@@ -80,14 +75,7 @@ public final class Ball extends AbstractMovableEntity {
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(col);
-
-        if (style.equals(Ball.Style.SQUARE)) {
-            g.fillRect(pos.x, pos.y, dim.width, dim.height);
-        } else if (style.equals(Ball.Style.CIRCLE)) {
-            g.fillOval(pos.x, pos.y, dim.width, dim.height);
-        }
-
+        super.render(g);
         if (paddleCollisionTimer > 0) {
             paddleCollisionTimer--;
         }
@@ -164,7 +152,7 @@ public final class Ball extends AbstractMovableEntity {
     }
 
     private void checkPaddleCollision(Paddle paddle) {
-        if (!paddle.intersects(this)) {
+        if (!paddle.isColliding(this)) {
             return;
         }
 
@@ -191,14 +179,18 @@ public final class Ball extends AbstractMovableEntity {
     }
 
     private void checkBlockCollision(BlockField blockField) {
+        /*
         int blockIndex = blockField.checkForEntityIntersection(this);
 
         /* No collision was found */
+        /*
         if (blockIndex == -1) {
             return;
         }
+        */
 
         /* If the ball is stuck and is colliding with a block */
+        /*
         if (isStuck) {
             return;
         }
@@ -209,7 +201,9 @@ public final class Ball extends AbstractMovableEntity {
         blockField.hit(blockIndex);
 
         if (blockField.get(blockIndex).isDead()) {
-            /* spawn powerup by chance */
+           */
+        /* spawn powerup by chance */
+            /*
             boolean spawn = new Random().nextInt(100) < levelHandler.getActiveLevel().getPowerUpChance();
             if (spawn) {
                 spawnPowerUp(blockField.get(blockIndex), levelHandler.getActiveLevel());
@@ -223,6 +217,7 @@ public final class Ball extends AbstractMovableEntity {
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
             logHandler.log(textHandler.vBallBlockFieldCollisionMsg(blockIndex, blockField.get(blockIndex).getHitPoints()), "checkBlockCollision", LogHandler.LogLevel.INFO, true);
         }
+        */
     }
 
     private void spawnPowerUp(Block block, Level level) {
@@ -230,9 +225,9 @@ public final class Ball extends AbstractMovableEntity {
 
         PowerUp powerUp = new PowerUp(powerUpPos,
                 level.getPowerUpDim(),
-                level.getBlockField().getLatestBlockColor(),
-                level.getPowerUpSpeed(),
-                level.getPowerUpStyle(), screenHeight, paddle, this, level.getRandomEffect());
+                level.getPowerUpShape(),
+                block.col,
+                level.getPowerUpSpeed(), screenHeight, paddle, this, level.getRandomEffect());
 
         powerUp.playSpawnClip();
         powerUpHandler.spawnPowerUp(powerUp);
@@ -258,7 +253,7 @@ public final class Ball extends AbstractMovableEntity {
                 effect.deactivate();
                 this.pos = new Point(pos.x + (dim.width / 2), pos.y + (dim.height / 2));
                 this.dim = origDim;
-                this.col = origColor;
+                this.col = origCol;
                 this.speed = origSpeed;
                 updateVelocity(speed);
                 effect = null;

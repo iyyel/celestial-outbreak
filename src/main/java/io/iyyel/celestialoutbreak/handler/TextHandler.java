@@ -373,7 +373,7 @@ public final class TextHandler {
     public final String PROP_KEY_POWERUP_HEIGHT = "LEVEL_POWERUP_HEIGHT";
     public final String PROP_KEY_POWERUP_SPEED = "LEVEL_POWERUP_SPEED";
     public final String PROP_KEY_POWERUP_CHANCE = "LEVEL_POWERUP_CHANCE";
-    public final String PROP_KEY_POWERUP_STYLE = "LEVEL_POWERUP_STYLE";
+    public final String PROP_KEY_POWERUP_SHAPE = "LEVEL_POWERUP_SHAPE";
 
     /* Power up effect. */
     public final String PROP_KEY_POWERUP_AMOUNT = "LEVEL_POWERUP_AMOUNT";
@@ -383,6 +383,7 @@ public final class TextHandler {
     public final String PROP_KEY_POWERUP_EFFECT_HEIGHT = "LEVEL_POWERUP_EFFECT_HEIGHT";
     public final String PROP_KEY_POWERUP_EFFECT_COLOR = "LEVEL_POWERUP_EFFECT_COLOR";
     public final String PROP_KEY_POWERUP_EFFECT_SPEED = "LEVEL_POWERUP_EFFECT_SPEED";
+    public final String PROP_KEY_POWERUP_EFFECT_SHAPE = "LEVEL_POWERUP_EFFECT_SHAPE";
     public final String PROP_KEY_POWERUP_SPAWN_SOUND_FILE_NAME = "LEVEL_POWERUP_SPAWN_SOUND_FILE_NAME";
     public final String PROP_KEY_POWERUP_COLLIDE_SOUND_FILE_NAME = "LEVEL_POWERUP_COLLIDE_SOUND_FILE_NAME";
 
@@ -395,14 +396,15 @@ public final class TextHandler {
     public final String PROP_KEY_PADDLE_POS_Y_OFFSET = "LEVEL_PADDLE_POS_Y_OFFSET";
     public final String PROP_KEY_PADDLE_WIDTH = "LEVEL_PADDLE_WIDTH";
     public final String PROP_KEY_PADDLE_HEIGHT = "LEVEL_PADDLE_HEIGHT";
+    public final String PROP_KEY_PADDLE_SHAPE = "LEVEL_PADDLE_SHAPE";
     public final String PROP_KEY_PADDLE_SPEED = "LEVEL_PADDLE_SPEED";
     public final String PROP_KEY_PADDLE_COLOR = "LEVEL_PADDLE_COLOR";
 
     /* Ball. */
     public final String PROP_KEY_BALL_WIDTH = "LEVEL_BALL_WIDTH";
     public final String PROP_KEY_BALL_HEIGHT = "LEVEL_BALL_HEIGHT";
+    public final String PROP_KEY_BALL_SHAPE = "LEVEL_BALL_SHAPE";
     public final String PROP_KEY_BALL_SPEED = "LEVEL_BALL_SPEED";
-    public final String PROP_KEY_BALL_STYLE = "LEVEL_BALL_STYLE";
     public final String PROP_KEY_BALL_COLOR = "LEVEL_BALL_COLOR";
 
     /* BlockField. */
@@ -414,7 +416,7 @@ public final class TextHandler {
     public final String PROP_KEY_BLOCK_HEALTH = "LEVEL_BLOCK_HEALTH";
     public final String PROP_KEY_BLOCK_WIDTH = "LEVEL_BLOCK_WIDTH";
     public final String PROP_KEY_BLOCK_HEIGHT = "LEVEL_BLOCK_HEIGHT";
-    public final String PROP_KEY_BLOCK_STYLE = "LEVEL_BLOCK_STYLE";
+    public final String PROP_KEY_BLOCK_SHAPE = "LEVEL_BLOCK_SHAPE";
     public final String PROP_KEY_BLOCK_LUMINANCE = "LEVEL_BLOCK_LUMINANCE";
     public final String PROP_KEY_BLOCK_SATURATION = "LEVEL_BLOCK_SATURATION";
 

@@ -1,10 +1,8 @@
 package io.iyyel.celestialoutbreak.ui.entity;
 
-import io.iyyel.celestialoutbreak.ui.interfaces.IEntityMortal;
-
 import java.awt.*;
 
-public final class Block extends AbstractMovableEntity implements IEntityMortal {
+public final class Block extends AbstractMovableEntity {
 
     private int hitPoints;
 
@@ -18,19 +16,16 @@ public final class Block extends AbstractMovableEntity implements IEntityMortal 
 
     }
 
-    @Override
     public void hit() {
         if (hitPoints > 0) {
             hitPoints--;
         }
     }
 
-    @Override
     public boolean isAlive() {
         return hitPoints > 0;
     }
 
-    @Override
     public int getHitPoints() {
         return hitPoints;
     }

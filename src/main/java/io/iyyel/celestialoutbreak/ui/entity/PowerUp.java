@@ -11,7 +11,6 @@ public final class PowerUp extends AbstractMovableEntity {
 
     private final SoundHandler soundHandler = SoundHandler.getInstance();
 
-    private final PowerUp.Style style;
     private final int screenHeight;
     private final Paddle paddle;
     private final Ball ball;
@@ -20,15 +19,9 @@ public final class PowerUp extends AbstractMovableEntity {
     private final SoundHandler.SoundClip spawnClip;
     private final SoundHandler.SoundClip collideClip;
 
-    public enum Style {
-        CIRCLE,
-        SQUARE
-    }
-
-    public PowerUp(Point pos, Dimension dim, Color color, int speed, PowerUp.Style style,
+    public PowerUp(Point pos, Dimension dim, Shape shape, Color col, int speed,
                    int screenHeight, Paddle paddle, Ball ball, Effect effect) {
-        super(pos, dim, color, speed);
-        this.style = style;
+        super(pos, dim, shape, col, speed);
         this.screenHeight = screenHeight;
         this.paddle = paddle;
         this.ball = ball;
@@ -39,17 +32,16 @@ public final class PowerUp extends AbstractMovableEntity {
 
     @Override
     public void update() {
+        if (isUpdateStopped()) {
+            return;
+        }
+
         pos.y += speed;
     }
 
     @Override
     public void render(Graphics2D g) {
-        g.setColor(col);
-        if (style.equals(PowerUp.Style.SQUARE)) {
-            g.fillRect(pos.x, pos.y, dim.width, dim.height);
-        } else if (style.equals(PowerUp.Style.CIRCLE)) {
-            g.fillOval(pos.x, pos.y, dim.width, dim.height);
-        }
+        super.render(g);
     }
 
     public boolean hasReachedBottom() {
@@ -58,7 +50,7 @@ public final class PowerUp extends AbstractMovableEntity {
     }
 
     public boolean collidesWithPaddle() {
-        return paddle.intersects(this);
+        return paddle.isColliding(this);
     }
 
     public void applyEffect() {

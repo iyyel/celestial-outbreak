@@ -12,60 +12,69 @@ public final class Paddle extends AbstractMovableEntity {
     private final InputHandler inputHandler = InputHandler.getInstance();
 
     private final Dimension origDim;
-    private final Color origColor;
+    private final Shape origShape;
+    private final Color origCol;
     private final int origSpeed;
 
-    private final BlockField blockField;
     private final int screenWidth;
     private final int screenHeight;
 
     private PaddleEffect effect;
 
-    public Paddle(Point pos, Dimension dim, Color color, int speed,
-                  BlockField blockField, int screenWidth, int screenHeight) {
-        super(pos, dim, color, speed);
-        this.blockField = blockField;
-        this.origDim = super.dim;
-        this.origColor = super.col;
-        this.origSpeed = super.speed;
+    public Paddle(Point pos, Dimension dim, Shape shape, Color col, int speed,
+                  int screenWidth, int screenHeight) {
+        super(pos, dim, shape, col, speed);
+        this.origDim = dim;
+        this.origShape = shape;
+        this.origCol = col;
+        this.origSpeed = speed;
+
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
     }
 
     @Override
     public void update() {
-        if (inputHandler.isLeftPressed() && pos.x > 0) {
-            move(Direction.LEFT);
+        if (isUpdateStopped()) {
+            return;
         }
 
-        if (inputHandler.isRightPressed() && pos.x <= screenWidth - dim.width) {
-            move(Direction.RIGHT);
-        }
-
-        if (inputHandler.isUpPressed() && pos.y > 0) {
-            move(Direction.UP);
-        }
-
-        /* Paddle can't go underneath the game panel, hence -35 pixels. */
-        if (inputHandler.isDownPressed() && pos.y <= screenHeight - 35) {
-            move(Direction.DOWN);
-        }
-
-        int blockIndex = blockField.checkForEntityIntersection(this);
-
-        if (blockIndex != -1) {
-            Block block = blockField.get(blockIndex);
-            handleIntersection(block);
-        }
+        moveLeft();
+        moveRight();
+        moveUp();
+        moveDown();
 
         updateEffect();
     }
 
+    private void moveLeft() {
+        if (inputHandler.isLeftPressed() && pos.x > 0) {
+            move(Direction.LEFT);
+        }
+    }
+
+    private void moveRight() {
+        if (inputHandler.isRightPressed() && pos.x <= screenWidth - dim.width) {
+            move(Direction.RIGHT);
+        }
+    }
+
+    private void moveUp() {
+        if (inputHandler.isUpPressed() && pos.y > 0) {
+            move(Direction.UP);
+        }
+    }
+
+    private void moveDown() {
+        /* Paddle can't go underneath the game panel, hence -35 pixels. */
+        if (inputHandler.isDownPressed() && pos.y <= screenHeight - 35) {
+            move(Direction.DOWN);
+        }
+    }
+
     @Override
     public void render(Graphics2D g) {
-        g.setColor(col);
-        g.fillRect(pos.x, pos.y, dim.width, dim.height);
-        g.setColor(col);
+        super.render(g);
     }
 
     public void applyEffect(PaddleEffect effect) {
@@ -76,6 +85,7 @@ public final class Paddle extends AbstractMovableEntity {
         this.effect = effect;
         this.effect.activate();
         this.dim = effect.getDim();
+        this.shape = effect.getShape();
         this.col = effect.getColor();
         this.speed = effect.getSpeed();
     }
@@ -87,7 +97,7 @@ public final class Paddle extends AbstractMovableEntity {
                 effect.deactivate();
                 this.pos = new Point(pos.x + (dim.width / 2), pos.y);
                 this.dim = origDim;
-                this.col = origColor;
+                this.col = origCol;
                 this.speed = origSpeed;
                 effect = null;
             }

@@ -3,7 +3,10 @@ package io.iyyel.celestialoutbreak.level;
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.ui.entity.*;
+import io.iyyel.celestialoutbreak.ui.entity.AbstractEntity.Shape;
+import io.iyyel.celestialoutbreak.ui.entity.Ball;
+import io.iyyel.celestialoutbreak.ui.entity.BlockField;
+import io.iyyel.celestialoutbreak.ui.entity.Paddle;
 import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
 import io.iyyel.celestialoutbreak.ui.screen.play.GamePanel;
 
@@ -41,9 +44,9 @@ public final class Level {
      * Power up options.
      */
     private Dimension powerUpDim;
+    private Shape powerUpShape;
     private int powerUpSpeed;
     private int powerUpChance;
-    private PowerUp.Style powerUpStyle;
 
     /*
      * Power up effects.
@@ -55,6 +58,7 @@ public final class Level {
      */
     private Point paddlePos;
     private Dimension paddleDim;
+    private Shape paddleShape;
     private int paddleSpeed;
     private Color paddleColor;
 
@@ -63,19 +67,19 @@ public final class Level {
      */
     private Point ballPos;
     private Dimension ballDim;
+    private Shape ballShape;
     private int ballSpeed;
-    private Ball.Style ballStyle;
     private Color ballColor;
 
     /*
      * Block options
      */
-    private Point blockPosStart;
-    private Point blockPosSpacing;
+    private Point blockStartPos;
+    private Point blockSpacing;
     private int blockAmount;
-    private int blockHealth;
+    private int blockHitPoints;
     private Dimension blockDim;
-    private Block.Style blockStyle;
+    private Shape blockShape;
     private float blockLum;
     private float blockSat;
 
@@ -118,7 +122,7 @@ public final class Level {
         powerUpDim = levelOptions.getPowerUpDim();
         powerUpSpeed = levelOptions.getPowerUpSpeed();
         powerUpChance = levelOptions.getPowerUpChance();
-        powerUpStyle = levelOptions.getPowerUpStyle();
+        powerUpShape = levelOptions.getPowerUpShape();
 
         /* Effects */
         effects = levelOptions.getEffects();
@@ -126,6 +130,7 @@ public final class Level {
         /* Paddle options */
         paddlePos = levelOptions.getPaddlePos();
         paddleDim = levelOptions.getPaddleDim();
+        paddleShape = levelOptions.getPaddleShape();
         paddleSpeed = levelOptions.getPaddleSpeed();
         paddleColor = levelOptions.getPaddleColor();
 
@@ -133,23 +138,23 @@ public final class Level {
         ballPos = levelOptions.getBallPos();
         ballDim = levelOptions.getBallDim();
         ballSpeed = levelOptions.getBallSpeed();
-        ballStyle = levelOptions.getBallStyle();
+        ballShape = levelOptions.getBallShape();
         ballColor = levelOptions.getBallColor();
 
         /* BlockField options */
-        blockPosStart = levelOptions.getBlockPosStart();
-        blockPosSpacing = levelOptions.getBlockPosSpacing();
+        blockStartPos = levelOptions.getBlockPosStart();
+        blockSpacing = levelOptions.getBlockPosSpacing();
         blockAmount = levelOptions.getBlockAmount();
-        blockHealth = levelOptions.getBlockHitPoints();
+        blockHitPoints = levelOptions.getBlockHitPoints();
         blockDim = levelOptions.getBlockDim();
-        blockStyle = levelOptions.getBlockStyle();
+        blockShape = levelOptions.getBlockShape();
         blockLum = levelOptions.getBlockLum();
         blockSat = levelOptions.getBlockSat();
 
         /* Create objects after initializing the options */
-        blockField = new BlockField(blockAmount, blockHealth, blockPosStart, blockDim, blockPosSpacing, blockStyle, blockLum, blockSat, gameController.getWidth());
-        paddle = new Paddle(paddlePos, paddleDim, paddleColor, paddleSpeed, blockField, gameController.getWidth(), gameController.getHeight());
-        ball = new Ball(ballPos, ballDim, ballColor, ballSpeed, ballStyle, paddle, blockField, gameController.getWidth(), gameController.getHeight());
+        blockField = new BlockField(blockAmount, blockStartPos, blockSpacing, blockDim, blockHitPoints, blockShape, blockLum, blockSat, gameController.getWidth());
+        paddle = new Paddle(paddlePos, paddleDim, paddleShape, paddleColor, paddleSpeed, gameController.getWidth(), gameController.getHeight());
+        ball = new Ball(ballPos, ballDim, ballShape, ballColor, ballSpeed, gameController.getWidth(), gameController.getHeight(), paddle, blockField);
         gamePanel = new GamePanel(gameController, levelOptions);
 
         /* Add level audio to SoundHandler */
@@ -168,12 +173,12 @@ public final class Level {
         return powerUpChance;
     }
 
-    public PowerUp.Style getPowerUpStyle() {
-        return powerUpStyle;
+    public Shape getPowerUpShape() {
+        return powerUpShape;
     }
 
     public boolean isWon() {
-        return blockField.getBlocksLeft() <= 0;
+        return blockField.getTotalBlocksLeft() <= 0;
     }
 
     public boolean isLost() {
@@ -215,8 +220,8 @@ public final class Level {
         //paddle.stopUpdate(120);
     }
 
-    public int getBlockHealth() {
-        return blockHealth;
+    public int getBlockHitPoints() {
+        return blockHitPoints;
     }
 
     public void playSound() {

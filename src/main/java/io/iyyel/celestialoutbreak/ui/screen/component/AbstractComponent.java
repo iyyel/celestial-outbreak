@@ -1,11 +1,10 @@
 package io.iyyel.celestialoutbreak.ui.screen.component;
 
 import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable;
-import io.iyyel.celestialoutbreak.ui.interfaces.IEntityUpdatable;
 
 import java.awt.*;
 
-public abstract class AbstractComponent implements IEntityUpdatable, IEntityRenderable {
+public abstract class AbstractComponent implements IEntityRenderable {
 
     protected final Point pos;
     protected final Dimension dim;
@@ -13,6 +12,8 @@ public abstract class AbstractComponent implements IEntityUpdatable, IEntityRend
 
     protected final int screenWidth;
     protected final int screenHeight;
+
+    private boolean renderStopped;
 
     public AbstractComponent(Point pos, Dimension dim, Color bgColor, Point posOffset,
                              int screenWidth, int screenHeight) {
@@ -24,8 +25,18 @@ public abstract class AbstractComponent implements IEntityUpdatable, IEntityRend
     }
 
     @Override
-    public void update() {
+    public void stopRender() {
+        renderStopped = true;
+    }
 
+    @Override
+    public void resumeRender() {
+        renderStopped = false;
+    }
+
+    @Override
+    public boolean isRenderStopped() {
+        return renderStopped;
     }
 
     public void setBgColor(Color bgColor) {

@@ -5,9 +5,8 @@ import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.ui.entity.Ball;
-import io.iyyel.celestialoutbreak.ui.entity.Block;
-import io.iyyel.celestialoutbreak.ui.entity.PowerUp;
+import io.iyyel.celestialoutbreak.ui.entity.AbstractEntity;
+import io.iyyel.celestialoutbreak.ui.entity.AbstractEntity.Shape;
 import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
 import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
 import io.iyyel.celestialoutbreak.ui.entity.effects.PaddleEffect;
@@ -36,9 +35,9 @@ public final class LevelOptions {
      * Power up options.
      */
     private Dimension powerUpDim;
+    private Shape powerUpShape;
     private int powerUpSpeed;
     private int powerUpChance;
-    private PowerUp.Style powerUpStyle;
 
     /*
      * Power up effects.
@@ -50,6 +49,7 @@ public final class LevelOptions {
      */
     private Point paddlePos;
     private Dimension paddleDim;
+    private Shape paddleShape;
     private int paddleSpeed;
     private Color paddleColor;
 
@@ -58,8 +58,8 @@ public final class LevelOptions {
      */
     private Point ballPos;
     private Dimension ballDim;
+    private Shape ballShape;
     private int ballSpeed;
-    private Ball.Style ballStyle;
     private Color ballColor;
 
     /*
@@ -70,7 +70,7 @@ public final class LevelOptions {
     private int blockAmount;
     private int blockHitPoints;
     private Dimension blockDim;
-    private Block.Style blockStyle;
+    private Shape blockShape;
     private float blockLum;
     private float blockSat;
 
@@ -106,26 +106,26 @@ public final class LevelOptions {
     }
 
     private void parseLevelOptions(String fileName) {
-        Map<String, String> map = fileHandler.readPropertiesFromFile(fileName);
+        Map<String, String> props = fileHandler.readPropertiesFromFile(fileName);
 
         /* Level options */
-        levelName = map.get(textHandler.PROP_KEY_LEVEL_NAME);
-        levelDesc = map.get(textHandler.PROP_KEY_LEVEL_DESC);
-        levelPlayerLife = Integer.parseInt(map.get(textHandler.PROP_KEY_LEVEL_PLAYER_LIFE));
-        levelSoundFileName = map.get(textHandler.PROP_KEY_LEVEL_SOUND_FILE_NAME);
-        int levelColorValue = Integer.decode(map.get(textHandler.PROP_KEY_LEVEL_COLOR));
+        levelName = props.get(textHandler.PROP_KEY_LEVEL_NAME);
+        levelDesc = props.get(textHandler.PROP_KEY_LEVEL_DESC);
+        levelPlayerLife = Integer.parseInt(props.get(textHandler.PROP_KEY_LEVEL_PLAYER_LIFE));
+        levelSoundFileName = props.get(textHandler.PROP_KEY_LEVEL_SOUND_FILE_NAME);
+        int levelColorValue = Integer.decode(props.get(textHandler.PROP_KEY_LEVEL_COLOR));
         levelColor = new Color(levelColorValue);
 
         /* Power up options */
-        int powerUpWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_WIDTH));
-        int powerUpHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_HEIGHT));
+        int powerUpWidth = Integer.parseInt(props.get(textHandler.PROP_KEY_POWERUP_WIDTH));
+        int powerUpHeight = Integer.parseInt(props.get(textHandler.PROP_KEY_POWERUP_HEIGHT));
         powerUpDim = new Dimension(powerUpWidth, powerUpHeight);
-        powerUpSpeed = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_SPEED));
-        powerUpChance = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_CHANCE));
-        String powerUpStyleStr = map.get(textHandler.PROP_KEY_POWERUP_STYLE);
-        powerUpStyle = PowerUp.Style.valueOf(powerUpStyleStr);
+        powerUpSpeed = Integer.parseInt(props.get(textHandler.PROP_KEY_POWERUP_SPEED));
+        powerUpChance = Integer.parseInt(props.get(textHandler.PROP_KEY_POWERUP_CHANCE));
+        String powerUpShapeStr = props.get(textHandler.PROP_KEY_POWERUP_SHAPE);
+        powerUpShape = AbstractEntity.Shape.valueOf(powerUpShapeStr);
 
-        int powerUpAmount = Integer.parseInt(map.get(textHandler.PROP_KEY_POWERUP_AMOUNT));
+        int powerUpAmount = Integer.parseInt(props.get(textHandler.PROP_KEY_POWERUP_AMOUNT));
         effects = new Effect[powerUpAmount];
 
         for (int i = 0; i < powerUpAmount; i++) {
@@ -140,8 +140,10 @@ public final class LevelOptions {
 
             String pKeyHeight = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_HEIGHT, i);
             int effectHeight = Integer.parseInt(fileHandler.readPropertyFromFile(pKeyHeight, fileName));
-
             Dimension effectDim = new Dimension(effectWidth, effectHeight);
+
+            String pKeyShape = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_SHAPE, i);
+            Shape effectShape = Shape.valueOf(pKeyShape);
 
             String pKeyColor = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_COLOR, i);
             Color effectColor = new Color(Integer.decode(fileHandler.readPropertyFromFile(pKeyColor, fileName)));
@@ -158,56 +160,58 @@ public final class LevelOptions {
             soundHandler.addSoundClip(effectCollideSound, textHandler.getClientSoundFilePath(effectCollideSound));
 
             if (effectType.equals("Paddle")) {
-                effects[i] = new PaddleEffect(effectDuration, effectDim,
+                effects[i] = new PaddleEffect(effectDuration, effectDim, effectShape,
                         effectColor, effectSpeed, effectSpawnSound, effectCollideSound);
             } else {
-                effects[i] = new BallEffect(effectDuration, effectDim,
+                effects[i] = new BallEffect(effectDuration, effectDim, effectShape,
                         effectColor, effectSpeed, effectSpawnSound, effectCollideSound);
             }
         }
 
         /* Paddle options */
-        int paddlePosXOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_X_OFFSET));
-        int paddlePosYOffset = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_POS_Y_OFFSET));
+        int paddlePosXOffset = Integer.parseInt(props.get(textHandler.PROP_KEY_PADDLE_POS_X_OFFSET));
+        int paddlePosYOffset = Integer.parseInt(props.get(textHandler.PROP_KEY_PADDLE_POS_Y_OFFSET));
         paddlePos = new Point((gameController.getWidth() / 2) - paddlePosXOffset, gameController.getHeight() - paddlePosYOffset);
-        int paddleWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_WIDTH));
-        int paddleHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_HEIGHT));
+        int paddleWidth = Integer.parseInt(props.get(textHandler.PROP_KEY_PADDLE_WIDTH));
+        int paddleHeight = Integer.parseInt(props.get(textHandler.PROP_KEY_PADDLE_HEIGHT));
         paddleDim = new Dimension(paddleWidth, paddleHeight);
-        paddleSpeed = Integer.parseInt(map.get(textHandler.PROP_KEY_PADDLE_SPEED));
-        int paddleCol = Integer.decode(map.get(textHandler.PROP_KEY_PADDLE_COLOR));
+        String paddleShapeStr = props.get(textHandler.PROP_KEY_PADDLE_SHAPE);
+        paddleShape = Shape.valueOf(paddleShapeStr);
+        paddleSpeed = Integer.parseInt(props.get(textHandler.PROP_KEY_PADDLE_SPEED));
+        int paddleCol = Integer.decode(props.get(textHandler.PROP_KEY_PADDLE_COLOR));
         paddleColor = new Color(paddleCol);
 
         /* Ball options */
-        int ballWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_WIDTH));
-        int ballHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_HEIGHT));
+        int ballWidth = Integer.parseInt(props.get(textHandler.PROP_KEY_BALL_WIDTH));
+        int ballHeight = Integer.parseInt(props.get(textHandler.PROP_KEY_BALL_HEIGHT));
         ballDim = new Dimension(ballWidth, ballHeight);
+        String ballShapeStr = props.get(textHandler.PROP_KEY_BALL_SHAPE);
+        ballShape = Shape.valueOf(ballShapeStr);
         ballPos = new Point(paddlePos.x + (paddleWidth / 2) - (ballWidth / 2), paddlePos.y - (ballHeight));
-        ballSpeed = Integer.parseInt(map.get(textHandler.PROP_KEY_BALL_SPEED));
-        String ballStyleStr = map.get(textHandler.PROP_KEY_BALL_STYLE);
-        ballStyle = Ball.Style.valueOf(ballStyleStr);
-        int ballColorHex = Integer.decode(map.get(textHandler.PROP_KEY_BALL_COLOR));
+        ballSpeed = Integer.parseInt(props.get(textHandler.PROP_KEY_BALL_SPEED));
+        int ballColorHex = Integer.decode(props.get(textHandler.PROP_KEY_BALL_COLOR));
         ballColor = new Color(ballColorHex);
 
         /* Block options */
-        int blockPosXStart = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_POS_X_START));
-        int blockPosYStart = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_POS_Y_START));
+        int blockPosXStart = Integer.parseInt(props.get(textHandler.PROP_KEY_BLOCK_POS_X_START));
+        int blockPosYStart = Integer.parseInt(props.get(textHandler.PROP_KEY_BLOCK_POS_Y_START));
         blockPosStart = new Point(blockPosXStart, blockPosYStart);
-        int blockPosXSpacing = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_POS_X_SPACING));
-        int blockPosYSpacing = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_POS_Y_SPACING));
+        int blockPosXSpacing = Integer.parseInt(props.get(textHandler.PROP_KEY_BLOCK_POS_X_SPACING));
+        int blockPosYSpacing = Integer.parseInt(props.get(textHandler.PROP_KEY_BLOCK_POS_Y_SPACING));
         blockPosSpacing = new Point(blockPosXSpacing, blockPosYSpacing);
-        blockAmount = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_AMOUNT));
-        blockHitPoints = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_HEALTH));
-        int blockWidth = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_WIDTH));
-        int blockHeight = Integer.parseInt(map.get(textHandler.PROP_KEY_BLOCK_HEIGHT));
-        String blockStyleStr = map.get(textHandler.PROP_KEY_BLOCK_STYLE);
-        blockStyle = Block.Style.valueOf(blockStyleStr);
+        blockAmount = Integer.parseInt(props.get(textHandler.PROP_KEY_BLOCK_AMOUNT));
+        blockHitPoints = Integer.parseInt(props.get(textHandler.PROP_KEY_BLOCK_HEALTH));
+        int blockWidth = Integer.parseInt(props.get(textHandler.PROP_KEY_BLOCK_WIDTH));
+        int blockHeight = Integer.parseInt(props.get(textHandler.PROP_KEY_BLOCK_HEIGHT));
+        String blockShapeStr = props.get(textHandler.PROP_KEY_BLOCK_SHAPE);
+        blockShape = Shape.valueOf(blockShapeStr);
         blockDim = new Dimension(blockWidth, blockHeight);
-        blockLum = Float.parseFloat(map.get(textHandler.PROP_KEY_BLOCK_LUMINANCE));
-        blockSat = Float.parseFloat(map.get(textHandler.PROP_KEY_BLOCK_SATURATION));
+        blockLum = Float.parseFloat(props.get(textHandler.PROP_KEY_BLOCK_LUMINANCE));
+        blockSat = Float.parseFloat(props.get(textHandler.PROP_KEY_BLOCK_SATURATION));
 
         /* GamePanel options */
-        int gamePanelTitleColorInt = Integer.decode(map.get(textHandler.PROP_KEY_GAME_PANEL_TITLE_COLOR));
-        int gamePanelValueColorInt = Integer.decode(map.get(textHandler.PROP_KEY_GAME_PANEL_VALUE_COLOR));
+        int gamePanelTitleColorInt = Integer.decode(props.get(textHandler.PROP_KEY_GAME_PANEL_TITLE_COLOR));
+        int gamePanelValueColorInt = Integer.decode(props.get(textHandler.PROP_KEY_GAME_PANEL_VALUE_COLOR));
         gamePanelTitleColor = new Color(gamePanelTitleColorInt);
         gamePanelValueColor = new Color(gamePanelValueColorInt);
     }
@@ -254,6 +258,10 @@ public final class LevelOptions {
 
     public Dimension getPaddleDim() {
         return paddleDim;
+    }
+
+    public Shape getPaddleShape() {
+        return paddleShape;
     }
 
     public int getPaddleSpeed() {
@@ -316,16 +324,16 @@ public final class LevelOptions {
         return gamePanelValueColor;
     }
 
-    public PowerUp.Style getPowerUpStyle() {
-        return powerUpStyle;
+    public Shape getPowerUpShape() {
+        return powerUpShape;
     }
 
-    public Ball.Style getBallStyle() {
-        return ballStyle;
+    public Shape getBallShape() {
+        return ballShape;
     }
 
-    public Block.Style getBlockStyle() {
-        return blockStyle;
+    public Shape getBlockShape() {
+        return blockShape;
     }
 
 }
