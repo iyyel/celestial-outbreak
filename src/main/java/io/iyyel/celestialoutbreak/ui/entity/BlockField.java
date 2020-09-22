@@ -2,7 +2,7 @@ package io.iyyel.celestialoutbreak.ui.entity;
 
 
 import io.iyyel.celestialoutbreak.handler.OptionsHandler;
-import io.iyyel.celestialoutbreak.ui.entity.AbstractEntity.Shape;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable.Shape;
 import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable;
 import io.iyyel.celestialoutbreak.ui.interfaces.IEntityUpdatable;
 import io.iyyel.celestialoutbreak.util.Util;
@@ -148,15 +148,19 @@ public final class BlockField implements IEntityUpdatable, IEntityRenderable {
         return arr;
     }
 
+    public Block getBlock(int index) {
+        if (index >= 0 && index < blockArr.length
+                && blockArr[index] != null) {
+            return blockArr[index];
+        }
+        return null;
+    }
+
     public void remove(int index) {
         if (index >= 0 && index < blockArr.length) {
             blockArr[index] = null;
             totalBlocksLeft--;
         }
-    }
-
-    public int getTotalBlocks() {
-        return amount;
     }
 
     public int getTotalBlocksLeft() {
@@ -189,6 +193,15 @@ public final class BlockField implements IEntityUpdatable, IEntityRenderable {
             return blockArr[index].isAlive();
         }
         return false;
+    }
+
+    public int intersects(AbstractEntity entity) {
+        for (int i = 0; i < blockArr.length; i++) {
+            if (blockArr[i] != null && blockArr[i].intersects(entity)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
 }

@@ -2,7 +2,7 @@ package io.iyyel.celestialoutbreak.ui.entity;
 
 import java.awt.*;
 
-public final class Block extends AbstractMovableEntity {
+public final class Block extends AbstractMobileEntity {
 
     private int hitPoints;
 

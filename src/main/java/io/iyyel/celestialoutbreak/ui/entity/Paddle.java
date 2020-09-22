@@ -6,7 +6,7 @@ import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
 
-public final class Paddle extends AbstractMovableEntity {
+public final class Paddle extends AbstractMobileEntity {
 
     private final Util util = Util.getInstance();
     private final InputHandler inputHandler = InputHandler.getInstance();
@@ -21,8 +21,7 @@ public final class Paddle extends AbstractMovableEntity {
 
     private PaddleEffect effect;
 
-    public Paddle(Point pos, Dimension dim, Shape shape, Color col, int speed,
-                  int screenWidth, int screenHeight) {
+    public Paddle(Point pos, Dimension dim, Shape shape, Color col, int speed, int screenWidth, int screenHeight) {
         super(pos, dim, shape, col, speed);
         this.origDim = dim;
         this.origShape = shape;
@@ -31,6 +30,8 @@ public final class Paddle extends AbstractMovableEntity {
 
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
+
+        setVelocity(new Point(speed, 0));
     }
 
     @Override
@@ -41,34 +42,19 @@ public final class Paddle extends AbstractMovableEntity {
 
         moveLeft();
         moveRight();
-        moveUp();
-        moveDown();
 
         updateEffect();
     }
 
     private void moveLeft() {
         if (inputHandler.isLeftPressed() && pos.x > 0) {
-            move(Direction.LEFT);
+            pos.x -= velocity.x;
         }
     }
 
     private void moveRight() {
         if (inputHandler.isRightPressed() && pos.x <= screenWidth - dim.width) {
-            move(Direction.RIGHT);
-        }
-    }
-
-    private void moveUp() {
-        if (inputHandler.isUpPressed() && pos.y > 0) {
-            move(Direction.UP);
-        }
-    }
-
-    private void moveDown() {
-        /* Paddle can't go underneath the game panel, hence -35 pixels. */
-        if (inputHandler.isDownPressed() && pos.y <= screenHeight - 35) {
-            move(Direction.DOWN);
+            pos.x += velocity.x;
         }
     }
 

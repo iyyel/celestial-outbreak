@@ -7,12 +7,6 @@ import java.awt.*;
 
 public abstract class AbstractEntity implements IEntityUpdatable, IEntityRenderable {
 
-    public enum Shape {
-        RECTANGLE,
-        ROUND_RECTANGLE,
-        OVAL
-    }
-
     protected Point pos;
     protected Dimension dim;
     protected Shape shape;
@@ -78,7 +72,7 @@ public abstract class AbstractEntity implements IEntityUpdatable, IEntityRendera
         return renderStopped;
     }
 
-    public boolean isColliding(AbstractEntity ent) {
+    public boolean intersects(AbstractEntity ent) {
         return getBounds().intersects(ent.getBounds());
     }
 

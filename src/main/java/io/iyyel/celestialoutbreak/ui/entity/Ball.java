@@ -6,8 +6,9 @@ import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
+import java.util.Random;
 
-public final class Ball extends AbstractMovableEntity {
+public final class Ball extends AbstractMobileEntity {
 
     private final Util util = Util.getInstance();
     private final OptionsHandler optionsHandler = OptionsHandler.getInstance();
@@ -18,12 +19,7 @@ public final class Ball extends AbstractMovableEntity {
     private final InputHandler inputHandler = InputHandler.getInstance();
     private final PowerUpHandler powerUpHandler = PowerUpHandler.getInstance();
 
-    private final Point velocity;
     private boolean isStuck = true;
-
-    private final int PADDLE_COLLISION_TIMER_INITIAL = 30;
-
-    private int paddleCollisionTimer = 0;
 
     private final SoundHandler.SoundClip ballHitClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT);
     private final SoundHandler.SoundClip ballResetClip = soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_RESET);
@@ -53,45 +49,42 @@ public final class Ball extends AbstractMovableEntity {
         this.origShape = shape;
         this.origCol = col;
         this.origSpeed = speed;
-
-        velocity = new Point(0, 0);
     }
 
     @Override
     public void update() {
-        move();
+        if (isStuck) {
+            stuck();
+        } else {
+            move();
 
-        /* Check for collision. */
-        checkPaddleCollision(paddle);
-        checkBlockCollision(blockField);
+            checkLeftCollision();
+            checkRightCollision();
+            checkTopCollision();
+            checkBottomCollision();
 
-        checkLeftCollision();
-        checkRightCollision();
-        checkTopCollision();
-        checkBottomCollision();
-
+            checkPaddleCollision();
+            checkBlockCollision();
+        }
         updateEffect();
     }
 
     @Override
     public void render(Graphics2D g) {
         super.render(g);
-        if (paddleCollisionTimer > 0) {
-            paddleCollisionTimer--;
-        }
     }
 
     private void move() {
-        if (!isStuck) {
-            pos.x += velocity.x;
-            pos.y += velocity.y;
-        } else {
-            pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
+        pos.x += velocity.x;
+        pos.y += velocity.y;
+    }
 
-            if (inputHandler.isAuxPressed()) {
-                isStuck = false;
-                velocity.y = -speed;
-            }
+    private void stuck() {
+        pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
+
+        if (inputHandler.isAuxPressed()) {
+            isStuck = false;
+            velocity.y = -speed;
         }
     }
 
@@ -100,9 +93,7 @@ public final class Ball extends AbstractMovableEntity {
         if (pos.x < 0) {
             logHandler.log(textHandler.vBallTouchedXAxisLeftMsg, "checkLeftCollision", LogHandler.LogLevel.INFO, true);
             velocity.x = speed;
-            if (!isStuck) {
-                ballHitClip.play(false);
-            }
+            ballHitClip.play(false);
         }
     }
 
@@ -111,9 +102,7 @@ public final class Ball extends AbstractMovableEntity {
         if (pos.x > (screenWidth - dim.width)) {
             logHandler.log(textHandler.vBallTouchedXAxisRightMsg, "checkRightCollision", LogHandler.LogLevel.INFO, true);
             velocity.x = -speed;
-            if (!isStuck) {
-                ballHitClip.play(false);
-            }
+            ballHitClip.play(false);
         }
     }
 
@@ -122,9 +111,7 @@ public final class Ball extends AbstractMovableEntity {
         if (pos.y < 0) {
             logHandler.log(textHandler.vBallTouchedYAxisTopMsg, "checkTopCollision", LogHandler.LogLevel.INFO, true);
             velocity.y = speed;
-            if (!isStuck) {
-                ballHitClip.play(false);
-            }
+            ballHitClip.play(false);
         }
     }
 
@@ -134,64 +121,76 @@ public final class Ball extends AbstractMovableEntity {
         if (pos.y > (screenHeight - 35)) {
             isStuck = true;
 
-            // player lost a life
-            if (!optionsHandler.isGodModeEnabled()) {
-                levelHandler.getActiveLevel().decPlayerLife();
-            }
-
+            // place the ball near the paddle immediately
             pos = new Point(paddle.pos.x + (paddle.dim.width / 2) - (dim.width / 2), paddle.pos.y - (dim.height));
 
-            velocity.x = 0;
-            velocity.y = 0;
+            // ball now has no velocity
+            setVelocity(0);
 
+            // play reset sound
             ballResetClip.play(false);
 
+            // player lost a life if god mode is not enabled
+            if (!optionsHandler.isGodModeEnabled()) {
+                levelHandler.getActiveLevel().decPlayerLife();
+                logHandler.log("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife(), "checkBottomCollision", LogHandler.LogLevel.INFO, true);
+            }
+
             logHandler.log(textHandler.vBallTouchedYAxisBottomMsg, "checkBottomCollision", LogHandler.LogLevel.INFO, true);
-            logHandler.log("Player lost a life. Life: " + levelHandler.getActiveLevel().getPlayerLife(), "checkBottomCollision", LogHandler.LogLevel.INFO, true);
         }
     }
 
-    private void checkPaddleCollision(Paddle paddle) {
-        if (!paddle.isColliding(this)) {
+    private void checkPaddleCollision() {
+        if (!paddle.intersects(this)) {
             return;
         }
 
-        if (paddleCollisionTimer != 0) {
-            return;
+        Point tlBall = new Point(pos);
+        Point trBall = new Point(pos.x + dim.width, pos.y);
+        Point blBall = new Point(pos.x, pos.y + dim.height);
+        Point brBall = new Point(pos.x + dim.width, pos.y + dim.height);
+
+        Point tlPaddle = new Point(paddle.pos);
+        Point trPaddle = new Point(paddle.pos.x + paddle.dim.width, paddle.pos.y);
+        Point blPaddle = new Point(paddle.pos.x, paddle.pos.y + paddle.dim.height);
+        Point brPaddle = new Point(paddle.pos.x + paddle.dim.width, paddle.pos.y + paddle.dim.height);
+
+        // ball collides at top of paddle
+        if (tlBall.y < tlPaddle.y && tlBall.x > tlPaddle.x && trBall.x < trPaddle.x) {
+            velocity.y *= -1;
+            if (velocity.x < 0) {
+                velocity.x = -speed;
+            } else {
+                velocity.x = speed;
+            }
+        } else if (trBall.x > trPaddle.x) { // left of paddle
+            velocity.x *= -1;
+        } else if (tlBall.x < tlPaddle.x) { // right of paddle
+            velocity.x *= -1;
+        } else if (blBall.y < blPaddle.y && brBall.y < brPaddle.y && blBall.x > blPaddle.x && brBall.x < brPaddle.x) {
+            velocity.y *= -1;
+            if (velocity.x < 0) {
+                velocity.x = -speed;
+            } else {
+                velocity.x = speed;
+            }
         }
 
-        velocity.y *= -1;
-
-        if (velocity.x < 0) {
-            velocity.x = -speed;
-        } else {
-            velocity.x = speed;
-        }
-
-        paddleCollisionTimer = PADDLE_COLLISION_TIMER_INITIAL;
 
         ballHitClip.play(false);
-
-        if (optionsHandler.isVerboseLogEnabled()) {
-            logHandler.log(textHandler.vBallPaddleCollisionMsg(paddleCollisionTimer), "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
-        }
-
     }
 
-    private void checkBlockCollision(BlockField blockField) {
-        /*
-        int blockIndex = blockField.checkForEntityIntersection(this);
+    private void checkBlockCollision() {
+        int blockIndex = blockField.intersects(this);
 
         /* No collision was found */
-        /*
         if (blockIndex == -1) {
             return;
         }
-        */
 
-        /* If the ball is stuck and is colliding with a block */
-        /*
-        if (isStuck) {
+        Block block = blockField.getBlock(blockIndex);
+
+        if (block == null) {
             return;
         }
 
@@ -200,24 +199,21 @@ public final class Ball extends AbstractMovableEntity {
         // block was hit
         blockField.hit(blockIndex);
 
-        if (blockField.get(blockIndex).isDead()) {
-           */
-        /* spawn powerup by chance */
-            /*
+        if (blockField.isBlockAlive(blockIndex)) {
+            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
+            logHandler.log(textHandler.vBallBlockFieldCollisionMsg(blockIndex, block.getHitPoints()), "checkBlockCollision", LogHandler.LogLevel.INFO, true);
+        } else {
+            /* spawn powerup by chance */
             boolean spawn = new Random().nextInt(100) < levelHandler.getActiveLevel().getPowerUpChance();
             if (spawn) {
-                spawnPowerUp(blockField.get(blockIndex), levelHandler.getActiveLevel());
+                spawnPowerUp(block, levelHandler.getActiveLevel());
                 logHandler.log("Power up spawned!", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
             }
 
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BLOCK_DESTROYED).play(false);
             blockField.remove(blockIndex);
             logHandler.log("BlockField[" + blockIndex + "] has been destroyed.", "checkBlockCollision", LogHandler.LogLevel.INFO, true);
-        } else {
-            soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_BALL_HIT).play(false);
-            logHandler.log(textHandler.vBallBlockFieldCollisionMsg(blockIndex, blockField.get(blockIndex).getHitPoints()), "checkBlockCollision", LogHandler.LogLevel.INFO, true);
         }
-        */
     }
 
     private void spawnPowerUp(Block block, Level level) {
@@ -243,7 +239,7 @@ public final class Ball extends AbstractMovableEntity {
         this.dim = effect.getDim();
         this.col = effect.getColor();
         this.speed = effect.getSpeed();
-        updateVelocity(speed);
+        //updateVelocity(speed);
     }
 
     private void updateEffect() {
@@ -255,22 +251,9 @@ public final class Ball extends AbstractMovableEntity {
                 this.dim = origDim;
                 this.col = origCol;
                 this.speed = origSpeed;
-                updateVelocity(speed);
+                //updateVelocity(speed);
                 effect = null;
             }
-        }
-    }
-
-    private void updateVelocity(int speed) {
-        if (velocity.x < 0) {
-            velocity.x = -speed;
-        } else {
-            velocity.x = speed;
-        }
-        if (velocity.y < 0) {
-            velocity.y = -speed;
-        } else {
-            velocity.y = speed;
         }
     }
 

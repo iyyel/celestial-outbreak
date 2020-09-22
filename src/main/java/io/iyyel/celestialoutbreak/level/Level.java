@@ -3,7 +3,7 @@ package io.iyyel.celestialoutbreak.level;
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.ui.entity.AbstractEntity.Shape;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable.Shape;
 import io.iyyel.celestialoutbreak.ui.entity.Ball;
 import io.iyyel.celestialoutbreak.ui.entity.BlockField;
 import io.iyyel.celestialoutbreak.ui.entity.Paddle;

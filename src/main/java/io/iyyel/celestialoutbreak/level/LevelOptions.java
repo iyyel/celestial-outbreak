@@ -6,7 +6,7 @@ import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
 import io.iyyel.celestialoutbreak.ui.entity.AbstractEntity;
-import io.iyyel.celestialoutbreak.ui.entity.AbstractEntity.Shape;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable.Shape;
 import io.iyyel.celestialoutbreak.ui.entity.effects.BallEffect;
 import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
 import io.iyyel.celestialoutbreak.ui.entity.effects.PaddleEffect;
@@ -143,7 +143,8 @@ public final class LevelOptions {
             Dimension effectDim = new Dimension(effectWidth, effectHeight);
 
             String pKeyShape = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_SHAPE, i);
-            Shape effectShape = Shape.valueOf(pKeyShape);
+            String effectShapeStr = fileHandler.readPropertyFromFile(pKeyShape, fileName);
+            Shape effectShape = Shape.valueOf(effectShapeStr);
 
             String pKeyColor = textHandler.powerUpPropNumbered(textHandler.PROP_KEY_POWERUP_EFFECT_COLOR, i);
             Color effectColor = new Color(Integer.decode(fileHandler.readPropertyFromFile(pKeyColor, fileName)));

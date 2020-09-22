@@ -1,6 +1,6 @@
 package io.iyyel.celestialoutbreak.ui.entity.effects;
 
-import io.iyyel.celestialoutbreak.ui.entity.AbstractEntity.Shape;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable.Shape;
 
 import java.awt.*;
 
