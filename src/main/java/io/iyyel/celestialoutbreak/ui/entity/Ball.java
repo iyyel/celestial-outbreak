@@ -56,14 +56,15 @@ public final class Ball extends AbstractMobileEntity {
         if (isStuck) {
             stuck();
         } else {
-            move();
+            pos.x += velocity.x;
+            checkPaddleCollisionXAxis();
+            pos.y += velocity.y;
+            checkPaddleCollisionYAxis();
 
             checkLeftCollision();
             checkRightCollision();
             checkTopCollision();
             checkBottomCollision();
-
-            checkPaddleCollision();
             checkBlockCollision();
         }
         updateEffect();
@@ -72,11 +73,6 @@ public final class Ball extends AbstractMobileEntity {
     @Override
     public void render(Graphics2D g) {
         super.render(g);
-    }
-
-    private void move() {
-        pos.x += velocity.x;
-        pos.y += velocity.y;
     }
 
     private void stuck() {
@@ -109,6 +105,11 @@ public final class Ball extends AbstractMobileEntity {
     private void checkTopCollision() {
         /* Ball hit top y-axis. */
         if (pos.y < 0) {
+
+            if (velocity.x == 0) {
+                randomXVelocity();
+            }
+
             logHandler.log(textHandler.vBallTouchedYAxisTopMsg, "checkTopCollision", LogHandler.LogLevel.INFO, true);
             velocity.y = speed;
             ballHitClip.play(false);
@@ -140,44 +141,20 @@ public final class Ball extends AbstractMobileEntity {
         }
     }
 
-    private void checkPaddleCollision() {
-        if (!paddle.intersects(this)) {
-            return;
-        }
-
-        Point tlBall = new Point(pos);
-        Point trBall = new Point(pos.x + dim.width, pos.y);
-        Point blBall = new Point(pos.x, pos.y + dim.height);
-        Point brBall = new Point(pos.x + dim.width, pos.y + dim.height);
-
-        Point tlPaddle = new Point(paddle.pos);
-        Point trPaddle = new Point(paddle.pos.x + paddle.dim.width, paddle.pos.y);
-        Point blPaddle = new Point(paddle.pos.x, paddle.pos.y + paddle.dim.height);
-        Point brPaddle = new Point(paddle.pos.x + paddle.dim.width, paddle.pos.y + paddle.dim.height);
-
-        // ball collides at top of paddle
-        if (tlBall.y < tlPaddle.y && tlBall.x > tlPaddle.x && trBall.x < trPaddle.x) {
-            velocity.y *= -1;
-            if (velocity.x < 0) {
-                velocity.x = -speed;
-            } else {
-                velocity.x = speed;
-            }
-        } else if (trBall.x > trPaddle.x) { // left of paddle
+    private void checkPaddleCollisionXAxis() {
+        if (paddle.intersects(this)) {
             velocity.x *= -1;
-        } else if (tlBall.x < tlPaddle.x) { // right of paddle
-            velocity.x *= -1;
-        } else if (blBall.y < blPaddle.y && brBall.y < brPaddle.y && blBall.x > blPaddle.x && brBall.x < brPaddle.x) {
-            velocity.y *= -1;
-            if (velocity.x < 0) {
-                velocity.x = -speed;
-            } else {
-                velocity.x = speed;
-            }
+            fixCollisionXAxis(paddle);
+            ballHitClip.play(false);
         }
+    }
 
-
-        ballHitClip.play(false);
+    private void checkPaddleCollisionYAxis() {
+        if (paddle.intersects(this)) {
+            velocity.y *= -1;
+            fixCollisionYAxis(paddle);
+            ballHitClip.play(false);
+        }
     }
 
     private void checkBlockCollision() {
@@ -195,6 +172,10 @@ public final class Ball extends AbstractMobileEntity {
         }
 
         velocity.y *= -1;
+
+        if (velocity.x == 0) {
+            randomXVelocity();
+        }
 
         // block was hit
         blockField.hit(blockIndex);
@@ -239,7 +220,7 @@ public final class Ball extends AbstractMobileEntity {
         this.dim = effect.getDim();
         this.col = effect.getColor();
         this.speed = effect.getSpeed();
-        //updateVelocity(speed);
+        updateVelocity(speed);
     }
 
     private void updateEffect() {
@@ -251,9 +232,19 @@ public final class Ball extends AbstractMobileEntity {
                 this.dim = origDim;
                 this.col = origCol;
                 this.speed = origSpeed;
-                //updateVelocity(speed);
+                updateVelocity(speed);
                 effect = null;
             }
+        }
+    }
+
+    private void randomXVelocity() {
+        Random random = new Random();
+        int flag = random.nextInt(2);
+        if (flag == 0) {
+            velocity.x = speed;
+        } else {
+            velocity.x = -speed;
         }
     }
 

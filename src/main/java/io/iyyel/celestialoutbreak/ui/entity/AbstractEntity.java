@@ -76,8 +76,38 @@ public abstract class AbstractEntity implements IEntityUpdatable, IEntityRendera
         return getBounds().intersects(ent.getBounds());
     }
 
-    private Rectangle getBounds() {
+    protected Rectangle getBounds() {
         return new Rectangle(pos.x, pos.y, dim.width, dim.height);
+    }
+
+    protected void fixCollisionXAxis(AbstractEntity ent) {
+        int tCenterX = pos.x + dim.width / 2;
+        int entCenterY = ent.pos.x + ent.dim.width / 2;
+
+        if (tCenterX < entCenterY) {
+            // this collides to the left of ent
+            int deltaX = Math.abs(ent.pos.x - (pos.x + dim.width));
+            pos.x -= deltaX;
+        } else {
+            // this collides to the right of ent
+            int deltaX = Math.abs(pos.x - (ent.pos.x + ent.dim.width));
+            pos.x += deltaX;
+        }
+    }
+
+    protected void fixCollisionYAxis(AbstractEntity ent) {
+        int tCenterY = pos.y + dim.height / 2;
+        int entCenterY = ent.pos.y + ent.dim.height / 2;
+
+        if (tCenterY < entCenterY) {
+            // this collides with ent on top
+            int deltaY = Math.abs(ent.pos.y - (pos.y + dim.height));
+            pos.y -= deltaY;
+        } else {
+            // this collides with ent on bottom
+            int deltaY = Math.abs(pos.y - (ent.pos.y + ent.dim.height));
+            pos.y += deltaY;
+        }
     }
 
 }

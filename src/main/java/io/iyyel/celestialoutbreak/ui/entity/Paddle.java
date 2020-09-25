@@ -21,7 +21,9 @@ public final class Paddle extends AbstractMobileEntity {
 
     private PaddleEffect effect;
 
-    public Paddle(Point pos, Dimension dim, Shape shape, Color col, int speed, int screenWidth, int screenHeight) {
+    private final BlockField blockField;
+
+    public Paddle(Point pos, Dimension dim, Shape shape, Color col, int speed, int screenWidth, int screenHeight, BlockField blockField) {
         super(pos, dim, shape, col, speed);
         this.origDim = dim;
         this.origShape = shape;
@@ -31,7 +33,9 @@ public final class Paddle extends AbstractMobileEntity {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
 
-        setVelocity(new Point(speed, 0));
+        setVelocity(new Point(speed, speed));
+
+        this.blockField = blockField;
     }
 
     @Override
@@ -42,8 +46,25 @@ public final class Paddle extends AbstractMobileEntity {
 
         moveLeft();
         moveRight();
+        checkBlockCollisionXAxis();
+        moveUp();
+        moveDown();
+        checkBlockCollisionYAxis();
 
         updateEffect();
+    }
+
+    private void moveUp() {
+        if (inputHandler.isUpPressed() && pos.y > 0) {
+            pos.y -= velocity.y;
+        }
+    }
+
+    private void moveDown() {
+        /* Paddle can't go underneath the game panel, hence -35 pixels. */
+        if (inputHandler.isDownPressed() && pos.y <= screenHeight - 35) {
+            pos.y += velocity.y;
+        }
     }
 
     private void moveLeft() {
@@ -61,6 +82,26 @@ public final class Paddle extends AbstractMobileEntity {
     @Override
     public void render(Graphics2D g) {
         super.render(g);
+    }
+
+    private void checkBlockCollisionXAxis() {
+        int blockIndex = blockField.intersects(this);
+        if (blockIndex != -1) {
+            Block b = blockField.getBlock(blockIndex);
+            if (b != null) {
+                fixCollisionXAxis(b);
+            }
+        }
+    }
+
+    private void checkBlockCollisionYAxis() {
+        int blockIndex = blockField.intersects(this);
+        if (blockIndex != -1) {
+            Block b = blockField.getBlock(blockIndex);
+            if (b != null) {
+                fixCollisionYAxis(b);
+            }
+        }
     }
 
     public void applyEffect(PaddleEffect effect) {

@@ -18,9 +18,3 @@
 18. Blackhole, Earth, Jupiter, Mars (check again) powerups are done
 19. Add powerup log messages.
 20. Bugs when the ball hits the baddle backwards.
-
-
-1. If Ball is stuck to Paddle, ball is not able to break blocks.
-2. If Ball is stuck to Paddle, Ball is not able to move through blocks.
-3. Paddle is not able to move through blocks.
-2. If paddle with the ball on the paddle is trying to go to the top of the screen, don't make the ball able to go out of the screen.
