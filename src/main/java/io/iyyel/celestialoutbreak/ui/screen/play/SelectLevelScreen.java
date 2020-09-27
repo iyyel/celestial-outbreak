@@ -10,6 +10,7 @@ import io.iyyel.celestialoutbreak.handler.PowerUpHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 
 import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 
 public class SelectLevelScreen extends AbstractScreen {
 
@@ -17,7 +18,7 @@ public class SelectLevelScreen extends AbstractScreen {
     private final IHighScoreDAO highScoreDAO = HighScoreDAO.getInstance();
     private final PowerUpHandler powerUpHandler = PowerUpHandler.getInstance();
 
-    private final Rectangle[] levelRects;
+    private final RoundRectangle2D[] levelRects;
     private final Color[] levelRectColors;
 
     private final Font levelInfoFont = util.getGameFont().deriveFont(15F);
@@ -29,7 +30,7 @@ public class SelectLevelScreen extends AbstractScreen {
 
     public SelectLevelScreen(GameController gameController) {
         super(gameController);
-        levelRects = new Rectangle[levelAmount];
+        levelRects = new RoundRectangle2D.Float[levelAmount];
         levelRectColors = new Color[levelAmount];
 
         int initialX = 105;
@@ -46,7 +47,7 @@ public class SelectLevelScreen extends AbstractScreen {
                 x += xInc;
                 y = initialY;
             }
-            levelRects[i] = new Rectangle(x, y, 250, 130);
+            levelRects[i] = new RoundRectangle2D.Float(x, y, 250, 130, 10, 10);
             y += yInc;
         }
 
@@ -99,7 +100,6 @@ public class SelectLevelScreen extends AbstractScreen {
                 if (inputHandler.isOKPressed() && isInputAvailable()) {
                     resetInputTimer();
                     menuNavClip.play(false);
-                    selected = 0;
 
                     // Set current active level to i.
                     powerUpHandler.clear();
@@ -107,7 +107,6 @@ public class SelectLevelScreen extends AbstractScreen {
                     levelHandler.setActiveLevelIndex(i);
                     gameController.switchState(GameController.State.PRE_LEVEL);
                 }
-                // TODO: If the user decides to go back from this screen, the activeLevel should perhaps be reset?
             } else {
                 updateLevelColors(i);
             }
@@ -128,7 +127,7 @@ public class SelectLevelScreen extends AbstractScreen {
             for (int i = 0; i < levelHandler.getLevelAmount(); i++) {
                 g.setFont(inputBtnFont);
                 g.setColor(levelHandler.getLevelColors()[i]);
-                g.drawString(levelHandler.getLevelNames()[i], levelRects[i].x + 5, levelRects[i].y + 27);
+                g.drawString(levelHandler.getLevelNames()[i], (int) levelRects[i].getX() + 5, (int) levelRects[i].getY() + 27);
 
                 g.setFont(levelInfoFont);
                 g.setColor(menuBtnColor);
@@ -165,10 +164,10 @@ public class SelectLevelScreen extends AbstractScreen {
                     playerLife = "Life: GOD";
                 }
 
-                g.drawString(blockHealth, levelRects[i].x + 5, levelRects[i].y + 60);
-                g.drawString(playerLife, levelRects[i].x + 5, levelRects[i].y + 80);
-                g.drawString(score, levelRects[i].x + 5, levelRects[i].y + 100);
-                g.drawString(time, levelRects[i].x + 5, levelRects[i].y + 120);
+                g.drawString(blockHealth, (int) levelRects[i].getX() + 5, (int) levelRects[i].getY() + 60);
+                g.drawString(playerLife, (int) levelRects[i].getX() + 5, (int) levelRects[i].getY() + 80);
+                g.drawString(score, (int) levelRects[i].getX() + 5, (int) levelRects[i].getY() + 100);
+                g.drawString(time, (int) levelRects[i].getX() + 5, (int) levelRects[i].getY() + 120);
 
                 g.setColor(levelRectColors[i]);
                 g.draw(levelRects[i]);

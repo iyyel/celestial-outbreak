@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.screen.component;
 
 import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 
 public final class Button extends AbstractComponent {
 
@@ -9,7 +10,7 @@ public final class Button extends AbstractComponent {
     private final Font font;
     private Color fgColor;
 
-    private final Rectangle rect;
+    private final RoundRectangle2D rect;
     private final Point textPos;
 
     private FontMetrics fontMetrics;
@@ -22,7 +23,7 @@ public final class Button extends AbstractComponent {
         this.font = font;
         this.fgColor = fgColor;
 
-        rect = new Rectangle(this.pos.x, this.pos.y, dim.width, dim.height);
+        rect = new RoundRectangle2D.Float(this.pos.x, this.pos.y, dim.width, dim.height, 10, 10);
         textPos = new Point(this.pos.x + (dim.width / 2) - textOffset.x, this.pos.y + (dim.height / 2) - textOffset.y);
     }
 

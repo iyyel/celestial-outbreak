@@ -153,7 +153,7 @@ public final class Level {
 
         /* Create objects after initializing the options */
         blockField = new BlockField(blockAmount, blockStartPos, blockSpacing, blockDim, blockHitPoints, blockShape, blockLum, blockSat, gameController.getWidth());
-        paddle = new Paddle(paddlePos, paddleDim, paddleShape, paddleColor, paddleSpeed, gameController.getWidth(), gameController.getHeight(), blockField);
+        paddle = new Paddle(paddlePos, paddleDim, paddleShape, paddleColor, paddleSpeed, gameController.getWidth(), blockField);
         ball = new Ball(ballPos, ballDim, ballShape, ballColor, ballSpeed, gameController.getWidth(), gameController.getHeight(), paddle, blockField);
         gamePanel = new GamePanel(gameController, levelOptions);
 

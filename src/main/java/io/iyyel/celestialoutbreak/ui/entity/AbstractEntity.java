@@ -49,7 +49,8 @@ public abstract class AbstractEntity implements IEntityUpdatable, IEntityRendera
                 g.fillRect(pos.x, pos.y, dim.width, dim.height);
                 break;
             case ROUND_RECTANGLE:
-                g.fillRoundRect(pos.x, pos.y, dim.width, dim.height, 50, 50);
+                int curve = dim.width < dim.height ? dim.width - dim.width / 4 : dim.height - dim.height / 4;
+                g.fillRoundRect(pos.x, pos.y, dim.width, dim.height, curve, curve);
                 break;
             case OVAL:
                 g.fillOval(pos.x, pos.y, dim.width, dim.height);

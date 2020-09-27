@@ -105,11 +105,6 @@ public final class Ball extends AbstractMobileEntity {
     private void checkTopCollision() {
         /* Ball hit top y-axis. */
         if (pos.y < 0) {
-
-            if (velocity.x == 0) {
-                randomXVelocity();
-            }
-
             logHandler.log(textHandler.vBallTouchedYAxisTopMsg, "checkTopCollision", LogHandler.LogLevel.INFO, true);
             velocity.y = speed;
             ballHitClip.play(false);
@@ -152,6 +147,11 @@ public final class Ball extends AbstractMobileEntity {
     private void checkPaddleCollisionYAxis() {
         if (paddle.intersects(this)) {
             velocity.y *= -1;
+
+            if (velocity.x == 0) {
+                randomXVelocity();
+            }
+
             fixCollisionYAxis(paddle);
             ballHitClip.play(false);
         }
@@ -172,10 +172,6 @@ public final class Ball extends AbstractMobileEntity {
         }
 
         velocity.y *= -1;
-
-        if (velocity.x == 0) {
-            randomXVelocity();
-        }
 
         // block was hit
         blockField.hit(blockIndex);
@@ -208,6 +204,8 @@ public final class Ball extends AbstractMobileEntity {
 
         powerUp.playSpawnClip();
         powerUpHandler.spawnPowerUp(powerUp);
+
+        logHandler.log("Spawned power up at Block position (" + block.pos.x + ", " + block.pos.y + ").", "spawnPowerUp", LogHandler.LogLevel.INFO, true);
     }
 
     public void applyEffect(BallEffect effect) {
@@ -218,9 +216,12 @@ public final class Ball extends AbstractMobileEntity {
         this.effect = effect;
         this.effect.activate();
         this.dim = effect.getDim();
+        this.shape = effect.getShape();
         this.col = effect.getColor();
         this.speed = effect.getSpeed();
         updateVelocity(speed);
+
+        logHandler.log("Power up effect applied to Ball.", "applyEffect", LogHandler.LogLevel.INFO, true);
     }
 
     private void updateEffect() {
@@ -230,6 +231,7 @@ public final class Ball extends AbstractMobileEntity {
                 effect.deactivate();
                 this.pos = new Point(pos.x + (dim.width / 2), pos.y + (dim.height / 2));
                 this.dim = origDim;
+                this.shape = origShape;
                 this.col = origCol;
                 this.speed = origSpeed;
                 updateVelocity(speed);

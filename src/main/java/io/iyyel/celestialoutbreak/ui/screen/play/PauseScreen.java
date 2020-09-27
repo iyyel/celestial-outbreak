@@ -44,7 +44,7 @@ public final class PauseScreen extends AbstractScreen {
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_PAUSE).stop();
             util.stopTimer();
             util.resetTimer();
-            gameController.switchState(GameController.State.MAIN);
+            gameController.switchState(GameController.State.SELECT_LEVEL);
         }
 
         if (inputHandler.isPausePressed() && isInputAvailable()) {

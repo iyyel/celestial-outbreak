@@ -8,10 +8,11 @@ import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractScreen;
 
 import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 
 public final class HighScoresScreen extends AbstractScreen {
 
-    private final Rectangle[] levelRects;
+    private final RoundRectangle2D[] levelRects;
     private final Color[] levelRectColors;
     private boolean isFirstRender = true;
 
@@ -26,7 +27,7 @@ public final class HighScoresScreen extends AbstractScreen {
 
     public HighScoresScreen(GameController gameController) {
         super(gameController);
-        levelRects = new Rectangle[levelAmount];
+        levelRects = new RoundRectangle2D.Float[levelAmount];
         levelRectColors = new Color[levelAmount];
 
         int initialX = 105;
@@ -43,7 +44,7 @@ public final class HighScoresScreen extends AbstractScreen {
                 x += xInc;
                 y = initialY;
             }
-            levelRects[i] = new Rectangle(x, y, 250, 130);
+            levelRects[i] = new RoundRectangle2D.Float(x, y, 250, 130, 10, 10);
             y += yInc;
         }
 
@@ -85,7 +86,7 @@ public final class HighScoresScreen extends AbstractScreen {
             for (int i = 0; i < levelAmount; i++) {
                 g.setFont(inputBtnFont);
                 g.setColor(levelHandler.getLevelColors()[i]);
-                g.drawString(levelHandler.getLevelNames()[i], levelRects[i].x + 5, levelRects[i].y + 27);
+                g.drawString(levelHandler.getLevelNames()[i], (int) levelRects[i].getX() + 5, (int) levelRects[i].getY() + 27);
 
                 g.setFont(levelInfoFont);
                 g.setColor(menuBtnColor);
@@ -107,9 +108,9 @@ public final class HighScoresScreen extends AbstractScreen {
                     time = textHandler.getFixedString("Time: " + textHandler.getTimeString(highScoreDTO.getTime()), 12);
                 }
 
-                g.drawString(player, levelRects[i].x + 5, levelRects[i].y + 70);
-                g.drawString(score, levelRects[i].x + 5, levelRects[i].y + 90);
-                g.drawString(time, levelRects[i].x + 5, levelRects[i].y + 110);
+                g.drawString(player, (int) levelRects[i].getX() + 5, (int) levelRects[i].getY() + 70);
+                g.drawString(score, (int) levelRects[i].getX() + 5, (int) levelRects[i].getY() + 90);
+                g.drawString(time, (int) levelRects[i].getX() + 5, (int) levelRects[i].getY() + 110);
 
                 g.setColor(levelRectColors[i]);
                 g.draw(levelRects[i]);

@@ -13,6 +13,7 @@ import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 import io.iyyel.celestialoutbreak.util.Util;
 
 import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 
 public abstract class AbstractScreen implements IEntityUpdatable, IEntityRenderable {
 
@@ -40,7 +41,7 @@ public abstract class AbstractScreen implements IEntityUpdatable, IEntityRendera
     protected final Color menuBtnPlayerSelectedColor = optionsHandler.getMenuBtnPlayerSelectedColor();
     protected final Color menuBtnPlayerDeletedColor = optionsHandler.getMenuBtnPlayerDeletedColor();
 
-    private final Rectangle versionRect, authorRect;
+    private final RoundRectangle2D versionRect, authorRect;
 
     private final int INIT_INPUT_TIMER = 12;
     private int inputTimer = INIT_INPUT_TIMER;
@@ -60,8 +61,8 @@ public abstract class AbstractScreen implements IEntityUpdatable, IEntityRendera
         this.gameController = gameController;
         this.screenWidth = gameController.getWidth();
         this.screenHeight = gameController.getHeight();
-        authorRect = new Rectangle(getHalfWidth() - 5, screenHeight - 22, 70, 18);
-        versionRect = new Rectangle(getHalfWidth() - 65, screenHeight - 22, 55, 18);
+        authorRect = new RoundRectangle2D.Float(getHalfWidth() - 5, screenHeight - 22, 70, 18, 10, 10);
+        versionRect = new RoundRectangle2D.Float(getHalfWidth() - 65, screenHeight - 22, 55, 18, 10, 10);
     }
 
     @Override
@@ -134,11 +135,11 @@ public abstract class AbstractScreen implements IEntityUpdatable, IEntityRendera
         g.setFont(infoPanelFont);
 
         /* Version number */
-        g.drawString(textHandler.GAME_VERSION, versionRect.x + 3, versionRect.y + 15);
+        g.drawString(textHandler.GAME_VERSION, (int) versionRect.getX() + 3, (int) versionRect.getY() + 15);
         g.draw(versionRect);
 
         /* Email tag */
-        g.drawString(textHandler.AUTHOR_WEBSITE, authorRect.x + 2, authorRect.y + 13);
+        g.drawString(textHandler.AUTHOR_WEBSITE, (int) authorRect.getX() + 2, (int) authorRect.getY() + 13);
         g.draw(authorRect);
     }
 

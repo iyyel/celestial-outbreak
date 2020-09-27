@@ -2,7 +2,6 @@ package io.iyyel.celestialoutbreak.ui.entity;
 
 
 import io.iyyel.celestialoutbreak.handler.OptionsHandler;
-import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable.Shape;
 import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable;
 import io.iyyel.celestialoutbreak.ui.interfaces.IEntityUpdatable;
 import io.iyyel.celestialoutbreak.util.Util;
