@@ -13,9 +13,14 @@
 13. Better icon.
 14. The first time you're making a new player, some text is at the screen. It quickly flashes away. Let's try to get rid of this small "flash".
 15. If you disable sound and then enable sound again, sound does not start again before you exit the current menu.
+
+
+
 16. Sometimes the ball will go out a different way after it has had a ball powerup.
 17. Sometimes a power up will have no visible effect on the Earth level. This happens to all levels, it seems.
-18. When you go back to the level select screen after a level has been playing, the first level will be selected again. It should be the level that has just been played, that is selected. Also there seem to be no music after a level is won/lost?
 
-18. Blackhole, Earth, Jupiter, Mars, Moon, powerups are done.
+
+
+ABSOLUTE FINAL:
+1. Play through all levels and do minor adjustments.
 
