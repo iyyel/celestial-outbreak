@@ -26,6 +26,7 @@ public final class LevelHandler {
     private int[] levelHitPoints;
 
     private long currentScore = 0;
+    private int powerUpHits = 0;
 
     private GameController gameController;
 
@@ -128,7 +129,8 @@ public final class LevelHandler {
         long blockHitPointsPunish = (getActiveLevel().getBlockField().getTotalHitPoints() - getActiveLevel().getBlockField().getTotalHitPointsLeft()) * 10;
         long timePunish = Math.abs(util.getTimeElapsed() / getActiveLevel().getBlockHitPoints());
         long lostLifePunish = (getActiveLevel().getPlayerLifeInit() - getActiveLevel().getPlayerLife()) * getActiveLevel().getBlockField().getHitPoints() * 10;
-        currentScore = blockHitPointsPunish - timePunish - lostLifePunish;
+        long powerUpScore = powerUpHits * 10;
+        currentScore = blockHitPointsPunish - timePunish - lostLifePunish + powerUpScore;
         if (currentScore < 0) {
             currentScore = 0;
         }
@@ -178,6 +180,10 @@ public final class LevelHandler {
 
     public long getCurrentScore() {
         return currentScore;
+    }
+
+    public void addPowerUpScore() {
+        powerUpHits++;
     }
 
 }

@@ -85,6 +85,8 @@ public final class Paddle extends AbstractMobileEntity {
 
         this.effect = effect;
         this.effect.activate();
+        int curCenterX = pos.x + dim.width / 2;
+        this.pos = new Point(curCenterX - (effect.getDim().width / 2), pos.y);
         this.dim = effect.getDim();
         this.shape = effect.getShape();
         this.col = effect.getColor();
@@ -98,7 +100,8 @@ public final class Paddle extends AbstractMobileEntity {
             long delta = util.getTimeElapsed() - effect.getStartTime();
             if (delta > effect.getDuration()) {
                 effect.deactivate();
-                this.pos = new Point(pos.x + (dim.width / 2), pos.y);
+                int curCenterX = pos.x + dim.width / 2;
+                this.pos = new Point(curCenterX - (origDim.width / 2), pos.y);
                 this.dim = origDim;
                 this.col = origCol;
                 this.speed = origSpeed;

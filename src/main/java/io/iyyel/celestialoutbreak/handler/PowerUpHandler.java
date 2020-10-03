@@ -7,6 +7,7 @@ import java.awt.*;
 public final class PowerUpHandler {
 
     private final LogHandler logHandler = LogHandler.getInstance();
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
 
     private static final PowerUpHandler instance;
 
@@ -69,6 +70,7 @@ public final class PowerUpHandler {
             if (powerUpArray[i] != null && powerUpArray[i].collidesWithPaddle()) {
                 powerUpArray[i].playCollideClip();
                 powerUpArray[i].applyEffect();
+                levelHandler.addPowerUpScore();
                 logHandler.log("Power up collided with Paddle!", "checkPaddleCollision", LogHandler.LogLevel.INFO, true);
                 powerUpArray[i] = null;
             }

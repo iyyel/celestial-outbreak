@@ -212,9 +212,10 @@ public final class Ball extends AbstractMobileEntity {
         if (effect != null && effect.isActive()) {
             return;
         }
-
         this.effect = effect;
         this.effect.activate();
+        Point ballCenter = new Point(pos.x + dim.width / 2, pos.y + dim.height / 2);
+        this.pos = new Point(ballCenter.x - (effect.getDim().width / 2), ballCenter.y - (effect.getDim().height / 2));
         this.dim = effect.getDim();
         this.shape = effect.getShape();
         this.col = effect.getColor();
@@ -229,7 +230,8 @@ public final class Ball extends AbstractMobileEntity {
             long delta = util.getTimeElapsed() - effect.getStartTime();
             if (delta > effect.getDuration()) {
                 effect.deactivate();
-                this.pos = new Point(pos.x + (dim.width / 2), pos.y + (dim.height / 2));
+                Point ballCenter = new Point(pos.x + dim.width / 2, pos.y + dim.height / 2);
+                this.pos = new Point(ballCenter.x - (origDim.width / 2), ballCenter.y - (origDim.height / 2));
                 this.dim = origDim;
                 this.shape = origShape;
                 this.col = origCol;

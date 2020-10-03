@@ -45,8 +45,8 @@ public final class PowerUp extends AbstractMobileEntity {
     }
 
     public boolean hasReachedBottom() {
-        /* PowerUp hit bottom y-axis. */
-        return pos.y > (screenHeight - dim.height);
+        /* PowerUp hit bottom y-axis. +35 because of bottom panel */
+        return pos.y + 35 > (screenHeight - dim.height);
     }
 
     public boolean collidesWithPaddle() {

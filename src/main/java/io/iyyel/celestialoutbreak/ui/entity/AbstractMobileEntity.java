@@ -26,13 +26,13 @@ public abstract class AbstractMobileEntity extends AbstractEntity {
     protected void updateVelocity(int speed) {
         if (velocity.x < 0) {
             velocity.x = -speed;
-        } else {
+        } else if (velocity.x > 0) {
             velocity.x = speed;
         }
 
         if (velocity.y < 0) {
             velocity.y = -speed;
-        } else {
+        } else if (velocity.y > 0) {
             velocity.y = speed;
         }
     }
