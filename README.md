@@ -13,6 +13,7 @@
  ░░░░░░░░░░
 ```
 
+
 ## Table of Contents
  - [Introduction](#Introduction)
  - [Status](#Status)
@@ -21,14 +22,15 @@
  - [Previews](#Previews)
  - [License](#License)
 
+
 # Introduction
-Celestial Outbreak is an open-source, space-themed, Breakout-like sandbox video game implemented in core Java with little to no use of third party libraries. It includes fully customizable levels and game configuration. The main purpose of this project was to create a stand-alone game with simple controls together with a great user experience using core Java only.
+Celestial Outbreak is a space-themed, Breakout-like 2D game written in Java. It features the original Breakout experience in a colorful user interface with a few extra traits. The game is built with customization in mind, meaning the user is able to create their own levels by specifying properties such as dimension, size, speed and color of the blocks, paddle and ball, as well as the effects of power ups.
+
+The goal with this project was to create a simple 2D game in Java with minimal usage of third-party libraries. The game solely relies on the Graphics2D Java library for drawing shapes to the screen. The flow of the game is structured as a finite-state machine such that the program always know which state to render and update.
 
 
 # Status
-Currently in development.
-
-DISCLAIMER: This project has been in the works for a long time, and the code quality will therefore vary a lot.
+In development.
 
 
 # Release
