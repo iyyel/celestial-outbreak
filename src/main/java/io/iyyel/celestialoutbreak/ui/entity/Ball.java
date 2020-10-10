@@ -53,6 +53,10 @@ public final class Ball extends AbstractMobileEntity {
 
     @Override
     public void update() {
+        if (isUpdateStopped()) {
+            return;
+        }
+
         if (isStuck) {
             stuck();
         } else {
@@ -227,7 +231,7 @@ public final class Ball extends AbstractMobileEntity {
 
     private void updateEffect() {
         if (effect != null && effect.isActive()) {
-            long delta = util.getTimeElapsed() - effect.getStartTime();
+            long delta = levelHandler.getActiveLevel().getLevelTimer().getSecondsElapsed() - effect.getStartTime();
             if (delta > effect.getDuration()) {
                 effect.deactivate();
                 Point ballCenter = new Point(pos.x + dim.width / 2, pos.y + dim.height / 2);

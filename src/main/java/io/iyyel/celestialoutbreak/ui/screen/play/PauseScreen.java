@@ -21,7 +21,6 @@ public final class PauseScreen extends AbstractScreen {
 
     @Override
     public void update() {
-        levelHandler.getActiveLevel().pause();
         decInputTimer();
 
         if (isFirstUpdate) {
@@ -42,8 +41,6 @@ public final class PauseScreen extends AbstractScreen {
             pauseStatusText = "Exiting the level will result in lost progress.";
             levelHandler.resetActiveLevel();
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_PAUSE).stop();
-            util.stopTimer();
-            util.resetTimer();
             gameController.switchState(GameController.State.SELECT_LEVEL);
         }
 
@@ -54,7 +51,7 @@ public final class PauseScreen extends AbstractScreen {
             pauseStatusText = "Exiting the level will result in lost progress.";
             soundHandler.getSoundClip(textHandler.SOUND_FILE_NAME_PAUSE).stop();
             levelHandler.getActiveLevel().playSound();
-            util.resumeTimer();
+            levelHandler.getActiveLevel().pause(2);
             gameController.switchState(GameController.State.PLAY);
         }
     }

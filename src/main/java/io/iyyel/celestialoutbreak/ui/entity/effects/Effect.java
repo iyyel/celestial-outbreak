@@ -1,10 +1,10 @@
 package io.iyyel.celestialoutbreak.ui.entity.effects;
 
-import io.iyyel.celestialoutbreak.util.Util;
+import io.iyyel.celestialoutbreak.handler.LevelHandler;
 
 public abstract class Effect {
 
-    private final Util util = Util.getInstance();
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
 
     // effect duration in seconds
     protected final int duration;
@@ -26,7 +26,7 @@ public abstract class Effect {
     }
 
     public void activate() {
-        startTime = util.getTimeElapsed();
+        startTime = levelHandler.getActiveLevel().getLevelTimer().getSecondsElapsed();
         active = true;
     }
 

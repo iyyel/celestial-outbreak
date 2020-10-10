@@ -16,7 +16,8 @@
 
 
 
-15. Pause virker ikke mere.
+
+
 14. BALL SHOULD BE AT LEAST 15 PIXELS IN SIZE AT ALL TIMES!!
 17. Sometimes a power up will have no visible effect on the Earth level. This happens to all levels, it seems.
 

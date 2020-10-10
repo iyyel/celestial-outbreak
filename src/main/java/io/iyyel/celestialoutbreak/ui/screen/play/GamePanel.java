@@ -115,7 +115,7 @@ public final class GamePanel extends AbstractScreen {
             pos += 50;
 
             String timeLabel = "Time: ";
-            String timeValue = textHandler.getTimeString(util.getTimeElapsed());
+            String timeValue = textHandler.getTimeString(activeLevel.getLevelTimer().getSecondsElapsed());
             g.setColor(titleColor);
             g.drawString(timeLabel, pos, 714);
             g.setColor(valueColor);

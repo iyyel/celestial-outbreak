@@ -28,7 +28,7 @@ public class PlayScreen extends AbstractScreen {
             resetInputTimer();
             menuNavClip.play(false);
             levelHandler.getActiveLevel().pauseSound();
-            util.pauseTimer();
+            levelHandler.getActiveLevel().getLevelTimer().pauseTimer();
             gameController.switchState(GameController.State.PAUSE);
         }
 

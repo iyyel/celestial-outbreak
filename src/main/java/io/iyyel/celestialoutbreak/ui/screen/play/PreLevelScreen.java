@@ -25,8 +25,8 @@ public final class PreLevelScreen extends AbstractScreen {
             soundHandler.stopAllSound();
             menuNavClip.play(false);
             levelHandler.getActiveLevel().playSound();
-            util.resetTimer();
-            util.startTimer();
+            levelHandler.getActiveLevel().getLevelTimer().resetTimer();
+            levelHandler.getActiveLevel().getLevelTimer().startTimer();
             gameController.switchState(State.PLAY);
         }
 

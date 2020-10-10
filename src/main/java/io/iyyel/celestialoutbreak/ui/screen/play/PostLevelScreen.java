@@ -49,7 +49,7 @@ public final class PostLevelScreen extends AbstractScreen {
         if (isFirstRender) {
             isFirstRender = false;
             isHighScore = false;
-            util.stopTimer();
+            activeLevel.getLevelTimer().stopTimer();
             hasWon = levelHandler.getActiveLevel().isWon();
 
             try {
@@ -61,7 +61,7 @@ public final class PostLevelScreen extends AbstractScreen {
             if (hasWon) {
                 try {
                     highScoreDTO = new HighScoreDTO(playerDAO.getSelectedPlayer(), activeLevel.getName(),
-                            levelHandler.getCurrentScore(), util.getTimeElapsed());
+                            levelHandler.getCurrentScore(),    activeLevel.getLevelTimer().getSecondsElapsed());
                     isHighScore = highScoreDAO.isHighScore(highScoreDTO);
                     if (isHighScore && !optionsHandler.isGodModeEnabled()) {
                         highScoreDAO.addHighScore(highScoreDTO);
@@ -93,7 +93,7 @@ public final class PostLevelScreen extends AbstractScreen {
             drawCenteredText("You have lost. " + levelHandler.getActiveLevel().getName() + " shines in grace upon you.", 0, g);
             drawCenteredText("You reached a total score of " + levelHandler.getCurrentScore() + ".", 50, g);
         }
-        drawCenteredText("Time: " + textHandler.getTimeString(util.getTimeElapsed()), 100, g);
+        drawCenteredText("Time: " + textHandler.getTimeString(activeLevel.getLevelTimer().getSecondsElapsed()), 100, g);
 
 
         drawInfoPanel(g);

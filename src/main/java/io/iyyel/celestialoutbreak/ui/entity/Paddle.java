@@ -1,6 +1,7 @@
 package io.iyyel.celestialoutbreak.ui.entity;
 
 import io.iyyel.celestialoutbreak.handler.InputHandler;
+import io.iyyel.celestialoutbreak.handler.LevelHandler;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
 import io.iyyel.celestialoutbreak.ui.entity.effects.PaddleEffect;
 import io.iyyel.celestialoutbreak.util.Util;
@@ -12,6 +13,7 @@ public final class Paddle extends AbstractMobileEntity {
     private final Util util = Util.getInstance();
     private final InputHandler inputHandler = InputHandler.getInstance();
     private final LogHandler logHandler = LogHandler.getInstance();
+    private final LevelHandler levelHandler = LevelHandler.getInstance();
 
     private final Dimension origDim;
     private final Shape origShape;
@@ -97,7 +99,7 @@ public final class Paddle extends AbstractMobileEntity {
 
     private void updateEffect() {
         if (effect != null && effect.isActive()) {
-            long delta = util.getTimeElapsed() - effect.getStartTime();
+            long delta = levelHandler.getActiveLevel().getLevelTimer().getSecondsElapsed() - effect.getStartTime();
             if (delta > effect.getDuration()) {
                 effect.deactivate();
                 int curCenterX = pos.x + dim.width / 2;

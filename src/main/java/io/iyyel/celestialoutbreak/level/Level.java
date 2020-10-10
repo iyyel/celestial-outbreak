@@ -1,14 +1,16 @@
 package io.iyyel.celestialoutbreak.level;
 
 import io.iyyel.celestialoutbreak.controller.GameController;
+import io.iyyel.celestialoutbreak.handler.PowerUpHandler;
 import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.handler.TextHandler;
-import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable.Shape;
 import io.iyyel.celestialoutbreak.ui.entity.Ball;
 import io.iyyel.celestialoutbreak.ui.entity.BlockField;
 import io.iyyel.celestialoutbreak.ui.entity.Paddle;
 import io.iyyel.celestialoutbreak.ui.entity.effects.Effect;
+import io.iyyel.celestialoutbreak.ui.interfaces.IEntityRenderable.Shape;
 import io.iyyel.celestialoutbreak.ui.screen.play.GamePanel;
+import io.iyyel.celestialoutbreak.util.Timer;
 
 import java.awt.*;
 import java.util.Random;
@@ -17,6 +19,7 @@ public final class Level {
 
     private final TextHandler textHandler = TextHandler.getInstance();
     private final SoundHandler soundHandler = SoundHandler.getInstance();
+    private final PowerUpHandler powerUpHandler = PowerUpHandler.getInstance();
 
     /*
      * Rendering objects
@@ -88,15 +91,22 @@ public final class Level {
      */
     private GamePanel gamePanel;
 
+    private final Timer levelTimer;
+    private final Timer pauseTimer;
+    private long pauseDuration = 0;
+
     /*
      * Constructor
      */
     public Level(String optionsFileName, GameController gameController) {
         levelOptions = new LevelOptions(optionsFileName, gameController);
+        levelTimer = new Timer();
+        pauseTimer = new Timer();
         initLevel(gameController);
     }
 
     public void update() {
+        updatePause();
         paddle.update();
         ball.update();
         gamePanel.update();
@@ -215,9 +225,30 @@ public final class Level {
         }
     }
 
-    public void pause() {
-        //ball.stopUpdate(120);
-        //paddle.stopUpdate(120);
+    public void pause(int seconds) {
+        pauseDuration = seconds;
+        pauseTimer.startTimer();
+        ball.stopUpdate();
+        paddle.stopUpdate();
+        powerUpHandler.stopUpdate();
+    }
+
+    private void resume() {
+        ball.resumeUpdate();
+        paddle.resumeUpdate();
+        powerUpHandler.resumeUpdate();
+    }
+
+    private void updatePause() {
+        if (pauseTimer.isTimerStarted()) {
+            if (pauseTimer.getSecondsElapsed() >= pauseDuration) {
+                resume();
+                levelTimer.resumeTimer();
+                pauseDuration = 0;
+                pauseTimer.stopTimer();
+                pauseTimer.resetTimer();
+            }
+        }
     }
 
     public int getBlockHitPoints() {
@@ -239,6 +270,10 @@ public final class Level {
     public Effect getRandomEffect() {
         int index = new Random().nextInt(effects.length);
         return effects[index];
+    }
+
+    public Timer getLevelTimer() {
+        return levelTimer;
     }
 
 }

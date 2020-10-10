@@ -13,6 +13,8 @@ public final class PowerUpHandler {
 
     private PowerUp[] powerUpArray = new PowerUp[10];
 
+    private boolean isUpdateStopped;
+
     private PowerUpHandler() {
 
     }
@@ -30,6 +32,10 @@ public final class PowerUpHandler {
     }
 
     public void update() {
+        if (isUpdateStopped) {
+            return;
+        }
+
         for (PowerUp up : powerUpArray) {
             if (up != null) {
                 up.update();
@@ -84,6 +90,14 @@ public final class PowerUpHandler {
                 powerUpArray[i] = null;
             }
         }
+    }
+
+    public void stopUpdate() {
+        isUpdateStopped = true;
+    }
+
+    public void resumeUpdate() {
+        isUpdateStopped = false;
     }
 
 }
