@@ -3,7 +3,6 @@ package io.iyyel.celestialoutbreak.ui.screen.options;
 import io.iyyel.celestialoutbreak.controller.GameController;
 import io.iyyel.celestialoutbreak.handler.FileHandler;
 import io.iyyel.celestialoutbreak.handler.LogHandler;
-import io.iyyel.celestialoutbreak.handler.SoundHandler;
 import io.iyyel.celestialoutbreak.ui.screen.AbstractNavigationScreen;
 import io.iyyel.celestialoutbreak.ui.screen.component.Button;
 
@@ -67,24 +66,20 @@ public final class GameOptions extends AbstractNavigationScreen {
                     fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_SOUND_ENABLED, pValue);
                     optionsHandler.reloadProperty(textHandler.PROP_KEY_SOUND_ENABLED, pValue);
                     soundHandler.playStateSound(gameController.getState(), gameController.getPrevState(), true, true);
-                    if (optionsHandler.isVerboseLogEnabled()) {
-                        if (optionsHandler.isSoundEnabled()) {
-                            logHandler.log("Sound has been enabled.", "updateNavUse", LogHandler.LogLevel.INFO, false);
-                        } else {
-                            logHandler.log("Sound has been disabled.", "updateNavUse", LogHandler.LogLevel.INFO, false);
-                        }
+                    if (optionsHandler.isSoundEnabled()) {
+                        logHandler.log("Sound has been enabled.", "updateNavUse", LogHandler.LogLevel.INFO, true);
+                    } else {
+                        logHandler.log("Sound has been disabled.", "updateNavUse", LogHandler.LogLevel.INFO, true);
                     }
                     break;
                 case 1:
                     pValue = String.valueOf(!optionsHandler.isGodModeEnabled());
                     fileHandler.writePropertyToFile(textHandler.OPTIONS_CONFIG_FILE_CLIENT_PATH, textHandler.PROP_KEY_GOD_MODE_ENABLED, pValue);
                     optionsHandler.reloadProperty(textHandler.PROP_KEY_GOD_MODE_ENABLED, pValue);
-                    if (optionsHandler.isVerboseLogEnabled()) {
-                        if (optionsHandler.isGodModeEnabled()) {
-                            logHandler.log("God Mode has been enabled.", "updateNavUse", LogHandler.LogLevel.INFO, false);
-                        } else {
-                            logHandler.log("God Mode has been disabled.", "updateNavUse", LogHandler.LogLevel.INFO, false);
-                        }
+                    if (optionsHandler.isGodModeEnabled()) {
+                        logHandler.log("God Mode has been enabled.", "updateNavUse", LogHandler.LogLevel.INFO, true);
+                    } else {
+                        logHandler.log("God Mode has been disabled.", "updateNavUse", LogHandler.LogLevel.INFO, true);
                     }
                     break;
                 default:

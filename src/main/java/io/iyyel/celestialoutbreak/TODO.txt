@@ -10,16 +10,16 @@
 10. Alle firkanter skal starte på samme x og y værdi, f.eks i level select og score select, osv.
 11. Take pics and make a video of the game when its done, for your website as well as github.
 12. The remaining screens should also make use of the new abstract classes.
+
+
+
+
+
 13. Better icon.
 14. The first time you're making a new player, some text is at the screen. It quickly flashes away. Let's try to get rid of this small "flash".
-15. If you disable sound and then enable sound again, sound does not start again before you exit the current menu.
-
-
-
-
-
 14. BALL SHOULD BE AT LEAST 15 PIXELS IN SIZE AT ALL TIMES!!
 17. Sometimes a power up will have no visible effect on the Earth level. This happens to all levels, it seems.
+
 
 
 

@@ -111,7 +111,6 @@ public final class SoundHandler {
     }
 
     public void playStateSound(GameController.State state, GameController.State prevState, boolean loop, boolean restart) {
-
         if (currentStateBackup != prevState && !restart) {
             return;
         }
@@ -125,15 +124,19 @@ public final class SoundHandler {
             case MAIN:
             case SCORES:
             case CONTROLS:
+            case SELECT_LEVEL:
             case OPTIONS:
             case PLAYER_OPTIONS:
             case PLAYER_SELECT:
             case PLAYER_CREATE:
             case PLAYER_DELETE:
+            case GAME_OPTIONS:
             case GRAPHICS_OPTIONS:
             case CONFIG_OPTIONS:
             case ABOUT:
             case EXIT:
+            case NONE:
+            case ERROR:
                 soundClipToPlay = textHandler.SOUND_FILE_NAME_MENU;
                 break;
             case PAUSE:
