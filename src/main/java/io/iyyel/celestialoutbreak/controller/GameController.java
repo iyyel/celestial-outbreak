@@ -516,7 +516,7 @@ public final class GameController extends Canvas implements Runnable {
 
     private void initGameIcon() {
         /* Game Icon */
-        URL url = ClassLoader.getSystemResource("icon/app_icon_small.png");
+        URL url = ClassLoader.getSystemResource("icon/icon.png");
         Toolkit kit = Toolkit.getDefaultToolkit();
         Image img = kit.createImage(url);
         gameFrame.setIconImage(img);

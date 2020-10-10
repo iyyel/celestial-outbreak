@@ -15,7 +15,6 @@
 
 
 
-13. Better icon.
 14. The first time you're making a new player, some text is at the screen. It quickly flashes away. Let's try to get rid of this small "flash".
 14. BALL SHOULD BE AT LEAST 15 PIXELS IN SIZE AT ALL TIMES!!
 17. Sometimes a power up will have no visible effect on the Earth level. This happens to all levels, it seems.
