@@ -9,7 +9,6 @@
  ░▓ about  ▓ 2D game written in Java
  ░▓ author ▓ iyyel <i@iyyel.io>
  ░▓ code   ▓ https://github.com/iyyel/celestialoutbreak
- ░▓ mirror ▓ https://git.iyyel.io/iyyel/celestialoutbreak
  ░▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░
 ```
