@@ -36,7 +36,7 @@ In development.
 
 
 # Release
-Version v1.00 is in development currently. Expecting a *final* release soon.
+Version v1.00 is in development currently. Expecting a final release *soon*.
 
 
 # Installing
