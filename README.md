@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="460" height="300" src="img/celestialoutbreak-header.png">
+  <img src="img/celestialoutbreak-header.png">
 </p>
 
 ``` 
