@@ -21,7 +21,7 @@
  - [Status](#Status)
  - [Release](#Release)
  - [Installing](#Installing)
- - [Previews](#Previews)
+ - [Preview](#Preview)
  - [License](#License)
 
 
@@ -43,7 +43,7 @@ Version v1.00 is in development currently. Expecting a final release *soon*.
 To install Celestial Outbreak, you can either download a [release](https://github.com/iyyel/celestialoutbreak/releases) version or clone this repository and compile it into a jar file.
 
 
-# Previews
+# Preview
 ### Main Menu
 ![Main Menu](img/welcome_screen.png)
 
