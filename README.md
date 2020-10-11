@@ -44,17 +44,7 @@ To install Celestial Outbreak, you can either download a [release](https://githu
 
 
 # Preview
-### Main Menu
-![Main Menu](img/welcome_screen.png)
-
-### Game Options
-![GameOptions](img/game_options.png)
-
-### Level Selection
-![LevelSelect](img/select_level.png)
-
-### Gameplay
-![Gameplay](img/gameplay.gif)
+New previews to come soon.
 
 
 # License
