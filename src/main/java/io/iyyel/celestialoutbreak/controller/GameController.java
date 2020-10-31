@@ -185,8 +185,9 @@ public final class GameController extends Canvas implements Runnable {
         try {
             playerDAO.loadPlayerDTO();
         } catch (IPlayerDAO.PlayerDAOException e) {
-            // TODO: Handle this.
-            e.printStackTrace();
+            logHandler.log(textHandler.errorOccurred("An error occurred when starting the game", e),
+                    "GameController", LogHandler.LogLevel.ERROR, false);
+            stop();
         }
 
         /* Initialize levelHandler */
@@ -383,8 +384,8 @@ public final class GameController extends Canvas implements Runnable {
         try {
             g = (Graphics2D) bs.getDrawGraphics();
         } catch (IllegalStateException e) {
-            logHandler.log("You dragged the screen to another monitor, didn't you? This doesn't work. :(", "render", LogHandler.LogLevel.ERROR, false);
-            e.printStackTrace();
+            logHandler.log(textHandler.errorOccurred("Error initializing graphics library", e),
+                    "render", LogHandler.LogLevel.ERROR, false);
             stop();
         }
 
@@ -516,7 +517,7 @@ public final class GameController extends Canvas implements Runnable {
 
     private void initGameIcon() {
         /* Game Icon */
-        URL url = ClassLoader.getSystemResource("icon/icon.png");
+        URL url = ClassLoader.getSystemResource(textHandler.GAME_ICON_RES_PATH);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Image img = kit.createImage(url);
         gameFrame.setIconImage(img);
@@ -566,7 +567,7 @@ public final class GameController extends Canvas implements Runnable {
         if (isRunning) {
             isRunning = false;
         }
-        logHandler.log(textHandler.GAME_TITLE + " shutting down.", "stop", LogHandler.LogLevel.INFO, false);
+        logHandler.log(textHandler.gameShutdownMsg, "stop", LogHandler.LogLevel.INFO, false);
         System.exit(0);
     }
 

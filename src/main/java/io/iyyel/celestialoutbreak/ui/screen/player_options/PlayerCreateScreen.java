@@ -8,7 +8,7 @@ import java.awt.*;
 
 public final class PlayerCreateScreen extends AbstractScreen {
 
-    private boolean isFirstUpdate = true;
+    private boolean isFirstRender = true;
     private boolean isAcceptMode = false;
     private boolean isPlayerCreated = false;
 
@@ -22,26 +22,6 @@ public final class PlayerCreateScreen extends AbstractScreen {
     @Override
     public void update() {
         decInputTimer();
-
-        /*
-         * Do this ONCE every time the user is on this screen.
-         */
-        if (isFirstUpdate) {
-            isFirstUpdate = false;
-            isAcceptMode = false;
-            isPlayerCreated = false;
-
-            inputHandler.setInputMode(false);
-            inputHandler.setUserInput("");
-
-            statusString = INIT_STATUS_STRING;
-
-            try {
-                playerDAO.loadPlayerDTO();
-            } catch (IPlayerDAO.PlayerDAOException e) {
-                e.printStackTrace();
-            }
-        }
 
         // InputMode: true
         // cancel: type 'x'
@@ -100,7 +80,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
                 resetInputTimer();
                 inputHandler.setUserInput("");
                 isAcceptMode = false;
-                isFirstUpdate = true;
+                isFirstRender = true;
                 inputHandler.setInputMode(false);
                 statusString = INIT_STATUS_STRING;
                 exitMenu();
@@ -111,7 +91,7 @@ public final class PlayerCreateScreen extends AbstractScreen {
             resetInputTimer();
             inputHandler.setUserInput("");
             isAcceptMode = false;
-            isFirstUpdate = true;
+            isFirstRender = true;
             inputHandler.setInputMode(false);
             menuNavClip.play(false);
             exitMenu();
@@ -132,6 +112,11 @@ public final class PlayerCreateScreen extends AbstractScreen {
     public void render(Graphics2D g) {
         drawTitle(g);
         drawSubtitle(textHandler.TITLE_CREATE_PLAYER_SCREEN, g);
+
+        /*
+         * Do this ONCE every time the user is on this screen.
+         */
+        doFirstRender();
 
         if (inputHandler.isInputMode()) {
             drawCenteredText("Enter Player name:", 0, g);
@@ -188,6 +173,25 @@ public final class PlayerCreateScreen extends AbstractScreen {
             }
         } else {
             gameController.switchState(GameController.State.WELCOME);
+        }
+    }
+
+    private void doFirstRender() {
+        if (isFirstRender) {
+            isFirstRender = false;
+            isAcceptMode = false;
+            isPlayerCreated = false;
+
+            inputHandler.setInputMode(false);
+            inputHandler.setUserInput("");
+
+            statusString = INIT_STATUS_STRING;
+
+            try {
+                playerDAO.loadPlayerDTO();
+            } catch (IPlayerDAO.PlayerDAOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

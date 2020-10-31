@@ -78,9 +78,8 @@ public final class LevelHandler {
         levels = new Level[levelConfigFileList.size()];
         levelOptionsFileNames = new String[levelConfigFileList.size()];
 
-        //TODO: Remove magic number here.
-        if (levels.length > 12) {
-            logHandler.log("Maximum levels exceeded: 12 - shutting down.", "initPreLevels", LogHandler.LogLevel.ERROR, false);
+        if (levels.length > textHandler.MAX_LEVELS) {
+            logHandler.log("Maximum levels (" + textHandler.MAX_LEVELS + ") exceeded. You can at maximum have " + textHandler.MAX_LEVELS + " at once. Exiting.", "initPreLevels", LogHandler.LogLevel.ERROR, false);
             gameController.stop();
             return;
         }
