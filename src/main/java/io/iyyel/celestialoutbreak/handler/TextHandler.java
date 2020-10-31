@@ -59,6 +59,12 @@ public final class TextHandler {
     public final String USER_OS = System.getProperty("os.name");
     public final String USER_JRE_ARCH = System.getProperty("os.arch");
 
+    public final String GAME_ICON_NAME = "icon.png";
+    public final String GAME_ICON_DIR_NAME = "icon";
+    public final String GAME_ICON_RES_PATH = GAME_ICON_DIR_NAME + fsJar + GAME_ICON_NAME;
+
+
+    public final String gameShutdownMsg = GAME_TITLE + " shutting down.";
     /*
      * Menu button names.
      */
@@ -194,6 +200,11 @@ public final class TextHandler {
     /*
      * Level file information.
      */
+    public final int MAX_LEVELS = 12;
+    public final int MAX_PLAYERS = 25;
+    public final int PLAYER_NAME_MAX_LENGTH = 8;
+    public final int PLAYER_NAME_MIN_LENGTH = 3;
+
     public final String LEVEL_DIR_NAME = "levels";
     public final String LEVEL_DIR_PATH = GAME_DIR_PATH + fs + LEVEL_DIR_NAME;
     public final String LOCAL_JAR_LEVEL_DIR = LOCAL_JAR_CONFIG_DIR + fsJar + LEVEL_DIR_NAME;
@@ -500,6 +511,22 @@ public final class TextHandler {
         return "Successfully created directory '" + dirPath + "'";
     }
 
+    public final String successReadScoreBinary() {
+        return "Successfully read score binary file '" + SCORE_BIN_FILE_NAME + "'";
+    }
+
+    public final String successReadPlayerBinary() {
+        return "Successfully read player binary file '" + PLAYER_BIN_FILE_NAME + "'";
+    }
+
+    public final String successSaveScoreBinary() {
+        return "Successfully saved score binary file '" + SCORE_BIN_FILE_NAME + "' at '" + SCORE_BIN_FILE_CLIENT_PATH + "'";
+    }
+
+    public final String successSavePlayerBinary() {
+        return "Successfully saved player binary file '" + PLAYER_BIN_FILE_NAME + "' at '" + PLAYER_BIN_FILE_CLIENT_PATH + "'";
+    }
+
     /*
      * Finished messages.
      */
@@ -514,6 +541,10 @@ public final class TextHandler {
     /*
      * Error messages.
      */
+
+    public final String errorOccurred(String msg, Exception e) {
+        return "EXCEPTION: " + msg + ". Error message: " + e.getMessage();
+    }
 
     public final String errorCreatingDirMsg(String dirPath) {
         return "Failed to create directory '" + dirPath + "'";
@@ -539,6 +570,14 @@ public final class TextHandler {
         return "Failed to create AudioClip from '" + filePath + "' cause '" + errMsg + "'";
     }
 
+    public final String errorReadScoreBinary() {
+        return "Failed to read score binary file '" + SCORE_BIN_FILE_NAME + "'";
+    }
+
+    public final String errorReadPlayerBinary() {
+        return "Failed to read player binary file '" + PLAYER_BIN_FILE_NAME + "'";
+    }
+
     /*
      * Action messages.
      */
@@ -550,28 +589,21 @@ public final class TextHandler {
         return "Reading properties from '" + filePath + "'...";
     }
 
+    /* Score messages */
+
+    public final String creatingEmptyBinaryMsg() {
+        return "Creating empty binary score file '" + SCORE_BIN_FILE_NAME + "'";
+    }
+
     /*
      * Verbose mode messages.
      */
-
-    /* Level. */
-    public final String vChangedLevelMsg(String prevLevel, String newLevel) {
-        return "Changed level from '" + prevLevel + "' to '" + newLevel + "'";
-    }
-
-    public final String vLevelFinishedMsg(String levelType) {
-        return "Level '" + levelType + "' finished";
-    }
 
     /* Ball. */
     public final String vBallTouchedYAxisBottomMsg = "Ball touched bottom y-axis.";
     public final String vBallTouchedYAxisTopMsg = "Ball touched top y-axis.";
     public final String vBallTouchedXAxisLeftMsg = "Ball touched left x-axis.";
     public final String vBallTouchedXAxisRightMsg = "Ball touched right x-axis.";
-
-    public final String vBallPaddleCollisionMsg(int paddleCollisionTimer) {
-        return "Ball collision with Paddle. Changed paddleCollisionTimer: " + paddleCollisionTimer;
-    }
 
     public final String vBallBlockFieldCollisionMsg(int blockIndex, int blockHealth) {
         return "Ball collision with BlockField[" + blockIndex + "], Health=" + blockHealth;

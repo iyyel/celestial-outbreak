@@ -36,15 +36,19 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public void loadPlayerDTO() throws PlayerDAOException {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
+            ObjectInputStream ois = new ObjectInputStream(
+                    new FileInputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             playerDTO = (PlayerDTO) ois.readObject();
             ois.close();
-            logHandler.log("Successfully read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", "loadPlayerDTO", LogHandler.LogLevel.INFO, true);
+            logHandler.log(textHandler.successReadPlayerBinary(), "loadPlayerDTO",
+                    LogHandler.LogLevel.INFO, true);
         } catch (FileNotFoundException e) {
-            logHandler.log("Failed to read binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "'", "loadPlayerDTO", LogHandler.LogLevel.FAIL, true);
+            logHandler.log(textHandler.errorReadPlayerBinary(), "loadPlayerDTO",
+                    LogHandler.LogLevel.FAIL, true);
             createNewPlayerBinFile();
         } catch (IOException | ClassNotFoundException e) {
-            logHandler.log("Exception: " + e.getMessage(), "loadPlayerDTO", LogHandler.LogLevel.ERROR, false);
+            logHandler.log(textHandler.errorOccurred("Error occurred while loading player binary file", e),
+                    "loadPlayerDTO", LogHandler.LogLevel.ERROR, false);
             throw new PlayerDAOException("Failed to load PlayerDTO: " + e.getMessage());
         }
     }
@@ -52,12 +56,15 @@ public final class PlayerDAO implements IPlayerDAO {
     @Override
     public void savePlayerDTO() throws PlayerDAOException {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
+            ObjectOutputStream oos = new ObjectOutputStream(
+                    new FileOutputStream(textHandler.PLAYER_BIN_FILE_CLIENT_PATH));
             oos.writeObject(playerDTO);
             oos.close();
-            logHandler.log("Successfully saved binary player file '" + textHandler.PLAYER_BIN_FILE_NAME + "' at '" + textHandler.PLAYER_BIN_FILE_CLIENT_PATH + "'", "savePlayerDTO", LogHandler.LogLevel.INFO, true);
+            logHandler.log(textHandler.successSavePlayerBinary(), "savePlayerDTO",
+                    LogHandler.LogLevel.INFO, true);
         } catch (IOException e) {
-            logHandler.log("Exception: " + e.getMessage(), "savePlayerDTO", LogHandler.LogLevel.ERROR, false);
+            logHandler.log(textHandler.errorOccurred("Error occurred during saving of player binary file", e),
+                    "savePlayerDTO", LogHandler.LogLevel.ERROR, false);
             throw new PlayerDAOException("Failed to save PlayerDTO: " + e.getMessage());
         }
     }
@@ -76,9 +83,9 @@ public final class PlayerDAO implements IPlayerDAO {
             throw new PlayerDAOException("'" + player + "' is an existing player!");
         }
 
-        // TODO: Remove magic number here.
-        if (playerDTO.getPlayerCount() >= 25) {
-            logHandler.log("Player limit reached!", "addPlayer", LogHandler.LogLevel.FAIL, false);
+        if (playerDTO.getPlayerCount() >= textHandler.MAX_PLAYERS) {
+            logHandler.log("Player limit (" + textHandler.MAX_PLAYERS + ") reached. Remove some players.",
+                    "addPlayer", LogHandler.LogLevel.FAIL, false);
             throw new PlayerDAOLimitException("Player limit reached!");
         }
 
@@ -123,13 +130,11 @@ public final class PlayerDAO implements IPlayerDAO {
     }
 
     private boolean checkPlayerMinBounds(String player) {
-        // TODO: Remove magic number here.
-        return player.length() >= 3;
+        return player.length() >= textHandler.PLAYER_NAME_MIN_LENGTH;
     }
 
     private boolean checkPlayerMaxBounds(String player) {
-        // TODO: Remove magic number here.
-        return player.length() <= 8;
+        return player.length() <= textHandler.PLAYER_NAME_MAX_LENGTH;
     }
 
     private void createNewPlayerBinFile() throws PlayerDAOException {

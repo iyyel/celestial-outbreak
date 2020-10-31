@@ -37,15 +37,20 @@ public final class HighScoreDAO implements IHighScoreDAO {
     @Override
     public void loadHighScoreList() throws HighScoreDAOException {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(textHandler.SCORE_BIN_FILE_CLIENT_PATH));
+            ObjectInputStream ois = new ObjectInputStream(
+                    new FileInputStream(textHandler.SCORE_BIN_FILE_CLIENT_PATH));
             highScoreDTOList = (List<HighScoreDTO>) ois.readObject();
             ois.close();
-            logHandler.log("Successfully read binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "'", "loadHighScoreList", LogHandler.LogLevel.INFO, true);
+
+            logHandler.log(textHandler.successReadScoreBinary(), "loadHighScoreList",
+                    LogHandler.LogLevel.INFO, true);
         } catch (FileNotFoundException e) {
-            logHandler.log("Failed to read binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "'", "loadHighScoreList", LogHandler.LogLevel.FAIL, true);
+            logHandler.log(textHandler.errorReadScoreBinary(), "loadHighScoreList",
+                    LogHandler.LogLevel.FAIL, true);
             createNewScoreBinFile();
         } catch (IOException | ClassNotFoundException e) {
-            logHandler.log("Exception: " + e.getMessage(), "loadHighScoreList", LogHandler.LogLevel.ERROR, false);
+            logHandler.log(textHandler.errorOccurred("Error loading high score binary file", e),
+                    "loadHighScoreList", LogHandler.LogLevel.ERROR, false);
             throw new HighScoreDAOException("Failed to load ScoreDTO list: " + e.getMessage());
         }
     }
@@ -53,15 +58,18 @@ public final class HighScoreDAO implements IHighScoreDAO {
     @Override
     public void saveHighScoreList() throws HighScoreDAOException {
         if (highScoreDTOList == null) {
-            throw new HighScoreDAOException("Please load first.");
+            throw new HighScoreDAOException("Please load high scores first.");
         }
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(textHandler.SCORE_BIN_FILE_CLIENT_PATH));
+            ObjectOutputStream oos = new ObjectOutputStream(
+                    new FileOutputStream(textHandler.SCORE_BIN_FILE_CLIENT_PATH));
             oos.writeObject(highScoreDTOList);
             oos.close();
-            logHandler.log("Successfully saved binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "' at '" + textHandler.SCORE_BIN_FILE_CLIENT_PATH + "'","saveHighScoreList", LogHandler.LogLevel.INFO, true);
+            logHandler.log(textHandler.successSaveScoreBinary(), "saveHighScoreList",
+                    LogHandler.LogLevel.INFO, true);
         } catch (IOException e) {
-            logHandler.log("Exception: " + e.getMessage(), "saveHighScoreList", LogHandler.LogLevel.ERROR, false);
+            logHandler.log(textHandler.errorOccurred("Error saving high score binary file", e),
+                    "saveHighScoreList", LogHandler.LogLevel.ERROR, false);
             throw new HighScoreDAOException("Failed to save ScoreDTO list: " + e.getMessage());
         }
     }
@@ -156,7 +164,8 @@ public final class HighScoreDAO implements IHighScoreDAO {
     }
 
     private void createNewScoreBinFile() throws HighScoreDAOException {
-        logHandler.log("Creating empty binary score file '" + textHandler.SCORE_BIN_FILE_NAME + "'", "createNewScoreBinFile", LogHandler.LogLevel.INFO, true);
+        logHandler.log(textHandler.creatingEmptyBinaryMsg(), "createNewScoreBinFile",
+                LogHandler.LogLevel.INFO, true);
         highScoreDTOList = new ArrayList<>();
         saveHighScoreList();
     }
