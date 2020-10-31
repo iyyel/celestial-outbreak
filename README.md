@@ -28,11 +28,11 @@ The goal with this project was to create a simple 2D game in Java with minimal u
 
 
 # Status
-In development.
+Released.
 
 
 # Release
-Version v1.00 is in development currently. Expecting a final release *soon*.
+Version v1.00.
 
 
 # Installing
