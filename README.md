@@ -98,7 +98,7 @@ audio track should be played etc.
 Celestial Outbreak is built with the following technologies:
 
 * [Java](https://java.com/en/)
-* [Graphics2D](https://docs.oracle.com/javase/7/docs/api/java/awt/Graphics2D.html/)
+* [Graphics2D](https://docs.oracle.com/javase/7/docs/api/java/awt/Graphics2D.html/) (Java library)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -107,20 +107,16 @@ Celestial Outbreak is built with the following technologies:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+It is quite simple to get started with developing for **Celestial Outbreak**.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Make sure you have any modern version of Java installed. Java can be installed from [here](https://java.com/en/).
+
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+To install Celestial Outbreak
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
@@ -227,15 +223,15 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-url]: https://github.com/iyyel/celestial-outbreak/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[forks-url]: https://github.com/iyyel/celestial-outbreak/network/members
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[stars-url]: https://github.com/iyyel/celestial-outbreak/stargazers
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[issues-url]: https://github.com/iyyel/celestial-outbreak/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[license-url]: https://github.com/iyyel/celestial-outbreak/LICENSE.md
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/main_menu.png
