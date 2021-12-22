@@ -13,7 +13,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 <!-- PROJECT LOGO -->
@@ -107,7 +106,8 @@ Celestial Outbreak is built with the following technologies:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-It is quite simple to get started with developing for **Celestial Outbreak**.
+It is quite simple to get started with installing or developing for **Celestial Outbreak**.
+
 
 ### Prerequisites
 
@@ -222,16 +222,16 @@ Use this space to list resources you find helpful and would like to give credit 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/iyyel/celestial-outbreak.svg?style=for-the-badge
 [contributors-url]: https://github.com/iyyel/celestial-outbreak/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/iyyel/celestial-outbreak.svg?style=for-the-badge
 [forks-url]: https://github.com/iyyel/celestial-outbreak/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/iyyel/celestial-outbreak.svg?style=for-the-badge
 [stars-url]: https://github.com/iyyel/celestial-outbreak/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/iyyel/celestial-outbreak.svg?style=for-the-badge
 [issues-url]: https://github.com/iyyel/celestial-outbreak/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/iyyel/celestial-outbreak.svg?style=for-the-badge
 [license-url]: https://github.com/iyyel/celestial-outbreak/LICENSE.md
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+<!-- [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/ -->
 [product-screenshot]: images/main_menu.png
