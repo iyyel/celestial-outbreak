@@ -49,7 +49,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About Celestial Outbreak</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -77,16 +77,9 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Celestial Outbreak is a space-themed, Breakout-like 2D video game written in Java. It features the original Breakout experience in a colorful user interface with a few extra traits. The game is built with customization in mind, meaning the user is able to create their own levels by specifying properties such as dimension, size, speed and color of the blocks, paddle and ball, as well as the effects of power ups.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+The goal with this project was to create a simple 2D game in Java with minimal usage of third-party libraries. The game solely relies on the Graphics2D Java library for drawing shapes to the screen. The flow of the game is structured as a finite-state machine such that the program always know which state to render and update.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
