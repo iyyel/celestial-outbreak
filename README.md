@@ -9,13 +9,12 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-<div align="center">
-  <a href="">[![Contributors][contributors-shield]][contributors-url]</a>
-  <a href="">[![Forks][forks-shield]][forks-url]</a>
-  <a href="">[![Stargazers][stars-shield]][stars-url]</a>
-  <a href="">[![Issues][issues-shield]][issues-url]</a>
-  <a href="">[![MIT License][license-shield]][license-url]</a>
-</div>
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
 
 <!-- PROJECT LOGO -->
 <br />
