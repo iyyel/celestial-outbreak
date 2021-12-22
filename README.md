@@ -20,7 +20,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/iyyel/celestial-outbreak">
-    <img src="images/celestialoutbreak-logo.png" alt="Logo" width="80" height="80">
+    <img src="images/celestialoutbreak-logo.png" alt="Logo">
   </a>
 
   <!-- <h3 align="center">Celes</h3> -->
