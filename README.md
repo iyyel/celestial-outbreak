@@ -75,7 +75,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Celestial Outbreak][Celestial Outbreak]](images/main_menu.png)
 
 Celestial Outbreak is a space-themed, Breakout-like 2D video game written in Java. It features the original Breakout experience in a colorful user interface with a few extra traits. The game is built with customization in mind, meaning the user is able to create their own levels by specifying properties such as dimension, size, speed and color of the blocks, paddle and ball, as well as the effects of power ups.
 
