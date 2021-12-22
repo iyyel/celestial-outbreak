@@ -23,9 +23,10 @@
     <img src="images/celestialoutbreak-logo.png" alt="Logo">
   </a>
 
-  <!-- <h3 align="center">Celes</h3> -->
+  <!-- <h3 align="center">Title</h3> -->
 
   <p align="center">
+    <br />
     A space-themed, Breakout-like sandbox 2D video game
     <br />
     <!--
