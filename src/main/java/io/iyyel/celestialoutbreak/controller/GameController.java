@@ -390,7 +390,6 @@ public final class GameController extends Canvas implements Runnable {
         }
 
         if (g == null) {
-            // log incident here
             stop();
         }
 

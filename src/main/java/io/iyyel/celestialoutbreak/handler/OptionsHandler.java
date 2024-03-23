@@ -71,7 +71,6 @@ public final class OptionsHandler {
             // Put the actual value of 'pKey' inside menuColorPropMap
             Color color = parseMenuColorProperty(pMap, pKey);
             menuColorPropMap.put(pKey, color);
-            // Log
             logHandler.log(textHandler.getMenuColorLogString(pKey, color), "loadColorOptions", LogHandler.LogLevel.INFO, false);
         }
     }

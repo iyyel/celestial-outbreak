@@ -114,7 +114,6 @@ public final class InputHandler implements KeyListener {
     }
 
     private void addToUserInput(KeyEvent e) {
-        // TODO: Remove magic numbers here.
         if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             if (userInput.length() <= 1) {
                 userInput = "";

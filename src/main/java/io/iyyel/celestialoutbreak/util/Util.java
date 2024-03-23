@@ -49,39 +49,4 @@ public final class Util {
         return gameFont;
     }
 
-    public void createDemoPlayers(IPlayerDAO playerDAO) {
-        try {
-            playerDAO.addPlayer("Fluffy");
-            playerDAO.selectPlayer("Fluffy");
-            playerDAO.addPlayer("Rocket");
-            playerDAO.addPlayer("Jackson");
-            playerDAO.addPlayer("Sally");
-            playerDAO.addPlayer("Emil");
-            playerDAO.addPlayer("Dimitri");
-            playerDAO.addPlayer("Jake");
-            playerDAO.addPlayer("Veronica");
-            playerDAO.addPlayer("Mike");
-            playerDAO.addPlayer("Clarke");
-            playerDAO.addPlayer("Mustafa");
-            playerDAO.addPlayer("WoW");
-            playerDAO.addPlayer("Iyyel");
-            playerDAO.addPlayer("Musti");
-            playerDAO.addPlayer("Hassan");
-            playerDAO.addPlayer("Uweuweu");
-            playerDAO.addPlayer("Cododa");
-            playerDAO.addPlayer("Troels");
-            playerDAO.addPlayer("Behnia");
-            playerDAO.addPlayer("Thomas");
-            playerDAO.addPlayer("Daniel");
-            playerDAO.addPlayer("Kevin");
-            playerDAO.addPlayer("Alice");
-            playerDAO.addPlayer("Ryan");
-            playerDAO.addPlayer("Rackman");
-            playerDAO.savePlayerDTO();
-            playerDAO.loadPlayerDTO();
-        } catch (IPlayerDAO.PlayerDAOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
