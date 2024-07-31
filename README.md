@@ -26,6 +26,7 @@
 - [Built With](#built-with)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
+- [Gameplay](#gameplay)
 - [License](#license)
 - [Contact](#contact)
 
@@ -66,6 +67,25 @@ To use **Celestial Outbreak**
 * Download or clone this repository
 * Open it in your IDE or text editor of choice
 * Run the `Main.java` class to start the game
+
+
+
+## Gameplay
+
+#### **Mars**
+<img src="images/mars_gameplay.gif" width="auto" height="500" alt="Mars gameplay">
+
+#### **Neptune**
+<img src="images/neptune_gameplay.png" width="auto" height="500" alt="Neptune gameplay">
+
+#### **Venus**
+<img src="images/venus_gameplay.png" width="auto" height="500" alt="Venus gameplay">
+
+#### **Options menu**
+<img src="images/options_menu.png" width="auto" height="500" alt="Options menu">
+
+#### **Level selection menu**
+<img src="images/select_level_menu.png" width="auto" height="500" alt="Level selection menu">
 
 
 
